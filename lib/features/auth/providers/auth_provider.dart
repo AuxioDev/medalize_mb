@@ -1,0 +1,121 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:medalize_mb/core/errors/api_exception.dart';
+import 'package:medalize_mb/core/network/dio_client.dart';
+import 'package:medalize_mb/core/storage/secure_storage.dart';
+import 'package:medalize_mb/features/auth/data/models/login_request.dart';
+import 'package:medalize_mb/features/auth/data/models/register_request.dart';
+import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
+import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+
+final authProvider = NotifierProvider<AuthNotifier, AuthState>(AuthNotifier.new);
+
+class AuthNotifier extends Notifier<AuthState> {
+  @override
+  AuthState build() {
+    Future(_init);
+    return const AuthInitial();
+  }
+
+  SecureStorage get _storage => ref.read(secureStorageProvider);
+  AuthRepository get _repo => ref.read(authRepositoryProvider);
+
+  Future<void> _init() async {
+    final access = await _storage.getAccessToken();
+    if (access == null) {
+      state = const AuthUnauthenticated();
+      return;
+    }
+    try {
+      final user = await _repo.getMe();
+      final refresh = await _storage.getRefreshToken() ?? '';
+      state = AuthAuthenticated(
+        accessToken: access,
+        refreshToken: refresh,
+        role: user.role,
+        userId: user.userId,
+        email: user.email,
+        onboardingComplete: user.onboardingComplete ?? (user.role == 'patient'),
+        isVerified: user.isVerified,
+      );
+    } catch (_) {
+      await _storage.clearAll();
+      state = const AuthUnauthenticated();
+    }
+  }
+
+  Future<void> login(
+    String email,
+    String password, {
+    bool rememberMe = false,
+  }) async {
+    state = const AuthLoading();
+    try {
+      final response = await _repo.login(
+        LoginRequest(email: email, password: password, rememberMe: rememberMe),
+      );
+      await _storage.saveTokens(
+        accessToken: response.access,
+        refreshToken: response.refresh,
+        role: response.role,
+        userId: response.userId,
+        email: response.email,
+      );
+      state = AuthAuthenticated(
+        accessToken: response.access,
+        refreshToken: response.refresh,
+        role: response.role,
+        userId: response.userId,
+        email: response.email,
+        onboardingComplete: response.onboardingComplete,
+        isVerified: response.isVerified,
+      );
+    } on ApiException catch (e) {
+      state = AuthError(e);
+    }
+  }
+
+  Future<void> register({
+    required String email,
+    required String password,
+    required String passwordConfirm,
+    required String role,
+    required String firstName,
+    required String lastName,
+  }) async {
+    state = const AuthLoading();
+    try {
+      await _repo.register(RegisterRequest(
+        email: email,
+        password: password,
+        passwordConfirm: passwordConfirm,
+        role: role,
+        firstName: firstName,
+        lastName: lastName,
+      ));
+      // API does not return tokens — auto-login after registration
+      await login(email, password);
+    } on ApiException catch (e) {
+      state = AuthError(e);
+    }
+  }
+
+  Future<void> logout() async {
+    final s = state;
+    if (s is! AuthAuthenticated) return;
+    try {
+      await _repo.logout(
+        accessToken: s.accessToken,
+        refreshToken: s.refreshToken,
+      );
+    } catch (_) {
+      // Proceed with local logout even on API failure
+    }
+    await _storage.clearAll();
+    state = const AuthUnauthenticated();
+  }
+
+  void forceLogout() {
+    _storage.clearAll();
+    state = const AuthUnauthenticated();
+  }
+}
