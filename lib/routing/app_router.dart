@@ -33,19 +33,19 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(
         path: '/splash',
-        builder: (_, _) => const SplashScreen(),
+        pageBuilder: (_, _) => _fadePage(const SplashScreen()),
       ),
       GoRoute(
         path: '/auth/login',
-        builder: (_, _) => const LoginScreen(),
+        pageBuilder: (_, _) => _authPage(const LoginScreen()),
       ),
       GoRoute(
         path: '/auth/register',
-        builder: (_, _) => const RegisterScreen(),
+        pageBuilder: (_, _) => _authPage(const RegisterScreen()),
       ),
       GoRoute(
         path: '/auth/forgot-password',
-        builder: (_, _) => const ForgotPasswordScreen(),
+        pageBuilder: (_, _) => _authPage(const ForgotPasswordScreen()),
       ),
       GoRoute(
         path: '/patient/home',
@@ -66,6 +66,38 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
   );
 });
+
+/// Auth pages: fade + subtle upward slide (matches the card entrance animation).
+CustomTransitionPage<void> _authPage(Widget child) {
+  return CustomTransitionPage<void>(
+    child: child,
+    transitionDuration: const Duration(milliseconds: 380),
+    reverseTransitionDuration: const Duration(milliseconds: 280),
+    transitionsBuilder: (_, animation, _, child) {
+      final curved = CurvedAnimation(parent: animation, curve: Curves.easeOut);
+      return FadeTransition(
+        opacity: curved,
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 0.04),
+            end: Offset.zero,
+          ).animate(curved),
+          child: child,
+        ),
+      );
+    },
+  );
+}
+
+/// Splash: plain fade (no slide — it's the root page).
+CustomTransitionPage<void> _fadePage(Widget child) {
+  return CustomTransitionPage<void>(
+    child: child,
+    transitionDuration: const Duration(milliseconds: 300),
+    transitionsBuilder: (_, animation, _, child) =>
+        FadeTransition(opacity: animation, child: child),
+  );
+}
 
 String _homeFor(String role, bool onboardingComplete, bool? isVerified) {
   if (role == 'patient') return '/patient/home';

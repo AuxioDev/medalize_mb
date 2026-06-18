@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
-import 'package:medalize_mb/features/auth/presentation/widgets/auth_text_field.dart';
+import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
+import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 
@@ -16,15 +16,44 @@ class LoginScreen extends ConsumerStatefulWidget {
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen>
+    with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _rememberMe = false;
   bool _obscurePassword = true;
 
+  late final AnimationController _ctrl;
+  late final Animation<double> _headerAnim;
+  late final Animation<double> _formAnim;
+  late final Animation<double> _footerAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _headerAnim = CurvedAnimation(
+      parent: _ctrl,
+      curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
+    );
+    _formAnim = CurvedAnimation(
+      parent: _ctrl,
+      curve: const Interval(0.2, 0.75, curve: Curves.easeOut),
+    );
+    _footerAnim = CurvedAnimation(
+      parent: _ctrl,
+      curve: const Interval(0.45, 1.0, curve: Curves.easeOut),
+    );
+    _ctrl.forward();
+  }
+
   @override
   void dispose() {
+    _ctrl.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -41,10 +70,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   String _errorMessage(ApiException e) => switch (e) {
         InvalidCredentialsException(:final message) => message,
-        RateLimitException(:final retryAfterSeconds) =>
-          retryAfterSeconds != null
-              ? 'Too many attempts. Try again in ${retryAfterSeconds}s.'
-              : AppStrings.rateLimitError,
+        RateLimitException(:final retryAfterSeconds) => retryAfterSeconds != null
+            ? 'Too many attempts. Try again in ${retryAfterSeconds}s.'
+            : AppStrings.rateLimitError,
         NetworkException() => AppStrings.networkError,
         _ => e.userMessage,
       };
@@ -63,131 +91,123 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
 
     final isLoading = ref.watch(authProvider) is AuthLoading;
-    final width = MediaQuery.sizeOf(context).width;
-    final isWide = width >= AppSpacing.mobileBreakpoint;
 
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints:
-                const BoxConstraints(maxWidth: AppSpacing.cardMaxWidth),
-            child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(
-                horizontal: isWide ? AppSpacing.xl : AppSpacing.lg,
-                vertical: AppSpacing.xl,
-              ),
-              child: AutofillGroup(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _Header(),
-                      const SizedBox(height: AppSpacing.xxl),
-                      AuthTextField(
-                        controller: _emailController,
-                        label: AppStrings.email,
-                        hint: AppStrings.emailHint,
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        autofillHints: const [AutofillHints.email],
-                        validator: (v) {
-                          if (v == null || v.trim().isEmpty) {
-                            return AppStrings.emailRequired;
-                          }
-                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                              .hasMatch(v.trim())) {
-                            return AppStrings.emailInvalid;
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: AppSpacing.md),
-                      AuthTextField(
-                        controller: _passwordController,
-                        label: AppStrings.password,
-                        hint: AppStrings.passwordHint,
-                        obscureText: _obscurePassword,
-                        textInputAction: TextInputAction.done,
-                        autofillHints: const [AutofillHints.password],
-                        onFieldSubmitted: (_) => _submit(),
-                        suffix: IconButton(
-                          icon: Icon(
-                            _obscurePassword
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
-                            color: AppColors.textSecondary,
-                          ),
-                          onPressed: () => setState(
-                              () => _obscurePassword = !_obscurePassword),
-                        ),
-                        validator: (v) {
-                          if (v == null || v.isEmpty) {
-                            return AppStrings.passwordRequired;
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: AppSpacing.md),
-                      Row(
-                        children: [
-                          Switch(
-                            value: _rememberMe,
-                            onChanged: (v) =>
-                                setState(() => _rememberMe = v),
-                            activeThumbColor: AppColors.primary,
-                          ),
-                          const SizedBox(width: AppSpacing.xs),
-                          Text(
-                            AppStrings.rememberMe,
-                            style:
-                                Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                      color: AppColors.textPrimary,
-                                    ),
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () =>
-                                context.push('/auth/forgot-password'),
-                            child: const Text(AppStrings.forgotPassword),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: AppSpacing.lg),
-                      FilledButton(
-                        onPressed: isLoading ? null : _submit,
-                        child: isLoading
-                            ? const SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                    strokeWidth: 2, color: Colors.white),
-                              )
-                            : const Text(AppStrings.login),
-                      ),
-                      const SizedBox(height: AppSpacing.lg),
-                      Center(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              AppStrings.noAccount,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            TextButton(
-                              onPressed: () =>
-                                  context.push('/auth/register'),
-                              child: const Text(AppStrings.signUp),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+    return AuthScaffold(
+      child: AutofillGroup(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // ── Header ───────────────────────────────────────────
+              _Section(
+                anim: _headerAnim,
+                child: const AuthCardHeader(
+                  icon: Icons.medical_services_rounded,
+                  title: AppStrings.welcomeBack,
+                  subtitle: AppStrings.signInToContinue,
                 ),
               ),
-            ),
+              const SizedBox(height: 28),
+
+              // ── Form fields ───────────────────────────────────────
+              _Section(
+                anim: _formAnim,
+                child: Column(
+                  children: [
+                    AuthCardField(
+                      controller: _emailController,
+                      label: AppStrings.email,
+                      hint: AppStrings.emailHint,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      autofillHints: const [AutofillHints.email],
+                      validator: (v) {
+                        if (v == null || v.trim().isEmpty) return AppStrings.emailRequired;
+                        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v.trim())) {
+                          return AppStrings.emailInvalid;
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    AuthCardField(
+                      controller: _passwordController,
+                      label: AppStrings.password,
+                      hint: AppStrings.passwordHint,
+                      obscureText: _obscurePassword,
+                      textInputAction: TextInputAction.done,
+                      autofillHints: const [AutofillHints.password],
+                      onFieldSubmitted: (_) => _submit(),
+                      suffix: VisibilityToggle(
+                        obscure: _obscurePassword,
+                        onToggle: () =>
+                            setState(() => _obscurePassword = !_obscurePassword),
+                      ),
+                      validator: (v) =>
+                          (v == null || v.isEmpty) ? AppStrings.passwordRequired : null,
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Switch(
+                          value: _rememberMe,
+                          onChanged: (v) => setState(() => _rememberMe = v),
+                          activeThumbColor: AppColors.primary,
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          AppStrings.rememberMe,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: AppColors.textPrimary),
+                        ),
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () => context.push('/auth/forgot-password'),
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                          ),
+                          child: const Text(AppStrings.forgotPassword),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              // ── CTA + footer ──────────────────────────────────────
+              _Section(
+                anim: _footerAnim,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    AnimatedButton(
+                      label: AppStrings.login,
+                      isLoading: isLoading,
+                      onPressed: isLoading ? null : _submit,
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          AppStrings.noAccount,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        TextButton(
+                          onPressed: () => context.push('/auth/register'),
+                          child: const Text(AppStrings.signUp),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -195,36 +215,24 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 }
 
-class _Header extends StatelessWidget {
+/// Animates opacity + upward slide for a section of the auth card.
+class _Section extends StatelessWidget {
+  const _Section({required this.anim, required this.child});
+
+  final Animation<double> anim;
+  final Widget child;
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 56,
-          height: 56,
-          decoration: BoxDecoration(
-            color: AppColors.primary.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: const Icon(
-            Icons.medical_services_rounded,
-            color: AppColors.primary,
-            size: 28,
-          ),
-        ),
-        const SizedBox(height: AppSpacing.lg),
-        Text(
-          AppStrings.welcomeBack,
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        const SizedBox(height: AppSpacing.xs),
-        Text(
-          AppStrings.signInToContinue,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-      ],
+    return FadeTransition(
+      opacity: anim,
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(0, 0.14),
+          end: Offset.zero,
+        ).animate(anim),
+        child: child,
+      ),
     );
   }
 }
