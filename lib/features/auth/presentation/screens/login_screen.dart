@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
@@ -23,6 +24,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   final _passwordController = TextEditingController();
   bool _rememberMe = false;
   bool _obscurePassword = true;
+
+  bool get _isFormValid =>
+      Validators.emailOk(_emailController.text) &&
+      _passwordController.text.isNotEmpty;
 
   late final AnimationController _ctrl;
   late final Animation<double> _headerAnim;
@@ -49,7 +54,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
       curve: const Interval(0.45, 1.0, curve: Curves.easeOut),
     );
     _ctrl.forward();
+    _emailController.addListener(_onFieldChanged);
+    _passwordController.addListener(_onFieldChanged);
   }
+
+  void _onFieldChanged() => setState(() {});
 
   @override
   void dispose() {
@@ -122,13 +131,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       autofillHints: const [AutofillHints.email],
-                      validator: (v) {
-                        if (v == null || v.trim().isEmpty) return AppStrings.emailRequired;
-                        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v.trim())) {
-                          return AppStrings.emailInvalid;
-                        }
-                        return null;
-                      },
+                      validator: Validators.email,
                     ),
                     const SizedBox(height: 12),
                     AuthCardField(
@@ -188,7 +191,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                     AnimatedButton(
                       label: AppStrings.login,
                       isLoading: isLoading,
-                      onPressed: isLoading ? null : _submit,
+                      onPressed: isLoading || !_isFormValid ? null : _submit,
                     ),
                     const SizedBox(height: 4),
                     Row(

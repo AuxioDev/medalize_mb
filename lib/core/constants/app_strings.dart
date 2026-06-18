@@ -34,12 +34,20 @@ abstract final class AppStrings {
   static const emailRequired = 'Email is required';
   static const emailInvalid = 'Enter a valid email address';
   static const passwordRequired = 'Password is required';
-  static const passwordTooShort =
-      'Password must be at least 8 characters with a letter and digit';
+  static const passwordTooShort = 'At least 8 characters required';
+  static const passwordNeedsLetter = 'Include at least one letter';
+  static const passwordNeedsDigit = 'Include at least one digit';
   static const passwordMismatch = 'Passwords do not match';
+  static const passwordConfirmRequired = 'Please confirm your password';
   static const firstNameRequired = 'First name is required';
+  static const firstNameInvalid = 'First name contains invalid characters';
   static const lastNameRequired = 'Last name is required';
+  static const lastNameInvalid = 'Last name contains invalid characters';
+  static const nameMinLength = 'Must be at least 2 characters';
   static const roleRequired = 'Please select a role';
+  static const phoneRequired = 'Phone number is required';
+  static const phoneTooShort = 'Number is too short';
+  static const phoneTooLong = 'Number is too long';
 
   // Errors
   static const invalidCredentials = 'Invalid email or password';

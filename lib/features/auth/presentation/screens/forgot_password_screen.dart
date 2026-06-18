@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
@@ -22,6 +23,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
   final _emailController = TextEditingController();
   bool _isLoading = false;
   bool _sent = false;
+
+  bool get _isFormValid => Validators.emailOk(_emailController.text);
 
   late final AnimationController _ctrl;
   late final Animation<double> _headerAnim;
@@ -48,7 +51,10 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
       curve: const Interval(0.45, 1.0, curve: Curves.easeOut),
     );
     _ctrl.forward();
+    _emailController.addListener(_onFieldChanged);
   }
+
+  void _onFieldChanged() => setState(() {});
 
   @override
   void dispose() {
@@ -103,6 +109,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
                 formKey: _formKey,
                 emailController: _emailController,
                 isLoading: _isLoading,
+                isValid: _isFormValid,
                 onSubmit: _submit,
               ),
       ),
@@ -121,6 +128,7 @@ class _FormContent extends StatelessWidget {
     required this.formKey,
     required this.emailController,
     required this.isLoading,
+    required this.isValid,
     required this.onSubmit,
   });
 
@@ -130,6 +138,7 @@ class _FormContent extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final bool isLoading;
+  final bool isValid;
   final VoidCallback onSubmit;
 
   @override
@@ -162,13 +171,7 @@ class _FormContent extends StatelessWidget {
                 textInputAction: TextInputAction.done,
                 autofillHints: const [AutofillHints.email],
                 onFieldSubmitted: (_) => onSubmit(),
-                validator: (v) {
-                  if (v == null || v.trim().isEmpty) return AppStrings.emailRequired;
-                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v.trim())) {
-                    return AppStrings.emailInvalid;
-                  }
-                  return null;
-                },
+                validator: Validators.email,
               ),
             ),
           ),
@@ -183,7 +186,7 @@ class _FormContent extends StatelessWidget {
                 AnimatedButton(
                   label: AppStrings.sendResetLink,
                   isLoading: isLoading,
-                  onPressed: isLoading ? null : onSubmit,
+                  onPressed: isLoading || !isValid ? null : onSubmit,
                 ),
                 const SizedBox(height: 4),
                 Center(

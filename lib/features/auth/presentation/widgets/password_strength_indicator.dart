@@ -2,20 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 
-enum PasswordStrength { empty, weak, medium, strong }
+enum PasswordStrength { empty, weak, fair, good, strong }
 
 PasswordStrength evaluatePasswordStrength(String password) {
   if (password.isEmpty) return PasswordStrength.empty;
-  final hasLetter = password.contains(RegExp(r'[A-Za-z]'));
-  final hasDigit = password.contains(RegExp(r'\d'));
-  final isLongEnough = password.length >= 8;
 
-  if (!isLongEnough) return PasswordStrength.weak;
-  if (hasLetter && hasDigit && password.length >= 12) {
-    return PasswordStrength.strong;
+  var score = 0;
+  if (password.length >= 8) score++;
+  if (password.length >= 12) score++;
+  if (password.contains(RegExp(r'[a-z]'))) score++;
+  if (password.contains(RegExp(r'[A-Z]'))) score++;
+  if (password.contains(RegExp(r'[0-9]'))) score++;
+  if (password.contains(RegExp(r'[!@#$%^&*()\-_=+\[\]{};:,.<>?/\\|`~]'))) {
+    score++;
   }
-  if (hasLetter && hasDigit) return PasswordStrength.medium;
-  return PasswordStrength.weak;
+
+  return switch (score) {
+    <= 2 => PasswordStrength.weak,
+    3 => PasswordStrength.fair,
+    4 => PasswordStrength.good,
+    _ => PasswordStrength.strong,
+  };
 }
 
 class PasswordStrengthIndicator extends StatelessWidget {
@@ -28,12 +35,7 @@ class PasswordStrengthIndicator extends StatelessWidget {
     final strength = evaluatePasswordStrength(password);
     if (strength == PasswordStrength.empty) return const SizedBox.shrink();
 
-    final (color, label, value) = switch (strength) {
-      PasswordStrength.weak => (AppColors.strengthWeak, 'Weak', 0.33),
-      PasswordStrength.medium => (AppColors.strengthMedium, 'Medium', 0.66),
-      PasswordStrength.strong => (AppColors.strengthStrong, 'Strong', 1.0),
-      PasswordStrength.empty => (AppColors.border, '', 0.0),
-    };
+    final (color, label, value) = _attrs(strength);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,3 +67,11 @@ class PasswordStrengthIndicator extends StatelessWidget {
     );
   }
 }
+
+(Color, String, double) _attrs(PasswordStrength s) => switch (s) {
+      PasswordStrength.weak => (AppColors.strengthWeak, 'Weak', 0.25),
+      PasswordStrength.fair => (const Color(0xFFF97316), 'Fair', 0.5),
+      PasswordStrength.good => (const Color(0xFF84CC16), 'Good', 0.75),
+      PasswordStrength.strong => (AppColors.strengthStrong, 'Strong', 1.0),
+      PasswordStrength.empty => (AppColors.border, '', 0.0),
+    };

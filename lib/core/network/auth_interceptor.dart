@@ -44,7 +44,7 @@ class AuthInterceptor extends Interceptor {
     final data = err.response?.data;
     final code = data is Map ? data['code'] as String? : null;
 
-    if (code == 'token_blacklisted' || code == 'token_invalid') {
+    if (code == 'token_blacklisted' || code == 'token_invalid' || code == 'not_authenticated') {
       onForceLogout();
       return handler.next(err);
     }

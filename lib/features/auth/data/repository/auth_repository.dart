@@ -100,23 +100,27 @@ class AuthRepository {
         return const TokenInvalidException();
       case 'token_blacklisted':
         return const TokenBlacklistedException();
+      case 'not_authenticated':
+        return const TokenInvalidException();
       case 'rate_limit_exceeded':
         return RateLimitException(
             retryAfterSeconds: data['retry_after_seconds'] as int?);
       case 'permission_denied':
         return PermissionDeniedException(role: data['role'] as String?);
-      default:
-        if (response.statusCode == 400 && data is Map) {
-          final errors = <String, List<String>>{};
-          data.forEach((key, value) {
+      case 'validation_error':
+        final raw = data['errors'];
+        final errors = <String, List<String>>{};
+        if (raw is Map) {
+          raw.forEach((key, value) {
             if (value is List) {
               errors[key as String] = value.map((e) => e.toString()).toList();
             } else if (value is String) {
               errors[key as String] = [value];
             }
           });
-          return ValidationException(fieldErrors: errors);
         }
+        return ValidationException(fieldErrors: errors);
+      default:
         return ServerException(response.statusCode ?? 500);
     }
   }

@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/utils/validators.dart';
+import 'package:medalize_mb/core/widgets/phone_field.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/password_strength_indicator.dart';
@@ -30,6 +32,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
   Map<String, List<String>> _fieldErrors = {};
+  final _phoneController = TextEditingController();
+
+  bool get _isFormValid {
+    final password = _passwordController.text;
+    return _firstNameController.text.trim().length >= 2 &&
+        _lastNameController.text.trim().length >= 2 &&
+        Validators.emailOk(_emailController.text) &&
+        _selectedRole != null &&
+        Validators.passwordOk(password) &&
+        _confirmController.text == password &&
+        Validators.phoneOk(_phoneController.text);
+  }
 
   late final AnimationController _ctrl;
   late final Animation<double> _headerAnim;
@@ -56,7 +70,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
       curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
     );
     _ctrl.forward();
+    _firstNameController.addListener(_onFieldChanged);
+    _lastNameController.addListener(_onFieldChanged);
+    _emailController.addListener(_onFieldChanged);
+    _passwordController.addListener(_onFieldChanged);
+    _confirmController.addListener(_onFieldChanged);
+    _phoneController.addListener(_onFieldChanged);
   }
+
+  void _onFieldChanged() => setState(() {});
 
   @override
   void dispose() {
@@ -66,6 +88,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     _emailController.dispose();
     _passwordController.dispose();
     _confirmController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
@@ -148,9 +171,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                             autofillHints: const [AutofillHints.givenName],
                             textInputAction: TextInputAction.next,
                             errorText: _fieldErrors['first_name']?.firstOrNull,
-                            validator: (v) => (v == null || v.trim().isEmpty)
-                                ? AppStrings.firstNameRequired
-                                : null,
+                            validator: (v) => Validators.name(v, label: 'First name'),
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -161,9 +182,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                             autofillHints: const [AutofillHints.familyName],
                             textInputAction: TextInputAction.next,
                             errorText: _fieldErrors['last_name']?.firstOrNull,
-                            validator: (v) => (v == null || v.trim().isEmpty)
-                                ? AppStrings.lastNameRequired
-                                : null,
+                            validator: (v) => Validators.name(v, label: 'Last name'),
                           ),
                         ),
                       ],
@@ -179,13 +198,16 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                       autofillHints: const [AutofillHints.newUsername],
                       textInputAction: TextInputAction.next,
                       errorText: _fieldErrors['email']?.firstOrNull,
-                      validator: (v) {
-                        if (v == null || v.trim().isEmpty) return AppStrings.emailRequired;
-                        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v.trim())) {
-                          return AppStrings.emailInvalid;
-                        }
-                        return null;
-                      },
+                      validator: Validators.email,
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Phone
+                    PhoneField(
+                      controller: _phoneController,
+                      textInputAction: TextInputAction.next,
+                      label: 'Phone Number (Optional)',
+                      hint: '50 123 45 67',
                     ),
                     const SizedBox(height: 14),
 
@@ -245,13 +267,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                         onToggle: () =>
                             setState(() => _obscurePassword = !_obscurePassword),
                       ),
-                      validator: (v) {
-                        if (v == null || v.isEmpty) return AppStrings.passwordRequired;
-                        if (!RegExp(r'^(?=.*[A-Za-z])(?=.*\d).{8,}$').hasMatch(v)) {
-                          return AppStrings.passwordTooShort;
-                        }
-                        return null;
-                      },
+                      validator: Validators.password,
                     ),
                     ValueListenableBuilder(
                       valueListenable: _passwordController,
@@ -274,11 +290,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                             setState(() => _obscureConfirm = !_obscureConfirm),
                       ),
                       onFieldSubmitted: (_) => _submit(),
-                      validator: (v) {
-                        if (v == null || v.isEmpty) return AppStrings.passwordRequired;
-                        if (v != _passwordController.text) return AppStrings.passwordMismatch;
-                        return null;
-                      },
+                      validator: (v) =>
+                          Validators.confirmPassword(v, _passwordController.text),
                     ),
                   ],
                 ),
@@ -294,7 +307,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     AnimatedButton(
                       label: AppStrings.register,
                       isLoading: isLoading,
-                      onPressed: isLoading ? null : _submit,
+                      onPressed: isLoading || !_isFormValid ? null : _submit,
                     ),
                     const SizedBox(height: 4),
                     Row(
@@ -357,10 +370,11 @@ class _InlineStrength extends StatelessWidget {
     if (strength == PasswordStrength.empty) return const SizedBox(height: 4);
 
     final (color, label, value) = switch (strength) {
-      PasswordStrength.weak => (AppColors.strengthWeak, 'Weak', 0.33),
-      PasswordStrength.medium => (AppColors.strengthMedium, 'Medium', 0.66),
+      PasswordStrength.weak   => (AppColors.strengthWeak, 'Weak', 0.25),
+      PasswordStrength.fair   => (const Color(0xFFF97316), 'Fair', 0.5),
+      PasswordStrength.good   => (const Color(0xFF84CC16), 'Good', 0.75),
       PasswordStrength.strong => (AppColors.strengthStrong, 'Strong', 1.0),
-      PasswordStrength.empty => (AppColors.border, '', 0.0),
+      PasswordStrength.empty  => (AppColors.border, '', 0.0),
     };
 
     return Padding(
