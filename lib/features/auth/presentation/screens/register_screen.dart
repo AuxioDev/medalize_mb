@@ -78,7 +78,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     _phoneController.addListener(_onFieldChanged);
   }
 
-  void _onFieldChanged() => setState(() {});
+  void _onFieldChanged() {
+    setState(() {});
+    ref.read(authProvider.notifier).clearError();
+  }
 
   @override
   void dispose() {
@@ -115,27 +118,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   @override
   Widget build(BuildContext context) {
     ref.listen(authProvider, (_, next) {
-      if (next is AuthError) {
-        final e = next.exception;
-        if (e is ValidationException) {
-          setState(() => _fieldErrors = e.fieldErrors);
-          if (e.fieldErrors.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(e.firstError), backgroundColor: AppColors.error),
-            );
-          }
-        } else {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-              content: Text(e.userMessage),
-              backgroundColor: AppColors.error,
-            ));
-        }
+      if (next is AuthError && next.exception is ValidationException) {
+        final e = next.exception as ValidationException;
+        setState(() => _fieldErrors = e.fieldErrors);
       }
     });
 
-    final isLoading = ref.watch(authProvider) is AuthLoading;
+    final authState = ref.watch(authProvider);
+    final isLoading = authState is AuthLoading;
 
     return AuthScaffold(
       child: AutofillGroup(
@@ -298,6 +288,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
               ),
               const SizedBox(height: 24),
 
+              // ── Inline error ──────────────────────────────────────
+              if (authState is AuthError &&
+                  authState.exception is! ValidationException)
+                _ErrorBanner(message: authState.exception.userMessage),
+
               // ── CTA + footer ──────────────────────────────────────
               _Section(
                 anim: _footerAnim,
@@ -335,6 +330,43 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
 }
 
 // ── Shared stagger section ────────────────────────────────────────────────────
+
+class _ErrorBanner extends StatelessWidget {
+  const _ErrorBanner({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: AppColors.error.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.error_outline_rounded, color: AppColors.error, size: 18),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                message,
+                style: TextStyle(
+                  color: AppColors.error,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class _Section extends StatelessWidget {
   const _Section({required this.anim, required this.child});

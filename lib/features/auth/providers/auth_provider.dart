@@ -139,4 +139,8 @@ class AuthNotifier extends Notifier<AuthState> {
     _storage.clearAll();
     state = const AuthUnauthenticated();
   }
+
+  void clearError() {
+    if (state is AuthError) state = const AuthUnauthenticated();
+  }
 }

@@ -117,8 +117,11 @@ String _homeFor(String role, bool onboardingComplete, bool? isVerified) {
 String? _redirect(AuthState auth, String location) {
   return switch (auth) {
     // Still initialising — stay on splash, push everything else there
-    AuthInitial() || AuthLoading() =>
-      location == '/splash' ? null : '/splash',
+    AuthInitial() => location == '/splash' ? null : '/splash',
+
+    // User-triggered auth in progress — stay on current screen (login/register)
+    // so ref.listen callbacks fire correctly on the same widget instance
+    AuthLoading() => null,
 
     // Not authenticated — /auth/* pages are fine, everything else goes to login.
     // /splash is NOT exempt here: after init resolves to unauthenticated we

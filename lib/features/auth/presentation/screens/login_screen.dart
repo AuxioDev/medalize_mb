@@ -58,7 +58,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
     _passwordController.addListener(_onFieldChanged);
   }
 
-  void _onFieldChanged() => setState(() {});
+  void _onFieldChanged() {
+    setState(() {});
+    ref.read(authProvider.notifier).clearError();
+  }
 
   @override
   void dispose() {
@@ -88,18 +91,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(authProvider, (_, next) {
-      if (next is AuthError) {
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(SnackBar(
-            content: Text(_errorMessage(next.exception)),
-            backgroundColor: AppColors.error,
-          ));
-      }
-    });
-
-    final isLoading = ref.watch(authProvider) is AuthLoading;
+    final authState = ref.watch(authProvider);
+    final isLoading = authState is AuthLoading;
 
     return AuthScaffold(
       child: AutofillGroup(
@@ -182,6 +175,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
               ),
               const SizedBox(height: 20),
 
+              // ── Inline error ──────────────────────────────────────
+              if (authState is AuthError)
+                _ErrorBanner(message: _errorMessage(authState.exception)),
+
               // ── CTA + footer ──────────────────────────────────────
               _Section(
                 anim: _footerAnim,
@@ -212,6 +209,43 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ErrorBanner extends StatelessWidget {
+  const _ErrorBanner({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: AppColors.error.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.error_outline_rounded, color: AppColors.error, size: 18),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                message,
+                style: TextStyle(
+                  color: AppColors.error,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
