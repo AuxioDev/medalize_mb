@@ -84,6 +84,7 @@ class AuthNotifier extends Notifier<AuthState> {
     required String role,
     required String firstName,
     required String lastName,
+    String phone = '',
   }) async {
     state = const AuthLoading();
     try {
@@ -94,6 +95,7 @@ class AuthNotifier extends Notifier<AuthState> {
         role: role,
         firstName: firstName,
         lastName: lastName,
+        phone: phone,
       ));
       // API does not return tokens — auto-login after registration
       await login(email, password);

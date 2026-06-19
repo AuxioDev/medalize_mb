@@ -109,6 +109,7 @@ class PhoneField extends StatefulWidget {
     this.onCountryChanged,
     this.label = 'Phone Number',
     this.hint = '50 123 45 67',
+    this.optional = false,
   });
 
   final TextEditingController controller;
@@ -118,6 +119,7 @@ class PhoneField extends StatefulWidget {
   final ValueChanged<CountryCode>? onCountryChanged;
   final String label;
   final String? hint;
+  final bool optional;
 
   @override
   State<PhoneField> createState() => _PhoneFieldState();
@@ -160,7 +162,10 @@ class _PhoneFieldState extends State<PhoneField> {
   @override
   Widget build(BuildContext context) {
     return FormField<String>(
-      validator: (_) => Validators.phone(widget.controller.text),
+      validator: (_) {
+        if (widget.optional && widget.controller.text.trim().isEmpty) return null;
+        return Validators.phone(widget.controller.text);
+      },
       builder: (state) {
         final focused = _focusNode.hasFocus;
         final hasError = state.hasError;

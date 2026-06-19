@@ -29,6 +29,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   final _confirmController = TextEditingController();
 
   String? _selectedRole;
+  String _dialCode = '+994';
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
   Map<String, List<String>> _fieldErrors = {};
@@ -105,6 +106,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     }
     if (!_formKey.currentState!.validate()) return;
 
+    final rawPhone = _phoneController.text.trim().replaceAll(' ', '');
+    final phone = rawPhone.isEmpty ? '' : '$_dialCode$rawPhone';
+
     await ref.read(authProvider.notifier).register(
           email: _emailController.text.trim(),
           password: _passwordController.text,
@@ -112,6 +116,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
           role: _selectedRole!,
           firstName: _firstNameController.text.trim(),
           lastName: _lastNameController.text.trim(),
+          phone: phone,
         );
   }
 
@@ -198,6 +203,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                       textInputAction: TextInputAction.next,
                       label: 'Phone Number (Optional)',
                       hint: '50 123 45 67',
+                      optional: true,
+                      onCountryChanged: (c) => setState(() => _dialCode = c.dialCode),
                     ),
                     const SizedBox(height: 14),
 

@@ -19,16 +19,19 @@ class PatientProfile {
 class DoctorProfile {
   const DoctorProfile({
     this.specialization = '',
+    this.specializationDisplay = '',
     this.bio = '',
     this.slotDurationMin = 30,
   });
 
   final String specialization;
+  final String specializationDisplay;
   final String bio;
   final int slotDurationMin;
 
   factory DoctorProfile.fromJson(Map<String, dynamic> json) => DoctorProfile(
         specialization: json['specialization'] as String? ?? '',
+        specializationDisplay: json['specialization_display'] as String? ?? '',
         bio: json['bio'] as String? ?? '',
         slotDurationMin: json['slot_duration_min'] as int? ?? 30,
       );
@@ -41,6 +44,7 @@ class UserModel {
     required this.role,
     required this.firstName,
     required this.lastName,
+    this.phone = '',
     this.isVerified,
     this.onboardingStep,
     this.onboardingComplete,
@@ -53,6 +57,7 @@ class UserModel {
   final String role;
   final String firstName;
   final String lastName;
+  final String phone;
   final bool? isVerified;
   final int? onboardingStep;
   final bool? onboardingComplete;
@@ -68,6 +73,7 @@ class UserModel {
       role: role,
       firstName: json['first_name'] as String? ?? '',
       lastName: json['last_name'] as String? ?? '',
+      phone: json['phone'] as String? ?? '',
       isVerified: json['is_verified'] as bool?,
       onboardingStep: json['onboarding_step'] as int?,
       onboardingComplete: json['onboarding_complete'] as bool?,
