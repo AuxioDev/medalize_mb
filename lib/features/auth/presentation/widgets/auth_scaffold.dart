@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// Shared scaffold for all auth screens.
 /// Provides the blue gradient background, centered white card, and
@@ -128,6 +129,7 @@ class AuthCardField extends StatelessWidget {
     this.errorText,
     this.validator,
     this.onFieldSubmitted,
+    this.inputFormatters,
   });
 
   final TextEditingController controller;
@@ -141,6 +143,7 @@ class AuthCardField extends StatelessWidget {
   final String? errorText;
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onFieldSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -152,6 +155,7 @@ class AuthCardField extends StatelessWidget {
       obscureText: obscureText,
       onFieldSubmitted: onFieldSubmitted,
       validator: validator,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,

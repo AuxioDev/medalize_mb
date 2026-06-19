@@ -22,7 +22,6 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   bool _isLoading = false;
-  bool _sent = false;
 
   bool get _isFormValid => Validators.emailOk(_emailController.text);
 
@@ -66,11 +65,13 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isLoading = true);
+    final email = _emailController.text.trim();
     try {
-      await ref
-          .read(authRepositoryProvider)
-          .requestPasswordReset(_emailController.text.trim());
-      if (mounted) setState(() => _sent = true);
+      await ref.read(authRepositoryProvider).requestPasswordReset(email);
+      if (!mounted) return;
+      // Navigate to OTP entry screen regardless of whether the email exists
+      // (backend always returns 200 to prevent email enumeration)
+      context.push('/auth/reset-password', extra: email);
     } on ApiException catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -87,153 +88,67 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 400),
-        transitionBuilder: (child, anim) => FadeTransition(
-          opacity: anim,
-          child: SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(0, 0.08),
-              end: Offset.zero,
-            ).animate(anim),
-            child: child,
-          ),
-        ),
-        child: _sent
-            ? _SuccessView(key: const ValueKey('success'))
-            : _FormContent(
-                key: const ValueKey('form'),
-                headerAnim: _headerAnim,
-                formAnim: _formAnim,
-                footerAnim: _footerAnim,
-                formKey: _formKey,
-                emailController: _emailController,
-                isLoading: _isLoading,
-                isValid: _isFormValid,
-                onSubmit: _submit,
-              ),
-      ),
-    );
-  }
-}
-
-// ── Form view ─────────────────────────────────────────────────────────────────
-
-class _FormContent extends StatelessWidget {
-  const _FormContent({
-    super.key,
-    required this.headerAnim,
-    required this.formAnim,
-    required this.footerAnim,
-    required this.formKey,
-    required this.emailController,
-    required this.isLoading,
-    required this.isValid,
-    required this.onSubmit,
-  });
-
-  final Animation<double> headerAnim;
-  final Animation<double> formAnim;
-  final Animation<double> footerAnim;
-  final GlobalKey<FormState> formKey;
-  final TextEditingController emailController;
-  final bool isLoading;
-  final bool isValid;
-  final VoidCallback onSubmit;
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Header
-          _Section(
-            anim: headerAnim,
-            child: const AuthCardHeader(
-              icon: Icons.lock_reset_rounded,
-              title: AppStrings.forgotPasswordTitle,
-              subtitle: AppStrings.forgotPasswordSubtitle,
-            ),
-          ),
-          const SizedBox(height: 28),
-
-          // Email field
-          _Section(
-            anim: formAnim,
-            child: AutofillGroup(
-              child: AuthCardField(
-                controller: emailController,
-                label: AppStrings.email,
-                hint: AppStrings.emailHint,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.done,
-                autofillHints: const [AutofillHints.email],
-                onFieldSubmitted: (_) => onSubmit(),
-                validator: Validators.email,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _Section(
+              anim: _headerAnim,
+              child: const AuthCardHeader(
+                icon: Icons.lock_reset_rounded,
+                title: AppStrings.forgotPasswordTitle,
+                subtitle: AppStrings.forgotPasswordSubtitle,
               ),
             ),
-          ),
-          const SizedBox(height: 24),
+            const SizedBox(height: 28),
 
-          // Button + back link
-          _Section(
-            anim: footerAnim,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                AnimatedButton(
-                  label: AppStrings.sendResetLink,
-                  isLoading: isLoading,
-                  onPressed: isLoading || !isValid ? null : onSubmit,
+            _Section(
+              anim: _formAnim,
+              child: AutofillGroup(
+                child: AuthCardField(
+                  controller: _emailController,
+                  label: AppStrings.email,
+                  hint: AppStrings.emailHint,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.done,
+                  autofillHints: const [AutofillHints.email],
+                  onFieldSubmitted: (_) => _submit(),
+                  validator: Validators.email,
                 ),
-                const SizedBox(height: 4),
-                Center(
-                  child: Builder(
-                    builder: (context) => TextButton.icon(
-                      onPressed: () => context.pop(),
-                      icon: const Icon(Icons.arrow_back_rounded, size: 16),
-                      label: const Text('Back to Sign In'),
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            _Section(
+              anim: _footerAnim,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  AnimatedButton(
+                    label: AppStrings.sendResetLink,
+                    isLoading: _isLoading,
+                    onPressed: _isLoading || !_isFormValid ? null : _submit,
+                  ),
+                  const SizedBox(height: 4),
+                  Center(
+                    child: Builder(
+                      builder: (context) => TextButton.icon(
+                        onPressed: () => context.pop(),
+                        icon: const Icon(Icons.arrow_back_rounded, size: 16),
+                        label: const Text('Back to Sign In'),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
-
-// ── Success view ──────────────────────────────────────────────────────────────
-
-class _SuccessView extends StatelessWidget {
-  const _SuccessView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const AuthCardHeader(
-          icon: Icons.mark_email_read_outlined,
-          title: 'Email Sent!',
-          subtitle: AppStrings.resetEmailSent,
-          iconColor: AppColors.success,
-        ),
-        const SizedBox(height: 28),
-        AnimatedButton(
-          label: 'Back to Sign In',
-          onPressed: () => context.pop(),
-        ),
-      ],
-    );
-  }
-}
-
-// ── Stagger section ───────────────────────────────────────────────────────────
 
 class _Section extends StatelessWidget {
   const _Section({required this.anim, required this.child});

@@ -15,11 +15,14 @@ class AuthInterceptor extends Interceptor {
   final VoidCallback onForceLogout;
 
   bool _isRefreshing = false;
+  final List<({RequestOptions options, ErrorInterceptorHandler handler})> _pendingQueue = [];
 
-  static const _noAuthPaths = ['/login/', '/register/', '/token/refresh/'];
+  static const _noAuthPaths = [
+    '/login/', '/register/', '/token/refresh/',
+    '/password/reset/', '/password/reset/confirm/',
+  ];
 
-  bool _skipAuth(String path) =>
-      _noAuthPaths.any((p) => path.endsWith(p));
+  bool _skipAuth(String path) => _noAuthPaths.any((p) => path.endsWith(p));
 
   @override
   void onRequest(
@@ -37,7 +40,7 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode != 401 || _isRefreshing) {
+    if (err.response?.statusCode != 401) {
       return handler.next(err);
     }
 
@@ -45,15 +48,21 @@ class AuthInterceptor extends Interceptor {
     final code = data is Map ? data['code'] as String? : null;
 
     if (code == 'token_blacklisted' || code == 'token_invalid' || code == 'not_authenticated') {
-      onForceLogout();
+      _forceLogoutAndDrain();
       return handler.next(err);
+    }
+
+    // Queue subsequent 401s while a refresh is already in flight
+    if (_isRefreshing) {
+      _pendingQueue.add((options: err.requestOptions, handler: handler));
+      return;
     }
 
     _isRefreshing = true;
     try {
       final refreshToken = await storage.getRefreshToken();
       if (refreshToken == null) {
-        onForceLogout();
+        _forceLogoutAndDrain();
         return handler.next(err);
       }
 
@@ -69,24 +78,55 @@ class AuthInterceptor extends Interceptor {
       );
       final responseData = res.data as Map<String, dynamic>;
 
+      final newAccessToken = responseData['access'] as String;
+      final newRefreshToken = responseData['refresh'] as String;
+
       await storage.saveTokens(
-        accessToken: responseData['access'] as String,
-        refreshToken: responseData['refresh'] as String,
-        role: responseData['role'] as String? ?? '',
-        userId: responseData['user_id'] as String? ?? '',
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+        role: responseData['role'] as String? ?? await storage.getUserRole() ?? '',
+        userId: responseData['user_id'] as String? ?? await storage.getUserId() ?? '',
         email: await storage.getUserEmail() ?? '',
       );
 
       final retryOptions = err.requestOptions;
-      retryOptions.headers['Authorization'] =
-          'Bearer ${responseData['access']}';
+      retryOptions.headers['Authorization'] = 'Bearer $newAccessToken';
       final retryResponse = await dio.fetch(retryOptions);
       handler.resolve(retryResponse);
+
+      _drainQueue(newAccessToken);
     } catch (_) {
-      onForceLogout();
+      _forceLogoutAndDrain();
       handler.next(err);
     } finally {
       _isRefreshing = false;
+    }
+  }
+
+  void _forceLogoutAndDrain() {
+    onForceLogout();
+    final pending = List.of(_pendingQueue);
+    _pendingQueue.clear();
+    for (final entry in pending) {
+      entry.handler.next(DioException(requestOptions: entry.options));
+    }
+  }
+
+  void _drainQueue(String newAccessToken) {
+    final pending = List.of(_pendingQueue);
+    _pendingQueue.clear();
+    for (final entry in pending) {
+      entry.options.headers['Authorization'] = 'Bearer $newAccessToken';
+      dio.fetch(entry.options).then(
+        (response) => entry.handler.resolve(response),
+        onError: (e) {
+          if (e is DioException) {
+            entry.handler.next(e);
+          } else {
+            entry.handler.next(DioException(requestOptions: entry.options));
+          }
+        },
+      );
     }
   }
 }

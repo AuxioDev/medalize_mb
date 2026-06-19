@@ -12,7 +12,7 @@ abstract final class AppStrings {
   static const lastName = 'Last Name';
   static const rememberMe = 'Remember me';
   static const forgotPassword = 'Forgot password?';
-  static const sendResetLink = 'Send Reset Link';
+  static const sendResetLink = 'Send Reset Code';
   static const noAccount = "Don't have an account?";
   static const haveAccount = 'Already have an account?';
   static const signUp = 'Sign Up';
@@ -23,9 +23,19 @@ abstract final class AppStrings {
   static const joinMedalize = 'Join Medalize today';
   static const forgotPasswordTitle = 'Forgot Password?';
   static const forgotPasswordSubtitle =
-      "Enter your email and we'll send you a reset link";
+      "Enter your email and we'll send you a 6-digit reset code";
   static const resetEmailSent =
-      'If that email exists, a reset link has been sent.';
+      'A 6-digit code has been sent to your email.';
+
+  // Password reset
+  static const resetPasswordTitle = 'Reset Password';
+  static const resetPasswordSubtitle =
+      'Enter the code sent to your email and choose a new password';
+  static const verificationCode = 'Verification Code';
+  static const verificationCodeHint = '000000';
+  static const resetPasswordButton = 'Reset Password';
+  static const passwordResetSuccess = 'Password reset successfully. Please sign in.';
+
   static const iAmA = 'I am a';
   static const doctor = 'Doctor';
   static const patient = 'Patient';

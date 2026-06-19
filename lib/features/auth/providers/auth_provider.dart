@@ -20,13 +20,16 @@ class AuthNotifier extends Notifier<AuthState> {
   AuthRepository get _repo => ref.read(authRepositoryProvider);
 
   Future<void> _init() async {
-    final access = await _storage.getAccessToken();
-    if (access == null) {
+    final storedAccess = await _storage.getAccessToken();
+    if (storedAccess == null) {
       state = const AuthUnauthenticated();
       return;
     }
     try {
       final user = await _repo.getMe();
+      // Re-read after getMe() — the interceptor may have refreshed the token
+      // behind the scenes and saved new values to storage.
+      final access = await _storage.getAccessToken() ?? storedAccess;
       final refresh = await _storage.getRefreshToken() ?? '';
       state = AuthAuthenticated(
         accessToken: access,
@@ -110,6 +113,24 @@ class AuthNotifier extends Notifier<AuthState> {
     } catch (_) {
       // Proceed with local logout even on API failure
     }
+    await _storage.clearAll();
+    state = const AuthUnauthenticated();
+  }
+
+  Future<void> changePassword({
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    if (state is! AuthAuthenticated) return;
+    // Read from storage rather than state — the interceptor may have rotated
+    // the refresh token since last login, making state.refreshToken stale.
+    final refreshToken = await _storage.getRefreshToken() ?? '';
+    await _repo.changePassword(
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+      refreshToken: refreshToken,
+    );
+    // The refresh token is now blacklisted on the server — force local logout
     await _storage.clearAll();
     state = const AuthUnauthenticated();
   }

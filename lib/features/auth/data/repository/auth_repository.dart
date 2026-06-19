@@ -22,6 +22,8 @@ class AuthRepository {
       return LoginResponse.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _mapError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -40,6 +42,8 @@ class AuthRepository {
       return LoginResponse.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _mapError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -66,12 +70,46 @@ class AuthRepository {
       return UserModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _mapError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
   Future<void> requestPasswordReset(String email) async {
     try {
       await _dio.post('/password/reset/', data: {'email': email});
+    } on DioException catch (e) {
+      throw _mapError(e);
+    }
+  }
+
+  Future<void> confirmPasswordReset({
+    required String email,
+    required String code,
+    required String newPassword,
+  }) async {
+    try {
+      await _dio.post('/password/reset/confirm/', data: {
+        'email': email,
+        'code': code,
+        'new_password': newPassword,
+      });
+    } on DioException catch (e) {
+      throw _mapError(e);
+    }
+  }
+
+  Future<void> changePassword({
+    required String oldPassword,
+    required String newPassword,
+    required String refreshToken,
+  }) async {
+    try {
+      await _dio.post('/password/change/', data: {
+        'old_password': oldPassword,
+        'new_password': newPassword,
+        'refresh': refreshToken,
+      });
     } on DioException catch (e) {
       throw _mapError(e);
     }

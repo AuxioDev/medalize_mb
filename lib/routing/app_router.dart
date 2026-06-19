@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/login_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/register_screen.dart';
+import 'package:medalize_mb/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/splash_screen.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
@@ -46,6 +47,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/auth/forgot-password',
         pageBuilder: (_, _) => _authPage(const ForgotPasswordScreen()),
+      ),
+      GoRoute(
+        path: '/auth/reset-password',
+        pageBuilder: (_, state) {
+          final email = state.extra as String? ?? '';
+          return _authPage(ResetPasswordScreen(email: email));
+        },
       ),
       GoRoute(
         path: '/patient/home',

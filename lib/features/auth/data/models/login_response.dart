@@ -17,13 +17,25 @@ class LoginResponse {
   final bool onboardingComplete;
   final bool? isVerified;
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-        access: json['access'] as String,
-        refresh: json['refresh'] as String,
-        role: json['role'] as String,
-        userId: json['user_id'] as String,
-        email: json['email'] as String,
-        onboardingComplete: json['onboarding_complete'] as bool? ?? false,
-        isVerified: json['is_verified'] as bool?,
-      );
+  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    final access = json['access'] as String?;
+    final refresh = json['refresh'] as String?;
+    final role = json['role'] as String?;
+    final userId = json['user_id'] as String?;
+    final email = json['email'] as String?;
+
+    if (access == null || refresh == null || role == null || userId == null || email == null) {
+      throw FormatException('Incomplete login response: $json');
+    }
+
+    return LoginResponse(
+      access: access,
+      refresh: refresh,
+      role: role,
+      userId: userId,
+      email: email,
+      onboardingComplete: json['onboarding_complete'] as bool? ?? false,
+      isVerified: json['is_verified'] as bool?,
+    );
+  }
 }
