@@ -18,8 +18,8 @@ class AuthInterceptor extends Interceptor {
   final List<({RequestOptions options, ErrorInterceptorHandler handler})> _pendingQueue = [];
 
   static const _noAuthPaths = [
-    '/login/', '/register/', '/token/refresh/',
-    '/password/reset/', '/password/reset/confirm/',
+    '/auth/login/', '/auth/register/', '/auth/token/refresh/',
+    '/auth/password/reset/', '/auth/password/reset/confirm/',
   ];
 
   bool _skipAuth(String path) => _noAuthPaths.any((p) => path.endsWith(p));
@@ -73,7 +73,7 @@ class AuthInterceptor extends Interceptor {
       ));
 
       final res = await refreshDio.post(
-        '/token/refresh/',
+        '/auth/token/refresh/',
         data: {'refresh': refreshToken},
       );
       final responseData = res.data as Map<String, dynamic>;

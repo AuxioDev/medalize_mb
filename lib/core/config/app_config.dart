@@ -8,8 +8,8 @@ abstract final class AppConfig {
   static String get baseUrl => _envUrl.isNotEmpty ? _envUrl : _defaultUrl;
 
   static String get _defaultUrl {
-    if (kIsWeb) return 'http://localhost:8000/api/auth';
-    return 'http://${Platform.isAndroid ? '10.0.2.2' : '127.0.0.1'}:8000/api/auth';
+    if (kIsWeb) return 'http://localhost:8000/api';
+    return 'http://${Platform.isAndroid ? '10.0.2.2' : '127.0.0.1'}:8000/api';
   }
 
   static const Duration connectTimeout = Duration(seconds: 10);

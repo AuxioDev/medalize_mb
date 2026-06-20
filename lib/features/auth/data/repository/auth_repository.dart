@@ -18,7 +18,7 @@ class AuthRepository {
 
   Future<LoginResponse> login(LoginRequest request) async {
     try {
-      final res = await _dio.post('/login/', data: request.toJson());
+      final res = await _dio.post('/auth/login/', data: request.toJson());
       return LoginResponse.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _mapError(e);
@@ -29,7 +29,7 @@ class AuthRepository {
 
   Future<void> register(RegisterRequest request) async {
     try {
-      await _dio.post('/register/', data: request.toJson());
+      await _dio.post('/auth/register/', data: request.toJson());
     } on DioException catch (e) {
       throw _mapError(e);
     }
@@ -38,7 +38,7 @@ class AuthRepository {
   Future<LoginResponse> refreshToken(String refreshToken) async {
     try {
       final res =
-          await _dio.post('/token/refresh/', data: {'refresh': refreshToken});
+          await _dio.post('/auth/token/refresh/', data: {'refresh': refreshToken});
       return LoginResponse.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _mapError(e);
@@ -53,7 +53,7 @@ class AuthRepository {
   }) async {
     try {
       await _dio.post(
-        '/logout/',
+        '/auth/logout/',
         data: {'refresh': refreshToken},
         options: Options(
           headers: {'Authorization': 'Bearer $accessToken'},
@@ -66,7 +66,7 @@ class AuthRepository {
 
   Future<UserModel> getMe() async {
     try {
-      final res = await _dio.get('/me/');
+      final res = await _dio.get('/auth/me/');
       return UserModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw _mapError(e);
@@ -77,7 +77,7 @@ class AuthRepository {
 
   Future<void> requestPasswordReset(String email) async {
     try {
-      await _dio.post('/password/reset/', data: {'email': email});
+      await _dio.post('/auth/password/reset/', data: {'email': email});
     } on DioException catch (e) {
       throw _mapError(e);
     }
@@ -89,7 +89,7 @@ class AuthRepository {
     required String newPassword,
   }) async {
     try {
-      await _dio.post('/password/reset/confirm/', data: {
+      await _dio.post('/auth/password/reset/confirm/', data: {
         'email': email,
         'code': code,
         'new_password': newPassword,
@@ -105,7 +105,7 @@ class AuthRepository {
     required String refreshToken,
   }) async {
     try {
-      await _dio.post('/password/change/', data: {
+      await _dio.post('/auth/password/change/', data: {
         'old_password': oldPassword,
         'new_password': newPassword,
         'refresh': refreshToken,
