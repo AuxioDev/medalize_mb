@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/login_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/register_screen.dart';
@@ -8,10 +9,25 @@ import 'package:medalize_mb/features/auth/presentation/screens/reset_password_sc
 import 'package:medalize_mb/features/auth/presentation/screens/splash_screen.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/block_time_screen.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/doctor_appointments_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_home_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_onboarding_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_pending_verification_screen.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/working_hours_editor_screen.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/workplace_list_screen.dart';
+import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/booking_calendar_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/doctor_detail_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/doctor_search_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/my_appointments_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/patient_home_screen.dart';
+import 'package:medalize_mb/features/shared/presentation/screens/notifications_screen.dart';
+import 'package:medalize_mb/features/shared/presentation/screens/profile_screen.dart';
+import 'package:medalize_mb/features/shared/presentation/screens/settings_screen.dart';
 
 final _authListenableProvider = Provider<_AuthChangeNotifier>((ref) {
   return _AuthChangeNotifier(ref);
@@ -55,10 +71,57 @@ final routerProvider = Provider<GoRouter>((ref) {
           return _authPage(ResetPasswordScreen(email: email));
         },
       ),
+
+      // Patient routes
       GoRoute(
         path: '/patient/home',
         builder: (_, _) => const PatientHomeScreen(),
       ),
+      GoRoute(
+        path: '/patient/appointments',
+        builder: (_, _) => const MyAppointmentsScreen(),
+      ),
+      GoRoute(
+        path: '/patient/appointment-detail/:id',
+        builder: (_, state) {
+          final appt = state.extra as AppointmentModel;
+          return AppointmentDetailScreen(appointment: appt);
+        },
+      ),
+      GoRoute(
+        path: '/patient/doctor-search',
+        builder: (_, _) => const DoctorSearchScreen(),
+      ),
+      GoRoute(
+        path: '/patient/doctor-detail/:id',
+        builder: (_, state) {
+          final extra = state.extra as DoctorModel?;
+          return DoctorDetailScreen(
+            doctorId: state.pathParameters['id']!,
+            doctor: extra,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/patient/booking-calendar/:id',
+        builder: (_, state) {
+          final doctor = state.extra as DoctorDetailModel;
+          return BookingCalendarScreen(doctor: doctor);
+        },
+      ),
+      GoRoute(
+        path: '/patient/booking-confirm',
+        builder: (_, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return BookingConfirmScreen(
+            doctor: extra['doctor'] as DoctorDetailModel,
+            slot: extra['slot'] as SlotModel,
+            workplaceId: extra['workplaceId'] as String,
+          );
+        },
+      ),
+
+      // Doctor routes
       GoRoute(
         path: '/doctor/home',
         builder: (_, _) => const DoctorHomeScreen(),
@@ -70,6 +133,48 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/doctor/pending-verification',
         builder: (_, _) => const DoctorPendingVerificationScreen(),
+      ),
+      GoRoute(
+        path: '/doctor/appointments',
+        builder: (_, _) => const DoctorAppointmentsScreen(),
+      ),
+      GoRoute(
+        path: '/doctor/workplaces',
+        builder: (_, _) => const WorkplaceListScreen(),
+      ),
+      GoRoute(
+        path: '/doctor/add-workplace',
+        builder: (_, _) => const AddEditWorkplaceScreen(),
+      ),
+      GoRoute(
+        path: '/doctor/edit-workplace/:id',
+        builder: (_, state) {
+          final existing = state.extra as Map<String, dynamic>;
+          return AddEditWorkplaceScreen(existing: existing);
+        },
+      ),
+      GoRoute(
+        path: '/doctor/working-hours/:workplaceId',
+        builder: (_, state) =>
+            WorkingHoursEditorScreen(workplaceId: state.pathParameters['workplaceId']!),
+      ),
+      GoRoute(
+        path: '/doctor/block-time',
+        builder: (_, _) => const BlockTimeScreen(),
+      ),
+
+      // Shared routes
+      GoRoute(
+        path: '/shared/profile',
+        builder: (_, _) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: '/shared/notifications',
+        builder: (_, _) => const NotificationsScreen(),
+      ),
+      GoRoute(
+        path: '/shared/settings',
+        builder: (_, _) => const SettingsScreen(),
       ),
     ],
   );
