@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/appointments/data/models/booking_request.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
@@ -21,7 +27,8 @@ class BookingConfirmScreen extends ConsumerStatefulWidget {
   final String workplaceId;
 
   @override
-  ConsumerState<BookingConfirmScreen> createState() => _BookingConfirmScreenState();
+  ConsumerState<BookingConfirmScreen> createState() =>
+      _BookingConfirmScreenState();
 }
 
 class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
@@ -52,14 +59,22 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
         showDialog<void>(
           context: context,
           builder: (_) => AlertDialog(
+            icon: const Icon(Icons.check_circle_outline,
+                color: AppColors.success, size: 40),
             title: const Text('Booked!'),
-            content: const Text('Your appointment request has been sent.'),
+            content:
+                const Text('Your appointment request has been sent.'),
             actions: [
-              TextButton(
+              FilledButton(
                 onPressed: () {
                   Navigator.pop(context);
                   context.go('/patient/home');
                 },
+                style: FilledButton.styleFrom(
+                  minimumSize: Size.zero,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                ),
                 child: const Text('OK'),
               ),
             ],
@@ -83,57 +98,53 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Confirm Booking')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
+      body: ResponsiveBody(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppCard(
+                margin: EdgeInsets.zero,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _InfoRow(label: 'Doctor', value: widget.doctor.fullName),
                     _InfoRow(label: 'Workplace', value: workplace.name),
-                    _InfoRow(label: 'Address', value: '${workplace.address}, ${workplace.city}'),
-                    _InfoRow(label: 'Start', value: fmt.format(widget.slot.startsAt)),
-                    _InfoRow(label: 'End', value: fmt.format(widget.slot.endsAt)),
+                    _InfoRow(
+                        label: 'Address',
+                        value: '${workplace.address}, ${workplace.city}'),
+                    _InfoRow(
+                        label: 'Start', value: fmt.format(widget.slot.startsAt)),
+                    _InfoRow(
+                        label: 'End',
+                        value: fmt.format(widget.slot.endsAt),
+                        last: true),
                   ],
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _reasonController,
-              decoration: const InputDecoration(
-                labelText: 'Reason for visit (optional)',
-                border: OutlineInputBorder(),
-              ),
-              maxLines: 3,
-            ),
-            if (_error != null) ...[
-              const SizedBox(height: 12),
-              Text(_error!, style: const TextStyle(color: Colors.red)),
-            ],
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _loading ? null : _confirm,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: _loading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                        )
-                      : const Text('Confirm Booking'),
+              const Gap(AppSpacing.md),
+              TextField(
+                controller: _reasonController,
+                decoration: const InputDecoration(
+                  labelText: 'Reason for visit (optional)',
+                  alignLabelWithHint: true,
                 ),
+                maxLines: 3,
               ),
-            ),
-          ],
+              if (_error != null) ...[
+                const Gap(12),
+                Text(_error!, style: const TextStyle(color: AppColors.error)),
+              ],
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomActionBar(
+        child: LoadingFilledButton(
+          label: 'Confirm Booking',
+          loading: _loading,
+          onPressed: _confirm,
         ),
       ),
     );
@@ -141,24 +152,37 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
 }
 
 class _InfoRow extends StatelessWidget {
-  const _InfoRow({required this.label, required this.value});
+  const _InfoRow({required this.label, required this.value, this.last = false});
   final String label;
   final String value;
+  final bool last;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 80,
-              child: Text(label,
-                  style: const TextStyle(
-                      color: AppColors.primary, fontWeight: FontWeight.w600)),
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: last ? 0 : 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 80,
+            child: Text(
+              label,
+              style: TextStyle(
+                color: context.colors.primaryText,
+                fontWeight: FontWeight.w600,
+                fontSize: 13,
+              ),
             ),
-            Expanded(child: Text(value)),
-          ],
-        ),
-      );
+          ),
+          Expanded(
+            child: Text(value,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontSize: 14,
+                    )),
+          ),
+        ],
+      ),
+    );
+  }
 }

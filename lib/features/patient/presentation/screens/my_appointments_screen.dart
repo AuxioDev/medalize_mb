@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 
@@ -10,7 +19,8 @@ class MyAppointmentsScreen extends ConsumerStatefulWidget {
   const MyAppointmentsScreen({super.key});
 
   @override
-  ConsumerState<MyAppointmentsScreen> createState() => _MyAppointmentsScreenState();
+  ConsumerState<MyAppointmentsScreen> createState() =>
+      _MyAppointmentsScreenState();
 }
 
 class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
@@ -44,10 +54,14 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
         children: [
           _AppointmentList(
             filterFn: (a) => a.isUpcoming,
+            emptyTitle: 'No upcoming appointments',
+            emptySubtitle: 'Book your first appointment with a doctor',
             onRefresh: () => ref.refresh(patientAppointmentsProvider(null)),
           ),
           _AppointmentList(
             filterFn: (a) => !a.isUpcoming,
+            emptyTitle: 'No past appointments',
+            emptySubtitle: 'Completed and cancelled appointments appear here',
             onRefresh: () => ref.refresh(patientAppointmentsProvider(null)),
           ),
         ],
@@ -57,24 +71,63 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
 }
 
 class _AppointmentList extends ConsumerWidget {
-  const _AppointmentList({required this.filterFn, required this.onRefresh});
+  const _AppointmentList({
+    required this.filterFn,
+    required this.emptyTitle,
+    required this.emptySubtitle,
+    required this.onRefresh,
+  });
+
   final bool Function(AppointmentModel) filterFn;
+  final String emptyTitle;
+  final String emptySubtitle;
   final VoidCallback onRefresh;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(patientAppointmentsProvider(null));
     return async.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => Center(child: Text('Error: $e')),
+      loading: () => const ResponsiveBody(
+        child: Padding(
+          padding: EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            children: [
+              ShimmerSkeleton(height: 90),
+              ShimmerSkeleton(height: 90),
+              ShimmerSkeleton(height: 90),
+              ShimmerSkeleton(height: 90),
+            ],
+          ),
+        ),
+      ),
+      error: (_, _) => EmptyState(
+        icon: Icons.cloud_off_outlined,
+        title: 'Something went wrong',
+        subtitle: 'Could not load appointments',
+        actionLabel: 'Retry',
+        onAction: onRefresh,
+      ),
       data: (all) {
         final items = all.where(filterFn).toList();
-        if (items.isEmpty) return const Center(child: Text('No appointments'));
+        if (items.isEmpty) {
+          return EmptyState(
+            icon: Icons.calendar_today_outlined,
+            title: emptyTitle,
+            subtitle: emptySubtitle,
+          );
+        }
         return RefreshIndicator(
           onRefresh: () async => onRefresh(),
-          child: ListView.builder(
-            itemCount: items.length,
-            itemBuilder: (_, i) => _AppointmentCard(appointment: items[i]),
+          child: ResponsiveBody(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(AppSpacing.md),
+              itemCount: items.length,
+              itemBuilder: (_, i) => AnimatedEntrance(
+                index: i,
+                slideY: 0.05,
+                child: _AppointmentCard(appointment: items[i]),
+              ),
+            ),
           ),
         );
       },
@@ -88,52 +141,89 @@ class _AppointmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fmt = DateFormat('d MMM y, HH:mm');
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      child: ListTile(
-        leading: const Icon(Icons.calendar_today, color: AppColors.primary),
-        title: Text(appointment.doctor.fullName),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(appointment.workplace.name),
-            Text(fmt.format(appointment.startsAt)),
-          ],
-        ),
-        trailing: _StatusBadge(status: appointment.status),
-        isThreeLine: true,
-        onTap: () => context.push(
+    final c = context.colors;
+    final date = appointment.startsAt;
+    final dayFmt = DateFormat('d');
+    final monthFmt = DateFormat('MMM');
+    final timeFmt = DateFormat('HH:mm');
+
+    return AppCard(
+      onTap: () {
+        HapticFeedback.lightImpact();
+        context.push(
           '/patient/appointment-detail/${appointment.id}',
           extra: appointment,
-        ),
+        );
+      },
+      child: Row(
+        children: [
+          Container(
+            width: 50,
+            height: 58,
+            decoration: BoxDecoration(
+              color: c.primarySurface,
+              borderRadius: BorderRadius.circular(AppRadius.md),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  dayFmt.format(date),
+                  style: TextStyle(
+                    color: c.primaryText,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    height: 1,
+                  ),
+                ),
+                Text(
+                  monthFmt.format(date),
+                  style: TextStyle(
+                    color: c.primaryText,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Gap(12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  appointment.doctor.fullName,
+                  style: Theme.of(context).textTheme.labelLarge,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Gap(2),
+                Text(
+                  appointment.workplace.name,
+                  style: Theme.of(context).textTheme.bodySmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Gap(2),
+                Row(
+                  children: [
+                    Icon(Icons.schedule_outlined,
+                        size: 12, color: c.textSecondary),
+                    const Gap(3),
+                    Text(
+                      timeFmt.format(date),
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const Gap(8),
+          StatusChip(status: appointment.status),
+        ],
       ),
     );
   }
-}
-
-class _StatusBadge extends StatelessWidget {
-  const _StatusBadge({required this.status});
-  final String status;
-
-  Color get _color => switch (status) {
-        'confirmed' => Colors.green,
-        'pending' => Colors.orange,
-        'cancelled' || 'declined' => Colors.grey,
-        'requires_rescheduling' => Colors.red,
-        _ => Colors.blueGrey,
-      };
-
-  @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          color: _color.withValues(alpha: 0.15),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Text(
-          status.replaceAll('_', ' '),
-          style: TextStyle(color: _color, fontSize: 11, fontWeight: FontWeight.w600),
-        ),
-      );
 }

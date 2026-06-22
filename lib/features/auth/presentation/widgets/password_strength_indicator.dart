@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
 
 enum PasswordStrength { empty, weak, fair, good, strong }
 
@@ -49,7 +50,7 @@ class PasswordStrengthIndicator extends StatelessWidget {
             builder: (_, v, _) => LinearProgressIndicator(
               value: v,
               minHeight: 4,
-              backgroundColor: AppColors.border,
+              backgroundColor: context.colors.border,
               valueColor: AlwaysStoppedAnimation(color),
             ),
           ),

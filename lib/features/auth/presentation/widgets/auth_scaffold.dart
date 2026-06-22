@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
 
 /// Shared scaffold for all auth screens.
 /// Provides the blue gradient background, centered white card, and
@@ -52,7 +53,7 @@ class _Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.colors.surface,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
@@ -161,8 +162,8 @@ class AuthCardField extends StatelessWidget {
         hintText: hint,
         suffixIcon: suffix,
         errorText: errorText,
-        // Slightly tinted fill so fields stand out on the white card
-        fillColor: const Color(0xFFF1F5F9),
+        // Slightly tinted fill so fields stand out on the card
+        fillColor: context.colors.surfaceAlt,
         contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       ),
     );
@@ -181,7 +182,7 @@ class VisibilityToggle extends StatelessWidget {
     return IconButton(
       icon: Icon(
         obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-        color: const Color(0xFF64748B),
+        color: context.colors.textSecondary,
         size: 20,
       ),
       onPressed: onToggle,

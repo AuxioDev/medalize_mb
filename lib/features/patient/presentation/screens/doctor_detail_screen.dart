@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 
@@ -16,79 +24,301 @@ class DoctorDetailScreen extends ConsumerWidget {
     final detailAsync = ref.watch(doctorDetailProvider(doctorId));
 
     return Scaffold(
-      appBar: AppBar(title: Text(doctor?.fullName ?? 'Doctor Profile')),
       body: detailAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Error: $e')),
-        data: (detail) => SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+        loading: () => _LoadingSkeleton(doctorId: doctorId),
+        error: (_, _) => Scaffold(
+          appBar: AppBar(title: Text(doctor?.fullName ?? 'Doctor Profile')),
+          body: EmptyState(
+            icon: Icons.cloud_off_outlined,
+            title: 'Could not load profile',
+            subtitle: 'Please try again',
+            actionLabel: 'Retry',
+            onAction: () => ref.invalidate(doctorDetailProvider(doctorId)),
+          ),
+        ),
+        data: (detail) => _DetailBody(doctorId: doctorId, detail: detail),
+      ),
+    );
+  }
+}
+
+class _DetailBody extends StatelessWidget {
+  const _DetailBody({required this.doctorId, required this.detail});
+
+  final String doctorId;
+  final DoctorDetailModel detail;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final initials =
+        detail.firstName.isNotEmpty ? detail.firstName[0].toUpperCase() : 'D';
+
+    return Scaffold(
+      appBar: AppBar(title: Text(detail.fullName)),
+      body: ResponsiveBody(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 36,
-                    backgroundColor: AppColors.primary.withValues(alpha: 0.1),
-                    child: Text(
-                      detail.firstName.isNotEmpty ? detail.firstName[0].toUpperCase() : 'D',
-                      style: const TextStyle(
-                        color: AppColors.primary,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
+              _ProfileHeader(doctorId: doctorId, initials: initials, detail: detail),
+              Padding(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (detail.bio.isNotEmpty) ...[
+                      Text('About', style: Theme.of(context).textTheme.titleSmall),
+                      const Gap(10),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                          color: c.primarySurface,
+                          borderRadius: BorderRadius.circular(AppRadius.md),
+                        ),
+                        child: Text(
+                          detail.bio,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: c.textPrimary,
+                                height: 1.5,
+                              ),
+                        ),
                       ),
+                      const Gap(20),
+                    ],
+                    if (detail.workplaces.isNotEmpty) ...[
+                      Text('Workplaces',
+                          style: Theme.of(context).textTheme.titleSmall),
+                      const Gap(10),
+                      ...detail.workplaces.map((wp) => _WorkplaceCard(wp)),
+                    ],
+                    const Gap(80),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomActionBar(
+        child: LoadingFilledButton(
+          label: 'Book Appointment',
+          onPressed: () {
+            HapticFeedback.lightImpact();
+            context.push('/patient/booking-calendar/${detail.id}', extra: detail);
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _ProfileHeader extends StatelessWidget {
+  const _ProfileHeader({
+    required this.doctorId,
+    required this.initials,
+    required this.detail,
+  });
+
+  final String doctorId;
+  final String initials;
+  final DoctorDetailModel detail;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.lg - 4),
+      decoration: BoxDecoration(
+        color: c.surface,
+        border: Border(bottom: BorderSide(color: c.border, width: 1)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Hero(
+            tag: 'doctor-avatar-$doctorId',
+            child: Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: AppColors.primaryGradient,
+              ),
+              child: Center(
+                child: Text(
+                  initials,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const Gap(16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(detail.fullName, style: Theme.of(context).textTheme.titleLarge),
+                const Gap(4),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: c.primarySurface,
+                    borderRadius: BorderRadius.circular(AppRadius.xl),
+                  ),
+                  child: Text(
+                    detail.specializationDisplay,
+                    style: TextStyle(
+                      color: c.primaryText,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(width: 16),
+                ),
+                const Gap(6),
+                Row(
+                  children: [
+                    Icon(Icons.schedule_outlined,
+                        size: 13, color: c.textSecondary),
+                    const Gap(4),
+                    Text(
+                      '${detail.slotDurationMin} min per slot',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WorkplaceCard extends StatelessWidget {
+  const _WorkplaceCard(this.wp);
+  final DoctorWorkplace wp;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: c.surfaceAlt,
+        borderRadius: BorderRadius.circular(AppRadius.md + 2),
+        border: Border.all(color: c.border, width: 1),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 38,
+            height: 38,
+            decoration: BoxDecoration(
+              color: c.primarySurface,
+              borderRadius: BorderRadius.circular(AppRadius.sm + 2),
+            ),
+            child: Icon(Icons.location_on_outlined,
+                color: c.primaryText, size: 20),
+          ),
+          const Gap(12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        wp.name,
+                        style: Theme.of(context).textTheme.labelMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    if (wp.isPrimary) ...[
+                      const Gap(8),
+                      Container(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: AppColors.success.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(AppRadius.xl),
+                        ),
+                        child: const Text(
+                          'Primary',
+                          style: TextStyle(
+                            color: AppColors.success,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+                const Gap(2),
+                Text(
+                  '${wp.address}, ${wp.city}',
+                  style: Theme.of(context).textTheme.bodySmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoadingSkeleton extends StatelessWidget {
+  const _LoadingSkeleton({required this.doctorId});
+  final String doctorId;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Doctor Profile')),
+      body: ResponsiveBody(
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Row(
+                children: [
+                  ShimmerSkeleton(
+                      height: 70, width: 70, radius: 35, margin: EdgeInsets.zero),
+                  Gap(16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(detail.fullName,
-                            style: Theme.of(context).textTheme.titleLarge),
-                        Text(detail.specializationDisplay,
-                            style: Theme.of(context).textTheme.bodyMedium),
-                        Text('${detail.slotDurationMin} min slots',
-                            style: Theme.of(context).textTheme.bodySmall),
+                        ShimmerSkeleton(
+                            height: 20,
+                            width: 160,
+                            margin: EdgeInsets.only(bottom: 8)),
+                        ShimmerSkeleton(
+                            height: 14, width: 120, margin: EdgeInsets.zero),
                       ],
                     ),
                   ),
                 ],
               ),
-              if (detail.bio.isNotEmpty) ...[
-                const SizedBox(height: 20),
-                Text('About', style: Theme.of(context).textTheme.titleMedium),
-                const SizedBox(height: 6),
-                Text(detail.bio),
-              ],
-              const SizedBox(height: 20),
-              Text('Workplaces', style: Theme.of(context).textTheme.titleMedium),
-              const SizedBox(height: 8),
-              ...detail.workplaces.map((wp) => Card(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    child: ListTile(
-                      leading: const Icon(Icons.location_on, color: AppColors.primary),
-                      title: Text(wp.name),
-                      subtitle: Text('${wp.address}, ${wp.city}'),
-                      trailing: wp.isPrimary
-                          ? const Chip(label: Text('Primary'))
-                          : null,
-                    ),
-                  )),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => context.push(
-                    '/patient/booking-calendar/${detail.id}',
-                    extra: detail,
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 12),
-                    child: Text('Book Appointment'),
-                  ),
-                ),
-              ),
+              const Gap(24),
+              const ShimmerSkeleton(height: 80),
+              const ShimmerSkeleton(height: 80),
+              const ShimmerSkeleton(height: 80),
             ],
           ),
         ),

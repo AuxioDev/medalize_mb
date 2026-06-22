@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/phone_field.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
@@ -214,7 +215,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                       style: Theme.of(context)
                           .textTheme
                           .labelMedium
-                          ?.copyWith(color: AppColors.textSecondary),
+                          ?.copyWith(color: context.colors.textSecondary),
                     ),
                     const SizedBox(height: 6),
                     SegmentedButton<String>(
@@ -239,11 +240,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                         if (v.isNotEmpty) setState(() => _selectedRole = v.first);
                       },
                       style: SegmentedButton.styleFrom(
-                        foregroundColor: AppColors.textSecondary,
+                        foregroundColor: context.colors.textSecondary,
                         selectedForegroundColor: AppColors.primary,
                         selectedBackgroundColor:
                             AppColors.primary.withValues(alpha: 0.08),
-                        side: const BorderSide(color: AppColors.border),
+                        side: BorderSide(color: context.colors.border),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -429,7 +430,7 @@ class _InlineStrength extends StatelessWidget {
                 builder: (_, v, _) => LinearProgressIndicator(
                   value: v,
                   minHeight: 3,
-                  backgroundColor: AppColors.border,
+                  backgroundColor: context.colors.border,
                   valueColor: AlwaysStoppedAnimation(color),
                 ),
               ),

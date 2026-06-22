@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:gap/gap.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/core/widgets/responsive_body.dart';
 
 class BlockTimeScreen extends ConsumerStatefulWidget {
   const BlockTimeScreen({super.key});
@@ -30,12 +35,6 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
       context: context,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
-      builder: (context, child) => Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme: const ColorScheme.light(primary: AppColors.primary),
-        ),
-        child: child!,
-      ),
     );
     if (picked != null) setState(() => _dateRange = picked);
   }
@@ -69,75 +68,80 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final c = context.colors;
     final fmt = DateFormat('d MMM y');
     return Scaffold(
       appBar: AppBar(title: const Text('Block Time')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Date Range', style: TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 8),
-            GestureDetector(
-              onTap: _pickDateRange,
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  _dateRange == null
-                      ? 'Tap to select dates'
-                      : '${fmt.format(_dateRange!.start)} → ${fmt.format(_dateRange!.end)}',
-                  style: TextStyle(
-                    color: _dateRange == null ? Colors.grey : Colors.black,
+      body: ResponsiveBody(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Date Range', style: Theme.of(context).textTheme.titleSmall),
+              const Gap(AppSpacing.sm),
+              GestureDetector(
+                onTap: _pickDateRange,
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(AppSpacing.md),
+                  decoration: BoxDecoration(
+                    color: c.surface,
+                    border: Border.all(color: c.border),
+                    borderRadius: BorderRadius.circular(AppRadius.md),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.date_range_outlined,
+                          size: 20, color: c.primaryText),
+                      const Gap(10),
+                      Expanded(
+                        child: Text(
+                          _dateRange == null
+                              ? 'Tap to select dates'
+                              : '${fmt.format(_dateRange!.start)} → ${fmt.format(_dateRange!.end)}',
+                          style: TextStyle(
+                            color: _dateRange == null
+                                ? c.textSecondary
+                                : c.textPrimary,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _reasonController,
-              decoration: const InputDecoration(
-                labelText: 'Reason (optional)',
-                border: OutlineInputBorder(),
-              ),
-              maxLines: 2,
-            ),
-            const SizedBox(height: 12),
-            SwitchListTile(
-              title: const Text('Notify affected patients'),
-              subtitle: const Text('Send notifications to patients with appointments in this period'),
-              value: _notifyPatients,
-              activeThumbColor: AppColors.primary,
-              onChanged: (v) => setState(() => _notifyPatients = v),
-              contentPadding: EdgeInsets.zero,
-            ),
-            if (_error != null) ...[
-              const SizedBox(height: 8),
-              Text(_error!, style: const TextStyle(color: Colors.red)),
-            ],
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _loading ? null : _submit,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: _loading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                        )
-                      : const Text('Block Period'),
+              const Gap(AppSpacing.md),
+              TextField(
+                controller: _reasonController,
+                decoration: const InputDecoration(
+                  labelText: 'Reason (optional)',
+                  alignLabelWithHint: true,
                 ),
+                maxLines: 2,
               ),
-            ),
-          ],
+              const Gap(12),
+              SwitchListTile(
+                title: const Text('Notify affected patients'),
+                subtitle: const Text(
+                    'Send notifications to patients with appointments in this period'),
+                value: _notifyPatients,
+                onChanged: (v) => setState(() => _notifyPatients = v),
+                contentPadding: EdgeInsets.zero,
+              ),
+              if (_error != null) ...[
+                const Gap(AppSpacing.sm),
+                Text(_error!, style: const TextStyle(color: AppColors.error)),
+              ],
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomActionBar(
+        child: LoadingFilledButton(
+          label: 'Block Period',
+          loading: _loading,
+          onPressed: _submit,
         ),
       ),
     );

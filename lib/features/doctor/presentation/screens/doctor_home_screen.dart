@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/greeting_banner.dart';
+import 'package:medalize_mb/core/widgets/notification_bell.dart';
+import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/core/widgets/section_header.dart';
+import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
+import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
@@ -24,57 +38,47 @@ class DoctorHomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Medalize'),
         actions: [
-          Stack(
-            alignment: Alignment.topRight,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.notifications_outlined),
-                onPressed: () => context.push('/shared/notifications'),
-              ),
-              if (unread > 0)
-                Positioned(
-                  right: 8,
-                  top: 8,
-                  child: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                    constraints: const BoxConstraints(minWidth: 14, minHeight: 14),
-                    child: Text(
-                      '$unread',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white, fontSize: 9),
-                    ),
-                  ),
-                ),
-            ],
+          NotificationBell(
+            count: unread,
+            onTap: () => context.push('/shared/notifications'),
           ),
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () => context.push('/shared/settings'),
           ),
+          const Gap(4),
         ],
       ),
       body: RefreshIndicator(
         onRefresh: () async => ref.invalidate(doctorAppointmentsProvider),
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            Text('Hello, Dr. $name!',
-                style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: 4),
-            Text('Manage your schedule and appointments.',
-                style: Theme.of(context).textTheme.bodyMedium),
-            const SizedBox(height: 20),
-            _DoctorQuickActions(),
-            const SizedBox(height: 24),
-            Text('Pending Requests',
-                style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 8),
-            _PendingAppointmentsList(),
-          ],
+        child: ResponsiveBody(
+          child: ListView(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            children: [
+              AnimatedEntrance(
+                slideY: 0.08,
+                child: GreetingBanner(
+                  title: 'Hello, Dr. $name!',
+                  subtitle: 'Manage your schedule\nand appointments.',
+                  avatarText: name,
+                ),
+              ),
+              const Gap(AppSpacing.lg - 4),
+              const AnimatedEntrance(
+                  index: 1, slideY: 0.08, child: _DoctorQuickActions()),
+              const Gap(AppSpacing.lg),
+              AnimatedEntrance(
+                index: 2,
+                child: SectionHeader(
+                  title: 'Pending Requests',
+                  actionLabel: 'See all',
+                  onAction: () => context.push('/doctor/appointments'),
+                ),
+              ),
+              const Gap(AppSpacing.sm),
+              const _PendingAppointmentsList(),
+            ],
+          ),
         ),
       ),
     );
@@ -82,6 +86,8 @@ class DoctorHomeScreen extends ConsumerWidget {
 }
 
 class _DoctorQuickActions extends StatelessWidget {
+  const _DoctorQuickActions();
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -90,7 +96,7 @@ class _DoctorQuickActions extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       crossAxisSpacing: 12,
       mainAxisSpacing: 12,
-      childAspectRatio: 1.4,
+      childAspectRatio: 1.35,
       children: [
         _ActionCard(
           icon: Icons.calendar_month_outlined,
@@ -108,7 +114,7 @@ class _DoctorQuickActions extends StatelessWidget {
           onTap: () => context.push('/doctor/block-time'),
         ),
         _ActionCard(
-          icon: Icons.person_outline,
+          icon: Icons.person_outline_rounded,
           label: 'Profile',
           onTap: () => context.push('/shared/profile'),
         ),
@@ -123,56 +129,85 @@ class _ActionCard extends StatelessWidget {
     required this.label,
     required this.onTap,
   });
+
   final IconData icon;
   final String label;
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Card(
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(12),
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: AppColors.primary, size: 28),
-                const SizedBox(height: 6),
-                Text(label,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.labelMedium),
-              ],
+  Widget build(BuildContext context) {
+    return AppCard(
+      onTap: () {
+        HapticFeedback.lightImpact();
+        onTap();
+      },
+      margin: EdgeInsets.zero,
+      padding: const EdgeInsets.all(AppSpacing.md),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 46,
+            height: 46,
+            decoration: BoxDecoration(
+              gradient: AppColors.primaryGradient,
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
+            child: Icon(icon, color: Colors.white, size: 24),
           ),
-        ),
-      );
+          const Gap(8),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _PendingAppointmentsList extends ConsumerWidget {
+  const _PendingAppointmentsList();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(doctorAppointmentsProvider(null));
     return async.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, s) => const Text('Failed to load appointments'),
+      loading: () => const Column(
+        children: [
+          ShimmerSkeleton(height: 110),
+          ShimmerSkeleton(height: 110),
+          ShimmerSkeleton(height: 110),
+        ],
+      ),
+      error: (_, _) => EmptyState(
+        icon: Icons.cloud_off_outlined,
+        title: 'Something went wrong',
+        subtitle: 'Could not load appointments',
+        actionLabel: 'Retry',
+        onAction: () => ref.invalidate(doctorAppointmentsProvider),
+      ),
       data: (all) {
         final pending = all.where((a) => a.status == 'pending').take(5).toList();
         if (pending.isEmpty) {
-          return const Card(
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Center(child: Text('No pending requests')),
-            ),
+          return const EmptyState(
+            icon: Icons.check_circle_outline,
+            title: 'All caught up',
+            subtitle: 'No pending appointment requests',
           );
         }
         return Column(
-          children: pending
-              .map((a) => _PendingCard(
-                    appointment: a,
-                    onUpdated: () => ref.invalidate(doctorAppointmentsProvider),
-                  ))
-              .toList(),
+          children: [
+            for (int i = 0; i < pending.length; i++)
+              AnimatedEntrance(
+                index: i,
+                child: _PendingCard(
+                  appointment: pending[i],
+                  onUpdated: () => ref.invalidate(doctorAppointmentsProvider),
+                ),
+              ),
+          ],
         );
       },
     );
@@ -184,58 +219,99 @@ class _PendingCard extends ConsumerWidget {
   final AppointmentModel appointment;
   final VoidCallback onUpdated;
 
-  Future<void> _updateStatus(WidgetRef ref, BuildContext context, String status) async {
+  Future<void> _updateStatus(
+      WidgetRef ref, BuildContext context, String status) async {
     try {
-      await ref.read(appointmentRepositoryProvider).updateAppointmentStatus(appointment.id, status);
+      await ref
+          .read(appointmentRepositoryProvider)
+          .updateAppointmentStatus(appointment.id, status);
       ref.invalidate(doctorAppointmentsProvider);
       onUpdated();
     } on ApiException catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.userMessage)));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(e.userMessage)));
       }
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final fmt = DateFormat('d MMM y, HH:mm');
-    return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(appointment.patient.fullName,
-                style: const TextStyle(fontWeight: FontWeight.w600)),
-            Text(fmt.format(appointment.startsAt),
-                style: Theme.of(context).textTheme.bodySmall),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () => _updateStatus(ref, context, 'declined'),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.red,
-                      side: const BorderSide(color: Colors.red),
+    final c = context.colors;
+    final fmt = DateFormat('d MMM y • HH:mm');
+    final patient = appointment.patient;
+    final initials = patient.fullName.isNotEmpty ? patient.fullName[0] : 'P';
+
+    return AppCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              GradientAvatar(initials: initials, size: 40),
+              const Gap(10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      patient.fullName,
+                      style: Theme.of(context).textTheme.labelLarge,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    child: const Text('Decline'),
-                  ),
+                    const Gap(2),
+                    Row(
+                      children: [
+                        Icon(Icons.schedule_outlined,
+                            size: 13, color: c.textSecondary),
+                        const Gap(4),
+                        Text(
+                          fmt.format(appointment.startsAt),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () => _updateStatus(ref, context, 'confirmed'),
-                    style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
-                    child: const Text('Confirm',
-                        style: TextStyle(color: Colors.white)),
+              ),
+              StatusChip(status: appointment.status),
+            ],
+          ),
+          const Gap(12),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () => _updateStatus(ref, context, 'declined'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppColors.error,
+                    side: BorderSide(color: AppColors.error.withValues(alpha: 0.5)),
+                    minimumSize: const Size(0, 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.sm + 2)),
                   ),
+                  child: const Text('Decline'),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              const Gap(8),
+              Expanded(
+                child: FilledButton(
+                  onPressed: () {
+                    HapticFeedback.lightImpact();
+                    _updateStatus(ref, context, 'confirmed');
+                  },
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size(0, 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.sm + 2)),
+                  ),
+                  child: const Text('Confirm'),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

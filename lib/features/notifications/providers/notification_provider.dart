@@ -10,6 +10,6 @@ final unreadCountProvider = Provider<int>((ref) {
   return ref.watch(notificationsProvider).when(
         data: (list) => list.where((n) => !n.isRead).length,
         loading: () => 0,
-        error: (_, __) => 0,
+        error: (_, _) => 0,
       );
 });

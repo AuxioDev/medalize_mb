@@ -6,6 +6,7 @@ abstract final class _Keys {
   static const userRole = 'user_role';
   static const userId = 'user_id';
   static const userEmail = 'user_email';
+  static const themeMode = 'theme_mode';
 }
 
 class SecureStorage {
@@ -40,5 +41,14 @@ class SecureStorage {
   Future<String?> getUserId() => _storage.read(key: _Keys.userId);
   Future<String?> getUserEmail() => _storage.read(key: _Keys.userEmail);
 
-  Future<void> clearAll() => _storage.deleteAll();
+  Future<String?> getThemeMode() => _storage.read(key: _Keys.themeMode);
+  Future<void> saveThemeMode(String mode) =>
+      _storage.write(key: _Keys.themeMode, value: mode);
+
+  /// Clears session data but preserves the user's theme preference.
+  Future<void> clearAll() async {
+    final theme = await getThemeMode();
+    await _storage.deleteAll();
+    if (theme != null) await saveThemeMode(theme);
+  }
 }

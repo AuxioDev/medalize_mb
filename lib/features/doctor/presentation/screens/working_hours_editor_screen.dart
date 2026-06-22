@@ -1,17 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
-import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 
-const _dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const _dayNames = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday'
+];
 
 class _DayState {
   bool isActive;
   TimeOfDay startTime;
   TimeOfDay endTime;
 
-  _DayState({required this.isActive, required this.startTime, required this.endTime});
+  _DayState(
+      {required this.isActive,
+      required this.startTime,
+      required this.endTime});
 }
 
 class WorkingHoursEditorScreen extends ConsumerStatefulWidget {
@@ -19,10 +35,12 @@ class WorkingHoursEditorScreen extends ConsumerStatefulWidget {
   final String workplaceId;
 
   @override
-  ConsumerState<WorkingHoursEditorScreen> createState() => _WorkingHoursEditorState();
+  ConsumerState<WorkingHoursEditorScreen> createState() =>
+      _WorkingHoursEditorState();
 }
 
-class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
+class _WorkingHoursEditorState
+    extends ConsumerState<WorkingHoursEditorScreen> {
   bool _loading = true;
   bool _saving = false;
   late List<_DayState> _days;
@@ -44,7 +62,8 @@ class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
   Future<void> _load() async {
     final dio = ref.read(dioClientProvider);
     try {
-      final res = await dio.get('/doctor/workplaces/${widget.workplaceId}/hours/');
+      final res =
+          await dio.get('/doctor/workplaces/${widget.workplaceId}/hours/');
       final hours = res.data as List<dynamic>;
       setState(() {
         for (final h in hours) {
@@ -92,12 +111,15 @@ class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
       return {
         'weekday': i,
         'is_active': d.isActive,
-        'start_time': '${d.startTime.hour.toString().padLeft(2, '0')}:${d.startTime.minute.toString().padLeft(2, '0')}:00',
-        'end_time': '${d.endTime.hour.toString().padLeft(2, '0')}:${d.endTime.minute.toString().padLeft(2, '0')}:00',
+        'start_time':
+            '${d.startTime.hour.toString().padLeft(2, '0')}:${d.startTime.minute.toString().padLeft(2, '0')}:00',
+        'end_time':
+            '${d.endTime.hour.toString().padLeft(2, '0')}:${d.endTime.minute.toString().padLeft(2, '0')}:00',
       };
     });
     try {
-      await dio.put('/doctor/workplaces/${widget.workplaceId}/hours/', data: payload);
+      await dio.put('/doctor/workplaces/${widget.workplaceId}/hours/',
+          data: payload);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Working hours saved')),
@@ -129,50 +151,86 @@ class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
                     width: 16,
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : const Text('Save', style: TextStyle(color: Colors.white)),
+                : const Text('Save'),
           ),
         ],
       ),
-      body: _loading
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: 7,
-              itemBuilder: (_, i) {
-                final day = _days[i];
-                return Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 90,
-                          child: Text(_dayNames[i],
-                              style: const TextStyle(fontWeight: FontWeight.w500)),
-                        ),
-                        Switch(
-                          value: day.isActive,
-                          activeThumbColor: AppColors.primary,
-                          onChanged: (v) => setState(() => day.isActive = v),
-                        ),
-                        if (day.isActive) ...[
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () => _pickTime(i, true),
-                            child: Text(day.startTime.format(context)),
+      body: ResponsiveBody(
+        child: _loading
+            ? const Padding(
+                padding: EdgeInsets.all(AppSpacing.md),
+                child: Column(
+                  children: [
+                    ShimmerSkeleton(height: 60),
+                    ShimmerSkeleton(height: 60),
+                    ShimmerSkeleton(height: 60),
+                    ShimmerSkeleton(height: 60),
+                    ShimmerSkeleton(height: 60),
+                  ],
+                ),
+              )
+            : ListView.builder(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                itemCount: 7,
+                itemBuilder: (_, i) {
+                  final day = _days[i];
+                  return AnimatedEntrance(
+                    index: i,
+                    child: AppCard(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 6),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 92,
+                            child: Text(_dayNames[i],
+                                style:
+                                    Theme.of(context).textTheme.labelLarge),
                           ),
-                          const Text('—'),
-                          TextButton(
-                            onPressed: () => _pickTime(i, false),
-                            child: Text(day.endTime.format(context)),
+                          Switch(
+                            value: day.isActive,
+                            onChanged: (v) =>
+                                setState(() => day.isActive = v),
                           ),
+                          if (day.isActive) ...[
+                            const Spacer(),
+                            _TimeButton(
+                              label: day.startTime.format(context),
+                              onTap: () => _pickTime(i, true),
+                            ),
+                            Text('—',
+                                style:
+                                    TextStyle(color: context.colors.textSecondary)),
+                            _TimeButton(
+                              label: day.endTime.format(context),
+                              onTap: () => _pickTime(i, false),
+                            ),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                },
+              ),
+      ),
+    );
+  }
+}
+
+class _TimeButton extends StatelessWidget {
+  const _TimeButton({required this.label, required this.onTap});
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onTap,
+      style: TextButton.styleFrom(
+        minimumSize: Size.zero,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      ),
+      child: Text(label),
     );
   }
 }

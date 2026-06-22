@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/greeting_banner.dart';
+import 'package:medalize_mb/core/widgets/notification_bell.dart';
+import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/core/widgets/section_header.dart';
+import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
-import 'package:intl/intl.dart';
 
 class PatientHomeScreen extends ConsumerWidget {
   const PatientHomeScreen({super.key});
@@ -22,56 +35,46 @@ class PatientHomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Medalize'),
         actions: [
-          Stack(
-            alignment: Alignment.topRight,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.notifications_outlined),
-                onPressed: () => context.push('/shared/notifications'),
-              ),
-              if (unread > 0)
-                Positioned(
-                  right: 8,
-                  top: 8,
-                  child: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                    constraints: const BoxConstraints(minWidth: 14, minHeight: 14),
-                    child: Text(
-                      '$unread',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white, fontSize: 9),
-                    ),
-                  ),
-                ),
-            ],
+          NotificationBell(
+            count: unread,
+            onTap: () => context.push('/shared/notifications'),
           ),
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () => context.push('/shared/settings'),
           ),
+          const Gap(4),
         ],
       ),
       body: RefreshIndicator(
         onRefresh: () async => ref.invalidate(patientAppointmentsProvider),
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            Text('Hello, $name!', style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: 4),
-            Text('Find a doctor and book an appointment.',
-                style: Theme.of(context).textTheme.bodyMedium),
-            const SizedBox(height: 20),
-            _QuickActionsRow(),
-            const SizedBox(height: 24),
-            Text('Upcoming Appointments',
-                style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 8),
-            _UpcomingAppointments(),
-          ],
+        child: ResponsiveBody(
+          child: ListView(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            children: [
+              AnimatedEntrance(
+                slideY: 0.08,
+                child: GreetingBanner(
+                  title: 'Hello, $name!',
+                  subtitle: 'Find a doctor and\nbook an appointment.',
+                  avatarText: name,
+                ),
+              ),
+              const Gap(AppSpacing.lg - 4),
+              const AnimatedEntrance(index: 1, slideY: 0.08, child: _QuickActionsRow()),
+              const Gap(AppSpacing.lg),
+              AnimatedEntrance(
+                index: 2,
+                child: SectionHeader(
+                  title: 'Upcoming',
+                  actionLabel: 'See all',
+                  onAction: () => context.push('/patient/appointments'),
+                ),
+              ),
+              const Gap(AppSpacing.sm),
+              const _UpcomingAppointments(),
+            ],
+          ),
         ),
       ),
     );
@@ -79,18 +82,20 @@ class PatientHomeScreen extends ConsumerWidget {
 }
 
 class _QuickActionsRow extends StatelessWidget {
+  const _QuickActionsRow();
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: _ActionCard(
-            icon: Icons.search,
+            icon: Icons.search_rounded,
             label: 'Find Doctor',
             onTap: () => context.push('/patient/doctor-search'),
           ),
         ),
-        const SizedBox(width: 12),
+        const Gap(12),
         Expanded(
           child: _ActionCard(
             icon: Icons.calendar_month_outlined,
@@ -109,69 +114,81 @@ class _ActionCard extends StatelessWidget {
     required this.label,
     required this.onTap,
   });
+
   final IconData icon;
   final String label;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Column(
-            children: [
-              Icon(icon, color: AppColors.primary, size: 32),
-              const SizedBox(height: 8),
-              Text(label,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.labelMedium),
-            ],
+    return AppCard(
+      onTap: () {
+        HapticFeedback.lightImpact();
+        onTap();
+      },
+      margin: EdgeInsets.zero,
+      padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              gradient: AppColors.primaryGradient,
+              borderRadius: BorderRadius.circular(AppRadius.md + 2),
+            ),
+            child: Icon(icon, color: Colors.white, size: 26),
           ),
-        ),
+          const Gap(10),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+        ],
       ),
     );
   }
 }
 
 class _UpcomingAppointments extends ConsumerWidget {
+  const _UpcomingAppointments();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(patientAppointmentsProvider(null));
     return async.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, s) => const Text('Failed to load appointments'),
+      loading: () => const Column(
+        children: [
+          ShimmerSkeleton(height: 80),
+          ShimmerSkeleton(height: 80),
+        ],
+      ),
+      error: (_, _) => EmptyState(
+        icon: Icons.cloud_off_outlined,
+        title: 'Something went wrong',
+        subtitle: 'Could not load appointments',
+        actionLabel: 'Retry',
+        onAction: () => ref.invalidate(patientAppointmentsProvider),
+      ),
       data: (all) {
         final upcoming = all.where((a) => a.isUpcoming).take(3).toList();
         if (upcoming.isEmpty) {
-          return Card(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  const Icon(Icons.calendar_today_outlined,
-                      color: Colors.grey, size: 40),
-                  const SizedBox(height: 8),
-                  const Text('No upcoming appointments'),
-                  const SizedBox(height: 12),
-                  ElevatedButton(
-                    onPressed: () => context.push('/patient/doctor-search'),
-                    child: const Text('Book Now'),
-                  ),
-                ],
-              ),
-            ),
+          return EmptyState(
+            icon: Icons.calendar_today_outlined,
+            title: 'No upcoming appointments',
+            subtitle: 'Book your first appointment with a doctor',
+            actionLabel: 'Find a Doctor',
+            onAction: () => context.push('/patient/doctor-search'),
           );
         }
         return Column(
           children: [
-            ...upcoming.map((a) => _MiniAppointmentCard(a)),
-            if (all.where((a) => a.isUpcoming).length > 3)
-              TextButton(
-                onPressed: () => context.push('/patient/appointments'),
-                child: const Text('See all'),
+            for (int i = 0; i < upcoming.length; i++)
+              AnimatedEntrance(
+                index: i,
+                child: _MiniAppointmentCard(upcoming[i]),
               ),
           ],
         );
@@ -186,18 +203,70 @@ class _MiniAppointmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fmt = DateFormat('d MMM, HH:mm');
-    return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      child: ListTile(
-        leading: const Icon(Icons.calendar_today, color: AppColors.primary),
-        title: Text(appt.doctor.fullName),
-        subtitle: Text(fmt.format(appt.startsAt)),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () => context.push(
-          '/patient/appointment-detail/${appt.id}',
-          extra: appt,
-        ),
+    final c = context.colors;
+    final date = appt.startsAt;
+    final dayFmt = DateFormat('d');
+    final monthFmt = DateFormat('MMM');
+    final timeFmt = DateFormat('HH:mm');
+
+    return AppCard(
+      onTap: () {
+        HapticFeedback.lightImpact();
+        context.push('/patient/appointment-detail/${appt.id}', extra: appt);
+      },
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 56,
+            decoration: BoxDecoration(
+              color: c.primarySurface,
+              borderRadius: BorderRadius.circular(AppRadius.sm + 2),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  dayFmt.format(date),
+                  style: TextStyle(
+                    color: c.primaryText,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    height: 1,
+                  ),
+                ),
+                Text(
+                  monthFmt.format(date),
+                  style: TextStyle(
+                    color: c.primaryText,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Gap(12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  appt.doctor.fullName,
+                  style: Theme.of(context).textTheme.labelLarge,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Gap(3),
+                Text(
+                  timeFmt.format(date),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ),
+          ),
+          StatusChip(status: appt.status),
+        ],
       ),
     );
   }

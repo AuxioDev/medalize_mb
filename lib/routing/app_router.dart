@@ -75,112 +75,113 @@ final routerProvider = Provider<GoRouter>((ref) {
       // Patient routes
       GoRoute(
         path: '/patient/home',
-        builder: (_, _) => const PatientHomeScreen(),
+        pageBuilder: (_, _) => _fadePage(const PatientHomeScreen()),
       ),
       GoRoute(
         path: '/patient/appointments',
-        builder: (_, _) => const MyAppointmentsScreen(),
+        pageBuilder: (_, _) => _slidePage(const MyAppointmentsScreen()),
       ),
       GoRoute(
         path: '/patient/appointment-detail/:id',
-        builder: (_, state) {
+        pageBuilder: (_, state) {
           final appt = state.extra as AppointmentModel;
-          return AppointmentDetailScreen(appointment: appt);
+          return _slidePage(AppointmentDetailScreen(appointment: appt));
         },
       ),
       GoRoute(
         path: '/patient/doctor-search',
-        builder: (_, _) => const DoctorSearchScreen(),
+        pageBuilder: (_, _) => _slidePage(const DoctorSearchScreen()),
       ),
       GoRoute(
         path: '/patient/doctor-detail/:id',
-        builder: (_, state) {
+        pageBuilder: (_, state) {
           final extra = state.extra as DoctorModel?;
-          return DoctorDetailScreen(
+          return _slidePage(DoctorDetailScreen(
             doctorId: state.pathParameters['id']!,
             doctor: extra,
-          );
+          ));
         },
       ),
       GoRoute(
         path: '/patient/booking-calendar/:id',
-        builder: (_, state) {
+        pageBuilder: (_, state) {
           final doctor = state.extra as DoctorDetailModel;
-          return BookingCalendarScreen(doctor: doctor);
+          return _slidePage(BookingCalendarScreen(doctor: doctor));
         },
       ),
       GoRoute(
         path: '/patient/booking-confirm',
-        builder: (_, state) {
+        pageBuilder: (_, state) {
           final extra = state.extra as Map<String, dynamic>;
-          return BookingConfirmScreen(
+          return _slidePage(BookingConfirmScreen(
             doctor: extra['doctor'] as DoctorDetailModel,
             slot: extra['slot'] as SlotModel,
             workplaceId: extra['workplaceId'] as String,
-          );
+          ));
         },
       ),
 
       // Doctor routes
       GoRoute(
         path: '/doctor/home',
-        builder: (_, _) => const DoctorHomeScreen(),
+        pageBuilder: (_, _) => _fadePage(const DoctorHomeScreen()),
       ),
       GoRoute(
         path: '/doctor/onboarding',
-        builder: (_, _) => const DoctorOnboardingScreen(),
+        pageBuilder: (_, _) => _fadePage(const DoctorOnboardingScreen()),
       ),
       GoRoute(
         path: '/doctor/pending-verification',
-        builder: (_, _) => const DoctorPendingVerificationScreen(),
+        pageBuilder: (_, _) => _fadePage(const DoctorPendingVerificationScreen()),
       ),
       GoRoute(
         path: '/doctor/appointments',
-        builder: (_, _) => const DoctorAppointmentsScreen(),
+        pageBuilder: (_, _) => _slidePage(const DoctorAppointmentsScreen()),
       ),
       GoRoute(
         path: '/doctor/workplaces',
-        builder: (_, _) => const WorkplaceListScreen(),
+        pageBuilder: (_, _) => _slidePage(const WorkplaceListScreen()),
       ),
       GoRoute(
         path: '/doctor/add-workplace',
-        builder: (_, _) => const AddEditWorkplaceScreen(),
+        pageBuilder: (_, _) => _slidePage(const AddEditWorkplaceScreen()),
       ),
       GoRoute(
         path: '/doctor/edit-workplace/:id',
-        builder: (_, state) {
+        pageBuilder: (_, state) {
           final existing = state.extra as Map<String, dynamic>;
-          return AddEditWorkplaceScreen(existing: existing);
+          return _slidePage(AddEditWorkplaceScreen(existing: existing));
         },
       ),
       GoRoute(
         path: '/doctor/working-hours/:workplaceId',
-        builder: (_, state) =>
-            WorkingHoursEditorScreen(workplaceId: state.pathParameters['workplaceId']!),
+        pageBuilder: (_, state) => _slidePage(
+          WorkingHoursEditorScreen(
+              workplaceId: state.pathParameters['workplaceId']!),
+        ),
       ),
       GoRoute(
         path: '/doctor/block-time',
-        builder: (_, _) => const BlockTimeScreen(),
+        pageBuilder: (_, _) => _slidePage(const BlockTimeScreen()),
       ),
 
       // Shared routes
       GoRoute(
         path: '/shared/profile',
-        builder: (_, _) => const ProfileScreen(),
+        pageBuilder: (_, _) => _slidePage(const ProfileScreen()),
       ),
       GoRoute(
         path: '/shared/notifications',
-        builder: (_, _) => const NotificationsScreen(),
+        pageBuilder: (_, _) => _slidePage(const NotificationsScreen()),
       ),
       GoRoute(
         path: '/shared/settings',
-        builder: (_, _) => const SettingsScreen(),
+        pageBuilder: (_, _) => _slidePage(const SettingsScreen()),
       ),
     ],
   );
 });
 
-/// Auth pages: fade + subtle upward slide (matches the card entrance animation).
 CustomTransitionPage<void> _authPage(Widget child) {
   return CustomTransitionPage<void>(
     child: child,
@@ -202,13 +203,37 @@ CustomTransitionPage<void> _authPage(Widget child) {
   );
 }
 
-/// Splash: plain fade (no slide — it's the root page).
 CustomTransitionPage<void> _fadePage(Widget child) {
   return CustomTransitionPage<void>(
     child: child,
     transitionDuration: const Duration(milliseconds: 300),
     transitionsBuilder: (_, animation, _, child) =>
         FadeTransition(opacity: animation, child: child),
+  );
+}
+
+CustomTransitionPage<void> _slidePage(Widget child) {
+  return CustomTransitionPage<void>(
+    child: child,
+    transitionDuration: const Duration(milliseconds: 300),
+    reverseTransitionDuration: const Duration(milliseconds: 220),
+    transitionsBuilder: (_, animation, _, child) {
+      final curved =
+          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+      return FadeTransition(
+        opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(
+              parent: animation, curve: const Interval(0.0, 0.6)),
+        ),
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 0.06),
+            end: Offset.zero,
+          ).animate(curved),
+          child: child,
+        ),
+      );
+    },
   );
 }
 
@@ -221,21 +246,10 @@ String _homeFor(String role, bool onboardingComplete, bool? isVerified) {
 
 String? _redirect(AuthState auth, String location) {
   return switch (auth) {
-    // Still initialising — stay on splash, push everything else there
     AuthInitial() => location == '/splash' ? null : '/splash',
-
-    // User-triggered auth in progress — stay on current screen (login/register)
-    // so ref.listen callbacks fire correctly on the same widget instance
     AuthLoading() => null,
-
-    // Not authenticated — /auth/* pages are fine, everything else goes to login.
-    // /splash is NOT exempt here: after init resolves to unauthenticated we
-    // must leave the splash screen.
     AuthUnauthenticated() || AuthError() =>
       location.startsWith('/auth') ? null : '/auth/login',
-
-    // Authenticated — push away from both /splash and /auth/* to the home
-    // for this role. All other destinations are allowed through.
     AuthAuthenticated(
       :final role,
       :final onboardingComplete,

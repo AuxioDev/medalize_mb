@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
-import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
 
 class AuthTextField extends StatelessWidget {
   const AuthTextField({
@@ -41,7 +41,7 @@ class AuthTextField extends StatelessWidget {
           label,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: AppColors.textPrimary,
+                color: context.colors.textPrimary,
               ),
         ),
         const SizedBox(height: AppSpacing.xs),
@@ -54,8 +54,8 @@ class AuthTextField extends StatelessWidget {
           onFieldSubmitted: onFieldSubmitted,
           autofillHints: autofillHints,
           enabled: enabled,
-          style: const TextStyle(
-            color: AppColors.textPrimary,
+          style: TextStyle(
+            color: context.colors.textPrimary,
             fontSize: 15,
           ),
           decoration: InputDecoration(

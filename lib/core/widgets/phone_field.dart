@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 
 // ── Country data ──────────────────────────────────────────────────────────────
@@ -167,6 +168,7 @@ class _PhoneFieldState extends State<PhoneField> {
         return Validators.phone(widget.controller.text);
       },
       builder: (state) {
+        final c = context.colors;
         final focused = _focusNode.hasFocus;
         final hasError = state.hasError;
 
@@ -177,21 +179,21 @@ class _PhoneFieldState extends State<PhoneField> {
               widget.label,
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
+                    color: c.textPrimary,
                   ),
             ),
             const SizedBox(height: 4),
             AnimatedContainer(
               duration: const Duration(milliseconds: 150),
               decoration: BoxDecoration(
-                color: const Color(0xFFF1F5F9),
+                color: c.surfaceAlt,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: hasError
                       ? AppColors.error
                       : focused
                           ? AppColors.primary
-                          : AppColors.border,
+                          : c.border,
                   width: focused || hasError ? 2 : 1,
                 ),
               ),
@@ -216,17 +218,17 @@ class _PhoneFieldState extends State<PhoneField> {
                           const SizedBox(width: 6),
                           Text(
                             _country.dialCode,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
-                              color: AppColors.textPrimary,
+                              color: c.textPrimary,
                             ),
                           ),
                           const SizedBox(width: 2),
-                          const Icon(
+                          Icon(
                             Icons.arrow_drop_down_rounded,
                             size: 18,
-                            color: AppColors.textSecondary,
+                            color: c.textSecondary,
                           ),
                         ],
                       ),
@@ -236,7 +238,7 @@ class _PhoneFieldState extends State<PhoneField> {
                   Container(
                     width: 1,
                     height: 24,
-                    color: AppColors.border,
+                    color: c.border,
                   ),
                   // ── Number input ──────────────────────────────────
                   Expanded(
@@ -249,13 +251,13 @@ class _PhoneFieldState extends State<PhoneField> {
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp(r'[\d\s\-\(\)]')),
                       ],
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 15,
-                        color: AppColors.textPrimary,
+                        color: c.textPrimary,
                       ),
                       decoration: InputDecoration(
                         hintText: widget.hint,
-                        hintStyle: const TextStyle(color: AppColors.textSecondary),
+                        hintStyle: TextStyle(color: c.textSecondary),
                         border: InputBorder.none,
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
@@ -325,15 +327,16 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final c = context.colors;
     return DraggableScrollableSheet(
       initialChildSize: 0.75,
       minChildSize: 0.5,
       maxChildSize: 0.95,
       expand: false,
       builder: (_, scroll) => Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        decoration: BoxDecoration(
+          color: c.surface,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
           children: [
@@ -343,7 +346,7 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color: AppColors.border,
+                color: c.border,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -382,10 +385,10 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
             // ── Country list ──────────────────────────────────────────
             Expanded(
               child: _visible.isEmpty
-                  ? const Center(
+                  ? Center(
                       child: Text(
                         'No countries found',
-                        style: TextStyle(color: AppColors.textSecondary),
+                        style: TextStyle(color: c.textSecondary),
                       ),
                     )
                   : ListView.builder(
@@ -413,8 +416,8 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
                             style: TextStyle(
                               fontSize: 13,
                               color: selected
-                                  ? AppColors.primary
-                                  : AppColors.textSecondary,
+                                  ? context.colors.primaryText
+                                  : context.colors.textSecondary,
                               fontWeight: selected
                                   ? FontWeight.w600
                                   : FontWeight.normal,

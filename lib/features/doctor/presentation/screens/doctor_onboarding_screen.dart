@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 
 class DoctorOnboardingScreen extends ConsumerWidget {
@@ -18,15 +18,10 @@ class DoctorOnboardingScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.assignment_outlined, size: 64, color: AppColors.primary),
-            SizedBox(height: 16),
-            Text('Doctor onboarding coming soon'),
-          ],
-        ),
+      body: const EmptyState(
+        icon: Icons.assignment_outlined,
+        title: 'Doctor onboarding',
+        subtitle: 'Guided profile setup is coming soon.',
       ),
     );
   }
