@@ -46,6 +46,30 @@ class AuthNotifier extends Notifier<AuthState> {
     }
   }
 
+  /// Re-fetches the current user from the server and rebuilds the
+  /// authenticated state. Used after a doctor completes onboarding so the
+  /// updated `onboardingComplete` / `isVerified` flags drive routing.
+  Future<void> refreshProfile() async {
+    final s = state;
+    if (s is! AuthAuthenticated) return;
+    try {
+      final user = await _repo.getMe();
+      final access = await _storage.getAccessToken() ?? s.accessToken;
+      final refresh = await _storage.getRefreshToken() ?? s.refreshToken;
+      state = AuthAuthenticated(
+        accessToken: access,
+        refreshToken: refresh,
+        role: user.role,
+        userId: user.userId,
+        email: user.email,
+        onboardingComplete: user.onboardingComplete ?? (user.role == 'patient'),
+        isVerified: user.isVerified,
+      );
+    } catch (_) {
+      // Keep the existing state if the refresh fails.
+    }
+  }
+
   Future<void> login(
     String email,
     String password, {
