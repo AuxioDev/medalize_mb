@@ -79,24 +79,24 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/patient/appointments',
-        pageBuilder: (_, _) => _slidePage(const MyAppointmentsScreen()),
+        pageBuilder: (_, _) => _pushPage(const MyAppointmentsScreen()),
       ),
       GoRoute(
         path: '/patient/appointment-detail/:id',
         pageBuilder: (_, state) {
           final appt = state.extra as AppointmentModel;
-          return _slidePage(AppointmentDetailScreen(appointment: appt));
+          return _pushPage(AppointmentDetailScreen(appointment: appt));
         },
       ),
       GoRoute(
         path: '/patient/doctor-search',
-        pageBuilder: (_, _) => _slidePage(const DoctorSearchScreen()),
+        pageBuilder: (_, _) => _pushPage(const DoctorSearchScreen()),
       ),
       GoRoute(
         path: '/patient/doctor-detail/:id',
         pageBuilder: (_, state) {
           final extra = state.extra as DoctorModel?;
-          return _slidePage(DoctorDetailScreen(
+          return _pushPage(DoctorDetailScreen(
             doctorId: state.pathParameters['id']!,
             doctor: extra,
           ));
@@ -106,14 +106,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/patient/booking-calendar/:id',
         pageBuilder: (_, state) {
           final doctor = state.extra as DoctorDetailModel;
-          return _slidePage(BookingCalendarScreen(doctor: doctor));
+          return _modalPage(BookingCalendarScreen(doctor: doctor));
         },
       ),
       GoRoute(
         path: '/patient/booking-confirm',
         pageBuilder: (_, state) {
           final extra = state.extra as Map<String, dynamic>;
-          return _slidePage(BookingConfirmScreen(
+          return _modalPage(BookingConfirmScreen(
             doctor: extra['doctor'] as DoctorDetailModel,
             slot: extra['slot'] as SlotModel,
             workplaceId: extra['workplaceId'] as String,
@@ -136,59 +136,81 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/doctor/appointments',
-        pageBuilder: (_, _) => _slidePage(const DoctorAppointmentsScreen()),
+        pageBuilder: (_, _) => _pushPage(const DoctorAppointmentsScreen()),
       ),
       GoRoute(
         path: '/doctor/workplaces',
-        pageBuilder: (_, _) => _slidePage(const WorkplaceListScreen()),
+        pageBuilder: (_, _) => _pushPage(const WorkplaceListScreen()),
       ),
       GoRoute(
         path: '/doctor/add-workplace',
-        pageBuilder: (_, _) => _slidePage(const AddEditWorkplaceScreen()),
+        pageBuilder: (_, _) => _modalPage(const AddEditWorkplaceScreen()),
       ),
       GoRoute(
         path: '/doctor/edit-workplace/:id',
         pageBuilder: (_, state) {
           final existing = state.extra as Map<String, dynamic>;
-          return _slidePage(AddEditWorkplaceScreen(existing: existing));
+          return _modalPage(AddEditWorkplaceScreen(existing: existing));
         },
       ),
       GoRoute(
         path: '/doctor/working-hours/:workplaceId',
-        pageBuilder: (_, state) => _slidePage(
+        pageBuilder: (_, state) => _pushPage(
           WorkingHoursEditorScreen(
               workplaceId: state.pathParameters['workplaceId']!),
         ),
       ),
       GoRoute(
         path: '/doctor/block-time',
-        pageBuilder: (_, _) => _slidePage(const BlockTimeScreen()),
+        pageBuilder: (_, _) => _modalPage(const BlockTimeScreen()),
       ),
 
       // Shared routes
       GoRoute(
         path: '/shared/profile',
-        pageBuilder: (_, _) => _slidePage(const ProfileScreen()),
+        pageBuilder: (_, _) => _pushPage(const ProfileScreen()),
       ),
       GoRoute(
         path: '/shared/notifications',
-        pageBuilder: (_, _) => _slidePage(const NotificationsScreen()),
+        pageBuilder: (_, _) => _pushPage(const NotificationsScreen()),
       ),
       GoRoute(
         path: '/shared/settings',
-        pageBuilder: (_, _) => _slidePage(const SettingsScreen()),
+        pageBuilder: (_, _) => _pushPage(const SettingsScreen()),
       ),
     ],
   );
 });
 
+/// Root-level destination switch: fade + subtle scale-up.
+CustomTransitionPage<void> _fadePage(Widget child) {
+  return CustomTransitionPage<void>(
+    child: child,
+    transitionDuration: const Duration(milliseconds: 320),
+    reverseTransitionDuration: const Duration(milliseconds: 220),
+    transitionsBuilder: (_, animation, _, child) {
+      final curved =
+          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+      return FadeTransition(
+        opacity: curved,
+        child: ScaleTransition(
+          scale: Tween<double>(begin: 0.96, end: 1.0).animate(curved),
+          child: child,
+        ),
+      );
+    },
+  );
+}
+
+/// Auth screens: gentle fade + 4 % upward drift.
 CustomTransitionPage<void> _authPage(Widget child) {
   return CustomTransitionPage<void>(
     child: child,
     transitionDuration: const Duration(milliseconds: 380),
     reverseTransitionDuration: const Duration(milliseconds: 280),
     transitionsBuilder: (_, animation, _, child) {
-      final curved = CurvedAnimation(parent: animation, curve: Curves.easeOut);
+      final curved =
+          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
       return FadeTransition(
         opacity: curved,
         child: SlideTransition(
@@ -203,16 +225,8 @@ CustomTransitionPage<void> _authPage(Widget child) {
   );
 }
 
-CustomTransitionPage<void> _fadePage(Widget child) {
-  return CustomTransitionPage<void>(
-    child: child,
-    transitionDuration: const Duration(milliseconds: 300),
-    transitionsBuilder: (_, animation, _, child) =>
-        FadeTransition(opacity: animation, child: child),
-  );
-}
-
-CustomTransitionPage<void> _slidePage(Widget child) {
+/// Drill-down navigation (list → detail): horizontal slide from right.
+CustomTransitionPage<void> _pushPage(Widget child) {
   return CustomTransitionPage<void>(
     child: child,
     transitionDuration: const Duration(milliseconds: 300),
@@ -223,14 +237,43 @@ CustomTransitionPage<void> _slidePage(Widget child) {
       return FadeTransition(
         opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
           CurvedAnimation(
-              parent: animation, curve: const Interval(0.0, 0.6)),
+              parent: animation, curve: const Interval(0.0, 0.5)),
         ),
         child: SlideTransition(
           position: Tween<Offset>(
-            begin: const Offset(0, 0.06),
+            begin: const Offset(0.06, 0),
             end: Offset.zero,
           ).animate(curved),
           child: child,
+        ),
+      );
+    },
+  );
+}
+
+/// Task / form flows: slides up from below with a subtle scale-in.
+CustomTransitionPage<void> _modalPage(Widget child) {
+  return CustomTransitionPage<void>(
+    child: child,
+    transitionDuration: const Duration(milliseconds: 380),
+    reverseTransitionDuration: const Duration(milliseconds: 260),
+    transitionsBuilder: (_, animation, _, child) {
+      final curved =
+          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+      return FadeTransition(
+        opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+          CurvedAnimation(
+              parent: animation, curve: const Interval(0.0, 0.5)),
+        ),
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 0.08),
+            end: Offset.zero,
+          ).animate(curved),
+          child: ScaleTransition(
+            scale: Tween<double>(begin: 0.96, end: 1.0).animate(curved),
+            child: child,
+          ),
         ),
       );
     },
