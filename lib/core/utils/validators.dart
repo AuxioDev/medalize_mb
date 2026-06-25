@@ -1,3 +1,5 @@
+import 'package:medalize_mb/core/constants/app_strings.dart';
+
 abstract final class Validators {
   // RFC 5322 simplified: local-part @ domain.tld (tld >= 2 chars)
   static final _emailRe = RegExp(
@@ -10,47 +12,50 @@ abstract final class Validators {
   // Matches backend rule: 8+ chars, ≥1 letter, ≥1 digit
   static final _passwordMinRe = RegExp(r'^(?=.*[A-Za-z])(?=.*\d).{8,}$');
 
-  // Unicode letters, spaces, hyphens, apostrophes — 2–150 chars
-  static final _nameRe = RegExp(r"^[a-zA-ZÀ-ÖØ-öø-ÿ'\- ]{2,150}$");
+  // Unicode letters (basic + extended Latin), spaces, hyphens, apostrophes — 2–50 chars
+  static final _nameRe = RegExp(r"^[a-zA-ZÀ-ÖØ-öø-ÿ' -]{2,50}$");
 
-  // Non-digit stripper for phone
-  static final _nonDigit = RegExp(r'\D');
+  // ── Helpers ────────────────────────────────────────────────────────────────
+
+  // Count digits in a string using LINQ-style codeUnit filtering.
+  static int _digitCount(String v) =>
+      v.codeUnits.where((u) => u >= 48 && u <= 57).length;
 
   // ── Form validators (return error string or null) ──────────────────────────
 
   static String? email(String? v) {
-    if (v == null || v.trim().isEmpty) return 'Email is required';
-    if (!_emailRe.hasMatch(v.trim())) return 'Enter a valid email address';
+    if (v == null || v.trim().isEmpty) return AppStrings.emailRequired;
+    if (!_emailRe.hasMatch(v.trim())) return AppStrings.emailInvalid;
     return null;
   }
 
   static String? password(String? v) {
-    if (v == null || v.isEmpty) return 'Password is required';
-    if (v.length < 8) return 'At least 8 characters required';
-    if (!v.contains(RegExp(r'[A-Za-z]'))) return 'Include at least one letter';
-    if (!v.contains(RegExp(r'[0-9]'))) return 'Include at least one digit';
+    if (v == null || v.isEmpty) return AppStrings.passwordRequired;
+    if (v.length < 8) return AppStrings.passwordTooShort;
+    if (!v.contains(RegExp(r'[A-Za-z]'))) return AppStrings.passwordNeedsLetter;
+    if (!v.contains(RegExp(r'[0-9]'))) return AppStrings.passwordNeedsDigit;
     return null;
   }
 
   static String? confirmPassword(String? v, String original) {
-    if (v == null || v.isEmpty) return 'Please confirm your password';
-    if (v != original) return 'Passwords do not match';
+    if (v == null || v.isEmpty) return AppStrings.passwordConfirmRequired;
+    if (v != original) return AppStrings.passwordMismatch;
     return null;
   }
 
   static String? name(String? v, {String label = 'This field'}) {
     final s = v?.trim() ?? '';
     if (s.isEmpty) return '$label is required';
-    if (s.length < 2) return '$label must be at least 2 characters';
+    if (s.length < 2) return AppStrings.nameMinLength;
     if (!_nameRe.hasMatch(s)) return '$label contains invalid characters';
     return null;
   }
 
   static String? phone(String? v) {
-    if (v == null || v.trim().isEmpty) return 'Phone number is required';
-    final digits = v.replaceAll(_nonDigit, '');
-    if (digits.length < 7) return 'Number is too short';
-    if (digits.length > 15) return 'Number is too long (E.164 max 15 digits)';
+    if (v == null || v.trim().isEmpty) return AppStrings.phoneRequired;
+    final d = _digitCount(v);
+    if (d < 7) return AppStrings.phoneTooShort;
+    if (d > 9) return AppStrings.phoneTooLong;
     return null;
   }
 
@@ -58,8 +63,14 @@ abstract final class Validators {
 
   static bool emailOk(String v) => _emailRe.hasMatch(v.trim());
   static bool passwordOk(String v) => _passwordMinRe.hasMatch(v);
+
+  static bool nameOk(String v) {
+    final s = v.trim();
+    return s.length >= 2 && _nameRe.hasMatch(s);
+  }
+
   static bool phoneOk(String v) {
-    final d = v.replaceAll(_nonDigit, '');
-    return d.isEmpty || (d.length >= 7 && d.length <= 15);
+    final d = _digitCount(v);
+    return d == 0 || (d >= 7 && d <= 9);
   }
 }

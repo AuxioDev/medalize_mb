@@ -109,7 +109,7 @@ class PhoneField extends StatefulWidget {
     this.onFieldSubmitted,
     this.onCountryChanged,
     this.label = 'Phone Number',
-    this.hint = '50 123 45 67',
+    this.hint = '501234567',
     this.optional = false,
   });
 
@@ -249,7 +249,8 @@ class _PhoneFieldState extends State<PhoneField> {
                       textInputAction: widget.textInputAction,
                       onSubmitted: widget.onFieldSubmitted,
                       inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[\d\s\-\(\)]')),
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(9),
                       ],
                       style: TextStyle(
                         fontSize: 15,

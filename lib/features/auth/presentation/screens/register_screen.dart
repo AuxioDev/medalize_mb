@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
@@ -38,10 +39,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   Map<String, List<String>> _fieldErrors = {};
   final _phoneController = TextEditingController();
 
+  static final _nameFormatters = <TextInputFormatter>[
+    FilteringTextInputFormatter.allow(RegExp(r"[a-zA-ZÀ-ÖØ-öø-ÿ' -]")),
+    LengthLimitingTextInputFormatter(50),
+  ];
+
   bool get _isFormValid {
     final password = _passwordController.text;
-    return _firstNameController.text.trim().length >= 2 &&
-        _lastNameController.text.trim().length >= 2 &&
+    return Validators.nameOk(_firstNameController.text) &&
+        Validators.nameOk(_lastNameController.text) &&
         Validators.emailOk(_emailController.text) &&
         _selectedRole != null &&
         Validators.passwordOk(password) &&
@@ -107,7 +113,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     }
     if (!_formKey.currentState!.validate()) return;
 
-    final rawPhone = _phoneController.text.trim().replaceAll(' ', '');
+    final rawPhone = _phoneController.text.trim();
     final phone = rawPhone.isEmpty ? '' : '$_dialCode$rawPhone';
 
     await ref.read(authProvider.notifier).register(
@@ -164,9 +170,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                           child: AuthCardField(
                             controller: _firstNameController,
                             label: AppStrings.firstName,
+                            keyboardType: TextInputType.name,
                             autofillHints: const [AutofillHints.givenName],
                             textInputAction: TextInputAction.next,
                             errorText: _fieldErrors['first_name']?.firstOrNull,
+                            inputFormatters: _nameFormatters,
                             validator: (v) => Validators.name(v, label: 'First name'),
                           ),
                         ),
@@ -175,9 +183,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                           child: AuthCardField(
                             controller: _lastNameController,
                             label: AppStrings.lastName,
+                            keyboardType: TextInputType.name,
                             autofillHints: const [AutofillHints.familyName],
                             textInputAction: TextInputAction.next,
                             errorText: _fieldErrors['last_name']?.firstOrNull,
+                            inputFormatters: _nameFormatters,
                             validator: (v) => Validators.name(v, label: 'Last name'),
                           ),
                         ),
@@ -203,7 +213,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                       controller: _phoneController,
                       textInputAction: TextInputAction.next,
                       label: 'Phone Number (Optional)',
-                      hint: '50 123 45 67',
+                      hint: '501234567',
                       optional: true,
                       onCountryChanged: (c) => setState(() => _dialCode = c.dialCode),
                     ),
@@ -260,6 +270,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                       textInputAction: TextInputAction.next,
                       obscureText: _obscurePassword,
                       errorText: _fieldErrors['password']?.firstOrNull,
+                      inputFormatters: [LengthLimitingTextInputFormatter(128)],
                       suffix: VisibilityToggle(
                         obscure: _obscurePassword,
                         onToggle: () =>
@@ -282,6 +293,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                       textInputAction: TextInputAction.done,
                       obscureText: _obscureConfirm,
                       errorText: _fieldErrors['password_confirm']?.firstOrNull,
+                      inputFormatters: [LengthLimitingTextInputFormatter(128)],
                       suffix: VisibilityToggle(
                         obscure: _obscureConfirm,
                         onToggle: () =>
