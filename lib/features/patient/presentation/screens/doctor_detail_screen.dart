@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -68,30 +69,49 @@ class _DetailBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (detail.bio.isNotEmpty) ...[
-                      Text('About', style: Theme.of(context).textTheme.titleSmall),
-                      const Gap(10),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(14),
-                        decoration: BoxDecoration(
-                          color: c.primarySurface,
-                          borderRadius: BorderRadius.circular(AppRadius.md),
-                        ),
-                        child: Text(
-                          detail.bio,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: c.textPrimary,
-                                height: 1.5,
+                      AnimatedEntrance(
+                        index: 0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('About',
+                                style: Theme.of(context).textTheme.titleSmall),
+                            const Gap(10),
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(14),
+                              decoration: BoxDecoration(
+                                color: c.primarySurface,
+                                borderRadius: BorderRadius.circular(AppRadius.md),
                               ),
+                              child: Text(
+                                detail.bio,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: c.textPrimary,
+                                      height: 1.5,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const Gap(20),
                     ],
                     if (detail.workplaces.isNotEmpty) ...[
-                      Text('Workplaces',
-                          style: Theme.of(context).textTheme.titleSmall),
+                      AnimatedEntrance(
+                        index: 1,
+                        child: Text('Workplaces',
+                            style: Theme.of(context).textTheme.titleSmall),
+                      ),
                       const Gap(10),
-                      ...detail.workplaces.map((wp) => _WorkplaceCard(wp)),
+                      for (int i = 0; i < detail.workplaces.length; i++)
+                        AnimatedEntrance(
+                          index: 2 + i,
+                          child: _WorkplaceCard(detail.workplaces[i]),
+                        ),
                     ],
                     const Gap(80),
                   ],

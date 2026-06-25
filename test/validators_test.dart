@@ -81,13 +81,14 @@ void main() {
   });
 
   group('Validators.phone', () {
-    test('accepts 7–15 digit numbers, ignoring formatting', () {
-      expect(Validators.phone('+994 50 123 45 67'), isNull);
-      expect(Validators.phone('1234567'), isNull);
+    test('accepts 7–9 digit numbers, ignoring formatting', () {
+      expect(Validators.phone('50 123 45 67'), isNull); // 9 digits, formatted
+      expect(Validators.phone('1234567'), isNull); // 7 digits (lower bound)
     });
 
     test('rejects too short or too long', () {
-      expect(Validators.phone('+123'), isNotNull);
+      expect(Validators.phone('+123'), isNotNull); // 3 digits, too short
+      expect(Validators.phone('1234567890'), isNotNull); // 10 digits, too long
       expect(Validators.phone('1234567890123456'), isNotNull);
     });
 

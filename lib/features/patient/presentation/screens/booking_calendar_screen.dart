@@ -247,7 +247,9 @@ class _StyledCalendar extends StatelessWidget {
             const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         todayTextStyle:
             TextStyle(color: c.primaryText, fontWeight: FontWeight.w600),
-        weekendTextStyle: const TextStyle(color: AppColors.error),
+        // Weekends are bookable, so keep them visually neutral (red would read
+        // as "unavailable").
+        weekendTextStyle: TextStyle(color: c.textPrimary),
         outsideTextStyle:
             TextStyle(color: c.textSecondary.withValues(alpha: 0.4)),
         defaultTextStyle: TextStyle(color: c.textPrimary),
@@ -263,8 +265,8 @@ class _StyledCalendar extends StatelessWidget {
       daysOfWeekStyle: DaysOfWeekStyle(
         weekdayStyle: TextStyle(
             color: c.textSecondary, fontSize: 12, fontWeight: FontWeight.w500),
-        weekendStyle: const TextStyle(
-            color: AppColors.error, fontSize: 12, fontWeight: FontWeight.w500),
+        weekendStyle: TextStyle(
+            color: c.textSecondary, fontSize: 12, fontWeight: FontWeight.w500),
       ),
     );
   }

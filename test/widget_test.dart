@@ -1,4 +1,4 @@
-claudimport 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
