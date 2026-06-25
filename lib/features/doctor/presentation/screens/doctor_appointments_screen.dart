@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
@@ -214,6 +215,11 @@ class _DoctorAppCard extends ConsumerWidget {
     final initials = patient.fullName.isNotEmpty ? patient.fullName[0] : 'P';
 
     return AppCard(
+      onTap: () {
+        HapticFeedback.lightImpact();
+        context.push('/doctor/appointment-detail/${appointment.id}',
+            extra: appointment);
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

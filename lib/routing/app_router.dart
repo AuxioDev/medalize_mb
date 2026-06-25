@@ -139,6 +139,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, _) => _pushPage(const DoctorAppointmentsScreen()),
       ),
       GoRoute(
+        path: '/doctor/appointment-detail/:id',
+        pageBuilder: (_, state) {
+          final appt = state.extra as AppointmentModel;
+          return _pushPage(
+            AppointmentDetailScreen(appointment: appt, asDoctor: true),
+          );
+        },
+      ),
+      GoRoute(
         path: '/doctor/workplaces',
         pageBuilder: (_, _) => _pushPage(const WorkplaceListScreen()),
       ),

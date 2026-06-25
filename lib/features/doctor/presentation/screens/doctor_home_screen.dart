@@ -247,6 +247,11 @@ class _PendingCard extends ConsumerWidget {
     final initials = patient.fullName.isNotEmpty ? patient.fullName[0] : 'P';
 
     return AppCard(
+      onTap: () {
+        HapticFeedback.lightImpact();
+        context.push('/doctor/appointment-detail/${appointment.id}',
+            extra: appointment);
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

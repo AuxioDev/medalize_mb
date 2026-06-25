@@ -18,8 +18,18 @@ import 'package:medalize_mb/features/appointments/data/repository/appointment_re
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 
 class AppointmentDetailScreen extends ConsumerStatefulWidget {
-  const AppointmentDetailScreen({super.key, required this.appointment});
+  const AppointmentDetailScreen({
+    super.key,
+    required this.appointment,
+    this.asDoctor = false,
+  });
+
   final AppointmentModel appointment;
+
+  /// When true, the screen is shown to the doctor: it surfaces the patient
+  /// (instead of the doctor) and offers confirm/decline actions for pending
+  /// requests instead of the patient's cancel action.
+  final bool asDoctor;
 
   @override
   ConsumerState<AppointmentDetailScreen> createState() =>
@@ -29,6 +39,24 @@ class AppointmentDetailScreen extends ConsumerStatefulWidget {
 class _AppointmentDetailScreenState
     extends ConsumerState<AppointmentDetailScreen> {
   bool _cancelling = false;
+  bool _updatingStatus = false;
+
+  Future<void> _setStatus(String status) async {
+    setState(() => _updatingStatus = true);
+    try {
+      await ref
+          .read(appointmentRepositoryProvider)
+          .updateAppointmentStatus(widget.appointment.id, status);
+      ref.invalidate(doctorAppointmentsProvider);
+      if (mounted) context.pop();
+    } on ApiException catch (e) {
+      if (mounted) {
+        AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+      }
+    } finally {
+      if (mounted) setState(() => _updatingStatus = false);
+    }
+  }
 
   Future<void> _cancel() async {
     final confirm = await showDialog<bool>(
@@ -119,20 +147,27 @@ class _AppointmentDetailScreenState
               const Gap(20),
               AnimatedEntrance(
                 index: 1,
-                child: _InfoCard(
-                  label: 'Doctor',
-                  icon: Icons.person_outline_rounded,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(appt.doctor.fullName,
-                          style: Theme.of(context).textTheme.titleSmall),
-                      const Gap(2),
-                      Text(appt.doctor.specializationDisplay,
-                          style: Theme.of(context).textTheme.bodySmall),
-                    ],
-                  ),
-                ),
+                child: widget.asDoctor
+                    ? _InfoCard(
+                        label: 'Patient',
+                        icon: Icons.person_outline_rounded,
+                        child: Text(appt.patient.fullName,
+                            style: Theme.of(context).textTheme.titleSmall),
+                      )
+                    : _InfoCard(
+                        label: 'Doctor',
+                        icon: Icons.person_outline_rounded,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(appt.doctor.fullName,
+                                style: Theme.of(context).textTheme.titleSmall),
+                            const Gap(2),
+                            Text(appt.doctor.specializationDisplay,
+                                style: Theme.of(context).textTheme.bodySmall),
+                          ],
+                        ),
+                      ),
               ),
               AnimatedEntrance(
                 index: 2,
@@ -199,35 +234,92 @@ class _AppointmentDetailScreenState
           ),
         ),
       ),
-      bottomNavigationBar: appt.canCancel
-          ? BottomActionBar(
+      bottomNavigationBar: _bottomBar(appt),
+    );
+  }
+
+  Widget? _bottomBar(AppointmentModel appt) {
+    if (widget.asDoctor) {
+      if (appt.status != 'pending') return null;
+      return BottomActionBar(
+        child: Row(
+          children: [
+            Expanded(
               child: OutlinedButton(
-                onPressed: _cancelling
-                    ? null
-                    : () {
-                        HapticFeedback.lightImpact();
-                        _cancel();
-                      },
+                onPressed:
+                    _updatingStatus ? null : () => _setStatus('declined'),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.error,
-                  side: BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
+                  side:
+                      BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
                   minimumSize: const Size.fromHeight(52),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppRadius.md)),
                 ),
-                child: _cancelling
+                child: const Text('Decline',
+                    style: TextStyle(fontWeight: FontWeight.w600)),
+              ),
+            ),
+            const Gap(10),
+            Expanded(
+              child: FilledButton(
+                onPressed: _updatingStatus
+                    ? null
+                    : () {
+                        HapticFeedback.lightImpact();
+                        _setStatus('confirmed');
+                      },
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size.fromHeight(52),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppRadius.md)),
+                ),
+                child: _updatingStatus
                     ? const SizedBox(
                         height: 20,
                         width: 20,
                         child: CircularProgressIndicator(
-                            strokeWidth: 2, color: AppColors.error),
+                            strokeWidth: 2, color: Colors.white),
                       )
-                    : const Text('Cancel Appointment',
+                    : const Text('Confirm',
                         style: TextStyle(fontWeight: FontWeight.w600)),
               ),
-            )
-          : null,
-    );
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (appt.canCancel) {
+      return BottomActionBar(
+        child: OutlinedButton(
+          onPressed: _cancelling
+              ? null
+              : () {
+                  HapticFeedback.lightImpact();
+                  _cancel();
+                },
+          style: OutlinedButton.styleFrom(
+            foregroundColor: AppColors.error,
+            side: BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
+            minimumSize: const Size.fromHeight(52),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppRadius.md)),
+          ),
+          child: _cancelling
+              ? const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                      strokeWidth: 2, color: AppColors.error),
+                )
+              : const Text('Cancel Appointment',
+                  style: TextStyle(fontWeight: FontWeight.w600)),
+        ),
+      );
+    }
+
+    return null;
   }
 
   IconData _statusIcon(String status) => switch (status) {
@@ -260,49 +352,51 @@ class _InfoCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.md + 2),
         border: Border.all(color: c.border, width: 1),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 4,
-            height: double.infinity,
-            constraints: const BoxConstraints(minHeight: 60),
-            decoration: const BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(AppRadius.md + 2),
-                bottomLeft: Radius.circular(AppRadius.md + 2),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Full-height accent bar. IntrinsicHeight gives the Row a bounded
+            // height so `stretch` can size this without an infinite constraint.
+            Container(
+              width: 4,
+              decoration: const BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(AppRadius.md + 2),
+                  bottomLeft: Radius.circular(AppRadius.md + 2),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(icon, size: 14, color: c.primaryText),
-                      const Gap(5),
-                      Text(
-                        label.toUpperCase(),
-                        style: TextStyle(
-                          color: c.primaryText,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 0.8,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(icon, size: 14, color: c.primaryText),
+                        const Gap(5),
+                        Text(
+                          label.toUpperCase(),
+                          style: TextStyle(
+                            color: c.primaryText,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.8,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Gap(8),
-                  child,
-                ],
+                      ],
+                    ),
+                    const Gap(8),
+                    child,
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
