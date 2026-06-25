@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
@@ -26,6 +27,7 @@ class MyAppointmentsScreen extends ConsumerStatefulWidget {
 class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tab;
+  final _scrollControllers = [ScrollController(), ScrollController()];
 
   @override
   void initState() {
@@ -36,7 +38,23 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
   @override
   void dispose() {
     _tab.dispose();
+    for (final c in _scrollControllers) {
+      c.dispose();
+    }
     super.dispose();
+  }
+
+  void _onTabTap(int index) {
+    if (index == _tab.index && !_tab.indexIsChanging) {
+      final ctrl = _scrollControllers[index];
+      if (ctrl.hasClients) {
+        ctrl.animateTo(
+          0,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+        );
+      }
+    }
   }
 
   @override
@@ -46,6 +64,7 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
         title: const Text('My Appointments'),
         bottom: TabBar(
           controller: _tab,
+          onTap: _onTabTap,
           tabs: const [Tab(text: 'Upcoming'), Tab(text: 'Past')],
         ),
       ),
@@ -56,12 +75,14 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
             filterFn: (a) => a.isUpcoming,
             emptyTitle: 'No upcoming appointments',
             emptySubtitle: 'Book your first appointment with a doctor',
+            scrollController: _scrollControllers[0],
             onRefresh: () => ref.refresh(patientAppointmentsProvider(null)),
           ),
           _AppointmentList(
             filterFn: (a) => !a.isUpcoming,
             emptyTitle: 'No past appointments',
             emptySubtitle: 'Completed and cancelled appointments appear here',
+            scrollController: _scrollControllers[1],
             onRefresh: () => ref.refresh(patientAppointmentsProvider(null)),
           ),
         ],
@@ -76,12 +97,14 @@ class _AppointmentList extends ConsumerWidget {
     required this.emptyTitle,
     required this.emptySubtitle,
     required this.onRefresh,
+    required this.scrollController,
   });
 
   final bool Function(AppointmentModel) filterFn;
   final String emptyTitle;
   final String emptySubtitle;
   final VoidCallback onRefresh;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -118,9 +141,14 @@ class _AppointmentList extends ConsumerWidget {
         }
         return RefreshIndicator(
           onRefresh: () async => onRefresh(),
+          color: AppColors.primary,
           child: ResponsiveBody(
             child: ListView.builder(
+              controller: scrollController,
               padding: const EdgeInsets.all(AppSpacing.md),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               itemCount: items.length,
               itemBuilder: (_, i) => AnimatedEntrance(
                 index: i,

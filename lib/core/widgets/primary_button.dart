@@ -167,9 +167,13 @@ class _LoadingFilledButtonState extends State<LoadingFilledButton>
       onPointerDown: _onPointerDown,
       onPointerUp: _onPointerUp,
       onPointerCancel: _onPointerCancel,
-      child: ScaleTransition(
-        scale: _scale,
-        child: button,
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 180),
+        opacity: (widget.loading || _enabled) ? 1.0 : 0.5,
+        child: ScaleTransition(
+          scale: _scale,
+          child: button,
+        ),
       ),
     );
   }

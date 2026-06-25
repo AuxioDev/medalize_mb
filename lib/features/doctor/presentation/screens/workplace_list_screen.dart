@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
@@ -64,9 +65,13 @@ class WorkplaceListScreen extends ConsumerWidget {
             }
             return RefreshIndicator(
               onRefresh: () async => ref.invalidate(_workplacesProvider),
+              color: AppColors.primary,
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(
                     AppSpacing.md, AppSpacing.md, AppSpacing.md, 88),
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 itemCount: workplaces.length,
                 itemBuilder: (_, i) => AnimatedEntrance(
                   index: i,
@@ -127,8 +132,7 @@ class _WorkplaceCard extends ConsumerWidget {
       if (context.mounted) {
         final msg =
             (e.response?.data as Map?)?['message'] ?? 'Cannot delete workplace';
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(msg as String)));
+        AppSnackBar.show(context, msg as String, type: SnackBarType.error);
       }
     }
   }

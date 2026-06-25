@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 
 /// Shared scaffold for all auth screens.
@@ -116,7 +117,8 @@ class AuthCardHeader extends StatelessWidget {
 }
 
 /// Floating-label text field styled for the white card background.
-class AuthCardField extends StatelessWidget {
+/// Validates on focus-loss (blur) in addition to form submit.
+class AuthCardField extends StatefulWidget {
   const AuthCardField({
     super.key,
     required this.controller,
@@ -147,22 +149,47 @@ class AuthCardField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
 
   @override
+  State<AuthCardField> createState() => _AuthCardFieldState();
+}
+
+class _AuthCardFieldState extends State<AuthCardField> {
+  final _fieldKey = GlobalKey<FormFieldState<String>>();
+  final _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      if (!_focusNode.hasFocus) {
+        _fieldKey.currentState?.validate();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      autofillHints: autofillHints,
-      obscureText: obscureText,
-      onFieldSubmitted: onFieldSubmitted,
-      validator: validator,
-      inputFormatters: inputFormatters,
+      key: _fieldKey,
+      controller: widget.controller,
+      focusNode: _focusNode,
+      keyboardType: widget.keyboardType,
+      textInputAction: widget.textInputAction,
+      autofillHints: widget.autofillHints,
+      obscureText: widget.obscureText,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      validator: widget.validator,
+      inputFormatters: widget.inputFormatters,
       decoration: InputDecoration(
-        labelText: label,
-        hintText: hint,
-        suffixIcon: suffix,
-        errorText: errorText,
-        // Slightly tinted fill so fields stand out on the card
+        labelText: widget.label,
+        hintText: widget.hint,
+        suffixIcon: widget.suffix,
+        errorText: widget.errorText,
         fillColor: context.colors.surfaceAlt,
         contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       ),
@@ -170,7 +197,7 @@ class AuthCardField extends StatelessWidget {
   }
 }
 
-/// Visibility toggle icon for password fields.
+/// Visibility toggle icon for password fields — animated icon swap.
 class VisibilityToggle extends StatelessWidget {
   const VisibilityToggle({super.key, required this.obscure, required this.onToggle});
 
@@ -180,10 +207,21 @@ class VisibilityToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(
-        obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-        color: context.colors.textSecondary,
-        size: 20,
+      icon: AnimatedSwitcher(
+        duration: AppDuration.fast,
+        transitionBuilder: (child, anim) => FadeTransition(
+          opacity: anim,
+          child: ScaleTransition(
+            scale: Tween<double>(begin: 0.7, end: 1.0).animate(anim),
+            child: child,
+          ),
+        ),
+        child: Icon(
+          key: ValueKey(obscure),
+          obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+          color: context.colors.textSecondary,
+          size: 20,
+        ),
       ),
       onPressed: onToggle,
     );

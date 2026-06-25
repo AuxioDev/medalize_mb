@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
-import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
+import 'package:medalize_mb/core/widgets/otp_code_field.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
@@ -23,15 +24,16 @@ class ResetPasswordScreen extends ConsumerStatefulWidget {
 class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
     with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
-  final _codeController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmController = TextEditingController();
+  String _otpCode = '';
+  bool _otpError = false;
   bool _isLoading = false;
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
 
   bool get _isFormValid =>
-      _codeController.text.length == 6 &&
+      _otpCode.length == 6 &&
       Validators.passwordOk(_passwordController.text) &&
       _confirmController.text == _passwordController.text;
 
@@ -49,18 +51,17 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
     );
     _headerAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
+      curve: Interval(0.0, 0.55, curve: AppCurve.enter),
     );
     _formAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.2, 0.75, curve: Curves.easeOut),
+      curve: Interval(0.2, 0.75, curve: AppCurve.enter),
     );
     _footerAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.45, 1.0, curve: Curves.easeOut),
+      curve: Interval(0.45, 1.0, curve: AppCurve.enter),
     );
     _ctrl.forward();
-    _codeController.addListener(_onFieldChanged);
     _passwordController.addListener(_onFieldChanged);
     _confirmController.addListener(_onFieldChanged);
   }
@@ -70,7 +71,6 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
   @override
   void dispose() {
     _ctrl.dispose();
-    _codeController.dispose();
     _passwordController.dispose();
     _confirmController.dispose();
     super.dispose();
@@ -82,25 +82,25 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
     try {
       await ref.read(authRepositoryProvider).confirmPasswordReset(
             email: widget.email,
-            code: _codeController.text.trim(),
+            code: _otpCode,
             newPassword: _passwordController.text,
           );
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(AppStrings.passwordResetSuccess),
-          backgroundColor: AppColors.success,
-        ),
+      AppSnackBar.show(
+        context,
+        AppStrings.passwordResetSuccess,
+        type: SnackBarType.success,
       );
       context.go('/auth/login');
     } on ApiException catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.userMessage),
-          backgroundColor: AppColors.error,
-        ),
-      );
+      final isCodeError = e.userMessage.toLowerCase().contains('code') ||
+          e.userMessage.toLowerCase().contains('otp') ||
+          e.userMessage.toLowerCase().contains('invalid');
+      if (isCodeError) {
+        setState(() => _otpError = true);
+      }
+      AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -127,25 +127,24 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
             _Section(
               anim: _formAnim,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AuthCardField(
-                    controller: _codeController,
-                    label: AppStrings.verificationCode,
-                    hint: AppStrings.verificationCodeHint,
-                    keyboardType: TextInputType.number,
-                    textInputAction: TextInputAction.next,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(6),
-                    ],
-                    validator: (v) {
-                      if (v == null || v.length != 6) {
-                        return 'Enter the 6-digit code from your email';
-                      }
-                      return null;
-                    },
+                  Text(
+                    'Verification code',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 10),
+                  OtpCodeField(
+                    hasError: _otpError,
+                    onChanged: (v) => setState(() {
+                      _otpCode = v;
+                      if (_otpError) _otpError = false;
+                    }),
+                    onCompleted: (v) => setState(() => _otpCode = v),
+                  ),
+                  const SizedBox(height: 16),
                   AuthCardField(
                     controller: _passwordController,
                     label: AppStrings.password,

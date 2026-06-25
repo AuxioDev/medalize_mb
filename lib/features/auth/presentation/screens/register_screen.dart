@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
+import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
@@ -11,6 +12,7 @@ import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.d
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/password_strength_indicator.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
@@ -61,15 +63,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     );
     _headerAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
+      curve: Interval(0.0, 0.5, curve: AppCurve.enter),
     );
     _formAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.2, 0.75, curve: Curves.easeOut),
+      curve: Interval(0.2, 0.75, curve: AppCurve.enter),
     );
     _footerAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+      curve: Interval(0.5, 1.0, curve: AppCurve.enter),
     );
     _ctrl.forward();
     _firstNameController.addListener(_onFieldChanged);
@@ -100,9 +102,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   Future<void> _submit() async {
     setState(() => _fieldErrors = {});
     if (_selectedRole == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text(AppStrings.roleRequired)),
-      );
+      AppSnackBar.show(context, AppStrings.roleRequired, type: SnackBarType.error);
       return;
     }
     if (!_formKey.currentState!.validate()) return;

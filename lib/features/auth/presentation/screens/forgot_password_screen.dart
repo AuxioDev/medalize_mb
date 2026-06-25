@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
-import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/app_motion.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
@@ -39,15 +40,15 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
     );
     _headerAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
+      curve: Interval(0.0, 0.55, curve: AppCurve.enter),
     );
     _formAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.2, 0.75, curve: Curves.easeOut),
+      curve: Interval(0.2, 0.75, curve: AppCurve.enter),
     );
     _footerAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.45, 1.0, curve: Curves.easeOut),
+      curve: Interval(0.45, 1.0, curve: AppCurve.enter),
     );
     _ctrl.forward();
     _emailController.addListener(_onFieldChanged);
@@ -74,12 +75,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
       context.push('/auth/reset-password', extra: email);
     } on ApiException catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.userMessage),
-          backgroundColor: AppColors.error,
-        ),
-      );
+      AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }

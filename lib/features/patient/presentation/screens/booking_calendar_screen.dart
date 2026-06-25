@@ -69,10 +69,13 @@ class _BookingCalendarScreenState
             _StyledCalendar(
               focusedDay: _focusedDay,
               selectedDay: _selectedDay,
-              onDaySelected: (selected, focused) => setState(() {
-                _selectedDay = selected;
-                _focusedDay = focused;
-              }),
+              onDaySelected: (selected, focused) {
+                HapticFeedback.selectionClick();
+                setState(() {
+                  _selectedDay = selected;
+                  _focusedDay = focused;
+                });
+              },
             ),
             if (_selectedDay != null && _selectedWorkplaceId != null) ...[
               Padding(

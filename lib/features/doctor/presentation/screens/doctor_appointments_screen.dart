@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
@@ -30,6 +31,7 @@ class _DoctorAppointmentsScreenState
     extends ConsumerState<DoctorAppointmentsScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tab;
+  final _scrollControllers = [ScrollController(), ScrollController()];
 
   @override
   void initState() {
@@ -40,7 +42,23 @@ class _DoctorAppointmentsScreenState
   @override
   void dispose() {
     _tab.dispose();
+    for (final c in _scrollControllers) {
+      c.dispose();
+    }
     super.dispose();
+  }
+
+  void _onTabTap(int index) {
+    if (index == _tab.index && !_tab.indexIsChanging) {
+      final ctrl = _scrollControllers[index];
+      if (ctrl.hasClients) {
+        ctrl.animateTo(
+          0,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+        );
+      }
+    }
   }
 
   @override
@@ -50,6 +68,7 @@ class _DoctorAppointmentsScreenState
         title: const Text('Appointments'),
         bottom: TabBar(
           controller: _tab,
+          onTap: _onTabTap,
           tabs: const [Tab(text: 'Pending'), Tab(text: 'All')],
         ),
       ),
@@ -61,6 +80,7 @@ class _DoctorAppointmentsScreenState
             showActions: true,
             emptyTitle: 'No pending requests',
             emptySubtitle: 'New appointment requests will appear here',
+            scrollController: _scrollControllers[0],
             onRefresh: () => ref.invalidate(doctorAppointmentsProvider),
           ),
           _DoctorAppList(
@@ -68,6 +88,7 @@ class _DoctorAppointmentsScreenState
             showActions: false,
             emptyTitle: 'No appointments',
             emptySubtitle: 'Your appointments will appear here',
+            scrollController: _scrollControllers[1],
             onRefresh: () => ref.invalidate(doctorAppointmentsProvider),
           ),
         ],
@@ -83,6 +104,7 @@ class _DoctorAppList extends ConsumerWidget {
     required this.emptyTitle,
     required this.emptySubtitle,
     required this.onRefresh,
+    required this.scrollController,
   });
 
   final bool Function(AppointmentModel) filterFn;
@@ -90,6 +112,7 @@ class _DoctorAppList extends ConsumerWidget {
   final String emptyTitle;
   final String emptySubtitle;
   final VoidCallback onRefresh;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -125,9 +148,14 @@ class _DoctorAppList extends ConsumerWidget {
         }
         return RefreshIndicator(
           onRefresh: () async => onRefresh(),
+          color: AppColors.primary,
           child: ResponsiveBody(
             child: ListView.builder(
+              controller: scrollController,
               padding: const EdgeInsets.all(AppSpacing.md),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               itemCount: items.length,
               itemBuilder: (_, i) => AnimatedEntrance(
                 index: i,
@@ -166,8 +194,7 @@ class _DoctorAppCard extends ConsumerWidget {
       onUpdated();
     } on ApiException catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(e.userMessage)));
+        AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
       }
     }
   }

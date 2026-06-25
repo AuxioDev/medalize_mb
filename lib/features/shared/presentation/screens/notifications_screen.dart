@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
@@ -50,13 +52,17 @@ class NotificationsScreen extends ConsumerWidget {
             }
             return RefreshIndicator(
               onRefresh: () async => ref.invalidate(notificationsProvider),
+              color: AppColors.primary,
               child: ListView.builder(
                 padding: const EdgeInsets.all(AppSpacing.md),
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 itemCount: notifications.length,
                 itemBuilder: (_, i) => AnimatedEntrance(
                   index: i,
                   slideY: 0.05,
-                  child: _NotificationTile(
+                  child: _DismissibleNotification(
                     notification: notifications[i],
                     onRead: () async {
                       if (!notifications[i].isRead) {
@@ -66,6 +72,13 @@ class NotificationsScreen extends ConsumerWidget {
                         ref.invalidate(notificationsProvider);
                       }
                     },
+                    onDismiss: () async {
+                      HapticFeedback.mediumImpact();
+                      await ref
+                          .read(notificationRepositoryProvider)
+                          .markRead(notifications[i].id);
+                      ref.invalidate(notificationsProvider);
+                    },
                   ),
                 ),
               ),
@@ -73,6 +86,40 @@ class NotificationsScreen extends ConsumerWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class _DismissibleNotification extends StatelessWidget {
+  const _DismissibleNotification({
+    required this.notification,
+    required this.onRead,
+    required this.onDismiss,
+  });
+
+  final NotificationModel notification;
+  final VoidCallback onRead;
+  final VoidCallback onDismiss;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dismissible(
+      key: ValueKey(notification.id),
+      direction: DismissDirection.endToStart,
+      onDismissed: (_) => onDismiss(),
+      background: Container(
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: AppSpacing.md),
+        decoration: BoxDecoration(
+          color: AppColors.primary.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+        ),
+        child: Icon(
+          Icons.done_all_rounded,
+          color: AppColors.primary,
+        ),
+      ),
+      child: _NotificationTile(notification: notification, onRead: onRead),
     );
   }
 }

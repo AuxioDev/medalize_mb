@@ -7,6 +7,7 @@ import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 
 const _dayNames = [
@@ -121,16 +122,12 @@ class _WorkingHoursEditorState
       await dio.put('/doctor/workplaces/${widget.workplaceId}/hours/',
           data: payload);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Working hours saved')),
-        );
+        AppSnackBar.show(context, 'Working hours saved', type: SnackBarType.success);
         context.pop(true);
       }
     } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to save working hours')),
-        );
+        AppSnackBar.show(context, 'Failed to save working hours', type: SnackBarType.error);
       }
     } finally {
       if (mounted) setState(() => _saving = false);

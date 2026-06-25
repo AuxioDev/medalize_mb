@@ -77,40 +77,44 @@ class _AnimatedButtonState extends State<AnimatedButton>
       onPointerDown: _onPointerDown,
       onPointerUp: _onPointerUp,
       onPointerCancel: _onPointerCancel,
-      child: ScaleTransition(
-        scale: _scale,
-        child: FilledButton(
-          onPressed: _enabled ? widget.onPressed : null,
-          onLongPress: widget.onLongPress != null
-              ? () {
-                  HapticFeedback.mediumImpact();
-                  widget.onLongPress!();
-                }
-              : null,
-          style: FilledButton.styleFrom(
-            splashFactory: NoSplash.splashFactory,
-            overlayColor: Colors.transparent,
-          ),
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 220),
-            transitionBuilder: (child, anim) => FadeTransition(
-              opacity: anim,
-              child: ScaleTransition(
-                scale: Tween<double>(begin: 0.75, end: 1.0).animate(anim),
-                child: child,
-              ),
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 180),
+        opacity: (widget.isLoading || _enabled) ? 1.0 : 0.5,
+        child: ScaleTransition(
+          scale: _scale,
+          child: FilledButton(
+            onPressed: _enabled ? widget.onPressed : null,
+            onLongPress: widget.onLongPress != null
+                ? () {
+                    HapticFeedback.mediumImpact();
+                    widget.onLongPress!();
+                  }
+                : null,
+            style: FilledButton.styleFrom(
+              splashFactory: NoSplash.splashFactory,
+              overlayColor: Colors.transparent,
             ),
-            child: widget.isLoading
-                ? const SizedBox(
-                    key: ValueKey('loading'),
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2.5,
-                      color: Colors.white,
-                    ),
-                  )
-                : Text(key: const ValueKey('label'), widget.label),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 220),
+              transitionBuilder: (child, anim) => FadeTransition(
+                opacity: anim,
+                child: ScaleTransition(
+                  scale: Tween<double>(begin: 0.75, end: 1.0).animate(anim),
+                  child: child,
+                ),
+              ),
+              child: widget.isLoading
+                  ? const SizedBox(
+                      key: ValueKey('loading'),
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2.5,
+                        color: Colors.white,
+                      ),
+                    )
+                  : Text(key: const ValueKey('label'), widget.label),
+            ),
           ),
         ),
       ),

@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/greeting_banner.dart';
@@ -51,8 +52,12 @@ class DoctorHomeScreen extends ConsumerWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async => ref.invalidate(doctorAppointmentsProvider),
+        color: AppColors.primary,
         child: ResponsiveBody(
           child: ListView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             padding: const EdgeInsets.all(AppSpacing.md),
             children: [
               AnimatedEntrance(
@@ -229,8 +234,7 @@ class _PendingCard extends ConsumerWidget {
       onUpdated();
     } on ApiException catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(e.userMessage)));
+        AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
       }
     }
   }

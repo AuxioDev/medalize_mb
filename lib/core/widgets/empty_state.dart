@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 
@@ -21,21 +22,31 @@ class EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final reducedMotion = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+
+    Widget iconContainer = Container(
+      width: 76,
+      height: 76,
+      decoration: BoxDecoration(
+        color: c.primarySurface,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(icon, size: 38, color: c.primaryText),
+    );
+
+    if (!reducedMotion) {
+      iconContainer = iconContainer
+          .animate(onPlay: (ctrl) => ctrl.repeat(reverse: true))
+          .moveY(begin: 0, end: -6, duration: 1800.ms, curve: Curves.easeInOut);
+    }
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: 76,
-              height: 76,
-              decoration: BoxDecoration(
-                color: c.primarySurface,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icon, size: 38, color: c.primaryText),
-            ),
+            iconContainer,
             const Gap(16),
             Text(
               title,

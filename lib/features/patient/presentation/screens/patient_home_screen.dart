@@ -48,8 +48,12 @@ class PatientHomeScreen extends ConsumerWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async => ref.invalidate(patientAppointmentsProvider),
+        color: AppColors.primary,
         child: ResponsiveBody(
           child: ListView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             padding: const EdgeInsets.all(AppSpacing.md),
             children: [
               AnimatedEntrance(

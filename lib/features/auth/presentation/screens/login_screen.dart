@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
+import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
@@ -44,15 +45,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
     );
     _headerAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
+      curve: Interval(0.0, 0.55, curve: AppCurve.enter),
     );
     _formAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.2, 0.75, curve: Curves.easeOut),
+      curve: Interval(0.2, 0.75, curve: AppCurve.enter),
     );
     _footerAnim = CurvedAnimation(
       parent: _ctrl,
-      curve: const Interval(0.45, 1.0, curve: Curves.easeOut),
+      curve: Interval(0.45, 1.0, curve: AppCurve.enter),
     );
     _ctrl.forward();
     _emailController.addListener(_onFieldChanged);
@@ -147,19 +148,26 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        Switch(
-                          value: _rememberMe,
-                          onChanged: (v) => setState(() => _rememberMe = v),
-                          activeThumbColor: AppColors.primary,
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          AppStrings.rememberMe,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(color: context.colors.textPrimary),
+                        GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () => setState(() => _rememberMe = !_rememberMe),
+                          child: Row(
+                            children: [
+                              Switch(
+                                value: _rememberMe,
+                                onChanged: (v) => setState(() => _rememberMe = v),
+                                activeThumbColor: AppColors.primary,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                AppStrings.rememberMe,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(color: context.colors.textPrimary),
+                              ),
+                            ],
+                          ),
                         ),
                         const Spacer(),
                         TextButton(
@@ -170,7 +178,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                           child: const Text(AppStrings.forgotPassword),
                         ),
                       ],
-                    ),
+                    ), // Row
                   ],
                 ),
               ),
