@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/notifications/data/models/notification_model.dart';
@@ -35,19 +36,25 @@ class NotificationsScreen extends ConsumerWidget {
               ],
             ),
           ),
-          error: (_, _) => EmptyState(
-            icon: Icons.cloud_off_outlined,
-            title: 'Something went wrong',
-            subtitle: 'Could not load notifications',
-            actionLabel: 'Retry',
-            onAction: () => ref.invalidate(notificationsProvider),
+          error: (_, _) => RefreshableView(
+            onRefresh: () async => ref.invalidate(notificationsProvider),
+            child: EmptyState(
+              icon: Icons.cloud_off_outlined,
+              title: 'Something went wrong',
+              subtitle: 'Could not load notifications',
+              actionLabel: 'Retry',
+              onAction: () => ref.invalidate(notificationsProvider),
+            ),
           ),
           data: (notifications) {
             if (notifications.isEmpty) {
-              return const EmptyState(
-                icon: Icons.notifications_none_outlined,
-                title: 'No notifications',
-                subtitle: 'You are all caught up',
+              return RefreshableView(
+                onRefresh: () async => ref.invalidate(notificationsProvider),
+                child: const EmptyState(
+                  icon: Icons.notifications_none_outlined,
+                  title: 'No notifications',
+                  subtitle: 'You are all caught up',
+                ),
               );
             }
             return RefreshIndicator(

@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 
@@ -48,19 +49,25 @@ class WorkplaceListScreen extends ConsumerWidget {
               ],
             ),
           ),
-          error: (_, _) => EmptyState(
-            icon: Icons.cloud_off_outlined,
-            title: 'Something went wrong',
-            subtitle: 'Could not load workplaces',
-            actionLabel: 'Retry',
-            onAction: () => ref.invalidate(_workplacesProvider),
+          error: (_, _) => RefreshableView(
+            onRefresh: () async => ref.invalidate(_workplacesProvider),
+            child: EmptyState(
+              icon: Icons.cloud_off_outlined,
+              title: 'Something went wrong',
+              subtitle: 'Could not load workplaces',
+              actionLabel: 'Retry',
+              onAction: () => ref.invalidate(_workplacesProvider),
+            ),
           ),
           data: (workplaces) {
             if (workplaces.isEmpty) {
-              return const EmptyState(
-                icon: Icons.business_outlined,
-                title: 'No workplaces yet',
-                subtitle: 'Tap + to add your first workplace',
+              return RefreshableView(
+                onRefresh: () async => ref.invalidate(_workplacesProvider),
+                child: const EmptyState(
+                  icon: Icons.business_outlined,
+                  title: 'No workplaces yet',
+                  subtitle: 'Tap + to add your first workplace',
+                ),
               );
             }
             return RefreshIndicator(

@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
@@ -123,20 +124,26 @@ class _AppointmentList extends ConsumerWidget {
           ),
         ),
       ),
-      error: (_, _) => EmptyState(
-        icon: Icons.cloud_off_outlined,
-        title: 'Something went wrong',
-        subtitle: 'Could not load appointments',
-        actionLabel: 'Retry',
-        onAction: onRefresh,
+      error: (_, _) => RefreshableView(
+        onRefresh: () async => onRefresh(),
+        child: EmptyState(
+          icon: Icons.cloud_off_outlined,
+          title: 'Something went wrong',
+          subtitle: 'Could not load appointments',
+          actionLabel: 'Retry',
+          onAction: onRefresh,
+        ),
       ),
       data: (all) {
         final items = all.where(filterFn).toList();
         if (items.isEmpty) {
-          return EmptyState(
-            icon: Icons.calendar_today_outlined,
-            title: emptyTitle,
-            subtitle: emptySubtitle,
+          return RefreshableView(
+            onRefresh: () async => onRefresh(),
+            child: EmptyState(
+              icon: Icons.calendar_today_outlined,
+              title: emptyTitle,
+              subtitle: emptySubtitle,
+            ),
           );
         }
         return RefreshIndicator(

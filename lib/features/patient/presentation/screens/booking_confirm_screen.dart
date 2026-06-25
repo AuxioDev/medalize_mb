@@ -12,7 +12,9 @@ import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/appointments/data/models/booking_request.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
+import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 
 class BookingConfirmScreen extends ConsumerStatefulWidget {
   const BookingConfirmScreen({
@@ -55,6 +57,10 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
         startsAt: widget.slot.startsAt,
         reason: _reasonController.text.trim(),
       ));
+      // Refresh the patient's appointment lists so the new booking shows up,
+      // and the slot availability so the just-booked slot disappears.
+      ref.invalidate(patientAppointmentsProvider);
+      ref.invalidate(slotsProvider);
       if (mounted) {
         showDialog<void>(
           context: context,

@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
+import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
@@ -151,28 +152,43 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                     ],
                   ),
                 ),
-                error: (_, _) => EmptyState(
-                  icon: Icons.cloud_off_outlined,
-                  title: 'Something went wrong',
-                  subtitle: 'Could not load doctors',
-                  actionLabel: 'Retry',
-                  onAction: () => ref.invalidate(doctorSearchProvider),
+                error: (_, _) => RefreshableView(
+                  onRefresh: () async => ref.invalidate(doctorSearchProvider),
+                  child: EmptyState(
+                    icon: Icons.cloud_off_outlined,
+                    title: 'Something went wrong',
+                    subtitle: 'Could not load doctors',
+                    actionLabel: 'Retry',
+                    onAction: () => ref.invalidate(doctorSearchProvider),
+                  ),
                 ),
                 data: (doctors) => doctors.isEmpty
-                    ? const EmptyState(
-                        icon: Icons.person_search_outlined,
-                        title: 'No doctors found',
-                        subtitle: 'Try adjusting your search or filters',
+                    ? RefreshableView(
+                        onRefresh: () async =>
+                            ref.invalidate(doctorSearchProvider),
+                        child: const EmptyState(
+                          icon: Icons.person_search_outlined,
+                          title: 'No doctors found',
+                          subtitle: 'Try adjusting your search or filters',
+                        ),
                       )
-                    : ListView.builder(
-                        padding: const EdgeInsets.fromLTRB(
-                            AppSpacing.md, 8, AppSpacing.md, AppSpacing.md),
-                        itemCount: doctors.length,
-                        itemBuilder: (_, i) => AnimatedEntrance(
-                          index: i,
-                          slideY: 0,
-                          slideX: 0.05,
-                          child: _DoctorCard(doctor: doctors[i]),
+                    : RefreshIndicator(
+                        onRefresh: () async =>
+                            ref.invalidate(doctorSearchProvider),
+                        color: AppColors.primary,
+                        child: ListView.builder(
+                          padding: const EdgeInsets.fromLTRB(
+                              AppSpacing.md, 8, AppSpacing.md, AppSpacing.md),
+                          physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics(),
+                          ),
+                          itemCount: doctors.length,
+                          itemBuilder: (_, i) => AnimatedEntrance(
+                            index: i,
+                            slideY: 0,
+                            slideX: 0.05,
+                            child: _DoctorCard(doctor: doctors[i]),
+                          ),
                         ),
                       ),
               ),
