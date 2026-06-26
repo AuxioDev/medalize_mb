@@ -28,6 +28,8 @@ class DoctorRepository {
       return results.map((e) => DoctorModel.fromJson(e as Map<String, dynamic>)).toList();
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -37,6 +39,8 @@ class DoctorRepository {
       return DoctorDetailModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -55,6 +59,8 @@ class DoctorRepository {
       return slots.map((s) => SlotModel.fromJson(s as Map<String, dynamic>)).toList();
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 }

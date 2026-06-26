@@ -4,10 +4,10 @@ import 'package:medalize_mb/features/appointments/data/repository/appointment_re
 
 final patientAppointmentsProvider =
     FutureProvider.family<List<AppointmentModel>, String?>((ref, status) {
-  return ref.read(appointmentRepositoryProvider).getPatientAppointments(status: status);
+  return ref.watch(appointmentRepositoryProvider).getPatientAppointments(status: status);
 });
 
 final doctorAppointmentsProvider =
     FutureProvider.family<List<AppointmentModel>, String?>((ref, status) {
-  return ref.read(appointmentRepositoryProvider).getDoctorAppointments(status: status);
+  return ref.watch(appointmentRepositoryProvider).getDoctorAppointments(status: status);
 });

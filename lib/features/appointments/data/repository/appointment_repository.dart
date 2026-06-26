@@ -22,6 +22,8 @@ class AppointmentRepository {
       return results.map((e) => AppointmentModel.fromJson(e as Map<String, dynamic>)).toList();
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -31,6 +33,8 @@ class AppointmentRepository {
       return AppointmentModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -40,6 +44,8 @@ class AppointmentRepository {
       return AppointmentModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -66,6 +72,8 @@ class AppointmentRepository {
       return results.map((e) => AppointmentModel.fromJson(e as Map<String, dynamic>)).toList();
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 

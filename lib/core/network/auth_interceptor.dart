@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:medalize_mb/core/config/app_config.dart';
 import 'package:medalize_mb/core/storage/secure_storage.dart';
 
@@ -12,17 +11,17 @@ class AuthInterceptor extends Interceptor {
 
   final SecureStorage storage;
   final Dio dio;
-  final VoidCallback onForceLogout;
+  final Future<void> Function() onForceLogout;
 
   bool _isRefreshing = false;
   final List<({RequestOptions options, ErrorInterceptorHandler handler})> _pendingQueue = [];
 
-  static const _noAuthPaths = [
+  static const _noAuthPaths = {
     '/auth/login/', '/auth/register/', '/auth/token/refresh/',
     '/auth/password/reset/', '/auth/password/reset/confirm/',
-  ];
+  };
 
-  bool _skipAuth(String path) => _noAuthPaths.any((p) => path.endsWith(p));
+  bool _skipAuth(String path) => _noAuthPaths.contains(path);
 
   @override
   void onRequest(
@@ -48,7 +47,7 @@ class AuthInterceptor extends Interceptor {
     final code = data is Map ? data['code'] as String? : null;
 
     if (code == 'token_blacklisted' || code == 'token_invalid' || code == 'not_authenticated') {
-      _forceLogoutAndDrain();
+      _forceLogoutAndDrain(err);
       return handler.next(err);
     }
 
@@ -62,7 +61,7 @@ class AuthInterceptor extends Interceptor {
     try {
       final refreshToken = await storage.getRefreshToken();
       if (refreshToken == null) {
-        _forceLogoutAndDrain();
+        _forceLogoutAndDrain(err);
         return handler.next(err);
       }
 
@@ -96,19 +95,24 @@ class AuthInterceptor extends Interceptor {
 
       _drainQueue(newAccessToken);
     } catch (_) {
-      _forceLogoutAndDrain();
+      _forceLogoutAndDrain(err);
       handler.next(err);
     } finally {
       _isRefreshing = false;
     }
   }
 
-  void _forceLogoutAndDrain() {
+  void _forceLogoutAndDrain(DioException triggeringError) {
     onForceLogout();
     final pending = List.of(_pendingQueue);
     _pendingQueue.clear();
     for (final entry in pending) {
-      entry.handler.next(DioException(requestOptions: entry.options));
+      entry.handler.next(DioException(
+        requestOptions: entry.options,
+        response: triggeringError.response,
+        type: triggeringError.type,
+        error: triggeringError.error,
+      ));
     }
   }
 

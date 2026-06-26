@@ -21,7 +21,7 @@ class AuthRepository {
       final res = await _dio.post('/auth/login/', data: request.toJson());
       return LoginResponse.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
-      throw _mapError(e);
+      throw mapDioError(e);
     } catch (_) {
       throw const ServerException(0);
     }
@@ -31,7 +31,9 @@ class AuthRepository {
     try {
       await _dio.post('/auth/register/', data: request.toJson());
     } on DioException catch (e) {
-      throw _mapError(e);
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -41,7 +43,7 @@ class AuthRepository {
           await _dio.post('/auth/token/refresh/', data: {'refresh': refreshToken});
       return LoginResponse.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
-      throw _mapError(e);
+      throw mapDioError(e);
     } catch (_) {
       throw const ServerException(0);
     }
@@ -60,7 +62,7 @@ class AuthRepository {
         ),
       );
     } on DioException catch (e) {
-      throw _mapError(e);
+      throw mapDioError(e);
     }
   }
 
@@ -69,7 +71,7 @@ class AuthRepository {
       final res = await _dio.get('/auth/me/');
       return UserModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
-      throw _mapError(e);
+      throw mapDioError(e);
     } catch (_) {
       throw const ServerException(0);
     }
@@ -79,7 +81,7 @@ class AuthRepository {
     try {
       await _dio.post('/auth/password/reset/', data: {'email': email});
     } on DioException catch (e) {
-      throw _mapError(e);
+      throw mapDioError(e);
     }
   }
 
@@ -95,7 +97,7 @@ class AuthRepository {
         'new_password': newPassword,
       });
     } on DioException catch (e) {
-      throw _mapError(e);
+      throw mapDioError(e);
     }
   }
 
@@ -111,55 +113,7 @@ class AuthRepository {
         'refresh': refreshToken,
       });
     } on DioException catch (e) {
-      throw _mapError(e);
-    }
-  }
-
-  ApiException _mapError(DioException e) {
-    if (e.type == DioExceptionType.connectionTimeout ||
-        e.type == DioExceptionType.receiveTimeout ||
-        e.type == DioExceptionType.connectionError) {
-      return NetworkException(e.message ?? 'Network error');
-    }
-
-    final response = e.response;
-    if (response == null) return const NetworkException();
-
-    final data = response.data;
-    final code = data is Map ? data['code'] as String? : null;
-
-    switch (code) {
-      case 'invalid_credentials':
-        return InvalidCredentialsException(
-            data['message'] as String? ?? 'Invalid email or password');
-      case 'token_expired':
-        return const TokenExpiredException();
-      case 'token_invalid':
-        return const TokenInvalidException();
-      case 'token_blacklisted':
-        return const TokenBlacklistedException();
-      case 'not_authenticated':
-        return const TokenInvalidException();
-      case 'rate_limit_exceeded':
-        return RateLimitException(
-            retryAfterSeconds: data['retry_after_seconds'] as int?);
-      case 'permission_denied':
-        return PermissionDeniedException(role: data['role'] as String?);
-      case 'validation_error':
-        final raw = data['errors'];
-        final errors = <String, List<String>>{};
-        if (raw is Map) {
-          raw.forEach((key, value) {
-            if (value is List) {
-              errors[key as String] = value.map((e) => e.toString()).toList();
-            } else if (value is String) {
-              errors[key as String] = [value];
-            }
-          });
-        }
-        return ValidationException(fieldErrors: errors);
-      default:
-        return ServerException(response.statusCode ?? 500);
+      throw mapDioError(e);
     }
   }
 }

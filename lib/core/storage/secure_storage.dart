@@ -12,7 +12,9 @@ abstract final class _Keys {
 class SecureStorage {
   static const _storage = FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
-    iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+    // unlocked_this_device_only: tokens are only readable when the device is
+    // actively unlocked, and are never synced to iCloud — appropriate for PHI.
+    iOptions: IOSOptions(accessibility: KeychainAccessibility.unlocked_this_device),
   );
 
   Future<void> saveTokens({

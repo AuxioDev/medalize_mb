@@ -44,7 +44,7 @@ class SlotsParams {
 
 final doctorSearchProvider =
     FutureProvider.family<List<DoctorModel>, SearchParams>((ref, params) {
-  return ref.read(doctorRepositoryProvider).searchDoctors(
+  return ref.watch(doctorRepositoryProvider).searchDoctors(
         name: params.name,
         specialization: params.specialization,
         city: params.city,
@@ -53,12 +53,12 @@ final doctorSearchProvider =
 
 final doctorDetailProvider =
     FutureProvider.family<DoctorDetailModel, String>((ref, id) {
-  return ref.read(doctorRepositoryProvider).getDoctorDetail(id);
+  return ref.watch(doctorRepositoryProvider).getDoctorDetail(id);
 });
 
 final slotsProvider =
     FutureProvider.family<List<SlotModel>, SlotsParams>((ref, params) {
-  return ref.read(doctorRepositoryProvider).getSlots(
+  return ref.watch(doctorRepositoryProvider).getSlots(
         params.doctorId,
         params.workplaceId,
         params.date,

@@ -161,8 +161,8 @@ class AuthNotifier extends Notifier<AuthState> {
     state = const AuthUnauthenticated();
   }
 
-  void forceLogout() {
-    _storage.clearAll();
+  Future<void> forceLogout() async {
+    await _storage.clearAll();
     state = const AuthUnauthenticated();
   }
 
