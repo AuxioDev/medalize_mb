@@ -25,6 +25,7 @@ import 'package:medalize_mb/features/patient/presentation/screens/doctor_detail_
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_search_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/my_appointments_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/patient_home_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/reschedule_calendar_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/notifications_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/profile_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/settings_screen.dart';
@@ -118,6 +119,14 @@ final routerProvider = Provider<GoRouter>((ref) {
             slot: extra['slot'] as SlotModel,
             workplaceId: extra['workplaceId'] as String,
           ));
+        },
+      ),
+
+      GoRoute(
+        path: '/patient/reschedule/:id',
+        pageBuilder: (_, state) {
+          final appt = state.extra as AppointmentModel;
+          return _modalPage(RescheduleCalendarScreen(appointment: appt));
         },
       ),
 

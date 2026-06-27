@@ -22,9 +22,13 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   bool _editing = false;
   bool _saving = false;
+  String? _role;
   late TextEditingController _firstName;
   late TextEditingController _lastName;
   late TextEditingController _phone;
+  late TextEditingController _allergies;
+  late TextEditingController _chronicConditions;
+  late TextEditingController _medications;
   String? _saveError;
 
   @override
@@ -34,7 +38,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _firstName = TextEditingController();
     _lastName = TextEditingController();
     _phone = TextEditingController();
+    _allergies = TextEditingController();
+    _chronicConditions = TextEditingController();
+    _medications = TextEditingController();
     if (auth is AuthAuthenticated) {
+      _role = auth.role;
       _fetchProfile();
     }
   }
@@ -46,6 +54,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       _firstName.text = d['first_name'] as String? ?? '';
       _lastName.text = d['last_name'] as String? ?? '';
       _phone.text = d['phone'] as String? ?? '';
+      if (_role == 'patient') {
+        final profile = d['profile'] as Map<String, dynamic>? ?? {};
+        _allergies.text = profile['allergies'] as String? ?? '';
+        _chronicConditions.text = profile['chronic_conditions'] as String? ?? '';
+        _medications.text = profile['medications'] as String? ?? '';
+      }
       if (mounted) setState(() {});
     } catch (_) {}
   }
@@ -55,6 +69,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _firstName.dispose();
     _lastName.dispose();
     _phone.dispose();
+    _allergies.dispose();
+    _chronicConditions.dispose();
+    _medications.dispose();
     super.dispose();
   }
 
@@ -69,6 +86,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         'last_name': _lastName.text.trim(),
         'phone': _phone.text.trim(),
       });
+      if (_role == 'patient') {
+        await ref.read(dioClientProvider).patch('/auth/profile/patient/', data: {
+          'allergies': _allergies.text.trim(),
+          'chronic_conditions': _chronicConditions.text.trim(),
+          'medications': _medications.text.trim(),
+        });
+      }
       if (mounted) setState(() => _editing = false);
     } on ApiException catch (e) {
       if (mounted) setState(() => _saveError = e.userMessage);
@@ -199,6 +223,46 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 decoration:
                     InputDecoration(labelText: context.t.profile.phone),
               ),
+              if (_role == 'patient') ...[
+                const Gap(AppSpacing.lg),
+                Text(
+                  'Medical Information',
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                const Gap(12),
+                TextField(
+                  controller: _allergies,
+                  enabled: _editing,
+                  maxLines: 2,
+                  decoration: const InputDecoration(
+                    labelText: 'Allergies',
+                    alignLabelWithHint: true,
+                    hintText: 'e.g. Penicillin, peanuts',
+                  ),
+                ),
+                const Gap(12),
+                TextField(
+                  controller: _chronicConditions,
+                  enabled: _editing,
+                  maxLines: 2,
+                  decoration: const InputDecoration(
+                    labelText: 'Chronic conditions',
+                    alignLabelWithHint: true,
+                    hintText: 'e.g. Diabetes, hypertension',
+                  ),
+                ),
+                const Gap(12),
+                TextField(
+                  controller: _medications,
+                  enabled: _editing,
+                  maxLines: 2,
+                  decoration: const InputDecoration(
+                    labelText: 'Current medications',
+                    alignLabelWithHint: true,
+                    hintText: 'e.g. Metformin 500mg',
+                  ),
+                ),
+              ],
               if (_saveError != null) ...[
                 const Gap(AppSpacing.sm),
                 Text(_saveError!,

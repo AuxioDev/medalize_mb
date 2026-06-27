@@ -92,4 +92,27 @@ class AppointmentRepository {
       throw mapDioError(e);
     }
   }
+
+  Future<AppointmentModel> rescheduleAppointment(String id, DateTime startsAt) async {
+    try {
+      final res = await _dio.patch(
+        '/appointments/$id/reschedule/',
+        data: {'starts_at': startsAt.toUtc().toIso8601String()},
+      );
+      return AppointmentModel.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
+
+  Future<void> submitReview(String appointmentId, int rating, String comment) async {
+    try {
+      await _dio.post(
+        '/appointments/$appointmentId/review/',
+        data: {'rating': rating, 'comment': comment},
+      );
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
 }

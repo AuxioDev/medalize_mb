@@ -41,6 +41,8 @@ class _AppointmentDetailScreenState
     extends ConsumerState<AppointmentDetailScreen> {
   bool _cancelling = false;
   bool _updatingStatus = false;
+  bool _rescheduling = false;
+  bool _submittingReview = false;
 
   Future<void> _setStatus(String status) async {
     setState(() => _updatingStatus = true);
@@ -56,6 +58,98 @@ class _AppointmentDetailScreenState
       }
     } finally {
       if (mounted) setState(() => _updatingStatus = false);
+    }
+  }
+
+  Future<void> _reschedule() async {
+    final appt = widget.appointment;
+    final result = await context.push<DateTime?>(
+      '/patient/reschedule/${appt.id}',
+      extra: appt,
+    );
+    if (result == null || !mounted) return;
+
+    setState(() => _rescheduling = true);
+    try {
+      await ref.read(appointmentRepositoryProvider).rescheduleAppointment(appt.id, result);
+      ref.invalidate(patientAppointmentsProvider);
+      if (mounted) {
+        AppSnackBar.show(context, 'Appointment rescheduled successfully.');
+        context.pop();
+      }
+    } on ApiException catch (e) {
+      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+    } finally {
+      if (mounted) setState(() => _rescheduling = false);
+    }
+  }
+
+  Future<void> _showReviewDialog() async {
+    int selectedRating = 5;
+    final commentCtrl = TextEditingController();
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setState) => AlertDialog(
+          title: const Text('Leave a Review'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Rating'),
+              const Gap(8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(5, (i) {
+                  final star = i + 1;
+                  return IconButton(
+                    icon: Icon(
+                      star <= selectedRating ? Icons.star_rounded : Icons.star_outline_rounded,
+                      color: AppColors.warning,
+                      size: 32,
+                    ),
+                    onPressed: () => setState(() => selectedRating = star),
+                  );
+                }),
+              ),
+              const Gap(8),
+              TextField(
+                controller: commentCtrl,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  labelText: 'Comment (optional)',
+                  alignLabelWithHint: true,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    setState(() => _submittingReview = true);
+    try {
+      await ref.read(appointmentRepositoryProvider).submitReview(
+        widget.appointment.id,
+        selectedRating,
+        commentCtrl.text.trim(),
+      );
+      if (mounted) AppSnackBar.show(context, 'Review submitted. Thank you!');
+    } on ApiException catch (e) {
+      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+    } finally {
+      if (mounted) setState(() => _submittingReview = false);
     }
   }
 
@@ -290,31 +384,70 @@ class _AppointmentDetailScreenState
       );
     }
 
-    if (appt.canCancel) {
+    if (appt.status == 'completed') {
       return BottomActionBar(
-        child: OutlinedButton(
-          onPressed: _cancelling
-              ? null
-              : () {
-                  HapticFeedback.lightImpact();
-                  _cancel();
-                },
-          style: OutlinedButton.styleFrom(
-            foregroundColor: AppColors.error,
-            side: BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
+        child: FilledButton.icon(
+          onPressed: _submittingReview ? null : _showReviewDialog,
+          icon: const Icon(Icons.star_outline_rounded, size: 18),
+          label: const Text('Leave a Review'),
+          style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(52),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppRadius.md)),
           ),
-          child: _cancelling
-              ? const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(
-                      strokeWidth: 2, color: AppColors.error),
-                )
-              : Text(context.t.appointments.cancelAction,
-                  style: const TextStyle(fontWeight: FontWeight.w600)),
+        ),
+      );
+    }
+
+    if (appt.canCancel) {
+      return BottomActionBar(
+        child: Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: _cancelling
+                    ? null
+                    : () {
+                        HapticFeedback.lightImpact();
+                        _cancel();
+                      },
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: AppColors.error,
+                  side: BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
+                  minimumSize: const Size.fromHeight(52),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppRadius.md)),
+                ),
+                child: _cancelling
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                            strokeWidth: 2, color: AppColors.error),
+                      )
+                    : Text(context.t.appointments.cancelAction,
+                        style: const TextStyle(fontWeight: FontWeight.w600)),
+              ),
+            ),
+            const Gap(10),
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: _rescheduling
+                    ? null
+                    : () {
+                        HapticFeedback.lightImpact();
+                        _reschedule();
+                      },
+                icon: const Icon(Icons.schedule_outlined, size: 16),
+                label: const Text('Reschedule'),
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(52),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppRadius.md)),
+                ),
+              ),
+            ),
+          ],
         ),
       );
     }
