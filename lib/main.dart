@@ -10,7 +10,14 @@ import 'package:medalize_mb/routing/app_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // Firebase powers FCM push notifications. With a placeholder
+  // GoogleService-Info.plist (before the real project is registered) init can
+  // fail — that must not block app launch, so we degrade gracefully.
+  try {
+    await Firebase.initializeApp();
+  } catch (e) {
+    debugPrint('Firebase init skipped (push notifications disabled): $e');
+  }
   await initLocale();
   runApp(TranslationProvider(child: const ProviderScope(child: MedalizeApp())));
 }

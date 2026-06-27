@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -38,18 +39,24 @@ class FcmService {
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(_androidChannel);
 
-    // FCM permission + token
-    final messaging = FirebaseMessaging.instance;
-    await messaging.requestPermission(alert: true, badge: true, sound: true);
-    final token = await messaging.getToken();
-    if (token != null) await _registerToken(token);
-    messaging.onTokenRefresh.listen(_registerToken);
+    // FCM permission + token. Guarded so a missing/placeholder Firebase config
+    // (before the real project is registered) degrades gracefully instead of
+    // breaking login — local notifications above still work.
+    try {
+      final messaging = FirebaseMessaging.instance;
+      await messaging.requestPermission(alert: true, badge: true, sound: true);
+      final token = await messaging.getToken();
+      if (token != null) await _registerToken(token);
+      messaging.onTokenRefresh.listen(_registerToken);
 
-    // Message handlers
-    FirebaseMessaging.onMessage.listen(_handleForeground);
-    FirebaseMessaging.onMessageOpenedApp.listen(_handleTap);
-    final initial = await messaging.getInitialMessage();
-    if (initial != null) _handleTap(initial);
+      // Message handlers
+      FirebaseMessaging.onMessage.listen(_handleForeground);
+      FirebaseMessaging.onMessageOpenedApp.listen(_handleTap);
+      final initial = await messaging.getInitialMessage();
+      if (initial != null) _handleTap(initial);
+    } catch (e) {
+      debugPrint('FCM setup skipped (push notifications disabled): $e');
+    }
   }
 
   Future<void> _registerToken(String token) async {

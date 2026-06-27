@@ -13,10 +13,13 @@ const _systemLanguage = 'system';
 /// - A saved language code → force that [AppLocale].
 Future<void> initLocale() async {
   final saved = await SecureStorage().getLanguage();
+  // Use the async API (awaited before runApp): locales are generated as
+  // deferred libraries, so the *Sync variants would throw "Deferred library
+  // not loaded". Awaiting loads the locale before the first frame — no flash.
   if (saved == null || saved == _systemLanguage) {
-    LocaleSettings.useDeviceLocaleSync();
+    await LocaleSettings.useDeviceLocale();
   } else {
-    LocaleSettings.setLocaleSync(AppLocaleUtils.parse(saved));
+    await LocaleSettings.setLocale(AppLocaleUtils.parse(saved));
   }
 }
 
