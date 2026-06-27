@@ -16,6 +16,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
@@ -259,24 +260,17 @@ class _ProfileHeader extends StatelessWidget {
         children: [
           Hero(
             tag: 'doctor-avatar-$doctorId',
-            child: Container(
-              width: 70,
-              height: 70,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: AppColors.primaryGradient,
-              ),
-              child: Center(
-                child: Text(
-                  initials,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            child: detail.avatarUrl != null
+                ? CachedNetworkImage(
+                    imageUrl: detail.avatarUrl!,
+                    imageBuilder: (ctx, imageProvider) => CircleAvatar(
+                      radius: 35,
+                      backgroundImage: imageProvider,
+                    ),
+                    placeholder: (ctx, _) => _GradientCircle(initials: initials),
+                    errorWidget: (ctx, url, _) => _GradientCircle(initials: initials),
+                  )
+                : _GradientCircle(initials: initials),
           ),
           const Gap(16),
           Expanded(
@@ -537,4 +531,29 @@ class _ReviewTile extends StatelessWidget {
       ),
     );
   }
+}
+
+class _GradientCircle extends StatelessWidget {
+  const _GradientCircle({required this.initials});
+  final String initials;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        width: 70,
+        height: 70,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: AppColors.primaryGradient,
+        ),
+        child: Center(
+          child: Text(
+            initials,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      );
 }

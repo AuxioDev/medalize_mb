@@ -28,6 +28,7 @@ import 'package:medalize_mb/features/patient/presentation/screens/patient_home_s
 import 'package:medalize_mb/features/patient/presentation/screens/reschedule_calendar_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/notifications_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/profile_screen.dart';
+import 'package:medalize_mb/core/services/navigator_key.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/settings_screen.dart';
 
 final _authListenableProvider = Provider<_AuthChangeNotifier>((ref) {
@@ -44,6 +45,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   final notifier = ref.watch(_authListenableProvider);
 
   return GoRouter(
+    navigatorKey: navigatorKey,
     initialLocation: '/splash',
     refreshListenable: notifier,
     redirect: (context, state) =>

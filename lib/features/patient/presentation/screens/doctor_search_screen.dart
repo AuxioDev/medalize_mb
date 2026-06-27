@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -308,7 +309,17 @@ class _DoctorCard extends ConsumerWidget {
         children: [
           Hero(
             tag: 'doctor-avatar-${doctor.id}',
-            child: GradientAvatar(initials: initials, size: 52),
+            child: doctor.avatarUrl != null
+                ? CachedNetworkImage(
+                    imageUrl: doctor.avatarUrl!,
+                    imageBuilder: (ctx, imageProvider) => CircleAvatar(
+                      radius: 26,
+                      backgroundImage: imageProvider,
+                    ),
+                    placeholder: (ctx, _) => GradientAvatar(initials: initials, size: 52),
+                    errorWidget: (ctx, url, _) => GradientAvatar(initials: initials, size: 52),
+                  )
+                : GradientAvatar(initials: initials, size: 52),
           ),
           const Gap(12),
           Expanded(

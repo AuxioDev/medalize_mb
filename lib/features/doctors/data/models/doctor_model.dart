@@ -38,6 +38,7 @@ class DoctorModel {
   final String? primaryWorkplaceName;
   final String? primaryWorkplaceCity;
   final String? primaryWorkplaceId;
+  final String? avatarUrl;
 
   const DoctorModel({
     required this.id,
@@ -52,6 +53,7 @@ class DoctorModel {
     this.primaryWorkplaceName,
     this.primaryWorkplaceCity,
     this.primaryWorkplaceId,
+    this.avatarUrl,
   });
 
   String get fullName => 'Dr. $firstName $lastName'.trim();
@@ -71,6 +73,7 @@ class DoctorModel {
       primaryWorkplaceName: wp?['name'] as String?,
       primaryWorkplaceCity: wp?['city'] as String?,
       primaryWorkplaceId: wp?['id'] as String?,
+      avatarUrl: j['avatar_url'] as String?,
     );
   }
 }
@@ -92,6 +95,7 @@ class DoctorDetailModel extends DoctorModel {
     super.primaryWorkplaceName,
     super.primaryWorkplaceCity,
     super.primaryWorkplaceId,
+    super.avatarUrl,
     required this.bio,
     required this.workplaces,
   });
@@ -111,6 +115,7 @@ class DoctorDetailModel extends DoctorModel {
       primaryWorkplaceName: base.primaryWorkplaceName,
       primaryWorkplaceCity: base.primaryWorkplaceCity,
       primaryWorkplaceId: base.primaryWorkplaceId,
+      avatarUrl: base.avatarUrl,
       bio: j['bio'] as String? ?? '',
       workplaces: (j['workplaces'] as List<dynamic>? ?? [])
           .map((w) => DoctorWorkplace.fromJson(w as Map<String, dynamic>))

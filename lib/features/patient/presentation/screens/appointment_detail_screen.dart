@@ -74,7 +74,7 @@ class _AppointmentDetailScreenState
       await ref.read(appointmentRepositoryProvider).rescheduleAppointment(appt.id, result);
       ref.invalidate(patientAppointmentsProvider);
       if (mounted) {
-        AppSnackBar.show(context, 'Appointment rescheduled successfully.');
+        AppSnackBar.show(context, context.t.appointments.rescheduledSuccess);
         context.pop();
       }
     } on ApiException catch (e) {

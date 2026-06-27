@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -244,9 +245,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 child: Stack(
                   children: [
                     _avatarUrl != null
-                        ? CircleAvatar(
-                            radius: 48,
-                            backgroundImage: NetworkImage(_avatarUrl!),
+                        ? CachedNetworkImage(
+                            imageUrl: _avatarUrl!,
+                            imageBuilder: (ctx, imageProvider) => CircleAvatar(
+                              radius: 48,
+                              backgroundImage: imageProvider,
+                            ),
+                            placeholder: (ctx, _) => GradientAvatar(
+                              initials: initialsSource,
+                              size: 96,
+                            ),
+                            errorWidget: (ctx, url, _) => GradientAvatar(
+                              initials: initialsSource,
+                              size: 96,
+                            ),
                           )
                         : GradientAvatar(initials: initialsSource, size: 96),
                     Positioned(
