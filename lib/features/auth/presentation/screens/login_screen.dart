@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
@@ -11,6 +10,7 @@ import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.d
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -83,11 +83,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   }
 
   String _errorMessage(ApiException e) => switch (e) {
-        InvalidCredentialsException(:final message) => message,
+        InvalidCredentialsException(:final message) =>
+          message ?? t.errors.invalidCredentials,
         RateLimitException(:final retryAfterSeconds) => retryAfterSeconds != null
-            ? 'Too many attempts. Try again in ${retryAfterSeconds}s.'
-            : AppStrings.rateLimitError,
-        NetworkException() => AppStrings.networkError,
+            ? t.errors.rateLimitWithSeconds(seconds: retryAfterSeconds)
+            : t.errors.rateLimit,
+        NetworkException() => t.errors.network,
         _ => e.userMessage,
       };
 
@@ -106,10 +107,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
               // ── Header ───────────────────────────────────────────
               _Section(
                 anim: _headerAnim,
-                child: const AuthCardHeader(
+                child: AuthCardHeader(
                   icon: Icons.medical_services_rounded,
-                  title: AppStrings.welcomeBack,
-                  subtitle: AppStrings.signInToContinue,
+                  title: context.t.auth.welcomeBack,
+                  subtitle: context.t.auth.signInToContinue,
                 ),
               ),
               const SizedBox(height: 28),
@@ -121,8 +122,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                   children: [
                     AuthCardField(
                       controller: _emailController,
-                      label: AppStrings.email,
-                      hint: AppStrings.emailHint,
+                      label: context.t.auth.email,
+                      hint: context.t.auth.emailHint,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       autofillHints: const [AutofillHints.email],
@@ -131,8 +132,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                     const SizedBox(height: 12),
                     AuthCardField(
                       controller: _passwordController,
-                      label: AppStrings.password,
-                      hint: AppStrings.passwordHint,
+                      label: context.t.auth.password,
+                      hint: context.t.auth.passwordHint,
                       obscureText: _obscurePassword,
                       textInputAction: TextInputAction.done,
                       autofillHints: const [AutofillHints.password],
@@ -143,7 +144,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                             setState(() => _obscurePassword = !_obscurePassword),
                       ),
                       validator: (v) =>
-                          (v == null || v.isEmpty) ? AppStrings.passwordRequired : null,
+                          (v == null || v.isEmpty) ? t.validation.passwordRequired : null,
                     ),
                     const SizedBox(height: 4),
                     Row(
@@ -160,7 +161,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                AppStrings.rememberMe,
+                                context.t.auth.rememberMe,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -175,7 +176,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 4),
                           ),
-                          child: const Text(AppStrings.forgotPassword),
+                          child: Text(context.t.auth.forgotPassword),
                         ),
                       ],
                     ), // Row
@@ -195,7 +196,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AnimatedButton(
-                      label: AppStrings.login,
+                      label: context.t.auth.login,
                       isLoading: isLoading,
                       onPressed: isLoading || !_isFormValid ? null : _submit,
                     ),
@@ -204,12 +205,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          AppStrings.noAccount,
+                          context.t.auth.noAccount,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         TextButton(
                           onPressed: () => context.push('/auth/register'),
-                          child: const Text(AppStrings.signUp),
+                          child: Text(context.t.auth.signUp),
                         ),
                       ],
                     ),

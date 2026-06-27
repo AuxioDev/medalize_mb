@@ -16,6 +16,7 @@ import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class AppointmentDetailScreen extends ConsumerStatefulWidget {
   const AppointmentDetailScreen({
@@ -62,13 +63,12 @@ class _AppointmentDetailScreenState
     final confirm = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Cancel Appointment'),
-        content:
-            const Text('Are you sure you want to cancel this appointment?'),
+        title: Text(context.t.appointments.cancelTitle),
+        content: Text(context.t.appointments.cancelConfirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Keep'),
+            child: Text(context.t.common.keep),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
@@ -77,7 +77,7 @@ class _AppointmentDetailScreenState
               minimumSize: Size.zero,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             ),
-            child: const Text('Cancel Appointment'),
+            child: Text(context.t.appointments.cancelAction),
           ),
         ],
       ),
@@ -108,7 +108,7 @@ class _AppointmentDetailScreenState
     final statusColor = StatusChip.colorFor(appt.status);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Appointment')),
+      appBar: AppBar(title: Text(context.t.appointments.detailTitle)),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),
@@ -149,13 +149,13 @@ class _AppointmentDetailScreenState
                 index: 1,
                 child: widget.asDoctor
                     ? _InfoCard(
-                        label: 'Patient',
+                        label: context.t.appointments.patient,
                         icon: Icons.person_outline_rounded,
                         child: Text(appt.patient.fullName,
                             style: Theme.of(context).textTheme.titleSmall),
                       )
                     : _InfoCard(
-                        label: 'Doctor',
+                        label: context.t.appointments.doctor,
                         icon: Icons.person_outline_rounded,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,7 +172,7 @@ class _AppointmentDetailScreenState
               AnimatedEntrance(
                 index: 2,
                 child: _InfoCard(
-                  label: 'Workplace',
+                  label: context.t.appointments.workplace,
                   icon: Icons.business_outlined,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,7 +189,7 @@ class _AppointmentDetailScreenState
               AnimatedEntrance(
                 index: 3,
                 child: _InfoCard(
-                  label: 'Date & Time',
+                  label: context.t.appointments.dateTime,
                   icon: Icons.calendar_today_outlined,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,7 +209,7 @@ class _AppointmentDetailScreenState
                 AnimatedEntrance(
                   index: 4,
                   child: _InfoCard(
-                    label: 'Reason',
+                    label: context.t.appointments.reason,
                     icon: Icons.notes_outlined,
                     child: Text(appt.reason,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -221,7 +221,7 @@ class _AppointmentDetailScreenState
                 AnimatedEntrance(
                   index: 5,
                   child: _InfoCard(
-                    label: 'Doctor Notes',
+                    label: context.t.appointments.doctorNotes,
                     icon: Icons.medical_information_outlined,
                     child: Text(appt.notes,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -256,8 +256,8 @@ class _AppointmentDetailScreenState
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppRadius.md)),
                 ),
-                child: const Text('Decline',
-                    style: TextStyle(fontWeight: FontWeight.w600)),
+                child: Text(context.t.common.decline,
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
               ),
             ),
             const Gap(10),
@@ -281,8 +281,8 @@ class _AppointmentDetailScreenState
                         child: CircularProgressIndicator(
                             strokeWidth: 2, color: Colors.white),
                       )
-                    : const Text('Confirm',
-                        style: TextStyle(fontWeight: FontWeight.w600)),
+                    : Text(context.t.common.confirm,
+                        style: const TextStyle(fontWeight: FontWeight.w600)),
               ),
             ),
           ],
@@ -313,8 +313,8 @@ class _AppointmentDetailScreenState
                   child: CircularProgressIndicator(
                       strokeWidth: 2, color: AppColors.error),
                 )
-              : const Text('Cancel Appointment',
-                  style: TextStyle(fontWeight: FontWeight.w600)),
+              : Text(context.t.appointments.cancelAction,
+                  style: const TextStyle(fontWeight: FontWeight.w600)),
         ),
       );
     }

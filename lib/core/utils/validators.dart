@@ -1,4 +1,4 @@
-import 'package:medalize_mb/core/constants/app_strings.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 abstract final class Validators {
   // RFC 5322 simplified: local-part @ domain.tld (tld >= 2 chars)
@@ -24,38 +24,38 @@ abstract final class Validators {
   // ── Form validators (return error string or null) ──────────────────────────
 
   static String? email(String? v) {
-    if (v == null || v.trim().isEmpty) return AppStrings.emailRequired;
-    if (!_emailRe.hasMatch(v.trim())) return AppStrings.emailInvalid;
+    if (v == null || v.trim().isEmpty) return t.validation.emailRequired;
+    if (!_emailRe.hasMatch(v.trim())) return t.validation.emailInvalid;
     return null;
   }
 
   static String? password(String? v) {
-    if (v == null || v.isEmpty) return AppStrings.passwordRequired;
-    if (v.length < 8) return AppStrings.passwordTooShort;
-    if (!v.contains(RegExp(r'[A-Za-z]'))) return AppStrings.passwordNeedsLetter;
-    if (!v.contains(RegExp(r'[0-9]'))) return AppStrings.passwordNeedsDigit;
+    if (v == null || v.isEmpty) return t.validation.passwordRequired;
+    if (v.length < 8) return t.validation.passwordTooShort;
+    if (!v.contains(RegExp(r'[A-Za-z]'))) return t.validation.passwordNeedsLetter;
+    if (!v.contains(RegExp(r'[0-9]'))) return t.validation.passwordNeedsDigit;
     return null;
   }
 
   static String? confirmPassword(String? v, String original) {
-    if (v == null || v.isEmpty) return AppStrings.passwordConfirmRequired;
-    if (v != original) return AppStrings.passwordMismatch;
+    if (v == null || v.isEmpty) return t.validation.passwordConfirmRequired;
+    if (v != original) return t.validation.passwordMismatch;
     return null;
   }
 
-  static String? name(String? v, {String label = 'This field'}) {
+  static String? name(String? v, {required String label}) {
     final s = v?.trim() ?? '';
-    if (s.isEmpty) return '$label is required';
-    if (s.length < 2) return AppStrings.nameMinLength;
-    if (!_nameRe.hasMatch(s)) return '$label contains invalid characters';
+    if (s.isEmpty) return t.validation.fieldRequired(field: label);
+    if (s.length < 2) return t.validation.nameMinLength;
+    if (!_nameRe.hasMatch(s)) return t.validation.fieldInvalid(field: label);
     return null;
   }
 
   static String? phone(String? v) {
-    if (v == null || v.trim().isEmpty) return AppStrings.phoneRequired;
+    if (v == null || v.trim().isEmpty) return t.validation.phoneRequired;
     final d = _digitCount(v);
-    if (d < 7) return AppStrings.phoneTooShort;
-    if (d > 9) return AppStrings.phoneTooLong;
+    if (d < 7) return t.validation.phoneTooShort;
+    if (d > 9) return t.validation.phoneTooLong;
     return null;
   }
 

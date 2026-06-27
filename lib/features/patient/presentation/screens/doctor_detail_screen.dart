@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class DoctorDetailScreen extends ConsumerWidget {
   const DoctorDetailScreen({super.key, required this.doctorId, this.doctor});
@@ -28,12 +29,13 @@ class DoctorDetailScreen extends ConsumerWidget {
       body: detailAsync.when(
         loading: () => _LoadingSkeleton(doctorId: doctorId),
         error: (_, _) => Scaffold(
-          appBar: AppBar(title: Text(doctor?.fullName ?? 'Doctor Profile')),
+          appBar: AppBar(
+              title: Text(doctor?.fullName ?? context.t.doctorDetail.profileTitle)),
           body: EmptyState(
             icon: Icons.cloud_off_outlined,
-            title: 'Could not load profile',
-            subtitle: 'Please try again',
-            actionLabel: 'Retry',
+            title: context.t.doctorDetail.couldNotLoadProfile,
+            subtitle: context.t.common.tryAgain,
+            actionLabel: context.t.common.retry,
             onAction: () => ref.invalidate(doctorDetailProvider(doctorId)),
           ),
         ),
@@ -74,7 +76,7 @@ class _DetailBody extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('About',
+                            Text(context.t.doctorDetail.about,
                                 style: Theme.of(context).textTheme.titleSmall),
                             const Gap(10),
                             Container(
@@ -103,7 +105,7 @@ class _DetailBody extends StatelessWidget {
                     if (detail.workplaces.isNotEmpty) ...[
                       AnimatedEntrance(
                         index: 1,
-                        child: Text('Workplaces',
+                        child: Text(context.t.doctorDetail.workplaces,
                             style: Theme.of(context).textTheme.titleSmall),
                       ),
                       const Gap(10),
@@ -123,7 +125,7 @@ class _DetailBody extends StatelessWidget {
       ),
       bottomNavigationBar: BottomActionBar(
         child: LoadingFilledButton(
-          label: 'Book Appointment',
+          label: context.t.doctorDetail.bookAppointment,
           onPressed: () {
             HapticFeedback.lightImpact();
             context.push('/patient/booking-calendar/${detail.id}', extra: detail);
@@ -208,7 +210,8 @@ class _ProfileHeader extends StatelessWidget {
                         size: 13, color: c.textSecondary),
                     const Gap(4),
                     Text(
-                      '${detail.slotDurationMin} min per slot',
+                      context.t.doctorDetail
+                          .minPerSlot(min: detail.slotDurationMin),
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
@@ -273,9 +276,9 @@ class _WorkplaceCard extends StatelessWidget {
                           color: AppColors.success.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(AppRadius.xl),
                         ),
-                        child: const Text(
-                          'Primary',
-                          style: TextStyle(
+                        child: Text(
+                          context.t.common.primary,
+                          style: const TextStyle(
                             color: AppColors.success,
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
@@ -308,7 +311,7 @@ class _LoadingSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Doctor Profile')),
+      appBar: AppBar(title: Text(context.t.doctorDetail.profileTitle)),
       body: ResponsiveBody(
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.md),

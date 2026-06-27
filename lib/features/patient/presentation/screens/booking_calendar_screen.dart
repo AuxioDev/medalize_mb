@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class BookingCalendarScreen extends ConsumerStatefulWidget {
@@ -53,7 +54,8 @@ class _BookingCalendarScreenState
         : null;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Book — ${widget.doctor.fullName}')),
+      appBar: AppBar(
+          title: Text(context.t.booking.bookWith(name: widget.doctor.fullName))),
       body: ResponsiveBody(
         child: Column(
           children: [
@@ -119,17 +121,17 @@ class _BookingCalendarScreenState
                   ),
                   error: (_, _) => EmptyState(
                     icon: Icons.cloud_off_outlined,
-                    title: 'Could not load slots',
-                    subtitle: 'Please try again',
-                    actionLabel: 'Retry',
+                    title: context.t.booking.couldNotLoadSlots,
+                    subtitle: context.t.common.tryAgain,
+                    actionLabel: context.t.common.retry,
                     onAction: () => ref.invalidate(slotsProvider),
                   ),
                   data: (slots) {
                     if (slots.isEmpty) {
-                      return const EmptyState(
+                      return EmptyState(
                         icon: Icons.event_busy_outlined,
-                        title: 'No available slots',
-                        subtitle: 'No open slots for this date. Try another day.',
+                        title: context.t.booking.noAvailableSlots,
+                        subtitle: context.t.booking.noOpenSlots,
                       );
                     }
                     return GridView.builder(
@@ -169,11 +171,11 @@ class _BookingCalendarScreenState
                 ),
               ),
             ] else
-              const Expanded(
+              Expanded(
                 child: EmptyState(
                   icon: Icons.calendar_month_outlined,
-                  title: 'Pick a date',
-                  subtitle: 'Available time slots will appear here',
+                  title: context.t.booking.pickDate,
+                  subtitle: context.t.booking.slotsAppear,
                 ),
               ),
           ],
@@ -200,9 +202,9 @@ class _WorkplaceSelector extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(AppSpacing.md, 12, AppSpacing.md, 0),
       child: DropdownButtonFormField<String>(
         initialValue: selected,
-        decoration: const InputDecoration(
-          labelText: 'Select Workplace',
-          prefixIcon: Icon(Icons.business_outlined, size: 20),
+        decoration: InputDecoration(
+          labelText: context.t.booking.selectWorkplace,
+          prefixIcon: const Icon(Icons.business_outlined, size: 20),
           isDense: true,
         ),
         items: workplaces

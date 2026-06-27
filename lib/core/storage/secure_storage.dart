@@ -7,6 +7,7 @@ abstract final class _Keys {
   static const userId = 'user_id';
   static const userEmail = 'user_email';
   static const themeMode = 'theme_mode';
+  static const language = 'app_language';
 }
 
 class SecureStorage {
@@ -47,10 +48,16 @@ class SecureStorage {
   Future<void> saveThemeMode(String mode) =>
       _storage.write(key: _Keys.themeMode, value: mode);
 
-  /// Clears session data but preserves the user's theme preference.
+  Future<String?> getLanguage() => _storage.read(key: _Keys.language);
+  Future<void> saveLanguage(String value) =>
+      _storage.write(key: _Keys.language, value: value);
+
+  /// Clears session data but preserves the user's theme and language preferences.
   Future<void> clearAll() async {
     final theme = await getThemeMode();
+    final language = await getLanguage();
     await _storage.deleteAll();
     if (theme != null) await saveThemeMode(theme);
+    if (language != null) await saveLanguage(language);
   }
 }

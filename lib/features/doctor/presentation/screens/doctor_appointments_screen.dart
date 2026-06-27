@@ -20,6 +20,7 @@ import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class DoctorAppointmentsScreen extends ConsumerStatefulWidget {
   const DoctorAppointmentsScreen({super.key});
@@ -67,11 +68,14 @@ class _DoctorAppointmentsScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Appointments'),
+        title: Text(context.t.appointments.title),
         bottom: TabBar(
           controller: _tab,
           onTap: _onTabTap,
-          tabs: const [Tab(text: 'Pending'), Tab(text: 'All')],
+          tabs: [
+            Tab(text: context.t.appointments.tabPending),
+            Tab(text: context.t.appointments.tabAll),
+          ],
         ),
       ),
       body: TabBarView(
@@ -80,16 +84,16 @@ class _DoctorAppointmentsScreenState
           _DoctorAppList(
             filterFn: (a) => a.status == 'pending',
             showActions: true,
-            emptyTitle: 'No pending requests',
-            emptySubtitle: 'New appointment requests will appear here',
+            emptyTitle: context.t.appointments.noPendingRequests,
+            emptySubtitle: context.t.appointments.newRequestsAppear,
             scrollController: _scrollControllers[0],
             onRefresh: () => ref.invalidate(doctorAppointmentsProvider),
           ),
           _DoctorAppList(
             filterFn: (_) => true,
             showActions: false,
-            emptyTitle: 'No appointments',
-            emptySubtitle: 'Your appointments will appear here',
+            emptyTitle: context.t.appointments.noAppointments,
+            emptySubtitle: context.t.appointments.appointmentsAppear,
             scrollController: _scrollControllers[1],
             onRefresh: () => ref.invalidate(doctorAppointmentsProvider),
           ),
@@ -136,9 +140,9 @@ class _DoctorAppList extends ConsumerWidget {
         onRefresh: () async => onRefresh(),
         child: EmptyState(
           icon: Icons.cloud_off_outlined,
-          title: 'Something went wrong',
-          subtitle: 'Could not load appointments',
-          actionLabel: 'Retry',
+          title: context.t.common.somethingWrong,
+          subtitle: context.t.appointments.couldNotLoad,
+          actionLabel: context.t.common.retry,
           onAction: onRefresh,
         ),
       ),
@@ -294,7 +298,7 @@ class _DoctorAppCard extends ConsumerWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AppRadius.sm + 2)),
                     ),
-                    child: const Text('Decline'),
+                    child: Text(context.t.common.decline),
                   ),
                 ),
                 const Gap(8),
@@ -309,7 +313,7 @@ class _DoctorAppCard extends ConsumerWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AppRadius.sm + 2)),
                     ),
-                    child: const Text('Confirm'),
+                    child: Text(context.t.common.confirm),
                   ),
                 ),
               ],

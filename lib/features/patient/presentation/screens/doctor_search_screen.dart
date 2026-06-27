@@ -15,6 +15,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 const _kSpecializations = [
   'general_practitioner',
@@ -25,14 +26,19 @@ const _kSpecializations = [
   'pediatrician',
 ];
 
-const _kSpecLabels = {
-  'general_practitioner': 'General',
-  'cardiologist': 'Cardiology',
-  'dermatologist': 'Dermatology',
-  'neurologist': 'Neurology',
-  'orthopedist': 'Orthopedics',
-  'pediatrician': 'Pediatrics',
-};
+/// Maps a backend specialization code to its localized chip label.
+String _specLabel(BuildContext context, String spec) {
+  final s = context.t.doctorSearch.spec;
+  return switch (spec) {
+    'general_practitioner' => s.general,
+    'cardiologist' => s.cardiology,
+    'dermatologist' => s.dermatology,
+    'neurologist' => s.neurology,
+    'orthopedist' => s.orthopedics,
+    'pediatrician' => s.pediatrics,
+    _ => spec,
+  };
+}
 
 class DoctorSearchScreen extends ConsumerStatefulWidget {
   const DoctorSearchScreen({super.key});
@@ -83,7 +89,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
     final results = ref.watch(doctorSearchProvider(_params));
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Find a Doctor')),
+      appBar: AppBar(title: Text(context.t.doctorSearch.title)),
       body: ResponsiveBody(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,12 +112,12 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                     children: [
                       Expanded(
                         child: TextField(
-                          decoration: const InputDecoration(
-                            hintText: 'City',
-                            prefixIcon:
-                                Icon(Icons.location_on_outlined, size: 20),
+                          decoration: InputDecoration(
+                            hintText: context.t.doctorSearch.city,
+                            prefixIcon: const Icon(Icons.location_on_outlined,
+                                size: 20),
                             isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 12),
                           ),
                           onChanged: (v) => _cityInput = v,
@@ -125,7 +131,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                           minimumSize: const Size(0, 48),
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                         ),
-                        child: const Text('Search'),
+                        child: Text(context.t.doctorSearch.search),
                       ),
                     ],
                   ),
@@ -156,9 +162,9 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                   onRefresh: () async => ref.invalidate(doctorSearchProvider),
                   child: EmptyState(
                     icon: Icons.cloud_off_outlined,
-                    title: 'Something went wrong',
-                    subtitle: 'Could not load doctors',
-                    actionLabel: 'Retry',
+                    title: context.t.common.somethingWrong,
+                    subtitle: context.t.doctorSearch.couldNotLoadDoctors,
+                    actionLabel: context.t.common.retry,
                     onAction: () => ref.invalidate(doctorSearchProvider),
                   ),
                 ),
@@ -166,10 +172,10 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                     ? RefreshableView(
                         onRefresh: () async =>
                             ref.invalidate(doctorSearchProvider),
-                        child: const EmptyState(
+                        child: EmptyState(
                           icon: Icons.person_search_outlined,
-                          title: 'No doctors found',
-                          subtitle: 'Try adjusting your search or filters',
+                          title: context.t.doctorSearch.noDoctorsFound,
+                          subtitle: context.t.doctorSearch.adjustSearch,
                         ),
                       )
                     : RefreshIndicator(
@@ -218,7 +224,7 @@ class _SearchBar extends StatelessWidget {
       builder: (_, value, _) => TextField(
         controller: controller,
         decoration: InputDecoration(
-          hintText: 'Search by name...',
+          hintText: context.t.doctorSearch.searchByName,
           prefixIcon:
               Icon(Icons.search_rounded, color: context.colors.textSecondary),
           suffixIcon: value.text.isNotEmpty
@@ -252,7 +258,7 @@ class _SpecChips extends StatelessWidget {
         separatorBuilder: (_, _) => const Gap(8),
         itemBuilder: (_, i) {
           final spec = _kSpecializations[i];
-          final label = _kSpecLabels[spec] ?? spec;
+          final label = _specLabel(context, spec);
           final isSelected = selected == spec;
           return FilterChip(
             label: Text(label),

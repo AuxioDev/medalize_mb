@@ -7,6 +7,7 @@ import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class AddEditWorkplaceScreen extends ConsumerStatefulWidget {
   const AddEditWorkplaceScreen({super.key, this.existing});
@@ -69,7 +70,7 @@ class _AddEditWorkplaceScreenState
       }
       if (mounted) context.pop(true);
     } catch (e) {
-      setState(() => _error = 'Failed to save workplace.');
+      setState(() => _error = context.t.addWorkplace.failedToSave);
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -78,7 +79,10 @@ class _AddEditWorkplaceScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_isEdit ? 'Edit Workplace' : 'Add Workplace')),
+      appBar: AppBar(
+          title: Text(_isEdit
+              ? context.t.addWorkplace.editTitle
+              : context.t.addWorkplace.addTitle)),
       body: Form(
         key: _form,
         child: ResponsiveBody(
@@ -88,34 +92,45 @@ class _AddEditWorkplaceScreenState
               children: [
                 TextFormField(
                   controller: _name,
-                  decoration: const InputDecoration(labelText: 'Name'),
-                  validator: (v) =>
-                      v?.trim().isEmpty == true ? 'Required' : null,
+                  decoration:
+                      InputDecoration(labelText: context.t.addWorkplace.name),
+                  validator: (v) => v?.trim().isEmpty == true
+                      ? context.t.common.required
+                      : null,
                 ),
                 const Gap(12),
                 TextFormField(
                   controller: _address,
-                  decoration: const InputDecoration(labelText: 'Address'),
-                  validator: (v) =>
-                      v?.trim().isEmpty == true ? 'Required' : null,
+                  decoration: InputDecoration(
+                      labelText: context.t.addWorkplace.address),
+                  validator: (v) => v?.trim().isEmpty == true
+                      ? context.t.common.required
+                      : null,
                 ),
                 const Gap(12),
                 TextFormField(
                   controller: _city,
-                  decoration: const InputDecoration(labelText: 'City'),
-                  validator: (v) =>
-                      v?.trim().isEmpty == true ? 'Required' : null,
+                  decoration:
+                      InputDecoration(labelText: context.t.addWorkplace.city),
+                  validator: (v) => v?.trim().isEmpty == true
+                      ? context.t.common.required
+                      : null,
                 ),
                 const Gap(12),
                 DropdownButtonFormField<String>(
                   initialValue: _type,
-                  decoration: const InputDecoration(labelText: 'Type'),
-                  items: const [
-                    DropdownMenuItem(value: 'clinic', child: Text('Clinic')),
+                  decoration:
+                      InputDecoration(labelText: context.t.addWorkplace.type),
+                  items: [
                     DropdownMenuItem(
-                        value: 'hospital', child: Text('Hospital')),
+                        value: 'clinic',
+                        child: Text(context.t.addWorkplace.clinic)),
                     DropdownMenuItem(
-                        value: 'private', child: Text('Private Practice')),
+                        value: 'hospital',
+                        child: Text(context.t.addWorkplace.hospital)),
+                    DropdownMenuItem(
+                        value: 'private',
+                        child: Text(context.t.addWorkplace.privatePractice)),
                   ],
                   onChanged: (v) => setState(() => _type = v!),
                 ),
@@ -131,7 +146,9 @@ class _AddEditWorkplaceScreenState
       ),
       bottomNavigationBar: BottomActionBar(
         child: LoadingFilledButton(
-          label: _isEdit ? 'Save Changes' : 'Add Workplace',
+          label: _isEdit
+              ? context.t.addWorkplace.saveChanges
+              : context.t.addWorkplace.addButton,
           loading: _loading,
           onPressed: _save,
         ),

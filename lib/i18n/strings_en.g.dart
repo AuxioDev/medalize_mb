@@ -1,0 +1,1345 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint, unused_import
+// dart format off
+
+part of 'strings.g.dart';
+
+// Path: <root>
+typedef TranslationsEn = Translations; // ignore: unused_element
+class Translations with BaseTranslations<AppLocale, Translations> {
+	/// Returns the current translations of the given [context].
+	///
+	/// Usage:
+	/// final t = Translations.of(context);
+	static Translations of(BuildContext context) => InheritedLocaleData.of<AppLocale, Translations>(context).translations;
+
+	/// You can call this constructor and build your own translation instance of this locale.
+	/// Constructing via the enum [AppLocale.build] is preferred.
+	Translations({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver, TranslationMetadata<AppLocale, Translations>? meta})
+		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
+		  $meta = meta ?? TranslationMetadata(
+		    locale: AppLocale.en,
+		    overrides: overrides ?? {},
+		    cardinalResolver: cardinalResolver,
+		    ordinalResolver: ordinalResolver,
+		  ) {
+		$meta.setFlatMapFunction(_flatMapFunction);
+	}
+
+	/// Metadata for the translations of <en>.
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
+
+	/// Access flat map
+	dynamic operator[](String key) => $meta.getTranslation(key);
+
+	late final Translations _root = this; // ignore: unused_field
+
+	Translations $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => Translations(meta: meta ?? this.$meta);
+
+	// Translations
+
+	/// en: 'Medalize'
+	String get appName => 'Medalize';
+
+	late final Translations$common$en common = Translations$common$en.internal(_root);
+	late final Translations$auth$en auth = Translations$auth$en.internal(_root);
+	late final Translations$forgotPassword$en forgotPassword = Translations$forgotPassword$en.internal(_root);
+	late final Translations$resetPassword$en resetPassword = Translations$resetPassword$en.internal(_root);
+	late final Translations$validation$en validation = Translations$validation$en.internal(_root);
+	late final Translations$errors$en errors = Translations$errors$en.internal(_root);
+	late final Translations$settings$en settings = Translations$settings$en.internal(_root);
+	late final Translations$status$en status = Translations$status$en.internal(_root);
+	late final Translations$home$en home = Translations$home$en.internal(_root);
+	late final Translations$appointments$en appointments = Translations$appointments$en.internal(_root);
+	late final Translations$booking$en booking = Translations$booking$en.internal(_root);
+	late final Translations$doctorSearch$en doctorSearch = Translations$doctorSearch$en.internal(_root);
+	late final Translations$doctorDetail$en doctorDetail = Translations$doctorDetail$en.internal(_root);
+	late final Translations$profile$en profile = Translations$profile$en.internal(_root);
+	late final Translations$notifications$en notifications = Translations$notifications$en.internal(_root);
+	late final Translations$workplaces$en workplaces = Translations$workplaces$en.internal(_root);
+	late final Translations$addWorkplace$en addWorkplace = Translations$addWorkplace$en.internal(_root);
+	late final Translations$workingHours$en workingHours = Translations$workingHours$en.internal(_root);
+	late final Translations$blockTime$en blockTime = Translations$blockTime$en.internal(_root);
+	late final Translations$onboarding$en onboarding = Translations$onboarding$en.internal(_root);
+	late final Translations$pendingVerification$en pendingVerification = Translations$pendingVerification$en.internal(_root);
+	late final Translations$phoneField$en phoneField = Translations$phoneField$en.internal(_root);
+	late final Translations$splash$en splash = Translations$splash$en.internal(_root);
+}
+
+// Path: common
+class Translations$common$en {
+	Translations$common$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Cancel'
+	String get cancel => 'Cancel';
+
+	/// en: 'Log Out'
+	String get logout => 'Log Out';
+
+	/// en: 'Doctor'
+	String get doctor => 'Doctor';
+
+	/// en: 'Patient'
+	String get patient => 'Patient';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	/// en: 'Edit'
+	String get edit => 'Edit';
+
+	/// en: 'Retry'
+	String get retry => 'Retry';
+
+	/// en: 'Back'
+	String get back => 'Back';
+
+	/// en: 'OK'
+	String get ok => 'OK';
+
+	/// en: 'Delete'
+	String get delete => 'Delete';
+
+	/// en: 'Keep'
+	String get keep => 'Keep';
+
+	/// en: 'Confirm'
+	String get confirm => 'Confirm';
+
+	/// en: 'Decline'
+	String get decline => 'Decline';
+
+	/// en: 'Primary'
+	String get primary => 'Primary';
+
+	/// en: 'Something went wrong'
+	String get somethingWrong => 'Something went wrong';
+
+	/// en: 'See all'
+	String get seeAll => 'See all';
+
+	/// en: 'Sign Out'
+	String get signOut => 'Sign Out';
+
+	/// en: 'Search'
+	String get search => 'Search';
+
+	/// en: 'Please try again'
+	String get tryAgain => 'Please try again';
+
+	/// en: 'Required'
+	String get required => 'Required';
+}
+
+// Path: auth
+class Translations$auth$en {
+	Translations$auth$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Sign In'
+	String get login => 'Sign In';
+
+	/// en: 'Create Account'
+	String get register => 'Create Account';
+
+	/// en: 'Sign In'
+	String get signIn => 'Sign In';
+
+	/// en: 'Sign Up'
+	String get signUp => 'Sign Up';
+
+	/// en: 'Email'
+	String get email => 'Email';
+
+	/// en: 'Password'
+	String get password => 'Password';
+
+	/// en: 'Confirm Password'
+	String get confirmPassword => 'Confirm Password';
+
+	/// en: 'First Name'
+	String get firstName => 'First Name';
+
+	/// en: 'Last Name'
+	String get lastName => 'Last Name';
+
+	/// en: 'Remember me'
+	String get rememberMe => 'Remember me';
+
+	/// en: 'Forgot password?'
+	String get forgotPassword => 'Forgot password?';
+
+	/// en: 'Send Reset Code'
+	String get sendResetLink => 'Send Reset Code';
+
+	/// en: 'Don't have an account?'
+	String get noAccount => 'Don\'t have an account?';
+
+	/// en: 'Already have an account?'
+	String get haveAccount => 'Already have an account?';
+
+	/// en: 'Welcome back'
+	String get welcomeBack => 'Welcome back';
+
+	/// en: 'Sign in to your account to continue'
+	String get signInToContinue => 'Sign in to your account to continue';
+
+	/// en: 'Create your account'
+	String get createYourAccount => 'Create your account';
+
+	/// en: 'Join Medalize today'
+	String get joinMedalize => 'Join Medalize today';
+
+	/// en: 'I am a'
+	String get iAmA => 'I am a';
+
+	/// en: 'you@example.com'
+	String get emailHint => 'you@example.com';
+
+	/// en: '••••••••'
+	String get passwordHint => '••••••••';
+
+	/// en: 'Back to Sign In'
+	String get backToSignIn => 'Back to Sign In';
+
+	/// en: 'Verification code'
+	String get verificationCode => 'Verification code';
+}
+
+// Path: forgotPassword
+class Translations$forgotPassword$en {
+	Translations$forgotPassword$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Forgot Password?'
+	String get title => 'Forgot Password?';
+
+	/// en: 'Enter your email and we'll send you a 6-digit reset code'
+	String get subtitle => 'Enter your email and we\'ll send you a 6-digit reset code';
+}
+
+// Path: resetPassword
+class Translations$resetPassword$en {
+	Translations$resetPassword$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Reset Password'
+	String get title => 'Reset Password';
+
+	/// en: 'Enter the code sent to your email and choose a new password'
+	String get subtitle => 'Enter the code sent to your email and choose a new password';
+
+	/// en: 'Reset Password'
+	String get button => 'Reset Password';
+
+	/// en: 'Password reset successfully. Please sign in.'
+	String get success => 'Password reset successfully. Please sign in.';
+}
+
+// Path: validation
+class Translations$validation$en {
+	Translations$validation$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Email is required'
+	String get emailRequired => 'Email is required';
+
+	/// en: 'Enter a valid email address'
+	String get emailInvalid => 'Enter a valid email address';
+
+	/// en: 'Password is required'
+	String get passwordRequired => 'Password is required';
+
+	/// en: 'At least 8 characters required'
+	String get passwordTooShort => 'At least 8 characters required';
+
+	/// en: 'Include at least one letter'
+	String get passwordNeedsLetter => 'Include at least one letter';
+
+	/// en: 'Include at least one digit'
+	String get passwordNeedsDigit => 'Include at least one digit';
+
+	/// en: 'Passwords do not match'
+	String get passwordMismatch => 'Passwords do not match';
+
+	/// en: 'Please confirm your password'
+	String get passwordConfirmRequired => 'Please confirm your password';
+
+	/// en: 'Must be at least 2 characters'
+	String get nameMinLength => 'Must be at least 2 characters';
+
+	/// en: 'Please select a role'
+	String get roleRequired => 'Please select a role';
+
+	/// en: 'Phone number is required'
+	String get phoneRequired => 'Phone number is required';
+
+	/// en: 'Number is too short'
+	String get phoneTooShort => 'Number is too short';
+
+	/// en: 'Number is too long'
+	String get phoneTooLong => 'Number is too long';
+
+	/// en: '$field is required'
+	String fieldRequired({required Object field}) => '${field} is required';
+
+	/// en: '$field contains invalid characters'
+	String fieldInvalid({required Object field}) => '${field} contains invalid characters';
+}
+
+// Path: errors
+class Translations$errors$en {
+	Translations$errors$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Network error. Check your connection.'
+	String get network => 'Network error. Check your connection.';
+
+	/// en: 'Too many attempts. Please wait and try again.'
+	String get rateLimit => 'Too many attempts. Please wait and try again.';
+
+	/// en: 'Too many attempts. Try again in $seconds s.'
+	String rateLimitWithSeconds({required Object seconds}) => 'Too many attempts. Try again in ${seconds} s.';
+
+	/// en: 'Invalid email or password'
+	String get invalidCredentials => 'Invalid email or password';
+
+	/// en: 'Session expired. Please sign in again.'
+	String get sessionExpired => 'Session expired. Please sign in again.';
+
+	/// en: 'Authentication error. Please sign in again.'
+	String get authError => 'Authentication error. Please sign in again.';
+
+	/// en: 'Session was revoked. Please sign in again.'
+	String get sessionRevoked => 'Session was revoked. Please sign in again.';
+
+	/// en: 'You do not have permission to do this.'
+	String get permissionDenied => 'You do not have permission to do this.';
+
+	/// en: 'Validation error'
+	String get validationError => 'Validation error';
+
+	/// en: 'Server error ($code). Please try again.'
+	String serverError({required Object code}) => 'Server error (${code}). Please try again.';
+}
+
+// Path: settings
+class Translations$settings$en {
+	Translations$settings$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Settings'
+	String get title => 'Settings';
+
+	/// en: 'Account'
+	String get account => 'Account';
+
+	/// en: 'Profile'
+	String get profile => 'Profile';
+
+	/// en: 'Notifications'
+	String get notifications => 'Notifications';
+
+	/// en: 'Appearance'
+	String get appearance => 'Appearance';
+
+	/// en: 'System'
+	String get themeSystem => 'System';
+
+	/// en: 'Light'
+	String get themeLight => 'Light';
+
+	/// en: 'Dark'
+	String get themeDark => 'Dark';
+
+	/// en: 'Language'
+	String get language => 'Language';
+
+	/// en: 'System default'
+	String get languageSystem => 'System default';
+
+	/// en: 'Logout'
+	String get logoutTitle => 'Logout';
+
+	/// en: 'Are you sure you want to logout?'
+	String get logoutConfirm => 'Are you sure you want to logout?';
+
+	/// en: 'Medalize v1.0.0'
+	String get version => 'Medalize v1.0.0';
+}
+
+// Path: status
+class Translations$status$en {
+	Translations$status$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Confirmed'
+	String get confirmed => 'Confirmed';
+
+	/// en: 'Pending'
+	String get pending => 'Pending';
+
+	/// en: 'Cancelled'
+	String get cancelled => 'Cancelled';
+
+	/// en: 'Declined'
+	String get declined => 'Declined';
+
+	/// en: 'Requires Rescheduling'
+	String get requiresRescheduling => 'Requires Rescheduling';
+
+	/// en: 'Completed'
+	String get completed => 'Completed';
+}
+
+// Path: home
+class Translations$home$en {
+	Translations$home$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Hello, Dr. $name!'
+	String helloDoctor({required Object name}) => 'Hello, Dr. ${name}!';
+
+	/// en: 'Hello, $name!'
+	String helloPatient({required Object name}) => 'Hello, ${name}!';
+
+	/// en: 'Manage your schedule and appointments.'
+	String get doctorSubtitle => 'Manage your schedule\nand appointments.';
+
+	/// en: 'Find a doctor and book an appointment.'
+	String get patientSubtitle => 'Find a doctor and\nbook an appointment.';
+
+	/// en: 'Pending Requests'
+	String get pendingRequests => 'Pending Requests';
+
+	/// en: 'Upcoming'
+	String get upcoming => 'Upcoming';
+
+	/// en: 'Find Doctor'
+	String get findDoctor => 'Find Doctor';
+
+	/// en: 'My Appointments'
+	String get myAppointments => 'My Appointments';
+
+	/// en: 'Appointments'
+	String get appointments => 'Appointments';
+
+	/// en: 'Workplaces'
+	String get workplaces => 'Workplaces';
+
+	/// en: 'Block Time'
+	String get blockTime => 'Block Time';
+
+	/// en: 'Profile'
+	String get profile => 'Profile';
+
+	/// en: 'All caught up'
+	String get allCaughtUp => 'All caught up';
+
+	/// en: 'No pending appointment requests'
+	String get noPendingRequests => 'No pending appointment requests';
+
+	/// en: 'Could not load appointments'
+	String get couldNotLoadAppointments => 'Could not load appointments';
+
+	/// en: 'No upcoming appointments'
+	String get noUpcoming => 'No upcoming appointments';
+
+	/// en: 'Book your first appointment with a doctor'
+	String get bookFirst => 'Book your first appointment with a doctor';
+
+	/// en: 'Find a Doctor'
+	String get findADoctor => 'Find a Doctor';
+}
+
+// Path: appointments
+class Translations$appointments$en {
+	Translations$appointments$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Appointments'
+	String get title => 'Appointments';
+
+	/// en: 'My Appointments'
+	String get myTitle => 'My Appointments';
+
+	/// en: 'Pending'
+	String get tabPending => 'Pending';
+
+	/// en: 'All'
+	String get tabAll => 'All';
+
+	/// en: 'Upcoming'
+	String get tabUpcoming => 'Upcoming';
+
+	/// en: 'Past'
+	String get tabPast => 'Past';
+
+	/// en: 'No pending requests'
+	String get noPendingRequests => 'No pending requests';
+
+	/// en: 'New appointment requests will appear here'
+	String get newRequestsAppear => 'New appointment requests will appear here';
+
+	/// en: 'No appointments'
+	String get noAppointments => 'No appointments';
+
+	/// en: 'Your appointments will appear here'
+	String get appointmentsAppear => 'Your appointments will appear here';
+
+	/// en: 'No upcoming appointments'
+	String get noUpcoming => 'No upcoming appointments';
+
+	/// en: 'Book your first appointment with a doctor'
+	String get bookFirst => 'Book your first appointment with a doctor';
+
+	/// en: 'No past appointments'
+	String get noPast => 'No past appointments';
+
+	/// en: 'Completed and cancelled appointments appear here'
+	String get pastAppear => 'Completed and cancelled appointments appear here';
+
+	/// en: 'Could not load appointments'
+	String get couldNotLoad => 'Could not load appointments';
+
+	/// en: 'Appointment'
+	String get detailTitle => 'Appointment';
+
+	/// en: 'Patient'
+	String get patient => 'Patient';
+
+	/// en: 'Doctor'
+	String get doctor => 'Doctor';
+
+	/// en: 'Workplace'
+	String get workplace => 'Workplace';
+
+	/// en: 'Date & Time'
+	String get dateTime => 'Date & Time';
+
+	/// en: 'Reason'
+	String get reason => 'Reason';
+
+	/// en: 'Doctor Notes'
+	String get doctorNotes => 'Doctor Notes';
+
+	/// en: 'Cancel Appointment'
+	String get cancelTitle => 'Cancel Appointment';
+
+	/// en: 'Are you sure you want to cancel this appointment?'
+	String get cancelConfirm => 'Are you sure you want to cancel this appointment?';
+
+	/// en: 'Cancel Appointment'
+	String get cancelAction => 'Cancel Appointment';
+
+	/// en: 'Booked!'
+	String get bookedTitle => 'Booked!';
+
+	/// en: 'Your appointment request has been sent.'
+	String get bookedMessage => 'Your appointment request has been sent.';
+}
+
+// Path: booking
+class Translations$booking$en {
+	Translations$booking$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Book — $name'
+	String bookWith({required Object name}) => 'Book — ${name}';
+
+	/// en: 'Select Workplace'
+	String get selectWorkplace => 'Select Workplace';
+
+	/// en: 'Pick a date'
+	String get pickDate => 'Pick a date';
+
+	/// en: 'Available time slots will appear here'
+	String get slotsAppear => 'Available time slots will appear here';
+
+	/// en: 'Could not load slots'
+	String get couldNotLoadSlots => 'Could not load slots';
+
+	/// en: 'No available slots'
+	String get noAvailableSlots => 'No available slots';
+
+	/// en: 'No open slots for this date. Try another day.'
+	String get noOpenSlots => 'No open slots for this date. Try another day.';
+
+	/// en: 'Confirm Booking'
+	String get confirmTitle => 'Confirm Booking';
+
+	/// en: 'Reason for visit (optional)'
+	String get reasonForVisit => 'Reason for visit (optional)';
+
+	/// en: 'Confirm Booking'
+	String get confirmButton => 'Confirm Booking';
+
+	/// en: 'Doctor'
+	String get doctorLabel => 'Doctor';
+
+	/// en: 'Workplace'
+	String get workplaceLabel => 'Workplace';
+
+	/// en: 'Address'
+	String get addressLabel => 'Address';
+
+	/// en: 'Start'
+	String get startLabel => 'Start';
+
+	/// en: 'End'
+	String get endLabel => 'End';
+}
+
+// Path: doctorSearch
+class Translations$doctorSearch$en {
+	Translations$doctorSearch$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Find a Doctor'
+	String get title => 'Find a Doctor';
+
+	/// en: 'Search by name...'
+	String get searchByName => 'Search by name...';
+
+	/// en: 'City'
+	String get city => 'City';
+
+	/// en: 'Search'
+	String get search => 'Search';
+
+	/// en: 'No doctors found'
+	String get noDoctorsFound => 'No doctors found';
+
+	/// en: 'Try adjusting your search or filters'
+	String get adjustSearch => 'Try adjusting your search or filters';
+
+	/// en: 'Could not load doctors'
+	String get couldNotLoadDoctors => 'Could not load doctors';
+
+	late final Translations$doctorSearch$spec$en spec = Translations$doctorSearch$spec$en.internal(_root);
+}
+
+// Path: doctorDetail
+class Translations$doctorDetail$en {
+	Translations$doctorDetail$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Doctor Profile'
+	String get profileTitle => 'Doctor Profile';
+
+	/// en: 'Could not load profile'
+	String get couldNotLoadProfile => 'Could not load profile';
+
+	/// en: 'About'
+	String get about => 'About';
+
+	/// en: 'Workplaces'
+	String get workplaces => 'Workplaces';
+
+	/// en: '$min min per slot'
+	String minPerSlot({required Object min}) => '${min} min per slot';
+
+	/// en: 'Book Appointment'
+	String get bookAppointment => 'Book Appointment';
+}
+
+// Path: profile
+class Translations$profile$en {
+	Translations$profile$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Profile'
+	String get title => 'Profile';
+
+	/// en: 'Change Password'
+	String get changePassword => 'Change Password';
+
+	/// en: 'Current Password'
+	String get currentPassword => 'Current Password';
+
+	/// en: 'New Password'
+	String get newPassword => 'New Password';
+
+	/// en: 'Confirm New Password'
+	String get confirmNewPassword => 'Confirm New Password';
+
+	/// en: 'First Name'
+	String get firstName => 'First Name';
+
+	/// en: 'Last Name'
+	String get lastName => 'Last Name';
+
+	/// en: 'Phone'
+	String get phone => 'Phone';
+
+	/// en: 'Failed to save profile.'
+	String get failedToSave => 'Failed to save profile.';
+}
+
+// Path: notifications
+class Translations$notifications$en {
+	Translations$notifications$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Notifications'
+	String get title => 'Notifications';
+
+	/// en: 'No notifications'
+	String get noNotifications => 'No notifications';
+
+	/// en: 'You are all caught up'
+	String get allCaughtUp => 'You are all caught up';
+
+	/// en: 'Could not load notifications'
+	String get couldNotLoad => 'Could not load notifications';
+}
+
+// Path: workplaces
+class Translations$workplaces$en {
+	Translations$workplaces$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'My Workplaces'
+	String get title => 'My Workplaces';
+
+	/// en: 'No workplaces yet'
+	String get noWorkplacesYet => 'No workplaces yet';
+
+	/// en: 'Tap + to add your first workplace'
+	String get tapToAdd => 'Tap + to add your first workplace';
+
+	/// en: 'Could not load workplaces'
+	String get couldNotLoad => 'Could not load workplaces';
+
+	/// en: 'Delete Workplace'
+	String get deleteTitle => 'Delete Workplace';
+
+	/// en: 'Delete "$name"?'
+	String deleteConfirm({required Object name}) => 'Delete "${name}"?';
+
+	/// en: 'Cannot delete workplace'
+	String get cannotDelete => 'Cannot delete workplace';
+
+	/// en: 'Working Hours'
+	String get workingHours => 'Working Hours';
+
+	/// en: 'Set as Primary'
+	String get setAsPrimary => 'Set as Primary';
+}
+
+// Path: addWorkplace
+class Translations$addWorkplace$en {
+	Translations$addWorkplace$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Add Workplace'
+	String get addTitle => 'Add Workplace';
+
+	/// en: 'Edit Workplace'
+	String get editTitle => 'Edit Workplace';
+
+	/// en: 'Name'
+	String get name => 'Name';
+
+	/// en: 'Address'
+	String get address => 'Address';
+
+	/// en: 'City'
+	String get city => 'City';
+
+	/// en: 'Type'
+	String get type => 'Type';
+
+	/// en: 'Clinic'
+	String get clinic => 'Clinic';
+
+	/// en: 'Hospital'
+	String get hospital => 'Hospital';
+
+	/// en: 'Private Practice'
+	String get privatePractice => 'Private Practice';
+
+	/// en: 'Failed to save workplace.'
+	String get failedToSave => 'Failed to save workplace.';
+
+	/// en: 'Add Workplace'
+	String get addButton => 'Add Workplace';
+
+	/// en: 'Save Changes'
+	String get saveChanges => 'Save Changes';
+}
+
+// Path: workingHours
+class Translations$workingHours$en {
+	Translations$workingHours$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Working Hours'
+	String get title => 'Working Hours';
+
+	/// en: 'Working hours saved'
+	String get saved => 'Working hours saved';
+
+	/// en: 'Failed to save working hours'
+	String get failedToSave => 'Failed to save working hours';
+
+	late final Translations$workingHours$days$en days = Translations$workingHours$days$en.internal(_root);
+}
+
+// Path: blockTime
+class Translations$blockTime$en {
+	Translations$blockTime$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Block Time'
+	String get title => 'Block Time';
+
+	/// en: 'Date Range'
+	String get dateRange => 'Date Range';
+
+	/// en: 'Tap to select dates'
+	String get tapToSelect => 'Tap to select dates';
+
+	/// en: 'Reason (optional)'
+	String get reason => 'Reason (optional)';
+
+	/// en: 'Notify affected patients'
+	String get notifyPatients => 'Notify affected patients';
+
+	/// en: 'Send notifications to patients with appointments in this period'
+	String get notifyDesc => 'Send notifications to patients with appointments in this period';
+
+	/// en: 'Please select a date range.'
+	String get selectDateRange => 'Please select a date range.';
+
+	/// en: 'Failed to block time. Please try again.'
+	String get failedToBlock => 'Failed to block time. Please try again.';
+
+	/// en: 'Block Period'
+	String get blockButton => 'Block Period';
+}
+
+// Path: onboarding
+class Translations$onboarding$en {
+	Translations$onboarding$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Complete Your Profile'
+	String get title => 'Complete Your Profile';
+
+	/// en: 'Professional information'
+	String get professionalInfo => 'Professional information';
+
+	/// en: 'Tell patients about your practice.'
+	String get tellPatients => 'Tell patients about your practice.';
+
+	/// en: 'Specialization'
+	String get specialization => 'Specialization';
+
+	/// en: 'Select your specialization'
+	String get selectSpecialization => 'Select your specialization';
+
+	/// en: 'Could not load specializations. Pull back and retry.'
+	String get couldNotLoadSpecs => 'Could not load specializations. Pull back and retry.';
+
+	/// en: 'License number'
+	String get licenseNumber => 'License number';
+
+	/// en: 'e.g. AZ-123456'
+	String get licenseHint => 'e.g. AZ-123456';
+
+	/// en: 'Bio (optional)'
+	String get bio => 'Bio (optional)';
+
+	/// en: 'A short introduction patients will see on your profile.'
+	String get bioHint => 'A short introduction patients will see on your profile.';
+
+	/// en: 'Appointment length'
+	String get appointmentLength => 'Appointment length';
+
+	/// en: 'How long is a single appointment slot?'
+	String get slotQuestion => 'How long is a single appointment slot?';
+
+	/// en: 'You can change this later from your profile.'
+	String get changeLater => 'You can change this later from your profile.';
+
+	/// en: '$min min'
+	String minutes({required Object min}) => '${min} min';
+
+	/// en: 'Verification document'
+	String get verificationDoc => 'Verification document';
+
+	/// en: 'Upload your medical diploma or license. An admin reviews it before your account is verified.'
+	String get uploadDiploma => 'Upload your medical diploma or license. An admin reviews it before your account is verified.';
+
+	/// en: 'Tap to choose a file'
+	String get tapToChoose => 'Tap to choose a file';
+
+	/// en: 'Tap to replace'
+	String get tapToReplace => 'Tap to replace';
+
+	/// en: 'Any file type, up to 10 MB'
+	String get anyFileType => 'Any file type, up to 10 MB';
+
+	/// en: 'Please select your specialization.'
+	String get selectSpecError => 'Please select your specialization.';
+
+	/// en: 'Please enter your license number.'
+	String get licenseError => 'Please enter your license number.';
+
+	/// en: 'Please attach your diploma.'
+	String get diplomaError => 'Please attach your diploma.';
+
+	/// en: 'Please check your details and try again.'
+	String get checkDetails => 'Please check your details and try again.';
+
+	/// en: 'Continue'
+	String get continueButton => 'Continue';
+
+	/// en: 'Finish'
+	String get finish => 'Finish';
+}
+
+// Path: pendingVerification
+class Translations$pendingVerification$en {
+	Translations$pendingVerification$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Verification Pending'
+	String get title => 'Verification Pending';
+
+	/// en: 'Your account is under review. We will notify you once it is verified.'
+	String get message => 'Your account is under review. We will notify you once it is verified.';
+}
+
+// Path: phoneField
+class Translations$phoneField$en {
+	Translations$phoneField$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Phone Number'
+	String get label => 'Phone Number';
+
+	/// en: 'Phone Number (Optional)'
+	String get labelOptional => 'Phone Number (Optional)';
+
+	/// en: 'Select Country'
+	String get selectCountry => 'Select Country';
+
+	/// en: 'Search country or code…'
+	String get searchCountry => 'Search country or code…';
+
+	/// en: 'No countries found'
+	String get noCountriesFound => 'No countries found';
+}
+
+// Path: splash
+class Translations$splash$en {
+	Translations$splash$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Your health, simplified'
+	String get tagline => 'Your health, simplified';
+}
+
+// Path: doctorSearch.spec
+class Translations$doctorSearch$spec$en {
+	Translations$doctorSearch$spec$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'General'
+	String get general => 'General';
+
+	/// en: 'Cardiology'
+	String get cardiology => 'Cardiology';
+
+	/// en: 'Dermatology'
+	String get dermatology => 'Dermatology';
+
+	/// en: 'Neurology'
+	String get neurology => 'Neurology';
+
+	/// en: 'Orthopedics'
+	String get orthopedics => 'Orthopedics';
+
+	/// en: 'Pediatrics'
+	String get pediatrics => 'Pediatrics';
+}
+
+// Path: workingHours.days
+class Translations$workingHours$days$en {
+	Translations$workingHours$days$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Monday'
+	String get monday => 'Monday';
+
+	/// en: 'Tuesday'
+	String get tuesday => 'Tuesday';
+
+	/// en: 'Wednesday'
+	String get wednesday => 'Wednesday';
+
+	/// en: 'Thursday'
+	String get thursday => 'Thursday';
+
+	/// en: 'Friday'
+	String get friday => 'Friday';
+
+	/// en: 'Saturday'
+	String get saturday => 'Saturday';
+
+	/// en: 'Sunday'
+	String get sunday => 'Sunday';
+}
+
+/// The flat map containing all translations for locale <en>.
+/// Only for edge cases! For simple maps, use the map function of this library.
+///
+/// The Dart AOT compiler has issues with very large switch statements,
+/// so the map is split into smaller functions (512 entries each).
+extension on Translations {
+	dynamic _flatMapFunction(String path) {
+		return switch (path) {
+			'appName' => 'Medalize',
+			'common.cancel' => 'Cancel',
+			'common.logout' => 'Log Out',
+			'common.doctor' => 'Doctor',
+			'common.patient' => 'Patient',
+			'common.save' => 'Save',
+			'common.edit' => 'Edit',
+			'common.retry' => 'Retry',
+			'common.back' => 'Back',
+			'common.ok' => 'OK',
+			'common.delete' => 'Delete',
+			'common.keep' => 'Keep',
+			'common.confirm' => 'Confirm',
+			'common.decline' => 'Decline',
+			'common.primary' => 'Primary',
+			'common.somethingWrong' => 'Something went wrong',
+			'common.seeAll' => 'See all',
+			'common.signOut' => 'Sign Out',
+			'common.search' => 'Search',
+			'common.tryAgain' => 'Please try again',
+			'common.required' => 'Required',
+			'auth.login' => 'Sign In',
+			'auth.register' => 'Create Account',
+			'auth.signIn' => 'Sign In',
+			'auth.signUp' => 'Sign Up',
+			'auth.email' => 'Email',
+			'auth.password' => 'Password',
+			'auth.confirmPassword' => 'Confirm Password',
+			'auth.firstName' => 'First Name',
+			'auth.lastName' => 'Last Name',
+			'auth.rememberMe' => 'Remember me',
+			'auth.forgotPassword' => 'Forgot password?',
+			'auth.sendResetLink' => 'Send Reset Code',
+			'auth.noAccount' => 'Don\'t have an account?',
+			'auth.haveAccount' => 'Already have an account?',
+			'auth.welcomeBack' => 'Welcome back',
+			'auth.signInToContinue' => 'Sign in to your account to continue',
+			'auth.createYourAccount' => 'Create your account',
+			'auth.joinMedalize' => 'Join Medalize today',
+			'auth.iAmA' => 'I am a',
+			'auth.emailHint' => 'you@example.com',
+			'auth.passwordHint' => '••••••••',
+			'auth.backToSignIn' => 'Back to Sign In',
+			'auth.verificationCode' => 'Verification code',
+			'forgotPassword.title' => 'Forgot Password?',
+			'forgotPassword.subtitle' => 'Enter your email and we\'ll send you a 6-digit reset code',
+			'resetPassword.title' => 'Reset Password',
+			'resetPassword.subtitle' => 'Enter the code sent to your email and choose a new password',
+			'resetPassword.button' => 'Reset Password',
+			'resetPassword.success' => 'Password reset successfully. Please sign in.',
+			'validation.emailRequired' => 'Email is required',
+			'validation.emailInvalid' => 'Enter a valid email address',
+			'validation.passwordRequired' => 'Password is required',
+			'validation.passwordTooShort' => 'At least 8 characters required',
+			'validation.passwordNeedsLetter' => 'Include at least one letter',
+			'validation.passwordNeedsDigit' => 'Include at least one digit',
+			'validation.passwordMismatch' => 'Passwords do not match',
+			'validation.passwordConfirmRequired' => 'Please confirm your password',
+			'validation.nameMinLength' => 'Must be at least 2 characters',
+			'validation.roleRequired' => 'Please select a role',
+			'validation.phoneRequired' => 'Phone number is required',
+			'validation.phoneTooShort' => 'Number is too short',
+			'validation.phoneTooLong' => 'Number is too long',
+			'validation.fieldRequired' => ({required Object field}) => '${field} is required',
+			'validation.fieldInvalid' => ({required Object field}) => '${field} contains invalid characters',
+			'errors.network' => 'Network error. Check your connection.',
+			'errors.rateLimit' => 'Too many attempts. Please wait and try again.',
+			'errors.rateLimitWithSeconds' => ({required Object seconds}) => 'Too many attempts. Try again in ${seconds} s.',
+			'errors.invalidCredentials' => 'Invalid email or password',
+			'errors.sessionExpired' => 'Session expired. Please sign in again.',
+			'errors.authError' => 'Authentication error. Please sign in again.',
+			'errors.sessionRevoked' => 'Session was revoked. Please sign in again.',
+			'errors.permissionDenied' => 'You do not have permission to do this.',
+			'errors.validationError' => 'Validation error',
+			'errors.serverError' => ({required Object code}) => 'Server error (${code}). Please try again.',
+			'settings.title' => 'Settings',
+			'settings.account' => 'Account',
+			'settings.profile' => 'Profile',
+			'settings.notifications' => 'Notifications',
+			'settings.appearance' => 'Appearance',
+			'settings.themeSystem' => 'System',
+			'settings.themeLight' => 'Light',
+			'settings.themeDark' => 'Dark',
+			'settings.language' => 'Language',
+			'settings.languageSystem' => 'System default',
+			'settings.logoutTitle' => 'Logout',
+			'settings.logoutConfirm' => 'Are you sure you want to logout?',
+			'settings.version' => 'Medalize v1.0.0',
+			'status.confirmed' => 'Confirmed',
+			'status.pending' => 'Pending',
+			'status.cancelled' => 'Cancelled',
+			'status.declined' => 'Declined',
+			'status.requiresRescheduling' => 'Requires Rescheduling',
+			'status.completed' => 'Completed',
+			'home.helloDoctor' => ({required Object name}) => 'Hello, Dr. ${name}!',
+			'home.helloPatient' => ({required Object name}) => 'Hello, ${name}!',
+			'home.doctorSubtitle' => 'Manage your schedule\nand appointments.',
+			'home.patientSubtitle' => 'Find a doctor and\nbook an appointment.',
+			'home.pendingRequests' => 'Pending Requests',
+			'home.upcoming' => 'Upcoming',
+			'home.findDoctor' => 'Find Doctor',
+			'home.myAppointments' => 'My Appointments',
+			'home.appointments' => 'Appointments',
+			'home.workplaces' => 'Workplaces',
+			'home.blockTime' => 'Block Time',
+			'home.profile' => 'Profile',
+			'home.allCaughtUp' => 'All caught up',
+			'home.noPendingRequests' => 'No pending appointment requests',
+			'home.couldNotLoadAppointments' => 'Could not load appointments',
+			'home.noUpcoming' => 'No upcoming appointments',
+			'home.bookFirst' => 'Book your first appointment with a doctor',
+			'home.findADoctor' => 'Find a Doctor',
+			'appointments.title' => 'Appointments',
+			'appointments.myTitle' => 'My Appointments',
+			'appointments.tabPending' => 'Pending',
+			'appointments.tabAll' => 'All',
+			'appointments.tabUpcoming' => 'Upcoming',
+			'appointments.tabPast' => 'Past',
+			'appointments.noPendingRequests' => 'No pending requests',
+			'appointments.newRequestsAppear' => 'New appointment requests will appear here',
+			'appointments.noAppointments' => 'No appointments',
+			'appointments.appointmentsAppear' => 'Your appointments will appear here',
+			'appointments.noUpcoming' => 'No upcoming appointments',
+			'appointments.bookFirst' => 'Book your first appointment with a doctor',
+			'appointments.noPast' => 'No past appointments',
+			'appointments.pastAppear' => 'Completed and cancelled appointments appear here',
+			'appointments.couldNotLoad' => 'Could not load appointments',
+			'appointments.detailTitle' => 'Appointment',
+			'appointments.patient' => 'Patient',
+			'appointments.doctor' => 'Doctor',
+			'appointments.workplace' => 'Workplace',
+			'appointments.dateTime' => 'Date & Time',
+			'appointments.reason' => 'Reason',
+			'appointments.doctorNotes' => 'Doctor Notes',
+			'appointments.cancelTitle' => 'Cancel Appointment',
+			'appointments.cancelConfirm' => 'Are you sure you want to cancel this appointment?',
+			'appointments.cancelAction' => 'Cancel Appointment',
+			'appointments.bookedTitle' => 'Booked!',
+			'appointments.bookedMessage' => 'Your appointment request has been sent.',
+			'booking.bookWith' => ({required Object name}) => 'Book — ${name}',
+			'booking.selectWorkplace' => 'Select Workplace',
+			'booking.pickDate' => 'Pick a date',
+			'booking.slotsAppear' => 'Available time slots will appear here',
+			'booking.couldNotLoadSlots' => 'Could not load slots',
+			'booking.noAvailableSlots' => 'No available slots',
+			'booking.noOpenSlots' => 'No open slots for this date. Try another day.',
+			'booking.confirmTitle' => 'Confirm Booking',
+			'booking.reasonForVisit' => 'Reason for visit (optional)',
+			'booking.confirmButton' => 'Confirm Booking',
+			'booking.doctorLabel' => 'Doctor',
+			'booking.workplaceLabel' => 'Workplace',
+			'booking.addressLabel' => 'Address',
+			'booking.startLabel' => 'Start',
+			'booking.endLabel' => 'End',
+			'doctorSearch.title' => 'Find a Doctor',
+			'doctorSearch.searchByName' => 'Search by name...',
+			'doctorSearch.city' => 'City',
+			'doctorSearch.search' => 'Search',
+			'doctorSearch.noDoctorsFound' => 'No doctors found',
+			'doctorSearch.adjustSearch' => 'Try adjusting your search or filters',
+			'doctorSearch.couldNotLoadDoctors' => 'Could not load doctors',
+			'doctorSearch.spec.general' => 'General',
+			'doctorSearch.spec.cardiology' => 'Cardiology',
+			'doctorSearch.spec.dermatology' => 'Dermatology',
+			'doctorSearch.spec.neurology' => 'Neurology',
+			'doctorSearch.spec.orthopedics' => 'Orthopedics',
+			'doctorSearch.spec.pediatrics' => 'Pediatrics',
+			'doctorDetail.profileTitle' => 'Doctor Profile',
+			'doctorDetail.couldNotLoadProfile' => 'Could not load profile',
+			'doctorDetail.about' => 'About',
+			'doctorDetail.workplaces' => 'Workplaces',
+			'doctorDetail.minPerSlot' => ({required Object min}) => '${min} min per slot',
+			'doctorDetail.bookAppointment' => 'Book Appointment',
+			'profile.title' => 'Profile',
+			'profile.changePassword' => 'Change Password',
+			'profile.currentPassword' => 'Current Password',
+			'profile.newPassword' => 'New Password',
+			'profile.confirmNewPassword' => 'Confirm New Password',
+			'profile.firstName' => 'First Name',
+			'profile.lastName' => 'Last Name',
+			'profile.phone' => 'Phone',
+			'profile.failedToSave' => 'Failed to save profile.',
+			'notifications.title' => 'Notifications',
+			'notifications.noNotifications' => 'No notifications',
+			'notifications.allCaughtUp' => 'You are all caught up',
+			'notifications.couldNotLoad' => 'Could not load notifications',
+			'workplaces.title' => 'My Workplaces',
+			'workplaces.noWorkplacesYet' => 'No workplaces yet',
+			'workplaces.tapToAdd' => 'Tap + to add your first workplace',
+			'workplaces.couldNotLoad' => 'Could not load workplaces',
+			'workplaces.deleteTitle' => 'Delete Workplace',
+			'workplaces.deleteConfirm' => ({required Object name}) => 'Delete "${name}"?',
+			'workplaces.cannotDelete' => 'Cannot delete workplace',
+			'workplaces.workingHours' => 'Working Hours',
+			'workplaces.setAsPrimary' => 'Set as Primary',
+			'addWorkplace.addTitle' => 'Add Workplace',
+			'addWorkplace.editTitle' => 'Edit Workplace',
+			'addWorkplace.name' => 'Name',
+			'addWorkplace.address' => 'Address',
+			'addWorkplace.city' => 'City',
+			'addWorkplace.type' => 'Type',
+			'addWorkplace.clinic' => 'Clinic',
+			'addWorkplace.hospital' => 'Hospital',
+			'addWorkplace.privatePractice' => 'Private Practice',
+			'addWorkplace.failedToSave' => 'Failed to save workplace.',
+			'addWorkplace.addButton' => 'Add Workplace',
+			'addWorkplace.saveChanges' => 'Save Changes',
+			'workingHours.title' => 'Working Hours',
+			'workingHours.saved' => 'Working hours saved',
+			'workingHours.failedToSave' => 'Failed to save working hours',
+			'workingHours.days.monday' => 'Monday',
+			'workingHours.days.tuesday' => 'Tuesday',
+			'workingHours.days.wednesday' => 'Wednesday',
+			'workingHours.days.thursday' => 'Thursday',
+			'workingHours.days.friday' => 'Friday',
+			'workingHours.days.saturday' => 'Saturday',
+			'workingHours.days.sunday' => 'Sunday',
+			'blockTime.title' => 'Block Time',
+			'blockTime.dateRange' => 'Date Range',
+			'blockTime.tapToSelect' => 'Tap to select dates',
+			'blockTime.reason' => 'Reason (optional)',
+			'blockTime.notifyPatients' => 'Notify affected patients',
+			'blockTime.notifyDesc' => 'Send notifications to patients with appointments in this period',
+			'blockTime.selectDateRange' => 'Please select a date range.',
+			'blockTime.failedToBlock' => 'Failed to block time. Please try again.',
+			'blockTime.blockButton' => 'Block Period',
+			'onboarding.title' => 'Complete Your Profile',
+			'onboarding.professionalInfo' => 'Professional information',
+			'onboarding.tellPatients' => 'Tell patients about your practice.',
+			'onboarding.specialization' => 'Specialization',
+			'onboarding.selectSpecialization' => 'Select your specialization',
+			'onboarding.couldNotLoadSpecs' => 'Could not load specializations. Pull back and retry.',
+			'onboarding.licenseNumber' => 'License number',
+			'onboarding.licenseHint' => 'e.g. AZ-123456',
+			'onboarding.bio' => 'Bio (optional)',
+			'onboarding.bioHint' => 'A short introduction patients will see on your profile.',
+			'onboarding.appointmentLength' => 'Appointment length',
+			'onboarding.slotQuestion' => 'How long is a single appointment slot?',
+			'onboarding.changeLater' => 'You can change this later from your profile.',
+			'onboarding.minutes' => ({required Object min}) => '${min} min',
+			'onboarding.verificationDoc' => 'Verification document',
+			'onboarding.uploadDiploma' => 'Upload your medical diploma or license. An admin reviews it before your account is verified.',
+			'onboarding.tapToChoose' => 'Tap to choose a file',
+			'onboarding.tapToReplace' => 'Tap to replace',
+			'onboarding.anyFileType' => 'Any file type, up to 10 MB',
+			'onboarding.selectSpecError' => 'Please select your specialization.',
+			'onboarding.licenseError' => 'Please enter your license number.',
+			'onboarding.diplomaError' => 'Please attach your diploma.',
+			'onboarding.checkDetails' => 'Please check your details and try again.',
+			'onboarding.continueButton' => 'Continue',
+			'onboarding.finish' => 'Finish',
+			'pendingVerification.title' => 'Verification Pending',
+			'pendingVerification.message' => 'Your account is under review. We will notify you once it is verified.',
+			'phoneField.label' => 'Phone Number',
+			'phoneField.labelOptional' => 'Phone Number (Optional)',
+			'phoneField.selectCountry' => 'Select Country',
+			'phoneField.searchCountry' => 'Search country or code…',
+			'phoneField.noCountriesFound' => 'No countries found',
+			'splash.tagline' => 'Your health, simplified',
+			_ => null,
+		};
+	}
+}

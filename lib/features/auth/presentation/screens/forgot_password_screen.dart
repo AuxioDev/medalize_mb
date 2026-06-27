@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medalize_mb/core/constants/app_strings.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
@@ -91,10 +91,10 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
           children: [
             _Section(
               anim: _headerAnim,
-              child: const AuthCardHeader(
+              child: AuthCardHeader(
                 icon: Icons.lock_reset_rounded,
-                title: AppStrings.forgotPasswordTitle,
-                subtitle: AppStrings.forgotPasswordSubtitle,
+                title: context.t.forgotPassword.title,
+                subtitle: context.t.forgotPassword.subtitle,
               ),
             ),
             const SizedBox(height: 28),
@@ -104,8 +104,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
               child: AutofillGroup(
                 child: AuthCardField(
                   controller: _emailController,
-                  label: AppStrings.email,
-                  hint: AppStrings.emailHint,
+                  label: context.t.auth.email,
+                  hint: context.t.auth.emailHint,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.done,
                   autofillHints: const [AutofillHints.email],
@@ -122,7 +122,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AnimatedButton(
-                    label: AppStrings.sendResetLink,
+                    label: context.t.auth.sendResetLink,
                     isLoading: _isLoading,
                     onPressed: _isLoading || !_isFormValid ? null : _submit,
                   ),
@@ -132,7 +132,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
                       builder: (context) => TextButton.icon(
                         onPressed: () => context.pop(),
                         icon: const Icon(Icons.arrow_back_rounded, size: 16),
-                        label: const Text('Back to Sign In'),
+                        label: Text(context.t.auth.backToSignIn),
                       ),
                     ),
                   ),

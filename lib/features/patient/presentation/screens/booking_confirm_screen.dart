@@ -15,6 +15,7 @@ import 'package:medalize_mb/features/appointments/data/repository/appointment_re
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class BookingConfirmScreen extends ConsumerStatefulWidget {
   const BookingConfirmScreen({
@@ -67,9 +68,8 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
           builder: (_) => AlertDialog(
             icon: const Icon(Icons.check_circle_outline,
                 color: AppColors.success, size: 40),
-            title: const Text('Booked!'),
-            content:
-                const Text('Your appointment request has been sent.'),
+            title: Text(context.t.appointments.bookedTitle),
+            content: Text(context.t.appointments.bookedMessage),
             actions: [
               FilledButton(
                 onPressed: () {
@@ -81,7 +81,7 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
-                child: const Text('OK'),
+                child: Text(context.t.common.ok),
               ),
             ],
           ),
@@ -103,7 +103,7 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Confirm Booking')),
+      appBar: AppBar(title: Text(context.t.booking.confirmTitle)),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),
@@ -115,15 +115,20 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _InfoRow(label: 'Doctor', value: widget.doctor.fullName),
-                    _InfoRow(label: 'Workplace', value: workplace.name),
                     _InfoRow(
-                        label: 'Address',
+                        label: context.t.booking.doctorLabel,
+                        value: widget.doctor.fullName),
+                    _InfoRow(
+                        label: context.t.booking.workplaceLabel,
+                        value: workplace.name),
+                    _InfoRow(
+                        label: context.t.booking.addressLabel,
                         value: '${workplace.address}, ${workplace.city}'),
                     _InfoRow(
-                        label: 'Start', value: fmt.format(widget.slot.startsAt)),
+                        label: context.t.booking.startLabel,
+                        value: fmt.format(widget.slot.startsAt)),
                     _InfoRow(
-                        label: 'End',
+                        label: context.t.booking.endLabel,
                         value: fmt.format(widget.slot.endsAt),
                         last: true),
                   ],
@@ -132,8 +137,8 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
               const Gap(AppSpacing.md),
               TextField(
                 controller: _reasonController,
-                decoration: const InputDecoration(
-                  labelText: 'Reason for visit (optional)',
+                decoration: InputDecoration(
+                  labelText: context.t.booking.reasonForVisit,
                   alignLabelWithHint: true,
                 ),
                 maxLines: 3,
@@ -148,7 +153,7 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
       ),
       bottomNavigationBar: BottomActionBar(
         child: LoadingFilledButton(
-          label: 'Confirm Booking',
+          label: context.t.booking.confirmButton,
           loading: _loading,
           onPressed: _confirm,
         ),

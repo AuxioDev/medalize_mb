@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class DoctorPendingVerificationScreen extends ConsumerWidget {
   const DoctorPendingVerificationScreen({super.key});
@@ -20,11 +21,11 @@ class DoctorPendingVerificationScreen extends ConsumerWidget {
                 const Icon(Icons.hourglass_top_rounded,
                     size: 72, color: AppColors.warning),
                 const SizedBox(height: AppSpacing.lg),
-                Text('Verification Pending',
+                Text(context.t.pendingVerification.title,
                     style: Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
-                  'Your account is under review. We will notify you once it is verified.',
+                  context.t.pendingVerification.message,
                   style: Theme.of(context).textTheme.bodyMedium,
                   textAlign: TextAlign.center,
                 ),
@@ -32,7 +33,7 @@ class DoctorPendingVerificationScreen extends ConsumerWidget {
                 TextButton(
                   onPressed: () =>
                       ref.read(authProvider.notifier).logout(),
-                  child: const Text('Sign Out'),
+                  child: Text(context.t.common.signOut),
                 ),
               ],
             ),

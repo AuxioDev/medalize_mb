@@ -21,6 +21,7 @@ import 'package:medalize_mb/features/appointments/providers/appointment_provider
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class PatientHomeScreen extends ConsumerWidget {
   const PatientHomeScreen({super.key});
@@ -59,8 +60,8 @@ class PatientHomeScreen extends ConsumerWidget {
               AnimatedEntrance(
                 slideY: 0.08,
                 child: GreetingBanner(
-                  title: 'Hello, $name!',
-                  subtitle: 'Find a doctor and\nbook an appointment.',
+                  title: context.t.home.helloPatient(name: name),
+                  subtitle: context.t.home.patientSubtitle,
                   avatarText: name,
                 ),
               ),
@@ -70,8 +71,8 @@ class PatientHomeScreen extends ConsumerWidget {
               AnimatedEntrance(
                 index: 2,
                 child: SectionHeader(
-                  title: 'Upcoming',
-                  actionLabel: 'See all',
+                  title: context.t.home.upcoming,
+                  actionLabel: context.t.common.seeAll,
                   onAction: () => context.push('/patient/appointments'),
                 ),
               ),
@@ -95,7 +96,7 @@ class _QuickActionsRow extends StatelessWidget {
         Expanded(
           child: _ActionCard(
             icon: Icons.search_rounded,
-            label: 'Find Doctor',
+            label: context.t.home.findDoctor,
             onTap: () => context.push('/patient/doctor-search'),
           ),
         ),
@@ -103,7 +104,7 @@ class _QuickActionsRow extends StatelessWidget {
         Expanded(
           child: _ActionCard(
             icon: Icons.calendar_month_outlined,
-            label: 'My Appointments',
+            label: context.t.home.myAppointments,
             onTap: () => context.push('/patient/appointments'),
           ),
         ),
@@ -171,9 +172,9 @@ class _UpcomingAppointments extends ConsumerWidget {
       ),
       error: (_, _) => EmptyState(
         icon: Icons.cloud_off_outlined,
-        title: 'Something went wrong',
-        subtitle: 'Could not load appointments',
-        actionLabel: 'Retry',
+        title: context.t.common.somethingWrong,
+        subtitle: context.t.home.couldNotLoadAppointments,
+        actionLabel: context.t.common.retry,
         onAction: () => ref.invalidate(patientAppointmentsProvider),
       ),
       data: (all) {
@@ -181,9 +182,9 @@ class _UpcomingAppointments extends ConsumerWidget {
         if (upcoming.isEmpty) {
           return EmptyState(
             icon: Icons.calendar_today_outlined,
-            title: 'No upcoming appointments',
-            subtitle: 'Book your first appointment with a doctor',
-            actionLabel: 'Find a Doctor',
+            title: context.t.home.noUpcoming,
+            subtitle: context.t.home.bookFirst,
+            actionLabel: context.t.home.findADoctor,
             onAction: () => context.push('/patient/doctor-search'),
           );
         }

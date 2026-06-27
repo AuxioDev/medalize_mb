@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 // ── Country data ──────────────────────────────────────────────────────────────
 
@@ -108,7 +109,7 @@ class PhoneField extends StatefulWidget {
     this.textInputAction,
     this.onFieldSubmitted,
     this.onCountryChanged,
-    this.label = 'Phone Number',
+    this.label,
     this.hint = '501234567',
     this.optional = false,
   });
@@ -118,7 +119,9 @@ class PhoneField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onFieldSubmitted;
   final ValueChanged<CountryCode>? onCountryChanged;
-  final String label;
+
+  /// Defaults to the localized "Phone Number" label when null.
+  final String? label;
   final String? hint;
   final bool optional;
 
@@ -176,7 +179,7 @@ class _PhoneFieldState extends State<PhoneField> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.label,
+              widget.label ?? context.t.phoneField.label,
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: c.textPrimary,
@@ -352,9 +355,9 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
               ),
             ),
             const SizedBox(height: 14),
-            const Text(
-              'Select Country',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            Text(
+              context.t.phoneField.selectCountry,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
             // ── Search ────────────────────────────────────────────────
@@ -365,7 +368,7 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
                 onChanged: _filter,
                 autofocus: true,
                 decoration: InputDecoration(
-                  hintText: 'Search country or code…',
+                  hintText: context.t.phoneField.searchCountry,
                   prefixIcon: const Icon(Icons.search_rounded, size: 20),
                   suffixIcon: _search.text.isNotEmpty
                       ? IconButton(
@@ -388,7 +391,7 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
               child: _visible.isEmpty
                   ? Center(
                       child: Text(
-                        'No countries found',
+                        context.t.phoneField.noCountriesFound,
                         style: TextStyle(color: c.textSecondary),
                       ),
                     )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medalize_mb/core/constants/app_strings.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
@@ -88,7 +88,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
       if (!mounted) return;
       AppSnackBar.show(
         context,
-        AppStrings.passwordResetSuccess,
+        t.resetPassword.success,
         type: SnackBarType.success,
       );
       context.go('/auth/login');
@@ -116,10 +116,10 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
           children: [
             _Section(
               anim: _headerAnim,
-              child: const AuthCardHeader(
+              child: AuthCardHeader(
                 icon: Icons.lock_reset_rounded,
-                title: AppStrings.resetPasswordTitle,
-                subtitle: AppStrings.resetPasswordSubtitle,
+                title: context.t.resetPassword.title,
+                subtitle: context.t.resetPassword.subtitle,
               ),
             ),
             const SizedBox(height: 28),
@@ -130,7 +130,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Verification code',
+                    context.t.auth.verificationCode,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
@@ -147,8 +147,8 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                   const SizedBox(height: 16),
                   AuthCardField(
                     controller: _passwordController,
-                    label: AppStrings.password,
-                    hint: AppStrings.passwordHint,
+                    label: context.t.auth.password,
+                    hint: context.t.auth.passwordHint,
                     obscureText: _obscurePassword,
                     textInputAction: TextInputAction.next,
                     suffix: VisibilityToggle(
@@ -161,8 +161,8 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                   const SizedBox(height: 12),
                   AuthCardField(
                     controller: _confirmController,
-                    label: AppStrings.confirmPassword,
-                    hint: AppStrings.passwordHint,
+                    label: context.t.auth.confirmPassword,
+                    hint: context.t.auth.passwordHint,
                     obscureText: _obscureConfirm,
                     textInputAction: TextInputAction.done,
                     onFieldSubmitted: (_) => _submit(),
@@ -185,7 +185,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AnimatedButton(
-                    label: AppStrings.resetPasswordButton,
+                    label: context.t.resetPassword.button,
                     isLoading: _isLoading,
                     onPressed: _isLoading || !_isFormValid ? null : _submit,
                   ),
@@ -194,7 +194,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
                     child: TextButton.icon(
                       onPressed: () => context.pop(),
                       icon: const Icon(Icons.arrow_back_rounded, size: 16),
-                      label: const Text('Back'),
+                      label: Text(context.t.common.back),
                     ),
                   ),
                 ],

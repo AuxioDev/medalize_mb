@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
@@ -15,6 +14,7 @@ import 'package:medalize_mb/features/auth/presentation/widgets/password_strength
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
@@ -108,7 +108,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   Future<void> _submit() async {
     setState(() => _fieldErrors = {});
     if (_selectedRole == null) {
-      AppSnackBar.show(context, AppStrings.roleRequired, type: SnackBarType.error);
+      AppSnackBar.show(context, t.validation.roleRequired, type: SnackBarType.error);
       return;
     }
     if (!_formKey.currentState!.validate()) return;
@@ -149,10 +149,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
               // ── Header ───────────────────────────────────────────
               _Section(
                 anim: _headerAnim,
-                child: const AuthCardHeader(
+                child: AuthCardHeader(
                   icon: Icons.medical_services_rounded,
-                  title: AppStrings.createYourAccount,
-                  subtitle: AppStrings.joinMedalize,
+                  title: context.t.auth.createYourAccount,
+                  subtitle: context.t.auth.joinMedalize,
                 ),
               ),
               const SizedBox(height: 24),
@@ -169,26 +169,28 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                         Expanded(
                           child: AuthCardField(
                             controller: _firstNameController,
-                            label: AppStrings.firstName,
+                            label: context.t.auth.firstName,
                             keyboardType: TextInputType.name,
                             autofillHints: const [AutofillHints.givenName],
                             textInputAction: TextInputAction.next,
                             errorText: _fieldErrors['first_name']?.firstOrNull,
                             inputFormatters: _nameFormatters,
-                            validator: (v) => Validators.name(v, label: 'First name'),
+                            validator: (v) =>
+                                Validators.name(v, label: context.t.auth.firstName),
                           ),
                         ),
                         const SizedBox(width: 10),
                         Expanded(
                           child: AuthCardField(
                             controller: _lastNameController,
-                            label: AppStrings.lastName,
+                            label: context.t.auth.lastName,
                             keyboardType: TextInputType.name,
                             autofillHints: const [AutofillHints.familyName],
                             textInputAction: TextInputAction.next,
                             errorText: _fieldErrors['last_name']?.firstOrNull,
                             inputFormatters: _nameFormatters,
-                            validator: (v) => Validators.name(v, label: 'Last name'),
+                            validator: (v) =>
+                                Validators.name(v, label: context.t.auth.lastName),
                           ),
                         ),
                       ],
@@ -198,8 +200,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     // Email
                     AuthCardField(
                       controller: _emailController,
-                      label: AppStrings.email,
-                      hint: AppStrings.emailHint,
+                      label: context.t.auth.email,
+                      hint: context.t.auth.emailHint,
                       keyboardType: TextInputType.emailAddress,
                       autofillHints: const [AutofillHints.newUsername],
                       textInputAction: TextInputAction.next,
@@ -212,7 +214,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     PhoneField(
                       controller: _phoneController,
                       textInputAction: TextInputAction.next,
-                      label: 'Phone Number (Optional)',
+                      label: context.t.phoneField.labelOptional,
                       hint: '501234567',
                       optional: true,
                       onCountryChanged: (c) => setState(() => _dialCode = c.dialCode),
@@ -221,7 +223,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
 
                     // Role selector
                     Text(
-                      AppStrings.iAmA,
+                      context.t.auth.iAmA,
                       style: Theme.of(context)
                           .textTheme
                           .labelMedium
@@ -230,16 +232,16 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     const SizedBox(height: 6),
                     SegmentedButton<String>(
                       showSelectedIcon: false,
-                      segments: const [
+                      segments: [
                         ButtonSegment(
                           value: 'patient',
-                          label: Text('Patient'),
-                          icon: Icon(Icons.person_outline_rounded, size: 16),
+                          label: Text(context.t.common.patient),
+                          icon: const Icon(Icons.person_outline_rounded, size: 16),
                         ),
                         ButtonSegment(
                           value: 'doctor',
-                          label: Text('Doctor'),
-                          icon: Icon(Icons.medical_services_outlined, size: 16),
+                          label: Text(context.t.common.doctor),
+                          icon: const Icon(Icons.medical_services_outlined, size: 16),
                         ),
                       ],
                       selected: _selectedRole != null
@@ -265,7 +267,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     // Password
                     AuthCardField(
                       controller: _passwordController,
-                      label: AppStrings.password,
+                      label: context.t.auth.password,
                       autofillHints: const [AutofillHints.newPassword],
                       textInputAction: TextInputAction.next,
                       obscureText: _obscurePassword,
@@ -288,7 +290,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     // Confirm password
                     AuthCardField(
                       controller: _confirmController,
-                      label: AppStrings.confirmPassword,
+                      label: context.t.auth.confirmPassword,
                       autofillHints: const [AutofillHints.newPassword],
                       textInputAction: TextInputAction.done,
                       obscureText: _obscureConfirm,
@@ -320,7 +322,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AnimatedButton(
-                      label: AppStrings.register,
+                      label: context.t.auth.register,
                       isLoading: isLoading,
                       onPressed: isLoading || !_isFormValid ? null : _submit,
                     ),
@@ -329,12 +331,12 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          AppStrings.haveAccount,
+                          context.t.auth.haveAccount,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         TextButton(
                           onPressed: () => context.pop(),
-                          child: const Text(AppStrings.signIn),
+                          child: Text(context.t.auth.signIn),
                         ),
                       ],
                     ),

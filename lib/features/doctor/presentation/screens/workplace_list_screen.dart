@@ -14,6 +14,7 @@ import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 final _workplacesProvider =
     FutureProvider<List<Map<String, dynamic>>>((ref) async {
@@ -29,7 +30,7 @@ class WorkplaceListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(_workplacesProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text('My Workplaces')),
+      appBar: AppBar(title: Text(context.t.workplaces.title)),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final added = await context.push<bool>('/doctor/add-workplace');
@@ -53,9 +54,9 @@ class WorkplaceListScreen extends ConsumerWidget {
             onRefresh: () async => ref.invalidate(_workplacesProvider),
             child: EmptyState(
               icon: Icons.cloud_off_outlined,
-              title: 'Something went wrong',
-              subtitle: 'Could not load workplaces',
-              actionLabel: 'Retry',
+              title: context.t.common.somethingWrong,
+              subtitle: context.t.workplaces.couldNotLoad,
+              actionLabel: context.t.common.retry,
               onAction: () => ref.invalidate(_workplacesProvider),
             ),
           ),
@@ -63,10 +64,10 @@ class WorkplaceListScreen extends ConsumerWidget {
             if (workplaces.isEmpty) {
               return RefreshableView(
                 onRefresh: () async => ref.invalidate(_workplacesProvider),
-                child: const EmptyState(
+                child: EmptyState(
                   icon: Icons.business_outlined,
-                  title: 'No workplaces yet',
-                  subtitle: 'Tap + to add your first workplace',
+                  title: context.t.workplaces.noWorkplacesYet,
+                  subtitle: context.t.workplaces.tapToAdd,
                 ),
               );
             }
@@ -113,12 +114,13 @@ class _WorkplaceCard extends ConsumerWidget {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Delete Workplace'),
-        content: Text('Delete "${workplace['name']}"?'),
+        title: Text(context.t.workplaces.deleteTitle),
+        content: Text(context.t.workplaces
+            .deleteConfirm(name: workplace['name'] as String)),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: const Text('Cancel')),
+              child: Text(context.t.common.cancel)),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
             style: FilledButton.styleFrom(
@@ -126,7 +128,7 @@ class _WorkplaceCard extends ConsumerWidget {
               minimumSize: Size.zero,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             ),
-            child: const Text('Delete'),
+            child: Text(context.t.common.delete),
           ),
         ],
       ),
@@ -137,8 +139,8 @@ class _WorkplaceCard extends ConsumerWidget {
       onChanged();
     } on DioException catch (e) {
       if (context.mounted) {
-        final msg =
-            (e.response?.data as Map?)?['message'] ?? 'Cannot delete workplace';
+        final msg = (e.response?.data as Map?)?['message'] ??
+            context.t.workplaces.cannotDelete;
         AppSnackBar.show(context, msg as String, type: SnackBarType.error);
       }
     }
@@ -187,8 +189,8 @@ class _WorkplaceCard extends ConsumerWidget {
                           color: AppColors.success.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(AppRadius.xl),
                         ),
-                        child: const Text('Primary',
-                            style: TextStyle(
+                        child: Text(context.t.common.primary,
+                            style: const TextStyle(
                                 color: AppColors.success,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600)),
@@ -224,15 +226,18 @@ class _WorkplaceCard extends ConsumerWidget {
               }
             },
             itemBuilder: (_) => [
-              const PopupMenuItem(value: 'hours', child: Text('Working Hours')),
-              const PopupMenuItem(value: 'edit', child: Text('Edit')),
+              PopupMenuItem(
+                  value: 'hours',
+                  child: Text(context.t.workplaces.workingHours)),
+              PopupMenuItem(value: 'edit', child: Text(context.t.common.edit)),
               if (!isPrimary)
-                const PopupMenuItem(
-                    value: 'primary', child: Text('Set as Primary')),
-              const PopupMenuItem(
+                PopupMenuItem(
+                    value: 'primary',
+                    child: Text(context.t.workplaces.setAsPrimary)),
+              PopupMenuItem(
                 value: 'delete',
-                child:
-                    Text('Delete', style: TextStyle(color: AppColors.error)),
+                child: Text(context.t.common.delete,
+                    style: const TextStyle(color: AppColors.error)),
               ),
             ],
           ),

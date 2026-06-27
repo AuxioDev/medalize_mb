@@ -25,6 +25,7 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class DoctorHomeScreen extends ConsumerWidget {
   const DoctorHomeScreen({super.key});
@@ -63,8 +64,8 @@ class DoctorHomeScreen extends ConsumerWidget {
               AnimatedEntrance(
                 slideY: 0.08,
                 child: GreetingBanner(
-                  title: 'Hello, Dr. $name!',
-                  subtitle: 'Manage your schedule\nand appointments.',
+                  title: context.t.home.helloDoctor(name: name),
+                  subtitle: context.t.home.doctorSubtitle,
                   avatarText: name,
                 ),
               ),
@@ -75,8 +76,8 @@ class DoctorHomeScreen extends ConsumerWidget {
               AnimatedEntrance(
                 index: 2,
                 child: SectionHeader(
-                  title: 'Pending Requests',
-                  actionLabel: 'See all',
+                  title: context.t.home.pendingRequests,
+                  actionLabel: context.t.common.seeAll,
                   onAction: () => context.push('/doctor/appointments'),
                 ),
               ),
@@ -105,22 +106,22 @@ class _DoctorQuickActions extends StatelessWidget {
       children: [
         _ActionCard(
           icon: Icons.calendar_month_outlined,
-          label: 'Appointments',
+          label: context.t.home.appointments,
           onTap: () => context.push('/doctor/appointments'),
         ),
         _ActionCard(
           icon: Icons.business_outlined,
-          label: 'Workplaces',
+          label: context.t.home.workplaces,
           onTap: () => context.push('/doctor/workplaces'),
         ),
         _ActionCard(
           icon: Icons.block_outlined,
-          label: 'Block Time',
+          label: context.t.home.blockTime,
           onTap: () => context.push('/doctor/block-time'),
         ),
         _ActionCard(
           icon: Icons.person_outline_rounded,
-          label: 'Profile',
+          label: context.t.home.profile,
           onTap: () => context.push('/shared/profile'),
         ),
       ],
@@ -188,18 +189,18 @@ class _PendingAppointmentsList extends ConsumerWidget {
       ),
       error: (_, _) => EmptyState(
         icon: Icons.cloud_off_outlined,
-        title: 'Something went wrong',
-        subtitle: 'Could not load appointments',
-        actionLabel: 'Retry',
+        title: context.t.common.somethingWrong,
+        subtitle: context.t.home.couldNotLoadAppointments,
+        actionLabel: context.t.common.retry,
         onAction: () => ref.invalidate(doctorAppointmentsProvider),
       ),
       data: (all) {
         final pending = all.where((a) => a.status == 'pending').take(5).toList();
         if (pending.isEmpty) {
-          return const EmptyState(
+          return EmptyState(
             icon: Icons.check_circle_outline,
-            title: 'All caught up',
-            subtitle: 'No pending appointment requests',
+            title: context.t.home.allCaughtUp,
+            subtitle: context.t.home.noPendingRequests,
           );
         }
         return Column(
@@ -300,7 +301,7 @@ class _PendingCard extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppRadius.sm + 2)),
                   ),
-                  child: const Text('Decline'),
+                  child: Text(context.t.common.decline),
                 ),
               ),
               const Gap(8),
@@ -315,7 +316,7 @@ class _PendingCard extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppRadius.sm + 2)),
                   ),
-                  child: const Text('Confirm'),
+                  child: Text(context.t.common.confirm),
                 ),
               ),
             ],

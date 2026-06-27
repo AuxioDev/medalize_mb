@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -43,9 +44,9 @@ class SplashScreen extends StatelessWidget {
                   .fadeIn(delay: 280.ms, duration: 400.ms)
                   .slideY(begin: 0.2, end: 0, delay: 280.ms, duration: 400.ms, curve: Curves.easeOut),
               const SizedBox(height: 6),
-              const Text(
-                'Your health, simplified',
-                style: TextStyle(color: Colors.white70, fontSize: 14),
+              Text(
+                context.t.splash.tagline,
+                style: const TextStyle(color: Colors.white70, fontSize: 14),
               )
                   .animate()
                   .fadeIn(delay: 380.ms, duration: 400.ms),

@@ -9,16 +9,21 @@ import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
-const _dayNames = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday'
-];
+/// Localized weekday name for index 0 (Monday) … 6 (Sunday).
+String _dayName(BuildContext context, int i) {
+  final d = context.t.workingHours.days;
+  return [
+    d.monday,
+    d.tuesday,
+    d.wednesday,
+    d.thursday,
+    d.friday,
+    d.saturday,
+    d.sunday,
+  ][i];
+}
 
 class _DayState {
   bool isActive;
@@ -122,12 +127,14 @@ class _WorkingHoursEditorState
       await dio.put('/doctor/workplaces/${widget.workplaceId}/hours/',
           data: payload);
       if (mounted) {
-        AppSnackBar.show(context, 'Working hours saved', type: SnackBarType.success);
+        AppSnackBar.show(context, context.t.workingHours.saved,
+            type: SnackBarType.success);
         context.pop(true);
       }
     } catch (_) {
       if (mounted) {
-        AppSnackBar.show(context, 'Failed to save working hours', type: SnackBarType.error);
+        AppSnackBar.show(context, context.t.workingHours.failedToSave,
+            type: SnackBarType.error);
       }
     } finally {
       if (mounted) setState(() => _saving = false);
@@ -138,7 +145,7 @@ class _WorkingHoursEditorState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Working Hours'),
+        title: Text(context.t.workingHours.title),
         actions: [
           TextButton(
             onPressed: _saving ? null : _save,
@@ -148,7 +155,7 @@ class _WorkingHoursEditorState
                     width: 16,
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : const Text('Save'),
+                : Text(context.t.common.save),
           ),
         ],
       ),
@@ -180,7 +187,7 @@ class _WorkingHoursEditorState
                         children: [
                           SizedBox(
                             width: 92,
-                            child: Text(_dayNames[i],
+                            child: Text(_dayName(context, i),
                                 style:
                                     Theme.of(context).textTheme.labelLarge),
                           ),

@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/doctor/data/repository/doctor_profile_repository.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 const _kSlotDurations = [15, 20, 30, 45, 60];
 const _kTotalSteps = 3;
@@ -51,13 +52,15 @@ class _DoctorOnboardingScreenState
   String? _validateStep(int step) {
     switch (step) {
       case 0:
-        if (_specialization == null) return 'Please select your specialization.';
+        if (_specialization == null) {
+          return context.t.onboarding.selectSpecError;
+        }
         if (_licenseController.text.trim().isEmpty) {
-          return 'Please enter your license number.';
+          return context.t.onboarding.licenseError;
         }
         return null;
       case 2:
-        if (_diplomaPath == null) return 'Please attach your diploma.';
+        if (_diplomaPath == null) return context.t.onboarding.diplomaError;
         return null;
       default:
         return null;
@@ -121,7 +124,7 @@ class _DoctorOnboardingScreenState
       setState(() => _error = e.fieldErrors.values
           .expand((v) => v)
           .join('\n')
-          .ifEmptyThen('Please check your details and try again.'));
+          .ifEmptyThen(context.t.onboarding.checkDetails));
     } on ApiException catch (e) {
       setState(() => _error = e.userMessage);
     } finally {
@@ -133,11 +136,11 @@ class _DoctorOnboardingScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Complete Your Profile'),
+        title: Text(context.t.onboarding.title),
         actions: [
           TextButton(
             onPressed: () => ref.read(authProvider.notifier).logout(),
-            child: const Text('Sign Out'),
+            child: Text(context.t.common.signOut),
           ),
         ],
       ),
@@ -176,14 +179,16 @@ class _DoctorOnboardingScreenState
                         style: OutlinedButton.styleFrom(
                           minimumSize: const Size.fromHeight(52),
                         ),
-                        child: const Text('Back'),
+                        child: Text(context.t.common.back),
                       ),
                     ),
                     const Gap(12),
                   ],
                   Expanded(
                     child: LoadingFilledButton(
-                      label: _step == _kTotalSteps - 1 ? 'Finish' : 'Continue',
+                      label: _step == _kTotalSteps - 1
+                          ? context.t.onboarding.finish
+                          : context.t.onboarding.continueButton,
                       loading: _submitting,
                       onPressed: () {
                         HapticFeedback.lightImpact();
@@ -204,23 +209,23 @@ class _DoctorOnboardingScreenState
   Widget _stepProfessionalInfo() {
     final specsAsync = ref.watch(specializationsProvider);
     return _StepScroll(
-      title: 'Professional information',
-      subtitle: 'Tell patients about your practice.',
+      title: context.t.onboarding.professionalInfo,
+      subtitle: context.t.onboarding.tellPatients,
       children: [
-        _FieldLabel('Specialization'),
+        _FieldLabel(context.t.onboarding.specialization),
         const Gap(6),
         specsAsync.when(
           loading: () => const _LoadingField(),
           error: (_, _) => Text(
-            'Could not load specializations. Pull back and retry.',
+            context.t.onboarding.couldNotLoadSpecs,
             style: TextStyle(color: context.colors.textSecondary, fontSize: 13),
           ),
           data: (options) => DropdownButtonFormField<String>(
             initialValue: _specialization,
             isExpanded: true,
-            decoration: const InputDecoration(
-              hintText: 'Select your specialization',
-              prefixIcon: Icon(Icons.medical_services_outlined, size: 20),
+            decoration: InputDecoration(
+              hintText: context.t.onboarding.selectSpecialization,
+              prefixIcon: const Icon(Icons.medical_services_outlined, size: 20),
             ),
             items: [
               for (final o in options)
@@ -230,24 +235,24 @@ class _DoctorOnboardingScreenState
           ),
         ),
         const Gap(AppSpacing.md),
-        _FieldLabel('License number'),
+        _FieldLabel(context.t.onboarding.licenseNumber),
         const Gap(6),
         TextField(
           controller: _licenseController,
           textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(
-            hintText: 'e.g. AZ-123456',
-            prefixIcon: Icon(Icons.badge_outlined, size: 20),
+          decoration: InputDecoration(
+            hintText: context.t.onboarding.licenseHint,
+            prefixIcon: const Icon(Icons.badge_outlined, size: 20),
           ),
         ),
         const Gap(AppSpacing.md),
-        _FieldLabel('Bio (optional)'),
+        _FieldLabel(context.t.onboarding.bio),
         const Gap(6),
         TextField(
           controller: _bioController,
           maxLines: 4,
-          decoration: const InputDecoration(
-            hintText: 'A short introduction patients will see on your profile.',
+          decoration: InputDecoration(
+            hintText: context.t.onboarding.bioHint,
             alignLabelWithHint: true,
           ),
         ),
@@ -258,8 +263,8 @@ class _DoctorOnboardingScreenState
   // ── Step 2: slot duration ─────────────────────────────────────────────────
   Widget _stepSlotDuration() {
     return _StepScroll(
-      title: 'Appointment length',
-      subtitle: 'How long is a single appointment slot?',
+      title: context.t.onboarding.appointmentLength,
+      subtitle: context.t.onboarding.slotQuestion,
       children: [
         AppCard(
           margin: EdgeInsets.zero,
@@ -286,7 +291,7 @@ class _DoctorOnboardingScreenState
                   const Gap(6),
                   Expanded(
                     child: Text(
-                      'You can change this later from your profile.',
+                      context.t.onboarding.changeLater,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
@@ -304,10 +309,8 @@ class _DoctorOnboardingScreenState
     final c = context.colors;
     final picked = _diplomaPath != null;
     return _StepScroll(
-      title: 'Verification document',
-      subtitle:
-          'Upload your medical diploma or license. An admin reviews it before '
-          'your account is verified.',
+      title: context.t.onboarding.verificationDoc,
+      subtitle: context.t.onboarding.uploadDiploma,
       children: [
         GestureDetector(
           onTap: _submitting ? null : _pickDiploma,
@@ -333,7 +336,7 @@ class _DoctorOnboardingScreenState
                 ),
                 const Gap(10),
                 Text(
-                  picked ? _diplomaName! : 'Tap to choose a file',
+                  picked ? _diplomaName! : context.t.onboarding.tapToChoose,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.labelLarge,
                   maxLines: 2,
@@ -342,8 +345,8 @@ class _DoctorOnboardingScreenState
                 const Gap(4),
                 Text(
                   picked
-                      ? 'Tap to replace'
-                      : 'Any file type, up to 10 MB',
+                      ? context.t.onboarding.tapToReplace
+                      : context.t.onboarding.anyFileType,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
@@ -480,7 +483,7 @@ class _DurationChip extends StatelessWidget {
           ),
         ),
         child: Text(
-          '$minutes min',
+          context.t.onboarding.minutes(min: minutes),
           style: TextStyle(
             color: selected ? Colors.white : c.textPrimary,
             fontWeight: FontWeight.w600,

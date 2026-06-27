@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -72,13 +73,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     } on ApiException catch (e) {
       if (mounted) setState(() => _saveError = e.userMessage);
     } catch (_) {
-      if (mounted) setState(() => _saveError = 'Failed to save profile.');
+      if (mounted) setState(() => _saveError = context.t.profile.failedToSave);
     } finally {
       if (mounted) setState(() => _saving = false);
     }
   }
 
   void _showChangePassword() {
+    final t = context.t;
     final oldCtrl = TextEditingController();
     final newCtrl = TextEditingController();
     final confirmCtrl = TextEditingController();
@@ -96,30 +98,31 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Change Password',
+            Text(t.profile.changePassword,
                 style: Theme.of(ctx).textTheme.titleLarge),
             const Gap(AppSpacing.md),
             TextField(
               controller: oldCtrl,
               obscureText: true,
-              decoration: const InputDecoration(labelText: 'Current Password'),
+              decoration:
+                  InputDecoration(labelText: t.profile.currentPassword),
             ),
             const Gap(12),
             TextField(
               controller: newCtrl,
               obscureText: true,
-              decoration: const InputDecoration(labelText: 'New Password'),
+              decoration: InputDecoration(labelText: t.profile.newPassword),
             ),
             const Gap(12),
             TextField(
               controller: confirmCtrl,
               obscureText: true,
               decoration:
-                  const InputDecoration(labelText: 'Confirm New Password'),
+                  InputDecoration(labelText: t.profile.confirmNewPassword),
             ),
             const Gap(AppSpacing.md),
             LoadingFilledButton(
-              label: 'Change Password',
+              label: t.profile.changePassword,
               onPressed: () async {
                 if (newCtrl.text != confirmCtrl.text) return;
                 try {
@@ -146,12 +149,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(context.t.profile.title),
         actions: [
           if (!_editing)
             TextButton(
               onPressed: () => setState(() => _editing = true),
-              child: const Text('Edit'),
+              child: Text(context.t.common.edit),
             )
           else
             TextButton(
@@ -162,7 +165,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       width: 16,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Save'),
+                  : Text(context.t.common.save),
             ),
         ],
       ),
@@ -178,20 +181,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               TextField(
                 controller: _firstName,
                 enabled: _editing,
-                decoration: const InputDecoration(labelText: 'First Name'),
+                decoration:
+                    InputDecoration(labelText: context.t.profile.firstName),
               ),
               const Gap(12),
               TextField(
                 controller: _lastName,
                 enabled: _editing,
-                decoration: const InputDecoration(labelText: 'Last Name'),
+                decoration:
+                    InputDecoration(labelText: context.t.profile.lastName),
               ),
               const Gap(12),
               TextField(
                 controller: _phone,
                 enabled: _editing,
                 keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(labelText: 'Phone'),
+                decoration:
+                    InputDecoration(labelText: context.t.profile.phone),
               ),
               if (_saveError != null) ...[
                 const Gap(AppSpacing.sm),
@@ -206,7 +212,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   child: ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.lock_outline),
-                    title: const Text('Change Password'),
+                    title: Text(context.t.profile.changePassword),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: _showChangePassword,
                   ),

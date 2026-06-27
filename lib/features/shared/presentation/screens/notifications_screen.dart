@@ -14,6 +14,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/notifications/data/models/notification_model.dart';
 import 'package:medalize_mb/features/notifications/data/repository/notification_repository.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class NotificationsScreen extends ConsumerWidget {
   const NotificationsScreen({super.key});
@@ -22,7 +23,7 @@ class NotificationsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(notificationsProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text('Notifications')),
+      appBar: AppBar(title: Text(context.t.notifications.title)),
       body: ResponsiveBody(
         child: async.when(
           loading: () => const Padding(
@@ -40,9 +41,9 @@ class NotificationsScreen extends ConsumerWidget {
             onRefresh: () async => ref.invalidate(notificationsProvider),
             child: EmptyState(
               icon: Icons.cloud_off_outlined,
-              title: 'Something went wrong',
-              subtitle: 'Could not load notifications',
-              actionLabel: 'Retry',
+              title: context.t.common.somethingWrong,
+              subtitle: context.t.notifications.couldNotLoad,
+              actionLabel: context.t.common.retry,
               onAction: () => ref.invalidate(notificationsProvider),
             ),
           ),
@@ -50,10 +51,10 @@ class NotificationsScreen extends ConsumerWidget {
             if (notifications.isEmpty) {
               return RefreshableView(
                 onRefresh: () async => ref.invalidate(notificationsProvider),
-                child: const EmptyState(
+                child: EmptyState(
                   icon: Icons.notifications_none_outlined,
-                  title: 'No notifications',
-                  subtitle: 'You are all caught up',
+                  title: context.t.notifications.noNotifications,
+                  subtitle: context.t.notifications.allCaughtUp,
                 ),
               );
             }

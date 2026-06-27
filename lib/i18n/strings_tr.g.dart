@@ -1,0 +1,823 @@
+///
+/// Generated file. Do not edit.
+///
+// coverage:ignore-file
+// ignore_for_file: type=lint, unused_import
+// dart format off
+
+import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
+import 'package:slang/generated.dart';
+import 'strings.g.dart';
+
+// Path: <root>
+class TranslationsTr extends Translations with BaseTranslations<AppLocale, Translations> {
+	/// You can call this constructor and build your own translation instance of this locale.
+	/// Constructing via the enum [AppLocale.build] is preferred.
+	TranslationsTr({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver, TranslationMetadata<AppLocale, Translations>? meta})
+		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
+		  $meta = meta ?? TranslationMetadata(
+		    locale: AppLocale.tr,
+		    overrides: overrides ?? {},
+		    cardinalResolver: cardinalResolver,
+		    ordinalResolver: ordinalResolver,
+		  ),
+		  super(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver) {
+		super.$meta.setFlatMapFunction($meta.getTranslation); // copy base translations to super.$meta
+		$meta.setFlatMapFunction(_flatMapFunction);
+	}
+
+	/// Metadata for the translations of <tr>.
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
+
+	/// Access flat map
+	@override dynamic operator[](String key) => $meta.getTranslation(key) ?? super.$meta.getTranslation(key);
+
+	late final TranslationsTr _root = this; // ignore: unused_field
+
+	@override 
+	TranslationsTr $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsTr(meta: meta ?? this.$meta);
+
+	// Translations
+	@override String get appName => 'Medalize';
+	@override late final _Translations$common$tr common = _Translations$common$tr._(_root);
+	@override late final _Translations$auth$tr auth = _Translations$auth$tr._(_root);
+	@override late final _Translations$forgotPassword$tr forgotPassword = _Translations$forgotPassword$tr._(_root);
+	@override late final _Translations$resetPassword$tr resetPassword = _Translations$resetPassword$tr._(_root);
+	@override late final _Translations$validation$tr validation = _Translations$validation$tr._(_root);
+	@override late final _Translations$errors$tr errors = _Translations$errors$tr._(_root);
+	@override late final _Translations$settings$tr settings = _Translations$settings$tr._(_root);
+	@override late final _Translations$status$tr status = _Translations$status$tr._(_root);
+	@override late final _Translations$home$tr home = _Translations$home$tr._(_root);
+	@override late final _Translations$appointments$tr appointments = _Translations$appointments$tr._(_root);
+	@override late final _Translations$booking$tr booking = _Translations$booking$tr._(_root);
+	@override late final _Translations$doctorSearch$tr doctorSearch = _Translations$doctorSearch$tr._(_root);
+	@override late final _Translations$doctorDetail$tr doctorDetail = _Translations$doctorDetail$tr._(_root);
+	@override late final _Translations$profile$tr profile = _Translations$profile$tr._(_root);
+	@override late final _Translations$notifications$tr notifications = _Translations$notifications$tr._(_root);
+	@override late final _Translations$workplaces$tr workplaces = _Translations$workplaces$tr._(_root);
+	@override late final _Translations$addWorkplace$tr addWorkplace = _Translations$addWorkplace$tr._(_root);
+	@override late final _Translations$workingHours$tr workingHours = _Translations$workingHours$tr._(_root);
+	@override late final _Translations$blockTime$tr blockTime = _Translations$blockTime$tr._(_root);
+	@override late final _Translations$onboarding$tr onboarding = _Translations$onboarding$tr._(_root);
+	@override late final _Translations$pendingVerification$tr pendingVerification = _Translations$pendingVerification$tr._(_root);
+	@override late final _Translations$phoneField$tr phoneField = _Translations$phoneField$tr._(_root);
+	@override late final _Translations$splash$tr splash = _Translations$splash$tr._(_root);
+}
+
+// Path: common
+class _Translations$common$tr extends Translations$common$en {
+	_Translations$common$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get cancel => 'İptal';
+	@override String get logout => 'Çıkış Yap';
+	@override String get doctor => 'Doktor';
+	@override String get patient => 'Hasta';
+	@override String get save => 'Kaydet';
+	@override String get edit => 'Düzenle';
+	@override String get retry => 'Tekrar dene';
+	@override String get back => 'Geri';
+	@override String get ok => 'Tamam';
+	@override String get delete => 'Sil';
+	@override String get keep => 'Vazgeç';
+	@override String get confirm => 'Onayla';
+	@override String get decline => 'Reddet';
+	@override String get primary => 'Birincil';
+	@override String get somethingWrong => 'Bir şeyler ters gitti';
+	@override String get seeAll => 'Tümünü gör';
+	@override String get signOut => 'Çıkış Yap';
+	@override String get search => 'Ara';
+	@override String get tryAgain => 'Lütfen tekrar deneyin';
+	@override String get required => 'Gerekli';
+}
+
+// Path: auth
+class _Translations$auth$tr extends Translations$auth$en {
+	_Translations$auth$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get login => 'Giriş Yap';
+	@override String get register => 'Hesap Oluştur';
+	@override String get signIn => 'Giriş Yap';
+	@override String get signUp => 'Kayıt Ol';
+	@override String get email => 'E-posta';
+	@override String get password => 'Şifre';
+	@override String get confirmPassword => 'Şifreyi Onayla';
+	@override String get firstName => 'Ad';
+	@override String get lastName => 'Soyad';
+	@override String get rememberMe => 'Beni hatırla';
+	@override String get forgotPassword => 'Şifrenizi mi unuttunuz?';
+	@override String get sendResetLink => 'Sıfırlama Kodu Gönder';
+	@override String get noAccount => 'Hesabınız yok mu?';
+	@override String get haveAccount => 'Zaten hesabınız var mı?';
+	@override String get welcomeBack => 'Tekrar hoş geldiniz';
+	@override String get signInToContinue => 'Devam etmek için hesabınıza giriş yapın';
+	@override String get createYourAccount => 'Hesabınızı oluşturun';
+	@override String get joinMedalize => 'Bugün Medalize\'ye katılın';
+	@override String get iAmA => 'Ben bir';
+	@override String get emailHint => 'you@example.com';
+	@override String get passwordHint => '••••••••';
+	@override String get backToSignIn => 'Girişe dön';
+	@override String get verificationCode => 'Doğrulama kodu';
+}
+
+// Path: forgotPassword
+class _Translations$forgotPassword$tr extends Translations$forgotPassword$en {
+	_Translations$forgotPassword$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Şifrenizi mi unuttunuz?';
+	@override String get subtitle => 'E-postanızı girin, size 6 haneli bir sıfırlama kodu gönderelim';
+}
+
+// Path: resetPassword
+class _Translations$resetPassword$tr extends Translations$resetPassword$en {
+	_Translations$resetPassword$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Şifreyi Sıfırla';
+	@override String get subtitle => 'E-postanıza gönderilen kodu girin ve yeni bir şifre seçin';
+	@override String get button => 'Şifreyi Sıfırla';
+	@override String get success => 'Şifre başarıyla sıfırlandı. Lütfen giriş yapın.';
+}
+
+// Path: validation
+class _Translations$validation$tr extends Translations$validation$en {
+	_Translations$validation$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get emailRequired => 'E-posta gerekli';
+	@override String get emailInvalid => 'Geçerli bir e-posta adresi girin';
+	@override String get passwordRequired => 'Şifre gerekli';
+	@override String get passwordTooShort => 'En az 8 karakter gerekli';
+	@override String get passwordNeedsLetter => 'En az bir harf ekleyin';
+	@override String get passwordNeedsDigit => 'En az bir rakam ekleyin';
+	@override String get passwordMismatch => 'Şifreler eşleşmiyor';
+	@override String get passwordConfirmRequired => 'Lütfen şifrenizi onaylayın';
+	@override String get nameMinLength => 'En az 2 karakter olmalı';
+	@override String get roleRequired => 'Lütfen bir rol seçin';
+	@override String get phoneRequired => 'Telefon numarası gerekli';
+	@override String get phoneTooShort => 'Numara çok kısa';
+	@override String get phoneTooLong => 'Numara çok uzun';
+	@override String fieldRequired({required Object field}) => '${field} gerekli';
+	@override String fieldInvalid({required Object field}) => '${field} geçersiz karakterler içeriyor';
+}
+
+// Path: errors
+class _Translations$errors$tr extends Translations$errors$en {
+	_Translations$errors$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get network => 'Ağ hatası. Bağlantınızı kontrol edin.';
+	@override String get rateLimit => 'Çok fazla deneme. Lütfen bekleyip tekrar deneyin.';
+	@override String rateLimitWithSeconds({required Object seconds}) => 'Çok fazla deneme. ${seconds} saniye sonra tekrar deneyin.';
+	@override String get invalidCredentials => 'Geçersiz e-posta veya şifre';
+	@override String get sessionExpired => 'Oturum süresi doldu. Lütfen tekrar giriş yapın.';
+	@override String get authError => 'Kimlik doğrulama hatası. Lütfen tekrar giriş yapın.';
+	@override String get sessionRevoked => 'Oturum iptal edildi. Lütfen tekrar giriş yapın.';
+	@override String get permissionDenied => 'Bunu yapma izniniz yok.';
+	@override String get validationError => 'Doğrulama hatası';
+	@override String serverError({required Object code}) => 'Sunucu hatası (${code}). Lütfen tekrar deneyin.';
+}
+
+// Path: settings
+class _Translations$settings$tr extends Translations$settings$en {
+	_Translations$settings$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ayarlar';
+	@override String get account => 'Hesap';
+	@override String get profile => 'Profil';
+	@override String get notifications => 'Bildirimler';
+	@override String get appearance => 'Görünüm';
+	@override String get themeSystem => 'Sistem';
+	@override String get themeLight => 'Açık';
+	@override String get themeDark => 'Koyu';
+	@override String get language => 'Dil';
+	@override String get languageSystem => 'Sistem varsayılanı';
+	@override String get logoutTitle => 'Çıkış';
+	@override String get logoutConfirm => 'Çıkış yapmak istediğinizden emin misiniz?';
+	@override String get version => 'Medalize v1.0.0';
+}
+
+// Path: status
+class _Translations$status$tr extends Translations$status$en {
+	_Translations$status$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get confirmed => 'Onaylandı';
+	@override String get pending => 'Beklemede';
+	@override String get cancelled => 'İptal edildi';
+	@override String get declined => 'Reddedildi';
+	@override String get requiresRescheduling => 'Yeniden planlama gerekiyor';
+	@override String get completed => 'Tamamlandı';
+}
+
+// Path: home
+class _Translations$home$tr extends Translations$home$en {
+	_Translations$home$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String helloDoctor({required Object name}) => 'Merhaba, Dr. ${name}!';
+	@override String helloPatient({required Object name}) => 'Merhaba, ${name}!';
+	@override String get doctorSubtitle => 'Programınızı ve\nrandevularınızı yönetin.';
+	@override String get patientSubtitle => 'Bir doktor bulun ve\nrandevu alın.';
+	@override String get pendingRequests => 'Bekleyen İstekler';
+	@override String get upcoming => 'Yaklaşan';
+	@override String get findDoctor => 'Doktor Bul';
+	@override String get myAppointments => 'Randevularım';
+	@override String get appointments => 'Randevular';
+	@override String get workplaces => 'İş Yerleri';
+	@override String get blockTime => 'Zamanı Engelle';
+	@override String get profile => 'Profil';
+	@override String get allCaughtUp => 'Her şey güncel';
+	@override String get noPendingRequests => 'Bekleyen randevu isteği yok';
+	@override String get couldNotLoadAppointments => 'Randevular yüklenemedi';
+	@override String get noUpcoming => 'Yaklaşan randevu yok';
+	@override String get bookFirst => 'Bir doktorla ilk randevunuzu alın';
+	@override String get findADoctor => 'Doktor Bul';
+}
+
+// Path: appointments
+class _Translations$appointments$tr extends Translations$appointments$en {
+	_Translations$appointments$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Randevular';
+	@override String get myTitle => 'Randevularım';
+	@override String get tabPending => 'Bekleyen';
+	@override String get tabAll => 'Tümü';
+	@override String get tabUpcoming => 'Yaklaşan';
+	@override String get tabPast => 'Geçmiş';
+	@override String get noPendingRequests => 'Bekleyen istek yok';
+	@override String get newRequestsAppear => 'Yeni randevu istekleri burada görünecek';
+	@override String get noAppointments => 'Randevu yok';
+	@override String get appointmentsAppear => 'Randevularınız burada görünecek';
+	@override String get noUpcoming => 'Yaklaşan randevu yok';
+	@override String get bookFirst => 'Bir doktorla ilk randevunuzu alın';
+	@override String get noPast => 'Geçmiş randevu yok';
+	@override String get pastAppear => 'Tamamlanan ve iptal edilen randevular burada görünür';
+	@override String get couldNotLoad => 'Randevular yüklenemedi';
+	@override String get detailTitle => 'Randevu';
+	@override String get patient => 'Hasta';
+	@override String get doctor => 'Doktor';
+	@override String get workplace => 'İş Yeri';
+	@override String get dateTime => 'Tarih ve Saat';
+	@override String get reason => 'Sebep';
+	@override String get doctorNotes => 'Doktor Notları';
+	@override String get cancelTitle => 'Randevuyu İptal Et';
+	@override String get cancelConfirm => 'Bu randevuyu iptal etmek istediğinizden emin misiniz?';
+	@override String get cancelAction => 'Randevuyu İptal Et';
+	@override String get bookedTitle => 'Randevu alındı!';
+	@override String get bookedMessage => 'Randevu isteğiniz gönderildi.';
+}
+
+// Path: booking
+class _Translations$booking$tr extends Translations$booking$en {
+	_Translations$booking$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String bookWith({required Object name}) => 'Randevu — ${name}';
+	@override String get selectWorkplace => 'İş Yeri Seçin';
+	@override String get pickDate => 'Tarih seçin';
+	@override String get slotsAppear => 'Uygun zaman aralıkları burada görünecek';
+	@override String get couldNotLoadSlots => 'Zaman aralıkları yüklenemedi';
+	@override String get noAvailableSlots => 'Uygun zaman aralığı yok';
+	@override String get noOpenSlots => 'Bu tarih için boş zaman yok. Başka bir gün deneyin.';
+	@override String get confirmTitle => 'Randevuyu Onayla';
+	@override String get reasonForVisit => 'Ziyaret sebebi (isteğe bağlı)';
+	@override String get confirmButton => 'Randevuyu Onayla';
+	@override String get doctorLabel => 'Doktor';
+	@override String get workplaceLabel => 'İş Yeri';
+	@override String get addressLabel => 'Adres';
+	@override String get startLabel => 'Başlangıç';
+	@override String get endLabel => 'Bitiş';
+}
+
+// Path: doctorSearch
+class _Translations$doctorSearch$tr extends Translations$doctorSearch$en {
+	_Translations$doctorSearch$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Doktor Bul';
+	@override String get searchByName => 'İsme göre ara...';
+	@override String get city => 'Şehir';
+	@override String get search => 'Ara';
+	@override String get noDoctorsFound => 'Doktor bulunamadı';
+	@override String get adjustSearch => 'Aramanızı veya filtrelerinizi değiştirmeyi deneyin';
+	@override String get couldNotLoadDoctors => 'Doktorlar yüklenemedi';
+	@override late final _Translations$doctorSearch$spec$tr spec = _Translations$doctorSearch$spec$tr._(_root);
+}
+
+// Path: doctorDetail
+class _Translations$doctorDetail$tr extends Translations$doctorDetail$en {
+	_Translations$doctorDetail$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get profileTitle => 'Doktor Profili';
+	@override String get couldNotLoadProfile => 'Profil yüklenemedi';
+	@override String get about => 'Hakkında';
+	@override String get workplaces => 'İş Yerleri';
+	@override String minPerSlot({required Object min}) => 'aralık başına ${min} dk';
+	@override String get bookAppointment => 'Randevu Al';
+}
+
+// Path: profile
+class _Translations$profile$tr extends Translations$profile$en {
+	_Translations$profile$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profil';
+	@override String get changePassword => 'Şifreyi Değiştir';
+	@override String get currentPassword => 'Mevcut Şifre';
+	@override String get newPassword => 'Yeni Şifre';
+	@override String get confirmNewPassword => 'Yeni Şifreyi Onayla';
+	@override String get firstName => 'Ad';
+	@override String get lastName => 'Soyad';
+	@override String get phone => 'Telefon';
+	@override String get failedToSave => 'Profil kaydedilemedi.';
+}
+
+// Path: notifications
+class _Translations$notifications$tr extends Translations$notifications$en {
+	_Translations$notifications$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Bildirimler';
+	@override String get noNotifications => 'Bildirim yok';
+	@override String get allCaughtUp => 'Her şeyi gördünüz';
+	@override String get couldNotLoad => 'Bildirimler yüklenemedi';
+}
+
+// Path: workplaces
+class _Translations$workplaces$tr extends Translations$workplaces$en {
+	_Translations$workplaces$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'İş Yerlerim';
+	@override String get noWorkplacesYet => 'Henüz iş yeri yok';
+	@override String get tapToAdd => 'İlk iş yerinizi eklemek için + simgesine dokunun';
+	@override String get couldNotLoad => 'İş yerleri yüklenemedi';
+	@override String get deleteTitle => 'İş Yerini Sil';
+	@override String deleteConfirm({required Object name}) => '"${name}" silinsin mi?';
+	@override String get cannotDelete => 'İş yeri silinemiyor';
+	@override String get workingHours => 'Çalışma Saatleri';
+	@override String get setAsPrimary => 'Birincil Yap';
+}
+
+// Path: addWorkplace
+class _Translations$addWorkplace$tr extends Translations$addWorkplace$en {
+	_Translations$addWorkplace$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get addTitle => 'İş Yeri Ekle';
+	@override String get editTitle => 'İş Yerini Düzenle';
+	@override String get name => 'Ad';
+	@override String get address => 'Adres';
+	@override String get city => 'Şehir';
+	@override String get type => 'Tür';
+	@override String get clinic => 'Klinik';
+	@override String get hospital => 'Hastane';
+	@override String get privatePractice => 'Özel Muayenehane';
+	@override String get failedToSave => 'İş yeri kaydedilemedi.';
+	@override String get addButton => 'İş Yeri Ekle';
+	@override String get saveChanges => 'Değişiklikleri Kaydet';
+}
+
+// Path: workingHours
+class _Translations$workingHours$tr extends Translations$workingHours$en {
+	_Translations$workingHours$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Çalışma Saatleri';
+	@override String get saved => 'Çalışma saatleri kaydedildi';
+	@override String get failedToSave => 'Çalışma saatleri kaydedilemedi';
+	@override late final _Translations$workingHours$days$tr days = _Translations$workingHours$days$tr._(_root);
+}
+
+// Path: blockTime
+class _Translations$blockTime$tr extends Translations$blockTime$en {
+	_Translations$blockTime$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Zamanı Engelle';
+	@override String get dateRange => 'Tarih Aralığı';
+	@override String get tapToSelect => 'Tarihleri seçmek için dokunun';
+	@override String get reason => 'Sebep (isteğe bağlı)';
+	@override String get notifyPatients => 'Etkilenen hastaları bilgilendir';
+	@override String get notifyDesc => 'Bu dönemde randevusu olan hastalara bildirim gönder';
+	@override String get selectDateRange => 'Lütfen bir tarih aralığı seçin.';
+	@override String get failedToBlock => 'Zaman engellenemedi. Lütfen tekrar deneyin.';
+	@override String get blockButton => 'Dönemi Engelle';
+}
+
+// Path: onboarding
+class _Translations$onboarding$tr extends Translations$onboarding$en {
+	_Translations$onboarding$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profilinizi Tamamlayın';
+	@override String get professionalInfo => 'Mesleki bilgiler';
+	@override String get tellPatients => 'Hastalara muayenehaneniz hakkında bilgi verin.';
+	@override String get specialization => 'Uzmanlık';
+	@override String get selectSpecialization => 'Uzmanlığınızı seçin';
+	@override String get couldNotLoadSpecs => 'Uzmanlıklar yüklenemedi. Geri çekip tekrar deneyin.';
+	@override String get licenseNumber => 'Lisans numarası';
+	@override String get licenseHint => 'örn. AZ-123456';
+	@override String get bio => 'Biyografi (isteğe bağlı)';
+	@override String get bioHint => 'Hastaların profilinizde göreceği kısa bir tanıtım.';
+	@override String get appointmentLength => 'Randevu süresi';
+	@override String get slotQuestion => 'Tek bir randevu aralığı ne kadar?';
+	@override String get changeLater => 'Bunu daha sonra profilinizden değiştirebilirsiniz.';
+	@override String minutes({required Object min}) => '${min} dk';
+	@override String get verificationDoc => 'Doğrulama belgesi';
+	@override String get uploadDiploma => 'Tıp diplomanızı veya lisansınızı yükleyin. Hesabınız doğrulanmadan önce bir yönetici inceler.';
+	@override String get tapToChoose => 'Dosya seçmek için dokunun';
+	@override String get tapToReplace => 'Değiştirmek için dokunun';
+	@override String get anyFileType => 'Her tür dosya, 10 MB\'a kadar';
+	@override String get selectSpecError => 'Lütfen uzmanlığınızı seçin.';
+	@override String get licenseError => 'Lütfen lisans numaranızı girin.';
+	@override String get diplomaError => 'Lütfen diplomanızı ekleyin.';
+	@override String get checkDetails => 'Lütfen bilgilerinizi kontrol edip tekrar deneyin.';
+	@override String get continueButton => 'Devam Et';
+	@override String get finish => 'Bitir';
+}
+
+// Path: pendingVerification
+class _Translations$pendingVerification$tr extends Translations$pendingVerification$en {
+	_Translations$pendingVerification$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Doğrulama Bekleniyor';
+	@override String get message => 'Hesabınız inceleniyor. Doğrulandığında sizi bilgilendireceğiz.';
+}
+
+// Path: phoneField
+class _Translations$phoneField$tr extends Translations$phoneField$en {
+	_Translations$phoneField$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Telefon Numarası';
+	@override String get labelOptional => 'Telefon Numarası (İsteğe bağlı)';
+	@override String get selectCountry => 'Ülke Seçin';
+	@override String get searchCountry => 'Ülke veya kod ara…';
+	@override String get noCountriesFound => 'Ülke bulunamadı';
+}
+
+// Path: splash
+class _Translations$splash$tr extends Translations$splash$en {
+	_Translations$splash$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get tagline => 'Sağlığınız, basitleştirildi';
+}
+
+// Path: doctorSearch.spec
+class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
+	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get general => 'Genel';
+	@override String get cardiology => 'Kardiyoloji';
+	@override String get dermatology => 'Dermatoloji';
+	@override String get neurology => 'Nöroloji';
+	@override String get orthopedics => 'Ortopedi';
+	@override String get pediatrics => 'Pediatri';
+}
+
+// Path: workingHours.days
+class _Translations$workingHours$days$tr extends Translations$workingHours$days$en {
+	_Translations$workingHours$days$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get monday => 'Pazartesi';
+	@override String get tuesday => 'Salı';
+	@override String get wednesday => 'Çarşamba';
+	@override String get thursday => 'Perşembe';
+	@override String get friday => 'Cuma';
+	@override String get saturday => 'Cumartesi';
+	@override String get sunday => 'Pazar';
+}
+
+/// The flat map containing all translations for locale <tr>.
+/// Only for edge cases! For simple maps, use the map function of this library.
+///
+/// The Dart AOT compiler has issues with very large switch statements,
+/// so the map is split into smaller functions (512 entries each).
+extension on TranslationsTr {
+	dynamic _flatMapFunction(String path) {
+		return switch (path) {
+			'appName' => 'Medalize',
+			'common.cancel' => 'İptal',
+			'common.logout' => 'Çıkış Yap',
+			'common.doctor' => 'Doktor',
+			'common.patient' => 'Hasta',
+			'common.save' => 'Kaydet',
+			'common.edit' => 'Düzenle',
+			'common.retry' => 'Tekrar dene',
+			'common.back' => 'Geri',
+			'common.ok' => 'Tamam',
+			'common.delete' => 'Sil',
+			'common.keep' => 'Vazgeç',
+			'common.confirm' => 'Onayla',
+			'common.decline' => 'Reddet',
+			'common.primary' => 'Birincil',
+			'common.somethingWrong' => 'Bir şeyler ters gitti',
+			'common.seeAll' => 'Tümünü gör',
+			'common.signOut' => 'Çıkış Yap',
+			'common.search' => 'Ara',
+			'common.tryAgain' => 'Lütfen tekrar deneyin',
+			'common.required' => 'Gerekli',
+			'auth.login' => 'Giriş Yap',
+			'auth.register' => 'Hesap Oluştur',
+			'auth.signIn' => 'Giriş Yap',
+			'auth.signUp' => 'Kayıt Ol',
+			'auth.email' => 'E-posta',
+			'auth.password' => 'Şifre',
+			'auth.confirmPassword' => 'Şifreyi Onayla',
+			'auth.firstName' => 'Ad',
+			'auth.lastName' => 'Soyad',
+			'auth.rememberMe' => 'Beni hatırla',
+			'auth.forgotPassword' => 'Şifrenizi mi unuttunuz?',
+			'auth.sendResetLink' => 'Sıfırlama Kodu Gönder',
+			'auth.noAccount' => 'Hesabınız yok mu?',
+			'auth.haveAccount' => 'Zaten hesabınız var mı?',
+			'auth.welcomeBack' => 'Tekrar hoş geldiniz',
+			'auth.signInToContinue' => 'Devam etmek için hesabınıza giriş yapın',
+			'auth.createYourAccount' => 'Hesabınızı oluşturun',
+			'auth.joinMedalize' => 'Bugün Medalize\'ye katılın',
+			'auth.iAmA' => 'Ben bir',
+			'auth.emailHint' => 'you@example.com',
+			'auth.passwordHint' => '••••••••',
+			'auth.backToSignIn' => 'Girişe dön',
+			'auth.verificationCode' => 'Doğrulama kodu',
+			'forgotPassword.title' => 'Şifrenizi mi unuttunuz?',
+			'forgotPassword.subtitle' => 'E-postanızı girin, size 6 haneli bir sıfırlama kodu gönderelim',
+			'resetPassword.title' => 'Şifreyi Sıfırla',
+			'resetPassword.subtitle' => 'E-postanıza gönderilen kodu girin ve yeni bir şifre seçin',
+			'resetPassword.button' => 'Şifreyi Sıfırla',
+			'resetPassword.success' => 'Şifre başarıyla sıfırlandı. Lütfen giriş yapın.',
+			'validation.emailRequired' => 'E-posta gerekli',
+			'validation.emailInvalid' => 'Geçerli bir e-posta adresi girin',
+			'validation.passwordRequired' => 'Şifre gerekli',
+			'validation.passwordTooShort' => 'En az 8 karakter gerekli',
+			'validation.passwordNeedsLetter' => 'En az bir harf ekleyin',
+			'validation.passwordNeedsDigit' => 'En az bir rakam ekleyin',
+			'validation.passwordMismatch' => 'Şifreler eşleşmiyor',
+			'validation.passwordConfirmRequired' => 'Lütfen şifrenizi onaylayın',
+			'validation.nameMinLength' => 'En az 2 karakter olmalı',
+			'validation.roleRequired' => 'Lütfen bir rol seçin',
+			'validation.phoneRequired' => 'Telefon numarası gerekli',
+			'validation.phoneTooShort' => 'Numara çok kısa',
+			'validation.phoneTooLong' => 'Numara çok uzun',
+			'validation.fieldRequired' => ({required Object field}) => '${field} gerekli',
+			'validation.fieldInvalid' => ({required Object field}) => '${field} geçersiz karakterler içeriyor',
+			'errors.network' => 'Ağ hatası. Bağlantınızı kontrol edin.',
+			'errors.rateLimit' => 'Çok fazla deneme. Lütfen bekleyip tekrar deneyin.',
+			'errors.rateLimitWithSeconds' => ({required Object seconds}) => 'Çok fazla deneme. ${seconds} saniye sonra tekrar deneyin.',
+			'errors.invalidCredentials' => 'Geçersiz e-posta veya şifre',
+			'errors.sessionExpired' => 'Oturum süresi doldu. Lütfen tekrar giriş yapın.',
+			'errors.authError' => 'Kimlik doğrulama hatası. Lütfen tekrar giriş yapın.',
+			'errors.sessionRevoked' => 'Oturum iptal edildi. Lütfen tekrar giriş yapın.',
+			'errors.permissionDenied' => 'Bunu yapma izniniz yok.',
+			'errors.validationError' => 'Doğrulama hatası',
+			'errors.serverError' => ({required Object code}) => 'Sunucu hatası (${code}). Lütfen tekrar deneyin.',
+			'settings.title' => 'Ayarlar',
+			'settings.account' => 'Hesap',
+			'settings.profile' => 'Profil',
+			'settings.notifications' => 'Bildirimler',
+			'settings.appearance' => 'Görünüm',
+			'settings.themeSystem' => 'Sistem',
+			'settings.themeLight' => 'Açık',
+			'settings.themeDark' => 'Koyu',
+			'settings.language' => 'Dil',
+			'settings.languageSystem' => 'Sistem varsayılanı',
+			'settings.logoutTitle' => 'Çıkış',
+			'settings.logoutConfirm' => 'Çıkış yapmak istediğinizden emin misiniz?',
+			'settings.version' => 'Medalize v1.0.0',
+			'status.confirmed' => 'Onaylandı',
+			'status.pending' => 'Beklemede',
+			'status.cancelled' => 'İptal edildi',
+			'status.declined' => 'Reddedildi',
+			'status.requiresRescheduling' => 'Yeniden planlama gerekiyor',
+			'status.completed' => 'Tamamlandı',
+			'home.helloDoctor' => ({required Object name}) => 'Merhaba, Dr. ${name}!',
+			'home.helloPatient' => ({required Object name}) => 'Merhaba, ${name}!',
+			'home.doctorSubtitle' => 'Programınızı ve\nrandevularınızı yönetin.',
+			'home.patientSubtitle' => 'Bir doktor bulun ve\nrandevu alın.',
+			'home.pendingRequests' => 'Bekleyen İstekler',
+			'home.upcoming' => 'Yaklaşan',
+			'home.findDoctor' => 'Doktor Bul',
+			'home.myAppointments' => 'Randevularım',
+			'home.appointments' => 'Randevular',
+			'home.workplaces' => 'İş Yerleri',
+			'home.blockTime' => 'Zamanı Engelle',
+			'home.profile' => 'Profil',
+			'home.allCaughtUp' => 'Her şey güncel',
+			'home.noPendingRequests' => 'Bekleyen randevu isteği yok',
+			'home.couldNotLoadAppointments' => 'Randevular yüklenemedi',
+			'home.noUpcoming' => 'Yaklaşan randevu yok',
+			'home.bookFirst' => 'Bir doktorla ilk randevunuzu alın',
+			'home.findADoctor' => 'Doktor Bul',
+			'appointments.title' => 'Randevular',
+			'appointments.myTitle' => 'Randevularım',
+			'appointments.tabPending' => 'Bekleyen',
+			'appointments.tabAll' => 'Tümü',
+			'appointments.tabUpcoming' => 'Yaklaşan',
+			'appointments.tabPast' => 'Geçmiş',
+			'appointments.noPendingRequests' => 'Bekleyen istek yok',
+			'appointments.newRequestsAppear' => 'Yeni randevu istekleri burada görünecek',
+			'appointments.noAppointments' => 'Randevu yok',
+			'appointments.appointmentsAppear' => 'Randevularınız burada görünecek',
+			'appointments.noUpcoming' => 'Yaklaşan randevu yok',
+			'appointments.bookFirst' => 'Bir doktorla ilk randevunuzu alın',
+			'appointments.noPast' => 'Geçmiş randevu yok',
+			'appointments.pastAppear' => 'Tamamlanan ve iptal edilen randevular burada görünür',
+			'appointments.couldNotLoad' => 'Randevular yüklenemedi',
+			'appointments.detailTitle' => 'Randevu',
+			'appointments.patient' => 'Hasta',
+			'appointments.doctor' => 'Doktor',
+			'appointments.workplace' => 'İş Yeri',
+			'appointments.dateTime' => 'Tarih ve Saat',
+			'appointments.reason' => 'Sebep',
+			'appointments.doctorNotes' => 'Doktor Notları',
+			'appointments.cancelTitle' => 'Randevuyu İptal Et',
+			'appointments.cancelConfirm' => 'Bu randevuyu iptal etmek istediğinizden emin misiniz?',
+			'appointments.cancelAction' => 'Randevuyu İptal Et',
+			'appointments.bookedTitle' => 'Randevu alındı!',
+			'appointments.bookedMessage' => 'Randevu isteğiniz gönderildi.',
+			'booking.bookWith' => ({required Object name}) => 'Randevu — ${name}',
+			'booking.selectWorkplace' => 'İş Yeri Seçin',
+			'booking.pickDate' => 'Tarih seçin',
+			'booking.slotsAppear' => 'Uygun zaman aralıkları burada görünecek',
+			'booking.couldNotLoadSlots' => 'Zaman aralıkları yüklenemedi',
+			'booking.noAvailableSlots' => 'Uygun zaman aralığı yok',
+			'booking.noOpenSlots' => 'Bu tarih için boş zaman yok. Başka bir gün deneyin.',
+			'booking.confirmTitle' => 'Randevuyu Onayla',
+			'booking.reasonForVisit' => 'Ziyaret sebebi (isteğe bağlı)',
+			'booking.confirmButton' => 'Randevuyu Onayla',
+			'booking.doctorLabel' => 'Doktor',
+			'booking.workplaceLabel' => 'İş Yeri',
+			'booking.addressLabel' => 'Adres',
+			'booking.startLabel' => 'Başlangıç',
+			'booking.endLabel' => 'Bitiş',
+			'doctorSearch.title' => 'Doktor Bul',
+			'doctorSearch.searchByName' => 'İsme göre ara...',
+			'doctorSearch.city' => 'Şehir',
+			'doctorSearch.search' => 'Ara',
+			'doctorSearch.noDoctorsFound' => 'Doktor bulunamadı',
+			'doctorSearch.adjustSearch' => 'Aramanızı veya filtrelerinizi değiştirmeyi deneyin',
+			'doctorSearch.couldNotLoadDoctors' => 'Doktorlar yüklenemedi',
+			'doctorSearch.spec.general' => 'Genel',
+			'doctorSearch.spec.cardiology' => 'Kardiyoloji',
+			'doctorSearch.spec.dermatology' => 'Dermatoloji',
+			'doctorSearch.spec.neurology' => 'Nöroloji',
+			'doctorSearch.spec.orthopedics' => 'Ortopedi',
+			'doctorSearch.spec.pediatrics' => 'Pediatri',
+			'doctorDetail.profileTitle' => 'Doktor Profili',
+			'doctorDetail.couldNotLoadProfile' => 'Profil yüklenemedi',
+			'doctorDetail.about' => 'Hakkında',
+			'doctorDetail.workplaces' => 'İş Yerleri',
+			'doctorDetail.minPerSlot' => ({required Object min}) => 'aralık başına ${min} dk',
+			'doctorDetail.bookAppointment' => 'Randevu Al',
+			'profile.title' => 'Profil',
+			'profile.changePassword' => 'Şifreyi Değiştir',
+			'profile.currentPassword' => 'Mevcut Şifre',
+			'profile.newPassword' => 'Yeni Şifre',
+			'profile.confirmNewPassword' => 'Yeni Şifreyi Onayla',
+			'profile.firstName' => 'Ad',
+			'profile.lastName' => 'Soyad',
+			'profile.phone' => 'Telefon',
+			'profile.failedToSave' => 'Profil kaydedilemedi.',
+			'notifications.title' => 'Bildirimler',
+			'notifications.noNotifications' => 'Bildirim yok',
+			'notifications.allCaughtUp' => 'Her şeyi gördünüz',
+			'notifications.couldNotLoad' => 'Bildirimler yüklenemedi',
+			'workplaces.title' => 'İş Yerlerim',
+			'workplaces.noWorkplacesYet' => 'Henüz iş yeri yok',
+			'workplaces.tapToAdd' => 'İlk iş yerinizi eklemek için + simgesine dokunun',
+			'workplaces.couldNotLoad' => 'İş yerleri yüklenemedi',
+			'workplaces.deleteTitle' => 'İş Yerini Sil',
+			'workplaces.deleteConfirm' => ({required Object name}) => '"${name}" silinsin mi?',
+			'workplaces.cannotDelete' => 'İş yeri silinemiyor',
+			'workplaces.workingHours' => 'Çalışma Saatleri',
+			'workplaces.setAsPrimary' => 'Birincil Yap',
+			'addWorkplace.addTitle' => 'İş Yeri Ekle',
+			'addWorkplace.editTitle' => 'İş Yerini Düzenle',
+			'addWorkplace.name' => 'Ad',
+			'addWorkplace.address' => 'Adres',
+			'addWorkplace.city' => 'Şehir',
+			'addWorkplace.type' => 'Tür',
+			'addWorkplace.clinic' => 'Klinik',
+			'addWorkplace.hospital' => 'Hastane',
+			'addWorkplace.privatePractice' => 'Özel Muayenehane',
+			'addWorkplace.failedToSave' => 'İş yeri kaydedilemedi.',
+			'addWorkplace.addButton' => 'İş Yeri Ekle',
+			'addWorkplace.saveChanges' => 'Değişiklikleri Kaydet',
+			'workingHours.title' => 'Çalışma Saatleri',
+			'workingHours.saved' => 'Çalışma saatleri kaydedildi',
+			'workingHours.failedToSave' => 'Çalışma saatleri kaydedilemedi',
+			'workingHours.days.monday' => 'Pazartesi',
+			'workingHours.days.tuesday' => 'Salı',
+			'workingHours.days.wednesday' => 'Çarşamba',
+			'workingHours.days.thursday' => 'Perşembe',
+			'workingHours.days.friday' => 'Cuma',
+			'workingHours.days.saturday' => 'Cumartesi',
+			'workingHours.days.sunday' => 'Pazar',
+			'blockTime.title' => 'Zamanı Engelle',
+			'blockTime.dateRange' => 'Tarih Aralığı',
+			'blockTime.tapToSelect' => 'Tarihleri seçmek için dokunun',
+			'blockTime.reason' => 'Sebep (isteğe bağlı)',
+			'blockTime.notifyPatients' => 'Etkilenen hastaları bilgilendir',
+			'blockTime.notifyDesc' => 'Bu dönemde randevusu olan hastalara bildirim gönder',
+			'blockTime.selectDateRange' => 'Lütfen bir tarih aralığı seçin.',
+			'blockTime.failedToBlock' => 'Zaman engellenemedi. Lütfen tekrar deneyin.',
+			'blockTime.blockButton' => 'Dönemi Engelle',
+			'onboarding.title' => 'Profilinizi Tamamlayın',
+			'onboarding.professionalInfo' => 'Mesleki bilgiler',
+			'onboarding.tellPatients' => 'Hastalara muayenehaneniz hakkında bilgi verin.',
+			'onboarding.specialization' => 'Uzmanlık',
+			'onboarding.selectSpecialization' => 'Uzmanlığınızı seçin',
+			'onboarding.couldNotLoadSpecs' => 'Uzmanlıklar yüklenemedi. Geri çekip tekrar deneyin.',
+			'onboarding.licenseNumber' => 'Lisans numarası',
+			'onboarding.licenseHint' => 'örn. AZ-123456',
+			'onboarding.bio' => 'Biyografi (isteğe bağlı)',
+			'onboarding.bioHint' => 'Hastaların profilinizde göreceği kısa bir tanıtım.',
+			'onboarding.appointmentLength' => 'Randevu süresi',
+			'onboarding.slotQuestion' => 'Tek bir randevu aralığı ne kadar?',
+			'onboarding.changeLater' => 'Bunu daha sonra profilinizden değiştirebilirsiniz.',
+			'onboarding.minutes' => ({required Object min}) => '${min} dk',
+			'onboarding.verificationDoc' => 'Doğrulama belgesi',
+			'onboarding.uploadDiploma' => 'Tıp diplomanızı veya lisansınızı yükleyin. Hesabınız doğrulanmadan önce bir yönetici inceler.',
+			'onboarding.tapToChoose' => 'Dosya seçmek için dokunun',
+			'onboarding.tapToReplace' => 'Değiştirmek için dokunun',
+			'onboarding.anyFileType' => 'Her tür dosya, 10 MB\'a kadar',
+			'onboarding.selectSpecError' => 'Lütfen uzmanlığınızı seçin.',
+			'onboarding.licenseError' => 'Lütfen lisans numaranızı girin.',
+			'onboarding.diplomaError' => 'Lütfen diplomanızı ekleyin.',
+			'onboarding.checkDetails' => 'Lütfen bilgilerinizi kontrol edip tekrar deneyin.',
+			'onboarding.continueButton' => 'Devam Et',
+			'onboarding.finish' => 'Bitir',
+			'pendingVerification.title' => 'Doğrulama Bekleniyor',
+			'pendingVerification.message' => 'Hesabınız inceleniyor. Doğrulandığında sizi bilgilendireceğiz.',
+			'phoneField.label' => 'Telefon Numarası',
+			'phoneField.labelOptional' => 'Telefon Numarası (İsteğe bağlı)',
+			'phoneField.selectCountry' => 'Ülke Seçin',
+			'phoneField.searchCountry' => 'Ülke veya kod ara…',
+			'phoneField.noCountriesFound' => 'Ülke bulunamadı',
+			'splash.tagline' => 'Sağlığınız, basitleştirildi',
+			_ => null,
+		};
+	}
+}

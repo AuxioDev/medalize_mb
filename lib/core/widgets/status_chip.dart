@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class StatusChip extends StatelessWidget {
   const StatusChip({super.key, required this.status});
@@ -13,10 +14,19 @@ class StatusChip extends StatelessWidget {
         _ => const Color(0xFF64748B),
       };
 
-  static String labelFor(String status) => status
-      .split('_')
-      .map((w) => w.isEmpty ? '' : w[0].toUpperCase() + w.substring(1))
-      .join(' ');
+  static String labelFor(String status) => switch (status) {
+        'confirmed' => t.status.confirmed,
+        'pending' => t.status.pending,
+        'cancelled' => t.status.cancelled,
+        'declined' => t.status.declined,
+        'requires_rescheduling' => t.status.requiresRescheduling,
+        'completed' => t.status.completed,
+        // Fallback: title-case any unmapped status code.
+        _ => status
+            .split('_')
+            .map((w) => w.isEmpty ? '' : w[0].toUpperCase() + w.substring(1))
+            .join(' '),
+      };
 
   @override
   Widget build(BuildContext context) {

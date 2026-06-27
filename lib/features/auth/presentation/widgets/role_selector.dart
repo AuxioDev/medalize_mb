@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
-import 'package:medalize_mb/core/constants/app_strings.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class RoleSelector extends StatelessWidget {
   const RoleSelector({
@@ -21,7 +21,7 @@ class RoleSelector extends StatelessWidget {
         Expanded(
           child: _RoleCard(
             role: 'patient',
-            label: AppStrings.patient,
+            label: context.t.common.patient,
             icon: Icons.person_outline_rounded,
             isSelected: selectedRole == 'patient',
             onTap: () => onSelected('patient'),
@@ -31,7 +31,7 @@ class RoleSelector extends StatelessWidget {
         Expanded(
           child: _RoleCard(
             role: 'doctor',
-            label: AppStrings.doctor,
+            label: context.t.common.doctor,
             icon: Icons.medical_services_outlined,
             isSelected: selectedRole == 'doctor',
             onTap: () => onSelected('doctor'),

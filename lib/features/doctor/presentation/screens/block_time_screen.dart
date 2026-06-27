@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class BlockTimeScreen extends ConsumerStatefulWidget {
   const BlockTimeScreen({super.key});
@@ -41,7 +42,7 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
 
   Future<void> _submit() async {
     if (_dateRange == null) {
-      setState(() => _error = 'Please select a date range.');
+      setState(() => _error = context.t.blockTime.selectDateRange);
       return;
     }
     setState(() {
@@ -60,7 +61,7 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
       });
       if (mounted) context.pop(true);
     } catch (e) {
-      setState(() => _error = 'Failed to block time. Please try again.');
+      setState(() => _error = context.t.blockTime.failedToBlock);
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -71,14 +72,15 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
     final c = context.colors;
     final fmt = DateFormat('d MMM y');
     return Scaffold(
-      appBar: AppBar(title: const Text('Block Time')),
+      appBar: AppBar(title: Text(context.t.blockTime.title)),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Date Range', style: Theme.of(context).textTheme.titleSmall),
+              Text(context.t.blockTime.dateRange,
+                  style: Theme.of(context).textTheme.titleSmall),
               const Gap(AppSpacing.sm),
               GestureDetector(
                 onTap: _pickDateRange,
@@ -98,7 +100,7 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
                       Expanded(
                         child: Text(
                           _dateRange == null
-                              ? 'Tap to select dates'
+                              ? context.t.blockTime.tapToSelect
                               : '${fmt.format(_dateRange!.start)} → ${fmt.format(_dateRange!.end)}',
                           style: TextStyle(
                             color: _dateRange == null
@@ -114,17 +116,16 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
               const Gap(AppSpacing.md),
               TextField(
                 controller: _reasonController,
-                decoration: const InputDecoration(
-                  labelText: 'Reason (optional)',
+                decoration: InputDecoration(
+                  labelText: context.t.blockTime.reason,
                   alignLabelWithHint: true,
                 ),
                 maxLines: 2,
               ),
               const Gap(12),
               SwitchListTile(
-                title: const Text('Notify affected patients'),
-                subtitle: const Text(
-                    'Send notifications to patients with appointments in this period'),
+                title: Text(context.t.blockTime.notifyPatients),
+                subtitle: Text(context.t.blockTime.notifyDesc),
                 value: _notifyPatients,
                 onChanged: (v) => setState(() => _notifyPatients = v),
                 contentPadding: EdgeInsets.zero,
@@ -139,7 +140,7 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
       ),
       bottomNavigationBar: BottomActionBar(
         child: LoadingFilledButton(
-          label: 'Block Period',
+          label: context.t.blockTime.blockButton,
           loading: _loading,
           onPressed: _submit,
         ),

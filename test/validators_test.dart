@@ -60,19 +60,19 @@ void main() {
 
   group('Validators.name', () {
     test('accepts normal and accented names', () {
-      expect(Validators.name('John'), isNull);
-      expect(Validators.name('José-María'), isNull);
-      expect(Validators.name("O'Brien"), isNull);
+      expect(Validators.name('John', label: 'Name'), isNull);
+      expect(Validators.name('José-María', label: 'Name'), isNull);
+      expect(Validators.name("O'Brien", label: 'Name'), isNull);
     });
 
     test('rejects too short or empty', () {
-      expect(Validators.name('A'), isNotNull);
-      expect(Validators.name(''), isNotNull);
+      expect(Validators.name('A', label: 'Name'), isNotNull);
+      expect(Validators.name('', label: 'Name'), isNotNull);
     });
 
     test('rejects invalid characters', () {
-      expect(Validators.name('John123'), isNotNull);
-      expect(Validators.name('<script>'), isNotNull);
+      expect(Validators.name('John123', label: 'Name'), isNotNull);
+      expect(Validators.name('<script>', label: 'Name'), isNotNull);
     });
 
     test('uses the provided label in the message', () {

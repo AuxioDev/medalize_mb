@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 AppointmentModel _sample({String status = 'confirmed'}) => AppointmentModel(
       id: '1',
@@ -37,10 +38,12 @@ void main() {
   testWidgets('AppointmentDetailScreen renders without layout errors',
       (tester) async {
     await tester.pumpWidget(
-      ProviderScope(
-        child: MaterialApp(
-          theme: AppTheme.light,
-          home: AppointmentDetailScreen(appointment: _sample()),
+      TranslationProvider(
+        child: ProviderScope(
+          child: MaterialApp(
+            theme: AppTheme.light,
+            home: AppointmentDetailScreen(appointment: _sample()),
+          ),
         ),
       ),
     );
@@ -54,12 +57,14 @@ void main() {
   testWidgets('doctor view shows the patient and confirm/decline for pending',
       (tester) async {
     await tester.pumpWidget(
-      ProviderScope(
-        child: MaterialApp(
-          theme: AppTheme.light,
-          home: AppointmentDetailScreen(
-            appointment: _sample(status: 'pending'),
-            asDoctor: true,
+      TranslationProvider(
+        child: ProviderScope(
+          child: MaterialApp(
+            theme: AppTheme.light,
+            home: AppointmentDetailScreen(
+              appointment: _sample(status: 'pending'),
+              asDoctor: true,
+            ),
           ),
         ),
       ),

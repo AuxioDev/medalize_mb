@@ -16,6 +16,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 class MyAppointmentsScreen extends ConsumerStatefulWidget {
   const MyAppointmentsScreen({super.key});
@@ -62,11 +63,14 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Appointments'),
+        title: Text(context.t.appointments.myTitle),
         bottom: TabBar(
           controller: _tab,
           onTap: _onTabTap,
-          tabs: const [Tab(text: 'Upcoming'), Tab(text: 'Past')],
+          tabs: [
+            Tab(text: context.t.appointments.tabUpcoming),
+            Tab(text: context.t.appointments.tabPast),
+          ],
         ),
       ),
       body: TabBarView(
@@ -74,15 +78,15 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
         children: [
           _AppointmentList(
             filterFn: (a) => a.isUpcoming,
-            emptyTitle: 'No upcoming appointments',
-            emptySubtitle: 'Book your first appointment with a doctor',
+            emptyTitle: context.t.appointments.noUpcoming,
+            emptySubtitle: context.t.appointments.bookFirst,
             scrollController: _scrollControllers[0],
             onRefresh: () => ref.refresh(patientAppointmentsProvider(null)),
           ),
           _AppointmentList(
             filterFn: (a) => !a.isUpcoming,
-            emptyTitle: 'No past appointments',
-            emptySubtitle: 'Completed and cancelled appointments appear here',
+            emptyTitle: context.t.appointments.noPast,
+            emptySubtitle: context.t.appointments.pastAppear,
             scrollController: _scrollControllers[1],
             onRefresh: () => ref.refresh(patientAppointmentsProvider(null)),
           ),
@@ -128,9 +132,9 @@ class _AppointmentList extends ConsumerWidget {
         onRefresh: () async => onRefresh(),
         child: EmptyState(
           icon: Icons.cloud_off_outlined,
-          title: 'Something went wrong',
-          subtitle: 'Could not load appointments',
-          actionLabel: 'Retry',
+          title: context.t.common.somethingWrong,
+          subtitle: context.t.appointments.couldNotLoad,
+          actionLabel: context.t.common.retry,
           onAction: onRefresh,
         ),
       ),
