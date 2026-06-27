@@ -303,6 +303,8 @@ class _Translations$appointments$ru extends Translations$appointments$en {
 	@override String get reviewRating => 'Оценка';
 	@override String get reviewComment => 'Комментарий (необязательно)';
 	@override String get reviewSubmit => 'Отправить';
+	@override String get markCompleted => 'Отметить завершённым';
+	@override String get rescheduledSuccess => 'Запись успешно перенесена.';
 }
 
 // Path: booking
@@ -740,6 +742,8 @@ extension on TranslationsRu {
 			'appointments.reviewRating' => 'Оценка',
 			'appointments.reviewComment' => 'Комментарий (необязательно)',
 			'appointments.reviewSubmit' => 'Отправить',
+			'appointments.markCompleted' => 'Отметить завершённым',
+			'appointments.rescheduledSuccess' => 'Запись успешно перенесена.',
 			'booking.bookWith' => ({required Object name}) => 'Запись — ${name}',
 			'booking.selectWorkplace' => 'Выберите место работы',
 			'booking.pickDate' => 'Выберите дату',

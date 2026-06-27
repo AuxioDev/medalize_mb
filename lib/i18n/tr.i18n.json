@@ -168,7 +168,9 @@
     "reviewTitle": "Yorum yaz",
     "reviewRating": "Puan",
     "reviewComment": "Yorum (isteğe bağlı)",
-    "reviewSubmit": "Gönder"
+    "reviewSubmit": "Gönder",
+    "markCompleted": "Tamamlandı olarak işaretle",
+    "rescheduledSuccess": "Randevu başarıyla yeniden planlandı."
   },
   "booking": {
     "bookWith": "Randevu — $name",

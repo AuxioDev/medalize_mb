@@ -168,7 +168,9 @@
     "reviewTitle": "Оставить отзыв",
     "reviewRating": "Оценка",
     "reviewComment": "Комментарий (необязательно)",
-    "reviewSubmit": "Отправить"
+    "reviewSubmit": "Отправить",
+    "markCompleted": "Отметить завершённым",
+    "rescheduledSuccess": "Запись успешно перенесена."
   },
   "booking": {
     "bookWith": "Запись — $name",

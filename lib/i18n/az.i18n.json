@@ -168,7 +168,9 @@
     "reviewTitle": "Rəy yaz",
     "reviewRating": "Qiymət",
     "reviewComment": "Şərh (istəyə bağlı)",
-    "reviewSubmit": "Göndər"
+    "reviewSubmit": "Göndər",
+    "markCompleted": "Tamamlandı kimi işarələ",
+    "rescheduledSuccess": "Görüş uğurla yenidən planlaşdırıldı."
   },
   "booking": {
     "bookWith": "Təyin et — $name",

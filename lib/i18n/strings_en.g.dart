@@ -607,6 +607,12 @@ class Translations$appointments$en {
 
 	/// en: 'Submit'
 	String get reviewSubmit => 'Submit';
+
+	/// en: 'Mark as Completed'
+	String get markCompleted => 'Mark as Completed';
+
+	/// en: 'Appointment rescheduled successfully.'
+	String get rescheduledSuccess => 'Appointment rescheduled successfully.';
 }
 
 // Path: booking
@@ -1324,6 +1330,8 @@ extension on Translations {
 			'appointments.reviewRating' => 'Rating',
 			'appointments.reviewComment' => 'Comment (optional)',
 			'appointments.reviewSubmit' => 'Submit',
+			'appointments.markCompleted' => 'Mark as Completed',
+			'appointments.rescheduledSuccess' => 'Appointment rescheduled successfully.',
 			'booking.bookWith' => ({required Object name}) => 'Book — ${name}',
 			'booking.selectWorkplace' => 'Select Workplace',
 			'booking.pickDate' => 'Pick a date',

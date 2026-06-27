@@ -168,7 +168,9 @@
     "reviewTitle": "Laisser un avis",
     "reviewRating": "Note",
     "reviewComment": "Commentaire (optionnel)",
-    "reviewSubmit": "Envoyer"
+    "reviewSubmit": "Envoyer",
+    "markCompleted": "Marquer comme terminé",
+    "rescheduledSuccess": "Rendez-vous reporté avec succès."
   },
   "booking": {
     "bookWith": "Réserver — $name",

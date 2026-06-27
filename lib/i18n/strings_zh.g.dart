@@ -303,6 +303,8 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get reviewRating => '评分';
 	@override String get reviewComment => '留言（可选）';
 	@override String get reviewSubmit => '提交';
+	@override String get markCompleted => '标记为已完成';
+	@override String get rescheduledSuccess => '预约已成功改期。';
 }
 
 // Path: booking
@@ -740,6 +742,8 @@ extension on TranslationsZh {
 			'appointments.reviewRating' => '评分',
 			'appointments.reviewComment' => '留言（可选）',
 			'appointments.reviewSubmit' => '提交',
+			'appointments.markCompleted' => '标记为已完成',
+			'appointments.rescheduledSuccess' => '预约已成功改期。',
 			'booking.bookWith' => ({required Object name}) => '预约 — ${name}',
 			'booking.selectWorkplace' => '选择工作地点',
 			'booking.pickDate' => '选择日期',

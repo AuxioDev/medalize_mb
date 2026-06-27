@@ -168,7 +168,9 @@
     "reviewTitle": "发表评价",
     "reviewRating": "评分",
     "reviewComment": "留言（可选）",
-    "reviewSubmit": "提交"
+    "reviewSubmit": "提交",
+    "markCompleted": "标记为已完成",
+    "rescheduledSuccess": "预约已成功改期。"
   },
   "booking": {
     "bookWith": "预约 — $name",

@@ -303,6 +303,8 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get reviewRating => 'Note';
 	@override String get reviewComment => 'Commentaire (optionnel)';
 	@override String get reviewSubmit => 'Envoyer';
+	@override String get markCompleted => 'Marquer comme terminé';
+	@override String get rescheduledSuccess => 'Rendez-vous reporté avec succès.';
 }
 
 // Path: booking
@@ -740,6 +742,8 @@ extension on TranslationsFr {
 			'appointments.reviewRating' => 'Note',
 			'appointments.reviewComment' => 'Commentaire (optionnel)',
 			'appointments.reviewSubmit' => 'Envoyer',
+			'appointments.markCompleted' => 'Marquer comme terminé',
+			'appointments.rescheduledSuccess' => 'Rendez-vous reporté avec succès.',
 			'booking.bookWith' => ({required Object name}) => 'Réserver — ${name}',
 			'booking.selectWorkplace' => 'Sélectionner un lieu',
 			'booking.pickDate' => 'Choisir une date',

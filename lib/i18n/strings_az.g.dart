@@ -303,6 +303,8 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get reviewRating => 'Qiymət';
 	@override String get reviewComment => 'Şərh (istəyə bağlı)';
 	@override String get reviewSubmit => 'Göndər';
+	@override String get markCompleted => 'Tamamlandı kimi işarələ';
+	@override String get rescheduledSuccess => 'Görüş uğurla yenidən planlaşdırıldı.';
 }
 
 // Path: booking
@@ -740,6 +742,8 @@ extension on TranslationsAz {
 			'appointments.reviewRating' => 'Qiymət',
 			'appointments.reviewComment' => 'Şərh (istəyə bağlı)',
 			'appointments.reviewSubmit' => 'Göndər',
+			'appointments.markCompleted' => 'Tamamlandı kimi işarələ',
+			'appointments.rescheduledSuccess' => 'Görüş uğurla yenidən planlaşdırıldı.',
 			'booking.bookWith' => ({required Object name}) => 'Təyin et — ${name}',
 			'booking.selectWorkplace' => 'İş yerini seçin',
 			'booking.pickDate' => 'Tarix seçin',

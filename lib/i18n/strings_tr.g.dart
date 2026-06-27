@@ -303,6 +303,8 @@ class _Translations$appointments$tr extends Translations$appointments$en {
 	@override String get reviewRating => 'Puan';
 	@override String get reviewComment => 'Yorum (isteğe bağlı)';
 	@override String get reviewSubmit => 'Gönder';
+	@override String get markCompleted => 'Tamamlandı olarak işaretle';
+	@override String get rescheduledSuccess => 'Randevu başarıyla yeniden planlandı.';
 }
 
 // Path: booking
@@ -740,6 +742,8 @@ extension on TranslationsTr {
 			'appointments.reviewRating' => 'Puan',
 			'appointments.reviewComment' => 'Yorum (isteğe bağlı)',
 			'appointments.reviewSubmit' => 'Gönder',
+			'appointments.markCompleted' => 'Tamamlandı olarak işaretle',
+			'appointments.rescheduledSuccess' => 'Randevu başarıyla yeniden planlandı.',
 			'booking.bookWith' => ({required Object name}) => 'Randevu — ${name}',
 			'booking.selectWorkplace' => 'İş Yeri Seçin',
 			'booking.pickDate' => 'Tarih seçin',

@@ -168,7 +168,9 @@
     "reviewTitle": "Leave a Review",
     "reviewRating": "Rating",
     "reviewComment": "Comment (optional)",
-    "reviewSubmit": "Submit"
+    "reviewSubmit": "Submit",
+    "markCompleted": "Mark as Completed",
+    "rescheduledSuccess": "Appointment rescheduled successfully."
   },
   "booking": {
     "bookWith": "Book — $name",

@@ -100,7 +100,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       final form = FormData.fromMap({
         'avatar': await MultipartFile.fromFile(picked.path, filename: 'avatar.jpg'),
       });
-      final res = await ref.read(dioClientProvider).post('/auth/profile/avatar/', data: form);
+      final res = await ref.read(dioClientProvider).put('/auth/profile/avatar/', data: form);
       final url = (res.data as Map<String, dynamic>)['avatar_url'] as String?;
       if (mounted) setState(() => _avatarUrl = url);
     } catch (_) {

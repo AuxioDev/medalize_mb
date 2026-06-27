@@ -334,6 +334,32 @@ class _AppointmentDetailScreenState
 
   Widget? _bottomBar(AppointmentModel appt) {
     if (widget.asDoctor) {
+      if (appt.status == 'confirmed' && appt.startsAt.isBefore(DateTime.now())) {
+        return BottomActionBar(
+          child: FilledButton(
+            onPressed: _updatingStatus
+                ? null
+                : () {
+                    HapticFeedback.lightImpact();
+                    _setStatus('completed');
+                  },
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(52),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppRadius.md)),
+            ),
+            child: _updatingStatus
+                ? const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(
+                        strokeWidth: 2, color: Colors.white),
+                  )
+                : Text(context.t.appointments.markCompleted,
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
+          ),
+        );
+      }
       if (appt.status != 'pending') return null;
       return BottomActionBar(
         child: Row(
