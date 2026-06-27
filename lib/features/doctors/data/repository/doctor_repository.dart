@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
+import 'package:medalize_mb/features/doctor/data/models/doctor_stats_model.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/patient/data/models/waitlist_model.dart';
 
 final doctorRepositoryProvider = Provider<DoctorRepository>(
   (ref) => DoctorRepository(ref.read(dioClientProvider)),
@@ -51,6 +53,56 @@ class DoctorRepository {
       final res = await _dio.get('/doctors/$doctorId/next-slot/');
       final dateStr = res.data['next_available_date'] as String?;
       return dateStr != null ? DateTime.parse(dateStr) : null;
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  Future<DoctorStatsModel> getStats() async {
+    try {
+      final res = await _dio.get('/doctor/stats/');
+      return DoctorStatsModel.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  Future<List<WaitlistModel>> getMyWaitlist() async {
+    try {
+      final res = await _dio.get('/waitlist/');
+      return (res.data as List<dynamic>)
+          .map((e) => WaitlistModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  Future<WaitlistModel> joinWaitlist(String doctorId) async {
+    try {
+      final res = await _dio.post('/waitlist/', data: {'doctor_id': doctorId});
+      return WaitlistModel.fromJson({
+        'id': res.data['id'] as String,
+        'doctor_id': res.data['doctor_id'] as String,
+        'doctor_name': '',
+        'joined_at': DateTime.now().toIso8601String(),
+      });
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  Future<void> leaveWaitlist(String entryId) async {
+    try {
+      await _dio.delete('/waitlist/$entryId/');
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {

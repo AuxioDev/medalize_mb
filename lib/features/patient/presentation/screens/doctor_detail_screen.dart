@@ -11,7 +11,10 @@ import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/core/errors/api_exception.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -45,34 +48,91 @@ class DoctorDetailScreen extends ConsumerWidget {
   }
 }
 
-class _DetailBody extends StatelessWidget {
+class _DetailBody extends ConsumerStatefulWidget {
   const _DetailBody({required this.doctorId, required this.detail});
 
   final String doctorId;
   final DoctorDetailModel detail;
 
   @override
+  ConsumerState<_DetailBody> createState() => _DetailBodyState();
+}
+
+class _DetailBodyState extends ConsumerState<_DetailBody> {
+  bool _joiningWaitlist = false;
+
+  Future<void> _toggleWaitlist(List<dynamic> myWaitlist) async {
+    final existing = myWaitlist
+        .where((e) => e.doctorId == widget.detail.id)
+        .toList();
+    setState(() => _joiningWaitlist = true);
+    try {
+      if (existing.isNotEmpty) {
+        await ref.read(doctorRepositoryProvider).leaveWaitlist(existing.first.id);
+      } else {
+        await ref.read(doctorRepositoryProvider).joinWaitlist(widget.detail.id);
+      }
+      ref.invalidate(myWaitlistProvider);
+    } on ApiException catch (e) {
+      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+    } finally {
+      if (mounted) setState(() => _joiningWaitlist = false);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final c = context.colors;
     final initials =
-        detail.firstName.isNotEmpty ? detail.firstName[0].toUpperCase() : 'D';
+        widget.detail.firstName.isNotEmpty ? widget.detail.firstName[0].toUpperCase() : 'D';
+    final waitlistAsync = ref.watch(myWaitlistProvider);
+    final myWaitlist = waitlistAsync.asData?.value ?? [];
+    final isOnWaitlist = myWaitlist.any((e) => e.doctorId == widget.detail.id);
 
     return Scaffold(
-      appBar: AppBar(title: Text(detail.fullName)),
+      appBar: AppBar(title: Text(widget.detail.fullName)),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _ProfileHeader(doctorId: doctorId, initials: initials, detail: detail),
+              _ProfileHeader(doctorId: widget.doctorId, initials: initials, detail: widget.detail),
               Padding(
                 padding: const EdgeInsets.all(AppSpacing.md),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (detail.bio.isNotEmpty) ...[
+                    if (widget.detail.consultationFee != null) ...[
                       AnimatedEntrance(
                         index: 0,
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                          decoration: BoxDecoration(
+                            color: c.primarySurface,
+                            borderRadius: BorderRadius.circular(AppRadius.md),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.payments_outlined, color: c.primaryText, size: 20),
+                              const Gap(10),
+                              Text(
+                                'Consultation fee: ${widget.detail.consultationFee}',
+                                style: TextStyle(
+                                  color: c.primaryText,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Gap(16),
+                    ],
+                    if (widget.detail.bio.isNotEmpty) ...[
+                      AnimatedEntrance(
+                        index: 1,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -87,7 +147,7 @@ class _DetailBody extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(AppRadius.md),
                               ),
                               child: Text(
-                                detail.bio,
+                                widget.detail.bio,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -102,17 +162,17 @@ class _DetailBody extends StatelessWidget {
                       ),
                       const Gap(20),
                     ],
-                    if (detail.workplaces.isNotEmpty) ...[
+                    if (widget.detail.workplaces.isNotEmpty) ...[
                       AnimatedEntrance(
-                        index: 1,
+                        index: 2,
                         child: Text(context.t.doctorDetail.workplaces,
                             style: Theme.of(context).textTheme.titleSmall),
                       ),
                       const Gap(10),
-                      for (int i = 0; i < detail.workplaces.length; i++)
+                      for (int i = 0; i < widget.detail.workplaces.length; i++)
                         AnimatedEntrance(
-                          index: 2 + i,
-                          child: _WorkplaceCard(detail.workplaces[i]),
+                          index: 3 + i,
+                          child: _WorkplaceCard(widget.detail.workplaces[i]),
                         ),
                     ],
                     const Gap(80),
@@ -124,12 +184,33 @@ class _DetailBody extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomActionBar(
-        child: LoadingFilledButton(
-          label: context.t.doctorDetail.bookAppointment,
-          onPressed: () {
-            HapticFeedback.lightImpact();
-            context.push('/patient/booking-calendar/${detail.id}', extra: detail);
-          },
+        child: Row(
+          children: [
+            Expanded(
+              child: LoadingFilledButton(
+                label: context.t.doctorDetail.bookAppointment,
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  context.push('/patient/booking-calendar/${widget.detail.id}', extra: widget.detail);
+                },
+              ),
+            ),
+            const Gap(10),
+            SizedBox(
+              width: 48,
+              height: 48,
+              child: _joiningWaitlist
+                  ? const Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)))
+                  : IconButton.outlined(
+                      tooltip: isOnWaitlist ? 'Leave waitlist' : 'Join waitlist',
+                      onPressed: () => _toggleWaitlist(myWaitlist),
+                      icon: Icon(
+                        isOnWaitlist ? Icons.notifications_active : Icons.notifications_none_outlined,
+                        color: isOnWaitlist ? AppColors.primary : null,
+                      ),
+                    ),
+            ),
+          ],
         ),
       ),
     );

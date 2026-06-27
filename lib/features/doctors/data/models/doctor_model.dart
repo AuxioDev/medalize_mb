@@ -32,6 +32,9 @@ class DoctorModel {
   final String specialization;
   final String specializationDisplay;
   final int slotDurationMin;
+  final String? consultationFee;
+  final double? averageRating;
+  final int reviewCount;
   final String? primaryWorkplaceName;
   final String? primaryWorkplaceCity;
   final String? primaryWorkplaceId;
@@ -43,6 +46,9 @@ class DoctorModel {
     required this.specialization,
     required this.specializationDisplay,
     required this.slotDurationMin,
+    this.consultationFee,
+    this.averageRating,
+    this.reviewCount = 0,
     this.primaryWorkplaceName,
     this.primaryWorkplaceCity,
     this.primaryWorkplaceId,
@@ -59,6 +65,9 @@ class DoctorModel {
       specialization: j['specialization'] as String? ?? '',
       specializationDisplay: j['specialization_display'] as String? ?? '',
       slotDurationMin: j['slot_duration_min'] as int? ?? 30,
+      consultationFee: j['consultation_fee'] as String?,
+      averageRating: (j['average_rating'] as num?)?.toDouble(),
+      reviewCount: j['review_count'] as int? ?? 0,
       primaryWorkplaceName: wp?['name'] as String?,
       primaryWorkplaceCity: wp?['city'] as String?,
       primaryWorkplaceId: wp?['id'] as String?,
@@ -77,6 +86,9 @@ class DoctorDetailModel extends DoctorModel {
     required super.specialization,
     required super.specializationDisplay,
     required super.slotDurationMin,
+    super.consultationFee,
+    super.averageRating,
+    super.reviewCount,
     super.primaryWorkplaceName,
     super.primaryWorkplaceCity,
     super.primaryWorkplaceId,
@@ -93,6 +105,9 @@ class DoctorDetailModel extends DoctorModel {
       specialization: base.specialization,
       specializationDisplay: base.specializationDisplay,
       slotDurationMin: base.slotDurationMin,
+      consultationFee: base.consultationFee,
+      averageRating: base.averageRating,
+      reviewCount: base.reviewCount,
       primaryWorkplaceName: base.primaryWorkplaceName,
       primaryWorkplaceCity: base.primaryWorkplaceCity,
       primaryWorkplaceId: base.primaryWorkplaceId,

@@ -23,6 +23,7 @@ import 'package:medalize_mb/features/appointments/data/repository/appointment_re
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
@@ -52,7 +53,10 @@ class DoctorHomeScreen extends ConsumerWidget {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () async => ref.invalidate(doctorAppointmentsProvider),
+        onRefresh: () async {
+          ref.invalidate(doctorAppointmentsProvider);
+          ref.invalidate(doctorStatsProvider);
+        },
         color: AppColors.primary,
         child: ResponsiveBody(
           child: ListView(
@@ -70,11 +74,13 @@ class DoctorHomeScreen extends ConsumerWidget {
                 ),
               ),
               const Gap(AppSpacing.lg - 4),
+              const AnimatedEntrance(index: 1, slideY: 0.08, child: _StatsRow()),
+              const Gap(AppSpacing.lg - 4),
               const AnimatedEntrance(
-                  index: 1, slideY: 0.08, child: _DoctorQuickActions()),
+                  index: 2, slideY: 0.08, child: _DoctorQuickActions()),
               const Gap(AppSpacing.lg),
               AnimatedEntrance(
-                index: 2,
+                index: 3,
                 child: SectionHeader(
                   title: context.t.home.pendingRequests,
                   actionLabel: context.t.common.seeAll,
@@ -86,6 +92,92 @@ class DoctorHomeScreen extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _StatsRow extends ConsumerWidget {
+  const _StatsRow();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final statsAsync = ref.watch(doctorStatsProvider);
+    return statsAsync.when(
+      loading: () => Row(
+        children: [
+          Expanded(child: ShimmerSkeleton(height: 72)),
+          const Gap(10),
+          Expanded(child: ShimmerSkeleton(height: 72)),
+          const Gap(10),
+          Expanded(child: ShimmerSkeleton(height: 72)),
+        ],
+      ),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (stats) => Row(
+        children: [
+          Expanded(
+            child: _StatCard(
+              label: 'This month',
+              value: '${stats.appointmentsThisMonth}',
+              icon: Icons.calendar_today_outlined,
+            ),
+          ),
+          const Gap(10),
+          Expanded(
+            child: _StatCard(
+              label: 'Patients',
+              value: '${stats.totalPatients}',
+              icon: Icons.people_outline,
+            ),
+          ),
+          const Gap(10),
+          Expanded(
+            child: _StatCard(
+              label: stats.acceptanceRate != null ? 'Accept rate' : 'Pending',
+              value: stats.acceptanceRate != null
+                  ? '${stats.acceptanceRate}%'
+                  : '${stats.pendingCount}',
+              icon: stats.acceptanceRate != null
+                  ? Icons.thumb_up_outlined
+                  : Icons.pending_outlined,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _StatCard extends StatelessWidget {
+  const _StatCard({required this.label, required this.value, required this.icon});
+  final String label;
+  final String value;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return AppCard(
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+      margin: EdgeInsets.zero,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 18, color: AppColors.primary),
+          const Gap(6),
+          Text(
+            value,
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge
+                ?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          Text(
+            label,
+            style: TextStyle(fontSize: 11, color: c.textSecondary),
+          ),
+        ],
       ),
     );
   }

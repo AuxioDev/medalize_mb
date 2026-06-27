@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:medalize_mb/features/doctor/data/models/doctor_stats_model.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
+import 'package:medalize_mb/features/patient/data/models/waitlist_model.dart';
 
 class SearchParams {
   final String? name;
@@ -71,6 +73,14 @@ final slotsProvider =
 final nextAvailableDateProvider =
     FutureProvider.family<DateTime?, String>((ref, doctorId) {
   return ref.watch(doctorRepositoryProvider).getNextAvailableDate(doctorId);
+});
+
+final doctorStatsProvider = FutureProvider<DoctorStatsModel>((ref) {
+  return ref.watch(doctorRepositoryProvider).getStats();
+});
+
+final myWaitlistProvider = FutureProvider<List<WaitlistModel>>((ref) {
+  return ref.watch(doctorRepositoryProvider).getMyWaitlist();
 });
 
 final selectedDoctorProvider = StateProvider<DoctorModel?>((ref) => null);
