@@ -255,6 +255,12 @@ class _Translations$home$tr extends Translations$home$en {
 	@override String get noUpcoming => 'Yaklaşan randevu yok';
 	@override String get bookFirst => 'Bir doktorla ilk randevunuzu alın';
 	@override String get findADoctor => 'Doktor Bul';
+	@override String get myWaitlist => 'Bekleme Listem';
+	@override String get leaveWaitlist => 'Ayrıl';
+	@override String get statsThisMonth => 'Bu ay';
+	@override String get statsPatients => 'Hastalar';
+	@override String get statsAcceptRate => 'Kabul oranı';
+	@override String get statsPending => 'Bekleyenler';
 }
 
 // Path: appointments
@@ -291,6 +297,12 @@ class _Translations$appointments$tr extends Translations$appointments$en {
 	@override String get cancelAction => 'Randevuyu İptal Et';
 	@override String get bookedTitle => 'Randevu alındı!';
 	@override String get bookedMessage => 'Randevu isteğiniz gönderildi.';
+	@override String get reschedule => 'Yeniden planla';
+	@override String get rescheduleTitle => 'Randevuyu yeniden planla';
+	@override String get reviewTitle => 'Yorum yaz';
+	@override String get reviewRating => 'Puan';
+	@override String get reviewComment => 'Yorum (isteğe bağlı)';
+	@override String get reviewSubmit => 'Gönder';
 }
 
 // Path: booking
@@ -315,6 +327,7 @@ class _Translations$booking$tr extends Translations$booking$en {
 	@override String get addressLabel => 'Adres';
 	@override String get startLabel => 'Başlangıç';
 	@override String get endLabel => 'Bitiş';
+	@override String get tryDifferentDate => 'Farklı bir tarih deneyin';
 }
 
 // Path: doctorSearch
@@ -332,6 +345,10 @@ class _Translations$doctorSearch$tr extends Translations$doctorSearch$en {
 	@override String get adjustSearch => 'Aramanızı veya filtrelerinizi değiştirmeyi deneyin';
 	@override String get couldNotLoadDoctors => 'Doktorlar yüklenemedi';
 	@override late final _Translations$doctorSearch$spec$tr spec = _Translations$doctorSearch$spec$tr._(_root);
+	@override String get noAvailability => 'Uygunluk yok';
+	@override String get availableToday => 'Bugün müsait';
+	@override String get availableTomorrow => 'Yarın müsait';
+	@override String availableOn({required Object date}) => '${date} müsait';
 }
 
 // Path: doctorDetail
@@ -347,6 +364,8 @@ class _Translations$doctorDetail$tr extends Translations$doctorDetail$en {
 	@override String get workplaces => 'İş Yerleri';
 	@override String minPerSlot({required Object min}) => 'aralık başına ${min} dk';
 	@override String get bookAppointment => 'Randevu Al';
+	@override String get consultationFee => 'Muayene ücreti';
+	@override String get reviews => 'Yorumlar';
 }
 
 // Path: profile
@@ -365,6 +384,17 @@ class _Translations$profile$tr extends Translations$profile$en {
 	@override String get lastName => 'Soyad';
 	@override String get phone => 'Telefon';
 	@override String get failedToSave => 'Profil kaydedilemedi.';
+	@override String get professionalInfo => 'Mesleki Bilgiler';
+	@override String get bio => 'Biyografi';
+	@override String get bioHint => 'Deneyiminizin kısa açıklaması';
+	@override String get consultationFee => 'Muayene ücreti';
+	@override String get medicalInfo => 'Tıbbi Bilgiler';
+	@override String get allergies => 'Alerjiler';
+	@override String get allergiesHint => 'ör. Penisilin, fıstık';
+	@override String get chronicConditions => 'Kronik hastalıklar';
+	@override String get chronicConditionsHint => 'ör. Diyabet, hipertansiyon';
+	@override String get medications => 'Mevcut ilaçlar';
+	@override String get medicationsHint => 'ör. Metformin 500mg';
 }
 
 // Path: notifications
@@ -378,6 +408,7 @@ class _Translations$notifications$tr extends Translations$notifications$en {
 	@override String get noNotifications => 'Bildirim yok';
 	@override String get allCaughtUp => 'Her şeyi gördünüz';
 	@override String get couldNotLoad => 'Bildirimler yüklenemedi';
+	@override String get markAllRead => 'Tümünü okundu işaretle';
 }
 
 // Path: workplaces
@@ -670,6 +701,12 @@ extension on TranslationsTr {
 			'home.noUpcoming' => 'Yaklaşan randevu yok',
 			'home.bookFirst' => 'Bir doktorla ilk randevunuzu alın',
 			'home.findADoctor' => 'Doktor Bul',
+			'home.myWaitlist' => 'Bekleme Listem',
+			'home.leaveWaitlist' => 'Ayrıl',
+			'home.statsThisMonth' => 'Bu ay',
+			'home.statsPatients' => 'Hastalar',
+			'home.statsAcceptRate' => 'Kabul oranı',
+			'home.statsPending' => 'Bekleyenler',
 			'appointments.title' => 'Randevular',
 			'appointments.myTitle' => 'Randevularım',
 			'appointments.tabPending' => 'Bekleyen',
@@ -697,6 +734,12 @@ extension on TranslationsTr {
 			'appointments.cancelAction' => 'Randevuyu İptal Et',
 			'appointments.bookedTitle' => 'Randevu alındı!',
 			'appointments.bookedMessage' => 'Randevu isteğiniz gönderildi.',
+			'appointments.reschedule' => 'Yeniden planla',
+			'appointments.rescheduleTitle' => 'Randevuyu yeniden planla',
+			'appointments.reviewTitle' => 'Yorum yaz',
+			'appointments.reviewRating' => 'Puan',
+			'appointments.reviewComment' => 'Yorum (isteğe bağlı)',
+			'appointments.reviewSubmit' => 'Gönder',
 			'booking.bookWith' => ({required Object name}) => 'Randevu — ${name}',
 			'booking.selectWorkplace' => 'İş Yeri Seçin',
 			'booking.pickDate' => 'Tarih seçin',
@@ -712,6 +755,7 @@ extension on TranslationsTr {
 			'booking.addressLabel' => 'Adres',
 			'booking.startLabel' => 'Başlangıç',
 			'booking.endLabel' => 'Bitiş',
+			'booking.tryDifferentDate' => 'Farklı bir tarih deneyin',
 			'doctorSearch.title' => 'Doktor Bul',
 			'doctorSearch.searchByName' => 'İsme göre ara...',
 			'doctorSearch.city' => 'Şehir',
@@ -725,12 +769,18 @@ extension on TranslationsTr {
 			'doctorSearch.spec.neurology' => 'Nöroloji',
 			'doctorSearch.spec.orthopedics' => 'Ortopedi',
 			'doctorSearch.spec.pediatrics' => 'Pediatri',
+			'doctorSearch.noAvailability' => 'Uygunluk yok',
+			'doctorSearch.availableToday' => 'Bugün müsait',
+			'doctorSearch.availableTomorrow' => 'Yarın müsait',
+			'doctorSearch.availableOn' => ({required Object date}) => '${date} müsait',
 			'doctorDetail.profileTitle' => 'Doktor Profili',
 			'doctorDetail.couldNotLoadProfile' => 'Profil yüklenemedi',
 			'doctorDetail.about' => 'Hakkında',
 			'doctorDetail.workplaces' => 'İş Yerleri',
 			'doctorDetail.minPerSlot' => ({required Object min}) => 'aralık başına ${min} dk',
 			'doctorDetail.bookAppointment' => 'Randevu Al',
+			'doctorDetail.consultationFee' => 'Muayene ücreti',
+			'doctorDetail.reviews' => 'Yorumlar',
 			'profile.title' => 'Profil',
 			'profile.changePassword' => 'Şifreyi Değiştir',
 			'profile.currentPassword' => 'Mevcut Şifre',
@@ -740,10 +790,22 @@ extension on TranslationsTr {
 			'profile.lastName' => 'Soyad',
 			'profile.phone' => 'Telefon',
 			'profile.failedToSave' => 'Profil kaydedilemedi.',
+			'profile.professionalInfo' => 'Mesleki Bilgiler',
+			'profile.bio' => 'Biyografi',
+			'profile.bioHint' => 'Deneyiminizin kısa açıklaması',
+			'profile.consultationFee' => 'Muayene ücreti',
+			'profile.medicalInfo' => 'Tıbbi Bilgiler',
+			'profile.allergies' => 'Alerjiler',
+			'profile.allergiesHint' => 'ör. Penisilin, fıstık',
+			'profile.chronicConditions' => 'Kronik hastalıklar',
+			'profile.chronicConditionsHint' => 'ör. Diyabet, hipertansiyon',
+			'profile.medications' => 'Mevcut ilaçlar',
+			'profile.medicationsHint' => 'ör. Metformin 500mg',
 			'notifications.title' => 'Bildirimler',
 			'notifications.noNotifications' => 'Bildirim yok',
 			'notifications.allCaughtUp' => 'Her şeyi gördünüz',
 			'notifications.couldNotLoad' => 'Bildirimler yüklenemedi',
+			'notifications.markAllRead' => 'Tümünü okundu işaretle',
 			'workplaces.title' => 'İş Yerlerim',
 			'workplaces.noWorkplacesYet' => 'Henüz iş yeri yok',
 			'workplaces.tapToAdd' => 'İlk iş yerinizi eklemek için + simgesine dokunun',

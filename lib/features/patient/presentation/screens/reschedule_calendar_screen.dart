@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class RescheduleCalendarScreen extends ConsumerStatefulWidget {
@@ -47,7 +48,7 @@ class _RescheduleCalendarScreenState
         : null;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Reschedule Appointment')),
+      appBar: AppBar(title: Text(context.t.appointments.rescheduleTitle)),
       body: ResponsiveBody(
         child: Column(
           children: [
@@ -104,17 +105,17 @@ class _RescheduleCalendarScreenState
                   ),
                   error: (_, _) => EmptyState(
                     icon: Icons.cloud_off_outlined,
-                    title: 'Could not load slots',
-                    subtitle: 'Please try again',
-                    actionLabel: 'Retry',
+                    title: context.t.booking.couldNotLoadSlots,
+                    subtitle: context.t.common.tryAgain,
+                    actionLabel: context.t.common.retry,
                     onAction: () => ref.invalidate(slotsProvider),
                   ),
                   data: (slots) {
                     if (slots.isEmpty) {
-                      return const EmptyState(
+                      return EmptyState(
                         icon: Icons.event_busy_outlined,
-                        title: 'No available slots',
-                        subtitle: 'Try a different date',
+                        title: context.t.booking.noAvailableSlots,
+                        subtitle: context.t.booking.tryDifferentDate,
                       );
                     }
                     return GridView.builder(
@@ -147,11 +148,11 @@ class _RescheduleCalendarScreenState
                 ),
               ),
             ] else
-              const Expanded(
+              Expanded(
                 child: EmptyState(
                   icon: Icons.calendar_month_outlined,
-                  title: 'Pick a date',
-                  subtitle: 'Available slots will appear here',
+                  title: context.t.booking.pickDate,
+                  subtitle: context.t.booking.slotsAppear,
                 ),
               ),
           ],

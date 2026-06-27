@@ -39,7 +39,7 @@ class DoctorHomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medalize'),
+        title: Text(context.t.appName),
         actions: [
           NotificationBell(
             count: unread,
@@ -118,7 +118,7 @@ class _StatsRow extends ConsumerWidget {
         children: [
           Expanded(
             child: _StatCard(
-              label: 'This month',
+              label: context.t.home.statsThisMonth,
               value: '${stats.appointmentsThisMonth}',
               icon: Icons.calendar_today_outlined,
             ),
@@ -126,7 +126,7 @@ class _StatsRow extends ConsumerWidget {
           const Gap(10),
           Expanded(
             child: _StatCard(
-              label: 'Patients',
+              label: context.t.home.statsPatients,
               value: '${stats.totalPatients}',
               icon: Icons.people_outline,
             ),
@@ -134,7 +134,7 @@ class _StatsRow extends ConsumerWidget {
           const Gap(10),
           Expanded(
             child: _StatCard(
-              label: stats.acceptanceRate != null ? 'Accept rate' : 'Pending',
+              label: stats.acceptanceRate != null ? context.t.home.statsAcceptRate : context.t.home.statsPending,
               value: stats.acceptanceRate != null
                   ? '${stats.acceptanceRate}%'
                   : '${stats.pendingCount}',

@@ -127,7 +127,13 @@
     "couldNotLoadAppointments": "Impossible de charger les rendez-vous",
     "noUpcoming": "Aucun rendez-vous à venir",
     "bookFirst": "Prenez votre premier rendez-vous avec un médecin",
-    "findADoctor": "Trouver un médecin"
+    "findADoctor": "Trouver un médecin",
+    "myWaitlist": "Ma liste d'attente",
+    "leaveWaitlist": "Quitter",
+    "statsThisMonth": "Ce mois",
+    "statsPatients": "Patients",
+    "statsAcceptRate": "Taux accept.",
+    "statsPending": "En attente"
   },
   "appointments": {
     "title": "Rendez-vous",
@@ -156,7 +162,13 @@
     "cancelConfirm": "Voulez-vous vraiment annuler ce rendez-vous ?",
     "cancelAction": "Annuler le rendez-vous",
     "bookedTitle": "Réservé !",
-    "bookedMessage": "Votre demande de rendez-vous a été envoyée."
+    "bookedMessage": "Votre demande de rendez-vous a été envoyée.",
+    "reschedule": "Reporter",
+    "rescheduleTitle": "Reporter le rendez-vous",
+    "reviewTitle": "Laisser un avis",
+    "reviewRating": "Note",
+    "reviewComment": "Commentaire (optionnel)",
+    "reviewSubmit": "Envoyer"
   },
   "booking": {
     "bookWith": "Réserver — $name",
@@ -173,7 +185,8 @@
     "workplaceLabel": "Lieu de travail",
     "addressLabel": "Adresse",
     "startLabel": "Début",
-    "endLabel": "Fin"
+    "endLabel": "Fin",
+    "tryDifferentDate": "Essayez une autre date"
   },
   "doctorSearch": {
     "title": "Trouver un médecin",
@@ -190,7 +203,11 @@
       "neurology": "Neurologie",
       "orthopedics": "Orthopédie",
       "pediatrics": "Pédiatrie"
-    }
+    },
+    "noAvailability": "Indisponible",
+    "availableToday": "Disponible auj.",
+    "availableTomorrow": "Disponible demain",
+    "availableOn": "Dispo le $date"
   },
   "doctorDetail": {
     "profileTitle": "Profil du médecin",
@@ -198,7 +215,9 @@
     "about": "À propos",
     "workplaces": "Lieux de travail",
     "minPerSlot": "$min min par créneau",
-    "bookAppointment": "Prendre rendez-vous"
+    "bookAppointment": "Prendre rendez-vous",
+    "consultationFee": "Frais de consultation",
+    "reviews": "Avis"
   },
   "profile": {
     "title": "Profil",
@@ -209,13 +228,25 @@
     "firstName": "Prénom",
     "lastName": "Nom",
     "phone": "Téléphone",
-    "failedToSave": "Échec de l'enregistrement du profil."
+    "failedToSave": "Échec de l'enregistrement du profil.",
+    "professionalInfo": "Infos professionnelles",
+    "bio": "Biographie",
+    "bioHint": "Brève description de votre expérience",
+    "consultationFee": "Frais de consultation",
+    "medicalInfo": "Informations médicales",
+    "allergies": "Allergies",
+    "allergiesHint": "ex. Pénicilline, cacahuètes",
+    "chronicConditions": "Maladies chroniques",
+    "chronicConditionsHint": "ex. Diabète, hypertension",
+    "medications": "Médicaments actuels",
+    "medicationsHint": "ex. Metformine 500mg"
   },
   "notifications": {
     "title": "Notifications",
     "noNotifications": "Aucune notification",
     "allCaughtUp": "Vous êtes à jour",
-    "couldNotLoad": "Impossible de charger les notifications"
+    "couldNotLoad": "Impossible de charger les notifications",
+    "markAllRead": "Tout marquer lu"
   },
   "workplaces": {
     "title": "Mes lieux de travail",

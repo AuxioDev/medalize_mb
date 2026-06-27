@@ -377,7 +377,7 @@ class _DoctorCard extends ConsumerWidget {
                   error: (_, _) => const SizedBox.shrink(),
                   data: (date) => date == null
                       ? Text(
-                          'No availability',
+                          context.t.doctorSearch.noAvailability,
                           style: TextStyle(
                               fontSize: 11, color: c.textSecondary),
                         )
@@ -387,7 +387,7 @@ class _DoctorCard extends ConsumerWidget {
                                 size: 12, color: c.primaryText),
                             const Gap(3),
                             Text(
-                              _formatNextDate(date),
+                              _formatNextDate(context, date),
                               style: TextStyle(
                                 fontSize: 11,
                                 color: c.primaryText,
@@ -414,16 +414,16 @@ class _DoctorCard extends ConsumerWidget {
     );
   }
 
-  String _formatNextDate(DateTime date) {
+  String _formatNextDate(BuildContext context, DateTime date) {
     final today = DateTime.now();
     final tomorrow = today.add(const Duration(days: 1));
     if (date.year == today.year && date.month == today.month && date.day == today.day) {
-      return 'Available today';
+      return context.t.doctorSearch.availableToday;
     }
     if (date.year == tomorrow.year && date.month == tomorrow.month && date.day == tomorrow.day) {
-      return 'Available tomorrow';
+      return context.t.doctorSearch.availableTomorrow;
     }
-    return 'Available ${DateFormat('d MMM').format(date)}';
+    return context.t.doctorSearch.availableOn(date: DateFormat('d MMM').format(date));
   }
 }
 

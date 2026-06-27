@@ -36,7 +36,7 @@ class PatientHomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medalize'),
+        title: Text(context.t.appName),
         actions: [
           NotificationBell(
             count: unread,
@@ -295,7 +295,7 @@ class _WaitlistSection extends ConsumerWidget {
         const Gap(AppSpacing.lg),
         AnimatedEntrance(
           index: 3,
-          child: SectionHeader(title: 'My Waitlist', actionLabel: null, onAction: null),
+          child: SectionHeader(title: context.t.home.myWaitlist, actionLabel: null, onAction: null),
         ),
         const Gap(AppSpacing.sm),
         for (final entry in entries)
@@ -326,7 +326,7 @@ class _WaitlistSection extends ConsumerWidget {
                       ref.invalidate(myWaitlistProvider);
                     },
                     style: TextButton.styleFrom(foregroundColor: AppColors.error),
-                    child: const Text('Leave'),
+                    child: Text(context.t.home.leaveWaitlist),
                   ),
                 ],
               ),

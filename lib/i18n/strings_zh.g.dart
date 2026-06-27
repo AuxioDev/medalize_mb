@@ -255,6 +255,12 @@ class _Translations$home$zh extends Translations$home$en {
 	@override String get noUpcoming => '没有即将到来的预约';
 	@override String get bookFirst => '预约您的第一次就诊';
 	@override String get findADoctor => '查找医生';
+	@override String get myWaitlist => '我的候诊队列';
+	@override String get leaveWaitlist => '退出';
+	@override String get statsThisMonth => '本月';
+	@override String get statsPatients => '患者';
+	@override String get statsAcceptRate => '接受率';
+	@override String get statsPending => '待处理';
 }
 
 // Path: appointments
@@ -291,6 +297,12 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get cancelAction => '取消预约';
 	@override String get bookedTitle => '已预约！';
 	@override String get bookedMessage => '您的预约请求已发送。';
+	@override String get reschedule => '改期';
+	@override String get rescheduleTitle => '改期预约';
+	@override String get reviewTitle => '发表评价';
+	@override String get reviewRating => '评分';
+	@override String get reviewComment => '留言（可选）';
+	@override String get reviewSubmit => '提交';
 }
 
 // Path: booking
@@ -315,6 +327,7 @@ class _Translations$booking$zh extends Translations$booking$en {
 	@override String get addressLabel => '地址';
 	@override String get startLabel => '开始';
 	@override String get endLabel => '结束';
+	@override String get tryDifferentDate => '请换个日期试试';
 }
 
 // Path: doctorSearch
@@ -332,6 +345,10 @@ class _Translations$doctorSearch$zh extends Translations$doctorSearch$en {
 	@override String get adjustSearch => '请尝试调整搜索或筛选条件';
 	@override String get couldNotLoadDoctors => '无法加载医生';
 	@override late final _Translations$doctorSearch$spec$zh spec = _Translations$doctorSearch$spec$zh._(_root);
+	@override String get noAvailability => '暂无时间';
+	@override String get availableToday => '今天可约';
+	@override String get availableTomorrow => '明天可约';
+	@override String availableOn({required Object date}) => '${date} 可约';
 }
 
 // Path: doctorDetail
@@ -347,6 +364,8 @@ class _Translations$doctorDetail$zh extends Translations$doctorDetail$en {
 	@override String get workplaces => '工作地点';
 	@override String minPerSlot({required Object min}) => '每个时段 ${min} 分钟';
 	@override String get bookAppointment => '预约就诊';
+	@override String get consultationFee => '挂号费';
+	@override String get reviews => '评价';
 }
 
 // Path: profile
@@ -365,6 +384,17 @@ class _Translations$profile$zh extends Translations$profile$en {
 	@override String get lastName => '姓氏';
 	@override String get phone => '电话';
 	@override String get failedToSave => '保存个人资料失败。';
+	@override String get professionalInfo => '职业信息';
+	@override String get bio => '简介';
+	@override String get bioHint => '简短介绍您的经验';
+	@override String get consultationFee => '挂号费';
+	@override String get medicalInfo => '医疗信息';
+	@override String get allergies => '过敏史';
+	@override String get allergiesHint => '如：青霉素、花生';
+	@override String get chronicConditions => '慢性病史';
+	@override String get chronicConditionsHint => '如：糖尿病、高血压';
+	@override String get medications => '当前用药';
+	@override String get medicationsHint => '如：二甲双胍500mg';
 }
 
 // Path: notifications
@@ -378,6 +408,7 @@ class _Translations$notifications$zh extends Translations$notifications$en {
 	@override String get noNotifications => '没有通知';
 	@override String get allCaughtUp => '您已查看全部';
 	@override String get couldNotLoad => '无法加载通知';
+	@override String get markAllRead => '全部标为已读';
 }
 
 // Path: workplaces
@@ -670,6 +701,12 @@ extension on TranslationsZh {
 			'home.noUpcoming' => '没有即将到来的预约',
 			'home.bookFirst' => '预约您的第一次就诊',
 			'home.findADoctor' => '查找医生',
+			'home.myWaitlist' => '我的候诊队列',
+			'home.leaveWaitlist' => '退出',
+			'home.statsThisMonth' => '本月',
+			'home.statsPatients' => '患者',
+			'home.statsAcceptRate' => '接受率',
+			'home.statsPending' => '待处理',
 			'appointments.title' => '预约',
 			'appointments.myTitle' => '我的预约',
 			'appointments.tabPending' => '待处理',
@@ -697,6 +734,12 @@ extension on TranslationsZh {
 			'appointments.cancelAction' => '取消预约',
 			'appointments.bookedTitle' => '已预约！',
 			'appointments.bookedMessage' => '您的预约请求已发送。',
+			'appointments.reschedule' => '改期',
+			'appointments.rescheduleTitle' => '改期预约',
+			'appointments.reviewTitle' => '发表评价',
+			'appointments.reviewRating' => '评分',
+			'appointments.reviewComment' => '留言（可选）',
+			'appointments.reviewSubmit' => '提交',
 			'booking.bookWith' => ({required Object name}) => '预约 — ${name}',
 			'booking.selectWorkplace' => '选择工作地点',
 			'booking.pickDate' => '选择日期',
@@ -712,6 +755,7 @@ extension on TranslationsZh {
 			'booking.addressLabel' => '地址',
 			'booking.startLabel' => '开始',
 			'booking.endLabel' => '结束',
+			'booking.tryDifferentDate' => '请换个日期试试',
 			'doctorSearch.title' => '查找医生',
 			'doctorSearch.searchByName' => '按姓名搜索...',
 			'doctorSearch.city' => '城市',
@@ -725,12 +769,18 @@ extension on TranslationsZh {
 			'doctorSearch.spec.neurology' => '神经科',
 			'doctorSearch.spec.orthopedics' => '骨科',
 			'doctorSearch.spec.pediatrics' => '儿科',
+			'doctorSearch.noAvailability' => '暂无时间',
+			'doctorSearch.availableToday' => '今天可约',
+			'doctorSearch.availableTomorrow' => '明天可约',
+			'doctorSearch.availableOn' => ({required Object date}) => '${date} 可约',
 			'doctorDetail.profileTitle' => '医生资料',
 			'doctorDetail.couldNotLoadProfile' => '无法加载资料',
 			'doctorDetail.about' => '简介',
 			'doctorDetail.workplaces' => '工作地点',
 			'doctorDetail.minPerSlot' => ({required Object min}) => '每个时段 ${min} 分钟',
 			'doctorDetail.bookAppointment' => '预约就诊',
+			'doctorDetail.consultationFee' => '挂号费',
+			'doctorDetail.reviews' => '评价',
 			'profile.title' => '个人资料',
 			'profile.changePassword' => '更改密码',
 			'profile.currentPassword' => '当前密码',
@@ -740,10 +790,22 @@ extension on TranslationsZh {
 			'profile.lastName' => '姓氏',
 			'profile.phone' => '电话',
 			'profile.failedToSave' => '保存个人资料失败。',
+			'profile.professionalInfo' => '职业信息',
+			'profile.bio' => '简介',
+			'profile.bioHint' => '简短介绍您的经验',
+			'profile.consultationFee' => '挂号费',
+			'profile.medicalInfo' => '医疗信息',
+			'profile.allergies' => '过敏史',
+			'profile.allergiesHint' => '如：青霉素、花生',
+			'profile.chronicConditions' => '慢性病史',
+			'profile.chronicConditionsHint' => '如：糖尿病、高血压',
+			'profile.medications' => '当前用药',
+			'profile.medicationsHint' => '如：二甲双胍500mg',
 			'notifications.title' => '通知',
 			'notifications.noNotifications' => '没有通知',
 			'notifications.allCaughtUp' => '您已查看全部',
 			'notifications.couldNotLoad' => '无法加载通知',
+			'notifications.markAllRead' => '全部标为已读',
 			'workplaces.title' => '我的工作地点',
 			'workplaces.noWorkplacesYet' => '暂无工作地点',
 			'workplaces.tapToAdd' => '点击 + 添加您的第一个工作地点',

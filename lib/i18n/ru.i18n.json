@@ -127,7 +127,13 @@
     "couldNotLoadAppointments": "Не удалось загрузить приёмы",
     "noUpcoming": "Нет предстоящих приёмов",
     "bookFirst": "Запишитесь на первый приём к врачу",
-    "findADoctor": "Найти врача"
+    "findADoctor": "Найти врача",
+    "myWaitlist": "Мой лист ожидания",
+    "leaveWaitlist": "Выйти",
+    "statsThisMonth": "Этот месяц",
+    "statsPatients": "Пациенты",
+    "statsAcceptRate": "% принятых",
+    "statsPending": "Ожидают"
   },
   "appointments": {
     "title": "Приёмы",
@@ -156,7 +162,13 @@
     "cancelConfirm": "Вы уверены, что хотите отменить этот приём?",
     "cancelAction": "Отменить приём",
     "bookedTitle": "Записано!",
-    "bookedMessage": "Ваш запрос на приём отправлен."
+    "bookedMessage": "Ваш запрос на приём отправлен.",
+    "reschedule": "Перенести",
+    "rescheduleTitle": "Перенос приёма",
+    "reviewTitle": "Оставить отзыв",
+    "reviewRating": "Оценка",
+    "reviewComment": "Комментарий (необязательно)",
+    "reviewSubmit": "Отправить"
   },
   "booking": {
     "bookWith": "Запись — $name",
@@ -173,7 +185,8 @@
     "workplaceLabel": "Место работы",
     "addressLabel": "Адрес",
     "startLabel": "Начало",
-    "endLabel": "Конец"
+    "endLabel": "Конец",
+    "tryDifferentDate": "Попробуйте другую дату"
   },
   "doctorSearch": {
     "title": "Найти врача",
@@ -190,7 +203,11 @@
       "neurology": "Неврология",
       "orthopedics": "Ортопедия",
       "pediatrics": "Педиатрия"
-    }
+    },
+    "noAvailability": "Нет свободного времени",
+    "availableToday": "Доступен сегодня",
+    "availableTomorrow": "Доступен завтра",
+    "availableOn": "Доступен $date"
   },
   "doctorDetail": {
     "profileTitle": "Профиль врача",
@@ -198,7 +215,9 @@
     "about": "О себе",
     "workplaces": "Места работы",
     "minPerSlot": "$min мин на приём",
-    "bookAppointment": "Записаться на приём"
+    "bookAppointment": "Записаться на приём",
+    "consultationFee": "Стоимость приёма",
+    "reviews": "Отзывы"
   },
   "profile": {
     "title": "Профиль",
@@ -209,13 +228,25 @@
     "firstName": "Имя",
     "lastName": "Фамилия",
     "phone": "Телефон",
-    "failedToSave": "Не удалось сохранить профиль."
+    "failedToSave": "Не удалось сохранить профиль.",
+    "professionalInfo": "Профессиональная информация",
+    "bio": "О себе",
+    "bioHint": "Краткое описание вашего опыта",
+    "consultationFee": "Стоимость приёма",
+    "medicalInfo": "Медицинская информация",
+    "allergies": "Аллергии",
+    "allergiesHint": "напр. Пенициллин, орехи",
+    "chronicConditions": "Хронические заболевания",
+    "chronicConditionsHint": "напр. Диабет, гипертония",
+    "medications": "Принимаемые препараты",
+    "medicationsHint": "напр. Метформин 500 мг"
   },
   "notifications": {
     "title": "Уведомления",
     "noNotifications": "Нет уведомлений",
     "allCaughtUp": "Вы всё просмотрели",
-    "couldNotLoad": "Не удалось загрузить уведомления"
+    "couldNotLoad": "Не удалось загрузить уведомления",
+    "markAllRead": "Отметить всё прочитанным"
   },
   "workplaces": {
     "title": "Мои места работы",

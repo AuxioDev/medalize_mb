@@ -255,6 +255,12 @@ class _Translations$home$fr extends Translations$home$en {
 	@override String get noUpcoming => 'Aucun rendez-vous à venir';
 	@override String get bookFirst => 'Prenez votre premier rendez-vous avec un médecin';
 	@override String get findADoctor => 'Trouver un médecin';
+	@override String get myWaitlist => 'Ma liste d\'attente';
+	@override String get leaveWaitlist => 'Quitter';
+	@override String get statsThisMonth => 'Ce mois';
+	@override String get statsPatients => 'Patients';
+	@override String get statsAcceptRate => 'Taux accept.';
+	@override String get statsPending => 'En attente';
 }
 
 // Path: appointments
@@ -291,6 +297,12 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get cancelAction => 'Annuler le rendez-vous';
 	@override String get bookedTitle => 'Réservé !';
 	@override String get bookedMessage => 'Votre demande de rendez-vous a été envoyée.';
+	@override String get reschedule => 'Reporter';
+	@override String get rescheduleTitle => 'Reporter le rendez-vous';
+	@override String get reviewTitle => 'Laisser un avis';
+	@override String get reviewRating => 'Note';
+	@override String get reviewComment => 'Commentaire (optionnel)';
+	@override String get reviewSubmit => 'Envoyer';
 }
 
 // Path: booking
@@ -315,6 +327,7 @@ class _Translations$booking$fr extends Translations$booking$en {
 	@override String get addressLabel => 'Adresse';
 	@override String get startLabel => 'Début';
 	@override String get endLabel => 'Fin';
+	@override String get tryDifferentDate => 'Essayez une autre date';
 }
 
 // Path: doctorSearch
@@ -332,6 +345,10 @@ class _Translations$doctorSearch$fr extends Translations$doctorSearch$en {
 	@override String get adjustSearch => 'Essayez d\'ajuster votre recherche ou vos filtres';
 	@override String get couldNotLoadDoctors => 'Impossible de charger les médecins';
 	@override late final _Translations$doctorSearch$spec$fr spec = _Translations$doctorSearch$spec$fr._(_root);
+	@override String get noAvailability => 'Indisponible';
+	@override String get availableToday => 'Disponible auj.';
+	@override String get availableTomorrow => 'Disponible demain';
+	@override String availableOn({required Object date}) => 'Dispo le ${date}';
 }
 
 // Path: doctorDetail
@@ -347,6 +364,8 @@ class _Translations$doctorDetail$fr extends Translations$doctorDetail$en {
 	@override String get workplaces => 'Lieux de travail';
 	@override String minPerSlot({required Object min}) => '${min} min par créneau';
 	@override String get bookAppointment => 'Prendre rendez-vous';
+	@override String get consultationFee => 'Frais de consultation';
+	@override String get reviews => 'Avis';
 }
 
 // Path: profile
@@ -365,6 +384,17 @@ class _Translations$profile$fr extends Translations$profile$en {
 	@override String get lastName => 'Nom';
 	@override String get phone => 'Téléphone';
 	@override String get failedToSave => 'Échec de l\'enregistrement du profil.';
+	@override String get professionalInfo => 'Infos professionnelles';
+	@override String get bio => 'Biographie';
+	@override String get bioHint => 'Brève description de votre expérience';
+	@override String get consultationFee => 'Frais de consultation';
+	@override String get medicalInfo => 'Informations médicales';
+	@override String get allergies => 'Allergies';
+	@override String get allergiesHint => 'ex. Pénicilline, cacahuètes';
+	@override String get chronicConditions => 'Maladies chroniques';
+	@override String get chronicConditionsHint => 'ex. Diabète, hypertension';
+	@override String get medications => 'Médicaments actuels';
+	@override String get medicationsHint => 'ex. Metformine 500mg';
 }
 
 // Path: notifications
@@ -378,6 +408,7 @@ class _Translations$notifications$fr extends Translations$notifications$en {
 	@override String get noNotifications => 'Aucune notification';
 	@override String get allCaughtUp => 'Vous êtes à jour';
 	@override String get couldNotLoad => 'Impossible de charger les notifications';
+	@override String get markAllRead => 'Tout marquer lu';
 }
 
 // Path: workplaces
@@ -670,6 +701,12 @@ extension on TranslationsFr {
 			'home.noUpcoming' => 'Aucun rendez-vous à venir',
 			'home.bookFirst' => 'Prenez votre premier rendez-vous avec un médecin',
 			'home.findADoctor' => 'Trouver un médecin',
+			'home.myWaitlist' => 'Ma liste d\'attente',
+			'home.leaveWaitlist' => 'Quitter',
+			'home.statsThisMonth' => 'Ce mois',
+			'home.statsPatients' => 'Patients',
+			'home.statsAcceptRate' => 'Taux accept.',
+			'home.statsPending' => 'En attente',
 			'appointments.title' => 'Rendez-vous',
 			'appointments.myTitle' => 'Mes rendez-vous',
 			'appointments.tabPending' => 'En attente',
@@ -697,6 +734,12 @@ extension on TranslationsFr {
 			'appointments.cancelAction' => 'Annuler le rendez-vous',
 			'appointments.bookedTitle' => 'Réservé !',
 			'appointments.bookedMessage' => 'Votre demande de rendez-vous a été envoyée.',
+			'appointments.reschedule' => 'Reporter',
+			'appointments.rescheduleTitle' => 'Reporter le rendez-vous',
+			'appointments.reviewTitle' => 'Laisser un avis',
+			'appointments.reviewRating' => 'Note',
+			'appointments.reviewComment' => 'Commentaire (optionnel)',
+			'appointments.reviewSubmit' => 'Envoyer',
 			'booking.bookWith' => ({required Object name}) => 'Réserver — ${name}',
 			'booking.selectWorkplace' => 'Sélectionner un lieu',
 			'booking.pickDate' => 'Choisir une date',
@@ -712,6 +755,7 @@ extension on TranslationsFr {
 			'booking.addressLabel' => 'Adresse',
 			'booking.startLabel' => 'Début',
 			'booking.endLabel' => 'Fin',
+			'booking.tryDifferentDate' => 'Essayez une autre date',
 			'doctorSearch.title' => 'Trouver un médecin',
 			'doctorSearch.searchByName' => 'Rechercher par nom...',
 			'doctorSearch.city' => 'Ville',
@@ -725,12 +769,18 @@ extension on TranslationsFr {
 			'doctorSearch.spec.neurology' => 'Neurologie',
 			'doctorSearch.spec.orthopedics' => 'Orthopédie',
 			'doctorSearch.spec.pediatrics' => 'Pédiatrie',
+			'doctorSearch.noAvailability' => 'Indisponible',
+			'doctorSearch.availableToday' => 'Disponible auj.',
+			'doctorSearch.availableTomorrow' => 'Disponible demain',
+			'doctorSearch.availableOn' => ({required Object date}) => 'Dispo le ${date}',
 			'doctorDetail.profileTitle' => 'Profil du médecin',
 			'doctorDetail.couldNotLoadProfile' => 'Impossible de charger le profil',
 			'doctorDetail.about' => 'À propos',
 			'doctorDetail.workplaces' => 'Lieux de travail',
 			'doctorDetail.minPerSlot' => ({required Object min}) => '${min} min par créneau',
 			'doctorDetail.bookAppointment' => 'Prendre rendez-vous',
+			'doctorDetail.consultationFee' => 'Frais de consultation',
+			'doctorDetail.reviews' => 'Avis',
 			'profile.title' => 'Profil',
 			'profile.changePassword' => 'Changer le mot de passe',
 			'profile.currentPassword' => 'Mot de passe actuel',
@@ -740,10 +790,22 @@ extension on TranslationsFr {
 			'profile.lastName' => 'Nom',
 			'profile.phone' => 'Téléphone',
 			'profile.failedToSave' => 'Échec de l\'enregistrement du profil.',
+			'profile.professionalInfo' => 'Infos professionnelles',
+			'profile.bio' => 'Biographie',
+			'profile.bioHint' => 'Brève description de votre expérience',
+			'profile.consultationFee' => 'Frais de consultation',
+			'profile.medicalInfo' => 'Informations médicales',
+			'profile.allergies' => 'Allergies',
+			'profile.allergiesHint' => 'ex. Pénicilline, cacahuètes',
+			'profile.chronicConditions' => 'Maladies chroniques',
+			'profile.chronicConditionsHint' => 'ex. Diabète, hypertension',
+			'profile.medications' => 'Médicaments actuels',
+			'profile.medicationsHint' => 'ex. Metformine 500mg',
 			'notifications.title' => 'Notifications',
 			'notifications.noNotifications' => 'Aucune notification',
 			'notifications.allCaughtUp' => 'Vous êtes à jour',
 			'notifications.couldNotLoad' => 'Impossible de charger les notifications',
+			'notifications.markAllRead' => 'Tout marquer lu',
 			'workplaces.title' => 'Mes lieux de travail',
 			'workplaces.noWorkplacesYet' => 'Aucun lieu de travail',
 			'workplaces.tapToAdd' => 'Appuyez sur + pour ajouter votre premier lieu de travail',

@@ -124,7 +124,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                               Icon(Icons.payments_outlined, color: c.primaryText, size: 20),
                               const Gap(10),
                               Text(
-                                'Consultation fee: ${widget.detail.consultationFee}',
+                                '${context.t.doctorDetail.consultationFee}: ${widget.detail.consultationFee}',
                                 style: TextStyle(
                                   color: c.primaryText,
                                   fontWeight: FontWeight.w600,
@@ -186,7 +186,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                       const Gap(20),
                       AnimatedEntrance(
                         index: 4,
-                        child: Text('Reviews', style: Theme.of(context).textTheme.titleSmall),
+                        child: Text(context.t.doctorDetail.reviews, style: Theme.of(context).textTheme.titleSmall),
                       ),
                       const Gap(10),
                       _ReviewsList(doctorId: widget.doctorId),

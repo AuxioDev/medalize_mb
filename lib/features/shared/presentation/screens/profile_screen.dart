@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
@@ -22,7 +24,9 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   bool _editing = false;
   bool _saving = false;
+  bool _uploadingAvatar = false;
   String? _role;
+  String? _avatarUrl;
   late TextEditingController _firstName;
   late TextEditingController _lastName;
   late TextEditingController _phone;
@@ -58,6 +62,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       _firstName.text = d['first_name'] as String? ?? '';
       _lastName.text = d['last_name'] as String? ?? '';
       _phone.text = d['phone'] as String? ?? '';
+      _avatarUrl = d['avatar_url'] as String?;
       if (_role == 'patient') {
         final profile = d['profile'] as Map<String, dynamic>? ?? {};
         _allergies.text = profile['allergies'] as String? ?? '';
@@ -65,9 +70,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         _medications.text = profile['medications'] as String? ?? '';
       }
       if (_role == 'doctor') {
-        final doctorProfile = d['doctor_profile'] as Map<String, dynamic>? ?? {};
-        _bio.text = doctorProfile['bio'] as String? ?? '';
-        _consultationFee.text = doctorProfile['consultation_fee'] as String? ?? '';
+        final profile = d['profile'] as Map<String, dynamic>? ?? {};
+        _bio.text = profile['bio'] as String? ?? '';
+        _consultationFee.text = profile['consultation_fee'] as String? ?? '';
       }
       if (mounted) setState(() {});
     } catch (_) {}
@@ -84,6 +89,24 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _bio.dispose();
     _consultationFee.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickAndUploadAvatar() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(source: ImageSource.gallery, imageQuality: 85, maxWidth: 1024);
+    if (picked == null || !mounted) return;
+    setState(() => _uploadingAvatar = true);
+    try {
+      final form = FormData.fromMap({
+        'avatar': await MultipartFile.fromFile(picked.path, filename: 'avatar.jpg'),
+      });
+      final res = await ref.read(dioClientProvider).post('/auth/profile/avatar/', data: form);
+      final url = (res.data as Map<String, dynamic>)['avatar_url'] as String?;
+      if (mounted) setState(() => _avatarUrl = url);
+    } catch (_) {
+    } finally {
+      if (mounted) setState(() => _uploadingAvatar = false);
+    }
   }
 
   Future<void> _save() async {
@@ -216,7 +239,38 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           padding: const EdgeInsets.all(AppSpacing.md),
           child: Column(
             children: [
-              GradientAvatar(initials: initialsSource, size: 96),
+              GestureDetector(
+                onTap: _uploadingAvatar ? null : _pickAndUploadAvatar,
+                child: Stack(
+                  children: [
+                    _avatarUrl != null
+                        ? CircleAvatar(
+                            radius: 48,
+                            backgroundImage: NetworkImage(_avatarUrl!),
+                          )
+                        : GradientAvatar(initials: initialsSource, size: 96),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 28,
+                        height: 28,
+                        decoration: const BoxDecoration(
+                          color: AppColors.primary,
+                          shape: BoxShape.circle,
+                        ),
+                        child: _uploadingAvatar
+                            ? const Padding(
+                                padding: EdgeInsets.all(6),
+                                child: CircularProgressIndicator(
+                                    strokeWidth: 2, color: Colors.white),
+                              )
+                            : const Icon(Icons.camera_alt, size: 16, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               const Gap(AppSpacing.sm),
               Text(email, style: Theme.of(context).textTheme.bodyMedium),
               const Gap(AppSpacing.lg),
@@ -243,16 +297,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
               if (_role == 'doctor') ...[
                 const Gap(AppSpacing.lg),
-                Text('Professional Info', style: Theme.of(context).textTheme.titleSmall),
+                Text(context.t.profile.professionalInfo, style: Theme.of(context).textTheme.titleSmall),
                 const Gap(12),
                 TextField(
                   controller: _bio,
                   enabled: _editing,
                   maxLines: 3,
-                  decoration: const InputDecoration(
-                    labelText: 'Bio',
+                  decoration: InputDecoration(
+                    labelText: context.t.profile.bio,
                     alignLabelWithHint: true,
-                    hintText: 'Short description of your experience',
+                    hintText: context.t.profile.bioHint,
                   ),
                 ),
                 const Gap(12),
@@ -260,8 +314,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   controller: _consultationFee,
                   enabled: _editing,
                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                  decoration: const InputDecoration(
-                    labelText: 'Consultation fee',
+                  decoration: InputDecoration(
+                    labelText: context.t.profile.consultationFee,
                     hintText: '50.00',
                     prefixText: '\$ ',
                   ),
@@ -270,7 +324,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               if (_role == 'patient') ...[
                 const Gap(AppSpacing.lg),
                 Text(
-                  'Medical Information',
+                  context.t.profile.medicalInfo,
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const Gap(12),
@@ -278,10 +332,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   controller: _allergies,
                   enabled: _editing,
                   maxLines: 2,
-                  decoration: const InputDecoration(
-                    labelText: 'Allergies',
+                  decoration: InputDecoration(
+                    labelText: context.t.profile.allergies,
                     alignLabelWithHint: true,
-                    hintText: 'e.g. Penicillin, peanuts',
+                    hintText: context.t.profile.allergiesHint,
                   ),
                 ),
                 const Gap(12),
@@ -289,10 +343,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   controller: _chronicConditions,
                   enabled: _editing,
                   maxLines: 2,
-                  decoration: const InputDecoration(
-                    labelText: 'Chronic conditions',
+                  decoration: InputDecoration(
+                    labelText: context.t.profile.chronicConditions,
                     alignLabelWithHint: true,
-                    hintText: 'e.g. Diabetes, hypertension',
+                    hintText: context.t.profile.chronicConditionsHint,
                   ),
                 ),
                 const Gap(12),
@@ -300,10 +354,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   controller: _medications,
                   enabled: _editing,
                   maxLines: 2,
-                  decoration: const InputDecoration(
-                    labelText: 'Current medications',
+                  decoration: InputDecoration(
+                    labelText: context.t.profile.medications,
                     alignLabelWithHint: true,
-                    hintText: 'e.g. Metformin 500mg',
+                    hintText: context.t.profile.medicationsHint,
                   ),
                 ),
               ],

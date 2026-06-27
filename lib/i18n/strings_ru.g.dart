@@ -255,6 +255,12 @@ class _Translations$home$ru extends Translations$home$en {
 	@override String get noUpcoming => 'Нет предстоящих приёмов';
 	@override String get bookFirst => 'Запишитесь на первый приём к врачу';
 	@override String get findADoctor => 'Найти врача';
+	@override String get myWaitlist => 'Мой лист ожидания';
+	@override String get leaveWaitlist => 'Выйти';
+	@override String get statsThisMonth => 'Этот месяц';
+	@override String get statsPatients => 'Пациенты';
+	@override String get statsAcceptRate => '% принятых';
+	@override String get statsPending => 'Ожидают';
 }
 
 // Path: appointments
@@ -291,6 +297,12 @@ class _Translations$appointments$ru extends Translations$appointments$en {
 	@override String get cancelAction => 'Отменить приём';
 	@override String get bookedTitle => 'Записано!';
 	@override String get bookedMessage => 'Ваш запрос на приём отправлен.';
+	@override String get reschedule => 'Перенести';
+	@override String get rescheduleTitle => 'Перенос приёма';
+	@override String get reviewTitle => 'Оставить отзыв';
+	@override String get reviewRating => 'Оценка';
+	@override String get reviewComment => 'Комментарий (необязательно)';
+	@override String get reviewSubmit => 'Отправить';
 }
 
 // Path: booking
@@ -315,6 +327,7 @@ class _Translations$booking$ru extends Translations$booking$en {
 	@override String get addressLabel => 'Адрес';
 	@override String get startLabel => 'Начало';
 	@override String get endLabel => 'Конец';
+	@override String get tryDifferentDate => 'Попробуйте другую дату';
 }
 
 // Path: doctorSearch
@@ -332,6 +345,10 @@ class _Translations$doctorSearch$ru extends Translations$doctorSearch$en {
 	@override String get adjustSearch => 'Попробуйте изменить поиск или фильтры';
 	@override String get couldNotLoadDoctors => 'Не удалось загрузить врачей';
 	@override late final _Translations$doctorSearch$spec$ru spec = _Translations$doctorSearch$spec$ru._(_root);
+	@override String get noAvailability => 'Нет свободного времени';
+	@override String get availableToday => 'Доступен сегодня';
+	@override String get availableTomorrow => 'Доступен завтра';
+	@override String availableOn({required Object date}) => 'Доступен ${date}';
 }
 
 // Path: doctorDetail
@@ -347,6 +364,8 @@ class _Translations$doctorDetail$ru extends Translations$doctorDetail$en {
 	@override String get workplaces => 'Места работы';
 	@override String minPerSlot({required Object min}) => '${min} мин на приём';
 	@override String get bookAppointment => 'Записаться на приём';
+	@override String get consultationFee => 'Стоимость приёма';
+	@override String get reviews => 'Отзывы';
 }
 
 // Path: profile
@@ -365,6 +384,17 @@ class _Translations$profile$ru extends Translations$profile$en {
 	@override String get lastName => 'Фамилия';
 	@override String get phone => 'Телефон';
 	@override String get failedToSave => 'Не удалось сохранить профиль.';
+	@override String get professionalInfo => 'Профессиональная информация';
+	@override String get bio => 'О себе';
+	@override String get bioHint => 'Краткое описание вашего опыта';
+	@override String get consultationFee => 'Стоимость приёма';
+	@override String get medicalInfo => 'Медицинская информация';
+	@override String get allergies => 'Аллергии';
+	@override String get allergiesHint => 'напр. Пенициллин, орехи';
+	@override String get chronicConditions => 'Хронические заболевания';
+	@override String get chronicConditionsHint => 'напр. Диабет, гипертония';
+	@override String get medications => 'Принимаемые препараты';
+	@override String get medicationsHint => 'напр. Метформин 500 мг';
 }
 
 // Path: notifications
@@ -378,6 +408,7 @@ class _Translations$notifications$ru extends Translations$notifications$en {
 	@override String get noNotifications => 'Нет уведомлений';
 	@override String get allCaughtUp => 'Вы всё просмотрели';
 	@override String get couldNotLoad => 'Не удалось загрузить уведомления';
+	@override String get markAllRead => 'Отметить всё прочитанным';
 }
 
 // Path: workplaces
@@ -670,6 +701,12 @@ extension on TranslationsRu {
 			'home.noUpcoming' => 'Нет предстоящих приёмов',
 			'home.bookFirst' => 'Запишитесь на первый приём к врачу',
 			'home.findADoctor' => 'Найти врача',
+			'home.myWaitlist' => 'Мой лист ожидания',
+			'home.leaveWaitlist' => 'Выйти',
+			'home.statsThisMonth' => 'Этот месяц',
+			'home.statsPatients' => 'Пациенты',
+			'home.statsAcceptRate' => '% принятых',
+			'home.statsPending' => 'Ожидают',
 			'appointments.title' => 'Приёмы',
 			'appointments.myTitle' => 'Мои приёмы',
 			'appointments.tabPending' => 'Ожидают',
@@ -697,6 +734,12 @@ extension on TranslationsRu {
 			'appointments.cancelAction' => 'Отменить приём',
 			'appointments.bookedTitle' => 'Записано!',
 			'appointments.bookedMessage' => 'Ваш запрос на приём отправлен.',
+			'appointments.reschedule' => 'Перенести',
+			'appointments.rescheduleTitle' => 'Перенос приёма',
+			'appointments.reviewTitle' => 'Оставить отзыв',
+			'appointments.reviewRating' => 'Оценка',
+			'appointments.reviewComment' => 'Комментарий (необязательно)',
+			'appointments.reviewSubmit' => 'Отправить',
 			'booking.bookWith' => ({required Object name}) => 'Запись — ${name}',
 			'booking.selectWorkplace' => 'Выберите место работы',
 			'booking.pickDate' => 'Выберите дату',
@@ -712,6 +755,7 @@ extension on TranslationsRu {
 			'booking.addressLabel' => 'Адрес',
 			'booking.startLabel' => 'Начало',
 			'booking.endLabel' => 'Конец',
+			'booking.tryDifferentDate' => 'Попробуйте другую дату',
 			'doctorSearch.title' => 'Найти врача',
 			'doctorSearch.searchByName' => 'Поиск по имени...',
 			'doctorSearch.city' => 'Город',
@@ -725,12 +769,18 @@ extension on TranslationsRu {
 			'doctorSearch.spec.neurology' => 'Неврология',
 			'doctorSearch.spec.orthopedics' => 'Ортопедия',
 			'doctorSearch.spec.pediatrics' => 'Педиатрия',
+			'doctorSearch.noAvailability' => 'Нет свободного времени',
+			'doctorSearch.availableToday' => 'Доступен сегодня',
+			'doctorSearch.availableTomorrow' => 'Доступен завтра',
+			'doctorSearch.availableOn' => ({required Object date}) => 'Доступен ${date}',
 			'doctorDetail.profileTitle' => 'Профиль врача',
 			'doctorDetail.couldNotLoadProfile' => 'Не удалось загрузить профиль',
 			'doctorDetail.about' => 'О себе',
 			'doctorDetail.workplaces' => 'Места работы',
 			'doctorDetail.minPerSlot' => ({required Object min}) => '${min} мин на приём',
 			'doctorDetail.bookAppointment' => 'Записаться на приём',
+			'doctorDetail.consultationFee' => 'Стоимость приёма',
+			'doctorDetail.reviews' => 'Отзывы',
 			'profile.title' => 'Профиль',
 			'profile.changePassword' => 'Изменить пароль',
 			'profile.currentPassword' => 'Текущий пароль',
@@ -740,10 +790,22 @@ extension on TranslationsRu {
 			'profile.lastName' => 'Фамилия',
 			'profile.phone' => 'Телефон',
 			'profile.failedToSave' => 'Не удалось сохранить профиль.',
+			'profile.professionalInfo' => 'Профессиональная информация',
+			'profile.bio' => 'О себе',
+			'profile.bioHint' => 'Краткое описание вашего опыта',
+			'profile.consultationFee' => 'Стоимость приёма',
+			'profile.medicalInfo' => 'Медицинская информация',
+			'profile.allergies' => 'Аллергии',
+			'profile.allergiesHint' => 'напр. Пенициллин, орехи',
+			'profile.chronicConditions' => 'Хронические заболевания',
+			'profile.chronicConditionsHint' => 'напр. Диабет, гипертония',
+			'profile.medications' => 'Принимаемые препараты',
+			'profile.medicationsHint' => 'напр. Метформин 500 мг',
 			'notifications.title' => 'Уведомления',
 			'notifications.noNotifications' => 'Нет уведомлений',
 			'notifications.allCaughtUp' => 'Вы всё просмотрели',
 			'notifications.couldNotLoad' => 'Не удалось загрузить уведомления',
+			'notifications.markAllRead' => 'Отметить всё прочитанным',
 			'workplaces.title' => 'Мои места работы',
 			'workplaces.noWorkplacesYet' => 'Пока нет мест работы',
 			'workplaces.tapToAdd' => 'Нажмите +, чтобы добавить первое место работы',

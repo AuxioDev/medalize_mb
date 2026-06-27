@@ -127,7 +127,13 @@
     "couldNotLoadAppointments": "Randevular yüklenemedi",
     "noUpcoming": "Yaklaşan randevu yok",
     "bookFirst": "Bir doktorla ilk randevunuzu alın",
-    "findADoctor": "Doktor Bul"
+    "findADoctor": "Doktor Bul",
+    "myWaitlist": "Bekleme Listem",
+    "leaveWaitlist": "Ayrıl",
+    "statsThisMonth": "Bu ay",
+    "statsPatients": "Hastalar",
+    "statsAcceptRate": "Kabul oranı",
+    "statsPending": "Bekleyenler"
   },
   "appointments": {
     "title": "Randevular",
@@ -156,7 +162,13 @@
     "cancelConfirm": "Bu randevuyu iptal etmek istediğinizden emin misiniz?",
     "cancelAction": "Randevuyu İptal Et",
     "bookedTitle": "Randevu alındı!",
-    "bookedMessage": "Randevu isteğiniz gönderildi."
+    "bookedMessage": "Randevu isteğiniz gönderildi.",
+    "reschedule": "Yeniden planla",
+    "rescheduleTitle": "Randevuyu yeniden planla",
+    "reviewTitle": "Yorum yaz",
+    "reviewRating": "Puan",
+    "reviewComment": "Yorum (isteğe bağlı)",
+    "reviewSubmit": "Gönder"
   },
   "booking": {
     "bookWith": "Randevu — $name",
@@ -173,7 +185,8 @@
     "workplaceLabel": "İş Yeri",
     "addressLabel": "Adres",
     "startLabel": "Başlangıç",
-    "endLabel": "Bitiş"
+    "endLabel": "Bitiş",
+    "tryDifferentDate": "Farklı bir tarih deneyin"
   },
   "doctorSearch": {
     "title": "Doktor Bul",
@@ -190,7 +203,11 @@
       "neurology": "Nöroloji",
       "orthopedics": "Ortopedi",
       "pediatrics": "Pediatri"
-    }
+    },
+    "noAvailability": "Uygunluk yok",
+    "availableToday": "Bugün müsait",
+    "availableTomorrow": "Yarın müsait",
+    "availableOn": "$date müsait"
   },
   "doctorDetail": {
     "profileTitle": "Doktor Profili",
@@ -198,7 +215,9 @@
     "about": "Hakkında",
     "workplaces": "İş Yerleri",
     "minPerSlot": "aralık başına $min dk",
-    "bookAppointment": "Randevu Al"
+    "bookAppointment": "Randevu Al",
+    "consultationFee": "Muayene ücreti",
+    "reviews": "Yorumlar"
   },
   "profile": {
     "title": "Profil",
@@ -209,13 +228,25 @@
     "firstName": "Ad",
     "lastName": "Soyad",
     "phone": "Telefon",
-    "failedToSave": "Profil kaydedilemedi."
+    "failedToSave": "Profil kaydedilemedi.",
+    "professionalInfo": "Mesleki Bilgiler",
+    "bio": "Biyografi",
+    "bioHint": "Deneyiminizin kısa açıklaması",
+    "consultationFee": "Muayene ücreti",
+    "medicalInfo": "Tıbbi Bilgiler",
+    "allergies": "Alerjiler",
+    "allergiesHint": "ör. Penisilin, fıstık",
+    "chronicConditions": "Kronik hastalıklar",
+    "chronicConditionsHint": "ör. Diyabet, hipertansiyon",
+    "medications": "Mevcut ilaçlar",
+    "medicationsHint": "ör. Metformin 500mg"
   },
   "notifications": {
     "title": "Bildirimler",
     "noNotifications": "Bildirim yok",
     "allCaughtUp": "Her şeyi gördünüz",
-    "couldNotLoad": "Bildirimler yüklenemedi"
+    "couldNotLoad": "Bildirimler yüklenemedi",
+    "markAllRead": "Tümünü okundu işaretle"
   },
   "workplaces": {
     "title": "İş Yerlerim",

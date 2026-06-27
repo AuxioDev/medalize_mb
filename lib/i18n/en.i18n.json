@@ -127,7 +127,13 @@
     "couldNotLoadAppointments": "Could not load appointments",
     "noUpcoming": "No upcoming appointments",
     "bookFirst": "Book your first appointment with a doctor",
-    "findADoctor": "Find a Doctor"
+    "findADoctor": "Find a Doctor",
+    "myWaitlist": "My Waitlist",
+    "leaveWaitlist": "Leave",
+    "statsThisMonth": "This month",
+    "statsPatients": "Patients",
+    "statsAcceptRate": "Accept rate",
+    "statsPending": "Pending"
   },
   "appointments": {
     "title": "Appointments",
@@ -156,7 +162,13 @@
     "cancelConfirm": "Are you sure you want to cancel this appointment?",
     "cancelAction": "Cancel Appointment",
     "bookedTitle": "Booked!",
-    "bookedMessage": "Your appointment request has been sent."
+    "bookedMessage": "Your appointment request has been sent.",
+    "reschedule": "Reschedule",
+    "rescheduleTitle": "Reschedule Appointment",
+    "reviewTitle": "Leave a Review",
+    "reviewRating": "Rating",
+    "reviewComment": "Comment (optional)",
+    "reviewSubmit": "Submit"
   },
   "booking": {
     "bookWith": "Book — $name",
@@ -173,7 +185,8 @@
     "workplaceLabel": "Workplace",
     "addressLabel": "Address",
     "startLabel": "Start",
-    "endLabel": "End"
+    "endLabel": "End",
+    "tryDifferentDate": "Try a different date"
   },
   "doctorSearch": {
     "title": "Find a Doctor",
@@ -190,7 +203,11 @@
       "neurology": "Neurology",
       "orthopedics": "Orthopedics",
       "pediatrics": "Pediatrics"
-    }
+    },
+    "noAvailability": "No availability",
+    "availableToday": "Available today",
+    "availableTomorrow": "Available tomorrow",
+    "availableOn": "Available $date"
   },
   "doctorDetail": {
     "profileTitle": "Doctor Profile",
@@ -198,7 +215,9 @@
     "about": "About",
     "workplaces": "Workplaces",
     "minPerSlot": "$min min per slot",
-    "bookAppointment": "Book Appointment"
+    "bookAppointment": "Book Appointment",
+    "consultationFee": "Consultation fee",
+    "reviews": "Reviews"
   },
   "profile": {
     "title": "Profile",
@@ -209,13 +228,25 @@
     "firstName": "First Name",
     "lastName": "Last Name",
     "phone": "Phone",
-    "failedToSave": "Failed to save profile."
+    "failedToSave": "Failed to save profile.",
+    "professionalInfo": "Professional Info",
+    "bio": "Bio",
+    "bioHint": "Short description of your experience",
+    "consultationFee": "Consultation fee",
+    "medicalInfo": "Medical Information",
+    "allergies": "Allergies",
+    "allergiesHint": "e.g. Penicillin, peanuts",
+    "chronicConditions": "Chronic conditions",
+    "chronicConditionsHint": "e.g. Diabetes, hypertension",
+    "medications": "Current medications",
+    "medicationsHint": "e.g. Metformin 500mg"
   },
   "notifications": {
     "title": "Notifications",
     "noNotifications": "No notifications",
     "allCaughtUp": "You are all caught up",
-    "couldNotLoad": "Could not load notifications"
+    "couldNotLoad": "Could not load notifications",
+    "markAllRead": "Mark all read"
   },
   "workplaces": {
     "title": "My Workplaces",

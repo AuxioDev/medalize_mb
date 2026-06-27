@@ -127,7 +127,13 @@
     "couldNotLoadAppointments": "Görüşlər yüklənə bilmədi",
     "noUpcoming": "Yaxınlaşan görüş yoxdur",
     "bookFirst": "Həkimlə ilk görüşünüzü təyin edin",
-    "findADoctor": "Həkim tap"
+    "findADoctor": "Həkim tap",
+    "myWaitlist": "Gözləmə siyahım",
+    "leaveWaitlist": "Çıx",
+    "statsThisMonth": "Bu ay",
+    "statsPatients": "Pasiyentlər",
+    "statsAcceptRate": "Qəbul faizi",
+    "statsPending": "Gözlənilir"
   },
   "appointments": {
     "title": "Görüşlər",
@@ -156,7 +162,13 @@
     "cancelConfirm": "Bu görüşü ləğv etmək istədiyinizə əminsiniz?",
     "cancelAction": "Görüşü ləğv et",
     "bookedTitle": "Təyin edildi!",
-    "bookedMessage": "Görüş sorğunuz göndərildi."
+    "bookedMessage": "Görüş sorğunuz göndərildi.",
+    "reschedule": "Yenidən planlaşdır",
+    "rescheduleTitle": "Görüşü yenidən planlaşdır",
+    "reviewTitle": "Rəy yaz",
+    "reviewRating": "Qiymət",
+    "reviewComment": "Şərh (istəyə bağlı)",
+    "reviewSubmit": "Göndər"
   },
   "booking": {
     "bookWith": "Təyin et — $name",
@@ -173,7 +185,8 @@
     "workplaceLabel": "İş yeri",
     "addressLabel": "Ünvan",
     "startLabel": "Başlanğıc",
-    "endLabel": "Son"
+    "endLabel": "Son",
+    "tryDifferentDate": "Başqa tarix seçin"
   },
   "doctorSearch": {
     "title": "Həkim tap",
@@ -190,7 +203,11 @@
       "neurology": "Nevrologiya",
       "orthopedics": "Ortopediya",
       "pediatrics": "Pediatriya"
-    }
+    },
+    "noAvailability": "Vaxt yoxdur",
+    "availableToday": "Bugün müsaittir",
+    "availableTomorrow": "Sabah müsaittir",
+    "availableOn": "$date müsaittir"
   },
   "doctorDetail": {
     "profileTitle": "Həkim profili",
@@ -198,7 +215,9 @@
     "about": "Haqqında",
     "workplaces": "İş yerləri",
     "minPerSlot": "hər aralıq $min dəq",
-    "bookAppointment": "Görüş təyin et"
+    "bookAppointment": "Görüş təyin et",
+    "consultationFee": "Konsultasiya haqqı",
+    "reviews": "Rəylər"
   },
   "profile": {
     "title": "Profil",
@@ -209,13 +228,25 @@
     "firstName": "Ad",
     "lastName": "Soyad",
     "phone": "Telefon",
-    "failedToSave": "Profil yadda saxlanıla bilmədi."
+    "failedToSave": "Profil yadda saxlanıla bilmədi.",
+    "professionalInfo": "Peşəkar məlumat",
+    "bio": "Bioqrafiya",
+    "bioHint": "Təcrübənizin qısa təsviri",
+    "consultationFee": "Konsultasiya haqqı",
+    "medicalInfo": "Tibbi məlumat",
+    "allergies": "Allergiyalar",
+    "allergiesHint": "məs. Penisilin, fıstıq",
+    "chronicConditions": "Xroniki xəstəliklər",
+    "chronicConditionsHint": "məs. Diabet, hipertansiyon",
+    "medications": "Cari dərmanlar",
+    "medicationsHint": "məs. Metformin 500mq"
   },
   "notifications": {
     "title": "Bildirişlər",
     "noNotifications": "Bildiriş yoxdur",
     "allCaughtUp": "Hər şey qaydasındadır",
-    "couldNotLoad": "Bildirişlər yüklənə bilmədi"
+    "couldNotLoad": "Bildirişlər yüklənə bilmədi",
+    "markAllRead": "Hamısını oxunmuş işarələ"
   },
   "workplaces": {
     "title": "İş yerlərim",

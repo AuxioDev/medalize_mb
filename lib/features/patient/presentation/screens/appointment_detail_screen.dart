@@ -91,12 +91,12 @@ class _AppointmentDetailScreenState
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setState) => AlertDialog(
-          title: const Text('Leave a Review'),
+          title: Text(context.t.appointments.reviewTitle),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Rating'),
+              Text(context.t.appointments.reviewRating),
               const Gap(8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -116,8 +116,8 @@ class _AppointmentDetailScreenState
               TextField(
                 controller: commentCtrl,
                 maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: 'Comment (optional)',
+                decoration: InputDecoration(
+                  labelText: context.t.appointments.reviewComment,
                   alignLabelWithHint: true,
                 ),
               ),
@@ -126,11 +126,11 @@ class _AppointmentDetailScreenState
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('Cancel'),
+              child: Text(context.t.common.cancel),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(ctx, true),
-              child: const Text('Submit'),
+              child: Text(context.t.appointments.reviewSubmit),
             ),
           ],
         ),
@@ -389,7 +389,7 @@ class _AppointmentDetailScreenState
         child: FilledButton.icon(
           onPressed: _submittingReview ? null : _showReviewDialog,
           icon: const Icon(Icons.star_outline_rounded, size: 18),
-          label: const Text('Leave a Review'),
+          label: Text(context.t.appointments.reviewTitle),
           style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(52),
             shape: RoundedRectangleBorder(
@@ -439,7 +439,7 @@ class _AppointmentDetailScreenState
                         _reschedule();
                       },
                 icon: const Icon(Icons.schedule_outlined, size: 16),
-                label: const Text('Reschedule'),
+                label: Text(context.t.appointments.reschedule),
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size.fromHeight(52),
                   shape: RoundedRectangleBorder(

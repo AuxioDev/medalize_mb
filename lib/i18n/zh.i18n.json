@@ -127,7 +127,13 @@
     "couldNotLoadAppointments": "无法加载预约",
     "noUpcoming": "没有即将到来的预约",
     "bookFirst": "预约您的第一次就诊",
-    "findADoctor": "查找医生"
+    "findADoctor": "查找医生",
+    "myWaitlist": "我的候诊队列",
+    "leaveWaitlist": "退出",
+    "statsThisMonth": "本月",
+    "statsPatients": "患者",
+    "statsAcceptRate": "接受率",
+    "statsPending": "待处理"
   },
   "appointments": {
     "title": "预约",
@@ -156,7 +162,13 @@
     "cancelConfirm": "您确定要取消此预约吗？",
     "cancelAction": "取消预约",
     "bookedTitle": "已预约！",
-    "bookedMessage": "您的预约请求已发送。"
+    "bookedMessage": "您的预约请求已发送。",
+    "reschedule": "改期",
+    "rescheduleTitle": "改期预约",
+    "reviewTitle": "发表评价",
+    "reviewRating": "评分",
+    "reviewComment": "留言（可选）",
+    "reviewSubmit": "提交"
   },
   "booking": {
     "bookWith": "预约 — $name",
@@ -173,7 +185,8 @@
     "workplaceLabel": "工作地点",
     "addressLabel": "地址",
     "startLabel": "开始",
-    "endLabel": "结束"
+    "endLabel": "结束",
+    "tryDifferentDate": "请换个日期试试"
   },
   "doctorSearch": {
     "title": "查找医生",
@@ -190,7 +203,11 @@
       "neurology": "神经科",
       "orthopedics": "骨科",
       "pediatrics": "儿科"
-    }
+    },
+    "noAvailability": "暂无时间",
+    "availableToday": "今天可约",
+    "availableTomorrow": "明天可约",
+    "availableOn": "$date 可约"
   },
   "doctorDetail": {
     "profileTitle": "医生资料",
@@ -198,7 +215,9 @@
     "about": "简介",
     "workplaces": "工作地点",
     "minPerSlot": "每个时段 $min 分钟",
-    "bookAppointment": "预约就诊"
+    "bookAppointment": "预约就诊",
+    "consultationFee": "挂号费",
+    "reviews": "评价"
   },
   "profile": {
     "title": "个人资料",
@@ -209,13 +228,25 @@
     "firstName": "名字",
     "lastName": "姓氏",
     "phone": "电话",
-    "failedToSave": "保存个人资料失败。"
+    "failedToSave": "保存个人资料失败。",
+    "professionalInfo": "职业信息",
+    "bio": "简介",
+    "bioHint": "简短介绍您的经验",
+    "consultationFee": "挂号费",
+    "medicalInfo": "医疗信息",
+    "allergies": "过敏史",
+    "allergiesHint": "如：青霉素、花生",
+    "chronicConditions": "慢性病史",
+    "chronicConditionsHint": "如：糖尿病、高血压",
+    "medications": "当前用药",
+    "medicationsHint": "如：二甲双胍500mg"
   },
   "notifications": {
     "title": "通知",
     "noNotifications": "没有通知",
     "allCaughtUp": "您已查看全部",
-    "couldNotLoad": "无法加载通知"
+    "couldNotLoad": "无法加载通知",
+    "markAllRead": "全部标为已读"
   },
   "workplaces": {
     "title": "我的工作地点",

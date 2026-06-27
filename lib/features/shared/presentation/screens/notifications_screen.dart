@@ -34,7 +34,7 @@ class NotificationsScreen extends ConsumerWidget {
                 await ref.read(notificationRepositoryProvider).markAllRead();
                 ref.invalidate(notificationsProvider);
               },
-              child: const Text('Mark all read'),
+              child: Text(context.t.notifications.markAllRead),
             ),
         ],
       ),

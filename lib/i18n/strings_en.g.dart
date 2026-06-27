@@ -481,6 +481,24 @@ class Translations$home$en {
 
 	/// en: 'Find a Doctor'
 	String get findADoctor => 'Find a Doctor';
+
+	/// en: 'My Waitlist'
+	String get myWaitlist => 'My Waitlist';
+
+	/// en: 'Leave'
+	String get leaveWaitlist => 'Leave';
+
+	/// en: 'This month'
+	String get statsThisMonth => 'This month';
+
+	/// en: 'Patients'
+	String get statsPatients => 'Patients';
+
+	/// en: 'Accept rate'
+	String get statsAcceptRate => 'Accept rate';
+
+	/// en: 'Pending'
+	String get statsPending => 'Pending';
 }
 
 // Path: appointments
@@ -571,6 +589,24 @@ class Translations$appointments$en {
 
 	/// en: 'Your appointment request has been sent.'
 	String get bookedMessage => 'Your appointment request has been sent.';
+
+	/// en: 'Reschedule'
+	String get reschedule => 'Reschedule';
+
+	/// en: 'Reschedule Appointment'
+	String get rescheduleTitle => 'Reschedule Appointment';
+
+	/// en: 'Leave a Review'
+	String get reviewTitle => 'Leave a Review';
+
+	/// en: 'Rating'
+	String get reviewRating => 'Rating';
+
+	/// en: 'Comment (optional)'
+	String get reviewComment => 'Comment (optional)';
+
+	/// en: 'Submit'
+	String get reviewSubmit => 'Submit';
 }
 
 // Path: booking
@@ -625,6 +661,9 @@ class Translations$booking$en {
 
 	/// en: 'End'
 	String get endLabel => 'End';
+
+	/// en: 'Try a different date'
+	String get tryDifferentDate => 'Try a different date';
 }
 
 // Path: doctorSearch
@@ -657,6 +696,18 @@ class Translations$doctorSearch$en {
 	String get couldNotLoadDoctors => 'Could not load doctors';
 
 	late final Translations$doctorSearch$spec$en spec = Translations$doctorSearch$spec$en.internal(_root);
+
+	/// en: 'No availability'
+	String get noAvailability => 'No availability';
+
+	/// en: 'Available today'
+	String get availableToday => 'Available today';
+
+	/// en: 'Available tomorrow'
+	String get availableTomorrow => 'Available tomorrow';
+
+	/// en: 'Available $date'
+	String availableOn({required Object date}) => 'Available ${date}';
 }
 
 // Path: doctorDetail
@@ -684,6 +735,12 @@ class Translations$doctorDetail$en {
 
 	/// en: 'Book Appointment'
 	String get bookAppointment => 'Book Appointment';
+
+	/// en: 'Consultation fee'
+	String get consultationFee => 'Consultation fee';
+
+	/// en: 'Reviews'
+	String get reviews => 'Reviews';
 }
 
 // Path: profile
@@ -720,6 +777,39 @@ class Translations$profile$en {
 
 	/// en: 'Failed to save profile.'
 	String get failedToSave => 'Failed to save profile.';
+
+	/// en: 'Professional Info'
+	String get professionalInfo => 'Professional Info';
+
+	/// en: 'Bio'
+	String get bio => 'Bio';
+
+	/// en: 'Short description of your experience'
+	String get bioHint => 'Short description of your experience';
+
+	/// en: 'Consultation fee'
+	String get consultationFee => 'Consultation fee';
+
+	/// en: 'Medical Information'
+	String get medicalInfo => 'Medical Information';
+
+	/// en: 'Allergies'
+	String get allergies => 'Allergies';
+
+	/// en: 'e.g. Penicillin, peanuts'
+	String get allergiesHint => 'e.g. Penicillin, peanuts';
+
+	/// en: 'Chronic conditions'
+	String get chronicConditions => 'Chronic conditions';
+
+	/// en: 'e.g. Diabetes, hypertension'
+	String get chronicConditionsHint => 'e.g. Diabetes, hypertension';
+
+	/// en: 'Current medications'
+	String get medications => 'Current medications';
+
+	/// en: 'e.g. Metformin 500mg'
+	String get medicationsHint => 'e.g. Metformin 500mg';
 }
 
 // Path: notifications
@@ -741,6 +831,9 @@ class Translations$notifications$en {
 
 	/// en: 'Could not load notifications'
 	String get couldNotLoad => 'Could not load notifications';
+
+	/// en: 'Mark all read'
+	String get markAllRead => 'Mark all read';
 }
 
 // Path: workplaces
@@ -1192,6 +1285,12 @@ extension on Translations {
 			'home.noUpcoming' => 'No upcoming appointments',
 			'home.bookFirst' => 'Book your first appointment with a doctor',
 			'home.findADoctor' => 'Find a Doctor',
+			'home.myWaitlist' => 'My Waitlist',
+			'home.leaveWaitlist' => 'Leave',
+			'home.statsThisMonth' => 'This month',
+			'home.statsPatients' => 'Patients',
+			'home.statsAcceptRate' => 'Accept rate',
+			'home.statsPending' => 'Pending',
 			'appointments.title' => 'Appointments',
 			'appointments.myTitle' => 'My Appointments',
 			'appointments.tabPending' => 'Pending',
@@ -1219,6 +1318,12 @@ extension on Translations {
 			'appointments.cancelAction' => 'Cancel Appointment',
 			'appointments.bookedTitle' => 'Booked!',
 			'appointments.bookedMessage' => 'Your appointment request has been sent.',
+			'appointments.reschedule' => 'Reschedule',
+			'appointments.rescheduleTitle' => 'Reschedule Appointment',
+			'appointments.reviewTitle' => 'Leave a Review',
+			'appointments.reviewRating' => 'Rating',
+			'appointments.reviewComment' => 'Comment (optional)',
+			'appointments.reviewSubmit' => 'Submit',
 			'booking.bookWith' => ({required Object name}) => 'Book — ${name}',
 			'booking.selectWorkplace' => 'Select Workplace',
 			'booking.pickDate' => 'Pick a date',
@@ -1234,6 +1339,7 @@ extension on Translations {
 			'booking.addressLabel' => 'Address',
 			'booking.startLabel' => 'Start',
 			'booking.endLabel' => 'End',
+			'booking.tryDifferentDate' => 'Try a different date',
 			'doctorSearch.title' => 'Find a Doctor',
 			'doctorSearch.searchByName' => 'Search by name...',
 			'doctorSearch.city' => 'City',
@@ -1247,12 +1353,18 @@ extension on Translations {
 			'doctorSearch.spec.neurology' => 'Neurology',
 			'doctorSearch.spec.orthopedics' => 'Orthopedics',
 			'doctorSearch.spec.pediatrics' => 'Pediatrics',
+			'doctorSearch.noAvailability' => 'No availability',
+			'doctorSearch.availableToday' => 'Available today',
+			'doctorSearch.availableTomorrow' => 'Available tomorrow',
+			'doctorSearch.availableOn' => ({required Object date}) => 'Available ${date}',
 			'doctorDetail.profileTitle' => 'Doctor Profile',
 			'doctorDetail.couldNotLoadProfile' => 'Could not load profile',
 			'doctorDetail.about' => 'About',
 			'doctorDetail.workplaces' => 'Workplaces',
 			'doctorDetail.minPerSlot' => ({required Object min}) => '${min} min per slot',
 			'doctorDetail.bookAppointment' => 'Book Appointment',
+			'doctorDetail.consultationFee' => 'Consultation fee',
+			'doctorDetail.reviews' => 'Reviews',
 			'profile.title' => 'Profile',
 			'profile.changePassword' => 'Change Password',
 			'profile.currentPassword' => 'Current Password',
@@ -1262,10 +1374,22 @@ extension on Translations {
 			'profile.lastName' => 'Last Name',
 			'profile.phone' => 'Phone',
 			'profile.failedToSave' => 'Failed to save profile.',
+			'profile.professionalInfo' => 'Professional Info',
+			'profile.bio' => 'Bio',
+			'profile.bioHint' => 'Short description of your experience',
+			'profile.consultationFee' => 'Consultation fee',
+			'profile.medicalInfo' => 'Medical Information',
+			'profile.allergies' => 'Allergies',
+			'profile.allergiesHint' => 'e.g. Penicillin, peanuts',
+			'profile.chronicConditions' => 'Chronic conditions',
+			'profile.chronicConditionsHint' => 'e.g. Diabetes, hypertension',
+			'profile.medications' => 'Current medications',
+			'profile.medicationsHint' => 'e.g. Metformin 500mg',
 			'notifications.title' => 'Notifications',
 			'notifications.noNotifications' => 'No notifications',
 			'notifications.allCaughtUp' => 'You are all caught up',
 			'notifications.couldNotLoad' => 'Could not load notifications',
+			'notifications.markAllRead' => 'Mark all read',
 			'workplaces.title' => 'My Workplaces',
 			'workplaces.noWorkplacesYet' => 'No workplaces yet',
 			'workplaces.tapToAdd' => 'Tap + to add your first workplace',
