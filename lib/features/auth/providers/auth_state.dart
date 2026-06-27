@@ -21,6 +21,8 @@ class AuthAuthenticated extends AuthState {
     required this.email,
     required this.onboardingComplete,
     this.isVerified,
+    this.firstName = '',
+    this.lastName = '',
   });
 
   final String accessToken;
@@ -30,6 +32,13 @@ class AuthAuthenticated extends AuthState {
   final String email;
   final bool onboardingComplete;
   final bool? isVerified;
+  final String firstName;
+  final String lastName;
+
+  String get displayName {
+    final name = '$firstName $lastName'.trim();
+    return name.isNotEmpty ? name : email.split('@')[0];
+  }
 }
 
 class AuthUnauthenticated extends AuthState {

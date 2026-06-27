@@ -39,6 +39,8 @@ class AuthNotifier extends Notifier<AuthState> {
         email: user.email,
         onboardingComplete: user.onboardingComplete ?? (user.role == 'patient'),
         isVerified: user.isVerified,
+        firstName: user.firstName,
+        lastName: user.lastName,
       );
     } catch (_) {
       await _storage.clearAll();
@@ -64,6 +66,8 @@ class AuthNotifier extends Notifier<AuthState> {
         email: user.email,
         onboardingComplete: user.onboardingComplete ?? (user.role == 'patient'),
         isVerified: user.isVerified,
+        firstName: user.firstName,
+        lastName: user.lastName,
       );
     } catch (_) {
       // Keep the existing state if the refresh fails.
@@ -95,6 +99,8 @@ class AuthNotifier extends Notifier<AuthState> {
         email: response.email,
         onboardingComplete: response.onboardingComplete,
         isVerified: response.isVerified,
+        firstName: response.firstName,
+        lastName: response.lastName,
       );
     } on ApiException catch (e) {
       state = AuthError(e);

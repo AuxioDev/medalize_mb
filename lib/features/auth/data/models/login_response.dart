@@ -7,6 +7,8 @@ class LoginResponse {
     required this.email,
     required this.onboardingComplete,
     this.isVerified,
+    this.firstName = '',
+    this.lastName = '',
   });
 
   final String access;
@@ -16,6 +18,8 @@ class LoginResponse {
   final String email;
   final bool onboardingComplete;
   final bool? isVerified;
+  final String firstName;
+  final String lastName;
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     final access = json['access'] as String?;
@@ -36,6 +40,8 @@ class LoginResponse {
       email: email,
       onboardingComplete: json['onboarding_complete'] as bool? ?? false,
       isVerified: json['is_verified'] as bool?,
+      firstName: json['first_name'] as String? ?? '',
+      lastName: json['last_name'] as String? ?? '',
     );
   }
 }

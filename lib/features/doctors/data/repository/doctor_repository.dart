@@ -17,12 +17,14 @@ class DoctorRepository {
     String? name,
     String? specialization,
     String? city,
+    int? minRating,
   }) async {
     try {
       final params = <String, dynamic>{};
       if (name != null && name.isNotEmpty) params['name'] = name;
       if (specialization != null && specialization.isNotEmpty) params['specialization'] = specialization;
       if (city != null && city.isNotEmpty) params['city'] = city;
+      if (minRating != null) params['min_rating'] = minRating;
       final res = await _dio.get('/doctors/', queryParameters: params);
       final results = (res.data['results'] as List<dynamic>?) ?? res.data as List<dynamic>;
       return results.map((e) => DoctorModel.fromJson(e as Map<String, dynamic>)).toList();
@@ -37,6 +39,18 @@ class DoctorRepository {
     try {
       final res = await _dio.get('/doctors/$id/');
       return DoctorDetailModel.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  Future<DateTime?> getNextAvailableDate(String doctorId) async {
+    try {
+      final res = await _dio.get('/doctors/$doctorId/next-slot/');
+      final dateStr = res.data['next_available_date'] as String?;
+      return dateStr != null ? DateTime.parse(dateStr) : null;
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {

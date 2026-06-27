@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:intl/intl.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
@@ -51,6 +52,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
   final _nameController = TextEditingController();
   String? _selectedSpecialization;
   String? _cityInput;
+  int? _minRating;
   SearchParams _params = const SearchParams();
 
   @override
@@ -59,28 +61,26 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
     super.dispose();
   }
 
-  void _search() {
-    setState(() {
-      _params = SearchParams(
-        name: _nameController.text.trim().isEmpty
-            ? null
-            : _nameController.text.trim(),
+  SearchParams _buildParams() => SearchParams(
+        name: _nameController.text.trim().isEmpty ? null : _nameController.text.trim(),
         city: (_cityInput?.trim().isEmpty ?? true) ? null : _cityInput?.trim(),
         specialization: _selectedSpecialization,
+        minRating: _minRating,
       );
-    });
-  }
+
+  void _search() => setState(() => _params = _buildParams());
 
   void _selectSpec(String? spec) {
     setState(() {
       _selectedSpecialization = spec == _selectedSpecialization ? null : spec;
-      _params = SearchParams(
-        name: _nameController.text.trim().isEmpty
-            ? null
-            : _nameController.text.trim(),
-        city: (_cityInput?.trim().isEmpty ?? true) ? null : _cityInput?.trim(),
-        specialization: _selectedSpecialization,
-      );
+      _params = _buildParams();
+    });
+  }
+
+  void _selectRating(int? rating) {
+    setState(() {
+      _minRating = rating == _minRating ? null : rating;
+      _params = _buildParams();
     });
   }
 
@@ -139,6 +139,11 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                   _SpecChips(
                     selected: _selectedSpecialization,
                     onSelect: _selectSpec,
+                  ),
+                  const Gap(8),
+                  _RatingChips(
+                    selected: _minRating,
+                    onSelect: _selectRating,
                   ),
                 ],
               ),
@@ -283,15 +288,16 @@ class _SpecChips extends StatelessWidget {
   }
 }
 
-class _DoctorCard extends StatelessWidget {
+class _DoctorCard extends ConsumerWidget {
   const _DoctorCard({required this.doctor});
   final DoctorModel doctor;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
     final initials =
         doctor.firstName.isNotEmpty ? doctor.firstName[0].toUpperCase() : 'D';
+    final nextSlot = ref.watch(nextAvailableDateProvider(doctor.id));
 
     return AppCard(
       onTap: () {
@@ -348,6 +354,36 @@ class _DoctorCard extends StatelessWidget {
                     ],
                   ),
                 ],
+                const Gap(4),
+                nextSlot.when(
+                  loading: () => const SizedBox(
+                    height: 12,
+                    width: 80,
+                    child: LinearProgressIndicator(minHeight: 2),
+                  ),
+                  error: (_, _) => const SizedBox.shrink(),
+                  data: (date) => date == null
+                      ? Text(
+                          'No availability',
+                          style: TextStyle(
+                              fontSize: 11, color: c.textSecondary),
+                        )
+                      : Row(
+                          children: [
+                            Icon(Icons.event_available_outlined,
+                                size: 12, color: c.primaryText),
+                            const Gap(3),
+                            Text(
+                              _formatNextDate(date),
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: c.primaryText,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                ),
               ],
             ),
           ),
@@ -361,6 +397,68 @@ class _DoctorCard extends StatelessWidget {
             child: Icon(Icons.chevron_right, color: c.primaryText, size: 20),
           ),
         ],
+      ),
+    );
+  }
+
+  String _formatNextDate(DateTime date) {
+    final today = DateTime.now();
+    final tomorrow = today.add(const Duration(days: 1));
+    if (date.year == today.year && date.month == today.month && date.day == today.day) {
+      return 'Available today';
+    }
+    if (date.year == tomorrow.year && date.month == tomorrow.month && date.day == tomorrow.day) {
+      return 'Available tomorrow';
+    }
+    return 'Available ${DateFormat('d MMM').format(date)}';
+  }
+}
+
+class _RatingChips extends StatelessWidget {
+  const _RatingChips({required this.selected, required this.onSelect});
+
+  final int? selected;
+  final void Function(int?) onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return SizedBox(
+      height: 34,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: 4,
+        separatorBuilder: (_, _) => const Gap(8),
+        itemBuilder: (_, i) {
+          final rating = i + 2;
+          final isSelected = selected == rating;
+          return FilterChip(
+            label: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.star_rounded,
+                    size: 13,
+                    color: isSelected ? c.primaryText : c.textSecondary),
+                const Gap(3),
+                Text('$rating+'),
+              ],
+            ),
+            selected: isSelected,
+            onSelected: (_) => onSelect(rating),
+            selectedColor: c.primarySurface,
+            checkmarkColor: c.primaryText,
+            labelStyle: TextStyle(
+              color: isSelected ? c.primaryText : c.textSecondary,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+              fontSize: 13,
+            ),
+            side: BorderSide(
+              color: isSelected ? AppColors.primary : c.border,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            visualDensity: VisualDensity.compact,
+          );
+        },
       ),
     );
   }

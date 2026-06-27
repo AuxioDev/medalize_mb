@@ -33,7 +33,7 @@ class DoctorHomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final auth = ref.watch(authProvider);
-    final name = auth is AuthAuthenticated ? auth.email.split('@')[0] : '';
+    final name = auth is AuthAuthenticated ? auth.displayName : '';
     final unread = ref.watch(unreadCountProvider);
 
     return Scaffold(

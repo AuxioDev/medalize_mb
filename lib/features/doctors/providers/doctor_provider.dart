@@ -6,18 +6,20 @@ class SearchParams {
   final String? name;
   final String? specialization;
   final String? city;
+  final int? minRating;
 
-  const SearchParams({this.name, this.specialization, this.city});
+  const SearchParams({this.name, this.specialization, this.city, this.minRating});
 
   @override
   bool operator ==(Object other) =>
       other is SearchParams &&
       other.name == name &&
       other.specialization == specialization &&
-      other.city == city;
+      other.city == city &&
+      other.minRating == minRating;
 
   @override
-  int get hashCode => Object.hash(name, specialization, city);
+  int get hashCode => Object.hash(name, specialization, city, minRating);
 }
 
 class SlotsParams {
@@ -48,6 +50,7 @@ final doctorSearchProvider =
         name: params.name,
         specialization: params.specialization,
         city: params.city,
+        minRating: params.minRating,
       );
 });
 
@@ -63,6 +66,11 @@ final slotsProvider =
         params.workplaceId,
         params.date,
       );
+});
+
+final nextAvailableDateProvider =
+    FutureProvider.family<DateTime?, String>((ref, doctorId) {
+  return ref.watch(doctorRepositoryProvider).getNextAvailableDate(doctorId);
 });
 
 final selectedDoctorProvider = StateProvider<DoctorModel?>((ref) => null);
