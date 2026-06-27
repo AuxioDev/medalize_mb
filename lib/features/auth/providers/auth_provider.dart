@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
+import 'package:medalize_mb/core/services/fcm_service.dart';
 import 'package:medalize_mb/core/storage/secure_storage.dart';
 import 'package:medalize_mb/features/auth/data/models/login_request.dart';
 import 'package:medalize_mb/features/auth/data/models/register_request.dart';
@@ -102,6 +103,7 @@ class AuthNotifier extends Notifier<AuthState> {
         firstName: response.firstName,
         lastName: response.lastName,
       );
+      ref.read(fcmServiceProvider).init();
     } on ApiException catch (e) {
       state = AuthError(e);
     }

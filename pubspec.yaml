@@ -27,6 +27,8 @@ dependencies:
   gap: ^3.0.1
   slang: ^4.4.0
   slang_flutter: ^4.4.0
+  firebase_core: ^3.0.0
+  firebase_messaging: ^15.0.0
 
 dev_dependencies:
   flutter_test:

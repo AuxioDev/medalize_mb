@@ -22,8 +22,22 @@ class NotificationsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(notificationsProvider);
+    final hasUnread = async.asData?.value.any((n) => !n.isRead) ?? false;
+
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.notifications.title)),
+      appBar: AppBar(
+        title: Text(context.t.notifications.title),
+        actions: [
+          if (hasUnread)
+            TextButton(
+              onPressed: () async {
+                await ref.read(notificationRepositoryProvider).markAllRead();
+                ref.invalidate(notificationsProvider);
+              },
+              child: const Text('Mark all read'),
+            ),
+        ],
+      ),
       body: ResponsiveBody(
         child: async.when(
           loading: () => const Padding(
@@ -84,7 +98,7 @@ class NotificationsScreen extends ConsumerWidget {
                       HapticFeedback.mediumImpact();
                       await ref
                           .read(notificationRepositoryProvider)
-                          .markRead(notifications[i].id);
+                          .deleteNotification(notifications[i].id);
                       ref.invalidate(notificationsProvider);
                     },
                   ),
@@ -119,12 +133,12 @@ class _DismissibleNotification extends StatelessWidget {
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: AppSpacing.md),
         decoration: BoxDecoration(
-          color: AppColors.primary.withValues(alpha: 0.12),
+          color: AppColors.error.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(AppRadius.lg),
         ),
-        child: Icon(
-          Icons.done_all_rounded,
-          color: AppColors.primary,
+        child: const Icon(
+          Icons.delete_outline_rounded,
+          color: AppColors.error,
         ),
       ),
       child: _NotificationTile(notification: notification, onRead: onRead),

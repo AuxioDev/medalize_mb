@@ -30,6 +30,22 @@ class NotificationRepository {
     }
   }
 
+  Future<void> markAllRead() async {
+    try {
+      await _dio.post('/notifications/read-all/');
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
+
+  Future<void> deleteNotification(String id) async {
+    try {
+      await _dio.delete('/notifications/$id/read/');
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
+
   Future<void> registerFCMToken(String token) async {
     try {
       await _dio.post('/notifications/fcm/', data: {'token': token});
