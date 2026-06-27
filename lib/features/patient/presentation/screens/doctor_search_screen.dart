@@ -354,6 +354,19 @@ class _DoctorCard extends ConsumerWidget {
                     ],
                   ),
                 ],
+                if (doctor.averageRating != null) ...[
+                  const Gap(2),
+                  Row(
+                    children: [
+                      Icon(Icons.star_rounded, size: 13, color: Colors.amber.shade600),
+                      const Gap(3),
+                      Text(
+                        '${doctor.averageRating!.toStringAsFixed(1)} (${doctor.reviewCount})',
+                        style: TextStyle(fontSize: 11, color: c.textSecondary),
+                      ),
+                    ],
+                  ),
+                ],
                 const Gap(4),
                 nextSlot.when(
                   loading: () => const SizedBox(

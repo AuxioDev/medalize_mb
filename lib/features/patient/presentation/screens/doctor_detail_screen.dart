@@ -11,12 +11,19 @@ import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
+import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
+import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
+
+final _doctorReviewsProvider = FutureProvider.autoDispose.family<List<ReviewModel>, String>(
+  (ref, doctorId) => ref.read(appointmentRepositoryProvider).getDoctorReviews(doctorId),
+);
 
 class DoctorDetailScreen extends ConsumerWidget {
   const DoctorDetailScreen({super.key, required this.doctorId, this.doctor});
@@ -175,6 +182,15 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                           child: _WorkplaceCard(widget.detail.workplaces[i]),
                         ),
                     ],
+                    if ((widget.detail.reviewCount) > 0) ...[
+                      const Gap(20),
+                      AnimatedEntrance(
+                        index: 4,
+                        child: Text('Reviews', style: Theme.of(context).textTheme.titleSmall),
+                      ),
+                      const Gap(10),
+                      _ReviewsList(doctorId: widget.doctorId),
+                    ],
                     const Gap(80),
                   ],
                 ),
@@ -297,6 +313,26 @@ class _ProfileHeader extends StatelessWidget {
                     ),
                   ],
                 ),
+                if (detail.averageRating != null) ...[
+                  const Gap(4),
+                  Row(
+                    children: [
+                      ...List.generate(5, (i) {
+                        final filled = i < detail.averageRating!.round();
+                        return Icon(
+                          filled ? Icons.star_rounded : Icons.star_outline_rounded,
+                          size: 16,
+                          color: Colors.amber.shade600,
+                        );
+                      }),
+                      const Gap(6),
+                      Text(
+                        '${detail.averageRating!.toStringAsFixed(1)} · ${detail.reviewCount} reviews',
+                        style: TextStyle(fontSize: 12, color: c.textSecondary),
+                      ),
+                    ],
+                  ),
+                ],
               ],
             ),
           ),
@@ -426,6 +462,78 @@ class _LoadingSkeleton extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ReviewsList extends ConsumerWidget {
+  const _ReviewsList({required this.doctorId});
+  final String doctorId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reviewsAsync = ref.watch(_doctorReviewsProvider(doctorId));
+    return reviewsAsync.when(
+      loading: () => const ShimmerSkeleton(height: 72),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (reviews) => Column(
+        children: [
+          for (final r in reviews.take(5)) _ReviewTile(review: r),
+        ],
+      ),
+    );
+  }
+}
+
+class _ReviewTile extends StatelessWidget {
+  const _ReviewTile({required this.review});
+  final ReviewModel review;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: c.surfaceAlt,
+        borderRadius: BorderRadius.circular(AppRadius.md + 2),
+        border: Border.all(color: c.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  review.patientName,
+                  style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                ),
+              ),
+              Row(
+                children: List.generate(5, (i) => Icon(
+                  i < review.rating ? Icons.star_rounded : Icons.star_outline_rounded,
+                  size: 14,
+                  color: Colors.amber.shade600,
+                )),
+              ),
+              const Gap(6),
+              Text(
+                DateFormat('d MMM y').format(review.createdAt),
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+            ],
+          ),
+          if (review.comment.isNotEmpty) ...[
+            const Gap(6),
+            Text(
+              review.comment,
+              style: TextStyle(fontSize: 13, color: c.textSecondary, height: 1.4),
+            ),
+          ],
+        ],
       ),
     );
   }

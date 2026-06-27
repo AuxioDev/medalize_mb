@@ -4,6 +4,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/data/models/booking_request.dart';
+import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
 
 final appointmentRepositoryProvider = Provider<AppointmentRepository>(
   (ref) => AppointmentRepository(ref.read(dioClientProvider)),
@@ -111,6 +112,16 @@ class AppointmentRepository {
         '/appointments/$appointmentId/review/',
         data: {'rating': rating, 'comment': comment},
       );
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
+
+  Future<List<ReviewModel>> getDoctorReviews(String doctorId) async {
+    try {
+      final res = await _dio.get('/doctors/$doctorId/reviews/');
+      final results = (res.data['results'] as List<dynamic>?) ?? res.data as List<dynamic>;
+      return results.map((e) => ReviewModel.fromJson(e as Map<String, dynamic>)).toList();
     } on DioException catch (e) {
       throw mapDioError(e);
     }

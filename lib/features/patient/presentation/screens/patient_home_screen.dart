@@ -20,6 +20,8 @@ import 'package:medalize_mb/features/appointments/data/models/appointment_model.
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
+import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -78,6 +80,7 @@ class PatientHomeScreen extends ConsumerWidget {
               ),
               const Gap(AppSpacing.sm),
               const _UpcomingAppointments(),
+              const _WaitlistSection(),
             ],
           ),
         ),
@@ -273,6 +276,63 @@ class _MiniAppointmentCard extends StatelessWidget {
           StatusChip(status: appt.status),
         ],
       ),
+    );
+  }
+}
+
+class _WaitlistSection extends ConsumerWidget {
+  const _WaitlistSection();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final waitlistAsync = ref.watch(myWaitlistProvider);
+    final entries = waitlistAsync.asData?.value ?? [];
+    if (entries.isEmpty) return const SizedBox.shrink();
+    final c = context.colors;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Gap(AppSpacing.lg),
+        AnimatedEntrance(
+          index: 3,
+          child: SectionHeader(title: 'My Waitlist', actionLabel: null, onAction: null),
+        ),
+        const Gap(AppSpacing.sm),
+        for (final entry in entries)
+          AnimatedEntrance(
+            index: 4,
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              decoration: BoxDecoration(
+                color: c.surfaceAlt,
+                borderRadius: BorderRadius.circular(AppRadius.md + 2),
+                border: Border.all(color: c.border),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.notifications_active_outlined,
+                      size: 20, color: c.primaryText),
+                  const Gap(10),
+                  Expanded(
+                    child: Text(
+                      entry.doctorName.isEmpty ? 'Doctor' : entry.doctorName,
+                      style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      await ref.read(doctorRepositoryProvider).leaveWaitlist(entry.id);
+                      ref.invalidate(myWaitlistProvider);
+                    },
+                    style: TextButton.styleFrom(foregroundColor: AppColors.error),
+                    child: const Text('Leave'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

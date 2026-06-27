@@ -29,6 +29,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   late TextEditingController _allergies;
   late TextEditingController _chronicConditions;
   late TextEditingController _medications;
+  late TextEditingController _bio;
+  late TextEditingController _consultationFee;
   String? _saveError;
 
   @override
@@ -41,6 +43,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _allergies = TextEditingController();
     _chronicConditions = TextEditingController();
     _medications = TextEditingController();
+    _bio = TextEditingController();
+    _consultationFee = TextEditingController();
     if (auth is AuthAuthenticated) {
       _role = auth.role;
       _fetchProfile();
@@ -60,6 +64,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         _chronicConditions.text = profile['chronic_conditions'] as String? ?? '';
         _medications.text = profile['medications'] as String? ?? '';
       }
+      if (_role == 'doctor') {
+        final doctorProfile = d['doctor_profile'] as Map<String, dynamic>? ?? {};
+        _bio.text = doctorProfile['bio'] as String? ?? '';
+        _consultationFee.text = doctorProfile['consultation_fee'] as String? ?? '';
+      }
       if (mounted) setState(() {});
     } catch (_) {}
   }
@@ -72,6 +81,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _allergies.dispose();
     _chronicConditions.dispose();
     _medications.dispose();
+    _bio.dispose();
+    _consultationFee.dispose();
     super.dispose();
   }
 
@@ -91,6 +102,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           'allergies': _allergies.text.trim(),
           'chronic_conditions': _chronicConditions.text.trim(),
           'medications': _medications.text.trim(),
+        });
+      }
+      if (_role == 'doctor') {
+        final feeText = _consultationFee.text.trim();
+        await ref.read(dioClientProvider).patch('/doctor/profile/', data: {
+          'bio': _bio.text.trim(),
+          if (feeText.isNotEmpty) 'consultation_fee': feeText,
         });
       }
       if (mounted) setState(() => _editing = false);
@@ -223,6 +241,32 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 decoration:
                     InputDecoration(labelText: context.t.profile.phone),
               ),
+              if (_role == 'doctor') ...[
+                const Gap(AppSpacing.lg),
+                Text('Professional Info', style: Theme.of(context).textTheme.titleSmall),
+                const Gap(12),
+                TextField(
+                  controller: _bio,
+                  enabled: _editing,
+                  maxLines: 3,
+                  decoration: const InputDecoration(
+                    labelText: 'Bio',
+                    alignLabelWithHint: true,
+                    hintText: 'Short description of your experience',
+                  ),
+                ),
+                const Gap(12),
+                TextField(
+                  controller: _consultationFee,
+                  enabled: _editing,
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                    labelText: 'Consultation fee',
+                    hintText: '50.00',
+                    prefixText: '\$ ',
+                  ),
+                ),
+              ],
               if (_role == 'patient') ...[
                 const Gap(AppSpacing.lg),
                 Text(
