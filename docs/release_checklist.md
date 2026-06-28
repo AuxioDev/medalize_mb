@@ -40,7 +40,7 @@
 - [x] iOS: `NSPhotoLibraryUsageDescription` + `NSCameraUsageDescription` (иначе краш при выборе фото)
 - [x] Android: `POST_NOTIFICATIONS` (уведомления на Android 13+)
 - [x] Имя приложения на домашнем экране = «Medalize»
-- [ ] 🔴 Заменить иконку приложения — сейчас **дефолтный логотип Flutter** (нужен брендовый PNG 1024×1024; подключу `flutter_launcher_icons`)
+- [x] Иконка-плейсхолдер (синий градиент + мед-крест) через `flutter_launcher_icons` — больше не лого Flutter. Финальный бренд → см. B5
 - [x] iOS: `UIBackgroundModes: remote-notification` (для фоновых push)
 
 ### A5. Бэкенд-зависимости (иначе UI вернёт ошибки)
@@ -54,7 +54,7 @@
 - [ ] 🟡 iOS: TestFlight (нужен Apple Developer аккаунт, $99/год)
 - [ ] 🟡 Android: Google Play Internal Testing **или** прямой APK
 - [ ] 🟢 Канал обратной связи для тестеров (форма/чат/почта)
-- [ ] 🟢 Короткая инструкция тестеру: тест-аккаунты пациента и доктора
+- [x] 🟢 Короткая инструкция тестеру (`docs/testing_guide.md`) — заполнить TODO-ссылки
 
 ---
 
