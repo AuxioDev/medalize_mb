@@ -267,7 +267,10 @@
     "chronicConditionsHint": "e.g. Diabetes, hypertension",
     "medications": "Current medications",
     "medicationsHint": "e.g. Metformin 500mg",
-    "appointmentLength": "Appointment length"
+    "appointmentLength": "Appointment length",
+    "cancellationWindow": "Cancellation window",
+    "cancellationWindowHint": "How long before an appointment patients can still cancel or reschedule.",
+    "hoursValue": "$h h"
   },
   "notifications": {
     "title": "Notifications",

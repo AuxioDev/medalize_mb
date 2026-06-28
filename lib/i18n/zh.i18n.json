@@ -267,7 +267,10 @@
     "chronicConditionsHint": "如：糖尿病、高血压",
     "medications": "当前用药",
     "medicationsHint": "如：二甲双胍500mg",
-    "appointmentLength": "预约时长"
+    "appointmentLength": "预约时长",
+    "cancellationWindow": "取消时限",
+    "cancellationWindowHint": "患者可在预约前多久取消或改期。",
+    "hoursValue": "$h 小时"
   },
   "notifications": {
     "title": "通知",

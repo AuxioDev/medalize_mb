@@ -267,7 +267,10 @@
     "chronicConditionsHint": "напр. Диабет, гипертония",
     "medications": "Принимаемые препараты",
     "medicationsHint": "напр. Метформин 500 мг",
-    "appointmentLength": "Длительность приёма"
+    "appointmentLength": "Длительность приёма",
+    "cancellationWindow": "Срок отмены",
+    "cancellationWindowHint": "За сколько часов до приёма пациент ещё может отменить или перенести.",
+    "hoursValue": "$h ч"
   },
   "notifications": {
     "title": "Уведомления",

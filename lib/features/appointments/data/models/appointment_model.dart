@@ -77,6 +77,12 @@ class AppointmentModel {
   final String notes;
   final DateTime createdAt;
 
+  /// Server-computed cancel/reschedule eligibility (`can_cancel`/`can_reschedule`).
+  /// Null when the backend didn't send them — we then fall back to the local
+  /// rule below so older responses keep working.
+  final bool? canCancelOverride;
+  final bool? canRescheduleOverride;
+
   const AppointmentModel({
     required this.id,
     required this.doctor,
@@ -88,6 +94,8 @@ class AppointmentModel {
     required this.reason,
     required this.notes,
     required this.createdAt,
+    this.canCancelOverride,
+    this.canRescheduleOverride,
   });
 
   factory AppointmentModel.fromJson(Map<String, dynamic> j) => AppointmentModel(
@@ -101,12 +109,17 @@ class AppointmentModel {
         reason: j['reason'] as String? ?? '',
         notes: j['notes'] as String? ?? '',
         createdAt: DateTime.parse(j['created_at'] as String),
+        canCancelOverride: j['can_cancel'] as bool?,
+        canRescheduleOverride: j['can_reschedule'] as bool?,
       );
 
   bool get isUpcoming =>
       status == 'pending' || status == 'confirmed' || status == 'requires_rescheduling';
 
-  bool get canCancel {
+  /// Prefer the server's decision; fall back to the local window rule.
+  bool get canCancel => canCancelOverride ?? _withinCancelWindow;
+
+  bool get _withinCancelWindow {
     if (status != 'pending' && status != 'confirmed') return false;
     return startsAt.isAfter(DateTime.now().add(const Duration(hours: 2)));
   }

@@ -421,6 +421,9 @@ class _Translations$profile$ru extends Translations$profile$en {
 	@override String get medications => 'Принимаемые препараты';
 	@override String get medicationsHint => 'напр. Метформин 500 мг';
 	@override String get appointmentLength => 'Длительность приёма';
+	@override String get cancellationWindow => 'Срок отмены';
+	@override String get cancellationWindowHint => 'За сколько часов до приёма пациент ещё может отменить или перенести.';
+	@override String hoursValue({required Object h}) => '${h} ч';
 }
 
 // Path: notifications
@@ -903,6 +906,9 @@ extension on TranslationsRu {
 			'profile.medications' => 'Принимаемые препараты',
 			'profile.medicationsHint' => 'напр. Метформин 500 мг',
 			'profile.appointmentLength' => 'Длительность приёма',
+			'profile.cancellationWindow' => 'Срок отмены',
+			'profile.cancellationWindowHint' => 'За сколько часов до приёма пациент ещё может отменить или перенести.',
+			'profile.hoursValue' => ({required Object h}) => '${h} ч',
 			'notifications.title' => 'Уведомления',
 			'notifications.noNotifications' => 'Нет уведомлений',
 			'notifications.allCaughtUp' => 'Вы всё просмотрели',

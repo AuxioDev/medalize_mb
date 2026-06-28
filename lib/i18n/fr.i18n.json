@@ -267,7 +267,10 @@
     "chronicConditionsHint": "ex. Diabète, hypertension",
     "medications": "Médicaments actuels",
     "medicationsHint": "ex. Metformine 500mg",
-    "appointmentLength": "Durée du rendez-vous"
+    "appointmentLength": "Durée du rendez-vous",
+    "cancellationWindow": "Délai d’annulation",
+    "cancellationWindowHint": "Combien de temps avant un rendez-vous les patients peuvent encore annuler/reporter.",
+    "hoursValue": "$h h"
   },
   "notifications": {
     "title": "Notifications",

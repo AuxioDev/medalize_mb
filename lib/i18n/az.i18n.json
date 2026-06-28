@@ -267,7 +267,10 @@
     "chronicConditionsHint": "məs. Diabet, hipertansiyon",
     "medications": "Cari dərmanlar",
     "medicationsHint": "məs. Metformin 500mq",
-    "appointmentLength": "Görüşün müddəti"
+    "appointmentLength": "Görüşün müddəti",
+    "cancellationWindow": "Ləğvetmə müddəti",
+    "cancellationWindowHint": "Pasiyentlərin görüşdən neçə saat əvvələ qədər ləğv/dəyişiklik edə biləcəyi.",
+    "hoursValue": "$h saat"
   },
   "notifications": {
     "title": "Bildirişlər",

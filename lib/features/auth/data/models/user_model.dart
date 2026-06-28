@@ -22,18 +22,21 @@ class DoctorProfile {
     this.specializationDisplay = '',
     this.bio = '',
     this.slotDurationMin = 30,
+    this.cancellationWindowHours = 2,
   });
 
   final String specialization;
   final String specializationDisplay;
   final String bio;
   final int slotDurationMin;
+  final int cancellationWindowHours;
 
   factory DoctorProfile.fromJson(Map<String, dynamic> json) => DoctorProfile(
         specialization: json['specialization'] as String? ?? '',
         specializationDisplay: json['specialization_display'] as String? ?? '',
         bio: json['bio'] as String? ?? '',
         slotDurationMin: json['slot_duration_min'] as int? ?? 30,
+        cancellationWindowHours: json['cancellation_window_hours'] as int? ?? 2,
       );
 }
 

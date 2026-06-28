@@ -882,6 +882,15 @@ class Translations$profile$en {
 
 	/// en: 'Appointment length'
 	String get appointmentLength => 'Appointment length';
+
+	/// en: 'Cancellation window'
+	String get cancellationWindow => 'Cancellation window';
+
+	/// en: 'How long before an appointment patients can still cancel or reschedule.'
+	String get cancellationWindowHint => 'How long before an appointment patients can still cancel or reschedule.';
+
+	/// en: '$h h'
+	String hoursValue({required Object h}) => '${h} h';
 }
 
 // Path: notifications
@@ -1575,6 +1584,9 @@ extension on Translations {
 			'profile.medications' => 'Current medications',
 			'profile.medicationsHint' => 'e.g. Metformin 500mg',
 			'profile.appointmentLength' => 'Appointment length',
+			'profile.cancellationWindow' => 'Cancellation window',
+			'profile.cancellationWindowHint' => 'How long before an appointment patients can still cancel or reschedule.',
+			'profile.hoursValue' => ({required Object h}) => '${h} h',
 			'notifications.title' => 'Notifications',
 			'notifications.noNotifications' => 'No notifications',
 			'notifications.allCaughtUp' => 'You are all caught up',

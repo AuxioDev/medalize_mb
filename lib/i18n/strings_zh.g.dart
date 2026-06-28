@@ -421,6 +421,9 @@ class _Translations$profile$zh extends Translations$profile$en {
 	@override String get medications => '当前用药';
 	@override String get medicationsHint => '如：二甲双胍500mg';
 	@override String get appointmentLength => '预约时长';
+	@override String get cancellationWindow => '取消时限';
+	@override String get cancellationWindowHint => '患者可在预约前多久取消或改期。';
+	@override String hoursValue({required Object h}) => '${h} 小时';
 }
 
 // Path: notifications
@@ -903,6 +906,9 @@ extension on TranslationsZh {
 			'profile.medications' => '当前用药',
 			'profile.medicationsHint' => '如：二甲双胍500mg',
 			'profile.appointmentLength' => '预约时长',
+			'profile.cancellationWindow' => '取消时限',
+			'profile.cancellationWindowHint' => '患者可在预约前多久取消或改期。',
+			'profile.hoursValue' => ({required Object h}) => '${h} 小时',
 			'notifications.title' => '通知',
 			'notifications.noNotifications' => '没有通知',
 			'notifications.allCaughtUp' => '您已查看全部',

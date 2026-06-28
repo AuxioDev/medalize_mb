@@ -38,6 +38,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   late TextEditingController _bio;
   late TextEditingController _consultationFee;
   int _slotDuration = 30;
+  int _cancellationWindow = 2;
   String? _saveError;
 
   @override
@@ -77,6 +78,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         _bio.text = profile['bio'] as String? ?? '';
         _consultationFee.text = profile['consultation_fee'] as String? ?? '';
         _slotDuration = profile['slot_duration_min'] as int? ?? 30;
+        _cancellationWindow = profile['cancellation_window_hours'] as int? ?? 2;
       }
       if (mounted) setState(() {});
     } catch (_) {}
@@ -137,6 +139,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           'bio': _bio.text.trim(),
           if (feeText.isNotEmpty) 'consultation_fee': feeText,
           'slot_duration_min': _slotDuration,
+          'cancellation_window_hours': _cancellationWindow,
         });
       }
       if (mounted) setState(() => _editing = false);
@@ -349,6 +352,28 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   selected: _slotDuration,
                   enabled: _editing,
                   onSelect: (d) => setState(() => _slotDuration = d),
+                ),
+                const Gap(AppSpacing.md),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    context.t.profile.cancellationWindow,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                const Gap(4),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    context.t.profile.cancellationWindowHint,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                const Gap(10),
+                CancellationWindowSelector(
+                  selected: _cancellationWindow,
+                  enabled: _editing,
+                  onSelect: (h) => setState(() => _cancellationWindow = h),
                 ),
               ],
               if (_role == 'patient') ...[

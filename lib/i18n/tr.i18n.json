@@ -267,7 +267,10 @@
     "chronicConditionsHint": "ör. Diyabet, hipertansiyon",
     "medications": "Mevcut ilaçlar",
     "medicationsHint": "ör. Metformin 500mg",
-    "appointmentLength": "Randevu süresi"
+    "appointmentLength": "Randevu süresi",
+    "cancellationWindow": "İptal süresi",
+    "cancellationWindowHint": "Hastaların randevudan ne kadar önce iptal/erteleme yapabileceği.",
+    "hoursValue": "$h sa"
   },
   "notifications": {
     "title": "Bildirimler",

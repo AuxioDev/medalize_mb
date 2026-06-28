@@ -421,6 +421,9 @@ class _Translations$profile$tr extends Translations$profile$en {
 	@override String get medications => 'Mevcut ilaçlar';
 	@override String get medicationsHint => 'ör. Metformin 500mg';
 	@override String get appointmentLength => 'Randevu süresi';
+	@override String get cancellationWindow => 'İptal süresi';
+	@override String get cancellationWindowHint => 'Hastaların randevudan ne kadar önce iptal/erteleme yapabileceği.';
+	@override String hoursValue({required Object h}) => '${h} sa';
 }
 
 // Path: notifications
@@ -903,6 +906,9 @@ extension on TranslationsTr {
 			'profile.medications' => 'Mevcut ilaçlar',
 			'profile.medicationsHint' => 'ör. Metformin 500mg',
 			'profile.appointmentLength' => 'Randevu süresi',
+			'profile.cancellationWindow' => 'İptal süresi',
+			'profile.cancellationWindowHint' => 'Hastaların randevudan ne kadar önce iptal/erteleme yapabileceği.',
+			'profile.hoursValue' => ({required Object h}) => '${h} sa',
 			'notifications.title' => 'Bildirimler',
 			'notifications.noNotifications' => 'Bildirim yok',
 			'notifications.allCaughtUp' => 'Her şeyi gördünüz',

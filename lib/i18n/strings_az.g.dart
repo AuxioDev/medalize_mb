@@ -421,6 +421,9 @@ class _Translations$profile$az extends Translations$profile$en {
 	@override String get medications => 'Cari dərmanlar';
 	@override String get medicationsHint => 'məs. Metformin 500mq';
 	@override String get appointmentLength => 'Görüşün müddəti';
+	@override String get cancellationWindow => 'Ləğvetmə müddəti';
+	@override String get cancellationWindowHint => 'Pasiyentlərin görüşdən neçə saat əvvələ qədər ləğv/dəyişiklik edə biləcəyi.';
+	@override String hoursValue({required Object h}) => '${h} saat';
 }
 
 // Path: notifications
@@ -903,6 +906,9 @@ extension on TranslationsAz {
 			'profile.medications' => 'Cari dərmanlar',
 			'profile.medicationsHint' => 'məs. Metformin 500mq',
 			'profile.appointmentLength' => 'Görüşün müddəti',
+			'profile.cancellationWindow' => 'Ləğvetmə müddəti',
+			'profile.cancellationWindowHint' => 'Pasiyentlərin görüşdən neçə saat əvvələ qədər ləğv/dəyişiklik edə biləcəyi.',
+			'profile.hoursValue' => ({required Object h}) => '${h} saat',
 			'notifications.title' => 'Bildirişlər',
 			'notifications.noNotifications' => 'Bildiriş yoxdur',
 			'notifications.allCaughtUp' => 'Hər şey qaydasındadır',

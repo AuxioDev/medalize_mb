@@ -16,17 +16,18 @@
 - [x] Все юнит/виджет-тесты проходят (`flutter test`)
 - [x] Сборка iOS (simulator) и Android (apk) проходит
 - [x] Краш-безопасность: Firebase/FCM/locale обёрнуты в try-catch
-- [x] 🟡 CI прогоняет `flutter analyze` + `flutter test` + сборку APK (`.github/workflows/ci.yml`)
+- [x] 🟡 Mobile CI: `flutter analyze` + `flutter test` + сборка APK (`medalize_mb/.github/workflows/ci.yml`)
+- [x] 🟡 Backend CI: Postgres + `manage.py test` (`medalize_be/.github/workflows/ci.yml`); все 139 тестов зелёные
 
 ### A2. Окружение / конфигурация
-- [ ] 🔴 **Backend URL для тестеров.** По умолчанию `localhost` — недоступен с телефонов.
-      Собирать со staging-адресом (обязательно HTTPS):
-      ```
-      flutter build apk --release --dart-define=API_BASE_URL=https://staging.medalize.app/api
-      flutter build ipa        --dart-define=API_BASE_URL=https://staging.medalize.app/api
-      ```
-- [ ] 🔴 Backend staging поднят и доступен снаружи (CORS/HTTPS/health-check)
 - [x] 🟡 Env-конфиги для сборок готовы (`config/*.json.example` + `--dart-define-from-file`, см. `config/README.md`)
+- [x] 🟡 Deploy-конфиги бэкенда готовы: `Dockerfile`, `docker-compose.yml` (web+db+redis+worker+beat), `Procfile`, `.env.example`
+- [ ] 🔴 **Поднять backend на хосте** (домен + HTTPS): `cp .env.example .env` → заполнить → `docker compose up --build` на сервере (любой VPS/PaaS). Нужен твой хост/домен.
+- [ ] 🔴 **Собрать билд тестерам** с этим URL (обязательно HTTPS):
+      ```
+      flutter build apk --release --dart-define=API_BASE_URL=https://<твой-домен>/api
+      flutter build ipa            --dart-define=API_BASE_URL=https://<твой-домен>/api
+      ```
 
 ### A3. Firebase / Push (если push нужен в тесте)
 - [ ] 🟡 Зарегистрировать iOS-приложение в Firebase (bundle `com.example.medalizeMb`)
@@ -44,11 +45,10 @@
 - [x] iOS: `UIBackgroundModes: remote-notification` (для фоновых push)
 
 ### A5. Бэкенд-зависимости (иначе UI вернёт ошибки)
-- [ ] 🔴 Поддержать статусы `no_show` и `requires_rescheduling` + переход при `reschedule`
-      (см. `docs/backend_api_contract.md`, раздел 1)
-- [ ] 🔴 Тестовые данные: врачи, специализации, рабочие места, слоты
-- [ ] 🔴 Админ (Django) может верифицировать тест-докторов (иначе доктор застрянет на «ожидании»)
-- [ ] 🟡 Перенести правило отмены на сервер (`can_cancel`) вместо хардкода «2 часа»
+- [x] 🔴 Статусы `no_show` + `requires_rescheduling` приняты эндпоинтом, переходы провалидированы, перенос из `requires_rescheduling` разрешён (бэкенд `medalize_be`, +5 тестов). **Применить миграцию:** `python manage.py migrate`
+- [x] 🔴 Тестовые данные: команда `python manage.py seed_data --clear` (5 врачей/10 пациентов/места/часы/записи; пароли `Doctor@1234` / `Patient@1234`)
+- [x] 🔴 Админ может верифицировать докторов (Django admin → DoctorProfile → action «Verify selected doctors»)
+- [x] 🟡 Правило отмены на сервере: API отдаёт `can_cancel`/`can_reschedule`, клиент их использует (фолбэк на локальное правило). Окно **настраивается per-doctor** (`cancellation_window_hours` в профиле, дефолт 2)
 
 ### A6. Раздача билда
 - [ ] 🟡 iOS: TestFlight (нужен Apple Developer аккаунт, $99/год)

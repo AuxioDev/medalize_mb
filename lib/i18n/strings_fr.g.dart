@@ -421,6 +421,9 @@ class _Translations$profile$fr extends Translations$profile$en {
 	@override String get medications => 'Médicaments actuels';
 	@override String get medicationsHint => 'ex. Metformine 500mg';
 	@override String get appointmentLength => 'Durée du rendez-vous';
+	@override String get cancellationWindow => 'Délai d’annulation';
+	@override String get cancellationWindowHint => 'Combien de temps avant un rendez-vous les patients peuvent encore annuler/reporter.';
+	@override String hoursValue({required Object h}) => '${h} h';
 }
 
 // Path: notifications
@@ -903,6 +906,9 @@ extension on TranslationsFr {
 			'profile.medications' => 'Médicaments actuels',
 			'profile.medicationsHint' => 'ex. Metformine 500mg',
 			'profile.appointmentLength' => 'Durée du rendez-vous',
+			'profile.cancellationWindow' => 'Délai d’annulation',
+			'profile.cancellationWindowHint' => 'Combien de temps avant un rendez-vous les patients peuvent encore annuler/reporter.',
+			'profile.hoursValue' => ({required Object h}) => '${h} h',
 			'notifications.title' => 'Notifications',
 			'notifications.noNotifications' => 'Aucune notification',
 			'notifications.allCaughtUp' => 'Vous êtes à jour',
