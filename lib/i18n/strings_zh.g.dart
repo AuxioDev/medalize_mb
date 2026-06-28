@@ -305,6 +305,12 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get reviewSubmit => '提交';
 	@override String get markCompleted => '标记为已完成';
 	@override String get rescheduledSuccess => '预约已成功改期。';
+	@override String get reviewSubmitted => '评价已提交，谢谢！';
+	@override String get requestReschedule => '请求改期';
+	@override String get requestRescheduleTitle => '请求改期';
+	@override String get requestRescheduleConfirm => '请患者选择新的时间？该预约将被标记为需要改期。';
+	@override String get requestRescheduleSuccess => '已请求改期，将通知患者。';
+	@override String get rescheduleNeededHint => '医生请您选择新的时间。';
 }
 
 // Path: booking
@@ -351,6 +357,11 @@ class _Translations$doctorSearch$zh extends Translations$doctorSearch$en {
 	@override String get availableToday => '今天可约';
 	@override String get availableTomorrow => '明天可约';
 	@override String availableOn({required Object date}) => '${date} 可约';
+	@override String get sortBy => '排序';
+	@override String get sortDefault => '默认';
+	@override String get sortRating => '评分最高';
+	@override String get sortPriceLow => '价格最低';
+	@override String get sortName => '姓名 (A–Z)';
 }
 
 // Path: doctorDetail
@@ -397,6 +408,7 @@ class _Translations$profile$zh extends Translations$profile$en {
 	@override String get chronicConditionsHint => '如：糖尿病、高血压';
 	@override String get medications => '当前用药';
 	@override String get medicationsHint => '如：二甲双胍500mg';
+	@override String get appointmentLength => '预约时长';
 }
 
 // Path: notifications
@@ -749,6 +761,12 @@ extension on TranslationsZh {
 			'appointments.reviewSubmit' => '提交',
 			'appointments.markCompleted' => '标记为已完成',
 			'appointments.rescheduledSuccess' => '预约已成功改期。',
+			'appointments.reviewSubmitted' => '评价已提交，谢谢！',
+			'appointments.requestReschedule' => '请求改期',
+			'appointments.requestRescheduleTitle' => '请求改期',
+			'appointments.requestRescheduleConfirm' => '请患者选择新的时间？该预约将被标记为需要改期。',
+			'appointments.requestRescheduleSuccess' => '已请求改期，将通知患者。',
+			'appointments.rescheduleNeededHint' => '医生请您选择新的时间。',
 			'booking.bookWith' => ({required Object name}) => '预约 — ${name}',
 			'booking.selectWorkplace' => '选择工作地点',
 			'booking.pickDate' => '选择日期',
@@ -787,6 +805,11 @@ extension on TranslationsZh {
 			'doctorSearch.availableToday' => '今天可约',
 			'doctorSearch.availableTomorrow' => '明天可约',
 			'doctorSearch.availableOn' => ({required Object date}) => '${date} 可约',
+			'doctorSearch.sortBy' => '排序',
+			'doctorSearch.sortDefault' => '默认',
+			'doctorSearch.sortRating' => '评分最高',
+			'doctorSearch.sortPriceLow' => '价格最低',
+			'doctorSearch.sortName' => '姓名 (A–Z)',
 			'doctorDetail.profileTitle' => '医生资料',
 			'doctorDetail.couldNotLoadProfile' => '无法加载资料',
 			'doctorDetail.about' => '简介',
@@ -815,6 +838,7 @@ extension on TranslationsZh {
 			'profile.chronicConditionsHint' => '如：糖尿病、高血压',
 			'profile.medications' => '当前用药',
 			'profile.medicationsHint' => '如：二甲双胍500mg',
+			'profile.appointmentLength' => '预约时长',
 			'notifications.title' => '通知',
 			'notifications.noNotifications' => '没有通知',
 			'notifications.allCaughtUp' => '您已查看全部',

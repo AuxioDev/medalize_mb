@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/features/doctor/presentation/widgets/slot_duration_selector.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -36,6 +37,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   late TextEditingController _medications;
   late TextEditingController _bio;
   late TextEditingController _consultationFee;
+  int _slotDuration = 30;
   String? _saveError;
 
   @override
@@ -74,6 +76,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         final profile = d['profile'] as Map<String, dynamic>? ?? {};
         _bio.text = profile['bio'] as String? ?? '';
         _consultationFee.text = profile['consultation_fee'] as String? ?? '';
+        _slotDuration = profile['slot_duration_min'] as int? ?? 30;
       }
       if (mounted) setState(() {});
     } catch (_) {}
@@ -133,6 +136,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         await ref.read(dioClientProvider).patch('/doctor/profile/', data: {
           'bio': _bio.text.trim(),
           if (feeText.isNotEmpty) 'consultation_fee': feeText,
+          'slot_duration_min': _slotDuration,
         });
       }
       if (mounted) setState(() => _editing = false);
@@ -331,6 +335,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     hintText: '50.00',
                     prefixText: '\$ ',
                   ),
+                ),
+                const Gap(AppSpacing.md),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    context.t.profile.appointmentLength,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                const Gap(10),
+                SlotDurationSelector(
+                  selected: _slotDuration,
+                  enabled: _editing,
+                  onSelect: (d) => setState(() => _slotDuration = d),
                 ),
               ],
               if (_role == 'patient') ...[

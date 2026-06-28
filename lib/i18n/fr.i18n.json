@@ -170,7 +170,13 @@
     "reviewComment": "Commentaire (optionnel)",
     "reviewSubmit": "Envoyer",
     "markCompleted": "Marquer comme terminé",
-    "rescheduledSuccess": "Rendez-vous reporté avec succès."
+    "rescheduledSuccess": "Rendez-vous reporté avec succès.",
+    "reviewSubmitted": "Avis envoyé. Merci !",
+    "requestReschedule": "Demander un report",
+    "requestRescheduleTitle": "Demander un report",
+    "requestRescheduleConfirm": "Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.",
+    "requestRescheduleSuccess": "Report demandé. Le patient sera notifié.",
+    "rescheduleNeededHint": "Le médecin vous a demandé de choisir un nouveau créneau."
   },
   "booking": {
     "bookWith": "Réserver — $name",
@@ -214,7 +220,12 @@
     "noAvailability": "Indisponible",
     "availableToday": "Disponible auj.",
     "availableTomorrow": "Disponible demain",
-    "availableOn": "Dispo le $date"
+    "availableOn": "Dispo le $date",
+    "sortBy": "Trier par",
+    "sortDefault": "Pertinence",
+    "sortRating": "Mieux notés",
+    "sortPriceLow": "Prix le plus bas",
+    "sortName": "Nom (A–Z)"
   },
   "doctorDetail": {
     "profileTitle": "Profil du médecin",
@@ -246,7 +257,8 @@
     "chronicConditions": "Maladies chroniques",
     "chronicConditionsHint": "ex. Diabète, hypertension",
     "medications": "Médicaments actuels",
-    "medicationsHint": "ex. Metformine 500mg"
+    "medicationsHint": "ex. Metformine 500mg",
+    "appointmentLength": "Durée du rendez-vous"
   },
   "notifications": {
     "title": "Notifications",

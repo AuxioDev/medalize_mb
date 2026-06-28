@@ -170,7 +170,13 @@
     "reviewComment": "Comment (optional)",
     "reviewSubmit": "Submit",
     "markCompleted": "Mark as Completed",
-    "rescheduledSuccess": "Appointment rescheduled successfully."
+    "rescheduledSuccess": "Appointment rescheduled successfully.",
+    "reviewSubmitted": "Review submitted. Thank you!",
+    "requestReschedule": "Request Reschedule",
+    "requestRescheduleTitle": "Request Reschedule",
+    "requestRescheduleConfirm": "Ask the patient to pick a new time? The appointment will be marked as needing rescheduling.",
+    "requestRescheduleSuccess": "Reschedule requested. The patient will be notified.",
+    "rescheduleNeededHint": "The doctor asked you to choose a new time."
   },
   "booking": {
     "bookWith": "Book — $name",
@@ -214,7 +220,12 @@
     "noAvailability": "No availability",
     "availableToday": "Available today",
     "availableTomorrow": "Available tomorrow",
-    "availableOn": "Available $date"
+    "availableOn": "Available $date",
+    "sortBy": "Sort by",
+    "sortDefault": "Relevance",
+    "sortRating": "Top rated",
+    "sortPriceLow": "Lowest price",
+    "sortName": "Name (A–Z)"
   },
   "doctorDetail": {
     "profileTitle": "Doctor Profile",
@@ -246,7 +257,8 @@
     "chronicConditions": "Chronic conditions",
     "chronicConditionsHint": "e.g. Diabetes, hypertension",
     "medications": "Current medications",
-    "medicationsHint": "e.g. Metformin 500mg"
+    "medicationsHint": "e.g. Metformin 500mg",
+    "appointmentLength": "Appointment length"
   },
   "notifications": {
     "title": "Notifications",

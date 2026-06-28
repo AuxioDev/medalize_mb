@@ -61,6 +61,48 @@ class _AppointmentDetailScreenState
     }
   }
 
+  /// Doctor action: ask the patient to pick a new time. Moves the appointment
+  /// to `requires_rescheduling`, which the patient can act on from their side.
+  Future<void> _requestReschedule() async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(context.t.appointments.requestRescheduleTitle),
+        content: Text(context.t.appointments.requestRescheduleConfirm),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(context.t.common.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(context.t.appointments.requestReschedule),
+          ),
+        ],
+      ),
+    );
+    if (confirm != true) return;
+
+    setState(() => _updatingStatus = true);
+    try {
+      await ref
+          .read(appointmentRepositoryProvider)
+          .updateAppointmentStatus(widget.appointment.id, 'requires_rescheduling');
+      ref.invalidate(doctorAppointmentsProvider);
+      if (mounted) {
+        AppSnackBar.show(context, context.t.appointments.requestRescheduleSuccess,
+            type: SnackBarType.success);
+        context.pop();
+      }
+    } on ApiException catch (e) {
+      if (mounted) {
+        AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+      }
+    } finally {
+      if (mounted) setState(() => _updatingStatus = false);
+    }
+  }
+
   Future<void> _reschedule() async {
     final appt = widget.appointment;
     final result = await context.push<DateTime?>(
@@ -145,7 +187,10 @@ class _AppointmentDetailScreenState
         selectedRating,
         commentCtrl.text.trim(),
       );
-      if (mounted) AppSnackBar.show(context, 'Review submitted. Thank you!');
+      if (mounted) {
+        AppSnackBar.show(context, context.t.appointments.reviewSubmitted,
+            type: SnackBarType.success);
+      }
     } on ApiException catch (e) {
       if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
     } finally {
@@ -334,29 +379,53 @@ class _AppointmentDetailScreenState
 
   Widget? _bottomBar(AppointmentModel appt) {
     if (widget.asDoctor) {
-      if (appt.status == 'confirmed' && appt.startsAt.isBefore(DateTime.now())) {
+      if (appt.status == 'confirmed') {
+        final isPast = appt.startsAt.isBefore(DateTime.now());
+        // Past confirmed appointment → can be marked completed.
+        // Upcoming confirmed appointment → doctor can ask the patient to
+        // reschedule (e.g. an emergency came up).
+        if (isPast) {
+          return BottomActionBar(
+            child: FilledButton(
+              onPressed: _updatingStatus
+                  ? null
+                  : () {
+                      HapticFeedback.lightImpact();
+                      _setStatus('completed');
+                    },
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(52),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppRadius.md)),
+              ),
+              child: _updatingStatus
+                  ? const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2, color: Colors.white),
+                    )
+                  : Text(context.t.appointments.markCompleted,
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
+            ),
+          );
+        }
         return BottomActionBar(
-          child: FilledButton(
+          child: OutlinedButton.icon(
             onPressed: _updatingStatus
                 ? null
                 : () {
                     HapticFeedback.lightImpact();
-                    _setStatus('completed');
+                    _requestReschedule();
                   },
-            style: FilledButton.styleFrom(
+            icon: const Icon(Icons.schedule_outlined, size: 18),
+            label: Text(context.t.appointments.requestReschedule,
+                style: const TextStyle(fontWeight: FontWeight.w600)),
+            style: OutlinedButton.styleFrom(
               minimumSize: const Size.fromHeight(52),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppRadius.md)),
             ),
-            child: _updatingStatus
-                ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(
-                        strokeWidth: 2, color: Colors.white),
-                  )
-                : Text(context.t.appointments.markCompleted,
-                    style: const TextStyle(fontWeight: FontWeight.w600)),
           ),
         );
       }
@@ -421,6 +490,46 @@ class _AppointmentDetailScreenState
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppRadius.md)),
           ),
+        ),
+      );
+    }
+
+    // Doctor asked the patient to choose a new time.
+    if (appt.status == 'requires_rescheduling') {
+      return BottomActionBar(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              context.t.appointments.rescheduleNeededHint,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const Gap(10),
+            FilledButton.icon(
+              onPressed: _rescheduling
+                  ? null
+                  : () {
+                      HapticFeedback.lightImpact();
+                      _reschedule();
+                    },
+              icon: _rescheduling
+                  ? const SizedBox(
+                      height: 18,
+                      width: 18,
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2, color: Colors.white),
+                    )
+                  : const Icon(Icons.schedule_outlined, size: 18),
+              label: Text(context.t.appointments.reschedule,
+                  style: const TextStyle(fontWeight: FontWeight.w600)),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(52),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppRadius.md)),
+              ),
+            ),
+          ],
         ),
       );
     }

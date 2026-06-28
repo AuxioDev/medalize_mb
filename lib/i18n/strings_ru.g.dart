@@ -305,6 +305,12 @@ class _Translations$appointments$ru extends Translations$appointments$en {
 	@override String get reviewSubmit => 'Отправить';
 	@override String get markCompleted => 'Отметить завершённым';
 	@override String get rescheduledSuccess => 'Запись успешно перенесена.';
+	@override String get reviewSubmitted => 'Отзыв отправлен. Спасибо!';
+	@override String get requestReschedule => 'Запросить перенос';
+	@override String get requestRescheduleTitle => 'Запрос переноса';
+	@override String get requestRescheduleConfirm => 'Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.';
+	@override String get requestRescheduleSuccess => 'Перенос запрошен. Пациент получит уведомление.';
+	@override String get rescheduleNeededHint => 'Врач попросил вас выбрать новое время.';
 }
 
 // Path: booking
@@ -351,6 +357,11 @@ class _Translations$doctorSearch$ru extends Translations$doctorSearch$en {
 	@override String get availableToday => 'Доступен сегодня';
 	@override String get availableTomorrow => 'Доступен завтра';
 	@override String availableOn({required Object date}) => 'Доступен ${date}';
+	@override String get sortBy => 'Сортировка';
+	@override String get sortDefault => 'По умолчанию';
+	@override String get sortRating => 'По рейтингу';
+	@override String get sortPriceLow => 'Сначала дешевле';
+	@override String get sortName => 'По имени (А–Я)';
 }
 
 // Path: doctorDetail
@@ -397,6 +408,7 @@ class _Translations$profile$ru extends Translations$profile$en {
 	@override String get chronicConditionsHint => 'напр. Диабет, гипертония';
 	@override String get medications => 'Принимаемые препараты';
 	@override String get medicationsHint => 'напр. Метформин 500 мг';
+	@override String get appointmentLength => 'Длительность приёма';
 }
 
 // Path: notifications
@@ -749,6 +761,12 @@ extension on TranslationsRu {
 			'appointments.reviewSubmit' => 'Отправить',
 			'appointments.markCompleted' => 'Отметить завершённым',
 			'appointments.rescheduledSuccess' => 'Запись успешно перенесена.',
+			'appointments.reviewSubmitted' => 'Отзыв отправлен. Спасибо!',
+			'appointments.requestReschedule' => 'Запросить перенос',
+			'appointments.requestRescheduleTitle' => 'Запрос переноса',
+			'appointments.requestRescheduleConfirm' => 'Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.',
+			'appointments.requestRescheduleSuccess' => 'Перенос запрошен. Пациент получит уведомление.',
+			'appointments.rescheduleNeededHint' => 'Врач попросил вас выбрать новое время.',
 			'booking.bookWith' => ({required Object name}) => 'Запись — ${name}',
 			'booking.selectWorkplace' => 'Выберите место работы',
 			'booking.pickDate' => 'Выберите дату',
@@ -787,6 +805,11 @@ extension on TranslationsRu {
 			'doctorSearch.availableToday' => 'Доступен сегодня',
 			'doctorSearch.availableTomorrow' => 'Доступен завтра',
 			'doctorSearch.availableOn' => ({required Object date}) => 'Доступен ${date}',
+			'doctorSearch.sortBy' => 'Сортировка',
+			'doctorSearch.sortDefault' => 'По умолчанию',
+			'doctorSearch.sortRating' => 'По рейтингу',
+			'doctorSearch.sortPriceLow' => 'Сначала дешевле',
+			'doctorSearch.sortName' => 'По имени (А–Я)',
 			'doctorDetail.profileTitle' => 'Профиль врача',
 			'doctorDetail.couldNotLoadProfile' => 'Не удалось загрузить профиль',
 			'doctorDetail.about' => 'О себе',
@@ -815,6 +838,7 @@ extension on TranslationsRu {
 			'profile.chronicConditionsHint' => 'напр. Диабет, гипертония',
 			'profile.medications' => 'Принимаемые препараты',
 			'profile.medicationsHint' => 'напр. Метформин 500 мг',
+			'profile.appointmentLength' => 'Длительность приёма',
 			'notifications.title' => 'Уведомления',
 			'notifications.noNotifications' => 'Нет уведомлений',
 			'notifications.allCaughtUp' => 'Вы всё просмотрели',

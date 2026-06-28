@@ -13,9 +13,9 @@ import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/doctor/data/repository/doctor_profile_repository.dart';
+import 'package:medalize_mb/features/doctor/presentation/widgets/slot_duration_selector.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
-const _kSlotDurations = [15, 20, 30, 45, 60];
 const _kTotalSteps = 3;
 
 class DoctorOnboardingScreen extends ConsumerStatefulWidget {
@@ -271,17 +271,9 @@ class _DoctorOnboardingScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  for (final d in _kSlotDurations)
-                    _DurationChip(
-                      minutes: d,
-                      selected: _slotDuration == d,
-                      onTap: () => setState(() => _slotDuration = d),
-                    ),
-                ],
+              SlotDurationSelector(
+                selected: _slotDuration,
+                onSelect: (d) => setState(() => _slotDuration = d),
               ),
               const Gap(AppSpacing.md),
               Row(
@@ -446,49 +438,6 @@ class _LoadingField extends StatelessWidget {
           height: 18,
           width: 18,
           child: CircularProgressIndicator(strokeWidth: 2),
-        ),
-      ),
-    );
-  }
-}
-
-class _DurationChip extends StatelessWidget {
-  const _DurationChip({
-    required this.minutes,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final int minutes;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.selectionClick();
-        onTap();
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 150),
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-        decoration: BoxDecoration(
-          color: selected ? AppColors.primary : c.surface,
-          borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(
-            color: selected ? AppColors.primary : c.border,
-            width: selected ? 1.5 : 1,
-          ),
-        ),
-        child: Text(
-          context.t.onboarding.minutes(min: minutes),
-          style: TextStyle(
-            color: selected ? Colors.white : c.textPrimary,
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
         ),
       ),
     );

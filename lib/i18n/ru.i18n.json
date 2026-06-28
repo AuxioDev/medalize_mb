@@ -170,7 +170,13 @@
     "reviewComment": "Комментарий (необязательно)",
     "reviewSubmit": "Отправить",
     "markCompleted": "Отметить завершённым",
-    "rescheduledSuccess": "Запись успешно перенесена."
+    "rescheduledSuccess": "Запись успешно перенесена.",
+    "reviewSubmitted": "Отзыв отправлен. Спасибо!",
+    "requestReschedule": "Запросить перенос",
+    "requestRescheduleTitle": "Запрос переноса",
+    "requestRescheduleConfirm": "Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.",
+    "requestRescheduleSuccess": "Перенос запрошен. Пациент получит уведомление.",
+    "rescheduleNeededHint": "Врач попросил вас выбрать новое время."
   },
   "booking": {
     "bookWith": "Запись — $name",
@@ -214,7 +220,12 @@
     "noAvailability": "Нет свободного времени",
     "availableToday": "Доступен сегодня",
     "availableTomorrow": "Доступен завтра",
-    "availableOn": "Доступен $date"
+    "availableOn": "Доступен $date",
+    "sortBy": "Сортировка",
+    "sortDefault": "По умолчанию",
+    "sortRating": "По рейтингу",
+    "sortPriceLow": "Сначала дешевле",
+    "sortName": "По имени (А–Я)"
   },
   "doctorDetail": {
     "profileTitle": "Профиль врача",
@@ -246,7 +257,8 @@
     "chronicConditions": "Хронические заболевания",
     "chronicConditionsHint": "напр. Диабет, гипертония",
     "medications": "Принимаемые препараты",
-    "medicationsHint": "напр. Метформин 500 мг"
+    "medicationsHint": "напр. Метформин 500 мг",
+    "appointmentLength": "Длительность приёма"
   },
   "notifications": {
     "title": "Уведомления",

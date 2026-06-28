@@ -613,6 +613,24 @@ class Translations$appointments$en {
 
 	/// en: 'Appointment rescheduled successfully.'
 	String get rescheduledSuccess => 'Appointment rescheduled successfully.';
+
+	/// en: 'Review submitted. Thank you!'
+	String get reviewSubmitted => 'Review submitted. Thank you!';
+
+	/// en: 'Request Reschedule'
+	String get requestReschedule => 'Request Reschedule';
+
+	/// en: 'Request Reschedule'
+	String get requestRescheduleTitle => 'Request Reschedule';
+
+	/// en: 'Ask the patient to pick a new time? The appointment will be marked as needing rescheduling.'
+	String get requestRescheduleConfirm => 'Ask the patient to pick a new time? The appointment will be marked as needing rescheduling.';
+
+	/// en: 'Reschedule requested. The patient will be notified.'
+	String get requestRescheduleSuccess => 'Reschedule requested. The patient will be notified.';
+
+	/// en: 'The doctor asked you to choose a new time.'
+	String get rescheduleNeededHint => 'The doctor asked you to choose a new time.';
 }
 
 // Path: booking
@@ -714,6 +732,21 @@ class Translations$doctorSearch$en {
 
 	/// en: 'Available $date'
 	String availableOn({required Object date}) => 'Available ${date}';
+
+	/// en: 'Sort by'
+	String get sortBy => 'Sort by';
+
+	/// en: 'Relevance'
+	String get sortDefault => 'Relevance';
+
+	/// en: 'Top rated'
+	String get sortRating => 'Top rated';
+
+	/// en: 'Lowest price'
+	String get sortPriceLow => 'Lowest price';
+
+	/// en: 'Name (A–Z)'
+	String get sortName => 'Name (A–Z)';
 }
 
 // Path: doctorDetail
@@ -816,6 +849,9 @@ class Translations$profile$en {
 
 	/// en: 'e.g. Metformin 500mg'
 	String get medicationsHint => 'e.g. Metformin 500mg';
+
+	/// en: 'Appointment length'
+	String get appointmentLength => 'Appointment length';
 }
 
 // Path: notifications
@@ -1347,6 +1383,12 @@ extension on Translations {
 			'appointments.reviewSubmit' => 'Submit',
 			'appointments.markCompleted' => 'Mark as Completed',
 			'appointments.rescheduledSuccess' => 'Appointment rescheduled successfully.',
+			'appointments.reviewSubmitted' => 'Review submitted. Thank you!',
+			'appointments.requestReschedule' => 'Request Reschedule',
+			'appointments.requestRescheduleTitle' => 'Request Reschedule',
+			'appointments.requestRescheduleConfirm' => 'Ask the patient to pick a new time? The appointment will be marked as needing rescheduling.',
+			'appointments.requestRescheduleSuccess' => 'Reschedule requested. The patient will be notified.',
+			'appointments.rescheduleNeededHint' => 'The doctor asked you to choose a new time.',
 			'booking.bookWith' => ({required Object name}) => 'Book — ${name}',
 			'booking.selectWorkplace' => 'Select Workplace',
 			'booking.pickDate' => 'Pick a date',
@@ -1385,6 +1427,11 @@ extension on Translations {
 			'doctorSearch.availableToday' => 'Available today',
 			'doctorSearch.availableTomorrow' => 'Available tomorrow',
 			'doctorSearch.availableOn' => ({required Object date}) => 'Available ${date}',
+			'doctorSearch.sortBy' => 'Sort by',
+			'doctorSearch.sortDefault' => 'Relevance',
+			'doctorSearch.sortRating' => 'Top rated',
+			'doctorSearch.sortPriceLow' => 'Lowest price',
+			'doctorSearch.sortName' => 'Name (A–Z)',
 			'doctorDetail.profileTitle' => 'Doctor Profile',
 			'doctorDetail.couldNotLoadProfile' => 'Could not load profile',
 			'doctorDetail.about' => 'About',
@@ -1413,6 +1460,7 @@ extension on Translations {
 			'profile.chronicConditionsHint' => 'e.g. Diabetes, hypertension',
 			'profile.medications' => 'Current medications',
 			'profile.medicationsHint' => 'e.g. Metformin 500mg',
+			'profile.appointmentLength' => 'Appointment length',
 			'notifications.title' => 'Notifications',
 			'notifications.noNotifications' => 'No notifications',
 			'notifications.allCaughtUp' => 'You are all caught up',

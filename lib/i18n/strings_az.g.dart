@@ -305,6 +305,12 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get reviewSubmit => 'Göndər';
 	@override String get markCompleted => 'Tamamlandı kimi işarələ';
 	@override String get rescheduledSuccess => 'Görüş uğurla yenidən planlaşdırıldı.';
+	@override String get reviewSubmitted => 'Rəy göndərildi. Təşəkkür edirik!';
+	@override String get requestReschedule => 'Vaxtın dəyişdirilməsini istə';
+	@override String get requestRescheduleTitle => 'Vaxtın dəyişdirilməsi';
+	@override String get requestRescheduleConfirm => 'Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.';
+	@override String get requestRescheduleSuccess => 'Vaxtın dəyişdirilməsi istənildi. Pasiyentə bildiriş göndəriləcək.';
+	@override String get rescheduleNeededHint => 'Həkim sizdən yeni vaxt seçməyinizi xahiş etdi.';
 }
 
 // Path: booking
@@ -351,6 +357,11 @@ class _Translations$doctorSearch$az extends Translations$doctorSearch$en {
 	@override String get availableToday => 'Bugün müsaittir';
 	@override String get availableTomorrow => 'Sabah müsaittir';
 	@override String availableOn({required Object date}) => '${date} müsaittir';
+	@override String get sortBy => 'Sırala';
+	@override String get sortDefault => 'Uyğunluq';
+	@override String get sortRating => 'Ən yüksək reytinq';
+	@override String get sortPriceLow => 'Ən aşağı qiymət';
+	@override String get sortName => 'Ad (A–Z)';
 }
 
 // Path: doctorDetail
@@ -397,6 +408,7 @@ class _Translations$profile$az extends Translations$profile$en {
 	@override String get chronicConditionsHint => 'məs. Diabet, hipertansiyon';
 	@override String get medications => 'Cari dərmanlar';
 	@override String get medicationsHint => 'məs. Metformin 500mq';
+	@override String get appointmentLength => 'Görüşün müddəti';
 }
 
 // Path: notifications
@@ -749,6 +761,12 @@ extension on TranslationsAz {
 			'appointments.reviewSubmit' => 'Göndər',
 			'appointments.markCompleted' => 'Tamamlandı kimi işarələ',
 			'appointments.rescheduledSuccess' => 'Görüş uğurla yenidən planlaşdırıldı.',
+			'appointments.reviewSubmitted' => 'Rəy göndərildi. Təşəkkür edirik!',
+			'appointments.requestReschedule' => 'Vaxtın dəyişdirilməsini istə',
+			'appointments.requestRescheduleTitle' => 'Vaxtın dəyişdirilməsi',
+			'appointments.requestRescheduleConfirm' => 'Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.',
+			'appointments.requestRescheduleSuccess' => 'Vaxtın dəyişdirilməsi istənildi. Pasiyentə bildiriş göndəriləcək.',
+			'appointments.rescheduleNeededHint' => 'Həkim sizdən yeni vaxt seçməyinizi xahiş etdi.',
 			'booking.bookWith' => ({required Object name}) => 'Təyin et — ${name}',
 			'booking.selectWorkplace' => 'İş yerini seçin',
 			'booking.pickDate' => 'Tarix seçin',
@@ -787,6 +805,11 @@ extension on TranslationsAz {
 			'doctorSearch.availableToday' => 'Bugün müsaittir',
 			'doctorSearch.availableTomorrow' => 'Sabah müsaittir',
 			'doctorSearch.availableOn' => ({required Object date}) => '${date} müsaittir',
+			'doctorSearch.sortBy' => 'Sırala',
+			'doctorSearch.sortDefault' => 'Uyğunluq',
+			'doctorSearch.sortRating' => 'Ən yüksək reytinq',
+			'doctorSearch.sortPriceLow' => 'Ən aşağı qiymət',
+			'doctorSearch.sortName' => 'Ad (A–Z)',
 			'doctorDetail.profileTitle' => 'Həkim profili',
 			'doctorDetail.couldNotLoadProfile' => 'Profil yüklənə bilmədi',
 			'doctorDetail.about' => 'Haqqında',
@@ -815,6 +838,7 @@ extension on TranslationsAz {
 			'profile.chronicConditionsHint' => 'məs. Diabet, hipertansiyon',
 			'profile.medications' => 'Cari dərmanlar',
 			'profile.medicationsHint' => 'məs. Metformin 500mq',
+			'profile.appointmentLength' => 'Görüşün müddəti',
 			'notifications.title' => 'Bildirişlər',
 			'notifications.noNotifications' => 'Bildiriş yoxdur',
 			'notifications.allCaughtUp' => 'Hər şey qaydasındadır',

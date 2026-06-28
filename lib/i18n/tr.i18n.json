@@ -170,7 +170,13 @@
     "reviewComment": "Yorum (isteğe bağlı)",
     "reviewSubmit": "Gönder",
     "markCompleted": "Tamamlandı olarak işaretle",
-    "rescheduledSuccess": "Randevu başarıyla yeniden planlandı."
+    "rescheduledSuccess": "Randevu başarıyla yeniden planlandı.",
+    "reviewSubmitted": "Değerlendirme gönderildi. Teşekkürler!",
+    "requestReschedule": "Yeniden Planlama İste",
+    "requestRescheduleTitle": "Yeniden Planlama",
+    "requestRescheduleConfirm": "Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.",
+    "requestRescheduleSuccess": "Yeniden planlama istendi. Hasta bilgilendirilecek.",
+    "rescheduleNeededHint": "Doktor yeni bir saat seçmenizi istedi."
   },
   "booking": {
     "bookWith": "Randevu — $name",
@@ -214,7 +220,12 @@
     "noAvailability": "Uygunluk yok",
     "availableToday": "Bugün müsait",
     "availableTomorrow": "Yarın müsait",
-    "availableOn": "$date müsait"
+    "availableOn": "$date müsait",
+    "sortBy": "Sırala",
+    "sortDefault": "İlgi",
+    "sortRating": "En yüksek puan",
+    "sortPriceLow": "En düşük fiyat",
+    "sortName": "İsim (A–Z)"
   },
   "doctorDetail": {
     "profileTitle": "Doktor Profili",
@@ -246,7 +257,8 @@
     "chronicConditions": "Kronik hastalıklar",
     "chronicConditionsHint": "ör. Diyabet, hipertansiyon",
     "medications": "Mevcut ilaçlar",
-    "medicationsHint": "ör. Metformin 500mg"
+    "medicationsHint": "ör. Metformin 500mg",
+    "appointmentLength": "Randevu süresi"
   },
   "notifications": {
     "title": "Bildirimler",

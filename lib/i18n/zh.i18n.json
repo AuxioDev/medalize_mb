@@ -170,7 +170,13 @@
     "reviewComment": "留言（可选）",
     "reviewSubmit": "提交",
     "markCompleted": "标记为已完成",
-    "rescheduledSuccess": "预约已成功改期。"
+    "rescheduledSuccess": "预约已成功改期。",
+    "reviewSubmitted": "评价已提交，谢谢！",
+    "requestReschedule": "请求改期",
+    "requestRescheduleTitle": "请求改期",
+    "requestRescheduleConfirm": "请患者选择新的时间？该预约将被标记为需要改期。",
+    "requestRescheduleSuccess": "已请求改期，将通知患者。",
+    "rescheduleNeededHint": "医生请您选择新的时间。"
   },
   "booking": {
     "bookWith": "预约 — $name",
@@ -214,7 +220,12 @@
     "noAvailability": "暂无时间",
     "availableToday": "今天可约",
     "availableTomorrow": "明天可约",
-    "availableOn": "$date 可约"
+    "availableOn": "$date 可约",
+    "sortBy": "排序",
+    "sortDefault": "默认",
+    "sortRating": "评分最高",
+    "sortPriceLow": "价格最低",
+    "sortName": "姓名 (A–Z)"
   },
   "doctorDetail": {
     "profileTitle": "医生资料",
@@ -246,7 +257,8 @@
     "chronicConditions": "慢性病史",
     "chronicConditionsHint": "如：糖尿病、高血压",
     "medications": "当前用药",
-    "medicationsHint": "如：二甲双胍500mg"
+    "medicationsHint": "如：二甲双胍500mg",
+    "appointmentLength": "预约时长"
   },
   "notifications": {
     "title": "通知",

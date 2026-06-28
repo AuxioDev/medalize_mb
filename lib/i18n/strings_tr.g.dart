@@ -305,6 +305,12 @@ class _Translations$appointments$tr extends Translations$appointments$en {
 	@override String get reviewSubmit => 'Gönder';
 	@override String get markCompleted => 'Tamamlandı olarak işaretle';
 	@override String get rescheduledSuccess => 'Randevu başarıyla yeniden planlandı.';
+	@override String get reviewSubmitted => 'Değerlendirme gönderildi. Teşekkürler!';
+	@override String get requestReschedule => 'Yeniden Planlama İste';
+	@override String get requestRescheduleTitle => 'Yeniden Planlama';
+	@override String get requestRescheduleConfirm => 'Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.';
+	@override String get requestRescheduleSuccess => 'Yeniden planlama istendi. Hasta bilgilendirilecek.';
+	@override String get rescheduleNeededHint => 'Doktor yeni bir saat seçmenizi istedi.';
 }
 
 // Path: booking
@@ -351,6 +357,11 @@ class _Translations$doctorSearch$tr extends Translations$doctorSearch$en {
 	@override String get availableToday => 'Bugün müsait';
 	@override String get availableTomorrow => 'Yarın müsait';
 	@override String availableOn({required Object date}) => '${date} müsait';
+	@override String get sortBy => 'Sırala';
+	@override String get sortDefault => 'İlgi';
+	@override String get sortRating => 'En yüksek puan';
+	@override String get sortPriceLow => 'En düşük fiyat';
+	@override String get sortName => 'İsim (A–Z)';
 }
 
 // Path: doctorDetail
@@ -397,6 +408,7 @@ class _Translations$profile$tr extends Translations$profile$en {
 	@override String get chronicConditionsHint => 'ör. Diyabet, hipertansiyon';
 	@override String get medications => 'Mevcut ilaçlar';
 	@override String get medicationsHint => 'ör. Metformin 500mg';
+	@override String get appointmentLength => 'Randevu süresi';
 }
 
 // Path: notifications
@@ -749,6 +761,12 @@ extension on TranslationsTr {
 			'appointments.reviewSubmit' => 'Gönder',
 			'appointments.markCompleted' => 'Tamamlandı olarak işaretle',
 			'appointments.rescheduledSuccess' => 'Randevu başarıyla yeniden planlandı.',
+			'appointments.reviewSubmitted' => 'Değerlendirme gönderildi. Teşekkürler!',
+			'appointments.requestReschedule' => 'Yeniden Planlama İste',
+			'appointments.requestRescheduleTitle' => 'Yeniden Planlama',
+			'appointments.requestRescheduleConfirm' => 'Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.',
+			'appointments.requestRescheduleSuccess' => 'Yeniden planlama istendi. Hasta bilgilendirilecek.',
+			'appointments.rescheduleNeededHint' => 'Doktor yeni bir saat seçmenizi istedi.',
 			'booking.bookWith' => ({required Object name}) => 'Randevu — ${name}',
 			'booking.selectWorkplace' => 'İş Yeri Seçin',
 			'booking.pickDate' => 'Tarih seçin',
@@ -787,6 +805,11 @@ extension on TranslationsTr {
 			'doctorSearch.availableToday' => 'Bugün müsait',
 			'doctorSearch.availableTomorrow' => 'Yarın müsait',
 			'doctorSearch.availableOn' => ({required Object date}) => '${date} müsait',
+			'doctorSearch.sortBy' => 'Sırala',
+			'doctorSearch.sortDefault' => 'İlgi',
+			'doctorSearch.sortRating' => 'En yüksek puan',
+			'doctorSearch.sortPriceLow' => 'En düşük fiyat',
+			'doctorSearch.sortName' => 'İsim (A–Z)',
 			'doctorDetail.profileTitle' => 'Doktor Profili',
 			'doctorDetail.couldNotLoadProfile' => 'Profil yüklenemedi',
 			'doctorDetail.about' => 'Hakkında',
@@ -815,6 +838,7 @@ extension on TranslationsTr {
 			'profile.chronicConditionsHint' => 'ör. Diyabet, hipertansiyon',
 			'profile.medications' => 'Mevcut ilaçlar',
 			'profile.medicationsHint' => 'ör. Metformin 500mg',
+			'profile.appointmentLength' => 'Randevu süresi',
 			'notifications.title' => 'Bildirimler',
 			'notifications.noNotifications' => 'Bildirim yok',
 			'notifications.allCaughtUp' => 'Her şeyi gördünüz',

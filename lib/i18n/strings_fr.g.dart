@@ -305,6 +305,12 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get reviewSubmit => 'Envoyer';
 	@override String get markCompleted => 'Marquer comme terminé';
 	@override String get rescheduledSuccess => 'Rendez-vous reporté avec succès.';
+	@override String get reviewSubmitted => 'Avis envoyé. Merci !';
+	@override String get requestReschedule => 'Demander un report';
+	@override String get requestRescheduleTitle => 'Demander un report';
+	@override String get requestRescheduleConfirm => 'Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.';
+	@override String get requestRescheduleSuccess => 'Report demandé. Le patient sera notifié.';
+	@override String get rescheduleNeededHint => 'Le médecin vous a demandé de choisir un nouveau créneau.';
 }
 
 // Path: booking
@@ -351,6 +357,11 @@ class _Translations$doctorSearch$fr extends Translations$doctorSearch$en {
 	@override String get availableToday => 'Disponible auj.';
 	@override String get availableTomorrow => 'Disponible demain';
 	@override String availableOn({required Object date}) => 'Dispo le ${date}';
+	@override String get sortBy => 'Trier par';
+	@override String get sortDefault => 'Pertinence';
+	@override String get sortRating => 'Mieux notés';
+	@override String get sortPriceLow => 'Prix le plus bas';
+	@override String get sortName => 'Nom (A–Z)';
 }
 
 // Path: doctorDetail
@@ -397,6 +408,7 @@ class _Translations$profile$fr extends Translations$profile$en {
 	@override String get chronicConditionsHint => 'ex. Diabète, hypertension';
 	@override String get medications => 'Médicaments actuels';
 	@override String get medicationsHint => 'ex. Metformine 500mg';
+	@override String get appointmentLength => 'Durée du rendez-vous';
 }
 
 // Path: notifications
@@ -749,6 +761,12 @@ extension on TranslationsFr {
 			'appointments.reviewSubmit' => 'Envoyer',
 			'appointments.markCompleted' => 'Marquer comme terminé',
 			'appointments.rescheduledSuccess' => 'Rendez-vous reporté avec succès.',
+			'appointments.reviewSubmitted' => 'Avis envoyé. Merci !',
+			'appointments.requestReschedule' => 'Demander un report',
+			'appointments.requestRescheduleTitle' => 'Demander un report',
+			'appointments.requestRescheduleConfirm' => 'Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.',
+			'appointments.requestRescheduleSuccess' => 'Report demandé. Le patient sera notifié.',
+			'appointments.rescheduleNeededHint' => 'Le médecin vous a demandé de choisir un nouveau créneau.',
 			'booking.bookWith' => ({required Object name}) => 'Réserver — ${name}',
 			'booking.selectWorkplace' => 'Sélectionner un lieu',
 			'booking.pickDate' => 'Choisir une date',
@@ -787,6 +805,11 @@ extension on TranslationsFr {
 			'doctorSearch.availableToday' => 'Disponible auj.',
 			'doctorSearch.availableTomorrow' => 'Disponible demain',
 			'doctorSearch.availableOn' => ({required Object date}) => 'Dispo le ${date}',
+			'doctorSearch.sortBy' => 'Trier par',
+			'doctorSearch.sortDefault' => 'Pertinence',
+			'doctorSearch.sortRating' => 'Mieux notés',
+			'doctorSearch.sortPriceLow' => 'Prix le plus bas',
+			'doctorSearch.sortName' => 'Nom (A–Z)',
 			'doctorDetail.profileTitle' => 'Profil du médecin',
 			'doctorDetail.couldNotLoadProfile' => 'Impossible de charger le profil',
 			'doctorDetail.about' => 'À propos',
@@ -815,6 +838,7 @@ extension on TranslationsFr {
 			'profile.chronicConditionsHint' => 'ex. Diabète, hypertension',
 			'profile.medications' => 'Médicaments actuels',
 			'profile.medicationsHint' => 'ex. Metformine 500mg',
+			'profile.appointmentLength' => 'Durée du rendez-vous',
 			'notifications.title' => 'Notifications',
 			'notifications.noNotifications' => 'Aucune notification',
 			'notifications.allCaughtUp' => 'Vous êtes à jour',

@@ -19,6 +19,8 @@ import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
+enum _DoctorSort { relevance, rating, priceLow, name }
+
 const _kSpecializations = [
   'general_practice',
   'cardiology',
@@ -63,7 +65,32 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
   String? _selectedSpecialization;
   String? _cityInput;
   int? _minRating;
+  _DoctorSort _sort = _DoctorSort.relevance;
   SearchParams _params = const SearchParams();
+
+  /// Client-side ordering of the backend result list. "relevance" keeps the
+  /// order the backend returned.
+  List<DoctorModel> _sortDoctors(List<DoctorModel> list) {
+    if (_sort == _DoctorSort.relevance) return list;
+    final out = [...list];
+    switch (_sort) {
+      case _DoctorSort.relevance:
+        break;
+      case _DoctorSort.rating:
+        out.sort((a, b) =>
+            (b.averageRating ?? -1).compareTo(a.averageRating ?? -1));
+      case _DoctorSort.priceLow:
+        out.sort((a, b) => _fee(a).compareTo(_fee(b)));
+      case _DoctorSort.name:
+        out.sort((a, b) =>
+            a.fullName.toLowerCase().compareTo(b.fullName.toLowerCase()));
+    }
+    return out;
+  }
+
+  // Doctors without a fee sort last.
+  double _fee(DoctorModel d) =>
+      double.tryParse(d.consultationFee ?? '') ?? double.infinity;
 
   @override
   void dispose() {
@@ -183,35 +210,49 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                     onAction: () => ref.invalidate(doctorSearchProvider),
                   ),
                 ),
-                data: (doctors) => doctors.isEmpty
-                    ? RefreshableView(
-                        onRefresh: () async =>
-                            ref.invalidate(doctorSearchProvider),
-                        child: EmptyState(
-                          icon: Icons.person_search_outlined,
-                          title: context.t.doctorSearch.noDoctorsFound,
-                          subtitle: context.t.doctorSearch.adjustSearch,
-                        ),
-                      )
-                    : RefreshIndicator(
-                        onRefresh: () async =>
-                            ref.invalidate(doctorSearchProvider),
-                        color: AppColors.primary,
-                        child: ListView.builder(
-                          padding: const EdgeInsets.fromLTRB(
-                              AppSpacing.md, 8, AppSpacing.md, AppSpacing.md),
-                          physics: const BouncingScrollPhysics(
-                            parent: AlwaysScrollableScrollPhysics(),
-                          ),
-                          itemCount: doctors.length,
-                          itemBuilder: (_, i) => AnimatedEntrance(
-                            index: i,
-                            slideY: 0,
-                            slideX: 0.05,
-                            child: _DoctorCard(doctor: doctors[i]),
+                data: (doctors) {
+                  if (doctors.isEmpty) {
+                    return RefreshableView(
+                      onRefresh: () async =>
+                          ref.invalidate(doctorSearchProvider),
+                      child: EmptyState(
+                        icon: Icons.person_search_outlined,
+                        title: context.t.doctorSearch.noDoctorsFound,
+                        subtitle: context.t.doctorSearch.adjustSearch,
+                      ),
+                    );
+                  }
+                  final sorted = _sortDoctors(doctors);
+                  return Column(
+                    children: [
+                      _SortBar(
+                        value: _sort,
+                        onChanged: (v) => setState(() => _sort = v),
+                      ),
+                      Expanded(
+                        child: RefreshIndicator(
+                          onRefresh: () async =>
+                              ref.invalidate(doctorSearchProvider),
+                          color: AppColors.primary,
+                          child: ListView.builder(
+                            padding: const EdgeInsets.fromLTRB(
+                                AppSpacing.md, 4, AppSpacing.md, AppSpacing.md),
+                            physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics(),
+                            ),
+                            itemCount: sorted.length,
+                            itemBuilder: (_, i) => AnimatedEntrance(
+                              index: i,
+                              slideY: 0,
+                              slideX: 0.05,
+                              child: _DoctorCard(doctor: sorted[i]),
+                            ),
                           ),
                         ),
                       ),
+                    ],
+                  );
+                },
               ),
             ),
           ],
@@ -444,6 +485,65 @@ class _DoctorCard extends ConsumerWidget {
       return context.t.doctorSearch.availableTomorrow;
     }
     return context.t.doctorSearch.availableOn(date: DateFormat('d MMM').format(date));
+  }
+}
+
+String _sortLabel(BuildContext context, _DoctorSort s) {
+  final t = context.t.doctorSearch;
+  return switch (s) {
+    _DoctorSort.relevance => t.sortDefault,
+    _DoctorSort.rating => t.sortRating,
+    _DoctorSort.priceLow => t.sortPriceLow,
+    _DoctorSort.name => t.sortName,
+  };
+}
+
+class _SortBar extends StatelessWidget {
+  const _SortBar({required this.value, required this.onChanged});
+
+  final _DoctorSort value;
+  final ValueChanged<_DoctorSort> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(AppSpacing.md, 6, AppSpacing.md, 0),
+      child: Row(
+        children: [
+          Text(
+            context.t.doctorSearch.sortBy,
+            style: TextStyle(fontSize: 13, color: c.textSecondary),
+          ),
+          const Spacer(),
+          Icon(Icons.swap_vert_rounded, size: 16, color: c.textSecondary),
+          const Gap(2),
+          DropdownButtonHideUnderline(
+            child: DropdownButton<_DoctorSort>(
+              value: value,
+              isDense: true,
+              borderRadius: BorderRadius.circular(AppRadius.md),
+              icon: Icon(Icons.arrow_drop_down, color: c.textSecondary),
+              style: TextStyle(
+                fontSize: 13,
+                color: c.primaryText,
+                fontWeight: FontWeight.w600,
+              ),
+              items: [
+                for (final s in _DoctorSort.values)
+                  DropdownMenuItem(
+                    value: s,
+                    child: Text(_sortLabel(context, s)),
+                  ),
+              ],
+              onChanged: (v) {
+                if (v != null) onChanged(v);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

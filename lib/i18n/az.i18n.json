@@ -170,7 +170,13 @@
     "reviewComment": "Şərh (istəyə bağlı)",
     "reviewSubmit": "Göndər",
     "markCompleted": "Tamamlandı kimi işarələ",
-    "rescheduledSuccess": "Görüş uğurla yenidən planlaşdırıldı."
+    "rescheduledSuccess": "Görüş uğurla yenidən planlaşdırıldı.",
+    "reviewSubmitted": "Rəy göndərildi. Təşəkkür edirik!",
+    "requestReschedule": "Vaxtın dəyişdirilməsini istə",
+    "requestRescheduleTitle": "Vaxtın dəyişdirilməsi",
+    "requestRescheduleConfirm": "Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.",
+    "requestRescheduleSuccess": "Vaxtın dəyişdirilməsi istənildi. Pasiyentə bildiriş göndəriləcək.",
+    "rescheduleNeededHint": "Həkim sizdən yeni vaxt seçməyinizi xahiş etdi."
   },
   "booking": {
     "bookWith": "Təyin et — $name",
@@ -214,7 +220,12 @@
     "noAvailability": "Vaxt yoxdur",
     "availableToday": "Bugün müsaittir",
     "availableTomorrow": "Sabah müsaittir",
-    "availableOn": "$date müsaittir"
+    "availableOn": "$date müsaittir",
+    "sortBy": "Sırala",
+    "sortDefault": "Uyğunluq",
+    "sortRating": "Ən yüksək reytinq",
+    "sortPriceLow": "Ən aşağı qiymət",
+    "sortName": "Ad (A–Z)"
   },
   "doctorDetail": {
     "profileTitle": "Həkim profili",
@@ -246,7 +257,8 @@
     "chronicConditions": "Xroniki xəstəliklər",
     "chronicConditionsHint": "məs. Diabet, hipertansiyon",
     "medications": "Cari dərmanlar",
-    "medicationsHint": "məs. Metformin 500mq"
+    "medicationsHint": "məs. Metformin 500mq",
+    "appointmentLength": "Görüşün müddəti"
   },
   "notifications": {
     "title": "Bildirişlər",
