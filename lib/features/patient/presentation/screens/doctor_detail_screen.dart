@@ -20,6 +20,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 final _doctorReviewsProvider = FutureProvider.autoDispose.family<List<ReviewModel>, String>(
@@ -96,9 +97,28 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
     final waitlistAsync = ref.watch(myWaitlistProvider);
     final myWaitlist = waitlistAsync.asData?.value ?? [];
     final isOnWaitlist = myWaitlist.any((e) => e.doctorId == widget.detail.id);
+    final isFavorite =
+        ref.watch(favoritesProvider.select((s) => s.contains(widget.detail.id)));
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.detail.fullName)),
+      appBar: AppBar(
+        title: Text(widget.detail.fullName),
+        actions: [
+          IconButton(
+            tooltip: isFavorite
+                ? context.t.favorites.remove
+                : context.t.favorites.add,
+            onPressed: () {
+              HapticFeedback.selectionClick();
+              ref.read(favoritesProvider.notifier).toggle(widget.detail.id);
+            },
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? AppColors.error : null,
+            ),
+          ),
+        ],
+      ),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           child: Column(

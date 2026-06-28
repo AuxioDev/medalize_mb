@@ -63,6 +63,8 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$zh pendingVerification = _Translations$pendingVerification$zh._(_root);
 	@override late final _Translations$phoneField$zh phoneField = _Translations$phoneField$zh._(_root);
 	@override late final _Translations$splash$zh splash = _Translations$splash$zh._(_root);
+	@override late final _Translations$agenda$zh agenda = _Translations$agenda$zh._(_root);
+	@override late final _Translations$favorites$zh favorites = _Translations$favorites$zh._(_root);
 }
 
 // Path: common
@@ -228,6 +230,7 @@ class _Translations$status$zh extends Translations$status$en {
 	@override String get declined => '已拒绝';
 	@override String get requiresRescheduling => '需要改期';
 	@override String get completed => '已完成';
+	@override String get noShow => '未到诊';
 }
 
 // Path: home
@@ -261,6 +264,7 @@ class _Translations$home$zh extends Translations$home$en {
 	@override String get statsPatients => '患者';
 	@override String get statsAcceptRate => '接受率';
 	@override String get statsPending => '待处理';
+	@override String get schedule => '日程';
 }
 
 // Path: appointments
@@ -311,6 +315,9 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get requestRescheduleConfirm => '请患者选择新的时间？该预约将被标记为需要改期。';
 	@override String get requestRescheduleSuccess => '已请求改期，将通知患者。';
 	@override String get rescheduleNeededHint => '医生请您选择新的时间。';
+	@override String get markNoShow => '标记未到诊';
+	@override String get markNoShowTitle => '标记为未到诊';
+	@override String get markNoShowConfirm => '将此预约标记为未到诊？这将记录患者未到。';
 }
 
 // Path: booking
@@ -564,6 +571,33 @@ class _Translations$splash$zh extends Translations$splash$en {
 	@override String get tagline => '让健康更简单';
 }
 
+// Path: agenda
+class _Translations$agenda$zh extends Translations$agenda$en {
+	_Translations$agenda$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '日程';
+	@override String get today => '今天';
+	@override String get empty => '没有预约';
+	@override String get emptySubtitle => '这一天没有安排';
+}
+
+// Path: favorites
+class _Translations$favorites$zh extends Translations$favorites$en {
+	_Translations$favorites$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '收藏';
+	@override String get empty => '还没有收藏';
+	@override String get emptySubtitle => '点击医生上的爱心以收藏';
+	@override String get add => '加入收藏';
+	@override String get remove => '取消收藏';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -702,6 +736,7 @@ extension on TranslationsZh {
 			'status.declined' => '已拒绝',
 			'status.requiresRescheduling' => '需要改期',
 			'status.completed' => '已完成',
+			'status.noShow' => '未到诊',
 			'home.helloDoctor' => ({required Object name}) => '您好，${name} 医生！',
 			'home.helloPatient' => ({required Object name}) => '您好，${name}！',
 			'home.doctorSubtitle' => '管理您的日程\n和预约。',
@@ -726,6 +761,7 @@ extension on TranslationsZh {
 			'home.statsPatients' => '患者',
 			'home.statsAcceptRate' => '接受率',
 			'home.statsPending' => '待处理',
+			'home.schedule' => '日程',
 			'appointments.title' => '预约',
 			'appointments.myTitle' => '我的预约',
 			'appointments.tabPending' => '待处理',
@@ -767,6 +803,9 @@ extension on TranslationsZh {
 			'appointments.requestRescheduleConfirm' => '请患者选择新的时间？该预约将被标记为需要改期。',
 			'appointments.requestRescheduleSuccess' => '已请求改期，将通知患者。',
 			'appointments.rescheduleNeededHint' => '医生请您选择新的时间。',
+			'appointments.markNoShow' => '标记未到诊',
+			'appointments.markNoShowTitle' => '标记为未到诊',
+			'appointments.markNoShowConfirm' => '将此预约标记为未到诊？这将记录患者未到。',
 			'booking.bookWith' => ({required Object name}) => '预约 — ${name}',
 			'booking.selectWorkplace' => '选择工作地点',
 			'booking.pickDate' => '选择日期',
@@ -917,6 +956,15 @@ extension on TranslationsZh {
 			'phoneField.searchCountry' => '搜索国家或区号…',
 			'phoneField.noCountriesFound' => '未找到国家',
 			'splash.tagline' => '让健康更简单',
+			'agenda.title' => '日程',
+			'agenda.today' => '今天',
+			'agenda.empty' => '没有预约',
+			'agenda.emptySubtitle' => '这一天没有安排',
+			'favorites.title' => '收藏',
+			'favorites.empty' => '还没有收藏',
+			'favorites.emptySubtitle' => '点击医生上的爱心以收藏',
+			'favorites.add' => '加入收藏',
+			'favorites.remove' => '取消收藏',
 			_ => null,
 		};
 	}

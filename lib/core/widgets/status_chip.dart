@@ -11,6 +11,7 @@ class StatusChip extends StatelessWidget {
         'pending' => const Color(0xFFF59E0B),
         'cancelled' || 'declined' => const Color(0xFF94A3B8),
         'requires_rescheduling' => const Color(0xFFEF4444),
+        'no_show' => const Color(0xFFB45309),
         _ => const Color(0xFF64748B),
       };
 
@@ -21,6 +22,7 @@ class StatusChip extends StatelessWidget {
         'declined' => t.status.declined,
         'requires_rescheduling' => t.status.requiresRescheduling,
         'completed' => t.status.completed,
+        'no_show' => t.status.noShow,
         // Fallback: title-case any unmapped status code.
         _ => status
             .split('_')

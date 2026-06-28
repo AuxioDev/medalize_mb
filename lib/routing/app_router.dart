@@ -11,6 +11,7 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/block_time_screen.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/doctor_agenda_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_appointments_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_home_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_onboarding_screen.dart';
@@ -23,6 +24,7 @@ import 'package:medalize_mb/features/patient/presentation/screens/booking_calend
 import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_detail_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_search_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/favorites_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/my_appointments_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/patient_home_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/reschedule_calendar_screen.dart';
@@ -96,6 +98,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, _) => _pushPage(const DoctorSearchScreen()),
       ),
       GoRoute(
+        path: '/patient/favorites',
+        pageBuilder: (_, _) => _pushPage(const FavoritesScreen()),
+      ),
+      GoRoute(
         path: '/patient/doctor-detail/:id',
         pageBuilder: (_, state) {
           final extra = state.extra as DoctorModel?;
@@ -148,6 +154,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/doctor/appointments',
         pageBuilder: (_, _) => _pushPage(const DoctorAppointmentsScreen()),
+      ),
+      GoRoute(
+        path: '/doctor/agenda',
+        pageBuilder: (_, _) => _pushPage(const DoctorAgendaScreen()),
       ),
       GoRoute(
         path: '/doctor/appointment-detail/:id',

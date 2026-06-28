@@ -63,6 +63,8 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$ru pendingVerification = _Translations$pendingVerification$ru._(_root);
 	@override late final _Translations$phoneField$ru phoneField = _Translations$phoneField$ru._(_root);
 	@override late final _Translations$splash$ru splash = _Translations$splash$ru._(_root);
+	@override late final _Translations$agenda$ru agenda = _Translations$agenda$ru._(_root);
+	@override late final _Translations$favorites$ru favorites = _Translations$favorites$ru._(_root);
 }
 
 // Path: common
@@ -228,6 +230,7 @@ class _Translations$status$ru extends Translations$status$en {
 	@override String get declined => 'Отклонено';
 	@override String get requiresRescheduling => 'Требует переноса';
 	@override String get completed => 'Завершено';
+	@override String get noShow => 'Неявка';
 }
 
 // Path: home
@@ -261,6 +264,7 @@ class _Translations$home$ru extends Translations$home$en {
 	@override String get statsPatients => 'Пациенты';
 	@override String get statsAcceptRate => '% принятых';
 	@override String get statsPending => 'Ожидают';
+	@override String get schedule => 'Расписание';
 }
 
 // Path: appointments
@@ -311,6 +315,9 @@ class _Translations$appointments$ru extends Translations$appointments$en {
 	@override String get requestRescheduleConfirm => 'Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.';
 	@override String get requestRescheduleSuccess => 'Перенос запрошен. Пациент получит уведомление.';
 	@override String get rescheduleNeededHint => 'Врач попросил вас выбрать новое время.';
+	@override String get markNoShow => 'Отметить неявку';
+	@override String get markNoShowTitle => 'Отметить как неявку';
+	@override String get markNoShowConfirm => 'Отметить этот приём как неявку? Будет зафиксировано, что пациент не пришёл.';
 }
 
 // Path: booking
@@ -564,6 +571,33 @@ class _Translations$splash$ru extends Translations$splash$en {
 	@override String get tagline => 'Ваше здоровье — это просто';
 }
 
+// Path: agenda
+class _Translations$agenda$ru extends Translations$agenda$en {
+	_Translations$agenda$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Расписание';
+	@override String get today => 'Сегодня';
+	@override String get empty => 'Нет приёмов';
+	@override String get emptySubtitle => 'На этот день ничего не запланировано';
+}
+
+// Path: favorites
+class _Translations$favorites$ru extends Translations$favorites$en {
+	_Translations$favorites$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Избранное';
+	@override String get empty => 'Пока нет избранного';
+	@override String get emptySubtitle => 'Нажмите на сердечко у врача, чтобы сохранить его здесь';
+	@override String get add => 'В избранное';
+	@override String get remove => 'Убрать из избранного';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -702,6 +736,7 @@ extension on TranslationsRu {
 			'status.declined' => 'Отклонено',
 			'status.requiresRescheduling' => 'Требует переноса',
 			'status.completed' => 'Завершено',
+			'status.noShow' => 'Неявка',
 			'home.helloDoctor' => ({required Object name}) => 'Здравствуйте, д-р ${name}!',
 			'home.helloPatient' => ({required Object name}) => 'Здравствуйте, ${name}!',
 			'home.doctorSubtitle' => 'Управляйте расписанием\nи приёмами.',
@@ -726,6 +761,7 @@ extension on TranslationsRu {
 			'home.statsPatients' => 'Пациенты',
 			'home.statsAcceptRate' => '% принятых',
 			'home.statsPending' => 'Ожидают',
+			'home.schedule' => 'Расписание',
 			'appointments.title' => 'Приёмы',
 			'appointments.myTitle' => 'Мои приёмы',
 			'appointments.tabPending' => 'Ожидают',
@@ -767,6 +803,9 @@ extension on TranslationsRu {
 			'appointments.requestRescheduleConfirm' => 'Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.',
 			'appointments.requestRescheduleSuccess' => 'Перенос запрошен. Пациент получит уведомление.',
 			'appointments.rescheduleNeededHint' => 'Врач попросил вас выбрать новое время.',
+			'appointments.markNoShow' => 'Отметить неявку',
+			'appointments.markNoShowTitle' => 'Отметить как неявку',
+			'appointments.markNoShowConfirm' => 'Отметить этот приём как неявку? Будет зафиксировано, что пациент не пришёл.',
 			'booking.bookWith' => ({required Object name}) => 'Запись — ${name}',
 			'booking.selectWorkplace' => 'Выберите место работы',
 			'booking.pickDate' => 'Выберите дату',
@@ -917,6 +956,15 @@ extension on TranslationsRu {
 			'phoneField.searchCountry' => 'Поиск страны или кода…',
 			'phoneField.noCountriesFound' => 'Страны не найдены',
 			'splash.tagline' => 'Ваше здоровье — это просто',
+			'agenda.title' => 'Расписание',
+			'agenda.today' => 'Сегодня',
+			'agenda.empty' => 'Нет приёмов',
+			'agenda.emptySubtitle' => 'На этот день ничего не запланировано',
+			'favorites.title' => 'Избранное',
+			'favorites.empty' => 'Пока нет избранного',
+			'favorites.emptySubtitle' => 'Нажмите на сердечко у врача, чтобы сохранить его здесь',
+			'favorites.add' => 'В избранное',
+			'favorites.remove' => 'Убрать из избранного',
 			_ => null,
 		};
 	}

@@ -107,7 +107,8 @@
     "cancelled": "Ləğv edildi",
     "declined": "Rədd edildi",
     "requiresRescheduling": "Yenidən planlaşdırma tələb edir",
-    "completed": "Tamamlandı"
+    "completed": "Tamamlandı",
+    "noShow": "Gəlmədi"
   },
   "home": {
     "helloDoctor": "Salam, Dr. $name!",
@@ -133,7 +134,8 @@
     "statsThisMonth": "Bu ay",
     "statsPatients": "Pasiyentlər",
     "statsAcceptRate": "Qəbul faizi",
-    "statsPending": "Gözlənilir"
+    "statsPending": "Gözlənilir",
+    "schedule": "Cədvəl"
   },
   "appointments": {
     "title": "Görüşlər",
@@ -176,7 +178,10 @@
     "requestRescheduleTitle": "Vaxtın dəyişdirilməsi",
     "requestRescheduleConfirm": "Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.",
     "requestRescheduleSuccess": "Vaxtın dəyişdirilməsi istənildi. Pasiyentə bildiriş göndəriləcək.",
-    "rescheduleNeededHint": "Həkim sizdən yeni vaxt seçməyinizi xahiş etdi."
+    "rescheduleNeededHint": "Həkim sizdən yeni vaxt seçməyinizi xahiş etdi.",
+    "markNoShow": "Gəlmədi kimi qeyd et",
+    "markNoShowTitle": "Gəlmədi kimi qeyd et",
+    "markNoShowConfirm": "Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir."
   },
   "booking": {
     "bookWith": "Təyin et — $name",
@@ -357,5 +362,18 @@
   },
   "splash": {
     "tagline": "Sağlamlığınız, sadələşdirilmiş"
+  },
+  "agenda": {
+    "title": "Cədvəl",
+    "today": "Bu gün",
+    "empty": "Görüş yoxdur",
+    "emptySubtitle": "Bu gün üçün heç nə planlaşdırılmayıb"
+  },
+  "favorites": {
+    "title": "Sevimlilər",
+    "empty": "Hələ sevimli yoxdur",
+    "emptySubtitle": "Həkimi yadda saxlamaq üçün ürək işarəsinə toxunun",
+    "add": "Sevimlilərə əlavə et",
+    "remove": "Sevimlilərdən sil"
   }
 }

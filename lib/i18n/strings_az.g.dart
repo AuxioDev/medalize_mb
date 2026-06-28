@@ -63,6 +63,8 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$az pendingVerification = _Translations$pendingVerification$az._(_root);
 	@override late final _Translations$phoneField$az phoneField = _Translations$phoneField$az._(_root);
 	@override late final _Translations$splash$az splash = _Translations$splash$az._(_root);
+	@override late final _Translations$agenda$az agenda = _Translations$agenda$az._(_root);
+	@override late final _Translations$favorites$az favorites = _Translations$favorites$az._(_root);
 }
 
 // Path: common
@@ -228,6 +230,7 @@ class _Translations$status$az extends Translations$status$en {
 	@override String get declined => 'Rədd edildi';
 	@override String get requiresRescheduling => 'Yenidən planlaşdırma tələb edir';
 	@override String get completed => 'Tamamlandı';
+	@override String get noShow => 'Gəlmədi';
 }
 
 // Path: home
@@ -261,6 +264,7 @@ class _Translations$home$az extends Translations$home$en {
 	@override String get statsPatients => 'Pasiyentlər';
 	@override String get statsAcceptRate => 'Qəbul faizi';
 	@override String get statsPending => 'Gözlənilir';
+	@override String get schedule => 'Cədvəl';
 }
 
 // Path: appointments
@@ -311,6 +315,9 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get requestRescheduleConfirm => 'Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.';
 	@override String get requestRescheduleSuccess => 'Vaxtın dəyişdirilməsi istənildi. Pasiyentə bildiriş göndəriləcək.';
 	@override String get rescheduleNeededHint => 'Həkim sizdən yeni vaxt seçməyinizi xahiş etdi.';
+	@override String get markNoShow => 'Gəlmədi kimi qeyd et';
+	@override String get markNoShowTitle => 'Gəlmədi kimi qeyd et';
+	@override String get markNoShowConfirm => 'Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir.';
 }
 
 // Path: booking
@@ -564,6 +571,33 @@ class _Translations$splash$az extends Translations$splash$en {
 	@override String get tagline => 'Sağlamlığınız, sadələşdirilmiş';
 }
 
+// Path: agenda
+class _Translations$agenda$az extends Translations$agenda$en {
+	_Translations$agenda$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Cədvəl';
+	@override String get today => 'Bu gün';
+	@override String get empty => 'Görüş yoxdur';
+	@override String get emptySubtitle => 'Bu gün üçün heç nə planlaşdırılmayıb';
+}
+
+// Path: favorites
+class _Translations$favorites$az extends Translations$favorites$en {
+	_Translations$favorites$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Sevimlilər';
+	@override String get empty => 'Hələ sevimli yoxdur';
+	@override String get emptySubtitle => 'Həkimi yadda saxlamaq üçün ürək işarəsinə toxunun';
+	@override String get add => 'Sevimlilərə əlavə et';
+	@override String get remove => 'Sevimlilərdən sil';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -702,6 +736,7 @@ extension on TranslationsAz {
 			'status.declined' => 'Rədd edildi',
 			'status.requiresRescheduling' => 'Yenidən planlaşdırma tələb edir',
 			'status.completed' => 'Tamamlandı',
+			'status.noShow' => 'Gəlmədi',
 			'home.helloDoctor' => ({required Object name}) => 'Salam, Dr. ${name}!',
 			'home.helloPatient' => ({required Object name}) => 'Salam, ${name}!',
 			'home.doctorSubtitle' => 'Cədvəlinizi və\ngörüşlərinizi idarə edin.',
@@ -726,6 +761,7 @@ extension on TranslationsAz {
 			'home.statsPatients' => 'Pasiyentlər',
 			'home.statsAcceptRate' => 'Qəbul faizi',
 			'home.statsPending' => 'Gözlənilir',
+			'home.schedule' => 'Cədvəl',
 			'appointments.title' => 'Görüşlər',
 			'appointments.myTitle' => 'Görüşlərim',
 			'appointments.tabPending' => 'Gözləyən',
@@ -767,6 +803,9 @@ extension on TranslationsAz {
 			'appointments.requestRescheduleConfirm' => 'Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.',
 			'appointments.requestRescheduleSuccess' => 'Vaxtın dəyişdirilməsi istənildi. Pasiyentə bildiriş göndəriləcək.',
 			'appointments.rescheduleNeededHint' => 'Həkim sizdən yeni vaxt seçməyinizi xahiş etdi.',
+			'appointments.markNoShow' => 'Gəlmədi kimi qeyd et',
+			'appointments.markNoShowTitle' => 'Gəlmədi kimi qeyd et',
+			'appointments.markNoShowConfirm' => 'Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir.',
 			'booking.bookWith' => ({required Object name}) => 'Təyin et — ${name}',
 			'booking.selectWorkplace' => 'İş yerini seçin',
 			'booking.pickDate' => 'Tarix seçin',
@@ -917,6 +956,15 @@ extension on TranslationsAz {
 			'phoneField.searchCountry' => 'Ölkə və ya kod axtar…',
 			'phoneField.noCountriesFound' => 'Ölkə tapılmadı',
 			'splash.tagline' => 'Sağlamlığınız, sadələşdirilmiş',
+			'agenda.title' => 'Cədvəl',
+			'agenda.today' => 'Bu gün',
+			'agenda.empty' => 'Görüş yoxdur',
+			'agenda.emptySubtitle' => 'Bu gün üçün heç nə planlaşdırılmayıb',
+			'favorites.title' => 'Sevimlilər',
+			'favorites.empty' => 'Hələ sevimli yoxdur',
+			'favorites.emptySubtitle' => 'Həkimi yadda saxlamaq üçün ürək işarəsinə toxunun',
+			'favorites.add' => 'Sevimlilərə əlavə et',
+			'favorites.remove' => 'Sevimlilərdən sil',
 			_ => null,
 		};
 	}

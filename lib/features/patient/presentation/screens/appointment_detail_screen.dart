@@ -61,6 +61,29 @@ class _AppointmentDetailScreenState
     }
   }
 
+  /// Doctor action: record that the patient did not attend.
+  Future<void> _markNoShow() async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(context.t.appointments.markNoShowTitle),
+        content: Text(context.t.appointments.markNoShowConfirm),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(context.t.common.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(context.t.appointments.markNoShow),
+          ),
+        ],
+      ),
+    );
+    if (confirm != true) return;
+    await _setStatus('no_show');
+  }
+
   /// Doctor action: ask the patient to pick a new time. Moves the appointment
   /// to `requires_rescheduling`, which the patient can act on from their side.
   Future<void> _requestReschedule() async {
@@ -386,27 +409,53 @@ class _AppointmentDetailScreenState
         // reschedule (e.g. an emergency came up).
         if (isPast) {
           return BottomActionBar(
-            child: FilledButton(
-              onPressed: _updatingStatus
-                  ? null
-                  : () {
-                      HapticFeedback.lightImpact();
-                      _setStatus('completed');
-                    },
-              style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(52),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppRadius.md)),
-              ),
-              child: _updatingStatus
-                  ? const SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: CircularProgressIndicator(
-                          strokeWidth: 2, color: Colors.white),
-                    )
-                  : Text(context.t.appointments.markCompleted,
-                      style: const TextStyle(fontWeight: FontWeight.w600)),
+            child: Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: _updatingStatus
+                        ? null
+                        : () {
+                            HapticFeedback.lightImpact();
+                            _markNoShow();
+                          },
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: const Color(0xFFB45309),
+                      side: const BorderSide(color: Color(0x66B45309)),
+                      minimumSize: const Size.fromHeight(52),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AppRadius.md)),
+                    ),
+                    child: Text(context.t.appointments.markNoShow,
+                        style: const TextStyle(fontWeight: FontWeight.w600)),
+                  ),
+                ),
+                const Gap(10),
+                Expanded(
+                  child: FilledButton(
+                    onPressed: _updatingStatus
+                        ? null
+                        : () {
+                            HapticFeedback.lightImpact();
+                            _setStatus('completed');
+                          },
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size.fromHeight(52),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AppRadius.md)),
+                    ),
+                    child: _updatingStatus
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                                strokeWidth: 2, color: Colors.white),
+                          )
+                        : Text(context.t.appointments.markCompleted,
+                            style: const TextStyle(fontWeight: FontWeight.w600)),
+                  ),
+                ),
+              ],
             ),
           );
         }
@@ -595,6 +644,7 @@ class _AppointmentDetailScreenState
         'pending' => Icons.schedule_outlined,
         'cancelled' || 'declined' => Icons.cancel_outlined,
         'requires_rescheduling' => Icons.sync_problem_outlined,
+        'no_show' => Icons.person_off_outlined,
         _ => Icons.info_outline,
       };
 }

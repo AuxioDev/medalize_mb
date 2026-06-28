@@ -38,6 +38,11 @@ class PatientHomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(context.t.appName),
         actions: [
+          IconButton(
+            tooltip: context.t.favorites.title,
+            icon: const Icon(Icons.favorite_border_rounded),
+            onPressed: () => context.push('/patient/favorites'),
+          ),
           NotificationBell(
             count: unread,
             onTap: () => context.push('/shared/notifications'),

@@ -107,7 +107,8 @@
     "cancelled": "Cancelled",
     "declined": "Declined",
     "requiresRescheduling": "Requires Rescheduling",
-    "completed": "Completed"
+    "completed": "Completed",
+    "noShow": "No-show"
   },
   "home": {
     "helloDoctor": "Hello, Dr. $name!",
@@ -133,7 +134,8 @@
     "statsThisMonth": "This month",
     "statsPatients": "Patients",
     "statsAcceptRate": "Accept rate",
-    "statsPending": "Pending"
+    "statsPending": "Pending",
+    "schedule": "Schedule"
   },
   "appointments": {
     "title": "Appointments",
@@ -176,7 +178,10 @@
     "requestRescheduleTitle": "Request Reschedule",
     "requestRescheduleConfirm": "Ask the patient to pick a new time? The appointment will be marked as needing rescheduling.",
     "requestRescheduleSuccess": "Reschedule requested. The patient will be notified.",
-    "rescheduleNeededHint": "The doctor asked you to choose a new time."
+    "rescheduleNeededHint": "The doctor asked you to choose a new time.",
+    "markNoShow": "Mark No-show",
+    "markNoShowTitle": "Mark as No-show",
+    "markNoShowConfirm": "Mark this appointment as a no-show? This records that the patient did not attend."
   },
   "booking": {
     "bookWith": "Book — $name",
@@ -357,5 +362,18 @@
   },
   "splash": {
     "tagline": "Your health, simplified"
+  },
+  "agenda": {
+    "title": "Schedule",
+    "today": "Today",
+    "empty": "No appointments",
+    "emptySubtitle": "Nothing scheduled for this day"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "empty": "No favorites yet",
+    "emptySubtitle": "Tap the heart on a doctor to save them here",
+    "add": "Add to favorites",
+    "remove": "Remove from favorites"
   }
 }

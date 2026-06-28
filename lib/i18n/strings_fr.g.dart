@@ -63,6 +63,8 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$fr pendingVerification = _Translations$pendingVerification$fr._(_root);
 	@override late final _Translations$phoneField$fr phoneField = _Translations$phoneField$fr._(_root);
 	@override late final _Translations$splash$fr splash = _Translations$splash$fr._(_root);
+	@override late final _Translations$agenda$fr agenda = _Translations$agenda$fr._(_root);
+	@override late final _Translations$favorites$fr favorites = _Translations$favorites$fr._(_root);
 }
 
 // Path: common
@@ -228,6 +230,7 @@ class _Translations$status$fr extends Translations$status$en {
 	@override String get declined => 'Refusé';
 	@override String get requiresRescheduling => 'Replanification requise';
 	@override String get completed => 'Terminé';
+	@override String get noShow => 'Absent';
 }
 
 // Path: home
@@ -261,6 +264,7 @@ class _Translations$home$fr extends Translations$home$en {
 	@override String get statsPatients => 'Patients';
 	@override String get statsAcceptRate => 'Taux accept.';
 	@override String get statsPending => 'En attente';
+	@override String get schedule => 'Planning';
 }
 
 // Path: appointments
@@ -311,6 +315,9 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get requestRescheduleConfirm => 'Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.';
 	@override String get requestRescheduleSuccess => 'Report demandé. Le patient sera notifié.';
 	@override String get rescheduleNeededHint => 'Le médecin vous a demandé de choisir un nouveau créneau.';
+	@override String get markNoShow => 'Marquer absent';
+	@override String get markNoShowTitle => 'Marquer comme absent';
+	@override String get markNoShowConfirm => 'Marquer ce rendez-vous comme absent ? Cela enregistre que le patient ne s’est pas présenté.';
 }
 
 // Path: booking
@@ -564,6 +571,33 @@ class _Translations$splash$fr extends Translations$splash$en {
 	@override String get tagline => 'Votre santé, simplifiée';
 }
 
+// Path: agenda
+class _Translations$agenda$fr extends Translations$agenda$en {
+	_Translations$agenda$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Planning';
+	@override String get today => 'Aujourd\'hui';
+	@override String get empty => 'Aucun rendez-vous';
+	@override String get emptySubtitle => 'Rien de prévu pour ce jour';
+}
+
+// Path: favorites
+class _Translations$favorites$fr extends Translations$favorites$en {
+	_Translations$favorites$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Favoris';
+	@override String get empty => 'Aucun favori';
+	@override String get emptySubtitle => 'Touchez le cœur d’un médecin pour l’enregistrer ici';
+	@override String get add => 'Ajouter aux favoris';
+	@override String get remove => 'Retirer des favoris';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -702,6 +736,7 @@ extension on TranslationsFr {
 			'status.declined' => 'Refusé',
 			'status.requiresRescheduling' => 'Replanification requise',
 			'status.completed' => 'Terminé',
+			'status.noShow' => 'Absent',
 			'home.helloDoctor' => ({required Object name}) => 'Bonjour, Dr ${name} !',
 			'home.helloPatient' => ({required Object name}) => 'Bonjour, ${name} !',
 			'home.doctorSubtitle' => 'Gérez votre agenda\net vos rendez-vous.',
@@ -726,6 +761,7 @@ extension on TranslationsFr {
 			'home.statsPatients' => 'Patients',
 			'home.statsAcceptRate' => 'Taux accept.',
 			'home.statsPending' => 'En attente',
+			'home.schedule' => 'Planning',
 			'appointments.title' => 'Rendez-vous',
 			'appointments.myTitle' => 'Mes rendez-vous',
 			'appointments.tabPending' => 'En attente',
@@ -767,6 +803,9 @@ extension on TranslationsFr {
 			'appointments.requestRescheduleConfirm' => 'Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.',
 			'appointments.requestRescheduleSuccess' => 'Report demandé. Le patient sera notifié.',
 			'appointments.rescheduleNeededHint' => 'Le médecin vous a demandé de choisir un nouveau créneau.',
+			'appointments.markNoShow' => 'Marquer absent',
+			'appointments.markNoShowTitle' => 'Marquer comme absent',
+			'appointments.markNoShowConfirm' => 'Marquer ce rendez-vous comme absent ? Cela enregistre que le patient ne s’est pas présenté.',
 			'booking.bookWith' => ({required Object name}) => 'Réserver — ${name}',
 			'booking.selectWorkplace' => 'Sélectionner un lieu',
 			'booking.pickDate' => 'Choisir une date',
@@ -917,6 +956,15 @@ extension on TranslationsFr {
 			'phoneField.searchCountry' => 'Rechercher un pays ou un code…',
 			'phoneField.noCountriesFound' => 'Aucun pays trouvé',
 			'splash.tagline' => 'Votre santé, simplifiée',
+			'agenda.title' => 'Planning',
+			'agenda.today' => 'Aujourd\'hui',
+			'agenda.empty' => 'Aucun rendez-vous',
+			'agenda.emptySubtitle' => 'Rien de prévu pour ce jour',
+			'favorites.title' => 'Favoris',
+			'favorites.empty' => 'Aucun favori',
+			'favorites.emptySubtitle' => 'Touchez le cœur d’un médecin pour l’enregistrer ici',
+			'favorites.add' => 'Ajouter aux favoris',
+			'favorites.remove' => 'Retirer des favoris',
 			_ => null,
 		};
 	}

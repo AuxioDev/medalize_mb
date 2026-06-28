@@ -63,6 +63,8 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$tr pendingVerification = _Translations$pendingVerification$tr._(_root);
 	@override late final _Translations$phoneField$tr phoneField = _Translations$phoneField$tr._(_root);
 	@override late final _Translations$splash$tr splash = _Translations$splash$tr._(_root);
+	@override late final _Translations$agenda$tr agenda = _Translations$agenda$tr._(_root);
+	@override late final _Translations$favorites$tr favorites = _Translations$favorites$tr._(_root);
 }
 
 // Path: common
@@ -228,6 +230,7 @@ class _Translations$status$tr extends Translations$status$en {
 	@override String get declined => 'Reddedildi';
 	@override String get requiresRescheduling => 'Yeniden planlama gerekiyor';
 	@override String get completed => 'Tamamlandı';
+	@override String get noShow => 'Gelmedi';
 }
 
 // Path: home
@@ -261,6 +264,7 @@ class _Translations$home$tr extends Translations$home$en {
 	@override String get statsPatients => 'Hastalar';
 	@override String get statsAcceptRate => 'Kabul oranı';
 	@override String get statsPending => 'Bekleyenler';
+	@override String get schedule => 'Takvim';
 }
 
 // Path: appointments
@@ -311,6 +315,9 @@ class _Translations$appointments$tr extends Translations$appointments$en {
 	@override String get requestRescheduleConfirm => 'Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.';
 	@override String get requestRescheduleSuccess => 'Yeniden planlama istendi. Hasta bilgilendirilecek.';
 	@override String get rescheduleNeededHint => 'Doktor yeni bir saat seçmenizi istedi.';
+	@override String get markNoShow => 'Gelmedi İşaretle';
+	@override String get markNoShowTitle => 'Gelmedi Olarak İşaretle';
+	@override String get markNoShowConfirm => 'Bu randevuyu gelmedi olarak işaretleyelim mi? Hastanın gelmediği kaydedilir.';
 }
 
 // Path: booking
@@ -564,6 +571,33 @@ class _Translations$splash$tr extends Translations$splash$en {
 	@override String get tagline => 'Sağlığınız, basitleştirildi';
 }
 
+// Path: agenda
+class _Translations$agenda$tr extends Translations$agenda$en {
+	_Translations$agenda$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Takvim';
+	@override String get today => 'Bugün';
+	@override String get empty => 'Randevu yok';
+	@override String get emptySubtitle => 'Bu gün için planlanmış bir şey yok';
+}
+
+// Path: favorites
+class _Translations$favorites$tr extends Translations$favorites$en {
+	_Translations$favorites$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Favoriler';
+	@override String get empty => 'Henüz favori yok';
+	@override String get emptySubtitle => 'Bir doktoru kaydetmek için kalbe dokunun';
+	@override String get add => 'Favorilere ekle';
+	@override String get remove => 'Favorilerden çıkar';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -702,6 +736,7 @@ extension on TranslationsTr {
 			'status.declined' => 'Reddedildi',
 			'status.requiresRescheduling' => 'Yeniden planlama gerekiyor',
 			'status.completed' => 'Tamamlandı',
+			'status.noShow' => 'Gelmedi',
 			'home.helloDoctor' => ({required Object name}) => 'Merhaba, Dr. ${name}!',
 			'home.helloPatient' => ({required Object name}) => 'Merhaba, ${name}!',
 			'home.doctorSubtitle' => 'Programınızı ve\nrandevularınızı yönetin.',
@@ -726,6 +761,7 @@ extension on TranslationsTr {
 			'home.statsPatients' => 'Hastalar',
 			'home.statsAcceptRate' => 'Kabul oranı',
 			'home.statsPending' => 'Bekleyenler',
+			'home.schedule' => 'Takvim',
 			'appointments.title' => 'Randevular',
 			'appointments.myTitle' => 'Randevularım',
 			'appointments.tabPending' => 'Bekleyen',
@@ -767,6 +803,9 @@ extension on TranslationsTr {
 			'appointments.requestRescheduleConfirm' => 'Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.',
 			'appointments.requestRescheduleSuccess' => 'Yeniden planlama istendi. Hasta bilgilendirilecek.',
 			'appointments.rescheduleNeededHint' => 'Doktor yeni bir saat seçmenizi istedi.',
+			'appointments.markNoShow' => 'Gelmedi İşaretle',
+			'appointments.markNoShowTitle' => 'Gelmedi Olarak İşaretle',
+			'appointments.markNoShowConfirm' => 'Bu randevuyu gelmedi olarak işaretleyelim mi? Hastanın gelmediği kaydedilir.',
 			'booking.bookWith' => ({required Object name}) => 'Randevu — ${name}',
 			'booking.selectWorkplace' => 'İş Yeri Seçin',
 			'booking.pickDate' => 'Tarih seçin',
@@ -917,6 +956,15 @@ extension on TranslationsTr {
 			'phoneField.searchCountry' => 'Ülke veya kod ara…',
 			'phoneField.noCountriesFound' => 'Ülke bulunamadı',
 			'splash.tagline' => 'Sağlığınız, basitleştirildi',
+			'agenda.title' => 'Takvim',
+			'agenda.today' => 'Bugün',
+			'agenda.empty' => 'Randevu yok',
+			'agenda.emptySubtitle' => 'Bu gün için planlanmış bir şey yok',
+			'favorites.title' => 'Favoriler',
+			'favorites.empty' => 'Henüz favori yok',
+			'favorites.emptySubtitle' => 'Bir doktoru kaydetmek için kalbe dokunun',
+			'favorites.add' => 'Favorilere ekle',
+			'favorites.remove' => 'Favorilerden çıkar',
 			_ => null,
 		};
 	}

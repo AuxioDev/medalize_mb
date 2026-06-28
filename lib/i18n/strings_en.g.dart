@@ -67,6 +67,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$pendingVerification$en pendingVerification = Translations$pendingVerification$en.internal(_root);
 	late final Translations$phoneField$en phoneField = Translations$phoneField$en.internal(_root);
 	late final Translations$splash$en splash = Translations$splash$en.internal(_root);
+	late final Translations$agenda$en agenda = Translations$agenda$en.internal(_root);
+	late final Translations$favorites$en favorites = Translations$favorites$en.internal(_root);
 }
 
 // Path: common
@@ -418,6 +420,9 @@ class Translations$status$en {
 
 	/// en: 'Completed'
 	String get completed => 'Completed';
+
+	/// en: 'No-show'
+	String get noShow => 'No-show';
 }
 
 // Path: home
@@ -499,6 +504,9 @@ class Translations$home$en {
 
 	/// en: 'Pending'
 	String get statsPending => 'Pending';
+
+	/// en: 'Schedule'
+	String get schedule => 'Schedule';
 }
 
 // Path: appointments
@@ -631,6 +639,15 @@ class Translations$appointments$en {
 
 	/// en: 'The doctor asked you to choose a new time.'
 	String get rescheduleNeededHint => 'The doctor asked you to choose a new time.';
+
+	/// en: 'Mark No-show'
+	String get markNoShow => 'Mark No-show';
+
+	/// en: 'Mark as No-show'
+	String get markNoShowTitle => 'Mark as No-show';
+
+	/// en: 'Mark this appointment as a no-show? This records that the patient did not attend.'
+	String get markNoShowConfirm => 'Mark this appointment as a no-show? This records that the patient did not attend.';
 }
 
 // Path: booking
@@ -1150,6 +1167,51 @@ class Translations$splash$en {
 	String get tagline => 'Your health, simplified';
 }
 
+// Path: agenda
+class Translations$agenda$en {
+	Translations$agenda$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Schedule'
+	String get title => 'Schedule';
+
+	/// en: 'Today'
+	String get today => 'Today';
+
+	/// en: 'No appointments'
+	String get empty => 'No appointments';
+
+	/// en: 'Nothing scheduled for this day'
+	String get emptySubtitle => 'Nothing scheduled for this day';
+}
+
+// Path: favorites
+class Translations$favorites$en {
+	Translations$favorites$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Favorites'
+	String get title => 'Favorites';
+
+	/// en: 'No favorites yet'
+	String get empty => 'No favorites yet';
+
+	/// en: 'Tap the heart on a doctor to save them here'
+	String get emptySubtitle => 'Tap the heart on a doctor to save them here';
+
+	/// en: 'Add to favorites'
+	String get add => 'Add to favorites';
+
+	/// en: 'Remove from favorites'
+	String get remove => 'Remove from favorites';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -1324,6 +1386,7 @@ extension on Translations {
 			'status.declined' => 'Declined',
 			'status.requiresRescheduling' => 'Requires Rescheduling',
 			'status.completed' => 'Completed',
+			'status.noShow' => 'No-show',
 			'home.helloDoctor' => ({required Object name}) => 'Hello, Dr. ${name}!',
 			'home.helloPatient' => ({required Object name}) => 'Hello, ${name}!',
 			'home.doctorSubtitle' => 'Manage your schedule\nand appointments.',
@@ -1348,6 +1411,7 @@ extension on Translations {
 			'home.statsPatients' => 'Patients',
 			'home.statsAcceptRate' => 'Accept rate',
 			'home.statsPending' => 'Pending',
+			'home.schedule' => 'Schedule',
 			'appointments.title' => 'Appointments',
 			'appointments.myTitle' => 'My Appointments',
 			'appointments.tabPending' => 'Pending',
@@ -1389,6 +1453,9 @@ extension on Translations {
 			'appointments.requestRescheduleConfirm' => 'Ask the patient to pick a new time? The appointment will be marked as needing rescheduling.',
 			'appointments.requestRescheduleSuccess' => 'Reschedule requested. The patient will be notified.',
 			'appointments.rescheduleNeededHint' => 'The doctor asked you to choose a new time.',
+			'appointments.markNoShow' => 'Mark No-show',
+			'appointments.markNoShowTitle' => 'Mark as No-show',
+			'appointments.markNoShowConfirm' => 'Mark this appointment as a no-show? This records that the patient did not attend.',
 			'booking.bookWith' => ({required Object name}) => 'Book — ${name}',
 			'booking.selectWorkplace' => 'Select Workplace',
 			'booking.pickDate' => 'Pick a date',
@@ -1539,6 +1606,15 @@ extension on Translations {
 			'phoneField.searchCountry' => 'Search country or code…',
 			'phoneField.noCountriesFound' => 'No countries found',
 			'splash.tagline' => 'Your health, simplified',
+			'agenda.title' => 'Schedule',
+			'agenda.today' => 'Today',
+			'agenda.empty' => 'No appointments',
+			'agenda.emptySubtitle' => 'Nothing scheduled for this day',
+			'favorites.title' => 'Favorites',
+			'favorites.empty' => 'No favorites yet',
+			'favorites.emptySubtitle' => 'Tap the heart on a doctor to save them here',
+			'favorites.add' => 'Add to favorites',
+			'favorites.remove' => 'Remove from favorites',
 			_ => null,
 		};
 	}

@@ -107,7 +107,8 @@
     "cancelled": "Отменено",
     "declined": "Отклонено",
     "requiresRescheduling": "Требует переноса",
-    "completed": "Завершено"
+    "completed": "Завершено",
+    "noShow": "Неявка"
   },
   "home": {
     "helloDoctor": "Здравствуйте, д-р $name!",
@@ -133,7 +134,8 @@
     "statsThisMonth": "Этот месяц",
     "statsPatients": "Пациенты",
     "statsAcceptRate": "% принятых",
-    "statsPending": "Ожидают"
+    "statsPending": "Ожидают",
+    "schedule": "Расписание"
   },
   "appointments": {
     "title": "Приёмы",
@@ -176,7 +178,10 @@
     "requestRescheduleTitle": "Запрос переноса",
     "requestRescheduleConfirm": "Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.",
     "requestRescheduleSuccess": "Перенос запрошен. Пациент получит уведомление.",
-    "rescheduleNeededHint": "Врач попросил вас выбрать новое время."
+    "rescheduleNeededHint": "Врач попросил вас выбрать новое время.",
+    "markNoShow": "Отметить неявку",
+    "markNoShowTitle": "Отметить как неявку",
+    "markNoShowConfirm": "Отметить этот приём как неявку? Будет зафиксировано, что пациент не пришёл."
   },
   "booking": {
     "bookWith": "Запись — $name",
@@ -357,5 +362,18 @@
   },
   "splash": {
     "tagline": "Ваше здоровье — это просто"
+  },
+  "agenda": {
+    "title": "Расписание",
+    "today": "Сегодня",
+    "empty": "Нет приёмов",
+    "emptySubtitle": "На этот день ничего не запланировано"
+  },
+  "favorites": {
+    "title": "Избранное",
+    "empty": "Пока нет избранного",
+    "emptySubtitle": "Нажмите на сердечко у врача, чтобы сохранить его здесь",
+    "add": "В избранное",
+    "remove": "Убрать из избранного"
   }
 }

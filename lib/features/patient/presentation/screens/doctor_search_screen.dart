@@ -17,6 +17,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:intl/intl.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 enum _DoctorSort { relevance, rating, priceLow, name }
@@ -349,6 +350,8 @@ class _DoctorCard extends ConsumerWidget {
     final initials =
         doctor.firstName.isNotEmpty ? doctor.firstName[0].toUpperCase() : 'D';
     final nextSlot = ref.watch(nextAvailableDateProvider(doctor.id));
+    final isFavorite =
+        ref.watch(favoritesProvider.select((s) => s.contains(doctor.id)));
 
     return AppCard(
       onTap: () {
@@ -461,14 +464,20 @@ class _DoctorCard extends ConsumerWidget {
               ],
             ),
           ),
-          Container(
-            width: 32,
-            height: 32,
-            decoration: BoxDecoration(
-              color: c.primarySurface,
-              borderRadius: BorderRadius.circular(AppRadius.sm),
+          IconButton(
+            tooltip: isFavorite
+                ? context.t.favorites.remove
+                : context.t.favorites.add,
+            visualDensity: VisualDensity.compact,
+            onPressed: () {
+              HapticFeedback.selectionClick();
+              ref.read(favoritesProvider.notifier).toggle(doctor.id);
+            },
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? AppColors.error : c.textSecondary,
+              size: 22,
             ),
-            child: Icon(Icons.chevron_right, color: c.primaryText, size: 20),
           ),
         ],
       ),

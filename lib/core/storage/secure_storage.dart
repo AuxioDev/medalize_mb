@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 abstract final class _Keys {
@@ -8,6 +10,7 @@ abstract final class _Keys {
   static const userEmail = 'user_email';
   static const themeMode = 'theme_mode';
   static const language = 'app_language';
+  static const favoriteDoctors = 'favorite_doctors';
 }
 
 class SecureStorage {
@@ -51,6 +54,22 @@ class SecureStorage {
   Future<String?> getLanguage() => _storage.read(key: _Keys.language);
   Future<void> saveLanguage(String value) =>
       _storage.write(key: _Keys.language, value: value);
+
+  /// Locally saved favorite doctor IDs. Stored as a JSON list; wiped on logout
+  /// (see [clearAll]) so favorites never leak between accounts on a shared
+  /// device.
+  Future<List<String>> getFavoriteDoctors() async {
+    final raw = await _storage.read(key: _Keys.favoriteDoctors);
+    if (raw == null || raw.isEmpty) return [];
+    try {
+      return (jsonDecode(raw) as List<dynamic>).cast<String>();
+    } catch (_) {
+      return [];
+    }
+  }
+
+  Future<void> saveFavoriteDoctors(List<String> ids) =>
+      _storage.write(key: _Keys.favoriteDoctors, value: jsonEncode(ids));
 
   /// Clears session data but preserves the user's theme and language preferences.
   Future<void> clearAll() async {

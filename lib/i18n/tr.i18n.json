@@ -107,7 +107,8 @@
     "cancelled": "İptal edildi",
     "declined": "Reddedildi",
     "requiresRescheduling": "Yeniden planlama gerekiyor",
-    "completed": "Tamamlandı"
+    "completed": "Tamamlandı",
+    "noShow": "Gelmedi"
   },
   "home": {
     "helloDoctor": "Merhaba, Dr. $name!",
@@ -133,7 +134,8 @@
     "statsThisMonth": "Bu ay",
     "statsPatients": "Hastalar",
     "statsAcceptRate": "Kabul oranı",
-    "statsPending": "Bekleyenler"
+    "statsPending": "Bekleyenler",
+    "schedule": "Takvim"
   },
   "appointments": {
     "title": "Randevular",
@@ -176,7 +178,10 @@
     "requestRescheduleTitle": "Yeniden Planlama",
     "requestRescheduleConfirm": "Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.",
     "requestRescheduleSuccess": "Yeniden planlama istendi. Hasta bilgilendirilecek.",
-    "rescheduleNeededHint": "Doktor yeni bir saat seçmenizi istedi."
+    "rescheduleNeededHint": "Doktor yeni bir saat seçmenizi istedi.",
+    "markNoShow": "Gelmedi İşaretle",
+    "markNoShowTitle": "Gelmedi Olarak İşaretle",
+    "markNoShowConfirm": "Bu randevuyu gelmedi olarak işaretleyelim mi? Hastanın gelmediği kaydedilir."
   },
   "booking": {
     "bookWith": "Randevu — $name",
@@ -357,5 +362,18 @@
   },
   "splash": {
     "tagline": "Sağlığınız, basitleştirildi"
+  },
+  "agenda": {
+    "title": "Takvim",
+    "today": "Bugün",
+    "empty": "Randevu yok",
+    "emptySubtitle": "Bu gün için planlanmış bir şey yok"
+  },
+  "favorites": {
+    "title": "Favoriler",
+    "empty": "Henüz favori yok",
+    "emptySubtitle": "Bir doktoru kaydetmek için kalbe dokunun",
+    "add": "Favorilere ekle",
+    "remove": "Favorilerden çıkar"
   }
 }

@@ -107,7 +107,8 @@
     "cancelled": "已取消",
     "declined": "已拒绝",
     "requiresRescheduling": "需要改期",
-    "completed": "已完成"
+    "completed": "已完成",
+    "noShow": "未到诊"
   },
   "home": {
     "helloDoctor": "您好，$name 医生！",
@@ -133,7 +134,8 @@
     "statsThisMonth": "本月",
     "statsPatients": "患者",
     "statsAcceptRate": "接受率",
-    "statsPending": "待处理"
+    "statsPending": "待处理",
+    "schedule": "日程"
   },
   "appointments": {
     "title": "预约",
@@ -176,7 +178,10 @@
     "requestRescheduleTitle": "请求改期",
     "requestRescheduleConfirm": "请患者选择新的时间？该预约将被标记为需要改期。",
     "requestRescheduleSuccess": "已请求改期，将通知患者。",
-    "rescheduleNeededHint": "医生请您选择新的时间。"
+    "rescheduleNeededHint": "医生请您选择新的时间。",
+    "markNoShow": "标记未到诊",
+    "markNoShowTitle": "标记为未到诊",
+    "markNoShowConfirm": "将此预约标记为未到诊？这将记录患者未到。"
   },
   "booking": {
     "bookWith": "预约 — $name",
@@ -357,5 +362,18 @@
   },
   "splash": {
     "tagline": "让健康更简单"
+  },
+  "agenda": {
+    "title": "日程",
+    "today": "今天",
+    "empty": "没有预约",
+    "emptySubtitle": "这一天没有安排"
+  },
+  "favorites": {
+    "title": "收藏",
+    "empty": "还没有收藏",
+    "emptySubtitle": "点击医生上的爱心以收藏",
+    "add": "加入收藏",
+    "remove": "取消收藏"
   }
 }

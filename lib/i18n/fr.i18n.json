@@ -107,7 +107,8 @@
     "cancelled": "Annulé",
     "declined": "Refusé",
     "requiresRescheduling": "Replanification requise",
-    "completed": "Terminé"
+    "completed": "Terminé",
+    "noShow": "Absent"
   },
   "home": {
     "helloDoctor": "Bonjour, Dr $name !",
@@ -133,7 +134,8 @@
     "statsThisMonth": "Ce mois",
     "statsPatients": "Patients",
     "statsAcceptRate": "Taux accept.",
-    "statsPending": "En attente"
+    "statsPending": "En attente",
+    "schedule": "Planning"
   },
   "appointments": {
     "title": "Rendez-vous",
@@ -176,7 +178,10 @@
     "requestRescheduleTitle": "Demander un report",
     "requestRescheduleConfirm": "Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.",
     "requestRescheduleSuccess": "Report demandé. Le patient sera notifié.",
-    "rescheduleNeededHint": "Le médecin vous a demandé de choisir un nouveau créneau."
+    "rescheduleNeededHint": "Le médecin vous a demandé de choisir un nouveau créneau.",
+    "markNoShow": "Marquer absent",
+    "markNoShowTitle": "Marquer comme absent",
+    "markNoShowConfirm": "Marquer ce rendez-vous comme absent ? Cela enregistre que le patient ne s’est pas présenté."
   },
   "booking": {
     "bookWith": "Réserver — $name",
@@ -357,5 +362,18 @@
   },
   "splash": {
     "tagline": "Votre santé, simplifiée"
+  },
+  "agenda": {
+    "title": "Planning",
+    "today": "Aujourd'hui",
+    "empty": "Aucun rendez-vous",
+    "emptySubtitle": "Rien de prévu pour ce jour"
+  },
+  "favorites": {
+    "title": "Favoris",
+    "empty": "Aucun favori",
+    "emptySubtitle": "Touchez le cœur d’un médecin pour l’enregistrer ici",
+    "add": "Ajouter aux favoris",
+    "remove": "Retirer des favoris"
   }
 }
