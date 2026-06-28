@@ -16,7 +16,7 @@
 - [x] Все юнит/виджет-тесты проходят (`flutter test`)
 - [x] Сборка iOS (simulator) и Android (apk) проходит
 - [x] Краш-безопасность: Firebase/FCM/locale обёрнуты в try-catch
-- [ ] 🟡 Прогнать `flutter test` и сборку в CI перед каждой раздачей билда
+- [x] 🟡 CI прогоняет `flutter analyze` + `flutter test` + сборку APK (`.github/workflows/ci.yml`)
 
 ### A2. Окружение / конфигурация
 - [ ] 🔴 **Backend URL для тестеров.** По умолчанию `localhost` — недоступен с телефонов.
@@ -26,7 +26,7 @@
       flutter build ipa        --dart-define=API_BASE_URL=https://staging.medalize.app/api
       ```
 - [ ] 🔴 Backend staging поднят и доступен снаружи (CORS/HTTPS/health-check)
-- [ ] 🟡 Зафиксировать staging/prod URL в команде сборки или CI (не хардкодить в коде)
+- [x] 🟡 Env-конфиги для сборок готовы (`config/*.json.example` + `--dart-define-from-file`, см. `config/README.md`)
 
 ### A3. Firebase / Push (если push нужен в тесте)
 - [ ] 🟡 Зарегистрировать iOS-приложение в Firebase (bundle `com.example.medalizeMb`)
@@ -40,8 +40,8 @@
 - [x] iOS: `NSPhotoLibraryUsageDescription` + `NSCameraUsageDescription` (иначе краш при выборе фото)
 - [x] Android: `POST_NOTIFICATIONS` (уведомления на Android 13+)
 - [x] Имя приложения на домашнем экране = «Medalize»
-- [ ] 🟡 Проверить иконку приложения (реальный бренд, не дефолт Flutter)
-- [ ] 🟢 iOS: `UIBackgroundModes: remote-notification` (для фоновых push)
+- [ ] 🔴 Заменить иконку приложения — сейчас **дефолтный логотип Flutter** (нужен брендовый PNG 1024×1024; подключу `flutter_launcher_icons`)
+- [x] iOS: `UIBackgroundModes: remote-notification` (для фоновых push)
 
 ### A5. Бэкенд-зависимости (иначе UI вернёт ошибки)
 - [ ] 🔴 Поддержать статусы `no_show` и `requires_rescheduling` + переход при `reschedule`

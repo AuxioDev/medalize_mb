@@ -41,6 +41,9 @@ migrate_working_dir/
 google-services.json
 GoogleService-Info.plist
 
+# Local dart-define env configs (use the *.example templates)
+config/*.json
+
 # Symbolication related
 app.*.symbols
 
