@@ -65,6 +65,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$tr splash = _Translations$splash$tr._(_root);
 	@override late final _Translations$agenda$tr agenda = _Translations$agenda$tr._(_root);
 	@override late final _Translations$favorites$tr favorites = _Translations$favorites$tr._(_root);
+	@override late final _Translations$legal$tr legal = _Translations$legal$tr._(_root);
 }
 
 // Path: common
@@ -215,6 +216,7 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get logoutTitle => 'Çıkış';
 	@override String get logoutConfirm => 'Çıkış yapmak istediğinizden emin misiniz?';
 	@override String get version => 'Medalize v1.0.0';
+	@override String get legal => 'Gizlilik ve Koşullar';
 }
 
 // Path: status
@@ -386,6 +388,9 @@ class _Translations$doctorDetail$tr extends Translations$doctorDetail$en {
 	@override String get bookAppointment => 'Randevu Al';
 	@override String get consultationFee => 'Muayene ücreti';
 	@override String get reviews => 'Yorumlar';
+	@override String reviewsCount({required Object count}) => '${count} değerlendirme';
+	@override String get joinWaitlist => 'Bekleme listesine katıl';
+	@override String get leaveWaitlist => 'Bekleme listesinden çık';
 }
 
 // Path: profile
@@ -598,6 +603,22 @@ class _Translations$favorites$tr extends Translations$favorites$en {
 	@override String get remove => 'Favorilerden çıkar';
 }
 
+// Path: legal
+class _Translations$legal$tr extends Translations$legal$en {
+	_Translations$legal$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Gizlilik ve Koşullar';
+	@override String get privacyTitle => 'Gizlilik Politikası';
+	@override String get privacyBody => 'Medalize, randevu almanız ve yönetmeniz için kişisel ve sağlık bilgilerinizi işler. Verilerinizi satmıyoruz. Tam Gizlilik Politikası, herkese açık lansmandan önce burada yayınlanacaktır.';
+	@override String get termsTitle => 'Kullanım Koşulları';
+	@override String get termsBody => 'Medalize’ı kullanarak, hizmeti randevu alma ve yönetme için sorumlu bir şekilde kullanmayı kabul edersiniz. Tam Kullanım Koşulları, herkese açık lansmandan önce burada yayınlanacaktır.';
+	@override String get draftNotice => 'Taslak — nihai hukuki inceleme bekleniyor.';
+	@override String get contact => 'Verilerinizle ilgili sorular mı var? support@medalize.app ile iletişime geçin';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -730,6 +751,7 @@ extension on TranslationsTr {
 			'settings.logoutTitle' => 'Çıkış',
 			'settings.logoutConfirm' => 'Çıkış yapmak istediğinizden emin misiniz?',
 			'settings.version' => 'Medalize v1.0.0',
+			'settings.legal' => 'Gizlilik ve Koşullar',
 			'status.confirmed' => 'Onaylandı',
 			'status.pending' => 'Beklemede',
 			'status.cancelled' => 'İptal edildi',
@@ -857,6 +879,9 @@ extension on TranslationsTr {
 			'doctorDetail.bookAppointment' => 'Randevu Al',
 			'doctorDetail.consultationFee' => 'Muayene ücreti',
 			'doctorDetail.reviews' => 'Yorumlar',
+			'doctorDetail.reviewsCount' => ({required Object count}) => '${count} değerlendirme',
+			'doctorDetail.joinWaitlist' => 'Bekleme listesine katıl',
+			'doctorDetail.leaveWaitlist' => 'Bekleme listesinden çık',
 			'profile.title' => 'Profil',
 			'profile.changePassword' => 'Şifreyi Değiştir',
 			'profile.currentPassword' => 'Mevcut Şifre',
@@ -965,6 +990,13 @@ extension on TranslationsTr {
 			'favorites.emptySubtitle' => 'Bir doktoru kaydetmek için kalbe dokunun',
 			'favorites.add' => 'Favorilere ekle',
 			'favorites.remove' => 'Favorilerden çıkar',
+			'legal.title' => 'Gizlilik ve Koşullar',
+			'legal.privacyTitle' => 'Gizlilik Politikası',
+			'legal.privacyBody' => 'Medalize, randevu almanız ve yönetmeniz için kişisel ve sağlık bilgilerinizi işler. Verilerinizi satmıyoruz. Tam Gizlilik Politikası, herkese açık lansmandan önce burada yayınlanacaktır.',
+			'legal.termsTitle' => 'Kullanım Koşulları',
+			'legal.termsBody' => 'Medalize’ı kullanarak, hizmeti randevu alma ve yönetme için sorumlu bir şekilde kullanmayı kabul edersiniz. Tam Kullanım Koşulları, herkese açık lansmandan önce burada yayınlanacaktır.',
+			'legal.draftNotice' => 'Taslak — nihai hukuki inceleme bekleniyor.',
+			'legal.contact' => 'Verilerinizle ilgili sorular mı var? support@medalize.app ile iletişime geçin',
 			_ => null,
 		};
 	}

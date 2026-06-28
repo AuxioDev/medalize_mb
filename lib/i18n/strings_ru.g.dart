@@ -65,6 +65,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$ru splash = _Translations$splash$ru._(_root);
 	@override late final _Translations$agenda$ru agenda = _Translations$agenda$ru._(_root);
 	@override late final _Translations$favorites$ru favorites = _Translations$favorites$ru._(_root);
+	@override late final _Translations$legal$ru legal = _Translations$legal$ru._(_root);
 }
 
 // Path: common
@@ -215,6 +216,7 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get logoutTitle => 'Выход';
 	@override String get logoutConfirm => 'Вы уверены, что хотите выйти?';
 	@override String get version => 'Medalize v1.0.0';
+	@override String get legal => 'Конфиденциальность и условия';
 }
 
 // Path: status
@@ -386,6 +388,9 @@ class _Translations$doctorDetail$ru extends Translations$doctorDetail$en {
 	@override String get bookAppointment => 'Записаться на приём';
 	@override String get consultationFee => 'Стоимость приёма';
 	@override String get reviews => 'Отзывы';
+	@override String reviewsCount({required Object count}) => '${count} отзывов';
+	@override String get joinWaitlist => 'В лист ожидания';
+	@override String get leaveWaitlist => 'Покинуть лист ожидания';
 }
 
 // Path: profile
@@ -598,6 +603,22 @@ class _Translations$favorites$ru extends Translations$favorites$en {
 	@override String get remove => 'Убрать из избранного';
 }
 
+// Path: legal
+class _Translations$legal$ru extends Translations$legal$en {
+	_Translations$legal$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Конфиденциальность и условия';
+	@override String get privacyTitle => 'Политика конфиденциальности';
+	@override String get privacyBody => 'Medalize обрабатывает ваши персональные и медицинские данные, чтобы вы могли записываться на приёмы и управлять ими. Мы не продаём ваши данные. Полная политика конфиденциальности будет опубликована здесь до публичного запуска.';
+	@override String get termsTitle => 'Условия использования';
+	@override String get termsBody => 'Используя Medalize, вы соглашаетесь ответственно пользоваться сервисом для записи и управления приёмами. Полные условия использования будут опубликованы здесь до публичного запуска.';
+	@override String get draftNotice => 'Черновик — ожидается финальная юридическая проверка.';
+	@override String get contact => 'Вопросы о ваших данных? Напишите на support@medalize.app';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -730,6 +751,7 @@ extension on TranslationsRu {
 			'settings.logoutTitle' => 'Выход',
 			'settings.logoutConfirm' => 'Вы уверены, что хотите выйти?',
 			'settings.version' => 'Medalize v1.0.0',
+			'settings.legal' => 'Конфиденциальность и условия',
 			'status.confirmed' => 'Подтверждено',
 			'status.pending' => 'В ожидании',
 			'status.cancelled' => 'Отменено',
@@ -857,6 +879,9 @@ extension on TranslationsRu {
 			'doctorDetail.bookAppointment' => 'Записаться на приём',
 			'doctorDetail.consultationFee' => 'Стоимость приёма',
 			'doctorDetail.reviews' => 'Отзывы',
+			'doctorDetail.reviewsCount' => ({required Object count}) => '${count} отзывов',
+			'doctorDetail.joinWaitlist' => 'В лист ожидания',
+			'doctorDetail.leaveWaitlist' => 'Покинуть лист ожидания',
 			'profile.title' => 'Профиль',
 			'profile.changePassword' => 'Изменить пароль',
 			'profile.currentPassword' => 'Текущий пароль',
@@ -965,6 +990,13 @@ extension on TranslationsRu {
 			'favorites.emptySubtitle' => 'Нажмите на сердечко у врача, чтобы сохранить его здесь',
 			'favorites.add' => 'В избранное',
 			'favorites.remove' => 'Убрать из избранного',
+			'legal.title' => 'Конфиденциальность и условия',
+			'legal.privacyTitle' => 'Политика конфиденциальности',
+			'legal.privacyBody' => 'Medalize обрабатывает ваши персональные и медицинские данные, чтобы вы могли записываться на приёмы и управлять ими. Мы не продаём ваши данные. Полная политика конфиденциальности будет опубликована здесь до публичного запуска.',
+			'legal.termsTitle' => 'Условия использования',
+			'legal.termsBody' => 'Используя Medalize, вы соглашаетесь ответственно пользоваться сервисом для записи и управления приёмами. Полные условия использования будут опубликованы здесь до публичного запуска.',
+			'legal.draftNotice' => 'Черновик — ожидается финальная юридическая проверка.',
+			'legal.contact' => 'Вопросы о ваших данных? Напишите на support@medalize.app',
 			_ => null,
 		};
 	}

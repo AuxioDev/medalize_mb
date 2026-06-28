@@ -99,7 +99,8 @@
     "languageSystem": "System default",
     "logoutTitle": "Logout",
     "logoutConfirm": "Are you sure you want to logout?",
-    "version": "Medalize v1.0.0"
+    "version": "Medalize v1.0.0",
+    "legal": "Privacy & Terms"
   },
   "status": {
     "confirmed": "Confirmed",
@@ -240,7 +241,10 @@
     "minPerSlot": "$min min per slot",
     "bookAppointment": "Book Appointment",
     "consultationFee": "Consultation fee",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "reviewsCount": "$count reviews",
+    "joinWaitlist": "Join waitlist",
+    "leaveWaitlist": "Leave waitlist"
   },
   "profile": {
     "title": "Profile",
@@ -375,5 +379,14 @@
     "emptySubtitle": "Tap the heart on a doctor to save them here",
     "add": "Add to favorites",
     "remove": "Remove from favorites"
+  },
+  "legal": {
+    "title": "Privacy & Terms",
+    "privacyTitle": "Privacy Policy",
+    "privacyBody": "Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.",
+    "termsTitle": "Terms of Service",
+    "termsBody": "By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.",
+    "draftNotice": "Draft — pending final legal review.",
+    "contact": "Questions about your data? Contact support@medalize.app"
   }
 }

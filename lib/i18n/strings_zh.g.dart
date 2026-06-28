@@ -65,6 +65,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$zh splash = _Translations$splash$zh._(_root);
 	@override late final _Translations$agenda$zh agenda = _Translations$agenda$zh._(_root);
 	@override late final _Translations$favorites$zh favorites = _Translations$favorites$zh._(_root);
+	@override late final _Translations$legal$zh legal = _Translations$legal$zh._(_root);
 }
 
 // Path: common
@@ -215,6 +216,7 @@ class _Translations$settings$zh extends Translations$settings$en {
 	@override String get logoutTitle => '退出登录';
 	@override String get logoutConfirm => '您确定要退出登录吗？';
 	@override String get version => 'Medalize v1.0.0';
+	@override String get legal => '隐私与条款';
 }
 
 // Path: status
@@ -386,6 +388,9 @@ class _Translations$doctorDetail$zh extends Translations$doctorDetail$en {
 	@override String get bookAppointment => '预约就诊';
 	@override String get consultationFee => '挂号费';
 	@override String get reviews => '评价';
+	@override String reviewsCount({required Object count}) => '${count} 条评价';
+	@override String get joinWaitlist => '加入候补';
+	@override String get leaveWaitlist => '退出候补';
 }
 
 // Path: profile
@@ -598,6 +603,22 @@ class _Translations$favorites$zh extends Translations$favorites$en {
 	@override String get remove => '取消收藏';
 }
 
+// Path: legal
+class _Translations$legal$zh extends Translations$legal$en {
+	_Translations$legal$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '隐私与条款';
+	@override String get privacyTitle => '隐私政策';
+	@override String get privacyBody => 'Medalize 处理您的个人和健康信息，以便您预约和管理就诊。我们不会出售您的数据。完整的隐私政策将在公开发布前在此处发布。';
+	@override String get termsTitle => '服务条款';
+	@override String get termsBody => '使用 Medalize 即表示您同意负责任地使用本服务进行预约和管理。完整的服务条款将在公开发布前在此处发布。';
+	@override String get draftNotice => '草稿 — 等待最终法律审核。';
+	@override String get contact => '对您的数据有疑问？请联系 support@medalize.app';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -730,6 +751,7 @@ extension on TranslationsZh {
 			'settings.logoutTitle' => '退出登录',
 			'settings.logoutConfirm' => '您确定要退出登录吗？',
 			'settings.version' => 'Medalize v1.0.0',
+			'settings.legal' => '隐私与条款',
 			'status.confirmed' => '已确认',
 			'status.pending' => '待处理',
 			'status.cancelled' => '已取消',
@@ -857,6 +879,9 @@ extension on TranslationsZh {
 			'doctorDetail.bookAppointment' => '预约就诊',
 			'doctorDetail.consultationFee' => '挂号费',
 			'doctorDetail.reviews' => '评价',
+			'doctorDetail.reviewsCount' => ({required Object count}) => '${count} 条评价',
+			'doctorDetail.joinWaitlist' => '加入候补',
+			'doctorDetail.leaveWaitlist' => '退出候补',
 			'profile.title' => '个人资料',
 			'profile.changePassword' => '更改密码',
 			'profile.currentPassword' => '当前密码',
@@ -965,6 +990,13 @@ extension on TranslationsZh {
 			'favorites.emptySubtitle' => '点击医生上的爱心以收藏',
 			'favorites.add' => '加入收藏',
 			'favorites.remove' => '取消收藏',
+			'legal.title' => '隐私与条款',
+			'legal.privacyTitle' => '隐私政策',
+			'legal.privacyBody' => 'Medalize 处理您的个人和健康信息，以便您预约和管理就诊。我们不会出售您的数据。完整的隐私政策将在公开发布前在此处发布。',
+			'legal.termsTitle' => '服务条款',
+			'legal.termsBody' => '使用 Medalize 即表示您同意负责任地使用本服务进行预约和管理。完整的服务条款将在公开发布前在此处发布。',
+			'legal.draftNotice' => '草稿 — 等待最终法律审核。',
+			'legal.contact' => '对您的数据有疑问？请联系 support@medalize.app',
 			_ => null,
 		};
 	}

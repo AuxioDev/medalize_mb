@@ -16,7 +16,11 @@
 		<string>fr</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>Medalize Mb</string>
+	<string>Medalize</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Medalize needs access to your photos so you can set your profile picture and upload documents.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Medalize needs camera access so you can take a profile picture.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

@@ -65,6 +65,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$az splash = _Translations$splash$az._(_root);
 	@override late final _Translations$agenda$az agenda = _Translations$agenda$az._(_root);
 	@override late final _Translations$favorites$az favorites = _Translations$favorites$az._(_root);
+	@override late final _Translations$legal$az legal = _Translations$legal$az._(_root);
 }
 
 // Path: common
@@ -215,6 +216,7 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get logoutTitle => 'Çıxış';
 	@override String get logoutConfirm => 'Çıxmaq istədiyinizə əminsiniz?';
 	@override String get version => 'Medalize v1.0.0';
+	@override String get legal => 'Məxfilik və Şərtlər';
 }
 
 // Path: status
@@ -386,6 +388,9 @@ class _Translations$doctorDetail$az extends Translations$doctorDetail$en {
 	@override String get bookAppointment => 'Görüş təyin et';
 	@override String get consultationFee => 'Konsultasiya haqqı';
 	@override String get reviews => 'Rəylər';
+	@override String reviewsCount({required Object count}) => '${count} rəy';
+	@override String get joinWaitlist => 'Növbəyə yazıl';
+	@override String get leaveWaitlist => 'Növbədən çıx';
 }
 
 // Path: profile
@@ -598,6 +603,22 @@ class _Translations$favorites$az extends Translations$favorites$en {
 	@override String get remove => 'Sevimlilərdən sil';
 }
 
+// Path: legal
+class _Translations$legal$az extends Translations$legal$en {
+	_Translations$legal$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Məxfilik və Şərtlər';
+	@override String get privacyTitle => 'Məxfilik Siyasəti';
+	@override String get privacyBody => 'Medalize tibbi görüşləri planlamaq və idarə etmək üçün şəxsi və sağlamlıq məlumatlarınızı emal edir. Məlumatlarınızı satmırıq. Tam Məxfilik Siyasəti ictimai buraxılışdan əvvəl burada dərc olunacaq.';
+	@override String get termsTitle => 'İstifadə Şərtləri';
+	@override String get termsBody => 'Medalize-dən istifadə edərək, xidmətdən görüşləri planlamaq və idarə etmək üçün məsuliyyətlə istifadə etməyə razılaşırsınız. Tam İstifadə Şərtləri ictimai buraxılışdan əvvəl burada dərc olunacaq.';
+	@override String get draftNotice => 'Layihə — yekun hüquqi baxış gözlənilir.';
+	@override String get contact => 'Məlumatlarınızla bağlı suallar? support@medalize.app ünvanına yazın';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -730,6 +751,7 @@ extension on TranslationsAz {
 			'settings.logoutTitle' => 'Çıxış',
 			'settings.logoutConfirm' => 'Çıxmaq istədiyinizə əminsiniz?',
 			'settings.version' => 'Medalize v1.0.0',
+			'settings.legal' => 'Məxfilik və Şərtlər',
 			'status.confirmed' => 'Təsdiqləndi',
 			'status.pending' => 'Gözləyir',
 			'status.cancelled' => 'Ləğv edildi',
@@ -857,6 +879,9 @@ extension on TranslationsAz {
 			'doctorDetail.bookAppointment' => 'Görüş təyin et',
 			'doctorDetail.consultationFee' => 'Konsultasiya haqqı',
 			'doctorDetail.reviews' => 'Rəylər',
+			'doctorDetail.reviewsCount' => ({required Object count}) => '${count} rəy',
+			'doctorDetail.joinWaitlist' => 'Növbəyə yazıl',
+			'doctorDetail.leaveWaitlist' => 'Növbədən çıx',
 			'profile.title' => 'Profil',
 			'profile.changePassword' => 'Şifrəni dəyiş',
 			'profile.currentPassword' => 'Cari şifrə',
@@ -965,6 +990,13 @@ extension on TranslationsAz {
 			'favorites.emptySubtitle' => 'Həkimi yadda saxlamaq üçün ürək işarəsinə toxunun',
 			'favorites.add' => 'Sevimlilərə əlavə et',
 			'favorites.remove' => 'Sevimlilərdən sil',
+			'legal.title' => 'Məxfilik və Şərtlər',
+			'legal.privacyTitle' => 'Məxfilik Siyasəti',
+			'legal.privacyBody' => 'Medalize tibbi görüşləri planlamaq və idarə etmək üçün şəxsi və sağlamlıq məlumatlarınızı emal edir. Məlumatlarınızı satmırıq. Tam Məxfilik Siyasəti ictimai buraxılışdan əvvəl burada dərc olunacaq.',
+			'legal.termsTitle' => 'İstifadə Şərtləri',
+			'legal.termsBody' => 'Medalize-dən istifadə edərək, xidmətdən görüşləri planlamaq və idarə etmək üçün məsuliyyətlə istifadə etməyə razılaşırsınız. Tam İstifadə Şərtləri ictimai buraxılışdan əvvəl burada dərc olunacaq.',
+			'legal.draftNotice' => 'Layihə — yekun hüquqi baxış gözlənilir.',
+			'legal.contact' => 'Məlumatlarınızla bağlı suallar? support@medalize.app ünvanına yazın',
 			_ => null,
 		};
 	}

@@ -321,7 +321,9 @@ class _WaitlistSection extends ConsumerWidget {
                   const Gap(10),
                   Expanded(
                     child: Text(
-                      entry.doctorName.isEmpty ? 'Doctor' : entry.doctorName,
+                      entry.doctorName.isEmpty
+                          ? context.t.common.doctor
+                          : entry.doctorName,
                       style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
                     ),
                   ),

@@ -99,7 +99,8 @@
     "languageSystem": "系统默认",
     "logoutTitle": "退出登录",
     "logoutConfirm": "您确定要退出登录吗？",
-    "version": "Medalize v1.0.0"
+    "version": "Medalize v1.0.0",
+    "legal": "隐私与条款"
   },
   "status": {
     "confirmed": "已确认",
@@ -240,7 +241,10 @@
     "minPerSlot": "每个时段 $min 分钟",
     "bookAppointment": "预约就诊",
     "consultationFee": "挂号费",
-    "reviews": "评价"
+    "reviews": "评价",
+    "reviewsCount": "$count 条评价",
+    "joinWaitlist": "加入候补",
+    "leaveWaitlist": "退出候补"
   },
   "profile": {
     "title": "个人资料",
@@ -375,5 +379,14 @@
     "emptySubtitle": "点击医生上的爱心以收藏",
     "add": "加入收藏",
     "remove": "取消收藏"
+  },
+  "legal": {
+    "title": "隐私与条款",
+    "privacyTitle": "隐私政策",
+    "privacyBody": "Medalize 处理您的个人和健康信息，以便您预约和管理就诊。我们不会出售您的数据。完整的隐私政策将在公开发布前在此处发布。",
+    "termsTitle": "服务条款",
+    "termsBody": "使用 Medalize 即表示您同意负责任地使用本服务进行预约和管理。完整的服务条款将在公开发布前在此处发布。",
+    "draftNotice": "草稿 — 等待最终法律审核。",
+    "contact": "对您的数据有疑问？请联系 support@medalize.app"
   }
 }

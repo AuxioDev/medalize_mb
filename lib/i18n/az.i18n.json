@@ -99,7 +99,8 @@
     "languageSystem": "Sistem default",
     "logoutTitle": "Çıxış",
     "logoutConfirm": "Çıxmaq istədiyinizə əminsiniz?",
-    "version": "Medalize v1.0.0"
+    "version": "Medalize v1.0.0",
+    "legal": "Məxfilik və Şərtlər"
   },
   "status": {
     "confirmed": "Təsdiqləndi",
@@ -240,7 +241,10 @@
     "minPerSlot": "hər aralıq $min dəq",
     "bookAppointment": "Görüş təyin et",
     "consultationFee": "Konsultasiya haqqı",
-    "reviews": "Rəylər"
+    "reviews": "Rəylər",
+    "reviewsCount": "$count rəy",
+    "joinWaitlist": "Növbəyə yazıl",
+    "leaveWaitlist": "Növbədən çıx"
   },
   "profile": {
     "title": "Profil",
@@ -375,5 +379,14 @@
     "emptySubtitle": "Həkimi yadda saxlamaq üçün ürək işarəsinə toxunun",
     "add": "Sevimlilərə əlavə et",
     "remove": "Sevimlilərdən sil"
+  },
+  "legal": {
+    "title": "Məxfilik və Şərtlər",
+    "privacyTitle": "Məxfilik Siyasəti",
+    "privacyBody": "Medalize tibbi görüşləri planlamaq və idarə etmək üçün şəxsi və sağlamlıq məlumatlarınızı emal edir. Məlumatlarınızı satmırıq. Tam Məxfilik Siyasəti ictimai buraxılışdan əvvəl burada dərc olunacaq.",
+    "termsTitle": "İstifadə Şərtləri",
+    "termsBody": "Medalize-dən istifadə edərək, xidmətdən görüşləri planlamaq və idarə etmək üçün məsuliyyətlə istifadə etməyə razılaşırsınız. Tam İstifadə Şərtləri ictimai buraxılışdan əvvəl burada dərc olunacaq.",
+    "draftNotice": "Layihə — yekun hüquqi baxış gözlənilir.",
+    "contact": "Məlumatlarınızla bağlı suallar? support@medalize.app ünvanına yazın"
   }
 }

@@ -99,7 +99,8 @@
     "languageSystem": "Sistem varsayılanı",
     "logoutTitle": "Çıkış",
     "logoutConfirm": "Çıkış yapmak istediğinizden emin misiniz?",
-    "version": "Medalize v1.0.0"
+    "version": "Medalize v1.0.0",
+    "legal": "Gizlilik ve Koşullar"
   },
   "status": {
     "confirmed": "Onaylandı",
@@ -240,7 +241,10 @@
     "minPerSlot": "aralık başına $min dk",
     "bookAppointment": "Randevu Al",
     "consultationFee": "Muayene ücreti",
-    "reviews": "Yorumlar"
+    "reviews": "Yorumlar",
+    "reviewsCount": "$count değerlendirme",
+    "joinWaitlist": "Bekleme listesine katıl",
+    "leaveWaitlist": "Bekleme listesinden çık"
   },
   "profile": {
     "title": "Profil",
@@ -375,5 +379,14 @@
     "emptySubtitle": "Bir doktoru kaydetmek için kalbe dokunun",
     "add": "Favorilere ekle",
     "remove": "Favorilerden çıkar"
+  },
+  "legal": {
+    "title": "Gizlilik ve Koşullar",
+    "privacyTitle": "Gizlilik Politikası",
+    "privacyBody": "Medalize, randevu almanız ve yönetmeniz için kişisel ve sağlık bilgilerinizi işler. Verilerinizi satmıyoruz. Tam Gizlilik Politikası, herkese açık lansmandan önce burada yayınlanacaktır.",
+    "termsTitle": "Kullanım Koşulları",
+    "termsBody": "Medalize’ı kullanarak, hizmeti randevu alma ve yönetme için sorumlu bir şekilde kullanmayı kabul edersiniz. Tam Kullanım Koşulları, herkese açık lansmandan önce burada yayınlanacaktır.",
+    "draftNotice": "Taslak — nihai hukuki inceleme bekleniyor.",
+    "contact": "Verilerinizle ilgili sorular mı var? support@medalize.app ile iletişime geçin"
   }
 }

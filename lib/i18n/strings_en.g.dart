@@ -69,6 +69,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$splash$en splash = Translations$splash$en.internal(_root);
 	late final Translations$agenda$en agenda = Translations$agenda$en.internal(_root);
 	late final Translations$favorites$en favorites = Translations$favorites$en.internal(_root);
+	late final Translations$legal$en legal = Translations$legal$en.internal(_root);
 }
 
 // Path: common
@@ -393,6 +394,9 @@ class Translations$settings$en {
 
 	/// en: 'Medalize v1.0.0'
 	String get version => 'Medalize v1.0.0';
+
+	/// en: 'Privacy & Terms'
+	String get legal => 'Privacy & Terms';
 }
 
 // Path: status
@@ -797,6 +801,15 @@ class Translations$doctorDetail$en {
 
 	/// en: 'Reviews'
 	String get reviews => 'Reviews';
+
+	/// en: '$count reviews'
+	String reviewsCount({required Object count}) => '${count} reviews';
+
+	/// en: 'Join waitlist'
+	String get joinWaitlist => 'Join waitlist';
+
+	/// en: 'Leave waitlist'
+	String get leaveWaitlist => 'Leave waitlist';
 }
 
 // Path: profile
@@ -1212,6 +1225,36 @@ class Translations$favorites$en {
 	String get remove => 'Remove from favorites';
 }
 
+// Path: legal
+class Translations$legal$en {
+	Translations$legal$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Privacy & Terms'
+	String get title => 'Privacy & Terms';
+
+	/// en: 'Privacy Policy'
+	String get privacyTitle => 'Privacy Policy';
+
+	/// en: 'Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.'
+	String get privacyBody => 'Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.';
+
+	/// en: 'Terms of Service'
+	String get termsTitle => 'Terms of Service';
+
+	/// en: 'By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.'
+	String get termsBody => 'By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.';
+
+	/// en: 'Draft — pending final legal review.'
+	String get draftNotice => 'Draft — pending final legal review.';
+
+	/// en: 'Questions about your data? Contact support@medalize.app'
+	String get contact => 'Questions about your data? Contact support@medalize.app';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -1380,6 +1423,7 @@ extension on Translations {
 			'settings.logoutTitle' => 'Logout',
 			'settings.logoutConfirm' => 'Are you sure you want to logout?',
 			'settings.version' => 'Medalize v1.0.0',
+			'settings.legal' => 'Privacy & Terms',
 			'status.confirmed' => 'Confirmed',
 			'status.pending' => 'Pending',
 			'status.cancelled' => 'Cancelled',
@@ -1507,6 +1551,9 @@ extension on Translations {
 			'doctorDetail.bookAppointment' => 'Book Appointment',
 			'doctorDetail.consultationFee' => 'Consultation fee',
 			'doctorDetail.reviews' => 'Reviews',
+			'doctorDetail.reviewsCount' => ({required Object count}) => '${count} reviews',
+			'doctorDetail.joinWaitlist' => 'Join waitlist',
+			'doctorDetail.leaveWaitlist' => 'Leave waitlist',
 			'profile.title' => 'Profile',
 			'profile.changePassword' => 'Change Password',
 			'profile.currentPassword' => 'Current Password',
@@ -1615,6 +1662,13 @@ extension on Translations {
 			'favorites.emptySubtitle' => 'Tap the heart on a doctor to save them here',
 			'favorites.add' => 'Add to favorites',
 			'favorites.remove' => 'Remove from favorites',
+			'legal.title' => 'Privacy & Terms',
+			'legal.privacyTitle' => 'Privacy Policy',
+			'legal.privacyBody' => 'Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.',
+			'legal.termsTitle' => 'Terms of Service',
+			'legal.termsBody' => 'By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.',
+			'legal.draftNotice' => 'Draft — pending final legal review.',
+			'legal.contact' => 'Questions about your data? Contact support@medalize.app',
 			_ => null,
 		};
 	}

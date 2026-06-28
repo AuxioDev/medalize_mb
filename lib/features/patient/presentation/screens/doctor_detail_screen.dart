@@ -239,7 +239,9 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
               child: _joiningWaitlist
                   ? const Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)))
                   : IconButton.outlined(
-                      tooltip: isOnWaitlist ? 'Leave waitlist' : 'Join waitlist',
+                      tooltip: isOnWaitlist
+                          ? context.t.doctorDetail.leaveWaitlist
+                          : context.t.doctorDetail.joinWaitlist,
                       onPressed: () => _toggleWaitlist(myWaitlist),
                       icon: Icon(
                         isOnWaitlist ? Icons.notifications_active : Icons.notifications_none_outlined,
@@ -341,7 +343,7 @@ class _ProfileHeader extends StatelessWidget {
                       }),
                       const Gap(6),
                       Text(
-                        '${detail.averageRating!.toStringAsFixed(1)} · ${detail.reviewCount} reviews',
+                        '${detail.averageRating!.toStringAsFixed(1)} · ${context.t.doctorDetail.reviewsCount(count: detail.reviewCount)}',
                         style: TextStyle(fontSize: 12, color: c.textSecondary),
                       ),
                     ],

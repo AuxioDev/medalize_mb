@@ -99,7 +99,8 @@
     "languageSystem": "Par défaut du système",
     "logoutTitle": "Déconnexion",
     "logoutConfirm": "Voulez-vous vraiment vous déconnecter ?",
-    "version": "Medalize v1.0.0"
+    "version": "Medalize v1.0.0",
+    "legal": "Confidentialité et conditions"
   },
   "status": {
     "confirmed": "Confirmé",
@@ -240,7 +241,10 @@
     "minPerSlot": "$min min par créneau",
     "bookAppointment": "Prendre rendez-vous",
     "consultationFee": "Frais de consultation",
-    "reviews": "Avis"
+    "reviews": "Avis",
+    "reviewsCount": "$count avis",
+    "joinWaitlist": "Rejoindre la liste d’attente",
+    "leaveWaitlist": "Quitter la liste d’attente"
   },
   "profile": {
     "title": "Profil",
@@ -375,5 +379,14 @@
     "emptySubtitle": "Touchez le cœur d’un médecin pour l’enregistrer ici",
     "add": "Ajouter aux favoris",
     "remove": "Retirer des favoris"
+  },
+  "legal": {
+    "title": "Confidentialité et conditions",
+    "privacyTitle": "Politique de confidentialité",
+    "privacyBody": "Medalize traite vos informations personnelles et de santé afin que vous puissiez prendre et gérer des rendez-vous médicaux. Nous ne vendons pas vos données. La politique de confidentialité complète sera publiée ici avant le lancement public.",
+    "termsTitle": "Conditions d’utilisation",
+    "termsBody": "En utilisant Medalize, vous acceptez d’utiliser le service de manière responsable pour la prise et la gestion des rendez-vous. Les conditions d’utilisation complètes seront publiées ici avant le lancement public.",
+    "draftNotice": "Brouillon — en attente de la révision juridique finale.",
+    "contact": "Des questions sur vos données ? Contactez support@medalize.app"
   }
 }

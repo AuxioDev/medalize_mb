@@ -65,6 +65,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$fr splash = _Translations$splash$fr._(_root);
 	@override late final _Translations$agenda$fr agenda = _Translations$agenda$fr._(_root);
 	@override late final _Translations$favorites$fr favorites = _Translations$favorites$fr._(_root);
+	@override late final _Translations$legal$fr legal = _Translations$legal$fr._(_root);
 }
 
 // Path: common
@@ -215,6 +216,7 @@ class _Translations$settings$fr extends Translations$settings$en {
 	@override String get logoutTitle => 'Déconnexion';
 	@override String get logoutConfirm => 'Voulez-vous vraiment vous déconnecter ?';
 	@override String get version => 'Medalize v1.0.0';
+	@override String get legal => 'Confidentialité et conditions';
 }
 
 // Path: status
@@ -386,6 +388,9 @@ class _Translations$doctorDetail$fr extends Translations$doctorDetail$en {
 	@override String get bookAppointment => 'Prendre rendez-vous';
 	@override String get consultationFee => 'Frais de consultation';
 	@override String get reviews => 'Avis';
+	@override String reviewsCount({required Object count}) => '${count} avis';
+	@override String get joinWaitlist => 'Rejoindre la liste d’attente';
+	@override String get leaveWaitlist => 'Quitter la liste d’attente';
 }
 
 // Path: profile
@@ -598,6 +603,22 @@ class _Translations$favorites$fr extends Translations$favorites$en {
 	@override String get remove => 'Retirer des favoris';
 }
 
+// Path: legal
+class _Translations$legal$fr extends Translations$legal$en {
+	_Translations$legal$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Confidentialité et conditions';
+	@override String get privacyTitle => 'Politique de confidentialité';
+	@override String get privacyBody => 'Medalize traite vos informations personnelles et de santé afin que vous puissiez prendre et gérer des rendez-vous médicaux. Nous ne vendons pas vos données. La politique de confidentialité complète sera publiée ici avant le lancement public.';
+	@override String get termsTitle => 'Conditions d’utilisation';
+	@override String get termsBody => 'En utilisant Medalize, vous acceptez d’utiliser le service de manière responsable pour la prise et la gestion des rendez-vous. Les conditions d’utilisation complètes seront publiées ici avant le lancement public.';
+	@override String get draftNotice => 'Brouillon — en attente de la révision juridique finale.';
+	@override String get contact => 'Des questions sur vos données ? Contactez support@medalize.app';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -730,6 +751,7 @@ extension on TranslationsFr {
 			'settings.logoutTitle' => 'Déconnexion',
 			'settings.logoutConfirm' => 'Voulez-vous vraiment vous déconnecter ?',
 			'settings.version' => 'Medalize v1.0.0',
+			'settings.legal' => 'Confidentialité et conditions',
 			'status.confirmed' => 'Confirmé',
 			'status.pending' => 'En attente',
 			'status.cancelled' => 'Annulé',
@@ -857,6 +879,9 @@ extension on TranslationsFr {
 			'doctorDetail.bookAppointment' => 'Prendre rendez-vous',
 			'doctorDetail.consultationFee' => 'Frais de consultation',
 			'doctorDetail.reviews' => 'Avis',
+			'doctorDetail.reviewsCount' => ({required Object count}) => '${count} avis',
+			'doctorDetail.joinWaitlist' => 'Rejoindre la liste d’attente',
+			'doctorDetail.leaveWaitlist' => 'Quitter la liste d’attente',
 			'profile.title' => 'Profil',
 			'profile.changePassword' => 'Changer le mot de passe',
 			'profile.currentPassword' => 'Mot de passe actuel',
@@ -965,6 +990,13 @@ extension on TranslationsFr {
 			'favorites.emptySubtitle' => 'Touchez le cœur d’un médecin pour l’enregistrer ici',
 			'favorites.add' => 'Ajouter aux favoris',
 			'favorites.remove' => 'Retirer des favoris',
+			'legal.title' => 'Confidentialité et conditions',
+			'legal.privacyTitle' => 'Politique de confidentialité',
+			'legal.privacyBody' => 'Medalize traite vos informations personnelles et de santé afin que vous puissiez prendre et gérer des rendez-vous médicaux. Nous ne vendons pas vos données. La politique de confidentialité complète sera publiée ici avant le lancement public.',
+			'legal.termsTitle' => 'Conditions d’utilisation',
+			'legal.termsBody' => 'En utilisant Medalize, vous acceptez d’utiliser le service de manière responsable pour la prise et la gestion des rendez-vous. Les conditions d’utilisation complètes seront publiées ici avant le lancement public.',
+			'legal.draftNotice' => 'Brouillon — en attente de la révision juridique finale.',
+			'legal.contact' => 'Des questions sur vos données ? Contactez support@medalize.app',
 			_ => null,
 		};
 	}
