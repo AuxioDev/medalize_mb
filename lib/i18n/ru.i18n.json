@@ -204,7 +204,12 @@
       "dermatology": "Дерматология",
       "neurology": "Неврология",
       "orthopedics": "Ортопедия",
-      "pediatrics": "Педиатрия"
+      "pediatrics": "Педиатрия",
+      "psychiatry": "Психиатрия",
+      "gynecology": "Гинекология",
+      "urology": "Урология",
+      "ophthalmology": "Офтальмология",
+      "ent": "ЛОР"
     },
     "noAvailability": "Нет свободного времени",
     "availableToday": "Доступен сегодня",

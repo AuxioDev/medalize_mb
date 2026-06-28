@@ -204,7 +204,12 @@
       "dermatology": "Dermatoloji",
       "neurology": "Nöroloji",
       "orthopedics": "Ortopedi",
-      "pediatrics": "Pediatri"
+      "pediatrics": "Pediatri",
+      "psychiatry": "Psikiyatri",
+      "gynecology": "Jinekoloji",
+      "urology": "Üroloji",
+      "ophthalmology": "Oftalmoloji",
+      "ent": "KBB"
     },
     "noAvailability": "Uygunluk yok",
     "availableToday": "Bugün müsait",

@@ -204,7 +204,12 @@
       "dermatology": "皮肤科",
       "neurology": "神经科",
       "orthopedics": "骨科",
-      "pediatrics": "儿科"
+      "pediatrics": "儿科",
+      "psychiatry": "精神科",
+      "gynecology": "妇科",
+      "urology": "泌尿科",
+      "ophthalmology": "眼科",
+      "ent": "耳鼻喉科"
     },
     "noAvailability": "暂无时间",
     "availableToday": "今天可约",

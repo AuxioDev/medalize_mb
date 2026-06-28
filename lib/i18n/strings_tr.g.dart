@@ -565,6 +565,11 @@ class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$
 	@override String get neurology => 'Nöroloji';
 	@override String get orthopedics => 'Ortopedi';
 	@override String get pediatrics => 'Pediatri';
+	@override String get psychiatry => 'Psikiyatri';
+	@override String get gynecology => 'Jinekoloji';
+	@override String get urology => 'Üroloji';
+	@override String get ophthalmology => 'Oftalmoloji';
+	@override String get ent => 'KBB';
 }
 
 // Path: workingHours.days
@@ -773,6 +778,11 @@ extension on TranslationsTr {
 			'doctorSearch.spec.neurology' => 'Nöroloji',
 			'doctorSearch.spec.orthopedics' => 'Ortopedi',
 			'doctorSearch.spec.pediatrics' => 'Pediatri',
+			'doctorSearch.spec.psychiatry' => 'Psikiyatri',
+			'doctorSearch.spec.gynecology' => 'Jinekoloji',
+			'doctorSearch.spec.urology' => 'Üroloji',
+			'doctorSearch.spec.ophthalmology' => 'Oftalmoloji',
+			'doctorSearch.spec.ent' => 'KBB',
 			'doctorSearch.noAvailability' => 'Uygunluk yok',
 			'doctorSearch.availableToday' => 'Bugün müsait',
 			'doctorSearch.availableTomorrow' => 'Yarın müsait',

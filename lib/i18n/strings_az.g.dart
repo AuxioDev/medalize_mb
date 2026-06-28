@@ -565,6 +565,11 @@ class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$
 	@override String get neurology => 'Nevrologiya';
 	@override String get orthopedics => 'Ortopediya';
 	@override String get pediatrics => 'Pediatriya';
+	@override String get psychiatry => 'Psixiatriya';
+	@override String get gynecology => 'Ginekologiya';
+	@override String get urology => 'Urologiya';
+	@override String get ophthalmology => 'Oftalmologiya';
+	@override String get ent => 'LOR';
 }
 
 // Path: workingHours.days
@@ -773,6 +778,11 @@ extension on TranslationsAz {
 			'doctorSearch.spec.neurology' => 'Nevrologiya',
 			'doctorSearch.spec.orthopedics' => 'Ortopediya',
 			'doctorSearch.spec.pediatrics' => 'Pediatriya',
+			'doctorSearch.spec.psychiatry' => 'Psixiatriya',
+			'doctorSearch.spec.gynecology' => 'Ginekologiya',
+			'doctorSearch.spec.urology' => 'Urologiya',
+			'doctorSearch.spec.ophthalmology' => 'Oftalmologiya',
+			'doctorSearch.spec.ent' => 'LOR',
 			'doctorSearch.noAvailability' => 'Vaxt yoxdur',
 			'doctorSearch.availableToday' => 'Bugün müsaittir',
 			'doctorSearch.availableTomorrow' => 'Sabah müsaittir',

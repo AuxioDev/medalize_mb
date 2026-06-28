@@ -565,6 +565,11 @@ class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$
 	@override String get neurology => 'Неврология';
 	@override String get orthopedics => 'Ортопедия';
 	@override String get pediatrics => 'Педиатрия';
+	@override String get psychiatry => 'Психиатрия';
+	@override String get gynecology => 'Гинекология';
+	@override String get urology => 'Урология';
+	@override String get ophthalmology => 'Офтальмология';
+	@override String get ent => 'ЛОР';
 }
 
 // Path: workingHours.days
@@ -773,6 +778,11 @@ extension on TranslationsRu {
 			'doctorSearch.spec.neurology' => 'Неврология',
 			'doctorSearch.spec.orthopedics' => 'Ортопедия',
 			'doctorSearch.spec.pediatrics' => 'Педиатрия',
+			'doctorSearch.spec.psychiatry' => 'Психиатрия',
+			'doctorSearch.spec.gynecology' => 'Гинекология',
+			'doctorSearch.spec.urology' => 'Урология',
+			'doctorSearch.spec.ophthalmology' => 'Офтальмология',
+			'doctorSearch.spec.ent' => 'ЛОР',
 			'doctorSearch.noAvailability' => 'Нет свободного времени',
 			'doctorSearch.availableToday' => 'Доступен сегодня',
 			'doctorSearch.availableTomorrow' => 'Доступен завтра',

@@ -1139,6 +1139,21 @@ class Translations$doctorSearch$spec$en {
 
 	/// en: 'Pediatrics'
 	String get pediatrics => 'Pediatrics';
+
+	/// en: 'Psychiatry'
+	String get psychiatry => 'Psychiatry';
+
+	/// en: 'Gynecology'
+	String get gynecology => 'Gynecology';
+
+	/// en: 'Urology'
+	String get urology => 'Urology';
+
+	/// en: 'Ophthalmology'
+	String get ophthalmology => 'Ophthalmology';
+
+	/// en: 'ENT'
+	String get ent => 'ENT';
 }
 
 // Path: workingHours.days
@@ -1361,6 +1376,11 @@ extension on Translations {
 			'doctorSearch.spec.neurology' => 'Neurology',
 			'doctorSearch.spec.orthopedics' => 'Orthopedics',
 			'doctorSearch.spec.pediatrics' => 'Pediatrics',
+			'doctorSearch.spec.psychiatry' => 'Psychiatry',
+			'doctorSearch.spec.gynecology' => 'Gynecology',
+			'doctorSearch.spec.urology' => 'Urology',
+			'doctorSearch.spec.ophthalmology' => 'Ophthalmology',
+			'doctorSearch.spec.ent' => 'ENT',
 			'doctorSearch.noAvailability' => 'No availability',
 			'doctorSearch.availableToday' => 'Available today',
 			'doctorSearch.availableTomorrow' => 'Available tomorrow',

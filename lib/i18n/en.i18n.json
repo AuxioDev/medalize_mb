@@ -204,7 +204,12 @@
       "dermatology": "Dermatology",
       "neurology": "Neurology",
       "orthopedics": "Orthopedics",
-      "pediatrics": "Pediatrics"
+      "pediatrics": "Pediatrics",
+      "psychiatry": "Psychiatry",
+      "gynecology": "Gynecology",
+      "urology": "Urology",
+      "ophthalmology": "Ophthalmology",
+      "ent": "ENT"
     },
     "noAvailability": "No availability",
     "availableToday": "Available today",

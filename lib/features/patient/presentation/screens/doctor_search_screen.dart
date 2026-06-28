@@ -20,24 +20,33 @@ import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 const _kSpecializations = [
-  'general_practitioner',
-  'cardiologist',
-  'dermatologist',
-  'neurologist',
-  'orthopedist',
-  'pediatrician',
+  'general_practice',
+  'cardiology',
+  'dermatology',
+  'neurology',
+  'orthopedics',
+  'pediatrics',
+  'psychiatry',
+  'gynecology',
+  'urology',
+  'ophthalmology',
+  'ent',
 ];
 
-/// Maps a backend specialization code to its localized chip label.
 String _specLabel(BuildContext context, String spec) {
   final s = context.t.doctorSearch.spec;
   return switch (spec) {
-    'general_practitioner' => s.general,
-    'cardiologist' => s.cardiology,
-    'dermatologist' => s.dermatology,
-    'neurologist' => s.neurology,
-    'orthopedist' => s.orthopedics,
-    'pediatrician' => s.pediatrics,
+    'general_practice' => s.general,
+    'cardiology' => s.cardiology,
+    'dermatology' => s.dermatology,
+    'neurology' => s.neurology,
+    'orthopedics' => s.orthopedics,
+    'pediatrics' => s.pediatrics,
+    'psychiatry' => s.psychiatry,
+    'gynecology' => s.gynecology,
+    'urology' => s.urology,
+    'ophthalmology' => s.ophthalmology,
+    'ent' => s.ent,
     _ => spec,
   };
 }

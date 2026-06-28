@@ -204,7 +204,12 @@
       "dermatology": "Dermatologiya",
       "neurology": "Nevrologiya",
       "orthopedics": "Ortopediya",
-      "pediatrics": "Pediatriya"
+      "pediatrics": "Pediatriya",
+      "psychiatry": "Psixiatriya",
+      "gynecology": "Ginekologiya",
+      "urology": "Urologiya",
+      "ophthalmology": "Oftalmologiya",
+      "ent": "LOR"
     },
     "noAvailability": "Vaxt yoxdur",
     "availableToday": "Bugün müsaittir",

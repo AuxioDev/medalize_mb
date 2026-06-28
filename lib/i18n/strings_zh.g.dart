@@ -565,6 +565,11 @@ class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$
 	@override String get neurology => '神经科';
 	@override String get orthopedics => '骨科';
 	@override String get pediatrics => '儿科';
+	@override String get psychiatry => '精神科';
+	@override String get gynecology => '妇科';
+	@override String get urology => '泌尿科';
+	@override String get ophthalmology => '眼科';
+	@override String get ent => '耳鼻喉科';
 }
 
 // Path: workingHours.days
@@ -773,6 +778,11 @@ extension on TranslationsZh {
 			'doctorSearch.spec.neurology' => '神经科',
 			'doctorSearch.spec.orthopedics' => '骨科',
 			'doctorSearch.spec.pediatrics' => '儿科',
+			'doctorSearch.spec.psychiatry' => '精神科',
+			'doctorSearch.spec.gynecology' => '妇科',
+			'doctorSearch.spec.urology' => '泌尿科',
+			'doctorSearch.spec.ophthalmology' => '眼科',
+			'doctorSearch.spec.ent' => '耳鼻喉科',
 			'doctorSearch.noAvailability' => '暂无时间',
 			'doctorSearch.availableToday' => '今天可约',
 			'doctorSearch.availableTomorrow' => '明天可约',
