@@ -90,8 +90,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/patient/appointment-detail/:id',
         pageBuilder: (_, state) {
-          final appt = state.extra as AppointmentModel;
-          return _pushPage(AppointmentDetailScreen(appointment: appt));
+          final appt = state.extra as AppointmentModel?;
+          final id = state.pathParameters['id']!;
+          return _pushPage(AppointmentDetailLoader(
+            appointmentId: id,
+            appointment: appt,
+          ));
         },
       ),
       GoRoute(
@@ -122,7 +126,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/patient/booking-confirm',
         pageBuilder: (_, state) {
-          final extra = state.extra as Map<String, dynamic>;
+          final extra = state.extra as Map<String, dynamic>?;
+          // extra is unavailable after app restoration — can't reconstruct
+          // the booking slot, so redirect home instead of crashing.
+          if (extra == null) {
+            return _fadePage(const PatientHomeScreen());
+          }
           return _modalPage(BookingConfirmScreen(
             doctor: extra['doctor'] as DoctorDetailModel,
             slot: extra['slot'] as SlotModel,
@@ -163,10 +172,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/doctor/appointment-detail/:id',
         pageBuilder: (_, state) {
-          final appt = state.extra as AppointmentModel;
-          return _pushPage(
-            AppointmentDetailScreen(appointment: appt, asDoctor: true),
-          );
+          final appt = state.extra as AppointmentModel?;
+          final id = state.pathParameters['id']!;
+          return _pushPage(AppointmentDetailLoader(
+            appointmentId: id,
+            appointment: appt,
+            asDoctor: true,
+          ));
         },
       ),
       GoRoute(

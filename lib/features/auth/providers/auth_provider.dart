@@ -43,6 +43,10 @@ class AuthNotifier extends Notifier<AuthState> {
         firstName: user.firstName,
         lastName: user.lastName,
       );
+      // FCM must also be initialised on cold-start restoration, not only on
+      // explicit login() — otherwise push tokens are never registered after
+      // the app is restarted while the user is already authenticated.
+      ref.read(fcmServiceProvider).init();
     } catch (_) {
       await _storage.clearAll();
       state = const AuthUnauthenticated();

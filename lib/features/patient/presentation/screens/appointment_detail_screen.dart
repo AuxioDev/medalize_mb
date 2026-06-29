@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
+import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
@@ -652,6 +653,49 @@ class _AppointmentDetailScreenState
         'no_show' => Icons.person_off_outlined,
         _ => Icons.info_outline,
       };
+}
+
+/// Wraps [AppointmentDetailScreen] to handle cases where the GoRouter [extra]
+/// state is unavailable (deep link, app restoration after kill). Falls back to
+/// loading the appointment from the API by [appointmentId].
+class AppointmentDetailLoader extends ConsumerWidget {
+  const AppointmentDetailLoader({
+    super.key,
+    required this.appointmentId,
+    this.appointment,
+    this.asDoctor = false,
+  });
+
+  final String appointmentId;
+  final AppointmentModel? appointment;
+  final bool asDoctor;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (appointment != null) {
+      return AppointmentDetailScreen(appointment: appointment!, asDoctor: asDoctor);
+    }
+    final async = ref.watch(appointmentByIdProvider(appointmentId));
+    return async.when(
+      loading: () => Scaffold(
+        appBar: AppBar(),
+        body: const Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(children: [
+            ShimmerSkeleton(height: 64),
+            ShimmerSkeleton(height: 120),
+            ShimmerSkeleton(height: 120),
+            ShimmerSkeleton(height: 80),
+          ]),
+        ),
+      ),
+      error: (_, _) => Scaffold(
+        appBar: AppBar(),
+        body: Center(child: Text(context.t.common.somethingWrong)),
+      ),
+      data: (appt) => AppointmentDetailScreen(appointment: appt, asDoctor: asDoctor),
+    );
+  }
 }
 
 class _InfoCard extends StatelessWidget {
