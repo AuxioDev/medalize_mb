@@ -14,6 +14,7 @@ class AuthInterceptor extends Interceptor {
   final Future<void> Function() onForceLogout;
 
   bool _isRefreshing = false;
+  bool _isForceLoggingOut = false;
   final List<({RequestOptions options, ErrorInterceptorHandler handler})> _pendingQueue = [];
 
   static const _noAuthPaths = {
@@ -103,6 +104,7 @@ class AuthInterceptor extends Interceptor {
   }
 
   void _forceLogoutAndDrain(DioException triggeringError) {
+    _isForceLoggingOut = true;
     onForceLogout();
     final pending = List.of(_pendingQueue);
     _pendingQueue.clear();
@@ -117,6 +119,9 @@ class AuthInterceptor extends Interceptor {
   }
 
   void _drainQueue(String newAccessToken) {
+    // Do nothing if force logout already fired — queued requests are already
+    // resolved with an error by _forceLogoutAndDrain.
+    if (_isForceLoggingOut) return;
     final pending = List.of(_pendingQueue);
     _pendingQueue.clear();
     for (final entry in pending) {

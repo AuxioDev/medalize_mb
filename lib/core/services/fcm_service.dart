@@ -3,11 +3,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/services/navigator_key.dart';
+import 'package:medalize_mb/core/storage/secure_storage.dart';
 import 'package:medalize_mb/features/notifications/data/repository/notification_repository.dart';
 
 final fcmServiceProvider = Provider<FcmService>((ref) {
-  return FcmService(ref.read(notificationRepositoryProvider));
+  return FcmService(
+    ref.read(notificationRepositoryProvider),
+    ref.read(secureStorageProvider),
+  );
 });
 
 final _localNotifications = FlutterLocalNotificationsPlugin();
@@ -20,8 +25,9 @@ const _androidChannel = AndroidNotificationChannel(
 );
 
 class FcmService {
-  FcmService(this._repo);
+  FcmService(this._repo, this._storage);
   final NotificationRepository _repo;
+  final SecureStorage _storage;
 
   Future<void> init() async {
     // Local notifications setup
@@ -30,7 +36,6 @@ class FcmService {
     await _localNotifications.initialize(
       const InitializationSettings(android: androidInit, iOS: iosInit),
       onDidReceiveNotificationResponse: (details) {
-        // Tapping a local (foreground) banner navigates to notifications
         _navigateToNotifications();
       },
     );
@@ -87,7 +92,26 @@ class FcmService {
   }
 
   void _handleTap(RemoteMessage message) {
-    _navigateToNotifications();
+    _navigateFromData(message.data);
+  }
+
+  Future<void> _navigateFromData(Map<String, dynamic> data) async {
+    final type = data['type'] as String?;
+    final appointmentId = data['appointment_id'] as String?;
+
+    if (type == 'appointment' && appointmentId != null) {
+      final role = await _storage.getUserRole();
+      // Context is re-acquired here (after the await) to ensure it's current.
+      final context = navigatorKey.currentContext;
+      if (context == null) return;
+      final path = role == 'doctor'
+          ? '/doctor/appointment-detail/$appointmentId'
+          : '/patient/appointment-detail/$appointmentId';
+      // ignore: use_build_context_synchronously
+      GoRouter.of(context).push(path);
+    } else {
+      _navigateToNotifications();
+    }
   }
 
   void _navigateToNotifications() {

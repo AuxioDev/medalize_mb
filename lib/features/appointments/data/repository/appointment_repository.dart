@@ -15,11 +15,12 @@ class AppointmentRepository {
   final Dio _dio;
 
   /// Fetches every page from a paginated DRF endpoint and returns all results.
-  Future<List<AppointmentModel>> _fetchAllPages(
-    String path, {
+  Future<List<T>> _fetchAllPages<T>(
+    String path,
+    T Function(Map<String, dynamic>) fromJson, {
     Map<String, dynamic>? params,
   }) async {
-    final results = <AppointmentModel>[];
+    final results = <T>[];
     int page = 1;
     while (true) {
       final res = await _dio.get(
@@ -28,9 +29,7 @@ class AppointmentRepository {
       );
       final data = res.data as Map<String, dynamic>;
       final pageResults = (data['results'] as List<dynamic>?) ?? [];
-      results.addAll(
-        pageResults.map((e) => AppointmentModel.fromJson(e as Map<String, dynamic>)),
-      );
+      results.addAll(pageResults.map((e) => fromJson(e as Map<String, dynamic>)));
       if (data['next'] == null) break;
       page++;
     }
@@ -41,7 +40,7 @@ class AppointmentRepository {
     try {
       final params = <String, dynamic>{};
       if (status != null) params['status'] = status;
-      return await _fetchAllPages('/appointments/', params: params);
+      return await _fetchAllPages('/appointments/', AppointmentModel.fromJson, params: params);
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {
@@ -89,7 +88,7 @@ class AppointmentRepository {
       if (status != null) params['status'] = status;
       if (date != null) params['date'] = date;
       if (workplaceId != null) params['workplace_id'] = workplaceId;
-      return await _fetchAllPages('/doctor/appointments/', params: params);
+      return await _fetchAllPages('/doctor/appointments/', AppointmentModel.fromJson, params: params);
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {
@@ -138,11 +137,11 @@ class AppointmentRepository {
 
   Future<List<ReviewModel>> getDoctorReviews(String doctorId) async {
     try {
-      final res = await _dio.get('/doctors/$doctorId/reviews/');
-      final results = (res.data['results'] as List<dynamic>?) ?? res.data as List<dynamic>;
-      return results.map((e) => ReviewModel.fromJson(e as Map<String, dynamic>)).toList();
+      return await _fetchAllPages('/doctors/$doctorId/reviews/', ReviewModel.fromJson);
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 }
