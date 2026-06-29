@@ -122,6 +122,7 @@ class AuthNotifier extends Notifier<AuthState> {
     required String lastName,
     String phone = '',
   }) async {
+    if (state is AuthLoading) return;
     state = const AuthLoading();
     try {
       await _repo.register(RegisterRequest(

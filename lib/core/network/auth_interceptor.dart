@@ -22,7 +22,12 @@ class AuthInterceptor extends Interceptor {
     '/auth/password/reset/', '/auth/password/reset/confirm/',
   };
 
-  bool _skipAuth(String path) => _noAuthPaths.contains(path);
+  bool _skipAuth(String path) {
+    // Normalise: add trailing slash if missing so both /auth/login and
+    // /auth/login/ match set entries that always end with '/'.
+    final normalised = path.endsWith('/') ? path : '$path/';
+    return _noAuthPaths.contains(normalised);
+  }
 
   @override
   void onRequest(

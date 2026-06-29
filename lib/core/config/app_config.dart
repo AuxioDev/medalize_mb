@@ -20,5 +20,6 @@ abstract final class AppConfig {
   }
 
   static const Duration connectTimeout = Duration(seconds: 10);
-  static const Duration receiveTimeout = Duration(seconds: 15);
+  // 60 s covers slow connections and large uploads (diploma PDFs).
+  static const Duration receiveTimeout = Duration(seconds: 60);
 }
