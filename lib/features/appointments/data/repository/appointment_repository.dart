@@ -14,13 +14,34 @@ class AppointmentRepository {
   AppointmentRepository(this._dio);
   final Dio _dio;
 
+  /// Fetches every page from a paginated DRF endpoint and returns all results.
+  Future<List<AppointmentModel>> _fetchAllPages(
+    String path, {
+    Map<String, dynamic>? params,
+  }) async {
+    final results = <AppointmentModel>[];
+    int page = 1;
+    while (true) {
+      final res = await _dio.get(
+        path,
+        queryParameters: {...?params, 'page': page},
+      );
+      final data = res.data as Map<String, dynamic>;
+      final pageResults = (data['results'] as List<dynamic>?) ?? [];
+      results.addAll(
+        pageResults.map((e) => AppointmentModel.fromJson(e as Map<String, dynamic>)),
+      );
+      if (data['next'] == null) break;
+      page++;
+    }
+    return results;
+  }
+
   Future<List<AppointmentModel>> getPatientAppointments({String? status}) async {
     try {
       final params = <String, dynamic>{};
       if (status != null) params['status'] = status;
-      final res = await _dio.get('/appointments/', queryParameters: params);
-      final results = (res.data['results'] as List<dynamic>?) ?? res.data as List<dynamic>;
-      return results.map((e) => AppointmentModel.fromJson(e as Map<String, dynamic>)).toList();
+      return await _fetchAllPages('/appointments/', params: params);
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {
@@ -68,9 +89,7 @@ class AppointmentRepository {
       if (status != null) params['status'] = status;
       if (date != null) params['date'] = date;
       if (workplaceId != null) params['workplace_id'] = workplaceId;
-      final res = await _dio.get('/doctor/appointments/', queryParameters: params);
-      final results = (res.data['results'] as List<dynamic>?) ?? res.data as List<dynamic>;
-      return results.map((e) => AppointmentModel.fromJson(e as Map<String, dynamic>)).toList();
+      return await _fetchAllPages('/doctor/appointments/', params: params);
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {
