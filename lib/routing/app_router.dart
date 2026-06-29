@@ -337,7 +337,7 @@ String _homeFor(String role, bool onboardingComplete, bool? isVerified) {
 String? _redirect(AuthState auth, String location) {
   return switch (auth) {
     AuthInitial() => location == '/splash' ? null : '/splash',
-    AuthLoading() => null,
+    AuthLoading() => location == '/splash' ? null : '/splash',
     AuthUnauthenticated() || AuthError() =>
       location.startsWith('/auth') ? null : '/auth/login',
     AuthAuthenticated(

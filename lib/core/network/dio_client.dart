@@ -8,6 +8,39 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 
 final secureStorageProvider = Provider<SecureStorage>((_) => SecureStorage());
 
+/// Logs requests/responses without exposing sensitive payloads.
+/// Auth paths (login, register, password reset) have their bodies redacted.
+class _SanitisedLogger extends Interceptor {
+  static const _sensitivePathPrefixes = [
+    '/auth/login',
+    '/auth/register',
+    '/auth/password',
+    '/auth/token',
+  ];
+
+  bool _isSensitive(String path) =>
+      _sensitivePathPrefixes.any((p) => path.startsWith(p));
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    final tag = _isSensitive(options.path) ? ' [body redacted]' : '';
+    debugPrint('[DIO] → ${options.method} ${options.path}$tag');
+    handler.next(options);
+  }
+
+  @override
+  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
+    debugPrint('[DIO] ← ${response.statusCode} ${response.requestOptions.path}');
+    handler.next(response);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    debugPrint('[DIO] ✗ ${err.response?.statusCode} ${err.requestOptions.path}: ${err.message}');
+    handler.next(err);
+  }
+}
+
 final dioClientProvider = Provider<Dio>((ref) {
   final storage = ref.read(secureStorageProvider);
 
@@ -25,11 +58,7 @@ final dioClientProvider = Provider<Dio>((ref) {
   ));
 
   if (kDebugMode) {
-    dio.interceptors.add(LogInterceptor(
-      requestBody: true,
-      responseBody: true,
-      logPrint: (o) => debugPrint(o.toString()),
-    ));
+    dio.interceptors.add(_SanitisedLogger());
   }
 
   return dio;
