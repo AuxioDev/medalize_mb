@@ -99,7 +99,9 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
     final fmt = DateFormat('d MMM y, HH:mm');
     final workplace = widget.doctor.workplaces.firstWhere(
       (w) => w.id == widget.workplaceId,
-      orElse: () => widget.doctor.workplaces.first,
+      orElse: () => widget.doctor.workplaces.isNotEmpty
+          ? widget.doctor.workplaces.first
+          : throw StateError('Doctor has no workplaces'),
     );
 
     return Scaffold(

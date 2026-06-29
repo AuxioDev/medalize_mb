@@ -583,54 +583,58 @@ class _AppointmentDetailScreenState
       );
     }
 
-    if (appt.canCancel) {
+    if (appt.canCancel || appt.canReschedule) {
       return BottomActionBar(
         child: Row(
           children: [
-            Expanded(
-              child: OutlinedButton(
-                onPressed: _cancelling
-                    ? null
-                    : () {
-                        HapticFeedback.lightImpact();
-                        _cancel();
-                      },
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: AppColors.error,
-                  side: BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
-                  minimumSize: const Size.fromHeight(52),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppRadius.md)),
-                ),
-                child: _cancelling
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(
-                            strokeWidth: 2, color: AppColors.error),
-                      )
-                    : Text(context.t.appointments.cancelAction,
-                        style: const TextStyle(fontWeight: FontWeight.w600)),
-              ),
-            ),
-            const Gap(10),
-            Expanded(
-              child: OutlinedButton.icon(
-                onPressed: _rescheduling
-                    ? null
-                    : () {
-                        HapticFeedback.lightImpact();
-                        _reschedule();
-                      },
-                icon: const Icon(Icons.schedule_outlined, size: 16),
-                label: Text(context.t.appointments.reschedule),
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(52),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppRadius.md)),
+            if (appt.canCancel) ...[
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: _cancelling
+                      ? null
+                      : () {
+                          HapticFeedback.lightImpact();
+                          _cancel();
+                        },
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppColors.error,
+                    side:
+                        BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
+                    minimumSize: const Size.fromHeight(52),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.md)),
+                  ),
+                  child: _cancelling
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                              strokeWidth: 2, color: AppColors.error),
+                        )
+                      : Text(context.t.appointments.cancelAction,
+                          style: const TextStyle(fontWeight: FontWeight.w600)),
                 ),
               ),
-            ),
+              const Gap(10),
+            ],
+            if (appt.canReschedule)
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: _rescheduling
+                      ? null
+                      : () {
+                          HapticFeedback.lightImpact();
+                          _reschedule();
+                        },
+                  icon: const Icon(Icons.schedule_outlined, size: 16),
+                  label: Text(context.t.appointments.reschedule),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(52),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.md)),
+                  ),
+                ),
+              ),
           ],
         ),
       );

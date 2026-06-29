@@ -119,6 +119,10 @@ class AppointmentModel {
   /// Prefer the server's decision; fall back to the local window rule.
   bool get canCancel => canCancelOverride ?? _withinCancelWindow;
 
+  bool get canReschedule =>
+      canRescheduleOverride ??
+      (status == 'requires_rescheduling' || _withinCancelWindow);
+
   bool get _withinCancelWindow {
     if (status != 'pending' && status != 'confirmed') return false;
     return startsAt.isAfter(DateTime.now().add(const Duration(hours: 2)));

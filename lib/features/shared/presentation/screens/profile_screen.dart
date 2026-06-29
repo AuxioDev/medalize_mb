@@ -9,7 +9,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
-import 'package:medalize_mb/core/widgets/primary_button.dart';
+
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
@@ -106,7 +106,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       final form = FormData.fromMap({
         'avatar': await MultipartFile.fromFile(picked.path, filename: 'avatar.jpg'),
       });
-      final res = await ref.read(dioClientProvider).put('/auth/profile/avatar/', data: form);
+      final res = await ref.read(dioClientProvider).post('/auth/profile/avatar/', data: form);
       final url = (res.data as Map<String, dynamic>)['avatar_url'] as String?;
       if (mounted) setState(() => _avatarUrl = url);
     } catch (_) {
@@ -153,62 +153,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   void _showChangePassword() {
-    final t = context.t;
-    final oldCtrl = TextEditingController();
-    final newCtrl = TextEditingController();
-    final confirmCtrl = TextEditingController();
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      builder: (ctx) => Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(ctx).viewInsets.bottom + AppSpacing.lg,
-          left: AppSpacing.md,
-          right: AppSpacing.md,
-          top: AppSpacing.lg,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(t.profile.changePassword,
-                style: Theme.of(ctx).textTheme.titleLarge),
-            const Gap(AppSpacing.md),
-            TextField(
-              controller: oldCtrl,
-              obscureText: true,
-              decoration:
-                  InputDecoration(labelText: t.profile.currentPassword),
-            ),
-            const Gap(12),
-            TextField(
-              controller: newCtrl,
-              obscureText: true,
-              decoration: InputDecoration(labelText: t.profile.newPassword),
-            ),
-            const Gap(12),
-            TextField(
-              controller: confirmCtrl,
-              obscureText: true,
-              decoration:
-                  InputDecoration(labelText: t.profile.confirmNewPassword),
-            ),
-            const Gap(AppSpacing.md),
-            LoadingFilledButton(
-              label: t.profile.changePassword,
-              onPressed: () async {
-                if (newCtrl.text != confirmCtrl.text) return;
-                try {
-                  await ref.read(authProvider.notifier).changePassword(
-                        oldPassword: oldCtrl.text,
-                        newPassword: newCtrl.text,
-                      );
-                  if (ctx.mounted) Navigator.pop(ctx);
-                } catch (_) {}
-              },
-            ),
-          ],
-        ),
+      builder: (ctx) => _ChangePasswordSheet(
+        onSubmit: (old, newPwd) async {
+          await ref.read(authProvider.notifier).changePassword(
+                oldPassword: old,
+                newPassword: newPwd,
+              );
+        },
       ),
     );
   }
@@ -438,6 +392,98 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ChangePasswordSheet extends StatefulWidget {
+  const _ChangePasswordSheet({required this.onSubmit});
+  final Future<void> Function(String oldPassword, String newPassword) onSubmit;
+
+  @override
+  State<_ChangePasswordSheet> createState() => _ChangePasswordSheetState();
+}
+
+class _ChangePasswordSheetState extends State<_ChangePasswordSheet> {
+  final _oldCtrl = TextEditingController();
+  final _newCtrl = TextEditingController();
+  final _confirmCtrl = TextEditingController();
+  bool _loading = false;
+
+  @override
+  void dispose() {
+    _oldCtrl.dispose();
+    _newCtrl.dispose();
+    _confirmCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.t;
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom + AppSpacing.lg,
+        left: AppSpacing.md,
+        right: AppSpacing.md,
+        top: AppSpacing.lg,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(t.profile.changePassword,
+              style: Theme.of(context).textTheme.titleLarge),
+          const Gap(AppSpacing.md),
+          TextField(
+            controller: _oldCtrl,
+            obscureText: true,
+            decoration: InputDecoration(labelText: t.profile.currentPassword),
+          ),
+          const Gap(12),
+          TextField(
+            controller: _newCtrl,
+            obscureText: true,
+            decoration: InputDecoration(labelText: t.profile.newPassword),
+          ),
+          const Gap(12),
+          TextField(
+            controller: _confirmCtrl,
+            obscureText: true,
+            decoration:
+                InputDecoration(labelText: t.profile.confirmNewPassword),
+          ),
+          const Gap(AppSpacing.md),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              onPressed: _loading
+                  ? null
+                  : () async {
+                      if (_newCtrl.text != _confirmCtrl.text) return;
+                      setState(() => _loading = true);
+                      final nav = Navigator.of(context);
+                      try {
+                        await widget.onSubmit(_oldCtrl.text, _newCtrl.text);
+                        if (!mounted) return;
+                        nav.pop();
+                      } catch (_) {
+                      } finally {
+                        if (mounted) setState(() => _loading = false);
+                      }
+                    },
+              child: _loading
+                  ? const SizedBox(
+                      height: 18,
+                      width: 18,
+                      child:
+                          CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                    )
+                  : Text(t.profile.changePassword),
+            ),
+          ),
+        ],
       ),
     );
   }

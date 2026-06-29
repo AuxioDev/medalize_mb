@@ -65,10 +65,10 @@ class FcmService {
     } catch (_) {}
   }
 
-  void _handleForeground(RemoteMessage message) {
+  Future<void> _handleForeground(RemoteMessage message) async {
     final n = message.notification;
     if (n == null) return;
-    _localNotifications.show(
+    await _localNotifications.show(
       message.hashCode,
       n.title,
       n.body,
@@ -87,15 +87,7 @@ class FcmService {
   }
 
   void _handleTap(RemoteMessage message) {
-    final type = message.data['type'] as String?;
-    if (type == 'appointment') {
-      // Navigate to notifications screen where the user can see the appointment
-      _navigateToNotifications();
-    } else if (type == 'doctor') {
-      _navigateToNotifications();
-    } else {
-      _navigateToNotifications();
-    }
+    _navigateToNotifications();
   }
 
   void _navigateToNotifications() {
