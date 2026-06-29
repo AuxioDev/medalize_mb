@@ -645,6 +645,7 @@ class _AppointmentDetailScreenState
 
   IconData _statusIcon(String status) => switch (status) {
         'confirmed' => Icons.check_circle_outline,
+        'completed' => Icons.task_alt_outlined,
         'pending' => Icons.schedule_outlined,
         'cancelled' || 'declined' => Icons.cancel_outlined,
         'requires_rescheduling' => Icons.sync_problem_outlined,

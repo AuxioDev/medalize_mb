@@ -256,6 +256,25 @@ class _AppointmentCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                if (appointment.status == 'requires_rescheduling') ...[
+                  const Gap(4),
+                  Row(
+                    children: [
+                      const Icon(Icons.sync_problem_outlined,
+                          size: 11, color: AppColors.error),
+                      const Gap(3),
+                      Expanded(
+                        child: Text(
+                          context.t.appointments.rescheduleNeededHint,
+                          style: const TextStyle(
+                              fontSize: 11, color: AppColors.error),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ],
             ),
           ),

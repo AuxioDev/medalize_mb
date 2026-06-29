@@ -116,8 +116,17 @@ class AppointmentModel {
         hasReview: j['has_review'] as bool? ?? false,
       );
 
-  bool get isUpcoming =>
-      status == 'pending' || status == 'confirmed' || status == 'requires_rescheduling';
+  bool get isUpcoming {
+    if (status == 'pending' || status == 'confirmed' || status == 'requires_rescheduling') {
+      return true;
+    }
+    // no_show set before the appointment time is an unusual edge case;
+    // keep it in upcoming so the patient sees it as actionable.
+    if (status == 'no_show' && startsAt.isAfter(DateTime.now())) {
+      return true;
+    }
+    return false;
+  }
 
   /// Prefer the server's decision; fall back to the local window rule.
   bool get canCancel => canCancelOverride ?? _withinCancelWindow;

@@ -177,7 +177,7 @@ class _StyledCalendar extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return TableCalendar(
-      firstDay: DateTime.now().add(const Duration(hours: 2)),
+      firstDay: DateTime.now(),
       lastDay: DateTime.now().add(const Duration(days: 60)),
       focusedDay: focusedDay,
       selectedDayPredicate: (d) => isSameDay(selectedDay, d),
