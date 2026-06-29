@@ -528,7 +528,7 @@ class _AppointmentDetailScreenState
       );
     }
 
-    if (appt.status == 'completed') {
+    if (appt.status == 'completed' && !appt.hasReview) {
       return BottomActionBar(
         child: FilledButton.icon(
           onPressed: _submittingReview ? null : _showReviewDialog,

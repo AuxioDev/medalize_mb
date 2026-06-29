@@ -52,9 +52,10 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
     final dio = ref.read(dioClientProvider);
     try {
       await dio.post('/doctor/blocked-periods/', data: {
-        'starts_at': _dateRange!.start.toIso8601String(),
+        'starts_at': _dateRange!.start.toUtc().toIso8601String(),
         'ends_at': _dateRange!.end
             .add(const Duration(hours: 23, minutes: 59))
+            .toUtc()
             .toIso8601String(),
         'reason': _reasonController.text.trim(),
         'notify_patients': _notifyPatients,

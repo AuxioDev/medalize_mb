@@ -82,6 +82,7 @@ class AppointmentModel {
   /// rule below so older responses keep working.
   final bool? canCancelOverride;
   final bool? canRescheduleOverride;
+  final bool hasReview;
 
   const AppointmentModel({
     required this.id,
@@ -96,6 +97,7 @@ class AppointmentModel {
     required this.createdAt,
     this.canCancelOverride,
     this.canRescheduleOverride,
+    this.hasReview = false,
   });
 
   factory AppointmentModel.fromJson(Map<String, dynamic> j) => AppointmentModel(
@@ -111,6 +113,7 @@ class AppointmentModel {
         createdAt: DateTime.parse(j['created_at'] as String),
         canCancelOverride: j['can_cancel'] as bool?,
         canRescheduleOverride: j['can_reschedule'] as bool?,
+        hasReview: j['has_review'] as bool? ?? false,
       );
 
   bool get isUpcoming =>
