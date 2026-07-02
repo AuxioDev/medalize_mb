@@ -94,9 +94,11 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
       context.go('/auth/login');
     } on ApiException catch (e) {
       if (!mounted) return;
-      final isCodeError = e.userMessage.toLowerCase().contains('code') ||
-          e.userMessage.toLowerCase().contains('otp') ||
-          e.userMessage.toLowerCase().contains('invalid');
+      // Highlight the OTP field based on the structured error (the backend
+      // reports a bad code under the `code` field), not by string-matching a
+      // localized message — which breaks in non-English locales.
+      final isCodeError =
+          e is ValidationException && e.fieldErrors.containsKey('code');
       if (isCodeError) {
         setState(() => _otpError = true);
       }

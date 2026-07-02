@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
 
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -81,7 +82,17 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         _cancellationWindow = profile['cancellation_window_hours'] as int? ?? 2;
       }
       if (mounted) setState(() {});
-    } catch (_) {}
+    } on DioException catch (e) {
+      if (mounted) {
+        AppSnackBar.show(context, mapDioError(e).userMessage,
+            type: SnackBarType.error);
+      }
+    } catch (_) {
+      if (mounted) {
+        AppSnackBar.show(context, context.t.common.somethingWrong,
+            type: SnackBarType.error);
+      }
+    }
   }
 
   @override
@@ -109,7 +120,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       final res = await ref.read(dioClientProvider).post('/auth/profile/avatar/', data: form);
       final url = (res.data as Map<String, dynamic>)['avatar_url'] as String?;
       if (mounted) setState(() => _avatarUrl = url);
+    } on DioException catch (e) {
+      if (mounted) {
+        AppSnackBar.show(context, mapDioError(e).userMessage,
+            type: SnackBarType.error);
+      }
     } catch (_) {
+      if (mounted) {
+        AppSnackBar.show(context, context.t.common.somethingWrong,
+            type: SnackBarType.error);
+      }
     } finally {
       if (mounted) setState(() => _uploadingAvatar = false);
     }
@@ -143,8 +163,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         });
       }
       if (mounted) setState(() => _editing = false);
-    } on ApiException catch (e) {
-      if (mounted) setState(() => _saveError = e.userMessage);
+    } on DioException catch (e) {
+      // These calls hit Dio directly (not via a repository), so map the raw
+      // DioException here to surface the specific backend message (e.g. an
+      // invalid phone number) instead of a generic "failed to save".
+      if (mounted) setState(() => _saveError = mapDioError(e).userMessage);
     } catch (_) {
       if (mounted) setState(() => _saveError = context.t.profile.failedToSave);
     } finally {
@@ -461,14 +484,29 @@ class _ChangePasswordSheetState extends State<_ChangePasswordSheet> {
               onPressed: _loading
                   ? null
                   : () async {
-                      if (_newCtrl.text != _confirmCtrl.text) return;
+                      if (_newCtrl.text != _confirmCtrl.text) {
+                        AppSnackBar.show(context, t.validation.passwordMismatch,
+                            type: SnackBarType.error);
+                        return;
+                      }
                       setState(() => _loading = true);
                       final nav = Navigator.of(context);
                       try {
                         await widget.onSubmit(_oldCtrl.text, _newCtrl.text);
                         if (!mounted) return;
                         nav.pop();
+                      } on ApiException catch (e) {
+                        // Surface the real reason (e.g. wrong current password)
+                        // instead of silently swallowing it.
+                        if (context.mounted) {
+                          AppSnackBar.show(context, e.userMessage,
+                              type: SnackBarType.error);
+                        }
                       } catch (_) {
+                        if (context.mounted) {
+                          AppSnackBar.show(context, t.common.somethingWrong,
+                              type: SnackBarType.error);
+                        }
                       } finally {
                         if (mounted) setState(() => _loading = false);
                       }

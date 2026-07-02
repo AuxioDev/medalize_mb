@@ -63,6 +63,8 @@ class AuthRepository {
       );
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -82,6 +84,8 @@ class AuthRepository {
       await _dio.post('/auth/password/reset/', data: {'email': email});
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -98,6 +102,8 @@ class AuthRepository {
       });
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 
@@ -114,6 +120,8 @@ class AuthRepository {
       });
     } on DioException catch (e) {
       throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
     }
   }
 }

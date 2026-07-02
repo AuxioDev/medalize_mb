@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
@@ -103,11 +104,16 @@ class _WorkplaceCard extends ConsumerWidget {
   final Map<String, dynamic> workplace;
   final VoidCallback onChanged;
 
-  Future<void> _setPrimary(Dio dio) async {
+  Future<void> _setPrimary(BuildContext context, Dio dio) async {
     try {
       await dio.patch('/doctor/workplaces/${workplace['id']}/set-primary/');
       onChanged();
-    } catch (_) {}
+    } on DioException catch (e) {
+      if (context.mounted) {
+        AppSnackBar.show(context, mapDioError(e).userMessage,
+            type: SnackBarType.error);
+      }
+    }
   }
 
   Future<void> _delete(BuildContext context, Dio dio) async {
@@ -218,7 +224,7 @@ class _WorkplaceCard extends ConsumerWidget {
                 );
                 if (saved == true) onChanged();
               } else if (v == 'primary') {
-                await _setPrimary(dio);
+                await _setPrimary(context, dio);
               } else if (v == 'hours') {
                 context.push('/doctor/working-hours/${workplace['id']}');
               } else if (v == 'delete') {

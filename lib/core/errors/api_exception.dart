@@ -83,10 +83,14 @@ class ServerException extends ApiException {
 ApiException mapDioError(Object err) {
   if (err is! DioException) return const NetworkException();
 
+  // Connectivity/timeout failures: never surface Dio's raw technical message
+  // (e.g. "The connection errored...") — callers show userMessage directly, so
+  // fall back to the friendly localized string.
   if (err.type == DioExceptionType.connectionTimeout ||
+      err.type == DioExceptionType.sendTimeout ||
       err.type == DioExceptionType.receiveTimeout ||
       err.type == DioExceptionType.connectionError) {
-    return NetworkException(err.message);
+    return const NetworkException();
   }
 
   final response = err.response;
@@ -112,19 +116,44 @@ ApiException mapDioError(Object err) {
     case 'permission_denied':
       return PermissionDeniedException(role: data['role'] as String?);
     case 'validation_error':
-      final raw = data['errors'];
-      final errors = <String, List<String>>{};
-      if (raw is Map) {
-        raw.forEach((key, value) {
-          if (value is List) {
-            errors[key as String] = value.map((e) => e.toString()).toList();
-          } else if (value is String) {
-            errors[key as String] = [value];
-          }
-        });
-      }
-      return ValidationException(fieldErrors: errors);
+      return _mapValidationError(data as Map);
     default:
       return ServerException(response.statusCode ?? 500);
   }
+}
+
+/// Builds a [ValidationException] from a `validation_error` payload, tolerating
+/// the several shapes DRF can produce: a per-field map, a bare list/string, or
+/// a top-level `detail`/`message`. Field errors are kept for form binding;
+/// anything non-field is captured in [ValidationException.message] so it is
+/// still shown on screens that display `userMessage` directly.
+ValidationException _mapValidationError(Map data) {
+  final raw = data['errors'];
+  final errors = <String, List<String>>{};
+  String? nonFieldMessage;
+
+  List<String> asStringList(dynamic value) => value is List
+      ? value.map((e) => e.toString()).toList()
+      : [value.toString()];
+
+  if (raw is Map) {
+    raw.forEach((key, value) {
+      final list = asStringList(value);
+      // 'non_field_errors' / 'detail' aren't tied to a form field — surface
+      // them as a general message rather than an (invisible) field error.
+      if (key == 'non_field_errors' || key == 'detail') {
+        nonFieldMessage ??= list.isNotEmpty ? list.first : null;
+      } else {
+        errors[key.toString()] = list;
+      }
+    });
+  } else if (raw is List && raw.isNotEmpty) {
+    nonFieldMessage = raw.first.toString();
+  } else if (raw is String) {
+    nonFieldMessage = raw;
+  }
+
+  nonFieldMessage ??= data['message'] as String? ?? data['detail'] as String?;
+
+  return ValidationException(fieldErrors: errors, message: nonFieldMessage);
 }

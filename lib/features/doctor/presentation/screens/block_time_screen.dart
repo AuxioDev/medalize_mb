@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:gap/gap.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:dio/dio.dart';
+import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
@@ -61,7 +63,9 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
         'notify_patients': _notifyPatients,
       });
       if (mounted) context.pop(true);
-    } catch (e) {
+    } on DioException catch (e) {
+      setState(() => _error = mapDioError(e).userMessage);
+    } catch (_) {
       setState(() => _error = context.t.blockTime.failedToBlock);
     } finally {
       if (mounted) setState(() => _loading = false);

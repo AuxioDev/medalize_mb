@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:dio/dio.dart';
+import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
@@ -91,6 +93,12 @@ class _WorkingHoursEditorState
         }
         _loading = false;
       });
+    } on DioException catch (e) {
+      if (mounted) {
+        setState(() => _loading = false);
+        AppSnackBar.show(context, mapDioError(e).userMessage,
+            type: SnackBarType.error);
+      }
     } catch (_) {
       if (mounted) setState(() => _loading = false);
     }
@@ -130,6 +138,11 @@ class _WorkingHoursEditorState
         AppSnackBar.show(context, context.t.workingHours.saved,
             type: SnackBarType.success);
         context.pop(true);
+      }
+    } on DioException catch (e) {
+      if (mounted) {
+        AppSnackBar.show(context, mapDioError(e).userMessage,
+            type: SnackBarType.error);
       }
     } catch (_) {
       if (mounted) {

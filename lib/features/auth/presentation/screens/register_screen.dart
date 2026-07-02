@@ -133,6 +133,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
       if (next is AuthError && next.exception is ValidationException) {
         final e = next.exception as ValidationException;
         setState(() => _fieldErrors = e.fieldErrors);
+        // A validation error that maps to no rendered field (e.g. a general
+        // non-field message) would otherwise be invisible — surface it.
+        if (e.fieldErrors.isEmpty && e.message != null) {
+          AppSnackBar.show(context, e.message!, type: SnackBarType.error);
+        }
       }
     });
 

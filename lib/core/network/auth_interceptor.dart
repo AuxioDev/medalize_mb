@@ -45,6 +45,15 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
+    // Auth endpoints (login / register / refresh / password reset) legitimately
+    // return 401/400 — e.g. wrong credentials. They must NEVER trigger the
+    // token-refresh / force-logout machinery: doing so calls forceLogout(),
+    // whose async storage wipe overwrites the AuthError state the screen needs
+    // to show the message. Pass their errors straight through to the caller.
+    if (_skipAuth(err.requestOptions.path)) {
+      return handler.next(err);
+    }
+
     if (err.response?.statusCode != 401) {
       return handler.next(err);
     }

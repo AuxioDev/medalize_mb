@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:dio/dio.dart';
+import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
@@ -69,7 +71,11 @@ class _AddEditWorkplaceScreenState
         await dio.post('/doctor/workplaces/', data: body);
       }
       if (mounted) context.pop(true);
-    } catch (e) {
+    } on DioException catch (e) {
+      // Surface the specific backend message (e.g. an invalid field) instead of
+      // a generic "failed to save".
+      setState(() => _error = mapDioError(e).userMessage);
+    } catch (_) {
       setState(() => _error = context.t.addWorkplace.failedToSave);
     } finally {
       if (mounted) setState(() => _loading = false);

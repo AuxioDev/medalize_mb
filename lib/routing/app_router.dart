@@ -336,8 +336,12 @@ String _homeFor(String role, bool onboardingComplete, bool? isVerified) {
 
 String? _redirect(AuthState auth, String location) {
   return switch (auth) {
+    // Cold-start only: hold on splash until _init resolves.
     AuthInitial() => location == '/splash' ? null : '/splash',
-    AuthLoading() => location == '/splash' ? null : '/splash',
+    // In-flight login/register: stay on the current auth screen so the button
+    // shows its spinner, the typed inputs are kept, and any resulting AuthError
+    // renders inline instead of bouncing through splash to a fresh screen.
+    AuthLoading() => location.startsWith('/auth') ? null : '/splash',
     AuthUnauthenticated() || AuthError() =>
       location.startsWith('/auth') ? null : '/auth/login',
     AuthAuthenticated(
