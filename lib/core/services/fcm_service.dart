@@ -70,6 +70,16 @@ class FcmService {
     } catch (_) {}
   }
 
+  /// De-registers this device's token on the server so pushes stop arriving
+  /// after logout (and don't leak to the next user of a shared device). Must be
+  /// called while the access token is still valid.
+  Future<void> deregisterToken() async {
+    try {
+      final token = await FirebaseMessaging.instance.getToken();
+      if (token != null) await _repo.deregisterFCMToken(token);
+    } catch (_) {}
+  }
+
   Future<void> _handleForeground(RemoteMessage message) async {
     final n = message.notification;
     if (n == null) return;

@@ -7,10 +7,12 @@ abstract final class AppConfig {
 
   static String get baseUrl {
     final url = _envUrl.isNotEmpty ? _envUrl : _defaultUrl;
-    assert(
-      kDebugMode || url.startsWith('https://'),
-      'API_BASE_URL must use HTTPS in release builds. Got: $url',
-    );
+    // Enforce HTTPS in release/profile builds. An assert() is stripped from
+    // non-debug builds and would provide no protection, so this is a real
+    // runtime check.
+    if (!kDebugMode && !url.startsWith('https://')) {
+      throw StateError('API_BASE_URL must use HTTPS in release builds. Got: $url');
+    }
     return url;
   }
 

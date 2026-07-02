@@ -202,14 +202,19 @@ class _AppointmentDetailScreenState
         ),
       ),
     );
-    if (confirmed != true || !mounted) return;
+    if (confirmed != true || !mounted) {
+      commentCtrl.dispose();
+      return;
+    }
+    final comment = commentCtrl.text.trim();
+    commentCtrl.dispose();
 
     setState(() => _submittingReview = true);
     try {
       await ref.read(appointmentRepositoryProvider).submitReview(
         widget.appointment.id,
         selectedRating,
-        commentCtrl.text.trim(),
+        comment,
       );
       if (mounted) {
         AppSnackBar.show(context, context.t.appointments.reviewSubmitted,

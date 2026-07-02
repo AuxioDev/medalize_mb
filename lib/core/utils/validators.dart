@@ -55,7 +55,10 @@ abstract final class Validators {
     if (v == null || v.trim().isEmpty) return t.validation.phoneRequired;
     final d = _digitCount(v);
     if (d < 7) return t.validation.phoneTooShort;
-    if (d > 9) return t.validation.phoneTooLong;
+    // Local subscriber numbers vary widely across the supported countries (e.g.
+    // China is 11 digits). Cap at 15 (E.164 max) rather than 9 so valid numbers
+    // aren't rejected. The dial code is stored separately.
+    if (d > 15) return t.validation.phoneTooLong;
     return null;
   }
 
@@ -71,6 +74,6 @@ abstract final class Validators {
 
   static bool phoneOk(String v) {
     final d = _digitCount(v);
-    return d == 0 || (d >= 7 && d <= 9);
+    return d == 0 || (d >= 7 && d <= 15);
   }
 }

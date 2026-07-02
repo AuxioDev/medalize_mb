@@ -53,4 +53,12 @@ class NotificationRepository {
       throw mapDioError(e);
     }
   }
+
+  Future<void> deregisterFCMToken(String token) async {
+    try {
+      await _dio.delete('/notifications/fcm/', data: {'token': token});
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
 }

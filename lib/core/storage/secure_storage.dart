@@ -8,6 +8,10 @@ abstract final class _Keys {
   static const userRole = 'user_role';
   static const userId = 'user_id';
   static const userEmail = 'user_email';
+  static const onboardingComplete = 'onboarding_complete';
+  static const isVerified = 'is_verified';
+  static const firstName = 'first_name';
+  static const lastName = 'last_name';
   static const themeMode = 'theme_mode';
   static const language = 'app_language';
   static const favoriteDoctors = 'favorite_doctors';
@@ -46,6 +50,42 @@ class SecureStorage {
   Future<String?> getUserRole() => _storage.read(key: _Keys.userRole);
   Future<String?> getUserId() => _storage.read(key: _Keys.userId);
   Future<String?> getUserEmail() => _storage.read(key: _Keys.userEmail);
+
+  /// Persists profile flags so an offline cold-start can restore an accurate
+  /// authenticated state (correct doctor onboarding/verification routing)
+  /// without a network round-trip. [isVerified] may be null (patients).
+  Future<void> saveProfile({
+    required bool onboardingComplete,
+    required bool? isVerified,
+    required String firstName,
+    required String lastName,
+  }) async {
+    await Future.wait([
+      _storage.write(
+          key: _Keys.onboardingComplete, value: onboardingComplete.toString()),
+      _storage.write(
+          key: _Keys.isVerified, value: isVerified == null ? '' : isVerified.toString()),
+      _storage.write(key: _Keys.firstName, value: firstName),
+      _storage.write(key: _Keys.lastName, value: lastName),
+    ]);
+  }
+
+  Future<bool?> getOnboardingComplete() async {
+    final raw = await _storage.read(key: _Keys.onboardingComplete);
+    if (raw == null) return null;
+    return raw == 'true';
+  }
+
+  Future<bool?> getIsVerified() async {
+    final raw = await _storage.read(key: _Keys.isVerified);
+    if (raw == null || raw.isEmpty) return null;
+    return raw == 'true';
+  }
+
+  Future<String> getFirstName() async =>
+      await _storage.read(key: _Keys.firstName) ?? '';
+  Future<String> getLastName() async =>
+      await _storage.read(key: _Keys.lastName) ?? '';
 
   Future<String?> getThemeMode() => _storage.read(key: _Keys.themeMode);
   Future<void> saveThemeMode(String mode) =>
