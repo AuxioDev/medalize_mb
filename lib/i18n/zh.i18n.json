@@ -358,7 +358,9 @@
   },
   "pendingVerification": {
     "title": "等待验证",
-    "message": "您的账户正在审核中。验证通过后我们会通知您。"
+    "message": "您的账户正在审核中。验证通过后我们会通知您。",
+    "checkStatus": "检查状态",
+    "stillPending": "仍在审核中。验证通过后我们会通知您。"
   },
   "phoneField": {
     "label": "电话号码",

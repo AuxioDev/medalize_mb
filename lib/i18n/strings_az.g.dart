@@ -553,6 +553,8 @@ class _Translations$pendingVerification$az extends Translations$pendingVerificat
 	// Translations
 	@override String get title => 'Təsdiq gözlənilir';
 	@override String get message => 'Hesabınız nəzərdən keçirilir. Təsdiqləndikdən sonra sizə bildiriş göndərəcəyik.';
+	@override String get checkStatus => 'Statusu yoxla';
+	@override String get stillPending => 'Hələ də nəzərdən keçirilir. Təsdiqləndikdən sonra sizə bildiriş göndərəcəyik.';
 }
 
 // Path: phoneField
@@ -981,6 +983,8 @@ extension on TranslationsAz {
 			'onboarding.finish' => 'Bitir',
 			'pendingVerification.title' => 'Təsdiq gözlənilir',
 			'pendingVerification.message' => 'Hesabınız nəzərdən keçirilir. Təsdiqləndikdən sonra sizə bildiriş göndərəcəyik.',
+			'pendingVerification.checkStatus' => 'Statusu yoxla',
+			'pendingVerification.stillPending' => 'Hələ də nəzərdən keçirilir. Təsdiqləndikdən sonra sizə bildiriş göndərəcəyik.',
 			'phoneField.label' => 'Telefon nömrəsi',
 			'phoneField.labelOptional' => 'Telefon nömrəsi (istəyə bağlı)',
 			'phoneField.selectCountry' => 'Ölkə seçin',

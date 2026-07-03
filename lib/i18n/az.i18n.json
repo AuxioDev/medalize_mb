@@ -358,7 +358,9 @@
   },
   "pendingVerification": {
     "title": "Təsdiq gözlənilir",
-    "message": "Hesabınız nəzərdən keçirilir. Təsdiqləndikdən sonra sizə bildiriş göndərəcəyik."
+    "message": "Hesabınız nəzərdən keçirilir. Təsdiqləndikdən sonra sizə bildiriş göndərəcəyik.",
+    "checkStatus": "Statusu yoxla",
+    "stillPending": "Hələ də nəzərdən keçirilir. Təsdiqləndikdən sonra sizə bildiriş göndərəcəyik."
   },
   "phoneField": {
     "label": "Telefon nömrəsi",

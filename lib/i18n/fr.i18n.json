@@ -358,7 +358,9 @@
   },
   "pendingVerification": {
     "title": "Vérification en attente",
-    "message": "Votre compte est en cours d'examen. Nous vous informerons une fois qu'il sera vérifié."
+    "message": "Votre compte est en cours d'examen. Nous vous informerons une fois qu'il sera vérifié.",
+    "checkStatus": "Vérifier le statut",
+    "stillPending": "Toujours en cours d'examen. Nous vous informerons une fois vérifié."
   },
   "phoneField": {
     "label": "Numéro de téléphone",

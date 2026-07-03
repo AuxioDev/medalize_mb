@@ -1151,6 +1151,12 @@ class Translations$pendingVerification$en {
 
 	/// en: 'Your account is under review. We will notify you once it is verified.'
 	String get message => 'Your account is under review. We will notify you once it is verified.';
+
+	/// en: 'Check Status'
+	String get checkStatus => 'Check Status';
+
+	/// en: 'Still under review. We'll notify you once it's verified.'
+	String get stillPending => 'Still under review. We\'ll notify you once it\'s verified.';
 }
 
 // Path: phoneField
@@ -1659,6 +1665,8 @@ extension on Translations {
 			'onboarding.finish' => 'Finish',
 			'pendingVerification.title' => 'Verification Pending',
 			'pendingVerification.message' => 'Your account is under review. We will notify you once it is verified.',
+			'pendingVerification.checkStatus' => 'Check Status',
+			'pendingVerification.stillPending' => 'Still under review. We\'ll notify you once it\'s verified.',
 			'phoneField.label' => 'Phone Number',
 			'phoneField.labelOptional' => 'Phone Number (Optional)',
 			'phoneField.selectCountry' => 'Select Country',

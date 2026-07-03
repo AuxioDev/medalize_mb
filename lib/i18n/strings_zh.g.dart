@@ -553,6 +553,8 @@ class _Translations$pendingVerification$zh extends Translations$pendingVerificat
 	// Translations
 	@override String get title => '等待验证';
 	@override String get message => '您的账户正在审核中。验证通过后我们会通知您。';
+	@override String get checkStatus => '检查状态';
+	@override String get stillPending => '仍在审核中。验证通过后我们会通知您。';
 }
 
 // Path: phoneField
@@ -981,6 +983,8 @@ extension on TranslationsZh {
 			'onboarding.finish' => '完成',
 			'pendingVerification.title' => '等待验证',
 			'pendingVerification.message' => '您的账户正在审核中。验证通过后我们会通知您。',
+			'pendingVerification.checkStatus' => '检查状态',
+			'pendingVerification.stillPending' => '仍在审核中。验证通过后我们会通知您。',
 			'phoneField.label' => '电话号码',
 			'phoneField.labelOptional' => '电话号码（可选）',
 			'phoneField.selectCountry' => '选择国家',

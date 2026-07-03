@@ -553,6 +553,8 @@ class _Translations$pendingVerification$fr extends Translations$pendingVerificat
 	// Translations
 	@override String get title => 'Vérification en attente';
 	@override String get message => 'Votre compte est en cours d\'examen. Nous vous informerons une fois qu\'il sera vérifié.';
+	@override String get checkStatus => 'Vérifier le statut';
+	@override String get stillPending => 'Toujours en cours d\'examen. Nous vous informerons une fois vérifié.';
 }
 
 // Path: phoneField
@@ -981,6 +983,8 @@ extension on TranslationsFr {
 			'onboarding.finish' => 'Terminer',
 			'pendingVerification.title' => 'Vérification en attente',
 			'pendingVerification.message' => 'Votre compte est en cours d\'examen. Nous vous informerons une fois qu\'il sera vérifié.',
+			'pendingVerification.checkStatus' => 'Vérifier le statut',
+			'pendingVerification.stillPending' => 'Toujours en cours d\'examen. Nous vous informerons une fois vérifié.',
 			'phoneField.label' => 'Numéro de téléphone',
 			'phoneField.labelOptional' => 'Numéro de téléphone (facultatif)',
 			'phoneField.selectCountry' => 'Sélectionner un pays',

@@ -358,7 +358,9 @@
   },
   "pendingVerification": {
     "title": "Verification Pending",
-    "message": "Your account is under review. We will notify you once it is verified."
+    "message": "Your account is under review. We will notify you once it is verified.",
+    "checkStatus": "Check Status",
+    "stillPending": "Still under review. We'll notify you once it's verified."
   },
   "phoneField": {
     "label": "Phone Number",

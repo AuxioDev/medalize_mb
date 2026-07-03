@@ -553,6 +553,8 @@ class _Translations$pendingVerification$tr extends Translations$pendingVerificat
 	// Translations
 	@override String get title => 'Doğrulama Bekleniyor';
 	@override String get message => 'Hesabınız inceleniyor. Doğrulandığında sizi bilgilendireceğiz.';
+	@override String get checkStatus => 'Durumu kontrol et';
+	@override String get stillPending => 'Hâlâ inceleniyor. Doğrulandığında sizi bilgilendireceğiz.';
 }
 
 // Path: phoneField
@@ -981,6 +983,8 @@ extension on TranslationsTr {
 			'onboarding.finish' => 'Bitir',
 			'pendingVerification.title' => 'Doğrulama Bekleniyor',
 			'pendingVerification.message' => 'Hesabınız inceleniyor. Doğrulandığında sizi bilgilendireceğiz.',
+			'pendingVerification.checkStatus' => 'Durumu kontrol et',
+			'pendingVerification.stillPending' => 'Hâlâ inceleniyor. Doğrulandığında sizi bilgilendireceğiz.',
 			'phoneField.label' => 'Telefon Numarası',
 			'phoneField.labelOptional' => 'Telefon Numarası (İsteğe bağlı)',
 			'phoneField.selectCountry' => 'Ülke Seçin',

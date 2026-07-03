@@ -358,7 +358,9 @@
   },
   "pendingVerification": {
     "title": "Doğrulama Bekleniyor",
-    "message": "Hesabınız inceleniyor. Doğrulandığında sizi bilgilendireceğiz."
+    "message": "Hesabınız inceleniyor. Doğrulandığında sizi bilgilendireceğiz.",
+    "checkStatus": "Durumu kontrol et",
+    "stillPending": "Hâlâ inceleniyor. Doğrulandığında sizi bilgilendireceğiz."
   },
   "phoneField": {
     "label": "Telefon Numarası",

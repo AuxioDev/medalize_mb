@@ -553,6 +553,8 @@ class _Translations$pendingVerification$ru extends Translations$pendingVerificat
 	// Translations
 	@override String get title => 'Ожидает подтверждения';
 	@override String get message => 'Ваш аккаунт на рассмотрении. Мы уведомим вас после подтверждения.';
+	@override String get checkStatus => 'Проверить статус';
+	@override String get stillPending => 'Всё ещё на рассмотрении. Мы уведомим вас, как только аккаунт будет подтверждён.';
 }
 
 // Path: phoneField
@@ -981,6 +983,8 @@ extension on TranslationsRu {
 			'onboarding.finish' => 'Завершить',
 			'pendingVerification.title' => 'Ожидает подтверждения',
 			'pendingVerification.message' => 'Ваш аккаунт на рассмотрении. Мы уведомим вас после подтверждения.',
+			'pendingVerification.checkStatus' => 'Проверить статус',
+			'pendingVerification.stillPending' => 'Всё ещё на рассмотрении. Мы уведомим вас, как только аккаунт будет подтверждён.',
 			'phoneField.label' => 'Номер телефона',
 			'phoneField.labelOptional' => 'Номер телефона (необязательно)',
 			'phoneField.selectCountry' => 'Выберите страну',
