@@ -30,8 +30,8 @@
       ```
 
 ### A3. Firebase / Push (если push нужен в тесте)
-- [ ] 🟡 Зарегистрировать iOS-приложение в Firebase (bundle `com.example.medalizeMb`)
-- [ ] 🟡 Зарегистрировать Android-приложение (package `com.example.medalize_mb`)
+- [ ] 🟡 Зарегистрировать iOS-приложение в Firebase (bundle `az.medalize.app`)
+- [ ] 🟡 Зарегистрировать Android-приложение (package `az.medalize.app`)
 - [ ] 🟡 Заменить плейсхолдеры реальными `GoogleService-Info.plist` / `google-services.json`
 - [ ] 🟡 iOS: загрузить APNs-ключ в Firebase, включить Push Notifications capability
 - [ ] 🟢 Проверить доставку тест-уведомления
@@ -61,8 +61,12 @@
 ## B. Публичный релиз (стора)
 
 ### B1. Идентификация и подпись
-- [ ] 🔴 Сменить bundle/package с `com.example.*` на реальный (напр. `az.medalize.app`)
-      — iOS (`PRODUCT_BUNDLE_IDENTIFIER`) и Android (`applicationId`)
+- [x] 🔴 Сменить bundle/package с `com.example.*` на реальный (`az.medalize.app`)
+      — iOS (`PRODUCT_BUNDLE_IDENTIFIER`) и Android (`applicationId`/`namespace`)
+      > Плейсхолдеры `google-services.json`/`GoogleService-Info.plist` всё ещё
+      > содержат старый `com.example.*` id — заменить их реальными конфигами
+      > из Firebase Console (см. A3), иначе Android-сборка упадёт на шаге
+      > google-services.
 - [ ] 🔴 Android: настоящий release keystore (сейчас подписывается debug-ключом — TODO в `android/app/build.gradle.kts`)
 - [ ] 🔴 iOS: дистрибутивный профиль/сертификат, App Store Connect запись
 - [ ] 🟡 Поднять `version:` в `pubspec.yaml` для каждого релиза (сейчас `1.0.0+1`)

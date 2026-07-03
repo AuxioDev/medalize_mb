@@ -1,4 +1,4 @@
-package com.example.medalize_mb
+package az.medalize.app
 
 import io.flutter.embedding.android.FlutterActivity
 

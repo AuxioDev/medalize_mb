@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.medalize_mb"
+    namespace = "az.medalize.app"
     // file_picker's transitive flutter_plugin_android_lifecycle requires API 36.
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
@@ -20,8 +20,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.medalize_mb"
+        applicationId = "az.medalize.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
