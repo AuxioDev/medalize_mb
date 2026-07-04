@@ -106,6 +106,19 @@ class AuthRepository {
     }
   }
 
+  /// Persists the UI language on the server so emails and notifications are
+  /// sent in the user's language. [code] must be a concrete language code
+  /// (`en`/`ru`/`az`/`tr`/`fr`/`zh`), never the local `'system'` sentinel.
+  Future<void> updateLanguage(String code) async {
+    try {
+      await _dio.patch('/auth/me/', data: {'language': code});
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
   Future<void> requestPasswordReset(String email) async {
     try {
       await _dio.post('/auth/password/reset/', data: {'email': email});

@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
+import 'package:medalize_mb/core/locale/language_sync.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/security/biometric_service.dart';
 import 'package:medalize_mb/core/services/device_identity.dart';
@@ -274,6 +277,11 @@ class AuthNotifier extends Notifier<AuthState> {
       firstName: response.firstName,
       lastName: response.lastName,
     );
+    // Fire-and-forget: push the locally selected UI language to the backend
+    // so a language chosen before signing in (stored only on-device until
+    // now) is reflected in server-sent emails/notifications. Best-effort —
+    // errors are logged inside and never affect the login flow.
+    unawaited(syncStoredLanguageToBackend(ref));
   }
 
   Future<void> register({

@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:medalize_mb/core/locale/language_sync.dart';
 import 'package:medalize_mb/core/storage/secure_storage.dart';
+import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
+import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Sentinel persisted when the user wants the app to follow the device language.
-const _systemLanguage = 'system';
+const _systemLanguage = systemLanguageSentinel;
 
 /// Resolves the persisted language preference at startup, before [runApp], so
 /// the first frame already renders in the correct language (no flash).
@@ -26,13 +31,14 @@ Future<void> initLocale() async {
 /// Holds the active [AppLocale], or `null` when the app follows the device
 /// language. Mirrors the persistence pattern of `themeModeProvider`.
 final localeProvider =
-    StateNotifierProvider<LocaleNotifier, AppLocale?>((ref) => LocaleNotifier());
+    StateNotifierProvider<LocaleNotifier, AppLocale?>((ref) => LocaleNotifier(ref));
 
 class LocaleNotifier extends StateNotifier<AppLocale?> {
-  LocaleNotifier() : super(null) {
+  LocaleNotifier(this._ref) : super(null) {
     _load();
   }
 
+  final Ref _ref;
   final _storage = SecureStorage();
 
   Future<void> _load() async {
@@ -45,6 +51,9 @@ class LocaleNotifier extends StateNotifier<AppLocale?> {
   }
 
   /// Switches the app language. Pass `null` to follow the device language.
+  ///
+  /// The local switch is synchronous and immediate; when the user is signed
+  /// in, the choice is additionally pushed to the backend in the background.
   Future<void> setLocale(AppLocale? locale) async {
     if (locale == null) {
       LocaleSettings.useDeviceLocale();
@@ -54,6 +63,16 @@ class LocaleNotifier extends StateNotifier<AppLocale?> {
       await _storage.saveLanguage(locale.languageCode);
     }
     state = locale;
+    // Only an explicit user choice is synced — the startup [_load] restores
+    // from storage without touching the network. "System" is resolved to the
+    // actual device language code first; the backend rejects `'system'`.
+    // Fire-and-forget: a failure never blocks or rolls back the local switch.
+    if (_ref.read(authProvider) is AuthAuthenticated) {
+      unawaited(pushLanguageToBackend(
+        _ref,
+        (locale ?? AppLocaleUtils.findDeviceLocale()).languageCode,
+      ));
+    }
   }
 }
 
