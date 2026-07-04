@@ -1,43 +1,68 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/storage/secure_storage.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
-import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
+import 'package:medalize_mb/features/patient/data/repository/favorites_repository.dart';
 
-/// Locally persisted set of favorite doctor IDs. Backed by [SecureStorage]; no
-/// server sync (see roadmap — can move to backend later).
+/// Favorite doctor IDs, synced with the backend (`/favorites/`). The
+/// [SecureStorage] copy is kept as an offline fallback: reads use it when the
+/// network is down, and every successful server round-trip refreshes it.
 final favoritesProvider =
     StateNotifierProvider<FavoritesNotifier, Set<String>>(
-  (ref) => FavoritesNotifier(),
+  (ref) => FavoritesNotifier(ref.read(favoritesRepositoryProvider)),
 );
 
 class FavoritesNotifier extends StateNotifier<Set<String>> {
-  FavoritesNotifier() : super(const {}) {
+  FavoritesNotifier(this._repo) : super(const {}) {
     _load();
   }
 
+  final FavoritesRepository _repo;
   final _storage = SecureStorage();
 
   Future<void> _load() async {
-    state = (await _storage.getFavoriteDoctors()).toSet();
+    try {
+      final doctors = await _repo.getFavorites();
+      final ids = doctors.map((d) => d.id).toSet();
+      if (!mounted) return;
+      state = ids;
+      await _storage.saveFavoriteDoctors(ids.toList());
+    } catch (_) {
+      // Offline / server error — fall back to the last known local copy.
+      final cached = (await _storage.getFavoriteDoctors()).toSet();
+      if (mounted) state = cached;
+    }
   }
 
   bool isFavorite(String doctorId) => state.contains(doctorId);
 
-  Future<void> toggle(String doctorId) async {
+  /// Returns true when the server accepted the change. On failure the local
+  /// state is left untouched (no optimistic flip), so the heart icon always
+  /// reflects what the backend actually has.
+  Future<bool> toggle(String doctorId) async {
+    final removing = state.contains(doctorId);
+    try {
+      if (removing) {
+        await _repo.removeFavorite(doctorId);
+      } else {
+        await _repo.addFavorite(doctorId);
+      }
+    } catch (_) {
+      return false;
+    }
+    if (!mounted) return true;
     final next = {...state};
-    // Set.add returns false when the element was already present → toggle off.
-    if (!next.add(doctorId)) next.remove(doctorId);
+    removing ? next.remove(doctorId) : next.add(doctorId);
     state = next;
     await _storage.saveFavoriteDoctors(next.toList());
+    return true;
   }
 }
 
-/// Resolves the favorite IDs into full doctor models for the favorites screen.
-/// One detail fetch per favorite — fine for the small, local-only list.
+/// Full doctor cards for the favorites screen, straight from
+/// `GET /favorites/`. Watches [favoritesProvider] so a toggle anywhere in the
+/// app refreshes the list.
 final favoriteDoctorsProvider =
-    FutureProvider.autoDispose<List<DoctorDetailModel>>((ref) async {
-  final ids = ref.watch(favoritesProvider);
-  if (ids.isEmpty) return [];
-  final repo = ref.read(doctorRepositoryProvider);
-  return Future.wait(ids.map(repo.getDoctorDetail));
+    FutureProvider.autoDispose<List<DoctorModel>>((ref) {
+  ref.watch(favoritesProvider);
+  return ref.watch(favoritesRepositoryProvider).getFavorites();
 });
