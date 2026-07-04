@@ -20,6 +20,7 @@ class AuthInterceptor extends Interceptor {
   static const _noAuthPaths = {
     '/auth/login/', '/auth/register/', '/auth/token/refresh/',
     '/auth/password/reset/', '/auth/password/reset/confirm/',
+    '/auth/social/google/', '/auth/social/apple/',
   };
 
   bool _skipAuth(String path) {
@@ -38,6 +39,14 @@ class AuthInterceptor extends Interceptor {
       final token = await storage.getAccessToken();
       if (token != null) {
         options.headers['Authorization'] = 'Bearer $token';
+      }
+      // Identifies this device on authenticated calls so the backend can mark
+      // the current entry in the active-sessions list (GET /auth/devices/).
+      // Unauthenticated auth endpoints already carry device fields in their
+      // bodies.
+      final deviceId = await storage.getDeviceId();
+      if (deviceId != null) {
+        options.headers['X-Device-Id'] = deviceId;
       }
     }
     handler.next(options);
@@ -86,9 +95,19 @@ class AuthInterceptor extends Interceptor {
         receiveTimeout: AppConfig.receiveTimeout,
       ));
 
+      // Device identity accompanies the refresh so the backend can update
+      // this device's entry (jti + last_seen_at) in the sessions list.
+      final deviceId = await storage.getDeviceId();
+      final deviceName = await storage.getDeviceName();
+      final devicePlatform = await storage.getDevicePlatform();
       final res = await refreshDio.post(
         '/auth/token/refresh/',
-        data: {'refresh': refreshToken},
+        data: {
+          'refresh': refreshToken,
+          'device_id': ?deviceId,
+          'device_name': ?deviceName,
+          'platform': ?devicePlatform,
+        },
       );
       final responseData = res.data as Map<String, dynamic>;
 

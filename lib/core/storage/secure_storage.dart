@@ -15,6 +15,10 @@ abstract final class _Keys {
   static const themeMode = 'theme_mode';
   static const language = 'app_language';
   static const favoriteDoctors = 'favorite_doctors';
+  static const deviceId = 'device_id';
+  static const deviceName = 'device_name';
+  static const devicePlatform = 'device_platform';
+  static const biometricEnabled = 'biometric_enabled';
 }
 
 class SecureStorage {
@@ -111,12 +115,50 @@ class SecureStorage {
   Future<void> saveFavoriteDoctors(List<String> ids) =>
       _storage.write(key: _Keys.favoriteDoctors, value: jsonEncode(ids));
 
-  /// Clears session data but preserves the user's theme and language preferences.
+  /// Stable per-install device identifier (UUID). Generated once on first
+  /// launch and deliberately preserved across logouts (see [clearAll]) so the
+  /// backend can recognise the device between sessions.
+  Future<String?> getDeviceId() => _storage.read(key: _Keys.deviceId);
+  Future<void> saveDeviceId(String value) =>
+      _storage.write(key: _Keys.deviceId, value: value);
+
+  /// Human-readable device name + platform, cached here so the auth
+  /// interceptor can attach them to token-refresh requests without a
+  /// device_info_plus round-trip on every refresh.
+  Future<String?> getDeviceName() => _storage.read(key: _Keys.deviceName);
+  Future<void> saveDeviceName(String value) =>
+      _storage.write(key: _Keys.deviceName, value: value);
+
+  Future<String?> getDevicePlatform() =>
+      _storage.read(key: _Keys.devicePlatform);
+  Future<void> saveDevicePlatform(String value) =>
+      _storage.write(key: _Keys.devicePlatform, value: value);
+
+  Future<bool?> getBiometricEnabled() async {
+    final raw = await _storage.read(key: _Keys.biometricEnabled);
+    if (raw == null) return null;
+    return raw == 'true';
+  }
+
+  Future<void> saveBiometricEnabled(bool value) =>
+      _storage.write(key: _Keys.biometricEnabled, value: value.toString());
+
+  /// Clears session data but preserves device-level values: theme, language,
+  /// the biometric preference and the device identity (the latter must never
+  /// rotate on logout — it identifies the *device*, not the session).
   Future<void> clearAll() async {
     final theme = await getThemeMode();
     final language = await getLanguage();
+    final deviceId = await getDeviceId();
+    final deviceName = await getDeviceName();
+    final devicePlatform = await getDevicePlatform();
+    final biometricEnabled = await getBiometricEnabled();
     await _storage.deleteAll();
     if (theme != null) await saveThemeMode(theme);
     if (language != null) await saveLanguage(language);
+    if (deviceId != null) await saveDeviceId(deviceId);
+    if (deviceName != null) await saveDeviceName(deviceName);
+    if (devicePlatform != null) await saveDevicePlatform(devicePlatform);
+    if (biometricEnabled != null) await saveBiometricEnabled(biometricEnabled);
   }
 }
