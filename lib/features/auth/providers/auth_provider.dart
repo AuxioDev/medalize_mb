@@ -1,16 +1,28 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
+import 'package:medalize_mb/core/security/biometric_service.dart';
+import 'package:medalize_mb/core/services/device_identity.dart';
 import 'package:medalize_mb/core/services/fcm_service.dart';
 import 'package:medalize_mb/core/storage/secure_storage.dart';
 import 'package:medalize_mb/features/auth/data/models/login_request.dart';
+import 'package:medalize_mb/features/auth/data/models/login_response.dart';
 import 'package:medalize_mb/features/auth/data/models/register_request.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
+import 'package:medalize_mb/features/auth/data/social_auth_service.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
 final authProvider = NotifierProvider<AuthNotifier, AuthState>(AuthNotifier.new);
 
+/// Session is only re-locked behind the biometric gate if the app spent at
+/// least this long in the background — a quick app-switcher glance or an
+/// incoming-call interruption shouldn't force a re-prompt every time.
+const _biometricGateThreshold = Duration(minutes: 1);
+
 class AuthNotifier extends Notifier<AuthState> {
+  DateTime? _backgroundedAt;
+
   @override
   AuthState build() {
     Future(_init);
@@ -20,9 +32,51 @@ class AuthNotifier extends Notifier<AuthState> {
   SecureStorage get _storage => ref.read(secureStorageProvider);
   AuthRepository get _repo => ref.read(authRepositoryProvider);
 
+  /// Records the moment the app is backgrounded; see [handleAppResumed].
+  void handleAppPaused() {
+    _backgroundedAt = DateTime.now();
+  }
+
+  /// Re-gates the already-restored session behind biometrics after a long
+  /// enough time in the background. A failed/unavailable check locally locks
+  /// the session (falls back to the regular login screen) — it never touches
+  /// the server or the stored tokens, so a normal sign-in (or the next
+  /// successful biometric check on relaunch) restores access.
+  Future<void> handleAppResumed() async {
+    final backgroundedAt = _backgroundedAt;
+    _backgroundedAt = null;
+    if (backgroundedAt == null) return;
+    if (state is! AuthAuthenticated) return;
+    if (DateTime.now().difference(backgroundedAt) < _biometricGateThreshold) {
+      return;
+    }
+    if (await _biometricGateFails()) {
+      state = const AuthUnauthenticated();
+    }
+  }
+
+  /// Checks the client-side biometric gate before a stored session is used.
+  /// Returns `false` when the gate is off or the user passed it; `true` when
+  /// it's on and the user failed it or biometrics are unavailable — callers
+  /// must treat that as "do not restore the session".
+  Future<bool> _biometricGateFails() async {
+    final enabled = await _storage.getBiometricEnabled() ?? false;
+    if (!enabled) return false;
+    final biometric = ref.read(biometricServiceProvider);
+    if (!await biometric.isSupported()) return true;
+    final ok = await biometric.authenticate(t.security.biometricPrompt);
+    return !ok;
+  }
+
   Future<void> _init() async {
     final storedAccess = await _storage.getAccessToken();
     if (storedAccess == null) {
+      state = const AuthUnauthenticated();
+      return;
+    }
+    if (await _biometricGateFails()) {
+      // Tokens stay in storage — only the automatic restore is skipped, so a
+      // regular sign-in (or the next successful biometric check) still works.
       state = const AuthUnauthenticated();
       return;
     }
@@ -139,37 +193,87 @@ class AuthNotifier extends Notifier<AuthState> {
   }) async {
     state = const AuthLoading();
     try {
+      final device = await ref.read(deviceIdentityProvider).describe();
       final response = await _repo.login(
-        LoginRequest(email: email, password: password, rememberMe: rememberMe),
+        LoginRequest(
+          email: email,
+          password: password,
+          rememberMe: rememberMe,
+          deviceId: device['device_id'],
+          deviceName: device['device_name'],
+          platform: device['platform'],
+        ),
       );
-      await _storage.saveTokens(
-        accessToken: response.access,
-        refreshToken: response.refresh,
-        role: response.role,
-        userId: response.userId,
-        email: response.email,
-      );
-      await _storage.saveProfile(
-        onboardingComplete: response.onboardingComplete,
-        isVerified: response.isVerified,
-        firstName: response.firstName,
-        lastName: response.lastName,
-      );
-      state = AuthAuthenticated(
-        accessToken: response.access,
-        refreshToken: response.refresh,
-        role: response.role,
-        userId: response.userId,
-        email: response.email,
-        onboardingComplete: response.onboardingComplete,
-        isVerified: response.isVerified,
-        firstName: response.firstName,
-        lastName: response.lastName,
-      );
+      await _applyAuthResponse(response);
       ref.read(fcmServiceProvider).init();
     } on ApiException catch (e) {
       state = AuthError(e);
     }
+  }
+
+  /// Exchanges a Google id_token for our JWT pair. `null` from the SDK means
+  /// the user cancelled the flow — that's not an error, so the screen simply
+  /// returns to the sign-in form rather than showing a message.
+  Future<void> loginWithGoogle() =>
+      _socialLogin('google', () => ref.read(socialAuthServiceProvider).getGoogleIdToken());
+
+  /// Same as [loginWithGoogle] but for Sign in with Apple (required by App
+  /// Store guideline 4.8 alongside any third-party login).
+  Future<void> loginWithApple() =>
+      _socialLogin('apple', () => ref.read(socialAuthServiceProvider).getAppleIdToken());
+
+  Future<void> _socialLogin(
+    String provider,
+    Future<String?> Function() getIdToken,
+  ) async {
+    state = const AuthLoading();
+    try {
+      final idToken = await getIdToken();
+      if (idToken == null) {
+        // User backed out of the native sheet — quietly return to the form.
+        state = const AuthUnauthenticated();
+        return;
+      }
+      final device = await ref.read(deviceIdentityProvider).describe();
+      final response = await _repo.socialLogin(
+        provider,
+        idToken: idToken,
+        device: device,
+      );
+      await _applyAuthResponse(response);
+      ref.read(fcmServiceProvider).init();
+    } on SocialAuthException {
+      state = const AuthError(SocialAuthFailedException());
+    } on ApiException catch (e) {
+      state = AuthError(e);
+    }
+  }
+
+  Future<void> _applyAuthResponse(LoginResponse response) async {
+    await _storage.saveTokens(
+      accessToken: response.access,
+      refreshToken: response.refresh,
+      role: response.role,
+      userId: response.userId,
+      email: response.email,
+    );
+    await _storage.saveProfile(
+      onboardingComplete: response.onboardingComplete,
+      isVerified: response.isVerified,
+      firstName: response.firstName,
+      lastName: response.lastName,
+    );
+    state = AuthAuthenticated(
+      accessToken: response.access,
+      refreshToken: response.refresh,
+      role: response.role,
+      userId: response.userId,
+      email: response.email,
+      onboardingComplete: response.onboardingComplete,
+      isVerified: response.isVerified,
+      firstName: response.firstName,
+      lastName: response.lastName,
+    );
   }
 
   Future<void> register({

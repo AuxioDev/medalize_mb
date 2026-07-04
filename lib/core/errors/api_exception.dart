@@ -66,6 +66,16 @@ class ValidationException extends ApiException {
   String get userMessage => firstError;
 }
 
+/// A provider SDK (Google/Apple) failed before we ever reached the backend —
+/// e.g. missing Play Services, placeholder client IDs, or a native plugin
+/// error. Distinct from [ServerException] so the login screen shows a message
+/// about sign-in, not a generic "server error (0)".
+class SocialAuthFailedException extends ApiException {
+  const SocialAuthFailedException();
+  @override
+  String get userMessage => t.errors.socialLoginFailed;
+}
+
 class NetworkException extends ApiException {
   const NetworkException([this.message]);
   final String? message;
