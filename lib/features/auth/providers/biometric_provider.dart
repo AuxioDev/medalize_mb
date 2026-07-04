@@ -3,6 +3,13 @@ import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/security/biometric_service.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
+/// Whether this device supports biometric authentication at all — drives
+/// whether the toggle in Profile > Security is enabled or shown as
+/// unavailable.
+final biometricSupportedProvider = FutureProvider<bool>(
+  (ref) => ref.read(biometricServiceProvider).isSupported(),
+);
+
 /// Whether the "unlock with biometrics" gate is enabled. Persisted in secure
 /// storage (mirrors the `app_language` pattern) and preserved across logouts.
 final biometricEnabledProvider =

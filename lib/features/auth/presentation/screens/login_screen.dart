@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
+import 'package:medalize_mb/features/auth/presentation/widgets/social_login_buttons.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
@@ -199,6 +200,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                       label: context.t.auth.login,
                       isLoading: isLoading,
                       onPressed: isLoading || !_isFormValid ? null : _submit,
+                    ),
+                    const SizedBox(height: 16),
+                    SocialLoginButtons(
+                      enabled: !isLoading,
+                      onGoogleTap: () =>
+                          ref.read(authProvider.notifier).loginWithGoogle(),
+                      onAppleTap: () =>
+                          ref.read(authProvider.notifier).loginWithApple(),
                     ),
                     const SizedBox(height: 4),
                     Row(

@@ -28,9 +28,11 @@ import 'package:medalize_mb/features/patient/presentation/screens/favorites_scre
 import 'package:medalize_mb/features/patient/presentation/screens/my_appointments_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/patient_home_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/reschedule_calendar_screen.dart';
+import 'package:medalize_mb/features/shared/presentation/screens/active_sessions_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/legal_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/notifications_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/profile_screen.dart';
+import 'package:medalize_mb/features/shared/presentation/screens/security_screen.dart';
 import 'package:medalize_mb/core/services/navigator_key.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/settings_screen.dart';
 
@@ -212,6 +214,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/shared/profile',
         pageBuilder: (_, _) => _pushPage(const ProfileScreen()),
+      ),
+      GoRoute(
+        path: '/shared/security',
+        pageBuilder: (_, _) => _pushPage(const SecurityScreen()),
+      ),
+      GoRoute(
+        path: '/shared/active-sessions',
+        pageBuilder: (_, _) => _pushPage(const ActiveSessionsScreen()),
       ),
       GoRoute(
         path: '/shared/notifications',

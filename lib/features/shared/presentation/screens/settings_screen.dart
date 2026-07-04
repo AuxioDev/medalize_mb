@@ -44,6 +44,12 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                   const _Divider(),
                   _SettingsTile(
+                    icon: Icons.security_outlined,
+                    label: t.security.title,
+                    route: '/shared/security',
+                  ),
+                  const _Divider(),
+                  _SettingsTile(
                     icon: Icons.privacy_tip_outlined,
                     label: t.settings.legal,
                     route: '/shared/legal',
