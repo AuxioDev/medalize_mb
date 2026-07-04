@@ -47,6 +47,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$validation$tr validation = _Translations$validation$tr._(_root);
 	@override late final _Translations$errors$tr errors = _Translations$errors$tr._(_root);
 	@override late final _Translations$settings$tr settings = _Translations$settings$tr._(_root);
+	@override late final _Translations$security$tr security = _Translations$security$tr._(_root);
 	@override late final _Translations$status$tr status = _Translations$status$tr._(_root);
 	@override late final _Translations$home$tr home = _Translations$home$tr._(_root);
 	@override late final _Translations$appointments$tr appointments = _Translations$appointments$tr._(_root);
@@ -127,6 +128,9 @@ class _Translations$auth$tr extends Translations$auth$en {
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Girişe dön';
 	@override String get verificationCode => 'Doğrulama kodu';
+	@override String get continueWithGoogle => 'Google ile devam et';
+	@override String get continueWithApple => 'Apple ile devam et';
+	@override String get orDivider => 'veya';
 }
 
 // Path: forgotPassword
@@ -194,6 +198,7 @@ class _Translations$errors$tr extends Translations$errors$en {
 	@override String get permissionDenied => 'Bunu yapma izniniz yok.';
 	@override String get validationError => 'Doğrulama hatası';
 	@override String serverError({required Object code}) => 'Sunucu hatası (${code}). Lütfen tekrar deneyin.';
+	@override String get socialLoginFailed => 'Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.';
 }
 
 // Path: settings
@@ -217,6 +222,36 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get logoutConfirm => 'Çıkış yapmak istediğinizden emin misiniz?';
 	@override String get version => 'Medalize v1.0.0';
 	@override String get legal => 'Gizlilik ve Koşullar';
+}
+
+// Path: security
+class _Translations$security$tr extends Translations$security$en {
+	_Translations$security$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Güvenlik';
+	@override String get biometricLogin => 'Biyometrik Giriş';
+	@override String get biometricLoginSubtitle => 'Uygulamanın kilidini açmak için Face ID / Touch ID kullanın';
+	@override String get biometricPrompt => 'Medalize\'a erişmek için doğrulayın';
+	@override String get biometricUnavailable => 'Bu cihazda biyometrik kimlik doğrulama kullanılamıyor';
+	@override String get biometricEnableFailed => 'Biyometrik bilgileriniz doğrulanamadı. Tekrar deneyin.';
+	@override String get activeSessions => 'Aktif Oturumlar';
+	@override String get activeSessionsSubtitle => 'Hesabınıza şu anda giriş yapmış cihazlar';
+	@override String get thisDevice => 'Bu cihaz';
+	@override String lastActive({required Object date}) => 'Son aktif: ${date}';
+	@override String get revoke => 'İptal Et';
+	@override String get revokeConfirmTitle => 'Cihaz iptal edilsin mi?';
+	@override String revokeConfirmMessage({required Object name}) => '${name} oturumu kapatılacak. Hesap bilgileriyle tekrar giriş yapabilir.';
+	@override String get revokeCurrentConfirmMessage => 'Bu sizin mevcut cihazınız — iptal ederseniz hemen çıkış yaparsınız.';
+	@override String get revokeFailed => 'Bu cihaz iptal edilemedi. Tekrar deneyin.';
+	@override String get signOutAllDevices => 'Tüm cihazlardan çıkış yap';
+	@override String get signOutAllConfirmTitle => 'Her yerden çıkış yapılsın mı?';
+	@override String get signOutAllConfirmMessage => 'Bu cihaz dahil tüm cihazlarda oturumunuz kapatılacak.';
+	@override String get signOutAllFailed => 'Tüm cihazlardan çıkış yapılamadı. Tekrar deneyin.';
+	@override String get noDevices => 'Aktif oturum bulunamadı';
+	@override String get loadFailed => 'Aktif oturumlarınız yüklenemedi';
 }
 
 // Path: status
@@ -712,6 +747,9 @@ extension on TranslationsTr {
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Girişe dön',
 			'auth.verificationCode' => 'Doğrulama kodu',
+			'auth.continueWithGoogle' => 'Google ile devam et',
+			'auth.continueWithApple' => 'Apple ile devam et',
+			'auth.orDivider' => 'veya',
 			'forgotPassword.title' => 'Şifrenizi mi unuttunuz?',
 			'forgotPassword.subtitle' => 'E-postanızı girin, size 6 haneli bir sıfırlama kodu gönderelim',
 			'resetPassword.title' => 'Şifreyi Sıfırla',
@@ -743,6 +781,7 @@ extension on TranslationsTr {
 			'errors.permissionDenied' => 'Bunu yapma izniniz yok.',
 			'errors.validationError' => 'Doğrulama hatası',
 			'errors.serverError' => ({required Object code}) => 'Sunucu hatası (${code}). Lütfen tekrar deneyin.',
+			'errors.socialLoginFailed' => 'Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.',
 			'settings.title' => 'Ayarlar',
 			'settings.account' => 'Hesap',
 			'settings.profile' => 'Profil',
@@ -757,6 +796,27 @@ extension on TranslationsTr {
 			'settings.logoutConfirm' => 'Çıkış yapmak istediğinizden emin misiniz?',
 			'settings.version' => 'Medalize v1.0.0',
 			'settings.legal' => 'Gizlilik ve Koşullar',
+			'security.title' => 'Güvenlik',
+			'security.biometricLogin' => 'Biyometrik Giriş',
+			'security.biometricLoginSubtitle' => 'Uygulamanın kilidini açmak için Face ID / Touch ID kullanın',
+			'security.biometricPrompt' => 'Medalize\'a erişmek için doğrulayın',
+			'security.biometricUnavailable' => 'Bu cihazda biyometrik kimlik doğrulama kullanılamıyor',
+			'security.biometricEnableFailed' => 'Biyometrik bilgileriniz doğrulanamadı. Tekrar deneyin.',
+			'security.activeSessions' => 'Aktif Oturumlar',
+			'security.activeSessionsSubtitle' => 'Hesabınıza şu anda giriş yapmış cihazlar',
+			'security.thisDevice' => 'Bu cihaz',
+			'security.lastActive' => ({required Object date}) => 'Son aktif: ${date}',
+			'security.revoke' => 'İptal Et',
+			'security.revokeConfirmTitle' => 'Cihaz iptal edilsin mi?',
+			'security.revokeConfirmMessage' => ({required Object name}) => '${name} oturumu kapatılacak. Hesap bilgileriyle tekrar giriş yapabilir.',
+			'security.revokeCurrentConfirmMessage' => 'Bu sizin mevcut cihazınız — iptal ederseniz hemen çıkış yaparsınız.',
+			'security.revokeFailed' => 'Bu cihaz iptal edilemedi. Tekrar deneyin.',
+			'security.signOutAllDevices' => 'Tüm cihazlardan çıkış yap',
+			'security.signOutAllConfirmTitle' => 'Her yerden çıkış yapılsın mı?',
+			'security.signOutAllConfirmMessage' => 'Bu cihaz dahil tüm cihazlarda oturumunuz kapatılacak.',
+			'security.signOutAllFailed' => 'Tüm cihazlardan çıkış yapılamadı. Tekrar deneyin.',
+			'security.noDevices' => 'Aktif oturum bulunamadı',
+			'security.loadFailed' => 'Aktif oturumlarınız yüklenemedi',
 			'status.confirmed' => 'Onaylandı',
 			'status.pending' => 'Beklemede',
 			'status.cancelled' => 'İptal edildi',

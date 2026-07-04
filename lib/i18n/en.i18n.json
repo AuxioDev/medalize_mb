@@ -45,7 +45,10 @@
     "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "Back to Sign In",
-    "verificationCode": "Verification code"
+    "verificationCode": "Verification code",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithApple": "Continue with Apple",
+    "orDivider": "or"
   },
   "forgotPassword": {
     "title": "Forgot Password?",
@@ -84,7 +87,8 @@
     "sessionRevoked": "Session was revoked. Please sign in again.",
     "permissionDenied": "You do not have permission to do this.",
     "validationError": "Validation error",
-    "serverError": "Server error ($code). Please try again."
+    "serverError": "Server error ($code). Please try again.",
+    "socialLoginFailed": "Sign-in failed. Please try again or use your email and password."
   },
   "settings": {
     "title": "Settings",
@@ -101,6 +105,29 @@
     "logoutConfirm": "Are you sure you want to logout?",
     "version": "Medalize v1.0.0",
     "legal": "Privacy & Terms"
+  },
+  "security": {
+    "title": "Security",
+    "biometricLogin": "Biometric Login",
+    "biometricLoginSubtitle": "Use Face ID / Touch ID to unlock the app",
+    "biometricPrompt": "Authenticate to access Medalize",
+    "biometricUnavailable": "Biometric authentication isn't available on this device",
+    "biometricEnableFailed": "Couldn't verify your biometrics. Please try again.",
+    "activeSessions": "Active Sessions",
+    "activeSessionsSubtitle": "Devices currently signed in to your account",
+    "thisDevice": "This device",
+    "lastActive": "Last active $date",
+    "revoke": "Revoke",
+    "revokeConfirmTitle": "Revoke device?",
+    "revokeConfirmMessage": "$name will be signed out. It can sign in again with your account credentials.",
+    "revokeCurrentConfirmMessage": "This is your current device — revoking it will sign you out immediately.",
+    "revokeFailed": "Couldn't revoke this device. Please try again.",
+    "signOutAllDevices": "Sign out of all devices",
+    "signOutAllConfirmTitle": "Sign out everywhere?",
+    "signOutAllConfirmMessage": "You will be signed out on every device, including this one.",
+    "signOutAllFailed": "Couldn't sign out of all devices. Please try again.",
+    "noDevices": "No active sessions found",
+    "loadFailed": "Couldn't load your active sessions"
   },
   "status": {
     "confirmed": "Confirmed",

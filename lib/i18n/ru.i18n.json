@@ -45,7 +45,10 @@
     "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "Назад ко входу",
-    "verificationCode": "Код подтверждения"
+    "verificationCode": "Код подтверждения",
+    "continueWithGoogle": "Продолжить с Google",
+    "continueWithApple": "Продолжить с Apple",
+    "orDivider": "или"
   },
   "forgotPassword": {
     "title": "Забыли пароль?",
@@ -84,7 +87,8 @@
     "sessionRevoked": "Сессия отозвана. Пожалуйста, войдите снова.",
     "permissionDenied": "У вас нет прав для этого действия.",
     "validationError": "Ошибка проверки",
-    "serverError": "Ошибка сервера ($code). Повторите попытку."
+    "serverError": "Ошибка сервера ($code). Повторите попытку.",
+    "socialLoginFailed": "Не удалось войти. Попробуйте снова или используйте эл. почту и пароль."
   },
   "settings": {
     "title": "Настройки",
@@ -101,6 +105,29 @@
     "logoutConfirm": "Вы уверены, что хотите выйти?",
     "version": "Medalize v1.0.0",
     "legal": "Конфиденциальность и условия"
+  },
+  "security": {
+    "title": "Безопасность",
+    "biometricLogin": "Вход по биометрии",
+    "biometricLoginSubtitle": "Используйте Face ID / Touch ID для разблокировки приложения",
+    "biometricPrompt": "Подтвердите личность для доступа к Medalize",
+    "biometricUnavailable": "Биометрическая аутентификация недоступна на этом устройстве",
+    "biometricEnableFailed": "Не удалось подтвердить биометрию. Попробуйте снова.",
+    "activeSessions": "Активные сессии",
+    "activeSessionsSubtitle": "Устройства, вошедшие в ваш аккаунт",
+    "thisDevice": "Это устройство",
+    "lastActive": "Последняя активность: $date",
+    "revoke": "Отозвать",
+    "revokeConfirmTitle": "Отозвать устройство?",
+    "revokeConfirmMessage": "$name будет выведено из системы. Оно сможет войти снова с вашими учётными данными.",
+    "revokeCurrentConfirmMessage": "Это ваше текущее устройство — его отзыв немедленно завершит вашу сессию.",
+    "revokeFailed": "Не удалось отозвать это устройство. Попробуйте снова.",
+    "signOutAllDevices": "Выйти со всех устройств",
+    "signOutAllConfirmTitle": "Выйти везде?",
+    "signOutAllConfirmMessage": "Вы выйдете из системы на всех устройствах, включая это.",
+    "signOutAllFailed": "Не удалось выйти со всех устройств. Попробуйте снова.",
+    "noDevices": "Активные сессии не найдены",
+    "loadFailed": "Не удалось загрузить активные сессии"
   },
   "status": {
     "confirmed": "Подтверждено",

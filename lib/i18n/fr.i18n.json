@@ -45,7 +45,10 @@
     "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "Retour à la connexion",
-    "verificationCode": "Code de vérification"
+    "verificationCode": "Code de vérification",
+    "continueWithGoogle": "Continuer avec Google",
+    "continueWithApple": "Continuer avec Apple",
+    "orDivider": "ou"
   },
   "forgotPassword": {
     "title": "Mot de passe oublié ?",
@@ -84,7 +87,8 @@
     "sessionRevoked": "Session révoquée. Veuillez vous reconnecter.",
     "permissionDenied": "Vous n'avez pas la permission de faire cela.",
     "validationError": "Erreur de validation",
-    "serverError": "Erreur serveur ($code). Veuillez réessayer."
+    "serverError": "Erreur serveur ($code). Veuillez réessayer.",
+    "socialLoginFailed": "Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe."
   },
   "settings": {
     "title": "Paramètres",
@@ -101,6 +105,29 @@
     "logoutConfirm": "Voulez-vous vraiment vous déconnecter ?",
     "version": "Medalize v1.0.0",
     "legal": "Confidentialité et conditions"
+  },
+  "security": {
+    "title": "Sécurité",
+    "biometricLogin": "Connexion biométrique",
+    "biometricLoginSubtitle": "Utilisez Face ID / Touch ID pour déverrouiller l'application",
+    "biometricPrompt": "Authentifiez-vous pour accéder à Medalize",
+    "biometricUnavailable": "L'authentification biométrique n'est pas disponible sur cet appareil",
+    "biometricEnableFailed": "Impossible de vérifier votre biométrie. Réessayez.",
+    "activeSessions": "Sessions actives",
+    "activeSessionsSubtitle": "Appareils actuellement connectés à votre compte",
+    "thisDevice": "Cet appareil",
+    "lastActive": "Dernière activité : $date",
+    "revoke": "Révoquer",
+    "revokeConfirmTitle": "Révoquer l'appareil ?",
+    "revokeConfirmMessage": "$name sera déconnecté. Il pourra se reconnecter avec vos identifiants.",
+    "revokeCurrentConfirmMessage": "Il s'agit de votre appareil actuel — le révoquer vous déconnectera immédiatement.",
+    "revokeFailed": "Impossible de révoquer cet appareil. Réessayez.",
+    "signOutAllDevices": "Se déconnecter de tous les appareils",
+    "signOutAllConfirmTitle": "Se déconnecter partout ?",
+    "signOutAllConfirmMessage": "Vous serez déconnecté sur tous les appareils, y compris celui-ci.",
+    "signOutAllFailed": "Impossible de se déconnecter de tous les appareils. Réessayez.",
+    "noDevices": "Aucune session active trouvée",
+    "loadFailed": "Impossible de charger vos sessions actives"
   },
   "status": {
     "confirmed": "Confirmé",

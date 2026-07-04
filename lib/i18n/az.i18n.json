@@ -45,7 +45,10 @@
     "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "Girişə qayıt",
-    "verificationCode": "Təsdiq kodu"
+    "verificationCode": "Təsdiq kodu",
+    "continueWithGoogle": "Google ilə davam et",
+    "continueWithApple": "Apple ilə davam et",
+    "orDivider": "və ya"
   },
   "forgotPassword": {
     "title": "Şifrəni unutmusunuz?",
@@ -84,7 +87,8 @@
     "sessionRevoked": "Sessiya ləğv edildi. Zəhmət olmasa yenidən daxil olun.",
     "permissionDenied": "Bunu etməyə icazəniz yoxdur.",
     "validationError": "Doğrulama xətası",
-    "serverError": "Server xətası ($code). Zəhmət olmasa yenidən cəhd edin."
+    "serverError": "Server xətası ($code). Zəhmət olmasa yenidən cəhd edin.",
+    "socialLoginFailed": "Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin."
   },
   "settings": {
     "title": "Parametrlər",
@@ -101,6 +105,29 @@
     "logoutConfirm": "Çıxmaq istədiyinizə əminsiniz?",
     "version": "Medalize v1.0.0",
     "legal": "Məxfilik və Şərtlər"
+  },
+  "security": {
+    "title": "Təhlükəsizlik",
+    "biometricLogin": "Biometrik Giriş",
+    "biometricLoginSubtitle": "Tətbiqin kilidini açmaq üçün Face ID / Touch ID istifadə edin",
+    "biometricPrompt": "Medalize-ə daxil olmaq üçün doğrulayın",
+    "biometricUnavailable": "Bu cihazda biometrik autentifikasiya mövcud deyil",
+    "biometricEnableFailed": "Biometrik məlumatlarınız təsdiqlənə bilmədi. Yenidən cəhd edin.",
+    "activeSessions": "Aktiv Sessiyalar",
+    "activeSessionsSubtitle": "Hesabınıza hazırda daxil olan cihazlar",
+    "thisDevice": "Bu cihaz",
+    "lastActive": "Son fəaliyyət: $date",
+    "revoke": "Ləğv et",
+    "revokeConfirmTitle": "Cihaz ləğv edilsin?",
+    "revokeConfirmMessage": "$name hesabdan çıxarılacaq. Hesab məlumatları ilə yenidən daxil ola bilər.",
+    "revokeCurrentConfirmMessage": "Bu sizin cari cihazınızdır — onu ləğv etsəniz dərhal çıxış edəcəksiniz.",
+    "revokeFailed": "Bu cihaz ləğv edilə bilmədi. Yenidən cəhd edin.",
+    "signOutAllDevices": "Bütün cihazlardan çıx",
+    "signOutAllConfirmTitle": "Hər yerdən çıxılsın?",
+    "signOutAllConfirmMessage": "Bu daxil olmaqla bütün cihazlardan çıxacaqsınız.",
+    "signOutAllFailed": "Bütün cihazlardan çıxış uğursuz oldu. Yenidən cəhd edin.",
+    "noDevices": "Aktiv sessiya tapılmadı",
+    "loadFailed": "Aktiv sessiyalarınız yüklənə bilmədi"
   },
   "status": {
     "confirmed": "Təsdiqləndi",

@@ -47,6 +47,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$validation$az validation = _Translations$validation$az._(_root);
 	@override late final _Translations$errors$az errors = _Translations$errors$az._(_root);
 	@override late final _Translations$settings$az settings = _Translations$settings$az._(_root);
+	@override late final _Translations$security$az security = _Translations$security$az._(_root);
 	@override late final _Translations$status$az status = _Translations$status$az._(_root);
 	@override late final _Translations$home$az home = _Translations$home$az._(_root);
 	@override late final _Translations$appointments$az appointments = _Translations$appointments$az._(_root);
@@ -127,6 +128,9 @@ class _Translations$auth$az extends Translations$auth$en {
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Girişə qayıt';
 	@override String get verificationCode => 'Təsdiq kodu';
+	@override String get continueWithGoogle => 'Google ilə davam et';
+	@override String get continueWithApple => 'Apple ilə davam et';
+	@override String get orDivider => 'və ya';
 }
 
 // Path: forgotPassword
@@ -194,6 +198,7 @@ class _Translations$errors$az extends Translations$errors$en {
 	@override String get permissionDenied => 'Bunu etməyə icazəniz yoxdur.';
 	@override String get validationError => 'Doğrulama xətası';
 	@override String serverError({required Object code}) => 'Server xətası (${code}). Zəhmət olmasa yenidən cəhd edin.';
+	@override String get socialLoginFailed => 'Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.';
 }
 
 // Path: settings
@@ -217,6 +222,36 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get logoutConfirm => 'Çıxmaq istədiyinizə əminsiniz?';
 	@override String get version => 'Medalize v1.0.0';
 	@override String get legal => 'Məxfilik və Şərtlər';
+}
+
+// Path: security
+class _Translations$security$az extends Translations$security$en {
+	_Translations$security$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Təhlükəsizlik';
+	@override String get biometricLogin => 'Biometrik Giriş';
+	@override String get biometricLoginSubtitle => 'Tətbiqin kilidini açmaq üçün Face ID / Touch ID istifadə edin';
+	@override String get biometricPrompt => 'Medalize-ə daxil olmaq üçün doğrulayın';
+	@override String get biometricUnavailable => 'Bu cihazda biometrik autentifikasiya mövcud deyil';
+	@override String get biometricEnableFailed => 'Biometrik məlumatlarınız təsdiqlənə bilmədi. Yenidən cəhd edin.';
+	@override String get activeSessions => 'Aktiv Sessiyalar';
+	@override String get activeSessionsSubtitle => 'Hesabınıza hazırda daxil olan cihazlar';
+	@override String get thisDevice => 'Bu cihaz';
+	@override String lastActive({required Object date}) => 'Son fəaliyyət: ${date}';
+	@override String get revoke => 'Ləğv et';
+	@override String get revokeConfirmTitle => 'Cihaz ləğv edilsin?';
+	@override String revokeConfirmMessage({required Object name}) => '${name} hesabdan çıxarılacaq. Hesab məlumatları ilə yenidən daxil ola bilər.';
+	@override String get revokeCurrentConfirmMessage => 'Bu sizin cari cihazınızdır — onu ləğv etsəniz dərhal çıxış edəcəksiniz.';
+	@override String get revokeFailed => 'Bu cihaz ləğv edilə bilmədi. Yenidən cəhd edin.';
+	@override String get signOutAllDevices => 'Bütün cihazlardan çıx';
+	@override String get signOutAllConfirmTitle => 'Hər yerdən çıxılsın?';
+	@override String get signOutAllConfirmMessage => 'Bu daxil olmaqla bütün cihazlardan çıxacaqsınız.';
+	@override String get signOutAllFailed => 'Bütün cihazlardan çıxış uğursuz oldu. Yenidən cəhd edin.';
+	@override String get noDevices => 'Aktiv sessiya tapılmadı';
+	@override String get loadFailed => 'Aktiv sessiyalarınız yüklənə bilmədi';
 }
 
 // Path: status
@@ -712,6 +747,9 @@ extension on TranslationsAz {
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Girişə qayıt',
 			'auth.verificationCode' => 'Təsdiq kodu',
+			'auth.continueWithGoogle' => 'Google ilə davam et',
+			'auth.continueWithApple' => 'Apple ilə davam et',
+			'auth.orDivider' => 'və ya',
 			'forgotPassword.title' => 'Şifrəni unutmusunuz?',
 			'forgotPassword.subtitle' => 'E-poçtunuzu daxil edin, sizə 6 rəqəmli bərpa kodu göndərək',
 			'resetPassword.title' => 'Şifrəni bərpa et',
@@ -743,6 +781,7 @@ extension on TranslationsAz {
 			'errors.permissionDenied' => 'Bunu etməyə icazəniz yoxdur.',
 			'errors.validationError' => 'Doğrulama xətası',
 			'errors.serverError' => ({required Object code}) => 'Server xətası (${code}). Zəhmət olmasa yenidən cəhd edin.',
+			'errors.socialLoginFailed' => 'Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.',
 			'settings.title' => 'Parametrlər',
 			'settings.account' => 'Hesab',
 			'settings.profile' => 'Profil',
@@ -757,6 +796,27 @@ extension on TranslationsAz {
 			'settings.logoutConfirm' => 'Çıxmaq istədiyinizə əminsiniz?',
 			'settings.version' => 'Medalize v1.0.0',
 			'settings.legal' => 'Məxfilik və Şərtlər',
+			'security.title' => 'Təhlükəsizlik',
+			'security.biometricLogin' => 'Biometrik Giriş',
+			'security.biometricLoginSubtitle' => 'Tətbiqin kilidini açmaq üçün Face ID / Touch ID istifadə edin',
+			'security.biometricPrompt' => 'Medalize-ə daxil olmaq üçün doğrulayın',
+			'security.biometricUnavailable' => 'Bu cihazda biometrik autentifikasiya mövcud deyil',
+			'security.biometricEnableFailed' => 'Biometrik məlumatlarınız təsdiqlənə bilmədi. Yenidən cəhd edin.',
+			'security.activeSessions' => 'Aktiv Sessiyalar',
+			'security.activeSessionsSubtitle' => 'Hesabınıza hazırda daxil olan cihazlar',
+			'security.thisDevice' => 'Bu cihaz',
+			'security.lastActive' => ({required Object date}) => 'Son fəaliyyət: ${date}',
+			'security.revoke' => 'Ləğv et',
+			'security.revokeConfirmTitle' => 'Cihaz ləğv edilsin?',
+			'security.revokeConfirmMessage' => ({required Object name}) => '${name} hesabdan çıxarılacaq. Hesab məlumatları ilə yenidən daxil ola bilər.',
+			'security.revokeCurrentConfirmMessage' => 'Bu sizin cari cihazınızdır — onu ləğv etsəniz dərhal çıxış edəcəksiniz.',
+			'security.revokeFailed' => 'Bu cihaz ləğv edilə bilmədi. Yenidən cəhd edin.',
+			'security.signOutAllDevices' => 'Bütün cihazlardan çıx',
+			'security.signOutAllConfirmTitle' => 'Hər yerdən çıxılsın?',
+			'security.signOutAllConfirmMessage' => 'Bu daxil olmaqla bütün cihazlardan çıxacaqsınız.',
+			'security.signOutAllFailed' => 'Bütün cihazlardan çıxış uğursuz oldu. Yenidən cəhd edin.',
+			'security.noDevices' => 'Aktiv sessiya tapılmadı',
+			'security.loadFailed' => 'Aktiv sessiyalarınız yüklənə bilmədi',
 			'status.confirmed' => 'Təsdiqləndi',
 			'status.pending' => 'Gözləyir',
 			'status.cancelled' => 'Ləğv edildi',

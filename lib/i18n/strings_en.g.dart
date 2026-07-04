@@ -51,6 +51,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$validation$en validation = Translations$validation$en.internal(_root);
 	late final Translations$errors$en errors = Translations$errors$en.internal(_root);
 	late final Translations$settings$en settings = Translations$settings$en.internal(_root);
+	late final Translations$security$en security = Translations$security$en.internal(_root);
 	late final Translations$status$en status = Translations$status$en.internal(_root);
 	late final Translations$home$en home = Translations$home$en.internal(_root);
 	late final Translations$appointments$en appointments = Translations$appointments$en.internal(_root);
@@ -217,6 +218,15 @@ class Translations$auth$en {
 
 	/// en: 'Verification code'
 	String get verificationCode => 'Verification code';
+
+	/// en: 'Continue with Google'
+	String get continueWithGoogle => 'Continue with Google';
+
+	/// en: 'Continue with Apple'
+	String get continueWithApple => 'Continue with Apple';
+
+	/// en: 'or'
+	String get orDivider => 'or';
 }
 
 // Path: forgotPassword
@@ -346,6 +356,9 @@ class Translations$errors$en {
 
 	/// en: 'Server error ($code). Please try again.'
 	String serverError({required Object code}) => 'Server error (${code}). Please try again.';
+
+	/// en: 'Sign-in failed. Please try again or use your email and password.'
+	String get socialLoginFailed => 'Sign-in failed. Please try again or use your email and password.';
 }
 
 // Path: settings
@@ -397,6 +410,78 @@ class Translations$settings$en {
 
 	/// en: 'Privacy & Terms'
 	String get legal => 'Privacy & Terms';
+}
+
+// Path: security
+class Translations$security$en {
+	Translations$security$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Security'
+	String get title => 'Security';
+
+	/// en: 'Biometric Login'
+	String get biometricLogin => 'Biometric Login';
+
+	/// en: 'Use Face ID / Touch ID to unlock the app'
+	String get biometricLoginSubtitle => 'Use Face ID / Touch ID to unlock the app';
+
+	/// en: 'Authenticate to access Medalize'
+	String get biometricPrompt => 'Authenticate to access Medalize';
+
+	/// en: 'Biometric authentication isn't available on this device'
+	String get biometricUnavailable => 'Biometric authentication isn\'t available on this device';
+
+	/// en: 'Couldn't verify your biometrics. Please try again.'
+	String get biometricEnableFailed => 'Couldn\'t verify your biometrics. Please try again.';
+
+	/// en: 'Active Sessions'
+	String get activeSessions => 'Active Sessions';
+
+	/// en: 'Devices currently signed in to your account'
+	String get activeSessionsSubtitle => 'Devices currently signed in to your account';
+
+	/// en: 'This device'
+	String get thisDevice => 'This device';
+
+	/// en: 'Last active $date'
+	String lastActive({required Object date}) => 'Last active ${date}';
+
+	/// en: 'Revoke'
+	String get revoke => 'Revoke';
+
+	/// en: 'Revoke device?'
+	String get revokeConfirmTitle => 'Revoke device?';
+
+	/// en: '$name will be signed out. It can sign in again with your account credentials.'
+	String revokeConfirmMessage({required Object name}) => '${name} will be signed out. It can sign in again with your account credentials.';
+
+	/// en: 'This is your current device — revoking it will sign you out immediately.'
+	String get revokeCurrentConfirmMessage => 'This is your current device — revoking it will sign you out immediately.';
+
+	/// en: 'Couldn't revoke this device. Please try again.'
+	String get revokeFailed => 'Couldn\'t revoke this device. Please try again.';
+
+	/// en: 'Sign out of all devices'
+	String get signOutAllDevices => 'Sign out of all devices';
+
+	/// en: 'Sign out everywhere?'
+	String get signOutAllConfirmTitle => 'Sign out everywhere?';
+
+	/// en: 'You will be signed out on every device, including this one.'
+	String get signOutAllConfirmMessage => 'You will be signed out on every device, including this one.';
+
+	/// en: 'Couldn't sign out of all devices. Please try again.'
+	String get signOutAllFailed => 'Couldn\'t sign out of all devices. Please try again.';
+
+	/// en: 'No active sessions found'
+	String get noDevices => 'No active sessions found';
+
+	/// en: 'Couldn't load your active sessions'
+	String get loadFailed => 'Couldn\'t load your active sessions';
 }
 
 // Path: status
@@ -1394,6 +1479,9 @@ extension on Translations {
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Back to Sign In',
 			'auth.verificationCode' => 'Verification code',
+			'auth.continueWithGoogle' => 'Continue with Google',
+			'auth.continueWithApple' => 'Continue with Apple',
+			'auth.orDivider' => 'or',
 			'forgotPassword.title' => 'Forgot Password?',
 			'forgotPassword.subtitle' => 'Enter your email and we\'ll send you a 6-digit reset code',
 			'resetPassword.title' => 'Reset Password',
@@ -1425,6 +1513,7 @@ extension on Translations {
 			'errors.permissionDenied' => 'You do not have permission to do this.',
 			'errors.validationError' => 'Validation error',
 			'errors.serverError' => ({required Object code}) => 'Server error (${code}). Please try again.',
+			'errors.socialLoginFailed' => 'Sign-in failed. Please try again or use your email and password.',
 			'settings.title' => 'Settings',
 			'settings.account' => 'Account',
 			'settings.profile' => 'Profile',
@@ -1439,6 +1528,27 @@ extension on Translations {
 			'settings.logoutConfirm' => 'Are you sure you want to logout?',
 			'settings.version' => 'Medalize v1.0.0',
 			'settings.legal' => 'Privacy & Terms',
+			'security.title' => 'Security',
+			'security.biometricLogin' => 'Biometric Login',
+			'security.biometricLoginSubtitle' => 'Use Face ID / Touch ID to unlock the app',
+			'security.biometricPrompt' => 'Authenticate to access Medalize',
+			'security.biometricUnavailable' => 'Biometric authentication isn\'t available on this device',
+			'security.biometricEnableFailed' => 'Couldn\'t verify your biometrics. Please try again.',
+			'security.activeSessions' => 'Active Sessions',
+			'security.activeSessionsSubtitle' => 'Devices currently signed in to your account',
+			'security.thisDevice' => 'This device',
+			'security.lastActive' => ({required Object date}) => 'Last active ${date}',
+			'security.revoke' => 'Revoke',
+			'security.revokeConfirmTitle' => 'Revoke device?',
+			'security.revokeConfirmMessage' => ({required Object name}) => '${name} will be signed out. It can sign in again with your account credentials.',
+			'security.revokeCurrentConfirmMessage' => 'This is your current device — revoking it will sign you out immediately.',
+			'security.revokeFailed' => 'Couldn\'t revoke this device. Please try again.',
+			'security.signOutAllDevices' => 'Sign out of all devices',
+			'security.signOutAllConfirmTitle' => 'Sign out everywhere?',
+			'security.signOutAllConfirmMessage' => 'You will be signed out on every device, including this one.',
+			'security.signOutAllFailed' => 'Couldn\'t sign out of all devices. Please try again.',
+			'security.noDevices' => 'No active sessions found',
+			'security.loadFailed' => 'Couldn\'t load your active sessions',
 			'status.confirmed' => 'Confirmed',
 			'status.pending' => 'Pending',
 			'status.cancelled' => 'Cancelled',

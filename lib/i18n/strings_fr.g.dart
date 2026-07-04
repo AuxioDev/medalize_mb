@@ -47,6 +47,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$validation$fr validation = _Translations$validation$fr._(_root);
 	@override late final _Translations$errors$fr errors = _Translations$errors$fr._(_root);
 	@override late final _Translations$settings$fr settings = _Translations$settings$fr._(_root);
+	@override late final _Translations$security$fr security = _Translations$security$fr._(_root);
 	@override late final _Translations$status$fr status = _Translations$status$fr._(_root);
 	@override late final _Translations$home$fr home = _Translations$home$fr._(_root);
 	@override late final _Translations$appointments$fr appointments = _Translations$appointments$fr._(_root);
@@ -127,6 +128,9 @@ class _Translations$auth$fr extends Translations$auth$en {
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Retour à la connexion';
 	@override String get verificationCode => 'Code de vérification';
+	@override String get continueWithGoogle => 'Continuer avec Google';
+	@override String get continueWithApple => 'Continuer avec Apple';
+	@override String get orDivider => 'ou';
 }
 
 // Path: forgotPassword
@@ -194,6 +198,7 @@ class _Translations$errors$fr extends Translations$errors$en {
 	@override String get permissionDenied => 'Vous n\'avez pas la permission de faire cela.';
 	@override String get validationError => 'Erreur de validation';
 	@override String serverError({required Object code}) => 'Erreur serveur (${code}). Veuillez réessayer.';
+	@override String get socialLoginFailed => 'Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.';
 }
 
 // Path: settings
@@ -217,6 +222,36 @@ class _Translations$settings$fr extends Translations$settings$en {
 	@override String get logoutConfirm => 'Voulez-vous vraiment vous déconnecter ?';
 	@override String get version => 'Medalize v1.0.0';
 	@override String get legal => 'Confidentialité et conditions';
+}
+
+// Path: security
+class _Translations$security$fr extends Translations$security$en {
+	_Translations$security$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Sécurité';
+	@override String get biometricLogin => 'Connexion biométrique';
+	@override String get biometricLoginSubtitle => 'Utilisez Face ID / Touch ID pour déverrouiller l\'application';
+	@override String get biometricPrompt => 'Authentifiez-vous pour accéder à Medalize';
+	@override String get biometricUnavailable => 'L\'authentification biométrique n\'est pas disponible sur cet appareil';
+	@override String get biometricEnableFailed => 'Impossible de vérifier votre biométrie. Réessayez.';
+	@override String get activeSessions => 'Sessions actives';
+	@override String get activeSessionsSubtitle => 'Appareils actuellement connectés à votre compte';
+	@override String get thisDevice => 'Cet appareil';
+	@override String lastActive({required Object date}) => 'Dernière activité : ${date}';
+	@override String get revoke => 'Révoquer';
+	@override String get revokeConfirmTitle => 'Révoquer l\'appareil ?';
+	@override String revokeConfirmMessage({required Object name}) => '${name} sera déconnecté. Il pourra se reconnecter avec vos identifiants.';
+	@override String get revokeCurrentConfirmMessage => 'Il s\'agit de votre appareil actuel — le révoquer vous déconnectera immédiatement.';
+	@override String get revokeFailed => 'Impossible de révoquer cet appareil. Réessayez.';
+	@override String get signOutAllDevices => 'Se déconnecter de tous les appareils';
+	@override String get signOutAllConfirmTitle => 'Se déconnecter partout ?';
+	@override String get signOutAllConfirmMessage => 'Vous serez déconnecté sur tous les appareils, y compris celui-ci.';
+	@override String get signOutAllFailed => 'Impossible de se déconnecter de tous les appareils. Réessayez.';
+	@override String get noDevices => 'Aucune session active trouvée';
+	@override String get loadFailed => 'Impossible de charger vos sessions actives';
 }
 
 // Path: status
@@ -712,6 +747,9 @@ extension on TranslationsFr {
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Retour à la connexion',
 			'auth.verificationCode' => 'Code de vérification',
+			'auth.continueWithGoogle' => 'Continuer avec Google',
+			'auth.continueWithApple' => 'Continuer avec Apple',
+			'auth.orDivider' => 'ou',
 			'forgotPassword.title' => 'Mot de passe oublié ?',
 			'forgotPassword.subtitle' => 'Saisissez votre e-mail et nous vous enverrons un code de réinitialisation à 6 chiffres',
 			'resetPassword.title' => 'Réinitialiser le mot de passe',
@@ -743,6 +781,7 @@ extension on TranslationsFr {
 			'errors.permissionDenied' => 'Vous n\'avez pas la permission de faire cela.',
 			'errors.validationError' => 'Erreur de validation',
 			'errors.serverError' => ({required Object code}) => 'Erreur serveur (${code}). Veuillez réessayer.',
+			'errors.socialLoginFailed' => 'Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.',
 			'settings.title' => 'Paramètres',
 			'settings.account' => 'Compte',
 			'settings.profile' => 'Profil',
@@ -757,6 +796,27 @@ extension on TranslationsFr {
 			'settings.logoutConfirm' => 'Voulez-vous vraiment vous déconnecter ?',
 			'settings.version' => 'Medalize v1.0.0',
 			'settings.legal' => 'Confidentialité et conditions',
+			'security.title' => 'Sécurité',
+			'security.biometricLogin' => 'Connexion biométrique',
+			'security.biometricLoginSubtitle' => 'Utilisez Face ID / Touch ID pour déverrouiller l\'application',
+			'security.biometricPrompt' => 'Authentifiez-vous pour accéder à Medalize',
+			'security.biometricUnavailable' => 'L\'authentification biométrique n\'est pas disponible sur cet appareil',
+			'security.biometricEnableFailed' => 'Impossible de vérifier votre biométrie. Réessayez.',
+			'security.activeSessions' => 'Sessions actives',
+			'security.activeSessionsSubtitle' => 'Appareils actuellement connectés à votre compte',
+			'security.thisDevice' => 'Cet appareil',
+			'security.lastActive' => ({required Object date}) => 'Dernière activité : ${date}',
+			'security.revoke' => 'Révoquer',
+			'security.revokeConfirmTitle' => 'Révoquer l\'appareil ?',
+			'security.revokeConfirmMessage' => ({required Object name}) => '${name} sera déconnecté. Il pourra se reconnecter avec vos identifiants.',
+			'security.revokeCurrentConfirmMessage' => 'Il s\'agit de votre appareil actuel — le révoquer vous déconnectera immédiatement.',
+			'security.revokeFailed' => 'Impossible de révoquer cet appareil. Réessayez.',
+			'security.signOutAllDevices' => 'Se déconnecter de tous les appareils',
+			'security.signOutAllConfirmTitle' => 'Se déconnecter partout ?',
+			'security.signOutAllConfirmMessage' => 'Vous serez déconnecté sur tous les appareils, y compris celui-ci.',
+			'security.signOutAllFailed' => 'Impossible de se déconnecter de tous les appareils. Réessayez.',
+			'security.noDevices' => 'Aucune session active trouvée',
+			'security.loadFailed' => 'Impossible de charger vos sessions actives',
 			'status.confirmed' => 'Confirmé',
 			'status.pending' => 'En attente',
 			'status.cancelled' => 'Annulé',

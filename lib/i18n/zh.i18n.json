@@ -45,7 +45,10 @@
     "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "返回登录",
-    "verificationCode": "验证码"
+    "verificationCode": "验证码",
+    "continueWithGoogle": "使用 Google 继续",
+    "continueWithApple": "使用 Apple 继续",
+    "orDivider": "或"
   },
   "forgotPassword": {
     "title": "忘记密码？",
@@ -84,7 +87,8 @@
     "sessionRevoked": "会话已被撤销，请重新登录。",
     "permissionDenied": "您没有执行此操作的权限。",
     "validationError": "验证错误",
-    "serverError": "服务器错误（$code），请重试。"
+    "serverError": "服务器错误（$code），请重试。",
+    "socialLoginFailed": "登录失败，请重试或使用邮箱和密码登录。"
   },
   "settings": {
     "title": "设置",
@@ -101,6 +105,29 @@
     "logoutConfirm": "您确定要退出登录吗？",
     "version": "Medalize v1.0.0",
     "legal": "隐私与条款"
+  },
+  "security": {
+    "title": "安全",
+    "biometricLogin": "生物识别登录",
+    "biometricLoginSubtitle": "使用面容 ID / 触控 ID 解锁应用",
+    "biometricPrompt": "请验证身份以访问 Medalize",
+    "biometricUnavailable": "此设备不支持生物识别认证",
+    "biometricEnableFailed": "无法验证您的生物识别信息，请重试。",
+    "activeSessions": "活跃会话",
+    "activeSessionsSubtitle": "当前已登录您账户的设备",
+    "thisDevice": "此设备",
+    "lastActive": "最后活跃：$date",
+    "revoke": "撤销",
+    "revokeConfirmTitle": "撤销此设备？",
+    "revokeConfirmMessage": "$name 将被登出，可使用账户凭据重新登录。",
+    "revokeCurrentConfirmMessage": "这是您当前的设备 — 撤销后将立即登出。",
+    "revokeFailed": "无法撤销此设备，请重试。",
+    "signOutAllDevices": "退出所有设备",
+    "signOutAllConfirmTitle": "退出所有设备？",
+    "signOutAllConfirmMessage": "您将在包括此设备在内的所有设备上登出。",
+    "signOutAllFailed": "无法退出所有设备，请重试。",
+    "noDevices": "未找到活跃会话",
+    "loadFailed": "无法加载您的活跃会话"
   },
   "status": {
     "confirmed": "已确认",

@@ -47,6 +47,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$validation$zh validation = _Translations$validation$zh._(_root);
 	@override late final _Translations$errors$zh errors = _Translations$errors$zh._(_root);
 	@override late final _Translations$settings$zh settings = _Translations$settings$zh._(_root);
+	@override late final _Translations$security$zh security = _Translations$security$zh._(_root);
 	@override late final _Translations$status$zh status = _Translations$status$zh._(_root);
 	@override late final _Translations$home$zh home = _Translations$home$zh._(_root);
 	@override late final _Translations$appointments$zh appointments = _Translations$appointments$zh._(_root);
@@ -127,6 +128,9 @@ class _Translations$auth$zh extends Translations$auth$en {
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => '返回登录';
 	@override String get verificationCode => '验证码';
+	@override String get continueWithGoogle => '使用 Google 继续';
+	@override String get continueWithApple => '使用 Apple 继续';
+	@override String get orDivider => '或';
 }
 
 // Path: forgotPassword
@@ -194,6 +198,7 @@ class _Translations$errors$zh extends Translations$errors$en {
 	@override String get permissionDenied => '您没有执行此操作的权限。';
 	@override String get validationError => '验证错误';
 	@override String serverError({required Object code}) => '服务器错误（${code}），请重试。';
+	@override String get socialLoginFailed => '登录失败，请重试或使用邮箱和密码登录。';
 }
 
 // Path: settings
@@ -217,6 +222,36 @@ class _Translations$settings$zh extends Translations$settings$en {
 	@override String get logoutConfirm => '您确定要退出登录吗？';
 	@override String get version => 'Medalize v1.0.0';
 	@override String get legal => '隐私与条款';
+}
+
+// Path: security
+class _Translations$security$zh extends Translations$security$en {
+	_Translations$security$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '安全';
+	@override String get biometricLogin => '生物识别登录';
+	@override String get biometricLoginSubtitle => '使用面容 ID / 触控 ID 解锁应用';
+	@override String get biometricPrompt => '请验证身份以访问 Medalize';
+	@override String get biometricUnavailable => '此设备不支持生物识别认证';
+	@override String get biometricEnableFailed => '无法验证您的生物识别信息，请重试。';
+	@override String get activeSessions => '活跃会话';
+	@override String get activeSessionsSubtitle => '当前已登录您账户的设备';
+	@override String get thisDevice => '此设备';
+	@override String lastActive({required Object date}) => '最后活跃：${date}';
+	@override String get revoke => '撤销';
+	@override String get revokeConfirmTitle => '撤销此设备？';
+	@override String revokeConfirmMessage({required Object name}) => '${name} 将被登出，可使用账户凭据重新登录。';
+	@override String get revokeCurrentConfirmMessage => '这是您当前的设备 — 撤销后将立即登出。';
+	@override String get revokeFailed => '无法撤销此设备，请重试。';
+	@override String get signOutAllDevices => '退出所有设备';
+	@override String get signOutAllConfirmTitle => '退出所有设备？';
+	@override String get signOutAllConfirmMessage => '您将在包括此设备在内的所有设备上登出。';
+	@override String get signOutAllFailed => '无法退出所有设备，请重试。';
+	@override String get noDevices => '未找到活跃会话';
+	@override String get loadFailed => '无法加载您的活跃会话';
 }
 
 // Path: status
@@ -712,6 +747,9 @@ extension on TranslationsZh {
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => '返回登录',
 			'auth.verificationCode' => '验证码',
+			'auth.continueWithGoogle' => '使用 Google 继续',
+			'auth.continueWithApple' => '使用 Apple 继续',
+			'auth.orDivider' => '或',
 			'forgotPassword.title' => '忘记密码？',
 			'forgotPassword.subtitle' => '输入您的电子邮箱，我们将发送 6 位重置码',
 			'resetPassword.title' => '重置密码',
@@ -743,6 +781,7 @@ extension on TranslationsZh {
 			'errors.permissionDenied' => '您没有执行此操作的权限。',
 			'errors.validationError' => '验证错误',
 			'errors.serverError' => ({required Object code}) => '服务器错误（${code}），请重试。',
+			'errors.socialLoginFailed' => '登录失败，请重试或使用邮箱和密码登录。',
 			'settings.title' => '设置',
 			'settings.account' => '账户',
 			'settings.profile' => '个人资料',
@@ -757,6 +796,27 @@ extension on TranslationsZh {
 			'settings.logoutConfirm' => '您确定要退出登录吗？',
 			'settings.version' => 'Medalize v1.0.0',
 			'settings.legal' => '隐私与条款',
+			'security.title' => '安全',
+			'security.biometricLogin' => '生物识别登录',
+			'security.biometricLoginSubtitle' => '使用面容 ID / 触控 ID 解锁应用',
+			'security.biometricPrompt' => '请验证身份以访问 Medalize',
+			'security.biometricUnavailable' => '此设备不支持生物识别认证',
+			'security.biometricEnableFailed' => '无法验证您的生物识别信息，请重试。',
+			'security.activeSessions' => '活跃会话',
+			'security.activeSessionsSubtitle' => '当前已登录您账户的设备',
+			'security.thisDevice' => '此设备',
+			'security.lastActive' => ({required Object date}) => '最后活跃：${date}',
+			'security.revoke' => '撤销',
+			'security.revokeConfirmTitle' => '撤销此设备？',
+			'security.revokeConfirmMessage' => ({required Object name}) => '${name} 将被登出，可使用账户凭据重新登录。',
+			'security.revokeCurrentConfirmMessage' => '这是您当前的设备 — 撤销后将立即登出。',
+			'security.revokeFailed' => '无法撤销此设备，请重试。',
+			'security.signOutAllDevices' => '退出所有设备',
+			'security.signOutAllConfirmTitle' => '退出所有设备？',
+			'security.signOutAllConfirmMessage' => '您将在包括此设备在内的所有设备上登出。',
+			'security.signOutAllFailed' => '无法退出所有设备，请重试。',
+			'security.noDevices' => '未找到活跃会话',
+			'security.loadFailed' => '无法加载您的活跃会话',
 			'status.confirmed' => '已确认',
 			'status.pending' => '待处理',
 			'status.cancelled' => '已取消',

@@ -47,6 +47,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$validation$ru validation = _Translations$validation$ru._(_root);
 	@override late final _Translations$errors$ru errors = _Translations$errors$ru._(_root);
 	@override late final _Translations$settings$ru settings = _Translations$settings$ru._(_root);
+	@override late final _Translations$security$ru security = _Translations$security$ru._(_root);
 	@override late final _Translations$status$ru status = _Translations$status$ru._(_root);
 	@override late final _Translations$home$ru home = _Translations$home$ru._(_root);
 	@override late final _Translations$appointments$ru appointments = _Translations$appointments$ru._(_root);
@@ -127,6 +128,9 @@ class _Translations$auth$ru extends Translations$auth$en {
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Назад ко входу';
 	@override String get verificationCode => 'Код подтверждения';
+	@override String get continueWithGoogle => 'Продолжить с Google';
+	@override String get continueWithApple => 'Продолжить с Apple';
+	@override String get orDivider => 'или';
 }
 
 // Path: forgotPassword
@@ -194,6 +198,7 @@ class _Translations$errors$ru extends Translations$errors$en {
 	@override String get permissionDenied => 'У вас нет прав для этого действия.';
 	@override String get validationError => 'Ошибка проверки';
 	@override String serverError({required Object code}) => 'Ошибка сервера (${code}). Повторите попытку.';
+	@override String get socialLoginFailed => 'Не удалось войти. Попробуйте снова или используйте эл. почту и пароль.';
 }
 
 // Path: settings
@@ -217,6 +222,36 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get logoutConfirm => 'Вы уверены, что хотите выйти?';
 	@override String get version => 'Medalize v1.0.0';
 	@override String get legal => 'Конфиденциальность и условия';
+}
+
+// Path: security
+class _Translations$security$ru extends Translations$security$en {
+	_Translations$security$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Безопасность';
+	@override String get biometricLogin => 'Вход по биометрии';
+	@override String get biometricLoginSubtitle => 'Используйте Face ID / Touch ID для разблокировки приложения';
+	@override String get biometricPrompt => 'Подтвердите личность для доступа к Medalize';
+	@override String get biometricUnavailable => 'Биометрическая аутентификация недоступна на этом устройстве';
+	@override String get biometricEnableFailed => 'Не удалось подтвердить биометрию. Попробуйте снова.';
+	@override String get activeSessions => 'Активные сессии';
+	@override String get activeSessionsSubtitle => 'Устройства, вошедшие в ваш аккаунт';
+	@override String get thisDevice => 'Это устройство';
+	@override String lastActive({required Object date}) => 'Последняя активность: ${date}';
+	@override String get revoke => 'Отозвать';
+	@override String get revokeConfirmTitle => 'Отозвать устройство?';
+	@override String revokeConfirmMessage({required Object name}) => '${name} будет выведено из системы. Оно сможет войти снова с вашими учётными данными.';
+	@override String get revokeCurrentConfirmMessage => 'Это ваше текущее устройство — его отзыв немедленно завершит вашу сессию.';
+	@override String get revokeFailed => 'Не удалось отозвать это устройство. Попробуйте снова.';
+	@override String get signOutAllDevices => 'Выйти со всех устройств';
+	@override String get signOutAllConfirmTitle => 'Выйти везде?';
+	@override String get signOutAllConfirmMessage => 'Вы выйдете из системы на всех устройствах, включая это.';
+	@override String get signOutAllFailed => 'Не удалось выйти со всех устройств. Попробуйте снова.';
+	@override String get noDevices => 'Активные сессии не найдены';
+	@override String get loadFailed => 'Не удалось загрузить активные сессии';
 }
 
 // Path: status
@@ -712,6 +747,9 @@ extension on TranslationsRu {
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Назад ко входу',
 			'auth.verificationCode' => 'Код подтверждения',
+			'auth.continueWithGoogle' => 'Продолжить с Google',
+			'auth.continueWithApple' => 'Продолжить с Apple',
+			'auth.orDivider' => 'или',
 			'forgotPassword.title' => 'Забыли пароль?',
 			'forgotPassword.subtitle' => 'Введите эл. почту, и мы отправим 6-значный код для сброса',
 			'resetPassword.title' => 'Сброс пароля',
@@ -743,6 +781,7 @@ extension on TranslationsRu {
 			'errors.permissionDenied' => 'У вас нет прав для этого действия.',
 			'errors.validationError' => 'Ошибка проверки',
 			'errors.serverError' => ({required Object code}) => 'Ошибка сервера (${code}). Повторите попытку.',
+			'errors.socialLoginFailed' => 'Не удалось войти. Попробуйте снова или используйте эл. почту и пароль.',
 			'settings.title' => 'Настройки',
 			'settings.account' => 'Аккаунт',
 			'settings.profile' => 'Профиль',
@@ -757,6 +796,27 @@ extension on TranslationsRu {
 			'settings.logoutConfirm' => 'Вы уверены, что хотите выйти?',
 			'settings.version' => 'Medalize v1.0.0',
 			'settings.legal' => 'Конфиденциальность и условия',
+			'security.title' => 'Безопасность',
+			'security.biometricLogin' => 'Вход по биометрии',
+			'security.biometricLoginSubtitle' => 'Используйте Face ID / Touch ID для разблокировки приложения',
+			'security.biometricPrompt' => 'Подтвердите личность для доступа к Medalize',
+			'security.biometricUnavailable' => 'Биометрическая аутентификация недоступна на этом устройстве',
+			'security.biometricEnableFailed' => 'Не удалось подтвердить биометрию. Попробуйте снова.',
+			'security.activeSessions' => 'Активные сессии',
+			'security.activeSessionsSubtitle' => 'Устройства, вошедшие в ваш аккаунт',
+			'security.thisDevice' => 'Это устройство',
+			'security.lastActive' => ({required Object date}) => 'Последняя активность: ${date}',
+			'security.revoke' => 'Отозвать',
+			'security.revokeConfirmTitle' => 'Отозвать устройство?',
+			'security.revokeConfirmMessage' => ({required Object name}) => '${name} будет выведено из системы. Оно сможет войти снова с вашими учётными данными.',
+			'security.revokeCurrentConfirmMessage' => 'Это ваше текущее устройство — его отзыв немедленно завершит вашу сессию.',
+			'security.revokeFailed' => 'Не удалось отозвать это устройство. Попробуйте снова.',
+			'security.signOutAllDevices' => 'Выйти со всех устройств',
+			'security.signOutAllConfirmTitle' => 'Выйти везде?',
+			'security.signOutAllConfirmMessage' => 'Вы выйдете из системы на всех устройствах, включая это.',
+			'security.signOutAllFailed' => 'Не удалось выйти со всех устройств. Попробуйте снова.',
+			'security.noDevices' => 'Активные сессии не найдены',
+			'security.loadFailed' => 'Не удалось загрузить активные сессии',
 			'status.confirmed' => 'Подтверждено',
 			'status.pending' => 'В ожидании',
 			'status.cancelled' => 'Отменено',
