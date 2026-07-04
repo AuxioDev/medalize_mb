@@ -21,6 +21,8 @@
 	<string>Medalize needs access to your photos so you can set your profile picture and upload documents.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Medalize needs camera access so you can take a profile picture.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Medalize uses your location to sort doctors by distance from you.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
