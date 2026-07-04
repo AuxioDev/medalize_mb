@@ -1,5 +1,7 @@
 package az.medalize.app
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity : FlutterActivity()
+// FlutterFragmentActivity (not FlutterActivity) is required by local_auth —
+// biometric prompts are shown via a Fragment.
+class MainActivity : FlutterFragmentActivity()
