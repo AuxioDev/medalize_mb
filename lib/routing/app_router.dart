@@ -29,6 +29,7 @@ import 'package:medalize_mb/features/patient/presentation/screens/my_appointment
 import 'package:medalize_mb/features/patient/presentation/screens/patient_home_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/reschedule_calendar_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/active_sessions_screen.dart';
+import 'package:medalize_mb/features/shared/presentation/screens/change_email_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/legal_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/notifications_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/profile_screen.dart';
@@ -222,6 +223,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/shared/active-sessions',
         pageBuilder: (_, _) => _pushPage(const ActiveSessionsScreen()),
+      ),
+      GoRoute(
+        path: '/shared/change-email',
+        pageBuilder: (_, _) => _pushPage(const ChangeEmailScreen()),
       ),
       GoRoute(
         path: '/shared/notifications',

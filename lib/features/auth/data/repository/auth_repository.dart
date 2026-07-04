@@ -189,4 +189,46 @@ class AuthRepository {
       throw const ServerException(0);
     }
   }
+
+  /// Deactivates the account (data is kept; reactivation is manual/support).
+  /// The backend revokes every session, so callers must force a local logout
+  /// on success.
+  Future<void> deactivateAccount({required String password}) async {
+    try {
+      await _dio.post('/auth/deactivate/', data: {'password': password});
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  /// Step 1 of the email change flow: sends a 6-digit code to [newEmail].
+  Future<void> requestEmailChange({
+    required String newEmail,
+    required String password,
+  }) async {
+    try {
+      await _dio.post('/auth/email/change/', data: {
+        'new_email': newEmail,
+        'password': password,
+      });
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  /// Step 2 of the email change flow. On success the backend revokes every
+  /// session, so callers must force a local logout.
+  Future<void> confirmEmailChange({required String code}) async {
+    try {
+      await _dio.post('/auth/email/change/confirm/', data: {'code': code});
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
 }
