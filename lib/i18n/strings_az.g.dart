@@ -252,6 +252,20 @@ class _Translations$security$az extends Translations$security$en {
 	@override String get signOutAllFailed => 'Bütün cihazlardan çıxış uğursuz oldu. Yenidən cəhd edin.';
 	@override String get noDevices => 'Aktiv sessiya tapılmadı';
 	@override String get loadFailed => 'Aktiv sessiyalarınız yüklənə bilmədi';
+	@override String get changeEmail => 'Email-i dəyiş';
+	@override String get changeEmailSubtitle => 'Yeni email ünvanınıza təsdiq kodu göndərəcəyik. Təsdiqdən sonra yeni email ilə daxil olacaqsınız.';
+	@override String get newEmailLabel => 'Yeni email';
+	@override String get sendCode => 'Kod göndər';
+	@override String codeSentTo({required Object email}) => '${email} ünvanına göndərdiyimiz 6 rəqəmli kodu daxil edin';
+	@override String get confirmNewEmail => 'Yeni email-i təsdiqlə';
+	@override String get changeEmailSuccess => 'Email dəyişdirildi. Yeni email ilə yenidən daxil olun.';
+	@override String get dangerZone => 'Təhlükəli zona';
+	@override String get deactivateAccount => 'Hesabı deaktiv et';
+	@override String get deactivateAccountSubtitle => 'Məlumatları silmədən hesabı deaktiv edin';
+	@override String get deactivateConfirmTitle => 'Hesab deaktiv edilsin?';
+	@override String get deactivateConfirmMessage => 'Hesabınız deaktiv ediləcək və bütün cihazlarda çıxış ediləcək. Məlumatlarınız silinmir. Bərpa üçün dəstək xidmətinə müraciət edin.';
+	@override String get deactivate => 'Deaktiv et';
+	@override String get deactivateSuccess => 'Hesabınız deaktiv edildi.';
 }
 
 // Path: status
@@ -822,6 +836,20 @@ extension on TranslationsAz {
 			'security.signOutAllFailed' => 'Bütün cihazlardan çıxış uğursuz oldu. Yenidən cəhd edin.',
 			'security.noDevices' => 'Aktiv sessiya tapılmadı',
 			'security.loadFailed' => 'Aktiv sessiyalarınız yüklənə bilmədi',
+			'security.changeEmail' => 'Email-i dəyiş',
+			'security.changeEmailSubtitle' => 'Yeni email ünvanınıza təsdiq kodu göndərəcəyik. Təsdiqdən sonra yeni email ilə daxil olacaqsınız.',
+			'security.newEmailLabel' => 'Yeni email',
+			'security.sendCode' => 'Kod göndər',
+			'security.codeSentTo' => ({required Object email}) => '${email} ünvanına göndərdiyimiz 6 rəqəmli kodu daxil edin',
+			'security.confirmNewEmail' => 'Yeni email-i təsdiqlə',
+			'security.changeEmailSuccess' => 'Email dəyişdirildi. Yeni email ilə yenidən daxil olun.',
+			'security.dangerZone' => 'Təhlükəli zona',
+			'security.deactivateAccount' => 'Hesabı deaktiv et',
+			'security.deactivateAccountSubtitle' => 'Məlumatları silmədən hesabı deaktiv edin',
+			'security.deactivateConfirmTitle' => 'Hesab deaktiv edilsin?',
+			'security.deactivateConfirmMessage' => 'Hesabınız deaktiv ediləcək və bütün cihazlarda çıxış ediləcək. Məlumatlarınız silinmir. Bərpa üçün dəstək xidmətinə müraciət edin.',
+			'security.deactivate' => 'Deaktiv et',
+			'security.deactivateSuccess' => 'Hesabınız deaktiv edildi.',
 			'status.confirmed' => 'Təsdiqləndi',
 			'status.pending' => 'Gözləyir',
 			'status.cancelled' => 'Ləğv edildi',

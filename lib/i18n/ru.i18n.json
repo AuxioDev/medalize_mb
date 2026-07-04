@@ -127,7 +127,21 @@
     "signOutAllConfirmMessage": "Вы выйдете из системы на всех устройствах, включая это.",
     "signOutAllFailed": "Не удалось выйти со всех устройств. Попробуйте снова.",
     "noDevices": "Активные сессии не найдены",
-    "loadFailed": "Не удалось загрузить активные сессии"
+    "loadFailed": "Не удалось загрузить активные сессии",
+    "changeEmail": "Изменить email",
+    "changeEmailSubtitle": "Мы отправим код подтверждения на новый адрес. После подтверждения вы будете входить с новым email.",
+    "newEmailLabel": "Новый email",
+    "sendCode": "Отправить код",
+    "codeSentTo": "Введите 6-значный код, отправленный на $email",
+    "confirmNewEmail": "Подтвердить новый email",
+    "changeEmailSuccess": "Email изменён. Войдите заново с новым email.",
+    "dangerZone": "Опасная зона",
+    "deactivateAccount": "Деактивировать аккаунт",
+    "deactivateAccountSubtitle": "Отключить аккаунт без удаления данных",
+    "deactivateConfirmTitle": "Деактивировать аккаунт?",
+    "deactivateConfirmMessage": "Аккаунт будет деактивирован, и вы выйдете из системы на всех устройствах. Данные не удаляются. Для восстановления обратитесь в поддержку.",
+    "deactivate": "Деактивировать",
+    "deactivateSuccess": "Ваш аккаунт деактивирован."
   },
   "status": {
     "confirmed": "Подтверждено",

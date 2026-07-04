@@ -252,6 +252,20 @@ class _Translations$security$ru extends Translations$security$en {
 	@override String get signOutAllFailed => 'Не удалось выйти со всех устройств. Попробуйте снова.';
 	@override String get noDevices => 'Активные сессии не найдены';
 	@override String get loadFailed => 'Не удалось загрузить активные сессии';
+	@override String get changeEmail => 'Изменить email';
+	@override String get changeEmailSubtitle => 'Мы отправим код подтверждения на новый адрес. После подтверждения вы будете входить с новым email.';
+	@override String get newEmailLabel => 'Новый email';
+	@override String get sendCode => 'Отправить код';
+	@override String codeSentTo({required Object email}) => 'Введите 6-значный код, отправленный на ${email}';
+	@override String get confirmNewEmail => 'Подтвердить новый email';
+	@override String get changeEmailSuccess => 'Email изменён. Войдите заново с новым email.';
+	@override String get dangerZone => 'Опасная зона';
+	@override String get deactivateAccount => 'Деактивировать аккаунт';
+	@override String get deactivateAccountSubtitle => 'Отключить аккаунт без удаления данных';
+	@override String get deactivateConfirmTitle => 'Деактивировать аккаунт?';
+	@override String get deactivateConfirmMessage => 'Аккаунт будет деактивирован, и вы выйдете из системы на всех устройствах. Данные не удаляются. Для восстановления обратитесь в поддержку.';
+	@override String get deactivate => 'Деактивировать';
+	@override String get deactivateSuccess => 'Ваш аккаунт деактивирован.';
 }
 
 // Path: status
@@ -822,6 +836,20 @@ extension on TranslationsRu {
 			'security.signOutAllFailed' => 'Не удалось выйти со всех устройств. Попробуйте снова.',
 			'security.noDevices' => 'Активные сессии не найдены',
 			'security.loadFailed' => 'Не удалось загрузить активные сессии',
+			'security.changeEmail' => 'Изменить email',
+			'security.changeEmailSubtitle' => 'Мы отправим код подтверждения на новый адрес. После подтверждения вы будете входить с новым email.',
+			'security.newEmailLabel' => 'Новый email',
+			'security.sendCode' => 'Отправить код',
+			'security.codeSentTo' => ({required Object email}) => 'Введите 6-значный код, отправленный на ${email}',
+			'security.confirmNewEmail' => 'Подтвердить новый email',
+			'security.changeEmailSuccess' => 'Email изменён. Войдите заново с новым email.',
+			'security.dangerZone' => 'Опасная зона',
+			'security.deactivateAccount' => 'Деактивировать аккаунт',
+			'security.deactivateAccountSubtitle' => 'Отключить аккаунт без удаления данных',
+			'security.deactivateConfirmTitle' => 'Деактивировать аккаунт?',
+			'security.deactivateConfirmMessage' => 'Аккаунт будет деактивирован, и вы выйдете из системы на всех устройствах. Данные не удаляются. Для восстановления обратитесь в поддержку.',
+			'security.deactivate' => 'Деактивировать',
+			'security.deactivateSuccess' => 'Ваш аккаунт деактивирован.',
 			'status.confirmed' => 'Подтверждено',
 			'status.pending' => 'В ожидании',
 			'status.cancelled' => 'Отменено',

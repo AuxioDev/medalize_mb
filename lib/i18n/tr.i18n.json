@@ -127,7 +127,21 @@
     "signOutAllConfirmMessage": "Bu cihaz dahil tüm cihazlarda oturumunuz kapatılacak.",
     "signOutAllFailed": "Tüm cihazlardan çıkış yapılamadı. Tekrar deneyin.",
     "noDevices": "Aktif oturum bulunamadı",
-    "loadFailed": "Aktif oturumlarınız yüklenemedi"
+    "loadFailed": "Aktif oturumlarınız yüklenemedi",
+    "changeEmail": "E-postayı Değiştir",
+    "changeEmailSubtitle": "Yeni e-posta adresinize bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni e-postanızla giriş yapacaksınız.",
+    "newEmailLabel": "Yeni e-posta",
+    "sendCode": "Kod Gönder",
+    "codeSentTo": "$email adresine gönderdiğimiz 6 haneli kodu girin",
+    "confirmNewEmail": "Yeni E-postayı Onayla",
+    "changeEmailSuccess": "E-postanız değiştirildi. Yeni e-postanızla tekrar giriş yapın.",
+    "dangerZone": "Tehlikeli Bölge",
+    "deactivateAccount": "Hesabı Devre Dışı Bırak",
+    "deactivateAccountSubtitle": "Verilerinizi silmeden hesabınızı devre dışı bırakın",
+    "deactivateConfirmTitle": "Hesap devre dışı bırakılsın mı?",
+    "deactivateConfirmMessage": "Hesabınız devre dışı bırakılacak ve tüm cihazlarda oturumunuz kapatılacak. Verileriniz silinmez. Yeniden etkinleştirmek için destek ekibiyle iletişime geçin.",
+    "deactivate": "Devre Dışı Bırak",
+    "deactivateSuccess": "Hesabınız devre dışı bırakıldı."
   },
   "status": {
     "confirmed": "Onaylandı",

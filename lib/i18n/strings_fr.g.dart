@@ -252,6 +252,20 @@ class _Translations$security$fr extends Translations$security$en {
 	@override String get signOutAllFailed => 'Impossible de se déconnecter de tous les appareils. Réessayez.';
 	@override String get noDevices => 'Aucune session active trouvée';
 	@override String get loadFailed => 'Impossible de charger vos sessions actives';
+	@override String get changeEmail => 'Changer l\'email';
+	@override String get changeEmailSubtitle => 'Nous enverrons un code de vérification à votre nouvelle adresse email. Après confirmation, vous vous connecterez avec le nouvel email.';
+	@override String get newEmailLabel => 'Nouvel email';
+	@override String get sendCode => 'Envoyer le code';
+	@override String codeSentTo({required Object email}) => 'Saisissez le code à 6 chiffres envoyé à ${email}';
+	@override String get confirmNewEmail => 'Confirmer le nouvel email';
+	@override String get changeEmailSuccess => 'Votre email a été modifié. Reconnectez-vous avec votre nouvel email.';
+	@override String get dangerZone => 'Zone dangereuse';
+	@override String get deactivateAccount => 'Désactiver le compte';
+	@override String get deactivateAccountSubtitle => 'Désactiver votre compte sans supprimer vos données';
+	@override String get deactivateConfirmTitle => 'Désactiver le compte ?';
+	@override String get deactivateConfirmMessage => 'Votre compte sera désactivé et vous serez déconnecté sur tous les appareils. Vos données ne seront pas supprimées. Contactez le support pour le réactiver.';
+	@override String get deactivate => 'Désactiver';
+	@override String get deactivateSuccess => 'Votre compte a été désactivé.';
 }
 
 // Path: status
@@ -822,6 +836,20 @@ extension on TranslationsFr {
 			'security.signOutAllFailed' => 'Impossible de se déconnecter de tous les appareils. Réessayez.',
 			'security.noDevices' => 'Aucune session active trouvée',
 			'security.loadFailed' => 'Impossible de charger vos sessions actives',
+			'security.changeEmail' => 'Changer l\'email',
+			'security.changeEmailSubtitle' => 'Nous enverrons un code de vérification à votre nouvelle adresse email. Après confirmation, vous vous connecterez avec le nouvel email.',
+			'security.newEmailLabel' => 'Nouvel email',
+			'security.sendCode' => 'Envoyer le code',
+			'security.codeSentTo' => ({required Object email}) => 'Saisissez le code à 6 chiffres envoyé à ${email}',
+			'security.confirmNewEmail' => 'Confirmer le nouvel email',
+			'security.changeEmailSuccess' => 'Votre email a été modifié. Reconnectez-vous avec votre nouvel email.',
+			'security.dangerZone' => 'Zone dangereuse',
+			'security.deactivateAccount' => 'Désactiver le compte',
+			'security.deactivateAccountSubtitle' => 'Désactiver votre compte sans supprimer vos données',
+			'security.deactivateConfirmTitle' => 'Désactiver le compte ?',
+			'security.deactivateConfirmMessage' => 'Votre compte sera désactivé et vous serez déconnecté sur tous les appareils. Vos données ne seront pas supprimées. Contactez le support pour le réactiver.',
+			'security.deactivate' => 'Désactiver',
+			'security.deactivateSuccess' => 'Votre compte a été désactivé.',
 			'status.confirmed' => 'Confirmé',
 			'status.pending' => 'En attente',
 			'status.cancelled' => 'Annulé',

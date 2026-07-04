@@ -127,7 +127,21 @@
     "signOutAllConfirmMessage": "您将在包括此设备在内的所有设备上登出。",
     "signOutAllFailed": "无法退出所有设备，请重试。",
     "noDevices": "未找到活跃会话",
-    "loadFailed": "无法加载您的活跃会话"
+    "loadFailed": "无法加载您的活跃会话",
+    "changeEmail": "更改邮箱",
+    "changeEmailSubtitle": "我们将向您的新邮箱发送验证码。确认后您将使用新邮箱登录。",
+    "newEmailLabel": "新邮箱",
+    "sendCode": "发送验证码",
+    "codeSentTo": "请输入我们发送到 $email 的6位验证码",
+    "confirmNewEmail": "确认新邮箱",
+    "changeEmailSuccess": "邮箱已更改，请使用新邮箱重新登录。",
+    "dangerZone": "危险区域",
+    "deactivateAccount": "停用账户",
+    "deactivateAccountSubtitle": "停用账户但不删除数据",
+    "deactivateConfirmTitle": "停用账户？",
+    "deactivateConfirmMessage": "您的账户将被停用，并在所有设备上退出登录。数据不会被删除。如需恢复，请联系客服。",
+    "deactivate": "停用",
+    "deactivateSuccess": "您的账户已停用。"
   },
   "status": {
     "confirmed": "已确认",

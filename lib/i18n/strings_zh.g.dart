@@ -252,6 +252,20 @@ class _Translations$security$zh extends Translations$security$en {
 	@override String get signOutAllFailed => '无法退出所有设备，请重试。';
 	@override String get noDevices => '未找到活跃会话';
 	@override String get loadFailed => '无法加载您的活跃会话';
+	@override String get changeEmail => '更改邮箱';
+	@override String get changeEmailSubtitle => '我们将向您的新邮箱发送验证码。确认后您将使用新邮箱登录。';
+	@override String get newEmailLabel => '新邮箱';
+	@override String get sendCode => '发送验证码';
+	@override String codeSentTo({required Object email}) => '请输入我们发送到 ${email} 的6位验证码';
+	@override String get confirmNewEmail => '确认新邮箱';
+	@override String get changeEmailSuccess => '邮箱已更改，请使用新邮箱重新登录。';
+	@override String get dangerZone => '危险区域';
+	@override String get deactivateAccount => '停用账户';
+	@override String get deactivateAccountSubtitle => '停用账户但不删除数据';
+	@override String get deactivateConfirmTitle => '停用账户？';
+	@override String get deactivateConfirmMessage => '您的账户将被停用，并在所有设备上退出登录。数据不会被删除。如需恢复，请联系客服。';
+	@override String get deactivate => '停用';
+	@override String get deactivateSuccess => '您的账户已停用。';
 }
 
 // Path: status
@@ -822,6 +836,20 @@ extension on TranslationsZh {
 			'security.signOutAllFailed' => '无法退出所有设备，请重试。',
 			'security.noDevices' => '未找到活跃会话',
 			'security.loadFailed' => '无法加载您的活跃会话',
+			'security.changeEmail' => '更改邮箱',
+			'security.changeEmailSubtitle' => '我们将向您的新邮箱发送验证码。确认后您将使用新邮箱登录。',
+			'security.newEmailLabel' => '新邮箱',
+			'security.sendCode' => '发送验证码',
+			'security.codeSentTo' => ({required Object email}) => '请输入我们发送到 ${email} 的6位验证码',
+			'security.confirmNewEmail' => '确认新邮箱',
+			'security.changeEmailSuccess' => '邮箱已更改，请使用新邮箱重新登录。',
+			'security.dangerZone' => '危险区域',
+			'security.deactivateAccount' => '停用账户',
+			'security.deactivateAccountSubtitle' => '停用账户但不删除数据',
+			'security.deactivateConfirmTitle' => '停用账户？',
+			'security.deactivateConfirmMessage' => '您的账户将被停用，并在所有设备上退出登录。数据不会被删除。如需恢复，请联系客服。',
+			'security.deactivate' => '停用',
+			'security.deactivateSuccess' => '您的账户已停用。',
 			'status.confirmed' => '已确认',
 			'status.pending' => '待处理',
 			'status.cancelled' => '已取消',

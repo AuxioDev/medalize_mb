@@ -482,6 +482,48 @@ class Translations$security$en {
 
 	/// en: 'Couldn't load your active sessions'
 	String get loadFailed => 'Couldn\'t load your active sessions';
+
+	/// en: 'Change Email'
+	String get changeEmail => 'Change Email';
+
+	/// en: 'We'll send a verification code to your new email address. After confirming, you'll sign in with the new email.'
+	String get changeEmailSubtitle => 'We\'ll send a verification code to your new email address. After confirming, you\'ll sign in with the new email.';
+
+	/// en: 'New email'
+	String get newEmailLabel => 'New email';
+
+	/// en: 'Send Code'
+	String get sendCode => 'Send Code';
+
+	/// en: 'Enter the 6-digit code we sent to $email'
+	String codeSentTo({required Object email}) => 'Enter the 6-digit code we sent to ${email}';
+
+	/// en: 'Confirm New Email'
+	String get confirmNewEmail => 'Confirm New Email';
+
+	/// en: 'Your email has been changed. Please sign in again with your new email.'
+	String get changeEmailSuccess => 'Your email has been changed. Please sign in again with your new email.';
+
+	/// en: 'Danger Zone'
+	String get dangerZone => 'Danger Zone';
+
+	/// en: 'Deactivate Account'
+	String get deactivateAccount => 'Deactivate Account';
+
+	/// en: 'Disable your account without deleting your data'
+	String get deactivateAccountSubtitle => 'Disable your account without deleting your data';
+
+	/// en: 'Deactivate account?'
+	String get deactivateConfirmTitle => 'Deactivate account?';
+
+	/// en: 'Your account will be deactivated and you will be signed out on all devices. Your data will not be deleted. Contact support to reactivate your account.'
+	String get deactivateConfirmMessage => 'Your account will be deactivated and you will be signed out on all devices. Your data will not be deleted. Contact support to reactivate your account.';
+
+	/// en: 'Deactivate'
+	String get deactivate => 'Deactivate';
+
+	/// en: 'Your account has been deactivated.'
+	String get deactivateSuccess => 'Your account has been deactivated.';
 }
 
 // Path: status
@@ -1564,6 +1606,20 @@ extension on Translations {
 			'security.signOutAllFailed' => 'Couldn\'t sign out of all devices. Please try again.',
 			'security.noDevices' => 'No active sessions found',
 			'security.loadFailed' => 'Couldn\'t load your active sessions',
+			'security.changeEmail' => 'Change Email',
+			'security.changeEmailSubtitle' => 'We\'ll send a verification code to your new email address. After confirming, you\'ll sign in with the new email.',
+			'security.newEmailLabel' => 'New email',
+			'security.sendCode' => 'Send Code',
+			'security.codeSentTo' => ({required Object email}) => 'Enter the 6-digit code we sent to ${email}',
+			'security.confirmNewEmail' => 'Confirm New Email',
+			'security.changeEmailSuccess' => 'Your email has been changed. Please sign in again with your new email.',
+			'security.dangerZone' => 'Danger Zone',
+			'security.deactivateAccount' => 'Deactivate Account',
+			'security.deactivateAccountSubtitle' => 'Disable your account without deleting your data',
+			'security.deactivateConfirmTitle' => 'Deactivate account?',
+			'security.deactivateConfirmMessage' => 'Your account will be deactivated and you will be signed out on all devices. Your data will not be deleted. Contact support to reactivate your account.',
+			'security.deactivate' => 'Deactivate',
+			'security.deactivateSuccess' => 'Your account has been deactivated.',
 			'status.confirmed' => 'Confirmed',
 			'status.pending' => 'Pending',
 			'status.cancelled' => 'Cancelled',

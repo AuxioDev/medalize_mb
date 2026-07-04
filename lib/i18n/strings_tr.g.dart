@@ -252,6 +252,20 @@ class _Translations$security$tr extends Translations$security$en {
 	@override String get signOutAllFailed => 'Tüm cihazlardan çıkış yapılamadı. Tekrar deneyin.';
 	@override String get noDevices => 'Aktif oturum bulunamadı';
 	@override String get loadFailed => 'Aktif oturumlarınız yüklenemedi';
+	@override String get changeEmail => 'E-postayı Değiştir';
+	@override String get changeEmailSubtitle => 'Yeni e-posta adresinize bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni e-postanızla giriş yapacaksınız.';
+	@override String get newEmailLabel => 'Yeni e-posta';
+	@override String get sendCode => 'Kod Gönder';
+	@override String codeSentTo({required Object email}) => '${email} adresine gönderdiğimiz 6 haneli kodu girin';
+	@override String get confirmNewEmail => 'Yeni E-postayı Onayla';
+	@override String get changeEmailSuccess => 'E-postanız değiştirildi. Yeni e-postanızla tekrar giriş yapın.';
+	@override String get dangerZone => 'Tehlikeli Bölge';
+	@override String get deactivateAccount => 'Hesabı Devre Dışı Bırak';
+	@override String get deactivateAccountSubtitle => 'Verilerinizi silmeden hesabınızı devre dışı bırakın';
+	@override String get deactivateConfirmTitle => 'Hesap devre dışı bırakılsın mı?';
+	@override String get deactivateConfirmMessage => 'Hesabınız devre dışı bırakılacak ve tüm cihazlarda oturumunuz kapatılacak. Verileriniz silinmez. Yeniden etkinleştirmek için destek ekibiyle iletişime geçin.';
+	@override String get deactivate => 'Devre Dışı Bırak';
+	@override String get deactivateSuccess => 'Hesabınız devre dışı bırakıldı.';
 }
 
 // Path: status
@@ -822,6 +836,20 @@ extension on TranslationsTr {
 			'security.signOutAllFailed' => 'Tüm cihazlardan çıkış yapılamadı. Tekrar deneyin.',
 			'security.noDevices' => 'Aktif oturum bulunamadı',
 			'security.loadFailed' => 'Aktif oturumlarınız yüklenemedi',
+			'security.changeEmail' => 'E-postayı Değiştir',
+			'security.changeEmailSubtitle' => 'Yeni e-posta adresinize bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni e-postanızla giriş yapacaksınız.',
+			'security.newEmailLabel' => 'Yeni e-posta',
+			'security.sendCode' => 'Kod Gönder',
+			'security.codeSentTo' => ({required Object email}) => '${email} adresine gönderdiğimiz 6 haneli kodu girin',
+			'security.confirmNewEmail' => 'Yeni E-postayı Onayla',
+			'security.changeEmailSuccess' => 'E-postanız değiştirildi. Yeni e-postanızla tekrar giriş yapın.',
+			'security.dangerZone' => 'Tehlikeli Bölge',
+			'security.deactivateAccount' => 'Hesabı Devre Dışı Bırak',
+			'security.deactivateAccountSubtitle' => 'Verilerinizi silmeden hesabınızı devre dışı bırakın',
+			'security.deactivateConfirmTitle' => 'Hesap devre dışı bırakılsın mı?',
+			'security.deactivateConfirmMessage' => 'Hesabınız devre dışı bırakılacak ve tüm cihazlarda oturumunuz kapatılacak. Verileriniz silinmez. Yeniden etkinleştirmek için destek ekibiyle iletişime geçin.',
+			'security.deactivate' => 'Devre Dışı Bırak',
+			'security.deactivateSuccess' => 'Hesabınız devre dışı bırakıldı.',
 			'status.confirmed' => 'Onaylandı',
 			'status.pending' => 'Beklemede',
 			'status.cancelled' => 'İptal edildi',

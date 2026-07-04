@@ -127,7 +127,21 @@
     "signOutAllConfirmMessage": "Vous serez déconnecté sur tous les appareils, y compris celui-ci.",
     "signOutAllFailed": "Impossible de se déconnecter de tous les appareils. Réessayez.",
     "noDevices": "Aucune session active trouvée",
-    "loadFailed": "Impossible de charger vos sessions actives"
+    "loadFailed": "Impossible de charger vos sessions actives",
+    "changeEmail": "Changer l'email",
+    "changeEmailSubtitle": "Nous enverrons un code de vérification à votre nouvelle adresse email. Après confirmation, vous vous connecterez avec le nouvel email.",
+    "newEmailLabel": "Nouvel email",
+    "sendCode": "Envoyer le code",
+    "codeSentTo": "Saisissez le code à 6 chiffres envoyé à $email",
+    "confirmNewEmail": "Confirmer le nouvel email",
+    "changeEmailSuccess": "Votre email a été modifié. Reconnectez-vous avec votre nouvel email.",
+    "dangerZone": "Zone dangereuse",
+    "deactivateAccount": "Désactiver le compte",
+    "deactivateAccountSubtitle": "Désactiver votre compte sans supprimer vos données",
+    "deactivateConfirmTitle": "Désactiver le compte ?",
+    "deactivateConfirmMessage": "Votre compte sera désactivé et vous serez déconnecté sur tous les appareils. Vos données ne seront pas supprimées. Contactez le support pour le réactiver.",
+    "deactivate": "Désactiver",
+    "deactivateSuccess": "Votre compte a été désactivé."
   },
   "status": {
     "confirmed": "Confirmé",

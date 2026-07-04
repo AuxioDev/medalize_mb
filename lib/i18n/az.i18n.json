@@ -127,7 +127,21 @@
     "signOutAllConfirmMessage": "Bu daxil olmaqla bütün cihazlardan çıxacaqsınız.",
     "signOutAllFailed": "Bütün cihazlardan çıxış uğursuz oldu. Yenidən cəhd edin.",
     "noDevices": "Aktiv sessiya tapılmadı",
-    "loadFailed": "Aktiv sessiyalarınız yüklənə bilmədi"
+    "loadFailed": "Aktiv sessiyalarınız yüklənə bilmədi",
+    "changeEmail": "Email-i dəyiş",
+    "changeEmailSubtitle": "Yeni email ünvanınıza təsdiq kodu göndərəcəyik. Təsdiqdən sonra yeni email ilə daxil olacaqsınız.",
+    "newEmailLabel": "Yeni email",
+    "sendCode": "Kod göndər",
+    "codeSentTo": "$email ünvanına göndərdiyimiz 6 rəqəmli kodu daxil edin",
+    "confirmNewEmail": "Yeni email-i təsdiqlə",
+    "changeEmailSuccess": "Email dəyişdirildi. Yeni email ilə yenidən daxil olun.",
+    "dangerZone": "Təhlükəli zona",
+    "deactivateAccount": "Hesabı deaktiv et",
+    "deactivateAccountSubtitle": "Məlumatları silmədən hesabı deaktiv edin",
+    "deactivateConfirmTitle": "Hesab deaktiv edilsin?",
+    "deactivateConfirmMessage": "Hesabınız deaktiv ediləcək və bütün cihazlarda çıxış ediləcək. Məlumatlarınız silinmir. Bərpa üçün dəstək xidmətinə müraciət edin.",
+    "deactivate": "Deaktiv et",
+    "deactivateSuccess": "Hesabınız deaktiv edildi."
   },
   "status": {
     "confirmed": "Təsdiqləndi",

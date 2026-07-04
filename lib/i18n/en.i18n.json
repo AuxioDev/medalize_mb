@@ -127,7 +127,21 @@
     "signOutAllConfirmMessage": "You will be signed out on every device, including this one.",
     "signOutAllFailed": "Couldn't sign out of all devices. Please try again.",
     "noDevices": "No active sessions found",
-    "loadFailed": "Couldn't load your active sessions"
+    "loadFailed": "Couldn't load your active sessions",
+    "changeEmail": "Change Email",
+    "changeEmailSubtitle": "We'll send a verification code to your new email address. After confirming, you'll sign in with the new email.",
+    "newEmailLabel": "New email",
+    "sendCode": "Send Code",
+    "codeSentTo": "Enter the 6-digit code we sent to $email",
+    "confirmNewEmail": "Confirm New Email",
+    "changeEmailSuccess": "Your email has been changed. Please sign in again with your new email.",
+    "dangerZone": "Danger Zone",
+    "deactivateAccount": "Deactivate Account",
+    "deactivateAccountSubtitle": "Disable your account without deleting your data",
+    "deactivateConfirmTitle": "Deactivate account?",
+    "deactivateConfirmMessage": "Your account will be deactivated and you will be signed out on all devices. Your data will not be deleted. Contact support to reactivate your account.",
+    "deactivate": "Deactivate",
+    "deactivateSuccess": "Your account has been deactivated."
   },
   "status": {
     "confirmed": "Confirmed",
