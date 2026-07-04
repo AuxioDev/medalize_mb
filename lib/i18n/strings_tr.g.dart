@@ -406,6 +406,11 @@ class _Translations$doctorSearch$tr extends Translations$doctorSearch$en {
 	@override String get sortRating => 'En yüksek puan';
 	@override String get sortPriceLow => 'En düşük fiyat';
 	@override String get sortName => 'İsim (A–Z)';
+	@override String get sortNearestSlot => 'En erken müsaitlik';
+	@override String get sortDistance => 'Bana en yakın';
+	@override String get locationDenied => 'Mesafeye göre sıralamak için konum izni gerekiyor. Ayarlardan izin verin veya şehir filtresini kullanın.';
+	@override String get locationUnavailable => 'Konumunuz alınamadı. Konum hizmetlerinin açık olduğundan emin olun veya şehir filtresini kullanın.';
+	@override String distanceKm({required Object km}) => '${km} km';
 }
 
 // Path: doctorDetail
@@ -936,6 +941,11 @@ extension on TranslationsTr {
 			'doctorSearch.sortRating' => 'En yüksek puan',
 			'doctorSearch.sortPriceLow' => 'En düşük fiyat',
 			'doctorSearch.sortName' => 'İsim (A–Z)',
+			'doctorSearch.sortNearestSlot' => 'En erken müsaitlik',
+			'doctorSearch.sortDistance' => 'Bana en yakın',
+			'doctorSearch.locationDenied' => 'Mesafeye göre sıralamak için konum izni gerekiyor. Ayarlardan izin verin veya şehir filtresini kullanın.',
+			'doctorSearch.locationUnavailable' => 'Konumunuz alınamadı. Konum hizmetlerinin açık olduğundan emin olun veya şehir filtresini kullanın.',
+			'doctorSearch.distanceKm' => ({required Object km}) => '${km} km',
 			'doctorDetail.profileTitle' => 'Doktor Profili',
 			'doctorDetail.couldNotLoadProfile' => 'Profil yüklenemedi',
 			'doctorDetail.about' => 'Hakkında',

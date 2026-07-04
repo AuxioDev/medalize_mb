@@ -406,6 +406,11 @@ class _Translations$doctorSearch$fr extends Translations$doctorSearch$en {
 	@override String get sortRating => 'Mieux notés';
 	@override String get sortPriceLow => 'Prix le plus bas';
 	@override String get sortName => 'Nom (A–Z)';
+	@override String get sortNearestSlot => 'Disponibilité la plus proche';
+	@override String get sortDistance => 'Le plus proche de moi';
+	@override String get locationDenied => 'L\'autorisation de localisation est nécessaire pour trier par distance. Autorisez-la dans les réglages ou filtrez par ville.';
+	@override String get locationUnavailable => 'Impossible d\'obtenir votre position. Vérifiez que la localisation est activée ou filtrez par ville.';
+	@override String distanceKm({required Object km}) => '${km} km';
 }
 
 // Path: doctorDetail
@@ -936,6 +941,11 @@ extension on TranslationsFr {
 			'doctorSearch.sortRating' => 'Mieux notés',
 			'doctorSearch.sortPriceLow' => 'Prix le plus bas',
 			'doctorSearch.sortName' => 'Nom (A–Z)',
+			'doctorSearch.sortNearestSlot' => 'Disponibilité la plus proche',
+			'doctorSearch.sortDistance' => 'Le plus proche de moi',
+			'doctorSearch.locationDenied' => 'L\'autorisation de localisation est nécessaire pour trier par distance. Autorisez-la dans les réglages ou filtrez par ville.',
+			'doctorSearch.locationUnavailable' => 'Impossible d\'obtenir votre position. Vérifiez que la localisation est activée ou filtrez par ville.',
+			'doctorSearch.distanceKm' => ({required Object km}) => '${km} km',
 			'doctorDetail.profileTitle' => 'Profil du médecin',
 			'doctorDetail.couldNotLoadProfile' => 'Impossible de charger le profil',
 			'doctorDetail.about' => 'À propos',

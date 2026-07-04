@@ -39,6 +39,8 @@ class DoctorModel {
   final String? primaryWorkplaceCity;
   final String? primaryWorkplaceId;
   final String? avatarUrl;
+  final DateTime? nextSlotAt;
+  final double? distanceKm;
 
   const DoctorModel({
     required this.id,
@@ -54,6 +56,8 @@ class DoctorModel {
     this.primaryWorkplaceCity,
     this.primaryWorkplaceId,
     this.avatarUrl,
+    this.nextSlotAt,
+    this.distanceKm,
   });
 
   String get fullName => 'Dr. $firstName $lastName'.trim();
@@ -74,6 +78,10 @@ class DoctorModel {
       primaryWorkplaceCity: wp?['city'] as String?,
       primaryWorkplaceId: wp?['id'] as String?,
       avatarUrl: j['avatar_url'] as String?,
+      nextSlotAt: j['next_slot_at'] != null
+          ? DateTime.tryParse(j['next_slot_at'] as String)
+          : null,
+      distanceKm: (j['distance_km'] as num?)?.toDouble(),
     );
   }
 }

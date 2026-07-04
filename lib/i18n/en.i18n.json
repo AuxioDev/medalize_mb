@@ -258,7 +258,12 @@
     "sortDefault": "Relevance",
     "sortRating": "Top rated",
     "sortPriceLow": "Lowest price",
-    "sortName": "Name (A–Z)"
+    "sortName": "Name (A–Z)",
+    "sortNearestSlot": "Earliest available",
+    "sortDistance": "Nearest to me",
+    "locationDenied": "Location permission is needed to sort by distance. Allow it in Settings, or filter by city instead.",
+    "locationUnavailable": "Couldn't get your location. Check that location services are on, or filter by city instead.",
+    "distanceKm": "$km km"
   },
   "doctorDetail": {
     "profileTitle": "Doctor Profile",

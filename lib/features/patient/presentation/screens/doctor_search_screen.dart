@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:medalize_mb/core/services/location_service.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
@@ -20,7 +21,7 @@ import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
-enum _DoctorSort { relevance, rating, priceLow, name }
+enum _DoctorSort { relevance, rating, priceLow, name, nearestSlot, distance }
 
 const _kSpecializations = [
   'general_practice',
@@ -68,26 +69,33 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
   int? _minRating;
   _DoctorSort _sort = _DoctorSort.relevance;
   SearchParams _params = const SearchParams();
+  double? _lat;
+  double? _lng;
 
   /// Client-side ordering of the backend result list. "relevance" keeps the
-  /// order the backend returned.
+  /// order the backend returned; rating/nearestSlot/distance are sorted
+  /// server-side via the `ordering` query param, so they pass through too.
   List<DoctorModel> _sortDoctors(List<DoctorModel> list) {
-    if (_sort == _DoctorSort.relevance) return list;
-    final out = [...list];
     switch (_sort) {
       case _DoctorSort.relevance:
-        break;
       case _DoctorSort.rating:
-        out.sort((a, b) =>
-            (b.averageRating ?? -1).compareTo(a.averageRating ?? -1));
+      case _DoctorSort.nearestSlot:
+      case _DoctorSort.distance:
+        return list;
       case _DoctorSort.priceLow:
-        out.sort((a, b) => _fee(a).compareTo(_fee(b)));
+        return [...list]..sort((a, b) => _fee(a).compareTo(_fee(b)));
       case _DoctorSort.name:
-        out.sort((a, b) =>
+        return [...list]..sort((a, b) =>
             a.fullName.toLowerCase().compareTo(b.fullName.toLowerCase()));
     }
-    return out;
   }
+
+  String? get _serverOrdering => switch (_sort) {
+        _DoctorSort.rating => '-rating',
+        _DoctorSort.nearestSlot => 'next_slot',
+        _DoctorSort.distance => 'distance',
+        _ => null,
+      };
 
   // Doctors without a fee sort last.
   double _fee(DoctorModel d) =>
@@ -104,9 +112,44 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
         city: (_cityInput?.trim().isEmpty ?? true) ? null : _cityInput?.trim(),
         specialization: _selectedSpecialization,
         minRating: _minRating,
+        ordering: _serverOrdering,
+        lat: _sort == _DoctorSort.distance ? _lat : null,
+        lng: _sort == _DoctorSort.distance ? _lng : null,
       );
 
   void _search() => setState(() => _params = _buildParams());
+
+  /// Distance sort needs the patient's coordinates first. When the permission
+  /// is refused or no fix can be obtained we keep the previous sort selection
+  /// and explain why — the city filter remains the manual alternative.
+  Future<void> _changeSort(_DoctorSort next) async {
+    if (next == _sort) return;
+    if (next == _DoctorSort.distance) {
+      final result =
+          await ref.read(locationServiceProvider).getCurrentPosition();
+      if (!mounted) return;
+      switch (result) {
+        case LocationSuccess(:final lat, :final lng):
+          _lat = lat;
+          _lng = lng;
+        case LocationError(:final failure):
+          final t = context.t.doctorSearch;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(switch (failure) {
+                LocationFailure.denied => t.locationDenied,
+                LocationFailure.unavailable => t.locationUnavailable,
+              }),
+            ),
+          );
+          return;
+      }
+    }
+    setState(() {
+      _sort = next;
+      _params = _buildParams();
+    });
+  }
 
   void _selectSpec(String? spec) {
     setState(() {
@@ -228,7 +271,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                     children: [
                       _SortBar(
                         value: _sort,
-                        onChanged: (v) => setState(() => _sort = v),
+                        onChanged: _changeSort,
                       ),
                       Expanded(
                         child: RefreshIndicator(
@@ -349,7 +392,11 @@ class _DoctorCard extends ConsumerWidget {
     final c = context.colors;
     final initials =
         doctor.firstName.isNotEmpty ? doctor.firstName[0].toUpperCase() : 'D';
-    final nextSlot = ref.watch(nextAvailableDateProvider(doctor.id));
+    // ordering=next_slot already returns next_slot_at with the list — skip
+    // the extra per-doctor round-trip when it's there.
+    final nextSlot = doctor.nextSlotAt != null
+        ? AsyncValue<DateTime?>.data(doctor.nextSlotAt)
+        : ref.watch(nextAvailableDateProvider(doctor.id));
     final isFavorite =
         ref.watch(favoritesProvider.select((s) => s.contains(doctor.id)));
 
@@ -404,7 +451,8 @@ class _DoctorCard extends ConsumerWidget {
                     ),
                   ],
                 ),
-                if (doctor.primaryWorkplaceCity != null) ...[
+                if (doctor.primaryWorkplaceCity != null ||
+                    doctor.distanceKm != null) ...[
                   const Gap(2),
                   Row(
                     children: [
@@ -412,7 +460,13 @@ class _DoctorCard extends ConsumerWidget {
                           size: 13, color: c.textSecondary),
                       const Gap(3),
                       Text(
-                        doctor.primaryWorkplaceCity!,
+                        [
+                          if (doctor.primaryWorkplaceCity != null)
+                            doctor.primaryWorkplaceCity!,
+                          if (doctor.distanceKm != null)
+                            context.t.doctorSearch.distanceKm(
+                                km: doctor.distanceKm!.toStringAsFixed(1)),
+                        ].join(' · '),
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
@@ -504,6 +558,8 @@ String _sortLabel(BuildContext context, _DoctorSort s) {
     _DoctorSort.rating => t.sortRating,
     _DoctorSort.priceLow => t.sortPriceLow,
     _DoctorSort.name => t.sortName,
+    _DoctorSort.nearestSlot => t.sortNearestSlot,
+    _DoctorSort.distance => t.sortDistance,
   };
 }
 

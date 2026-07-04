@@ -258,7 +258,12 @@
     "sortDefault": "İlgi",
     "sortRating": "En yüksek puan",
     "sortPriceLow": "En düşük fiyat",
-    "sortName": "İsim (A–Z)"
+    "sortName": "İsim (A–Z)",
+    "sortNearestSlot": "En erken müsaitlik",
+    "sortDistance": "Bana en yakın",
+    "locationDenied": "Mesafeye göre sıralamak için konum izni gerekiyor. Ayarlardan izin verin veya şehir filtresini kullanın.",
+    "locationUnavailable": "Konumunuz alınamadı. Konum hizmetlerinin açık olduğundan emin olun veya şehir filtresini kullanın.",
+    "distanceKm": "$km km"
   },
   "doctorDetail": {
     "profileTitle": "Doktor Profili",

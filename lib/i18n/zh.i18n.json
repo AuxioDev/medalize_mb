@@ -258,7 +258,12 @@
     "sortDefault": "默认",
     "sortRating": "评分最高",
     "sortPriceLow": "价格最低",
-    "sortName": "姓名 (A–Z)"
+    "sortName": "姓名 (A–Z)",
+    "sortNearestSlot": "最早可约",
+    "sortDistance": "距离最近",
+    "locationDenied": "按距离排序需要位置权限。请在设置中允许，或改用城市筛选。",
+    "locationUnavailable": "无法获取您的位置。请检查定位服务是否开启，或改用城市筛选。",
+    "distanceKm": "$km 公里"
   },
   "doctorDetail": {
     "profileTitle": "医生资料",

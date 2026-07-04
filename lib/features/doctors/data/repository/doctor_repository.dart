@@ -20,6 +20,9 @@ class DoctorRepository {
     String? specialization,
     String? city,
     int? minRating,
+    String? ordering,
+    double? lat,
+    double? lng,
   }) async {
     try {
       final params = <String, dynamic>{};
@@ -27,6 +30,9 @@ class DoctorRepository {
       if (specialization != null && specialization.isNotEmpty) params['specialization'] = specialization;
       if (city != null && city.isNotEmpty) params['city'] = city;
       if (minRating != null) params['min_rating'] = minRating;
+      if (ordering != null && ordering.isNotEmpty) params['ordering'] = ordering;
+      if (lat != null) params['lat'] = lat;
+      if (lng != null) params['lng'] = lng;
       final res = await _dio.get('/doctors/', queryParameters: params);
       final results = (res.data['results'] as List<dynamic>?) ?? res.data as List<dynamic>;
       return results.map((e) => DoctorModel.fromJson(e as Map<String, dynamic>)).toList();

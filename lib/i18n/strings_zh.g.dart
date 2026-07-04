@@ -406,6 +406,11 @@ class _Translations$doctorSearch$zh extends Translations$doctorSearch$en {
 	@override String get sortRating => '评分最高';
 	@override String get sortPriceLow => '价格最低';
 	@override String get sortName => '姓名 (A–Z)';
+	@override String get sortNearestSlot => '最早可约';
+	@override String get sortDistance => '距离最近';
+	@override String get locationDenied => '按距离排序需要位置权限。请在设置中允许，或改用城市筛选。';
+	@override String get locationUnavailable => '无法获取您的位置。请检查定位服务是否开启，或改用城市筛选。';
+	@override String distanceKm({required Object km}) => '${km} 公里';
 }
 
 // Path: doctorDetail
@@ -936,6 +941,11 @@ extension on TranslationsZh {
 			'doctorSearch.sortRating' => '评分最高',
 			'doctorSearch.sortPriceLow' => '价格最低',
 			'doctorSearch.sortName' => '姓名 (A–Z)',
+			'doctorSearch.sortNearestSlot' => '最早可约',
+			'doctorSearch.sortDistance' => '距离最近',
+			'doctorSearch.locationDenied' => '按距离排序需要位置权限。请在设置中允许，或改用城市筛选。',
+			'doctorSearch.locationUnavailable' => '无法获取您的位置。请检查定位服务是否开启，或改用城市筛选。',
+			'doctorSearch.distanceKm' => ({required Object km}) => '${km} 公里',
 			'doctorDetail.profileTitle' => '医生资料',
 			'doctorDetail.couldNotLoadProfile' => '无法加载资料',
 			'doctorDetail.about' => '简介',

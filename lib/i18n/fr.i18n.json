@@ -258,7 +258,12 @@
     "sortDefault": "Pertinence",
     "sortRating": "Mieux notés",
     "sortPriceLow": "Prix le plus bas",
-    "sortName": "Nom (A–Z)"
+    "sortName": "Nom (A–Z)",
+    "sortNearestSlot": "Disponibilité la plus proche",
+    "sortDistance": "Le plus proche de moi",
+    "locationDenied": "L'autorisation de localisation est nécessaire pour trier par distance. Autorisez-la dans les réglages ou filtrez par ville.",
+    "locationUnavailable": "Impossible d'obtenir votre position. Vérifiez que la localisation est activée ou filtrez par ville.",
+    "distanceKm": "$km km"
   },
   "doctorDetail": {
     "profileTitle": "Profil du médecin",

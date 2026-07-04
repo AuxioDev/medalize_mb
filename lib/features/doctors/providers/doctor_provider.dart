@@ -9,8 +9,19 @@ class SearchParams {
   final String? specialization;
   final String? city;
   final int? minRating;
+  final String? ordering;
+  final double? lat;
+  final double? lng;
 
-  const SearchParams({this.name, this.specialization, this.city, this.minRating});
+  const SearchParams({
+    this.name,
+    this.specialization,
+    this.city,
+    this.minRating,
+    this.ordering,
+    this.lat,
+    this.lng,
+  });
 
   @override
   bool operator ==(Object other) =>
@@ -18,10 +29,14 @@ class SearchParams {
       other.name == name &&
       other.specialization == specialization &&
       other.city == city &&
-      other.minRating == minRating;
+      other.minRating == minRating &&
+      other.ordering == ordering &&
+      other.lat == lat &&
+      other.lng == lng;
 
   @override
-  int get hashCode => Object.hash(name, specialization, city, minRating);
+  int get hashCode =>
+      Object.hash(name, specialization, city, minRating, ordering, lat, lng);
 }
 
 class SlotsParams {
@@ -53,6 +68,9 @@ final doctorSearchProvider =
         specialization: params.specialization,
         city: params.city,
         minRating: params.minRating,
+        ordering: params.ordering,
+        lat: params.lat,
+        lng: params.lng,
       );
 });
 

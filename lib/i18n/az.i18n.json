@@ -258,7 +258,12 @@
     "sortDefault": "Uyğunluq",
     "sortRating": "Ən yüksək reytinq",
     "sortPriceLow": "Ən aşağı qiymət",
-    "sortName": "Ad (A–Z)"
+    "sortName": "Ad (A–Z)",
+    "sortNearestSlot": "Ən erkən boş vaxt",
+    "sortDistance": "Mənə ən yaxın",
+    "locationDenied": "Məsafəyə görə sıralamaq üçün məkan icazəsi lazımdır. Parametrlərdə icazə verin və ya şəhər filtrindən istifadə edin.",
+    "locationUnavailable": "Məkanınızı təyin etmək mümkün olmadı. Məkan xidmətlərinin aktiv olduğunu yoxlayın və ya şəhər filtrindən istifadə edin.",
+    "distanceKm": "$km km"
   },
   "doctorDetail": {
     "profileTitle": "Həkim profili",

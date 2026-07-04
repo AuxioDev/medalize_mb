@@ -853,6 +853,21 @@ class Translations$doctorSearch$en {
 
 	/// en: 'Name (A–Z)'
 	String get sortName => 'Name (A–Z)';
+
+	/// en: 'Earliest available'
+	String get sortNearestSlot => 'Earliest available';
+
+	/// en: 'Nearest to me'
+	String get sortDistance => 'Nearest to me';
+
+	/// en: 'Location permission is needed to sort by distance. Allow it in Settings, or filter by city instead.'
+	String get locationDenied => 'Location permission is needed to sort by distance. Allow it in Settings, or filter by city instead.';
+
+	/// en: 'Couldn't get your location. Check that location services are on, or filter by city instead.'
+	String get locationUnavailable => 'Couldn\'t get your location. Check that location services are on, or filter by city instead.';
+
+	/// en: '$km km'
+	String distanceKm({required Object km}) => '${km} km';
 }
 
 // Path: doctorDetail
@@ -1668,6 +1683,11 @@ extension on Translations {
 			'doctorSearch.sortRating' => 'Top rated',
 			'doctorSearch.sortPriceLow' => 'Lowest price',
 			'doctorSearch.sortName' => 'Name (A–Z)',
+			'doctorSearch.sortNearestSlot' => 'Earliest available',
+			'doctorSearch.sortDistance' => 'Nearest to me',
+			'doctorSearch.locationDenied' => 'Location permission is needed to sort by distance. Allow it in Settings, or filter by city instead.',
+			'doctorSearch.locationUnavailable' => 'Couldn\'t get your location. Check that location services are on, or filter by city instead.',
+			'doctorSearch.distanceKm' => ({required Object km}) => '${km} km',
 			'doctorDetail.profileTitle' => 'Doctor Profile',
 			'doctorDetail.couldNotLoadProfile' => 'Could not load profile',
 			'doctorDetail.about' => 'About',

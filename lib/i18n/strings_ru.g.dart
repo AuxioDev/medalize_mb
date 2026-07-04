@@ -406,6 +406,11 @@ class _Translations$doctorSearch$ru extends Translations$doctorSearch$en {
 	@override String get sortRating => 'По рейтингу';
 	@override String get sortPriceLow => 'Сначала дешевле';
 	@override String get sortName => 'По имени (А–Я)';
+	@override String get sortNearestSlot => 'Ближайшая запись';
+	@override String get sortDistance => 'По расстоянию';
+	@override String get locationDenied => 'Для сортировки по расстоянию нужен доступ к геолокации. Разрешите его в настройках или используйте фильтр по городу.';
+	@override String get locationUnavailable => 'Не удалось определить местоположение. Проверьте, что геолокация включена, или используйте фильтр по городу.';
+	@override String distanceKm({required Object km}) => '${km} км';
 }
 
 // Path: doctorDetail
@@ -936,6 +941,11 @@ extension on TranslationsRu {
 			'doctorSearch.sortRating' => 'По рейтингу',
 			'doctorSearch.sortPriceLow' => 'Сначала дешевле',
 			'doctorSearch.sortName' => 'По имени (А–Я)',
+			'doctorSearch.sortNearestSlot' => 'Ближайшая запись',
+			'doctorSearch.sortDistance' => 'По расстоянию',
+			'doctorSearch.locationDenied' => 'Для сортировки по расстоянию нужен доступ к геолокации. Разрешите его в настройках или используйте фильтр по городу.',
+			'doctorSearch.locationUnavailable' => 'Не удалось определить местоположение. Проверьте, что геолокация включена, или используйте фильтр по городу.',
+			'doctorSearch.distanceKm' => ({required Object km}) => '${km} км',
 			'doctorDetail.profileTitle' => 'Профиль врача',
 			'doctorDetail.couldNotLoadProfile' => 'Не удалось загрузить профиль',
 			'doctorDetail.about' => 'О себе',
