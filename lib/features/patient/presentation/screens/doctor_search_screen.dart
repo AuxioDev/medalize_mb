@@ -472,8 +472,8 @@ class _DoctorCard extends ConsumerWidget {
                     ],
                   ),
                 ],
-                if (doctor.averageRating != null) ...[
-                  const Gap(2),
+                const Gap(2),
+                if (doctor.averageRating != null)
                   Row(
                     children: [
                       Icon(Icons.star_rounded, size: 13, color: Colors.amber.shade600),
@@ -483,8 +483,12 @@ class _DoctorCard extends ConsumerWidget {
                         style: TextStyle(fontSize: 11, color: c.textSecondary),
                       ),
                     ],
+                  )
+                else
+                  Text(
+                    context.t.common.noRatings,
+                    style: TextStyle(fontSize: 11, color: c.textSecondary),
                   ),
-                ],
                 const Gap(4),
                 nextSlot.when(
                   loading: () => const SizedBox(

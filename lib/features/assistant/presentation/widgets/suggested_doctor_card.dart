@@ -66,6 +66,12 @@ class SuggestedDoctorCard extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       const Gap(6),
+                    ] else ...[
+                      Text(
+                        context.t.common.noRatings,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      const Gap(6),
                     ],
                     Expanded(
                       child: Text(

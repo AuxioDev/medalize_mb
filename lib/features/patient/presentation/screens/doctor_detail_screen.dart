@@ -329,8 +329,8 @@ class _ProfileHeader extends StatelessWidget {
                     ),
                   ],
                 ),
-                if (detail.averageRating != null) ...[
-                  const Gap(4),
+                const Gap(4),
+                if (detail.averageRating != null)
                   Row(
                     children: [
                       ...List.generate(5, (i) {
@@ -347,8 +347,12 @@ class _ProfileHeader extends StatelessWidget {
                         style: TextStyle(fontSize: 12, color: c.textSecondary),
                       ),
                     ],
+                  )
+                else
+                  Text(
+                    context.t.common.noRatings,
+                    style: TextStyle(fontSize: 12, color: c.textSecondary),
                   ),
-                ],
               ],
             ),
           ),
