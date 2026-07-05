@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_badge.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
@@ -191,19 +192,7 @@ class _WorkplaceCard extends ConsumerWidget {
                     ),
                     if (isPrimary) ...[
                       const Gap(8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 7, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: AppColors.success.withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(AppRadius.xl),
-                        ),
-                        child: Text(context.t.common.primary,
-                            style: const TextStyle(
-                                color: AppColors.success,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w600)),
-                      ),
+                      AppBadge(label: context.t.common.primary),
                     ],
                   ],
                 ),

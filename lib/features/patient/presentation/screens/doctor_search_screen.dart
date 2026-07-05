@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_chip.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
@@ -349,35 +350,21 @@ class _SpecChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = context.colors;
-    return SizedBox(
-      height: 34,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: _kSpecializations.length,
-        separatorBuilder: (_, _) => const Gap(8),
-        itemBuilder: (_, i) {
-          final spec = _kSpecializations[i];
-          final label = _specLabel(context, spec);
-          final isSelected = selected == spec;
-          return FilterChip(
-            label: Text(label),
-            selected: isSelected,
-            onSelected: (_) => onSelect(spec),
-            selectedColor: c.primarySurface,
-            checkmarkColor: c.primaryText,
-            labelStyle: TextStyle(
-              color: isSelected ? c.primaryText : c.textSecondary,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-              fontSize: 13,
+    // No fixed height: the chips define their own height, so long
+    // translations / larger text scales never get clipped.
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (var i = 0; i < _kSpecializations.length; i++) ...[
+            if (i > 0) const Gap(8),
+            AppChip.filter(
+              label: _specLabel(context, _kSpecializations[i]),
+              selected: selected == _kSpecializations[i],
+              onSelected: (_) => onSelect(_kSpecializations[i]),
             ),
-            side: BorderSide(
-              color: isSelected ? AppColors.primary : c.border,
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            visualDensity: VisualDensity.compact,
-          );
-        },
+          ],
+        ],
       ),
     );
   }
@@ -625,42 +612,25 @@ class _RatingChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    return SizedBox(
-      height: 34,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: 4,
-        separatorBuilder: (_, _) => const Gap(8),
-        itemBuilder: (_, i) {
-          final rating = i + 2;
-          final isSelected = selected == rating;
-          return FilterChip(
-            label: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.star_rounded,
-                    size: 13,
-                    color: isSelected ? c.primaryText : c.textSecondary),
-                const Gap(3),
-                Text('$rating+'),
-              ],
+    // No fixed height: the chips define their own height (see _SpecChips).
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (var rating = 2; rating <= 5; rating++) ...[
+            if (rating > 2) const Gap(8),
+            AppChip.filter(
+              label: '$rating+',
+              leading: Icon(Icons.star_rounded,
+                  size: 13,
+                  color:
+                      selected == rating ? c.primaryText : c.textSecondary),
+              selected: selected == rating,
+              onSelected: (_) => onSelect(rating),
+              labelPadding: const EdgeInsets.symmetric(horizontal: 2),
             ),
-            selected: isSelected,
-            onSelected: (_) => onSelect(rating),
-            selectedColor: c.primarySurface,
-            checkmarkColor: c.primaryText,
-            labelStyle: TextStyle(
-              color: isSelected ? c.primaryText : c.textSecondary,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-              fontSize: 13,
-            ),
-            side: BorderSide(
-              color: isSelected ? AppColors.primary : c.border,
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 2),
-            visualDensity: VisualDensity.compact,
-          );
-        },
+          ],
+        ],
       ),
     );
   }
