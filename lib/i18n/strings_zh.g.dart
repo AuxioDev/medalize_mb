@@ -66,6 +66,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$zh splash = _Translations$splash$zh._(_root);
 	@override late final _Translations$agenda$zh agenda = _Translations$agenda$zh._(_root);
 	@override late final _Translations$favorites$zh favorites = _Translations$favorites$zh._(_root);
+	@override late final _Translations$assistant$zh assistant = _Translations$assistant$zh._(_root);
 	@override late final _Translations$legal$zh legal = _Translations$legal$zh._(_root);
 }
 
@@ -298,6 +299,7 @@ class _Translations$home$zh extends Translations$home$en {
 	@override String get pendingRequests => '待处理请求';
 	@override String get upcoming => '即将到来';
 	@override String get findDoctor => '查找医生';
+	@override String get aiAssistant => 'AI 助手';
 	@override String get myAppointments => '我的预约';
 	@override String get appointments => '预约';
 	@override String get workplaces => '工作地点';
@@ -662,6 +664,37 @@ class _Translations$favorites$zh extends Translations$favorites$en {
 	@override String get remove => '取消收藏';
 }
 
+// Path: assistant
+class _Translations$assistant$zh extends Translations$assistant$en {
+	_Translations$assistant$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'AI 助手';
+	@override String get newChat => '新对话';
+	@override String get empty => '暂无对话';
+	@override String get emptySubtitle => '描述您的症状，助手会建议您应就诊哪科医生';
+	@override String get couldNotLoad => '无法加载对话列表';
+	@override String get couldNotLoadChat => '无法加载该对话';
+	@override String get newConversation => '新对话';
+	@override String get deleteTitle => '删除对话？';
+	@override String get deleteConfirm => '该对话及其所有消息将被删除。';
+	@override String get inputHint => '请描述您的症状…';
+	@override String get send => '发送';
+	@override String get sendFailed => '消息发送失败，请重试。';
+	@override String get typing => '助手正在输入…';
+	@override String get startTitle => '有什么可以帮您？';
+	@override String get startSubtitle => '请先描述让您不适的症状';
+	@override String get book => '预约';
+	@override String get reportTooltip => '举报此回复';
+	@override String get reportTitle => '举报回复';
+	@override String get reportHint => '原因（可选）';
+	@override String get reportSubmit => '举报';
+	@override String get reportSuccess => '感谢反馈，该回复已被举报。';
+	@override String get reportFailed => '无法举报该回复，请重试。';
+}
+
 // Path: legal
 class _Translations$legal$zh extends Translations$legal$en {
 	_Translations$legal$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -864,6 +897,7 @@ extension on TranslationsZh {
 			'home.pendingRequests' => '待处理请求',
 			'home.upcoming' => '即将到来',
 			'home.findDoctor' => '查找医生',
+			'home.aiAssistant' => 'AI 助手',
 			'home.myAppointments' => '我的预约',
 			'home.appointments' => '预约',
 			'home.workplaces' => '工作地点',
@@ -1098,6 +1132,28 @@ extension on TranslationsZh {
 			'favorites.emptySubtitle' => '点击医生上的爱心以收藏',
 			'favorites.add' => '加入收藏',
 			'favorites.remove' => '取消收藏',
+			'assistant.title' => 'AI 助手',
+			'assistant.newChat' => '新对话',
+			'assistant.empty' => '暂无对话',
+			'assistant.emptySubtitle' => '描述您的症状，助手会建议您应就诊哪科医生',
+			'assistant.couldNotLoad' => '无法加载对话列表',
+			'assistant.couldNotLoadChat' => '无法加载该对话',
+			'assistant.newConversation' => '新对话',
+			'assistant.deleteTitle' => '删除对话？',
+			'assistant.deleteConfirm' => '该对话及其所有消息将被删除。',
+			'assistant.inputHint' => '请描述您的症状…',
+			'assistant.send' => '发送',
+			'assistant.sendFailed' => '消息发送失败，请重试。',
+			'assistant.typing' => '助手正在输入…',
+			'assistant.startTitle' => '有什么可以帮您？',
+			'assistant.startSubtitle' => '请先描述让您不适的症状',
+			'assistant.book' => '预约',
+			'assistant.reportTooltip' => '举报此回复',
+			'assistant.reportTitle' => '举报回复',
+			'assistant.reportHint' => '原因（可选）',
+			'assistant.reportSubmit' => '举报',
+			'assistant.reportSuccess' => '感谢反馈，该回复已被举报。',
+			'assistant.reportFailed' => '无法举报该回复，请重试。',
 			'legal.title' => '隐私与条款',
 			'legal.privacyTitle' => '隐私政策',
 			'legal.privacyBody' => 'Medalize 处理您的个人和健康信息，以便您预约和管理就诊。我们不会出售您的数据。完整的隐私政策将在公开发布前在此处发布。',

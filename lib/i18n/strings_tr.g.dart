@@ -66,6 +66,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$tr splash = _Translations$splash$tr._(_root);
 	@override late final _Translations$agenda$tr agenda = _Translations$agenda$tr._(_root);
 	@override late final _Translations$favorites$tr favorites = _Translations$favorites$tr._(_root);
+	@override late final _Translations$assistant$tr assistant = _Translations$assistant$tr._(_root);
 	@override late final _Translations$legal$tr legal = _Translations$legal$tr._(_root);
 }
 
@@ -298,6 +299,7 @@ class _Translations$home$tr extends Translations$home$en {
 	@override String get pendingRequests => 'Bekleyen İstekler';
 	@override String get upcoming => 'Yaklaşan';
 	@override String get findDoctor => 'Doktor Bul';
+	@override String get aiAssistant => 'AI Asistan';
 	@override String get myAppointments => 'Randevularım';
 	@override String get appointments => 'Randevular';
 	@override String get workplaces => 'İş Yerleri';
@@ -662,6 +664,37 @@ class _Translations$favorites$tr extends Translations$favorites$en {
 	@override String get remove => 'Favorilerden çıkar';
 }
 
+// Path: assistant
+class _Translations$assistant$tr extends Translations$assistant$en {
+	_Translations$assistant$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'AI Asistan';
+	@override String get newChat => 'Yeni Sohbet';
+	@override String get empty => 'Henüz sohbet yok';
+	@override String get emptySubtitle => 'Belirtilerinizi anlatın, asistan hangi doktora gitmeniz gerektiğini önersin';
+	@override String get couldNotLoad => 'Sohbetler yüklenemedi';
+	@override String get couldNotLoadChat => 'Sohbet yüklenemedi';
+	@override String get newConversation => 'Yeni sohbet';
+	@override String get deleteTitle => 'Sohbet silinsin mi?';
+	@override String get deleteConfirm => 'Sohbet ve tüm mesajları silinecek.';
+	@override String get inputHint => 'Belirtilerinizi anlatın…';
+	@override String get send => 'Gönder';
+	@override String get sendFailed => 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
+	@override String get typing => 'Asistan yazıyor…';
+	@override String get startTitle => 'Nasıl yardımcı olabilirim?';
+	@override String get startSubtitle => 'Başlamak için sizi rahatsız eden şeyi anlatın';
+	@override String get book => 'Randevu al';
+	@override String get reportTooltip => 'Yanıtı bildir';
+	@override String get reportTitle => 'Yanıtı bildir';
+	@override String get reportHint => 'Neden (isteğe bağlı)';
+	@override String get reportSubmit => 'Bildir';
+	@override String get reportSuccess => 'Teşekkürler, yanıt bildirildi.';
+	@override String get reportFailed => 'Yanıt bildirilemedi. Lütfen tekrar deneyin.';
+}
+
 // Path: legal
 class _Translations$legal$tr extends Translations$legal$en {
 	_Translations$legal$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -864,6 +897,7 @@ extension on TranslationsTr {
 			'home.pendingRequests' => 'Bekleyen İstekler',
 			'home.upcoming' => 'Yaklaşan',
 			'home.findDoctor' => 'Doktor Bul',
+			'home.aiAssistant' => 'AI Asistan',
 			'home.myAppointments' => 'Randevularım',
 			'home.appointments' => 'Randevular',
 			'home.workplaces' => 'İş Yerleri',
@@ -1098,6 +1132,28 @@ extension on TranslationsTr {
 			'favorites.emptySubtitle' => 'Bir doktoru kaydetmek için kalbe dokunun',
 			'favorites.add' => 'Favorilere ekle',
 			'favorites.remove' => 'Favorilerden çıkar',
+			'assistant.title' => 'AI Asistan',
+			'assistant.newChat' => 'Yeni Sohbet',
+			'assistant.empty' => 'Henüz sohbet yok',
+			'assistant.emptySubtitle' => 'Belirtilerinizi anlatın, asistan hangi doktora gitmeniz gerektiğini önersin',
+			'assistant.couldNotLoad' => 'Sohbetler yüklenemedi',
+			'assistant.couldNotLoadChat' => 'Sohbet yüklenemedi',
+			'assistant.newConversation' => 'Yeni sohbet',
+			'assistant.deleteTitle' => 'Sohbet silinsin mi?',
+			'assistant.deleteConfirm' => 'Sohbet ve tüm mesajları silinecek.',
+			'assistant.inputHint' => 'Belirtilerinizi anlatın…',
+			'assistant.send' => 'Gönder',
+			'assistant.sendFailed' => 'Mesaj gönderilemedi. Lütfen tekrar deneyin.',
+			'assistant.typing' => 'Asistan yazıyor…',
+			'assistant.startTitle' => 'Nasıl yardımcı olabilirim?',
+			'assistant.startSubtitle' => 'Başlamak için sizi rahatsız eden şeyi anlatın',
+			'assistant.book' => 'Randevu al',
+			'assistant.reportTooltip' => 'Yanıtı bildir',
+			'assistant.reportTitle' => 'Yanıtı bildir',
+			'assistant.reportHint' => 'Neden (isteğe bağlı)',
+			'assistant.reportSubmit' => 'Bildir',
+			'assistant.reportSuccess' => 'Teşekkürler, yanıt bildirildi.',
+			'assistant.reportFailed' => 'Yanıt bildirilemedi. Lütfen tekrar deneyin.',
 			'legal.title' => 'Gizlilik ve Koşullar',
 			'legal.privacyTitle' => 'Gizlilik Politikası',
 			'legal.privacyBody' => 'Medalize, randevu almanız ve yönetmeniz için kişisel ve sağlık bilgilerinizi işler. Verilerinizi satmıyoruz. Tam Gizlilik Politikası, herkese açık lansmandan önce burada yayınlanacaktır.',

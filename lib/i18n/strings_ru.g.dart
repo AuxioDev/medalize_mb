@@ -66,6 +66,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$ru splash = _Translations$splash$ru._(_root);
 	@override late final _Translations$agenda$ru agenda = _Translations$agenda$ru._(_root);
 	@override late final _Translations$favorites$ru favorites = _Translations$favorites$ru._(_root);
+	@override late final _Translations$assistant$ru assistant = _Translations$assistant$ru._(_root);
 	@override late final _Translations$legal$ru legal = _Translations$legal$ru._(_root);
 }
 
@@ -298,6 +299,7 @@ class _Translations$home$ru extends Translations$home$en {
 	@override String get pendingRequests => 'Ожидающие запросы';
 	@override String get upcoming => 'Предстоящие';
 	@override String get findDoctor => 'Найти врача';
+	@override String get aiAssistant => 'ИИ-ассистент';
 	@override String get myAppointments => 'Мои приёмы';
 	@override String get appointments => 'Приёмы';
 	@override String get workplaces => 'Места работы';
@@ -662,6 +664,37 @@ class _Translations$favorites$ru extends Translations$favorites$en {
 	@override String get remove => 'Убрать из избранного';
 }
 
+// Path: assistant
+class _Translations$assistant$ru extends Translations$assistant$en {
+	_Translations$assistant$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'ИИ-ассистент';
+	@override String get newChat => 'Новый чат';
+	@override String get empty => 'Пока нет разговоров';
+	@override String get emptySubtitle => 'Опишите симптомы — ассистент подскажет, к какому врачу обратиться';
+	@override String get couldNotLoad => 'Не удалось загрузить разговоры';
+	@override String get couldNotLoadChat => 'Не удалось загрузить разговор';
+	@override String get newConversation => 'Новый разговор';
+	@override String get deleteTitle => 'Удалить разговор?';
+	@override String get deleteConfirm => 'Разговор и все его сообщения будут удалены.';
+	@override String get inputHint => 'Опишите ваши симптомы…';
+	@override String get send => 'Отправить';
+	@override String get sendFailed => 'Не удалось отправить сообщение. Попробуйте ещё раз.';
+	@override String get typing => 'Ассистент печатает…';
+	@override String get startTitle => 'Чем помочь?';
+	@override String get startSubtitle => 'Для начала опишите, что вас беспокоит';
+	@override String get book => 'Записаться';
+	@override String get reportTooltip => 'Пожаловаться на ответ';
+	@override String get reportTitle => 'Пожаловаться на ответ';
+	@override String get reportHint => 'Причина (необязательно)';
+	@override String get reportSubmit => 'Отправить';
+	@override String get reportSuccess => 'Спасибо, жалоба отправлена.';
+	@override String get reportFailed => 'Не удалось отправить жалобу. Попробуйте ещё раз.';
+}
+
 // Path: legal
 class _Translations$legal$ru extends Translations$legal$en {
 	_Translations$legal$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -864,6 +897,7 @@ extension on TranslationsRu {
 			'home.pendingRequests' => 'Ожидающие запросы',
 			'home.upcoming' => 'Предстоящие',
 			'home.findDoctor' => 'Найти врача',
+			'home.aiAssistant' => 'ИИ-ассистент',
 			'home.myAppointments' => 'Мои приёмы',
 			'home.appointments' => 'Приёмы',
 			'home.workplaces' => 'Места работы',
@@ -1098,6 +1132,28 @@ extension on TranslationsRu {
 			'favorites.emptySubtitle' => 'Нажмите на сердечко у врача, чтобы сохранить его здесь',
 			'favorites.add' => 'В избранное',
 			'favorites.remove' => 'Убрать из избранного',
+			'assistant.title' => 'ИИ-ассистент',
+			'assistant.newChat' => 'Новый чат',
+			'assistant.empty' => 'Пока нет разговоров',
+			'assistant.emptySubtitle' => 'Опишите симптомы — ассистент подскажет, к какому врачу обратиться',
+			'assistant.couldNotLoad' => 'Не удалось загрузить разговоры',
+			'assistant.couldNotLoadChat' => 'Не удалось загрузить разговор',
+			'assistant.newConversation' => 'Новый разговор',
+			'assistant.deleteTitle' => 'Удалить разговор?',
+			'assistant.deleteConfirm' => 'Разговор и все его сообщения будут удалены.',
+			'assistant.inputHint' => 'Опишите ваши симптомы…',
+			'assistant.send' => 'Отправить',
+			'assistant.sendFailed' => 'Не удалось отправить сообщение. Попробуйте ещё раз.',
+			'assistant.typing' => 'Ассистент печатает…',
+			'assistant.startTitle' => 'Чем помочь?',
+			'assistant.startSubtitle' => 'Для начала опишите, что вас беспокоит',
+			'assistant.book' => 'Записаться',
+			'assistant.reportTooltip' => 'Пожаловаться на ответ',
+			'assistant.reportTitle' => 'Пожаловаться на ответ',
+			'assistant.reportHint' => 'Причина (необязательно)',
+			'assistant.reportSubmit' => 'Отправить',
+			'assistant.reportSuccess' => 'Спасибо, жалоба отправлена.',
+			'assistant.reportFailed' => 'Не удалось отправить жалобу. Попробуйте ещё раз.',
 			'legal.title' => 'Конфиденциальность и условия',
 			'legal.privacyTitle' => 'Политика конфиденциальности',
 			'legal.privacyBody' => 'Medalize обрабатывает ваши персональные и медицинские данные, чтобы вы могли записываться на приёмы и управлять ими. Мы не продаём ваши данные. Полная политика конфиденциальности будет опубликована здесь до публичного запуска.',

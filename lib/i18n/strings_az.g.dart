@@ -66,6 +66,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$az splash = _Translations$splash$az._(_root);
 	@override late final _Translations$agenda$az agenda = _Translations$agenda$az._(_root);
 	@override late final _Translations$favorites$az favorites = _Translations$favorites$az._(_root);
+	@override late final _Translations$assistant$az assistant = _Translations$assistant$az._(_root);
 	@override late final _Translations$legal$az legal = _Translations$legal$az._(_root);
 }
 
@@ -298,6 +299,7 @@ class _Translations$home$az extends Translations$home$en {
 	@override String get pendingRequests => 'Gözləyən sorğular';
 	@override String get upcoming => 'Yaxınlaşan';
 	@override String get findDoctor => 'Həkim tap';
+	@override String get aiAssistant => 'AI Köməkçi';
 	@override String get myAppointments => 'Görüşlərim';
 	@override String get appointments => 'Görüşlər';
 	@override String get workplaces => 'İş yerləri';
@@ -662,6 +664,37 @@ class _Translations$favorites$az extends Translations$favorites$en {
 	@override String get remove => 'Sevimlilərdən sil';
 }
 
+// Path: assistant
+class _Translations$assistant$az extends Translations$assistant$en {
+	_Translations$assistant$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'AI Köməkçi';
+	@override String get newChat => 'Yeni söhbət';
+	@override String get empty => 'Hələ söhbət yoxdur';
+	@override String get emptySubtitle => 'Simptomlarınızı təsvir edin — köməkçi hansı həkimə müraciət edəcəyinizi məsləhət görəcək';
+	@override String get couldNotLoad => 'Söhbətləri yükləmək mümkün olmadı';
+	@override String get couldNotLoadChat => 'Söhbəti yükləmək mümkün olmadı';
+	@override String get newConversation => 'Yeni söhbət';
+	@override String get deleteTitle => 'Söhbət silinsin?';
+	@override String get deleteConfirm => 'Söhbət və onun bütün mesajları silinəcək.';
+	@override String get inputHint => 'Simptomlarınızı təsvir edin…';
+	@override String get send => 'Göndər';
+	@override String get sendFailed => 'Mesajı göndərmək mümkün olmadı. Yenidən cəhd edin.';
+	@override String get typing => 'Köməkçi yazır…';
+	@override String get startTitle => 'Necə kömək edə bilərəm?';
+	@override String get startSubtitle => 'Başlamaq üçün sizi narahat edəni təsvir edin';
+	@override String get book => 'Qəbula yazıl';
+	@override String get reportTooltip => 'Cavabdan şikayət et';
+	@override String get reportTitle => 'Cavabdan şikayət et';
+	@override String get reportHint => 'Səbəb (istəyə bağlı)';
+	@override String get reportSubmit => 'Göndər';
+	@override String get reportSuccess => 'Təşəkkürlər, şikayət göndərildi.';
+	@override String get reportFailed => 'Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.';
+}
+
 // Path: legal
 class _Translations$legal$az extends Translations$legal$en {
 	_Translations$legal$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -864,6 +897,7 @@ extension on TranslationsAz {
 			'home.pendingRequests' => 'Gözləyən sorğular',
 			'home.upcoming' => 'Yaxınlaşan',
 			'home.findDoctor' => 'Həkim tap',
+			'home.aiAssistant' => 'AI Köməkçi',
 			'home.myAppointments' => 'Görüşlərim',
 			'home.appointments' => 'Görüşlər',
 			'home.workplaces' => 'İş yerləri',
@@ -1098,6 +1132,28 @@ extension on TranslationsAz {
 			'favorites.emptySubtitle' => 'Həkimi yadda saxlamaq üçün ürək işarəsinə toxunun',
 			'favorites.add' => 'Sevimlilərə əlavə et',
 			'favorites.remove' => 'Sevimlilərdən sil',
+			'assistant.title' => 'AI Köməkçi',
+			'assistant.newChat' => 'Yeni söhbət',
+			'assistant.empty' => 'Hələ söhbət yoxdur',
+			'assistant.emptySubtitle' => 'Simptomlarınızı təsvir edin — köməkçi hansı həkimə müraciət edəcəyinizi məsləhət görəcək',
+			'assistant.couldNotLoad' => 'Söhbətləri yükləmək mümkün olmadı',
+			'assistant.couldNotLoadChat' => 'Söhbəti yükləmək mümkün olmadı',
+			'assistant.newConversation' => 'Yeni söhbət',
+			'assistant.deleteTitle' => 'Söhbət silinsin?',
+			'assistant.deleteConfirm' => 'Söhbət və onun bütün mesajları silinəcək.',
+			'assistant.inputHint' => 'Simptomlarınızı təsvir edin…',
+			'assistant.send' => 'Göndər',
+			'assistant.sendFailed' => 'Mesajı göndərmək mümkün olmadı. Yenidən cəhd edin.',
+			'assistant.typing' => 'Köməkçi yazır…',
+			'assistant.startTitle' => 'Necə kömək edə bilərəm?',
+			'assistant.startSubtitle' => 'Başlamaq üçün sizi narahat edəni təsvir edin',
+			'assistant.book' => 'Qəbula yazıl',
+			'assistant.reportTooltip' => 'Cavabdan şikayət et',
+			'assistant.reportTitle' => 'Cavabdan şikayət et',
+			'assistant.reportHint' => 'Səbəb (istəyə bağlı)',
+			'assistant.reportSubmit' => 'Göndər',
+			'assistant.reportSuccess' => 'Təşəkkürlər, şikayət göndərildi.',
+			'assistant.reportFailed' => 'Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.',
 			'legal.title' => 'Məxfilik və Şərtlər',
 			'legal.privacyTitle' => 'Məxfilik Siyasəti',
 			'legal.privacyBody' => 'Medalize tibbi görüşləri planlamaq və idarə etmək üçün şəxsi və sağlamlıq məlumatlarınızı emal edir. Məlumatlarınızı satmırıq. Tam Məxfilik Siyasəti ictimai buraxılışdan əvvəl burada dərc olunacaq.',

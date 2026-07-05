@@ -70,6 +70,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$splash$en splash = Translations$splash$en.internal(_root);
 	late final Translations$agenda$en agenda = Translations$agenda$en.internal(_root);
 	late final Translations$favorites$en favorites = Translations$favorites$en.internal(_root);
+	late final Translations$assistant$en assistant = Translations$assistant$en.internal(_root);
 	late final Translations$legal$en legal = Translations$legal$en.internal(_root);
 }
 
@@ -584,6 +585,9 @@ class Translations$home$en {
 
 	/// en: 'Find Doctor'
 	String get findDoctor => 'Find Doctor';
+
+	/// en: 'AI Assistant'
+	String get aiAssistant => 'AI Assistant';
 
 	/// en: 'My Appointments'
 	String get myAppointments => 'My Appointments';
@@ -1382,6 +1386,81 @@ class Translations$favorites$en {
 	String get remove => 'Remove from favorites';
 }
 
+// Path: assistant
+class Translations$assistant$en {
+	Translations$assistant$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'AI Assistant'
+	String get title => 'AI Assistant';
+
+	/// en: 'New Chat'
+	String get newChat => 'New Chat';
+
+	/// en: 'No conversations yet'
+	String get empty => 'No conversations yet';
+
+	/// en: 'Describe your symptoms and the assistant will suggest which doctor to see'
+	String get emptySubtitle => 'Describe your symptoms and the assistant will suggest which doctor to see';
+
+	/// en: 'Could not load conversations'
+	String get couldNotLoad => 'Could not load conversations';
+
+	/// en: 'Could not load this conversation'
+	String get couldNotLoadChat => 'Could not load this conversation';
+
+	/// en: 'New conversation'
+	String get newConversation => 'New conversation';
+
+	/// en: 'Delete conversation?'
+	String get deleteTitle => 'Delete conversation?';
+
+	/// en: 'This conversation and all its messages will be deleted.'
+	String get deleteConfirm => 'This conversation and all its messages will be deleted.';
+
+	/// en: 'Describe your symptoms…'
+	String get inputHint => 'Describe your symptoms…';
+
+	/// en: 'Send'
+	String get send => 'Send';
+
+	/// en: 'Message could not be sent. Please try again.'
+	String get sendFailed => 'Message could not be sent. Please try again.';
+
+	/// en: 'Assistant is typing…'
+	String get typing => 'Assistant is typing…';
+
+	/// en: 'How can I help?'
+	String get startTitle => 'How can I help?';
+
+	/// en: 'Describe what is bothering you to get started'
+	String get startSubtitle => 'Describe what is bothering you to get started';
+
+	/// en: 'Book'
+	String get book => 'Book';
+
+	/// en: 'Report this response'
+	String get reportTooltip => 'Report this response';
+
+	/// en: 'Report response'
+	String get reportTitle => 'Report response';
+
+	/// en: 'Reason (optional)'
+	String get reportHint => 'Reason (optional)';
+
+	/// en: 'Report'
+	String get reportSubmit => 'Report';
+
+	/// en: 'Thank you, the response was reported.'
+	String get reportSuccess => 'Thank you, the response was reported.';
+
+	/// en: 'Could not report the response. Please try again.'
+	String get reportFailed => 'Could not report the response. Please try again.';
+}
+
 // Path: legal
 class Translations$legal$en {
 	Translations$legal$en.internal(this._root);
@@ -1634,6 +1713,7 @@ extension on Translations {
 			'home.pendingRequests' => 'Pending Requests',
 			'home.upcoming' => 'Upcoming',
 			'home.findDoctor' => 'Find Doctor',
+			'home.aiAssistant' => 'AI Assistant',
 			'home.myAppointments' => 'My Appointments',
 			'home.appointments' => 'Appointments',
 			'home.workplaces' => 'Workplaces',
@@ -1868,6 +1948,28 @@ extension on Translations {
 			'favorites.emptySubtitle' => 'Tap the heart on a doctor to save them here',
 			'favorites.add' => 'Add to favorites',
 			'favorites.remove' => 'Remove from favorites',
+			'assistant.title' => 'AI Assistant',
+			'assistant.newChat' => 'New Chat',
+			'assistant.empty' => 'No conversations yet',
+			'assistant.emptySubtitle' => 'Describe your symptoms and the assistant will suggest which doctor to see',
+			'assistant.couldNotLoad' => 'Could not load conversations',
+			'assistant.couldNotLoadChat' => 'Could not load this conversation',
+			'assistant.newConversation' => 'New conversation',
+			'assistant.deleteTitle' => 'Delete conversation?',
+			'assistant.deleteConfirm' => 'This conversation and all its messages will be deleted.',
+			'assistant.inputHint' => 'Describe your symptoms…',
+			'assistant.send' => 'Send',
+			'assistant.sendFailed' => 'Message could not be sent. Please try again.',
+			'assistant.typing' => 'Assistant is typing…',
+			'assistant.startTitle' => 'How can I help?',
+			'assistant.startSubtitle' => 'Describe what is bothering you to get started',
+			'assistant.book' => 'Book',
+			'assistant.reportTooltip' => 'Report this response',
+			'assistant.reportTitle' => 'Report response',
+			'assistant.reportHint' => 'Reason (optional)',
+			'assistant.reportSubmit' => 'Report',
+			'assistant.reportSuccess' => 'Thank you, the response was reported.',
+			'assistant.reportFailed' => 'Could not report the response. Please try again.',
 			'legal.title' => 'Privacy & Terms',
 			'legal.privacyTitle' => 'Privacy Policy',
 			'legal.privacyBody' => 'Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.',

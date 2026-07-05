@@ -66,6 +66,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$splash$fr splash = _Translations$splash$fr._(_root);
 	@override late final _Translations$agenda$fr agenda = _Translations$agenda$fr._(_root);
 	@override late final _Translations$favorites$fr favorites = _Translations$favorites$fr._(_root);
+	@override late final _Translations$assistant$fr assistant = _Translations$assistant$fr._(_root);
 	@override late final _Translations$legal$fr legal = _Translations$legal$fr._(_root);
 }
 
@@ -298,6 +299,7 @@ class _Translations$home$fr extends Translations$home$en {
 	@override String get pendingRequests => 'Demandes en attente';
 	@override String get upcoming => 'À venir';
 	@override String get findDoctor => 'Trouver un médecin';
+	@override String get aiAssistant => 'Assistant IA';
 	@override String get myAppointments => 'Mes rendez-vous';
 	@override String get appointments => 'Rendez-vous';
 	@override String get workplaces => 'Lieux de travail';
@@ -662,6 +664,37 @@ class _Translations$favorites$fr extends Translations$favorites$en {
 	@override String get remove => 'Retirer des favoris';
 }
 
+// Path: assistant
+class _Translations$assistant$fr extends Translations$assistant$en {
+	_Translations$assistant$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Assistant IA';
+	@override String get newChat => 'Nouvelle discussion';
+	@override String get empty => 'Aucune discussion pour l\'instant';
+	@override String get emptySubtitle => 'Décrivez vos symptômes et l\'assistant vous indiquera quel médecin consulter';
+	@override String get couldNotLoad => 'Impossible de charger les discussions';
+	@override String get couldNotLoadChat => 'Impossible de charger la discussion';
+	@override String get newConversation => 'Nouvelle discussion';
+	@override String get deleteTitle => 'Supprimer la discussion ?';
+	@override String get deleteConfirm => 'La discussion et tous ses messages seront supprimés.';
+	@override String get inputHint => 'Décrivez vos symptômes…';
+	@override String get send => 'Envoyer';
+	@override String get sendFailed => 'Le message n\'a pas pu être envoyé. Veuillez réessayer.';
+	@override String get typing => 'L\'assistant écrit…';
+	@override String get startTitle => 'Comment puis-je aider ?';
+	@override String get startSubtitle => 'Décrivez ce qui vous préoccupe pour commencer';
+	@override String get book => 'Prendre RDV';
+	@override String get reportTooltip => 'Signaler cette réponse';
+	@override String get reportTitle => 'Signaler la réponse';
+	@override String get reportHint => 'Motif (facultatif)';
+	@override String get reportSubmit => 'Signaler';
+	@override String get reportSuccess => 'Merci, la réponse a été signalée.';
+	@override String get reportFailed => 'Impossible de signaler la réponse. Veuillez réessayer.';
+}
+
 // Path: legal
 class _Translations$legal$fr extends Translations$legal$en {
 	_Translations$legal$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -864,6 +897,7 @@ extension on TranslationsFr {
 			'home.pendingRequests' => 'Demandes en attente',
 			'home.upcoming' => 'À venir',
 			'home.findDoctor' => 'Trouver un médecin',
+			'home.aiAssistant' => 'Assistant IA',
 			'home.myAppointments' => 'Mes rendez-vous',
 			'home.appointments' => 'Rendez-vous',
 			'home.workplaces' => 'Lieux de travail',
@@ -1098,6 +1132,28 @@ extension on TranslationsFr {
 			'favorites.emptySubtitle' => 'Touchez le cœur d’un médecin pour l’enregistrer ici',
 			'favorites.add' => 'Ajouter aux favoris',
 			'favorites.remove' => 'Retirer des favoris',
+			'assistant.title' => 'Assistant IA',
+			'assistant.newChat' => 'Nouvelle discussion',
+			'assistant.empty' => 'Aucune discussion pour l\'instant',
+			'assistant.emptySubtitle' => 'Décrivez vos symptômes et l\'assistant vous indiquera quel médecin consulter',
+			'assistant.couldNotLoad' => 'Impossible de charger les discussions',
+			'assistant.couldNotLoadChat' => 'Impossible de charger la discussion',
+			'assistant.newConversation' => 'Nouvelle discussion',
+			'assistant.deleteTitle' => 'Supprimer la discussion ?',
+			'assistant.deleteConfirm' => 'La discussion et tous ses messages seront supprimés.',
+			'assistant.inputHint' => 'Décrivez vos symptômes…',
+			'assistant.send' => 'Envoyer',
+			'assistant.sendFailed' => 'Le message n\'a pas pu être envoyé. Veuillez réessayer.',
+			'assistant.typing' => 'L\'assistant écrit…',
+			'assistant.startTitle' => 'Comment puis-je aider ?',
+			'assistant.startSubtitle' => 'Décrivez ce qui vous préoccupe pour commencer',
+			'assistant.book' => 'Prendre RDV',
+			'assistant.reportTooltip' => 'Signaler cette réponse',
+			'assistant.reportTitle' => 'Signaler la réponse',
+			'assistant.reportHint' => 'Motif (facultatif)',
+			'assistant.reportSubmit' => 'Signaler',
+			'assistant.reportSuccess' => 'Merci, la réponse a été signalée.',
+			'assistant.reportFailed' => 'Impossible de signaler la réponse. Veuillez réessayer.',
 			'legal.title' => 'Confidentialité et conditions',
 			'legal.privacyTitle' => 'Politique de confidentialité',
 			'legal.privacyBody' => 'Medalize traite vos informations personnelles et de santé afin que vous puissiez prendre et gérer des rendez-vous médicaux. Nous ne vendons pas vos données. La politique de confidentialité complète sera publiée ici avant le lancement public.',
