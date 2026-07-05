@@ -125,8 +125,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/patient/booking-calendar/:id',
         pageBuilder: (_, state) {
-          final doctor = state.extra as DoctorDetailModel;
-          return _modalPage(BookingCalendarScreen(doctor: doctor));
+          final doctor = state.extra as DoctorDetailModel?;
+          return _modalPage(BookingCalendarLoader(
+            doctorId: state.pathParameters['id']!,
+            doctor: doctor,
+          ));
         },
       ),
       GoRoute(
@@ -164,8 +167,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/patient/reschedule/:id',
         pageBuilder: (_, state) {
-          final appt = state.extra as AppointmentModel;
-          return _modalPage(RescheduleCalendarScreen(appointment: appt));
+          final appt = state.extra as AppointmentModel?;
+          return _modalPage(RescheduleCalendarLoader(
+            appointmentId: state.pathParameters['id']!,
+            appointment: appt,
+          ));
         },
       ),
 
@@ -213,8 +219,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/doctor/edit-workplace/:id',
         pageBuilder: (_, state) {
-          final existing = state.extra as Map<String, dynamic>;
-          return _modalPage(AddEditWorkplaceScreen(existing: existing));
+          final existing = state.extra as Map<String, dynamic>?;
+          return _modalPage(EditWorkplaceLoader(
+            workplaceId: state.pathParameters['id']!,
+            existing: existing,
+          ));
         },
       ),
       GoRoute(

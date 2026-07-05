@@ -323,3 +323,44 @@ class _SlotChipState extends State<_SlotChip> {
     );
   }
 }
+
+/// Wraps [BookingCalendarScreen] to handle cases where the GoRouter [extra]
+/// state is unavailable (deep link, app restoration after kill). Falls back to
+/// loading the doctor from the API by [doctorId].
+class BookingCalendarLoader extends ConsumerWidget {
+  const BookingCalendarLoader({
+    super.key,
+    required this.doctorId,
+    this.doctor,
+  });
+
+  final String doctorId;
+  final DoctorDetailModel? doctor;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (doctor != null) {
+      return BookingCalendarScreen(doctor: doctor!);
+    }
+    final async = ref.watch(doctorDetailProvider(doctorId));
+    return async.when(
+      loading: () => Scaffold(
+        appBar: AppBar(),
+        body: const Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(children: [
+            ShimmerSkeleton(height: 64),
+            ShimmerSkeleton(height: 120),
+            ShimmerSkeleton(height: 120),
+            ShimmerSkeleton(height: 80),
+          ]),
+        ),
+      ),
+      error: (_, _) => Scaffold(
+        appBar: AppBar(),
+        body: Center(child: Text(context.t.common.somethingWrong)),
+      ),
+      data: (d) => BookingCalendarScreen(doctor: d),
+    );
+  }
+}

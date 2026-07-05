@@ -12,6 +12,7 @@ import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
+import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -264,6 +265,47 @@ class _SlotChipState extends State<_SlotChip> {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Wraps [RescheduleCalendarScreen] to handle cases where the GoRouter [extra]
+/// state is unavailable (deep link, app restoration after kill). Falls back to
+/// loading the appointment from the API by [appointmentId].
+class RescheduleCalendarLoader extends ConsumerWidget {
+  const RescheduleCalendarLoader({
+    super.key,
+    required this.appointmentId,
+    this.appointment,
+  });
+
+  final String appointmentId;
+  final AppointmentModel? appointment;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (appointment != null) {
+      return RescheduleCalendarScreen(appointment: appointment!);
+    }
+    final async = ref.watch(appointmentByIdProvider(appointmentId));
+    return async.when(
+      loading: () => Scaffold(
+        appBar: AppBar(),
+        body: const Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(children: [
+            ShimmerSkeleton(height: 64),
+            ShimmerSkeleton(height: 120),
+            ShimmerSkeleton(height: 120),
+            ShimmerSkeleton(height: 80),
+          ]),
+        ),
+      ),
+      error: (_, _) => Scaffold(
+        appBar: AppBar(),
+        body: Center(child: Text(context.t.common.somethingWrong)),
+      ),
+      data: (appt) => RescheduleCalendarScreen(appointment: appt),
     );
   }
 }

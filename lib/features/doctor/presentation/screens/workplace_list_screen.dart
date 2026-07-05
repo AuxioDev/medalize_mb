@@ -15,9 +15,12 @@ import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
-final _workplacesProvider =
+/// The doctor's workplaces. Also consumed by [EditWorkplaceLoader] to recover
+/// a single workplace by id when GoRouter `extra` is unavailable.
+final workplacesProvider =
     FutureProvider<List<Map<String, dynamic>>>((ref) async {
   final dio = ref.read(dioClientProvider);
   final res = await dio.get('/doctor/workplaces/');
@@ -29,13 +32,13 @@ class WorkplaceListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final async = ref.watch(_workplacesProvider);
+    final async = ref.watch(workplacesProvider);
     return Scaffold(
       appBar: AppBar(title: Text(context.t.workplaces.title)),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final added = await context.push<bool>('/doctor/add-workplace');
-          if (added == true) ref.invalidate(_workplacesProvider);
+          if (added == true) ref.invalidate(workplacesProvider);
         },
         child: const Icon(Icons.add),
       ),
@@ -52,19 +55,19 @@ class WorkplaceListScreen extends ConsumerWidget {
             ),
           ),
           error: (_, _) => RefreshableView(
-            onRefresh: () async => ref.invalidate(_workplacesProvider),
+            onRefresh: () async => ref.invalidate(workplacesProvider),
             child: EmptyState(
               icon: Icons.cloud_off_outlined,
               title: context.t.common.somethingWrong,
               subtitle: context.t.workplaces.couldNotLoad,
               actionLabel: context.t.common.retry,
-              onAction: () => ref.invalidate(_workplacesProvider),
+              onAction: () => ref.invalidate(workplacesProvider),
             ),
           ),
           data: (workplaces) {
             if (workplaces.isEmpty) {
               return RefreshableView(
-                onRefresh: () async => ref.invalidate(_workplacesProvider),
+                onRefresh: () async => ref.invalidate(workplacesProvider),
                 child: EmptyState(
                   icon: Icons.business_outlined,
                   title: context.t.workplaces.noWorkplacesYet,
@@ -73,7 +76,7 @@ class WorkplaceListScreen extends ConsumerWidget {
               );
             }
             return RefreshIndicator(
-              onRefresh: () async => ref.invalidate(_workplacesProvider),
+              onRefresh: () async => ref.invalidate(workplacesProvider),
               color: AppColors.primary,
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(
@@ -86,7 +89,7 @@ class WorkplaceListScreen extends ConsumerWidget {
                   index: i,
                   child: _WorkplaceCard(
                     workplace: workplaces[i],
-                    onChanged: () => ref.invalidate(_workplacesProvider),
+                    onChanged: () => ref.invalidate(workplacesProvider),
                   ),
                 ),
               ),
@@ -249,6 +252,63 @@ class _WorkplaceCard extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Wraps [AddEditWorkplaceScreen] to handle cases where the GoRouter [extra]
+/// state is unavailable (deep link, app restoration after kill). There is no
+/// single-workplace endpoint on the backend, so it falls back to loading the
+/// full workplace list and picking the entry matching [workplaceId].
+class EditWorkplaceLoader extends ConsumerWidget {
+  const EditWorkplaceLoader({
+    super.key,
+    required this.workplaceId,
+    this.existing,
+  });
+
+  final String workplaceId;
+  final Map<String, dynamic>? existing;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (existing != null) {
+      return AddEditWorkplaceScreen(existing: existing);
+    }
+    final async = ref.watch(workplacesProvider);
+    return async.when(
+      loading: () => Scaffold(
+        appBar: AppBar(),
+        body: const Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(children: [
+            ShimmerSkeleton(height: 64),
+            ShimmerSkeleton(height: 120),
+            ShimmerSkeleton(height: 120),
+            ShimmerSkeleton(height: 80),
+          ]),
+        ),
+      ),
+      error: (_, _) => Scaffold(
+        appBar: AppBar(),
+        body: Center(child: Text(context.t.common.somethingWrong)),
+      ),
+      data: (workplaces) {
+        Map<String, dynamic>? match;
+        for (final w in workplaces) {
+          if ('${w['id']}' == workplaceId) {
+            match = w;
+            break;
+          }
+        }
+        if (match == null) {
+          return Scaffold(
+            appBar: AppBar(),
+            body: Center(child: Text(context.t.common.somethingWrong)),
+          );
+        }
+        return AddEditWorkplaceScreen(existing: match);
+      },
     );
   }
 }
