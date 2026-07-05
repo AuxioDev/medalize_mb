@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
+import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart';
+import 'package:medalize_mb/features/assistant/presentation/screens/assistant_chat_screen.dart';
+import 'package:medalize_mb/features/assistant/presentation/screens/assistant_conversations_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/login_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/register_screen.dart';
@@ -139,6 +142,21 @@ final routerProvider = Provider<GoRouter>((ref) {
             doctor: extra['doctor'] as DoctorDetailModel,
             slot: extra['slot'] as SlotModel,
             workplaceId: extra['workplaceId'] as String,
+          ));
+        },
+      ),
+
+      GoRoute(
+        path: '/patient/assistant',
+        pageBuilder: (_, _) => _pushPage(const AssistantConversationsScreen()),
+      ),
+      GoRoute(
+        path: '/patient/assistant/:id',
+        pageBuilder: (_, state) {
+          final convo = state.extra as ConversationModel?;
+          return _pushPage(AssistantChatScreen(
+            conversationId: state.pathParameters['id']!,
+            conversation: convo,
           ));
         },
       ),

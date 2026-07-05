@@ -116,6 +116,14 @@ class _QuickActionsRow extends StatelessWidget {
             onTap: () => context.push('/patient/appointments'),
           ),
         ),
+        const Gap(12),
+        Expanded(
+          child: _ActionCard(
+            icon: Icons.smart_toy_outlined,
+            label: context.t.home.aiAssistant,
+            onTap: () => context.push('/patient/assistant'),
+          ),
+        ),
       ],
     );
   }
