@@ -567,34 +567,53 @@ class _SortBar extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(AppSpacing.md, 6, AppSpacing.md, 0),
       child: Row(
         children: [
-          Text(
-            context.t.doctorSearch.sortBy,
-            style: TextStyle(fontSize: 13, color: c.textSecondary),
+          // Flexible + ellipsis: the translated "Sort by" label yields to the
+          // dropdown instead of overflowing the row.
+          Flexible(
+            child: Text(
+              context.t.doctorSearch.sortBy,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 13, color: c.textSecondary),
+            ),
           ),
-          const Spacer(),
+          const Gap(8),
           Icon(Icons.swap_vert_rounded, size: 16, color: c.textSecondary),
           const Gap(2),
-          DropdownButtonHideUnderline(
-            child: DropdownButton<_DoctorSort>(
-              value: value,
-              isDense: true,
-              borderRadius: BorderRadius.circular(AppRadius.md),
-              icon: Icon(Icons.arrow_drop_down, color: c.textSecondary),
-              style: TextStyle(
-                fontSize: 13,
-                color: c.primaryText,
-                fontWeight: FontWeight.w600,
+          // Expanded + isExpanded: long translated sort names (e.g. fr
+          // "Disponibilité la plus proche") shrink inside the button instead
+          // of overflowing; alignment keeps the value next to the arrow on
+          // the right edge, like the old Spacer layout.
+          Expanded(
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<_DoctorSort>(
+                value: value,
+                isDense: true,
+                isExpanded: true,
+                alignment: AlignmentDirectional.centerEnd,
+                borderRadius: BorderRadius.circular(AppRadius.md),
+                icon: Icon(Icons.arrow_drop_down, color: c.textSecondary),
+                style: TextStyle(
+                  fontSize: 13,
+                  color: c.primaryText,
+                  fontWeight: FontWeight.w600,
+                ),
+                items: [
+                  for (final s in _DoctorSort.values)
+                    DropdownMenuItem(
+                      value: s,
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: Text(
+                        _sortLabel(context, s),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                ],
+                onChanged: (v) {
+                  if (v != null) onChanged(v);
+                },
               ),
-              items: [
-                for (final s in _DoctorSort.values)
-                  DropdownMenuItem(
-                    value: s,
-                    child: Text(_sortLabel(context, s)),
-                  ),
-              ],
-              onChanged: (v) {
-                if (v != null) onChanged(v);
-              },
             ),
           ),
         ],

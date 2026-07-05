@@ -232,6 +232,7 @@ class _DoctorAppCard extends ConsumerWidget {
               GradientAvatar(initials: initials, size: 40),
               const Gap(10),
               Expanded(
+                flex: 2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -247,16 +248,24 @@ class _DoctorAppCard extends ConsumerWidget {
                         Icon(Icons.schedule_outlined,
                             size: 13, color: c.textSecondary),
                         const Gap(4),
-                        Text(
-                          fmt.format(appointment.startsAt),
-                          style: Theme.of(context).textTheme.bodySmall,
+                        // Flexible: the localized date-time string must
+                        // ellipsize instead of overflowing the info column.
+                        Flexible(
+                          child: Text(
+                            fmt.format(appointment.startsAt),
+                            style: Theme.of(context).textTheme.bodySmall,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-              StatusChip(status: appointment.status),
+              // Flexible so a long translated status shrinks and ellipsizes
+              // instead of overflowing the row.
+              Flexible(child: StatusChip(status: appointment.status)),
             ],
           ),
           const Gap(8),

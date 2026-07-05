@@ -228,6 +228,7 @@ class _AppointmentCard extends StatelessWidget {
           ),
           const Gap(12),
           Expanded(
+            flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -279,7 +280,10 @@ class _AppointmentCard extends StatelessWidget {
             ),
           ),
           const Gap(8),
-          StatusChip(status: appointment.status),
+          // Flexible so a long translated status shrinks and ellipsizes
+          // instead of overflowing the row; short statuses keep their
+          // natural width.
+          Flexible(child: StatusChip(status: appointment.status)),
         ],
       ),
     );

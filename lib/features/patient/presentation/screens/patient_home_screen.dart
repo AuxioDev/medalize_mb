@@ -277,6 +277,7 @@ class _MiniAppointmentCard extends StatelessWidget {
           ),
           const Gap(12),
           Expanded(
+            flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -294,7 +295,10 @@ class _MiniAppointmentCard extends StatelessWidget {
               ],
             ),
           ),
-          StatusChip(status: appt.status),
+          // Flexible so a long translated status ("requires rescheduling" on
+          // az/ru) shrinks and ellipsizes instead of overflowing the row;
+          // short statuses still take only their natural width.
+          Flexible(child: StatusChip(status: appt.status)),
         ],
       ),
     );
