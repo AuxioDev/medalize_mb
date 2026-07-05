@@ -78,6 +78,17 @@ class _MedalizeAppState extends ConsumerState<MedalizeApp>
       themeMode: themeMode,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
+      // Clamp OS-level font scaling: translated strings (ru/tr/fr/az run
+      // 20-115% longer than English) plus unbounded accessibility scaling is
+      // what breaks fixed-size layouts. 1.3x keeps large-text support while
+      // bounding the worst case app-wide.
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaler: MediaQuery.textScalerOf(context)
+              .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.3),
+        ),
+        child: child!,
+      ),
     );
   }
 }
