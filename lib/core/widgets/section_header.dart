@@ -15,10 +15,18 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The title yields to the action button: it ellipsizes on one line while
+    // the action label + chevron keep their intrinsic width.
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: Theme.of(context).textTheme.titleMedium),
+        Expanded(
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.titleMedium,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
         if (actionLabel != null && onAction != null)
           TextButton(
             onPressed: onAction,
@@ -28,7 +36,7 @@ class SectionHeader extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(actionLabel!),
+                Text(actionLabel!, maxLines: 1, overflow: TextOverflow.ellipsis),
                 const Icon(Icons.chevron_right, size: 18),
               ],
             ),
