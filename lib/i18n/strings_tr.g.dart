@@ -281,7 +281,7 @@ class _Translations$status$tr extends Translations$status$en {
 	@override String get pending => 'Beklemede';
 	@override String get cancelled => 'İptal edildi';
 	@override String get declined => 'Reddedildi';
-	@override String get requiresRescheduling => 'Yeniden planlama gerekiyor';
+	@override String get requiresRescheduling => 'Yeniden planlanmalı';
 	@override String get completed => 'Tamamlandı';
 	@override String get noShow => 'Gelmedi';
 }
@@ -895,7 +895,7 @@ extension on TranslationsTr {
 			'status.pending' => 'Beklemede',
 			'status.cancelled' => 'İptal edildi',
 			'status.declined' => 'Reddedildi',
-			'status.requiresRescheduling' => 'Yeniden planlama gerekiyor',
+			'status.requiresRescheduling' => 'Yeniden planlanmalı',
 			'status.completed' => 'Tamamlandı',
 			'status.noShow' => 'Gelmedi',
 			'home.helloDoctor' => ({required Object name}) => 'Merhaba, Dr. ${name}!',

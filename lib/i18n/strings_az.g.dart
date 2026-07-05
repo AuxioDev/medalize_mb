@@ -281,7 +281,7 @@ class _Translations$status$az extends Translations$status$en {
 	@override String get pending => 'Gözləyir';
 	@override String get cancelled => 'Ləğv edildi';
 	@override String get declined => 'Rədd edildi';
-	@override String get requiresRescheduling => 'Yenidən planlaşdırma tələb edir';
+	@override String get requiresRescheduling => 'Yenidən planlaşdırılmalıdır';
 	@override String get completed => 'Tamamlandı';
 	@override String get noShow => 'Gəlmədi';
 }
@@ -312,7 +312,7 @@ class _Translations$home$az extends Translations$home$en {
 	@override String get noUpcoming => 'Yaxınlaşan görüş yoxdur';
 	@override String get bookFirst => 'Həkimlə ilk görüşünüzü təyin edin';
 	@override String get findADoctor => 'Həkim tap';
-	@override String get myWaitlist => 'Gözləmə siyahım';
+	@override String get myWaitlist => 'Gözləmə siyahı';
 	@override String get leaveWaitlist => 'Çıx';
 	@override String get statsThisMonth => 'Bu ay';
 	@override String get statsPatients => 'Pasiyentlər';
@@ -355,7 +355,7 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get cancelAction => 'Görüşü ləğv et';
 	@override String get bookedTitle => 'Təyin edildi!';
 	@override String get bookedMessage => 'Görüş sorğunuz göndərildi.';
-	@override String get reschedule => 'Yenidən planlaşdır';
+	@override String get reschedule => 'Yenidən planla';
 	@override String get rescheduleTitle => 'Görüşü yenidən planlaşdır';
 	@override String get reviewTitle => 'Rəy yaz';
 	@override String get reviewRating => 'Qiymət';
@@ -375,7 +375,7 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get requestRescheduleConfirm => 'Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.';
 	@override String get requestRescheduleSuccess => 'Vaxtın dəyişdirilməsi istənildi. Pasiyentə bildiriş göndəriləcək.';
 	@override String get rescheduleNeededHint => 'Həkim sizdən yeni vaxt seçməyinizi xahiş etdi.';
-	@override String get markNoShow => 'Gəlmədi kimi qeyd et';
+	@override String get markNoShow => 'Gəlmədi qeyd et';
 	@override String get markNoShowTitle => 'Gəlmədi kimi qeyd et';
 	@override String get markNoShowConfirm => 'Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir.';
 }
@@ -895,7 +895,7 @@ extension on TranslationsAz {
 			'status.pending' => 'Gözləyir',
 			'status.cancelled' => 'Ləğv edildi',
 			'status.declined' => 'Rədd edildi',
-			'status.requiresRescheduling' => 'Yenidən planlaşdırma tələb edir',
+			'status.requiresRescheduling' => 'Yenidən planlaşdırılmalıdır',
 			'status.completed' => 'Tamamlandı',
 			'status.noShow' => 'Gəlmədi',
 			'home.helloDoctor' => ({required Object name}) => 'Salam, Dr. ${name}!',
@@ -917,7 +917,7 @@ extension on TranslationsAz {
 			'home.noUpcoming' => 'Yaxınlaşan görüş yoxdur',
 			'home.bookFirst' => 'Həkimlə ilk görüşünüzü təyin edin',
 			'home.findADoctor' => 'Həkim tap',
-			'home.myWaitlist' => 'Gözləmə siyahım',
+			'home.myWaitlist' => 'Gözləmə siyahı',
 			'home.leaveWaitlist' => 'Çıx',
 			'home.statsThisMonth' => 'Bu ay',
 			'home.statsPatients' => 'Pasiyentlər',
@@ -951,7 +951,7 @@ extension on TranslationsAz {
 			'appointments.cancelAction' => 'Görüşü ləğv et',
 			'appointments.bookedTitle' => 'Təyin edildi!',
 			'appointments.bookedMessage' => 'Görüş sorğunuz göndərildi.',
-			'appointments.reschedule' => 'Yenidən planlaşdır',
+			'appointments.reschedule' => 'Yenidən planla',
 			'appointments.rescheduleTitle' => 'Görüşü yenidən planlaşdır',
 			'appointments.reviewTitle' => 'Rəy yaz',
 			'appointments.reviewRating' => 'Qiymət',
@@ -971,7 +971,7 @@ extension on TranslationsAz {
 			'appointments.requestRescheduleConfirm' => 'Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.',
 			'appointments.requestRescheduleSuccess' => 'Vaxtın dəyişdirilməsi istənildi. Pasiyentə bildiriş göndəriləcək.',
 			'appointments.rescheduleNeededHint' => 'Həkim sizdən yeni vaxt seçməyinizi xahiş etdi.',
-			'appointments.markNoShow' => 'Gəlmədi kimi qeyd et',
+			'appointments.markNoShow' => 'Gəlmədi qeyd et',
 			'appointments.markNoShowTitle' => 'Gəlmədi kimi qeyd et',
 			'appointments.markNoShowConfirm' => 'Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir.',
 			'booking.bookWith' => ({required Object name}) => 'Təyin et — ${name}',

@@ -248,7 +248,7 @@ class _Translations$security$fr extends Translations$security$en {
 	@override String revokeConfirmMessage({required Object name}) => '${name} sera déconnecté. Il pourra se reconnecter avec vos identifiants.';
 	@override String get revokeCurrentConfirmMessage => 'Il s\'agit de votre appareil actuel — le révoquer vous déconnectera immédiatement.';
 	@override String get revokeFailed => 'Impossible de révoquer cet appareil. Réessayez.';
-	@override String get signOutAllDevices => 'Se déconnecter de tous les appareils';
+	@override String get signOutAllDevices => 'Déconnecter tous les appareils';
 	@override String get signOutAllConfirmTitle => 'Se déconnecter partout ?';
 	@override String get signOutAllConfirmMessage => 'Vous serez déconnecté sur tous les appareils, y compris celui-ci.';
 	@override String get signOutAllFailed => 'Impossible de se déconnecter de tous les appareils. Réessayez.';
@@ -312,7 +312,7 @@ class _Translations$home$fr extends Translations$home$en {
 	@override String get noUpcoming => 'Aucun rendez-vous à venir';
 	@override String get bookFirst => 'Prenez votre premier rendez-vous avec un médecin';
 	@override String get findADoctor => 'Trouver un médecin';
-	@override String get myWaitlist => 'Ma liste d\'attente';
+	@override String get myWaitlist => 'File d\'attente';
 	@override String get leaveWaitlist => 'Quitter';
 	@override String get statsThisMonth => 'Ce mois';
 	@override String get statsPatients => 'Patients';
@@ -871,7 +871,7 @@ extension on TranslationsFr {
 			'security.revokeConfirmMessage' => ({required Object name}) => '${name} sera déconnecté. Il pourra se reconnecter avec vos identifiants.',
 			'security.revokeCurrentConfirmMessage' => 'Il s\'agit de votre appareil actuel — le révoquer vous déconnectera immédiatement.',
 			'security.revokeFailed' => 'Impossible de révoquer cet appareil. Réessayez.',
-			'security.signOutAllDevices' => 'Se déconnecter de tous les appareils',
+			'security.signOutAllDevices' => 'Déconnecter tous les appareils',
 			'security.signOutAllConfirmTitle' => 'Se déconnecter partout ?',
 			'security.signOutAllConfirmMessage' => 'Vous serez déconnecté sur tous les appareils, y compris celui-ci.',
 			'security.signOutAllFailed' => 'Impossible de se déconnecter de tous les appareils. Réessayez.',
@@ -917,7 +917,7 @@ extension on TranslationsFr {
 			'home.noUpcoming' => 'Aucun rendez-vous à venir',
 			'home.bookFirst' => 'Prenez votre premier rendez-vous avec un médecin',
 			'home.findADoctor' => 'Trouver un médecin',
-			'home.myWaitlist' => 'Ma liste d\'attente',
+			'home.myWaitlist' => 'File d\'attente',
 			'home.leaveWaitlist' => 'Quitter',
 			'home.statsThisMonth' => 'Ce mois',
 			'home.statsPatients' => 'Patients',

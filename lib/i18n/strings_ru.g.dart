@@ -312,7 +312,7 @@ class _Translations$home$ru extends Translations$home$en {
 	@override String get noUpcoming => 'Нет предстоящих приёмов';
 	@override String get bookFirst => 'Запишитесь на первый приём к врачу';
 	@override String get findADoctor => 'Найти врача';
-	@override String get myWaitlist => 'Мой лист ожидания';
+	@override String get myWaitlist => 'Лист ожидания';
 	@override String get leaveWaitlist => 'Выйти';
 	@override String get statsThisMonth => 'Этот месяц';
 	@override String get statsPatients => 'Пациенты';
@@ -917,7 +917,7 @@ extension on TranslationsRu {
 			'home.noUpcoming' => 'Нет предстоящих приёмов',
 			'home.bookFirst' => 'Запишитесь на первый приём к врачу',
 			'home.findADoctor' => 'Найти врача',
-			'home.myWaitlist' => 'Мой лист ожидания',
+			'home.myWaitlist' => 'Лист ожидания',
 			'home.leaveWaitlist' => 'Выйти',
 			'home.statsThisMonth' => 'Этот месяц',
 			'home.statsPatients' => 'Пациенты',

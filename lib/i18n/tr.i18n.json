@@ -149,7 +149,7 @@
     "pending": "Beklemede",
     "cancelled": "İptal edildi",
     "declined": "Reddedildi",
-    "requiresRescheduling": "Yeniden planlama gerekiyor",
+    "requiresRescheduling": "Yeniden planlanmalı",
     "completed": "Tamamlandı",
     "noShow": "Gelmedi"
   },
