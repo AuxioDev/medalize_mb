@@ -20,7 +20,8 @@
     "signOut": "Se déconnecter",
     "search": "Rechercher",
     "tryAgain": "Veuillez réessayer",
-    "required": "Requis"
+    "required": "Requis",
+    "noRatings": "Pas encore de note"
   },
   "auth": {
     "login": "Se connecter",
@@ -217,6 +218,12 @@
     "markCompleted": "Marquer comme terminé",
     "rescheduledSuccess": "Rendez-vous reporté avec succès.",
     "reviewSubmitted": "Avis envoyé. Merci !",
+    "yourReview": "Votre avis",
+    "editReviewTitle": "Modifier l'avis",
+    "reviewUpdated": "Avis mis à jour.",
+    "deleteReviewTitle": "Supprimer l'avis",
+    "deleteReviewConfirm": "Voulez-vous vraiment supprimer votre avis ?",
+    "reviewDeleted": "Avis supprimé.",
     "requestReschedule": "Demander un report",
     "requestRescheduleTitle": "Demander un report",
     "requestRescheduleConfirm": "Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.",

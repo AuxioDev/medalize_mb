@@ -141,6 +141,9 @@ class Translations$common$en {
 
 	/// en: 'Required'
 	String get required => 'Required';
+
+	/// en: 'No ratings yet'
+	String get noRatings => 'No ratings yet';
 }
 
 // Path: auth
@@ -759,6 +762,24 @@ class Translations$appointments$en {
 
 	/// en: 'Review submitted. Thank you!'
 	String get reviewSubmitted => 'Review submitted. Thank you!';
+
+	/// en: 'Your Review'
+	String get yourReview => 'Your Review';
+
+	/// en: 'Edit Review'
+	String get editReviewTitle => 'Edit Review';
+
+	/// en: 'Review updated.'
+	String get reviewUpdated => 'Review updated.';
+
+	/// en: 'Delete Review'
+	String get deleteReviewTitle => 'Delete Review';
+
+	/// en: 'Are you sure you want to delete your review?'
+	String get deleteReviewConfirm => 'Are you sure you want to delete your review?';
+
+	/// en: 'Review deleted.'
+	String get reviewDeleted => 'Review deleted.';
 
 	/// en: 'Request Reschedule'
 	String get requestReschedule => 'Request Reschedule';
@@ -1592,6 +1613,7 @@ extension on Translations {
 			'common.search' => 'Search',
 			'common.tryAgain' => 'Please try again',
 			'common.required' => 'Required',
+			'common.noRatings' => 'No ratings yet',
 			'auth.login' => 'Sign In',
 			'auth.register' => 'Create Account',
 			'auth.signIn' => 'Sign In',
@@ -1768,6 +1790,12 @@ extension on Translations {
 			'appointments.markCompleted' => 'Mark as Completed',
 			'appointments.rescheduledSuccess' => 'Appointment rescheduled successfully.',
 			'appointments.reviewSubmitted' => 'Review submitted. Thank you!',
+			'appointments.yourReview' => 'Your Review',
+			'appointments.editReviewTitle' => 'Edit Review',
+			'appointments.reviewUpdated' => 'Review updated.',
+			'appointments.deleteReviewTitle' => 'Delete Review',
+			'appointments.deleteReviewConfirm' => 'Are you sure you want to delete your review?',
+			'appointments.reviewDeleted' => 'Review deleted.',
 			'appointments.requestReschedule' => 'Request Reschedule',
 			'appointments.requestRescheduleTitle' => 'Request Reschedule',
 			'appointments.requestRescheduleConfirm' => 'Ask the patient to pick a new time? The appointment will be marked as needing rescheduling.',

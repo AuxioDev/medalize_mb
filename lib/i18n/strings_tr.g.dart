@@ -97,6 +97,7 @@ class _Translations$common$tr extends Translations$common$en {
 	@override String get search => 'Ara';
 	@override String get tryAgain => 'Lütfen tekrar deneyin';
 	@override String get required => 'Gerekli';
+	@override String get noRatings => 'Henüz değerlendirme yok';
 }
 
 // Path: auth
@@ -363,6 +364,12 @@ class _Translations$appointments$tr extends Translations$appointments$en {
 	@override String get markCompleted => 'Tamamlandı olarak işaretle';
 	@override String get rescheduledSuccess => 'Randevu başarıyla yeniden planlandı.';
 	@override String get reviewSubmitted => 'Değerlendirme gönderildi. Teşekkürler!';
+	@override String get yourReview => 'Değerlendirmeniz';
+	@override String get editReviewTitle => 'Değerlendirmeyi Düzenle';
+	@override String get reviewUpdated => 'Değerlendirme güncellendi.';
+	@override String get deleteReviewTitle => 'Değerlendirmeyi Sil';
+	@override String get deleteReviewConfirm => 'Değerlendirmenizi silmek istediğinizden emin misiniz?';
+	@override String get reviewDeleted => 'Değerlendirme silindi.';
 	@override String get requestReschedule => 'Yeniden Planlama İste';
 	@override String get requestRescheduleTitle => 'Yeniden Planlama';
 	@override String get requestRescheduleConfirm => 'Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.';
@@ -776,6 +783,7 @@ extension on TranslationsTr {
 			'common.search' => 'Ara',
 			'common.tryAgain' => 'Lütfen tekrar deneyin',
 			'common.required' => 'Gerekli',
+			'common.noRatings' => 'Henüz değerlendirme yok',
 			'auth.login' => 'Giriş Yap',
 			'auth.register' => 'Hesap Oluştur',
 			'auth.signIn' => 'Giriş Yap',
@@ -952,6 +960,12 @@ extension on TranslationsTr {
 			'appointments.markCompleted' => 'Tamamlandı olarak işaretle',
 			'appointments.rescheduledSuccess' => 'Randevu başarıyla yeniden planlandı.',
 			'appointments.reviewSubmitted' => 'Değerlendirme gönderildi. Teşekkürler!',
+			'appointments.yourReview' => 'Değerlendirmeniz',
+			'appointments.editReviewTitle' => 'Değerlendirmeyi Düzenle',
+			'appointments.reviewUpdated' => 'Değerlendirme güncellendi.',
+			'appointments.deleteReviewTitle' => 'Değerlendirmeyi Sil',
+			'appointments.deleteReviewConfirm' => 'Değerlendirmenizi silmek istediğinizden emin misiniz?',
+			'appointments.reviewDeleted' => 'Değerlendirme silindi.',
 			'appointments.requestReschedule' => 'Yeniden Planlama İste',
 			'appointments.requestRescheduleTitle' => 'Yeniden Planlama',
 			'appointments.requestRescheduleConfirm' => 'Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.',

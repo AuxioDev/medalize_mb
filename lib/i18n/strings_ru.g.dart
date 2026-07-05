@@ -97,6 +97,7 @@ class _Translations$common$ru extends Translations$common$en {
 	@override String get search => 'Поиск';
 	@override String get tryAgain => 'Повторите попытку';
 	@override String get required => 'Обязательно';
+	@override String get noRatings => 'Нет оценок';
 }
 
 // Path: auth
@@ -363,6 +364,12 @@ class _Translations$appointments$ru extends Translations$appointments$en {
 	@override String get markCompleted => 'Отметить завершённым';
 	@override String get rescheduledSuccess => 'Запись успешно перенесена.';
 	@override String get reviewSubmitted => 'Отзыв отправлен. Спасибо!';
+	@override String get yourReview => 'Ваш отзыв';
+	@override String get editReviewTitle => 'Изменить отзыв';
+	@override String get reviewUpdated => 'Отзыв обновлён.';
+	@override String get deleteReviewTitle => 'Удалить отзыв';
+	@override String get deleteReviewConfirm => 'Вы уверены, что хотите удалить свой отзыв?';
+	@override String get reviewDeleted => 'Отзыв удалён.';
 	@override String get requestReschedule => 'Запросить перенос';
 	@override String get requestRescheduleTitle => 'Запрос переноса';
 	@override String get requestRescheduleConfirm => 'Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.';
@@ -776,6 +783,7 @@ extension on TranslationsRu {
 			'common.search' => 'Поиск',
 			'common.tryAgain' => 'Повторите попытку',
 			'common.required' => 'Обязательно',
+			'common.noRatings' => 'Нет оценок',
 			'auth.login' => 'Войти',
 			'auth.register' => 'Создать аккаунт',
 			'auth.signIn' => 'Войти',
@@ -952,6 +960,12 @@ extension on TranslationsRu {
 			'appointments.markCompleted' => 'Отметить завершённым',
 			'appointments.rescheduledSuccess' => 'Запись успешно перенесена.',
 			'appointments.reviewSubmitted' => 'Отзыв отправлен. Спасибо!',
+			'appointments.yourReview' => 'Ваш отзыв',
+			'appointments.editReviewTitle' => 'Изменить отзыв',
+			'appointments.reviewUpdated' => 'Отзыв обновлён.',
+			'appointments.deleteReviewTitle' => 'Удалить отзыв',
+			'appointments.deleteReviewConfirm' => 'Вы уверены, что хотите удалить свой отзыв?',
+			'appointments.reviewDeleted' => 'Отзыв удалён.',
 			'appointments.requestReschedule' => 'Запросить перенос',
 			'appointments.requestRescheduleTitle' => 'Запрос переноса',
 			'appointments.requestRescheduleConfirm' => 'Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.',

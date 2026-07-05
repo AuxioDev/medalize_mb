@@ -20,7 +20,8 @@
     "signOut": "退出登录",
     "search": "搜索",
     "tryAgain": "请重试",
-    "required": "必填"
+    "required": "必填",
+    "noRatings": "暂无评分"
   },
   "auth": {
     "login": "登录",
@@ -217,6 +218,12 @@
     "markCompleted": "标记为已完成",
     "rescheduledSuccess": "预约已成功改期。",
     "reviewSubmitted": "评价已提交，谢谢！",
+    "yourReview": "您的评价",
+    "editReviewTitle": "编辑评价",
+    "reviewUpdated": "评价已更新。",
+    "deleteReviewTitle": "删除评价",
+    "deleteReviewConfirm": "确定要删除您的评价吗？",
+    "reviewDeleted": "评价已删除。",
     "requestReschedule": "请求改期",
     "requestRescheduleTitle": "请求改期",
     "requestRescheduleConfirm": "请患者选择新的时间？该预约将被标记为需要改期。",

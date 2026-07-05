@@ -20,7 +20,8 @@
     "signOut": "Çıxış",
     "search": "Axtar",
     "tryAgain": "Zəhmət olmasa yenidən cəhd edin",
-    "required": "Tələb olunur"
+    "required": "Tələb olunur",
+    "noRatings": "Hələ qiymət yoxdur"
   },
   "auth": {
     "login": "Daxil ol",
@@ -217,6 +218,12 @@
     "markCompleted": "Tamamlandı kimi işarələ",
     "rescheduledSuccess": "Görüş uğurla yenidən planlaşdırıldı.",
     "reviewSubmitted": "Rəy göndərildi. Təşəkkür edirik!",
+    "yourReview": "Rəyiniz",
+    "editReviewTitle": "Rəyi redaktə et",
+    "reviewUpdated": "Rəy yeniləndi.",
+    "deleteReviewTitle": "Rəyi sil",
+    "deleteReviewConfirm": "Rəyinizi silmək istədiyinizə əminsiniz?",
+    "reviewDeleted": "Rəy silindi.",
     "requestReschedule": "Vaxtın dəyişdirilməsini istə",
     "requestRescheduleTitle": "Vaxtın dəyişdirilməsi",
     "requestRescheduleConfirm": "Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.",

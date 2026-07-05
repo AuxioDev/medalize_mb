@@ -20,7 +20,8 @@
     "signOut": "Sign Out",
     "search": "Search",
     "tryAgain": "Please try again",
-    "required": "Required"
+    "required": "Required",
+    "noRatings": "No ratings yet"
   },
   "auth": {
     "login": "Sign In",
@@ -217,6 +218,12 @@
     "markCompleted": "Mark as Completed",
     "rescheduledSuccess": "Appointment rescheduled successfully.",
     "reviewSubmitted": "Review submitted. Thank you!",
+    "yourReview": "Your Review",
+    "editReviewTitle": "Edit Review",
+    "reviewUpdated": "Review updated.",
+    "deleteReviewTitle": "Delete Review",
+    "deleteReviewConfirm": "Are you sure you want to delete your review?",
+    "reviewDeleted": "Review deleted.",
     "requestReschedule": "Request Reschedule",
     "requestRescheduleTitle": "Request Reschedule",
     "requestRescheduleConfirm": "Ask the patient to pick a new time? The appointment will be marked as needing rescheduling.",

@@ -97,6 +97,7 @@ class _Translations$common$az extends Translations$common$en {
 	@override String get search => 'Axtar';
 	@override String get tryAgain => 'Zəhmət olmasa yenidən cəhd edin';
 	@override String get required => 'Tələb olunur';
+	@override String get noRatings => 'Hələ qiymət yoxdur';
 }
 
 // Path: auth
@@ -363,6 +364,12 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get markCompleted => 'Tamamlandı kimi işarələ';
 	@override String get rescheduledSuccess => 'Görüş uğurla yenidən planlaşdırıldı.';
 	@override String get reviewSubmitted => 'Rəy göndərildi. Təşəkkür edirik!';
+	@override String get yourReview => 'Rəyiniz';
+	@override String get editReviewTitle => 'Rəyi redaktə et';
+	@override String get reviewUpdated => 'Rəy yeniləndi.';
+	@override String get deleteReviewTitle => 'Rəyi sil';
+	@override String get deleteReviewConfirm => 'Rəyinizi silmək istədiyinizə əminsiniz?';
+	@override String get reviewDeleted => 'Rəy silindi.';
 	@override String get requestReschedule => 'Vaxtın dəyişdirilməsini istə';
 	@override String get requestRescheduleTitle => 'Vaxtın dəyişdirilməsi';
 	@override String get requestRescheduleConfirm => 'Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.';
@@ -776,6 +783,7 @@ extension on TranslationsAz {
 			'common.search' => 'Axtar',
 			'common.tryAgain' => 'Zəhmət olmasa yenidən cəhd edin',
 			'common.required' => 'Tələb olunur',
+			'common.noRatings' => 'Hələ qiymət yoxdur',
 			'auth.login' => 'Daxil ol',
 			'auth.register' => 'Hesab yarat',
 			'auth.signIn' => 'Daxil ol',
@@ -952,6 +960,12 @@ extension on TranslationsAz {
 			'appointments.markCompleted' => 'Tamamlandı kimi işarələ',
 			'appointments.rescheduledSuccess' => 'Görüş uğurla yenidən planlaşdırıldı.',
 			'appointments.reviewSubmitted' => 'Rəy göndərildi. Təşəkkür edirik!',
+			'appointments.yourReview' => 'Rəyiniz',
+			'appointments.editReviewTitle' => 'Rəyi redaktə et',
+			'appointments.reviewUpdated' => 'Rəy yeniləndi.',
+			'appointments.deleteReviewTitle' => 'Rəyi sil',
+			'appointments.deleteReviewConfirm' => 'Rəyinizi silmək istədiyinizə əminsiniz?',
+			'appointments.reviewDeleted' => 'Rəy silindi.',
 			'appointments.requestReschedule' => 'Vaxtın dəyişdirilməsini istə',
 			'appointments.requestRescheduleTitle' => 'Vaxtın dəyişdirilməsi',
 			'appointments.requestRescheduleConfirm' => 'Pasiyentdən yeni vaxt seçməsini istəyirsiniz? Görüş “vaxtın dəyişdirilməsi tələb olunur” kimi işarələnəcək.',

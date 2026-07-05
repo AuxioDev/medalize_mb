@@ -97,6 +97,7 @@ class _Translations$common$fr extends Translations$common$en {
 	@override String get search => 'Rechercher';
 	@override String get tryAgain => 'Veuillez réessayer';
 	@override String get required => 'Requis';
+	@override String get noRatings => 'Pas encore de note';
 }
 
 // Path: auth
@@ -363,6 +364,12 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get markCompleted => 'Marquer comme terminé';
 	@override String get rescheduledSuccess => 'Rendez-vous reporté avec succès.';
 	@override String get reviewSubmitted => 'Avis envoyé. Merci !';
+	@override String get yourReview => 'Votre avis';
+	@override String get editReviewTitle => 'Modifier l\'avis';
+	@override String get reviewUpdated => 'Avis mis à jour.';
+	@override String get deleteReviewTitle => 'Supprimer l\'avis';
+	@override String get deleteReviewConfirm => 'Voulez-vous vraiment supprimer votre avis ?';
+	@override String get reviewDeleted => 'Avis supprimé.';
 	@override String get requestReschedule => 'Demander un report';
 	@override String get requestRescheduleTitle => 'Demander un report';
 	@override String get requestRescheduleConfirm => 'Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.';
@@ -776,6 +783,7 @@ extension on TranslationsFr {
 			'common.search' => 'Rechercher',
 			'common.tryAgain' => 'Veuillez réessayer',
 			'common.required' => 'Requis',
+			'common.noRatings' => 'Pas encore de note',
 			'auth.login' => 'Se connecter',
 			'auth.register' => 'Créer un compte',
 			'auth.signIn' => 'Se connecter',
@@ -952,6 +960,12 @@ extension on TranslationsFr {
 			'appointments.markCompleted' => 'Marquer comme terminé',
 			'appointments.rescheduledSuccess' => 'Rendez-vous reporté avec succès.',
 			'appointments.reviewSubmitted' => 'Avis envoyé. Merci !',
+			'appointments.yourReview' => 'Votre avis',
+			'appointments.editReviewTitle' => 'Modifier l\'avis',
+			'appointments.reviewUpdated' => 'Avis mis à jour.',
+			'appointments.deleteReviewTitle' => 'Supprimer l\'avis',
+			'appointments.deleteReviewConfirm' => 'Voulez-vous vraiment supprimer votre avis ?',
+			'appointments.reviewDeleted' => 'Avis supprimé.',
 			'appointments.requestReschedule' => 'Demander un report',
 			'appointments.requestRescheduleTitle' => 'Demander un report',
 			'appointments.requestRescheduleConfirm' => 'Demander au patient de choisir un nouveau créneau ? Le rendez-vous sera marqué comme à reporter.',

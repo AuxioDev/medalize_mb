@@ -20,7 +20,8 @@
     "signOut": "Çıkış Yap",
     "search": "Ara",
     "tryAgain": "Lütfen tekrar deneyin",
-    "required": "Gerekli"
+    "required": "Gerekli",
+    "noRatings": "Henüz değerlendirme yok"
   },
   "auth": {
     "login": "Giriş Yap",
@@ -217,6 +218,12 @@
     "markCompleted": "Tamamlandı olarak işaretle",
     "rescheduledSuccess": "Randevu başarıyla yeniden planlandı.",
     "reviewSubmitted": "Değerlendirme gönderildi. Teşekkürler!",
+    "yourReview": "Değerlendirmeniz",
+    "editReviewTitle": "Değerlendirmeyi Düzenle",
+    "reviewUpdated": "Değerlendirme güncellendi.",
+    "deleteReviewTitle": "Değerlendirmeyi Sil",
+    "deleteReviewConfirm": "Değerlendirmenizi silmek istediğinizden emin misiniz?",
+    "reviewDeleted": "Değerlendirme silindi.",
     "requestReschedule": "Yeniden Planlama İste",
     "requestRescheduleTitle": "Yeniden Planlama",
     "requestRescheduleConfirm": "Hastadan yeni bir saat seçmesini isteyin mi? Randevu yeniden planlama gerektiriyor olarak işaretlenecek.",

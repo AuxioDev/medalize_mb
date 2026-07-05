@@ -97,6 +97,7 @@ class _Translations$common$zh extends Translations$common$en {
 	@override String get search => '搜索';
 	@override String get tryAgain => '请重试';
 	@override String get required => '必填';
+	@override String get noRatings => '暂无评分';
 }
 
 // Path: auth
@@ -363,6 +364,12 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get markCompleted => '标记为已完成';
 	@override String get rescheduledSuccess => '预约已成功改期。';
 	@override String get reviewSubmitted => '评价已提交，谢谢！';
+	@override String get yourReview => '您的评价';
+	@override String get editReviewTitle => '编辑评价';
+	@override String get reviewUpdated => '评价已更新。';
+	@override String get deleteReviewTitle => '删除评价';
+	@override String get deleteReviewConfirm => '确定要删除您的评价吗？';
+	@override String get reviewDeleted => '评价已删除。';
 	@override String get requestReschedule => '请求改期';
 	@override String get requestRescheduleTitle => '请求改期';
 	@override String get requestRescheduleConfirm => '请患者选择新的时间？该预约将被标记为需要改期。';
@@ -776,6 +783,7 @@ extension on TranslationsZh {
 			'common.search' => '搜索',
 			'common.tryAgain' => '请重试',
 			'common.required' => '必填',
+			'common.noRatings' => '暂无评分',
 			'auth.login' => '登录',
 			'auth.register' => '创建账户',
 			'auth.signIn' => '登录',
@@ -952,6 +960,12 @@ extension on TranslationsZh {
 			'appointments.markCompleted' => '标记为已完成',
 			'appointments.rescheduledSuccess' => '预约已成功改期。',
 			'appointments.reviewSubmitted' => '评价已提交，谢谢！',
+			'appointments.yourReview' => '您的评价',
+			'appointments.editReviewTitle' => '编辑评价',
+			'appointments.reviewUpdated' => '评价已更新。',
+			'appointments.deleteReviewTitle' => '删除评价',
+			'appointments.deleteReviewConfirm' => '确定要删除您的评价吗？',
+			'appointments.reviewDeleted' => '评价已删除。',
 			'appointments.requestReschedule' => '请求改期',
 			'appointments.requestRescheduleTitle' => '请求改期',
 			'appointments.requestRescheduleConfirm' => '请患者选择新的时间？该预约将被标记为需要改期。',

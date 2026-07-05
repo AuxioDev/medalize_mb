@@ -20,7 +20,8 @@
     "signOut": "Выйти",
     "search": "Поиск",
     "tryAgain": "Повторите попытку",
-    "required": "Обязательно"
+    "required": "Обязательно",
+    "noRatings": "Нет оценок"
   },
   "auth": {
     "login": "Войти",
@@ -217,6 +218,12 @@
     "markCompleted": "Отметить завершённым",
     "rescheduledSuccess": "Запись успешно перенесена.",
     "reviewSubmitted": "Отзыв отправлен. Спасибо!",
+    "yourReview": "Ваш отзыв",
+    "editReviewTitle": "Изменить отзыв",
+    "reviewUpdated": "Отзыв обновлён.",
+    "deleteReviewTitle": "Удалить отзыв",
+    "deleteReviewConfirm": "Вы уверены, что хотите удалить свой отзыв?",
+    "reviewDeleted": "Отзыв удалён.",
     "requestReschedule": "Запросить перенос",
     "requestRescheduleTitle": "Запрос переноса",
     "requestRescheduleConfirm": "Попросить пациента выбрать новое время? Запись будет помечена как требующая переноса.",
