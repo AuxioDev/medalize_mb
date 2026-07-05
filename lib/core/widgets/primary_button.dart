@@ -133,13 +133,26 @@ class _LoadingFilledButtonState extends State<LoadingFilledButton>
             child: CircularProgressIndicator(strokeWidth: 2.4, color: fg),
           )
         : (widget.icon == null
-            ? Text(widget.label)
+            ? Text(
+                widget.label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              )
             : Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(widget.icon, size: 20),
                   const SizedBox(width: 8),
-                  Text(widget.label),
+                  // Flexible lets the min-size Row shrink the label instead
+                  // of overflowing when a long translation doesn't fit next
+                  // to the icon.
+                  Flexible(
+                    child: Text(
+                      widget.label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 ],
               ));
 

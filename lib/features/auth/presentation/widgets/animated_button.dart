@@ -113,7 +113,12 @@ class _AnimatedButtonState extends State<AnimatedButton>
                         color: Colors.white,
                       ),
                     )
-                  : Text(key: const ValueKey('label'), widget.label),
+                  : Text(
+                      key: const ValueKey('label'),
+                      widget.label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
             ),
           ),
         ),
