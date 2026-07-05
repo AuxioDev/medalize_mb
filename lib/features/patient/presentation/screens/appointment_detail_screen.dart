@@ -15,6 +15,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
+import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
@@ -44,6 +45,27 @@ class _AppointmentDetailScreenState
   bool _updatingStatus = false;
   bool _rescheduling = false;
   bool _submittingReview = false;
+  bool _deletingReview = false;
+
+  // Local mirror of the review state so submit/update/delete reflect on
+  // screen immediately — the appointment itself arrives immutable via the
+  // widget (router extra) and doesn't refresh in place.
+  late bool _hasReview;
+  late bool _canEditReview;
+  ReviewModel? _review;
+
+  @override
+  void initState() {
+    super.initState();
+    _hasReview = widget.appointment.hasReview;
+    _canEditReview = widget.appointment.canEditReview;
+    _review = widget.appointment.review;
+  }
+
+  void _invalidateAppointment() {
+    ref.invalidate(patientAppointmentsProvider);
+    ref.invalidate(appointmentByIdProvider(widget.appointment.id));
+  }
 
   Future<void> _setStatus(String status) async {
     setState(() => _updatingStatus = true);
@@ -150,14 +172,18 @@ class _AppointmentDetailScreenState
     }
   }
 
-  Future<void> _showReviewDialog() async {
-    int selectedRating = 5;
-    final commentCtrl = TextEditingController();
+  /// Opens the star-rating dialog. With [existing] set, it is prefilled and
+  /// submits an update to the existing review instead of creating one.
+  Future<void> _showReviewDialog({ReviewModel? existing}) async {
+    int selectedRating = existing?.rating ?? 5;
+    final commentCtrl = TextEditingController(text: existing?.comment ?? '');
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setState) => AlertDialog(
-          title: Text(context.t.appointments.reviewTitle),
+          title: Text(existing == null
+              ? context.t.appointments.reviewTitle
+              : context.t.appointments.editReviewTitle),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,34 +222,109 @@ class _AppointmentDetailScreenState
             ),
             FilledButton(
               onPressed: () => Navigator.pop(ctx, true),
-              child: Text(context.t.appointments.reviewSubmit),
+              child: Text(existing == null
+                  ? context.t.appointments.reviewSubmit
+                  : context.t.common.save),
             ),
           ],
         ),
       ),
     );
-    if (confirmed != true || !mounted) {
-      commentCtrl.dispose();
-      return;
-    }
     final comment = commentCtrl.text.trim();
-    commentCtrl.dispose();
+    // Dispose only after the dialog's pop transition has finished — the
+    // TextField still listens to the controller while animating out.
+    Future.delayed(const Duration(milliseconds: 400), commentCtrl.dispose);
+    if (confirmed != true || !mounted) return;
 
     setState(() => _submittingReview = true);
     try {
-      await ref.read(appointmentRepositoryProvider).submitReview(
-        widget.appointment.id,
-        selectedRating,
-        comment,
-      );
+      final repo = ref.read(appointmentRepositoryProvider);
+      if (existing == null) {
+        await repo.submitReview(widget.appointment.id, selectedRating, comment);
+        if (mounted) {
+          setState(() {
+            _hasReview = true;
+            _canEditReview = true;
+            // Placeholder until the appointment refetch delivers the
+            // server copy — enough for the read-only card below.
+            _review = ReviewModel(
+              id: '',
+              rating: selectedRating,
+              comment: comment,
+              patientName: widget.appointment.patient.fullName,
+              createdAt: DateTime.now(),
+            );
+          });
+        }
+      } else {
+        final updated = await repo.updateReview(
+          widget.appointment.id,
+          selectedRating,
+          comment,
+        );
+        if (mounted) setState(() => _review = updated);
+      }
+      _invalidateAppointment();
       if (mounted) {
-        AppSnackBar.show(context, context.t.appointments.reviewSubmitted,
-            type: SnackBarType.success);
+        AppSnackBar.show(
+          context,
+          existing == null
+              ? context.t.appointments.reviewSubmitted
+              : context.t.appointments.reviewUpdated,
+          type: SnackBarType.success,
+        );
       }
     } on ApiException catch (e) {
       if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
     } finally {
       if (mounted) setState(() => _submittingReview = false);
+    }
+  }
+
+  Future<void> _deleteReview() async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(context.t.appointments.deleteReviewTitle),
+        content: Text(context.t.appointments.deleteReviewConfirm),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(context.t.common.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: FilledButton.styleFrom(
+              backgroundColor: AppColors.error,
+              minimumSize: Size.zero,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            ),
+            child: Text(context.t.common.delete),
+          ),
+        ],
+      ),
+    );
+    if (confirm != true) return;
+
+    setState(() => _deletingReview = true);
+    try {
+      await ref
+          .read(appointmentRepositoryProvider)
+          .deleteReview(widget.appointment.id);
+      _invalidateAppointment();
+      if (mounted) {
+        setState(() {
+          _hasReview = false;
+          _canEditReview = false;
+          _review = null;
+        });
+        AppSnackBar.show(context, context.t.appointments.reviewDeleted,
+            type: SnackBarType.success);
+      }
+    } on ApiException catch (e) {
+      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+    } finally {
+      if (mounted) setState(() => _deletingReview = false);
     }
   }
 
@@ -397,6 +498,67 @@ class _AppointmentDetailScreenState
                             )),
                   ),
                 ),
+              if (!widget.asDoctor && _hasReview)
+                AnimatedEntrance(
+                  index: 6,
+                  child: _InfoCard(
+                    label: context.t.appointments.yourReview,
+                    icon: Icons.star_outline_rounded,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (_review != null) ...[
+                          Row(
+                            children: List.generate(5, (i) {
+                              return Icon(
+                                i < _review!.rating
+                                    ? Icons.star_rounded
+                                    : Icons.star_outline_rounded,
+                                size: 18,
+                                color: AppColors.warning,
+                              );
+                            }),
+                          ),
+                          if (_review!.comment.isNotEmpty) ...[
+                            const Gap(6),
+                            Text(_review!.comment,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: context.colors.textPrimary,
+                                    )),
+                          ],
+                          const Gap(4),
+                        ],
+                        Row(
+                          children: [
+                            if (_canEditReview) ...[
+                              TextButton.icon(
+                                onPressed: _submittingReview || _deletingReview
+                                    ? null
+                                    : () => _showReviewDialog(existing: _review),
+                                icon: const Icon(Icons.edit_outlined, size: 16),
+                                label: Text(context.t.common.edit),
+                              ),
+                              const Gap(4),
+                            ],
+                            TextButton.icon(
+                              onPressed: _submittingReview || _deletingReview
+                                  ? null
+                                  : _deleteReview,
+                              style: TextButton.styleFrom(
+                                foregroundColor: AppColors.error,
+                              ),
+                              icon: const Icon(Icons.delete_outline, size: 16),
+                              label: Text(context.t.common.delete),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               const Gap(16),
             ],
           ),
@@ -534,7 +696,7 @@ class _AppointmentDetailScreenState
       );
     }
 
-    if (appt.status == 'completed' && !appt.hasReview) {
+    if (appt.status == 'completed' && !_hasReview) {
       return BottomActionBar(
         child: FilledButton.icon(
           onPressed: _submittingReview ? null : _showReviewDialog,
