@@ -173,6 +173,40 @@ void main() {
       );
       expect(appt.canCancel, isFalse);
     });
+
+    test('parses the embedded review and can_edit_review', () {
+      final json = appointmentJson(
+        status: 'completed',
+        startsAt: '2026-01-01T10:00:00Z',
+      )
+        ..['has_review'] = true
+        ..['can_edit_review'] = true
+        ..['review'] = {
+          'id': 'r1',
+          'rating': 4,
+          'comment': 'Great doctor',
+          'patient_name': 'Jane Doe',
+          'created_at': '2026-01-02T10:00:00Z',
+          'updated_at': '2026-01-03T10:00:00Z',
+        };
+      final appt = AppointmentModel.fromJson(json);
+      expect(appt.hasReview, isTrue);
+      expect(appt.canEditReview, isTrue);
+      expect(appt.review, isNotNull);
+      expect(appt.review!.rating, 4);
+      expect(appt.review!.comment, 'Great doctor');
+      expect(appt.review!.patientName, 'Jane Doe');
+      expect(appt.review!.updatedAt, DateTime.parse('2026-01-03T10:00:00Z'));
+    });
+
+    test('review defaults stay null/false when the backend omits them', () {
+      final appt = AppointmentModel.fromJson(
+        appointmentJson(status: 'completed', startsAt: '2026-01-01T10:00:00Z'),
+      );
+      expect(appt.hasReview, isFalse);
+      expect(appt.review, isNull);
+      expect(appt.canEditReview, isFalse);
+    });
   });
 
   group('NotificationModel.fromJson', () {

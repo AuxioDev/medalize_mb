@@ -135,6 +135,28 @@ class AppointmentRepository {
     }
   }
 
+  Future<ReviewModel> updateReview(String appointmentId, int rating, String comment) async {
+    try {
+      final res = await _dio.patch(
+        '/appointments/$appointmentId/review/',
+        data: {'rating': rating, 'comment': comment},
+      );
+      return ReviewModel.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  Future<void> deleteReview(String appointmentId) async {
+    try {
+      await _dio.delete('/appointments/$appointmentId/review/');
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
+
   Future<List<ReviewModel>> getDoctorReviews(String doctorId) async {
     try {
       return await _fetchAllPages('/doctors/$doctorId/reviews/', ReviewModel.fromJson);

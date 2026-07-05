@@ -1,3 +1,5 @@
+import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
+
 class AppointmentDoctor {
   final String id;
   final String firstName;
@@ -84,6 +86,12 @@ class AppointmentModel {
   final bool? canRescheduleOverride;
   final bool hasReview;
 
+  /// The patient's own review, embedded by the backend when one exists.
+  final ReviewModel? review;
+
+  /// Server-computed: whether the review is still inside the edit window.
+  final bool canEditReview;
+
   const AppointmentModel({
     required this.id,
     required this.doctor,
@@ -98,6 +106,8 @@ class AppointmentModel {
     this.canCancelOverride,
     this.canRescheduleOverride,
     this.hasReview = false,
+    this.review,
+    this.canEditReview = false,
   });
 
   factory AppointmentModel.fromJson(Map<String, dynamic> j) => AppointmentModel(
@@ -114,6 +124,10 @@ class AppointmentModel {
         canCancelOverride: j['can_cancel'] as bool?,
         canRescheduleOverride: j['can_reschedule'] as bool?,
         hasReview: j['has_review'] as bool? ?? false,
+        review: j['review'] != null
+            ? ReviewModel.fromJson(j['review'] as Map<String, dynamic>)
+            : null,
+        canEditReview: j['can_edit_review'] as bool? ?? false,
       );
 
   bool get isUpcoming {
