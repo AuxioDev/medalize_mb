@@ -99,32 +99,37 @@ class _QuickActionsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: _ActionCard(
-            icon: Icons.search_rounded,
-            label: context.t.home.findDoctor,
-            onTap: () => context.push('/patient/doctor-search'),
+    // IntrinsicHeight + stretch keeps the three cards the same height even
+    // when translated labels wrap to a different number of lines.
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: _ActionCard(
+              icon: Icons.search_rounded,
+              label: context.t.home.findDoctor,
+              onTap: () => context.push('/patient/doctor-search'),
+            ),
           ),
-        ),
-        const Gap(12),
-        Expanded(
-          child: _ActionCard(
-            icon: Icons.calendar_month_outlined,
-            label: context.t.home.myAppointments,
-            onTap: () => context.push('/patient/appointments'),
+          const Gap(12),
+          Expanded(
+            child: _ActionCard(
+              icon: Icons.calendar_month_outlined,
+              label: context.t.home.myAppointments,
+              onTap: () => context.push('/patient/appointments'),
+            ),
           ),
-        ),
-        const Gap(12),
-        Expanded(
-          child: _ActionCard(
-            icon: Icons.smart_toy_outlined,
-            label: context.t.home.aiAssistant,
-            onTap: () => context.push('/patient/assistant'),
+          const Gap(12),
+          Expanded(
+            child: _ActionCard(
+              icon: Icons.smart_toy_outlined,
+              label: context.t.home.aiAssistant,
+              onTap: () => context.push('/patient/assistant'),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -151,6 +156,7 @@ class _ActionCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 12),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 50,
@@ -165,6 +171,8 @@ class _ActionCard extends StatelessWidget {
           Text(
             label,
             textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.labelMedium,
           ),
         ],

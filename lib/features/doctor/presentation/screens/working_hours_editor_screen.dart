@@ -198,9 +198,10 @@ class _WorkingHoursEditorState
                           horizontal: 14, vertical: 6),
                       child: Row(
                         children: [
-                          SizedBox(
-                            width: 92,
+                          Expanded(
                             child: Text(_dayName(context, i),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style:
                                     Theme.of(context).textTheme.labelLarge),
                           ),

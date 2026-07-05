@@ -145,12 +145,16 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                             children: [
                               Icon(Icons.payments_outlined, color: c.primaryText, size: 20),
                               const Gap(10),
-                              Text(
-                                '${context.t.doctorDetail.consultationFee}: ${widget.detail.consultationFee}',
-                                style: TextStyle(
-                                  color: c.primaryText,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14,
+                              Expanded(
+                                child: Text(
+                                  '${context.t.doctorDetail.consultationFee}: ${widget.detail.consultationFee}',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: c.primaryText,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ],
@@ -323,10 +327,14 @@ class _ProfileHeader extends StatelessWidget {
                     Icon(Icons.schedule_outlined,
                         size: 13, color: c.textSecondary),
                     const Gap(4),
-                    Text(
-                      context.t.doctorDetail
-                          .minPerSlot(min: detail.slotDurationMin),
-                      style: Theme.of(context).textTheme.bodySmall,
+                    Flexible(
+                      child: Text(
+                        context.t.doctorDetail
+                            .minPerSlot(min: detail.slotDurationMin),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
                     ),
                   ],
                 ),
@@ -343,9 +351,14 @@ class _ProfileHeader extends StatelessWidget {
                         );
                       }),
                       const Gap(6),
-                      Text(
-                        '${detail.averageRating!.toStringAsFixed(1)} · ${context.t.doctorDetail.reviewsCount(count: detail.reviewCount)}',
-                        style: TextStyle(fontSize: 12, color: c.textSecondary),
+                      Flexible(
+                        child: Text(
+                          '${detail.averageRating!.toStringAsFixed(1)} · ${context.t.doctorDetail.reviewsCount(count: detail.reviewCount)}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              TextStyle(fontSize: 12, color: c.textSecondary),
+                        ),
                       ),
                     ],
                   )

@@ -41,6 +41,8 @@ class StatusChip extends StatelessWidget {
       ),
       child: Text(
         labelFor(status),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: color,
           fontSize: 11,

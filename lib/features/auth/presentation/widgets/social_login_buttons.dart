@@ -98,10 +98,14 @@ class _GoogleButton extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            Text(label,
-                style: TextStyle(
-                    color: context.colors.textPrimary,
-                    fontWeight: FontWeight.w600)),
+            Flexible(
+              child: Text(label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: context.colors.textPrimary,
+                      fontWeight: FontWeight.w600)),
+            ),
           ],
         ),
       ),

@@ -177,10 +177,11 @@ class _InfoRow extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 80,
+          Flexible(
+            flex: 2,
             child: Text(
               label,
+              maxLines: 2,
               style: TextStyle(
                 color: context.colors.primaryText,
                 fontWeight: FontWeight.w600,
@@ -188,8 +189,12 @@ class _InfoRow extends StatelessWidget {
               ),
             ),
           ),
+          const Gap(8),
           Expanded(
+            flex: 3,
             child: Text(value,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontSize: 14,
                     )),
