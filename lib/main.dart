@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/locale/locale_provider.dart';
+import 'package:medalize_mb/core/onboarding/app_intro_provider.dart';
+import 'package:medalize_mb/core/storage/secure_storage.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_mode_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
@@ -20,7 +22,15 @@ Future<void> main() async {
     debugPrint('Firebase init skipped (push notifications disabled): $e');
   }
   await initLocale();
-  runApp(TranslationProvider(child: const ProviderScope(child: MedalizeApp())));
+  // Preloaded before runApp (like the locale above) so the router's redirect
+  // sees the correct value on the very first frame — no async race.
+  final appIntroSeen = await SecureStorage().getAppIntroSeen();
+  runApp(TranslationProvider(
+    child: ProviderScope(
+      overrides: [appIntroSeenProvider.overrideWith((ref) => appIntroSeen)],
+      child: const MedalizeApp(),
+    ),
+  ));
 }
 
 class MedalizeApp extends ConsumerStatefulWidget {

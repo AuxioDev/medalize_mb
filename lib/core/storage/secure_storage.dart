@@ -19,6 +19,9 @@ abstract final class _Keys {
   static const deviceName = 'device_name';
   static const devicePlatform = 'device_platform';
   static const biometricEnabled = 'biometric_enabled';
+  // Welcome carousel on first install. Distinct from [onboardingComplete],
+  // which tracks the doctor profile wizard — an unrelated feature.
+  static const appIntroSeen = 'app_intro_seen';
 }
 
 class SecureStorage {
@@ -143,9 +146,19 @@ class SecureStorage {
   Future<void> saveBiometricEnabled(bool value) =>
       _storage.write(key: _Keys.biometricEnabled, value: value.toString());
 
+  /// Whether the first-install welcome carousel has been completed/skipped.
+  /// Per-install, one-way: only ever written as `true`.
+  Future<bool> getAppIntroSeen() async =>
+      (await _storage.read(key: _Keys.appIntroSeen)) == 'true';
+
+  Future<void> saveAppIntroSeen() =>
+      _storage.write(key: _Keys.appIntroSeen, value: 'true');
+
   /// Clears session data but preserves device-level values: theme, language,
-  /// the biometric preference and the device identity (the latter must never
-  /// rotate on logout — it identifies the *device*, not the session).
+  /// the biometric preference, the welcome-carousel flag (per-install — a
+  /// logout must not resurface the intro) and the device identity (the latter
+  /// must never rotate on logout — it identifies the *device*, not the
+  /// session).
   Future<void> clearAll() async {
     final theme = await getThemeMode();
     final language = await getLanguage();
@@ -153,6 +166,7 @@ class SecureStorage {
     final deviceName = await getDeviceName();
     final devicePlatform = await getDevicePlatform();
     final biometricEnabled = await getBiometricEnabled();
+    final appIntroSeen = await getAppIntroSeen();
     await _storage.deleteAll();
     if (theme != null) await saveThemeMode(theme);
     if (language != null) await saveLanguage(language);
@@ -160,5 +174,6 @@ class SecureStorage {
     if (deviceName != null) await saveDeviceName(deviceName);
     if (devicePlatform != null) await saveDevicePlatform(devicePlatform);
     if (biometricEnabled != null) await saveBiometricEnabled(biometricEnabled);
+    if (appIntroSeen) await saveAppIntroSeen();
   }
 }
