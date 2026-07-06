@@ -426,6 +426,17 @@
   "splash": {
     "tagline": "Votre santé, simplifiée"
   },
+  "appIntro": {
+    "page1Title": "Trouvez le bon médecin",
+    "page1Subtitle": "Recherchez par spécialité, ville et note — puis réservez un créneau qui vous convient.",
+    "page2Title": "Interrogez notre assistant IA",
+    "page2Subtitle": "Décrivez vos symptômes et découvrez le spécialiste le plus adapté, à tout moment.",
+    "page3Title": "Tout en une seule application",
+    "page3Subtitle": "Gérez vos rendez-vous, suivez votre suivi médical et utilisez l'application dans votre langue — en toute sécurité.",
+    "skip": "Passer",
+    "next": "Suivant",
+    "getStarted": "Commencer"
+  },
   "agenda": {
     "title": "Planning",
     "today": "Aujourd'hui",

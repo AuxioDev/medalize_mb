@@ -64,6 +64,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$zh pendingVerification = _Translations$pendingVerification$zh._(_root);
 	@override late final _Translations$phoneField$zh phoneField = _Translations$phoneField$zh._(_root);
 	@override late final _Translations$splash$zh splash = _Translations$splash$zh._(_root);
+	@override late final _Translations$appIntro$zh appIntro = _Translations$appIntro$zh._(_root);
 	@override late final _Translations$agenda$zh agenda = _Translations$agenda$zh._(_root);
 	@override late final _Translations$favorites$zh favorites = _Translations$favorites$zh._(_root);
 	@override late final _Translations$assistant$zh assistant = _Translations$assistant$zh._(_root);
@@ -644,6 +645,24 @@ class _Translations$splash$zh extends Translations$splash$en {
 	@override String get tagline => '让健康更简单';
 }
 
+// Path: appIntro
+class _Translations$appIntro$zh extends Translations$appIntro$en {
+	_Translations$appIntro$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get page1Title => '找到合适的医生';
+	@override String get page1Subtitle => '按专科、城市和评分搜索，预约适合您的时间。';
+	@override String get page2Title => '咨询 AI 健康助手';
+	@override String get page2Subtitle => '描述您的症状，随时了解应该看哪位专科医生。';
+	@override String get page3Title => '一个应用，管理一切';
+	@override String get page3Subtitle => '管理预约、跟踪就诊记录，并使用您熟悉的语言安全地使用本应用。';
+	@override String get skip => '跳过';
+	@override String get next => '下一步';
+	@override String get getStarted => '开始使用';
+}
+
 // Path: agenda
 class _Translations$agenda$zh extends Translations$agenda$en {
 	_Translations$agenda$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1137,6 +1156,15 @@ extension on TranslationsZh {
 			'phoneField.searchCountry' => '搜索国家或区号…',
 			'phoneField.noCountriesFound' => '未找到国家',
 			'splash.tagline' => '让健康更简单',
+			'appIntro.page1Title' => '找到合适的医生',
+			'appIntro.page1Subtitle' => '按专科、城市和评分搜索，预约适合您的时间。',
+			'appIntro.page2Title' => '咨询 AI 健康助手',
+			'appIntro.page2Subtitle' => '描述您的症状，随时了解应该看哪位专科医生。',
+			'appIntro.page3Title' => '一个应用，管理一切',
+			'appIntro.page3Subtitle' => '管理预约、跟踪就诊记录，并使用您熟悉的语言安全地使用本应用。',
+			'appIntro.skip' => '跳过',
+			'appIntro.next' => '下一步',
+			'appIntro.getStarted' => '开始使用',
 			'agenda.title' => '日程',
 			'agenda.today' => '今天',
 			'agenda.empty' => '没有预约',

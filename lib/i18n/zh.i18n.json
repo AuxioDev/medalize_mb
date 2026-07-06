@@ -426,6 +426,17 @@
   "splash": {
     "tagline": "让健康更简单"
   },
+  "appIntro": {
+    "page1Title": "找到合适的医生",
+    "page1Subtitle": "按专科、城市和评分搜索，预约适合您的时间。",
+    "page2Title": "咨询 AI 健康助手",
+    "page2Subtitle": "描述您的症状，随时了解应该看哪位专科医生。",
+    "page3Title": "一个应用，管理一切",
+    "page3Subtitle": "管理预约、跟踪就诊记录，并使用您熟悉的语言安全地使用本应用。",
+    "skip": "跳过",
+    "next": "下一步",
+    "getStarted": "开始使用"
+  },
   "agenda": {
     "title": "日程",
     "today": "今天",

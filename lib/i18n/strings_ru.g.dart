@@ -64,6 +64,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$ru pendingVerification = _Translations$pendingVerification$ru._(_root);
 	@override late final _Translations$phoneField$ru phoneField = _Translations$phoneField$ru._(_root);
 	@override late final _Translations$splash$ru splash = _Translations$splash$ru._(_root);
+	@override late final _Translations$appIntro$ru appIntro = _Translations$appIntro$ru._(_root);
 	@override late final _Translations$agenda$ru agenda = _Translations$agenda$ru._(_root);
 	@override late final _Translations$favorites$ru favorites = _Translations$favorites$ru._(_root);
 	@override late final _Translations$assistant$ru assistant = _Translations$assistant$ru._(_root);
@@ -644,6 +645,24 @@ class _Translations$splash$ru extends Translations$splash$en {
 	@override String get tagline => 'Ваше здоровье — это просто';
 }
 
+// Path: appIntro
+class _Translations$appIntro$ru extends Translations$appIntro$en {
+	_Translations$appIntro$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get page1Title => 'Найдите нужного врача';
+	@override String get page1Subtitle => 'Ищите по специальности, городу и рейтингу — и запишитесь на удобное время.';
+	@override String get page2Title => 'Спросите ИИ-помощника';
+	@override String get page2Subtitle => 'Опишите симптомы и узнайте, к какому врачу лучше обратиться — в любое время.';
+	@override String get page3Title => 'Всё в одном приложении';
+	@override String get page3Subtitle => 'Управляйте записями, следите за визитами и пользуйтесь приложением на своём языке — безопасно.';
+	@override String get skip => 'Пропустить';
+	@override String get next => 'Далее';
+	@override String get getStarted => 'Начать';
+}
+
 // Path: agenda
 class _Translations$agenda$ru extends Translations$agenda$en {
 	_Translations$agenda$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -1137,6 +1156,15 @@ extension on TranslationsRu {
 			'phoneField.searchCountry' => 'Поиск страны или кода…',
 			'phoneField.noCountriesFound' => 'Страны не найдены',
 			'splash.tagline' => 'Ваше здоровье — это просто',
+			'appIntro.page1Title' => 'Найдите нужного врача',
+			'appIntro.page1Subtitle' => 'Ищите по специальности, городу и рейтингу — и запишитесь на удобное время.',
+			'appIntro.page2Title' => 'Спросите ИИ-помощника',
+			'appIntro.page2Subtitle' => 'Опишите симптомы и узнайте, к какому врачу лучше обратиться — в любое время.',
+			'appIntro.page3Title' => 'Всё в одном приложении',
+			'appIntro.page3Subtitle' => 'Управляйте записями, следите за визитами и пользуйтесь приложением на своём языке — безопасно.',
+			'appIntro.skip' => 'Пропустить',
+			'appIntro.next' => 'Далее',
+			'appIntro.getStarted' => 'Начать',
 			'agenda.title' => 'Расписание',
 			'agenda.today' => 'Сегодня',
 			'agenda.empty' => 'Нет приёмов',

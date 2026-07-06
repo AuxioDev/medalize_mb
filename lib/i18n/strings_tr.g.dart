@@ -64,6 +64,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$tr pendingVerification = _Translations$pendingVerification$tr._(_root);
 	@override late final _Translations$phoneField$tr phoneField = _Translations$phoneField$tr._(_root);
 	@override late final _Translations$splash$tr splash = _Translations$splash$tr._(_root);
+	@override late final _Translations$appIntro$tr appIntro = _Translations$appIntro$tr._(_root);
 	@override late final _Translations$agenda$tr agenda = _Translations$agenda$tr._(_root);
 	@override late final _Translations$favorites$tr favorites = _Translations$favorites$tr._(_root);
 	@override late final _Translations$assistant$tr assistant = _Translations$assistant$tr._(_root);
@@ -644,6 +645,24 @@ class _Translations$splash$tr extends Translations$splash$en {
 	@override String get tagline => 'Sağlığınız, basitleştirildi';
 }
 
+// Path: appIntro
+class _Translations$appIntro$tr extends Translations$appIntro$en {
+	_Translations$appIntro$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get page1Title => 'Doğru doktoru bulun';
+	@override String get page1Subtitle => 'Uzmanlığa, şehre ve puana göre arayın — size uygun bir randevu alın.';
+	@override String get page2Title => 'Yapay zekâ asistanına sorun';
+	@override String get page2Subtitle => 'Belirtilerinizi anlatın, hangi uzmana başvurmanız gerektiğini öğrenin.';
+	@override String get page3Title => 'Her şey tek bir uygulamada';
+	@override String get page3Subtitle => 'Randevularınızı yönetin, tedavinizi takip edin ve uygulamayı kendi dilinizde güvenle kullanın.';
+	@override String get skip => 'Geç';
+	@override String get next => 'İleri';
+	@override String get getStarted => 'Başla';
+}
+
 // Path: agenda
 class _Translations$agenda$tr extends Translations$agenda$en {
 	_Translations$agenda$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1137,6 +1156,15 @@ extension on TranslationsTr {
 			'phoneField.searchCountry' => 'Ülke veya kod ara…',
 			'phoneField.noCountriesFound' => 'Ülke bulunamadı',
 			'splash.tagline' => 'Sağlığınız, basitleştirildi',
+			'appIntro.page1Title' => 'Doğru doktoru bulun',
+			'appIntro.page1Subtitle' => 'Uzmanlığa, şehre ve puana göre arayın — size uygun bir randevu alın.',
+			'appIntro.page2Title' => 'Yapay zekâ asistanına sorun',
+			'appIntro.page2Subtitle' => 'Belirtilerinizi anlatın, hangi uzmana başvurmanız gerektiğini öğrenin.',
+			'appIntro.page3Title' => 'Her şey tek bir uygulamada',
+			'appIntro.page3Subtitle' => 'Randevularınızı yönetin, tedavinizi takip edin ve uygulamayı kendi dilinizde güvenle kullanın.',
+			'appIntro.skip' => 'Geç',
+			'appIntro.next' => 'İleri',
+			'appIntro.getStarted' => 'Başla',
 			'agenda.title' => 'Takvim',
 			'agenda.today' => 'Bugün',
 			'agenda.empty' => 'Randevu yok',

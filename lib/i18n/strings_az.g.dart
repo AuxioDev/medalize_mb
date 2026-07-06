@@ -64,6 +64,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$az pendingVerification = _Translations$pendingVerification$az._(_root);
 	@override late final _Translations$phoneField$az phoneField = _Translations$phoneField$az._(_root);
 	@override late final _Translations$splash$az splash = _Translations$splash$az._(_root);
+	@override late final _Translations$appIntro$az appIntro = _Translations$appIntro$az._(_root);
 	@override late final _Translations$agenda$az agenda = _Translations$agenda$az._(_root);
 	@override late final _Translations$favorites$az favorites = _Translations$favorites$az._(_root);
 	@override late final _Translations$assistant$az assistant = _Translations$assistant$az._(_root);
@@ -644,6 +645,24 @@ class _Translations$splash$az extends Translations$splash$en {
 	@override String get tagline => 'Sağlamlığınız, sadələşdirilmiş';
 }
 
+// Path: appIntro
+class _Translations$appIntro$az extends Translations$appIntro$en {
+	_Translations$appIntro$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get page1Title => 'Doğru həkimi tapın';
+	@override String get page1Subtitle => 'İxtisas, şəhər və reytinqə görə axtarın — sizə uyğun vaxta yazılın.';
+	@override String get page2Title => 'Süni intellekt köməkçisinə sual verin';
+	@override String get page2Subtitle => 'Simptomlarınızı təsvir edin və hansı həkimə müraciət etməli olduğunuzu öyrənin.';
+	@override String get page3Title => 'Hər şey bir tətbiqdə';
+	@override String get page3Subtitle => 'Qəbulları idarə edin, müalicənizi izləyin və tətbiqi öz dilinizdə istifadə edin — təhlükəsiz şəkildə.';
+	@override String get skip => 'Keç';
+	@override String get next => 'Növbəti';
+	@override String get getStarted => 'Başla';
+}
+
 // Path: agenda
 class _Translations$agenda$az extends Translations$agenda$en {
 	_Translations$agenda$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -1137,6 +1156,15 @@ extension on TranslationsAz {
 			'phoneField.searchCountry' => 'Ölkə və ya kod axtar…',
 			'phoneField.noCountriesFound' => 'Ölkə tapılmadı',
 			'splash.tagline' => 'Sağlamlığınız, sadələşdirilmiş',
+			'appIntro.page1Title' => 'Doğru həkimi tapın',
+			'appIntro.page1Subtitle' => 'İxtisas, şəhər və reytinqə görə axtarın — sizə uyğun vaxta yazılın.',
+			'appIntro.page2Title' => 'Süni intellekt köməkçisinə sual verin',
+			'appIntro.page2Subtitle' => 'Simptomlarınızı təsvir edin və hansı həkimə müraciət etməli olduğunuzu öyrənin.',
+			'appIntro.page3Title' => 'Hər şey bir tətbiqdə',
+			'appIntro.page3Subtitle' => 'Qəbulları idarə edin, müalicənizi izləyin və tətbiqi öz dilinizdə istifadə edin — təhlükəsiz şəkildə.',
+			'appIntro.skip' => 'Keç',
+			'appIntro.next' => 'Növbəti',
+			'appIntro.getStarted' => 'Başla',
 			'agenda.title' => 'Cədvəl',
 			'agenda.today' => 'Bu gün',
 			'agenda.empty' => 'Görüş yoxdur',

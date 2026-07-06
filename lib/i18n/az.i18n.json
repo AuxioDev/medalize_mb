@@ -426,6 +426,17 @@
   "splash": {
     "tagline": "Sağlamlığınız, sadələşdirilmiş"
   },
+  "appIntro": {
+    "page1Title": "Doğru həkimi tapın",
+    "page1Subtitle": "İxtisas, şəhər və reytinqə görə axtarın — sizə uyğun vaxta yazılın.",
+    "page2Title": "Süni intellekt köməkçisinə sual verin",
+    "page2Subtitle": "Simptomlarınızı təsvir edin və hansı həkimə müraciət etməli olduğunuzu öyrənin.",
+    "page3Title": "Hər şey bir tətbiqdə",
+    "page3Subtitle": "Qəbulları idarə edin, müalicənizi izləyin və tətbiqi öz dilinizdə istifadə edin — təhlükəsiz şəkildə.",
+    "skip": "Keç",
+    "next": "Növbəti",
+    "getStarted": "Başla"
+  },
   "agenda": {
     "title": "Cədvəl",
     "today": "Bu gün",

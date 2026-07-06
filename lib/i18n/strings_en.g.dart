@@ -68,6 +68,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$pendingVerification$en pendingVerification = Translations$pendingVerification$en.internal(_root);
 	late final Translations$phoneField$en phoneField = Translations$phoneField$en.internal(_root);
 	late final Translations$splash$en splash = Translations$splash$en.internal(_root);
+	late final Translations$appIntro$en appIntro = Translations$appIntro$en.internal(_root);
 	late final Translations$agenda$en agenda = Translations$agenda$en.internal(_root);
 	late final Translations$favorites$en favorites = Translations$favorites$en.internal(_root);
 	late final Translations$assistant$en assistant = Translations$assistant$en.internal(_root);
@@ -1362,6 +1363,42 @@ class Translations$splash$en {
 	String get tagline => 'Your health, simplified';
 }
 
+// Path: appIntro
+class Translations$appIntro$en {
+	Translations$appIntro$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Find the right doctor'
+	String get page1Title => 'Find the right doctor';
+
+	/// en: 'Search by specialty, city, and rating — then book a time that works for you.'
+	String get page1Subtitle => 'Search by specialty, city, and rating — then book a time that works for you.';
+
+	/// en: 'Ask our AI health assistant'
+	String get page2Title => 'Ask our AI health assistant';
+
+	/// en: 'Describe your symptoms and get pointed toward the right specialist, any time.'
+	String get page2Subtitle => 'Describe your symptoms and get pointed toward the right specialist, any time.';
+
+	/// en: 'Everything in one place'
+	String get page3Title => 'Everything in one place';
+
+	/// en: 'Manage appointments, track your care, and use the app in your language — safely and securely.'
+	String get page3Subtitle => 'Manage appointments, track your care, and use the app in your language — safely and securely.';
+
+	/// en: 'Skip'
+	String get skip => 'Skip';
+
+	/// en: 'Next'
+	String get next => 'Next';
+
+	/// en: 'Get Started'
+	String get getStarted => 'Get Started';
+}
+
 // Path: agenda
 class Translations$agenda$en {
 	Translations$agenda$en.internal(this._root);
@@ -1967,6 +2004,15 @@ extension on Translations {
 			'phoneField.searchCountry' => 'Search country or code…',
 			'phoneField.noCountriesFound' => 'No countries found',
 			'splash.tagline' => 'Your health, simplified',
+			'appIntro.page1Title' => 'Find the right doctor',
+			'appIntro.page1Subtitle' => 'Search by specialty, city, and rating — then book a time that works for you.',
+			'appIntro.page2Title' => 'Ask our AI health assistant',
+			'appIntro.page2Subtitle' => 'Describe your symptoms and get pointed toward the right specialist, any time.',
+			'appIntro.page3Title' => 'Everything in one place',
+			'appIntro.page3Subtitle' => 'Manage appointments, track your care, and use the app in your language — safely and securely.',
+			'appIntro.skip' => 'Skip',
+			'appIntro.next' => 'Next',
+			'appIntro.getStarted' => 'Get Started',
 			'agenda.title' => 'Schedule',
 			'agenda.today' => 'Today',
 			'agenda.empty' => 'No appointments',

@@ -426,6 +426,17 @@
   "splash": {
     "tagline": "Sağlığınız, basitleştirildi"
   },
+  "appIntro": {
+    "page1Title": "Doğru doktoru bulun",
+    "page1Subtitle": "Uzmanlığa, şehre ve puana göre arayın — size uygun bir randevu alın.",
+    "page2Title": "Yapay zekâ asistanına sorun",
+    "page2Subtitle": "Belirtilerinizi anlatın, hangi uzmana başvurmanız gerektiğini öğrenin.",
+    "page3Title": "Her şey tek bir uygulamada",
+    "page3Subtitle": "Randevularınızı yönetin, tedavinizi takip edin ve uygulamayı kendi dilinizde güvenle kullanın.",
+    "skip": "Geç",
+    "next": "İleri",
+    "getStarted": "Başla"
+  },
   "agenda": {
     "title": "Takvim",
     "today": "Bugün",

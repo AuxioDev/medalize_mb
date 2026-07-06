@@ -64,6 +64,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$pendingVerification$fr pendingVerification = _Translations$pendingVerification$fr._(_root);
 	@override late final _Translations$phoneField$fr phoneField = _Translations$phoneField$fr._(_root);
 	@override late final _Translations$splash$fr splash = _Translations$splash$fr._(_root);
+	@override late final _Translations$appIntro$fr appIntro = _Translations$appIntro$fr._(_root);
 	@override late final _Translations$agenda$fr agenda = _Translations$agenda$fr._(_root);
 	@override late final _Translations$favorites$fr favorites = _Translations$favorites$fr._(_root);
 	@override late final _Translations$assistant$fr assistant = _Translations$assistant$fr._(_root);
@@ -644,6 +645,24 @@ class _Translations$splash$fr extends Translations$splash$en {
 	@override String get tagline => 'Votre santé, simplifiée';
 }
 
+// Path: appIntro
+class _Translations$appIntro$fr extends Translations$appIntro$en {
+	_Translations$appIntro$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get page1Title => 'Trouvez le bon médecin';
+	@override String get page1Subtitle => 'Recherchez par spécialité, ville et note — puis réservez un créneau qui vous convient.';
+	@override String get page2Title => 'Interrogez notre assistant IA';
+	@override String get page2Subtitle => 'Décrivez vos symptômes et découvrez le spécialiste le plus adapté, à tout moment.';
+	@override String get page3Title => 'Tout en une seule application';
+	@override String get page3Subtitle => 'Gérez vos rendez-vous, suivez votre suivi médical et utilisez l\'application dans votre langue — en toute sécurité.';
+	@override String get skip => 'Passer';
+	@override String get next => 'Suivant';
+	@override String get getStarted => 'Commencer';
+}
+
 // Path: agenda
 class _Translations$agenda$fr extends Translations$agenda$en {
 	_Translations$agenda$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -1137,6 +1156,15 @@ extension on TranslationsFr {
 			'phoneField.searchCountry' => 'Rechercher un pays ou un code…',
 			'phoneField.noCountriesFound' => 'Aucun pays trouvé',
 			'splash.tagline' => 'Votre santé, simplifiée',
+			'appIntro.page1Title' => 'Trouvez le bon médecin',
+			'appIntro.page1Subtitle' => 'Recherchez par spécialité, ville et note — puis réservez un créneau qui vous convient.',
+			'appIntro.page2Title' => 'Interrogez notre assistant IA',
+			'appIntro.page2Subtitle' => 'Décrivez vos symptômes et découvrez le spécialiste le plus adapté, à tout moment.',
+			'appIntro.page3Title' => 'Tout en une seule application',
+			'appIntro.page3Subtitle' => 'Gérez vos rendez-vous, suivez votre suivi médical et utilisez l\'application dans votre langue — en toute sécurité.',
+			'appIntro.skip' => 'Passer',
+			'appIntro.next' => 'Suivant',
+			'appIntro.getStarted' => 'Commencer',
 			'agenda.title' => 'Planning',
 			'agenda.today' => 'Aujourd\'hui',
 			'agenda.empty' => 'Aucun rendez-vous',

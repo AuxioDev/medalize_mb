@@ -426,6 +426,17 @@
   "splash": {
     "tagline": "Your health, simplified"
   },
+  "appIntro": {
+    "page1Title": "Find the right doctor",
+    "page1Subtitle": "Search by specialty, city, and rating — then book a time that works for you.",
+    "page2Title": "Ask our AI health assistant",
+    "page2Subtitle": "Describe your symptoms and get pointed toward the right specialist, any time.",
+    "page3Title": "Everything in one place",
+    "page3Subtitle": "Manage appointments, track your care, and use the app in your language — safely and securely.",
+    "skip": "Skip",
+    "next": "Next",
+    "getStarted": "Get Started"
+  },
   "agenda": {
     "title": "Schedule",
     "today": "Today",
