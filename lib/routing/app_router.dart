@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medalize_mb/core/onboarding/app_intro_provider.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart';
 import 'package:medalize_mb/features/assistant/presentation/screens/assistant_chat_screen.dart';
@@ -22,6 +23,7 @@ import 'package:medalize_mb/features/doctor/presentation/screens/doctor_pending_
 import 'package:medalize_mb/features/doctor/presentation/screens/working_hours_editor_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/workplace_list_screen.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/onboarding/presentation/screens/app_intro_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_calendar_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
@@ -57,12 +59,19 @@ final routerProvider = Provider<GoRouter>((ref) {
     navigatorKey: navigatorKey,
     initialLocation: '/splash',
     refreshListenable: notifier,
-    redirect: (context, state) =>
-        _redirect(ref.read(authProvider), state.matchedLocation),
+    redirect: (context, state) => _redirect(
+      ref.read(authProvider),
+      state.matchedLocation,
+      ref.read(appIntroSeenProvider),
+    ),
     routes: [
       GoRoute(
         path: '/splash',
         pageBuilder: (_, _) => _fadePage(const SplashScreen()),
+      ),
+      GoRoute(
+        path: '/intro',
+        pageBuilder: (_, _) => _fadePage(const AppIntroScreen()),
       ),
       GoRoute(
         path: '/auth/login',
@@ -376,7 +385,7 @@ String _homeFor(String role, bool onboardingComplete, bool? isVerified) {
   return '/doctor/home';
 }
 
-String? _redirect(AuthState auth, String location) {
+String? _redirect(AuthState auth, String location, bool introSeen) {
   return switch (auth) {
     // Cold-start only: hold on splash until _init resolves.
     AuthInitial() => location == '/splash' ? null : '/splash',
@@ -384,15 +393,27 @@ String? _redirect(AuthState auth, String location) {
     // shows its spinner, the typed inputs are kept, and any resulting AuthError
     // renders inline instead of bouncing through splash to a fresh screen.
     AuthLoading() => location.startsWith('/auth') ? null : '/splash',
-    AuthUnauthenticated() || AuthError() =>
-      location.startsWith('/auth') ? null : '/auth/login',
+    // First install only: detour to the welcome carousel before login. Signed
+    // in users never see it — the intro check lives in this branch alone.
+    AuthUnauthenticated() || AuthError() => !introSeen && location != '/intro'
+        ? '/intro'
+        : (location.startsWith('/auth') || location == '/intro'
+            ? null
+            : '/auth/login'),
     AuthAuthenticated(
       :final role,
       :final onboardingComplete,
       :final isVerified,
     ) =>
-      (location == '/splash' || location.startsWith('/auth'))
+      (location == '/splash' ||
+              location.startsWith('/auth') ||
+              location == '/intro')
           ? _homeFor(role, onboardingComplete, isVerified)
           : null,
   };
 }
+
+/// Test-only window onto the private [_redirect] decision table.
+@visibleForTesting
+String? debugRedirect(AuthState auth, String location, bool introSeen) =>
+    _redirect(auth, location, introSeen);
