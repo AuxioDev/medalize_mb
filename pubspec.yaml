@@ -50,8 +50,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-# App launcher icon. PLACEHOLDER brand icon (blue gradient + medical cross);
-# replace assets/icon/* with final art, then run:
+# App launcher icon. Source art: assets/icon/source/app_icon_source.svg
+# (medal + medical cross mark). Regenerate after editing the source SVGs:
 #   dart run flutter_launcher_icons
 flutter_launcher_icons:
   ios: true
