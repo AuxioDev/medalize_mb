@@ -150,25 +150,32 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onTap: () => setState(() => _rememberMe = !_rememberMe),
-                          child: Row(
-                            children: [
-                              Switch(
-                                value: _rememberMe,
-                                onChanged: (v) => setState(() => _rememberMe = v),
-                                activeThumbColor: AppColors.primary,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                context.t.auth.rememberMe,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(color: context.colors.textPrimary),
-                              ),
-                            ],
+                        Flexible(
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () => setState(() => _rememberMe = !_rememberMe),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Switch(
+                                  value: _rememberMe,
+                                  onChanged: (v) => setState(() => _rememberMe = v),
+                                  activeThumbColor: AppColors.primary,
+                                ),
+                                const SizedBox(width: 4),
+                                Flexible(
+                                  child: Text(
+                                    context.t.auth.rememberMe,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(color: context.colors.textPrimary),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         const Spacer(),
@@ -213,9 +220,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          context.t.auth.noAccount,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                        Flexible(
+                          child: Text(
+                            context.t.auth.noAccount,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ),
                         TextButton(
                           onPressed: () => context.push('/auth/register'),

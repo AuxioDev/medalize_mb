@@ -335,9 +335,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          context.t.auth.haveAccount,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                        Flexible(
+                          child: Text(
+                            context.t.auth.haveAccount,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ),
                         TextButton(
                           onPressed: () => context.pop(),
