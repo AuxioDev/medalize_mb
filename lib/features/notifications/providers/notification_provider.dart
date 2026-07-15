@@ -2,7 +2,12 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/features/notifications/data/models/notification_model.dart';
+import 'package:medalize_mb/features/notifications/data/models/notification_preferences_model.dart';
 import 'package:medalize_mb/features/notifications/data/repository/notification_repository.dart';
+
+final notificationPreferencesProvider = FutureProvider<NotificationPreferences>((ref) {
+  return ref.read(notificationRepositoryProvider).getPreferences();
+});
 
 final notificationsProvider = FutureProvider<List<NotificationModel>>((ref) async {
   // Auto-refresh every 60 seconds while the provider is alive.

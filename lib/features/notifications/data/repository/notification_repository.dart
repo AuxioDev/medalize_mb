@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/features/notifications/data/models/notification_model.dart';
+import 'package:medalize_mb/features/notifications/data/models/notification_preferences_model.dart';
 
 final notificationRepositoryProvider = Provider<NotificationRepository>(
   (ref) => NotificationRepository(ref.read(dioClientProvider)),
@@ -57,6 +58,30 @@ class NotificationRepository {
   Future<void> deregisterFCMToken(String token) async {
     try {
       await _dio.delete('/notifications/fcm/', data: {'token': token});
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
+
+  Future<NotificationPreferences> getPreferences() async {
+    try {
+      final res = await _dio.get('/notifications/preferences/');
+      return NotificationPreferences.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
+
+  Future<NotificationPreferences> updatePreferences({
+    bool? pushEnabled,
+    bool? emailEnabled,
+  }) async {
+    try {
+      final res = await _dio.patch('/notifications/preferences/', data: {
+        'push_enabled': ?pushEnabled,
+        'email_enabled': ?emailEnabled,
+      });
+      return NotificationPreferences.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw mapDioError(e);
     }

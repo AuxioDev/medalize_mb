@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
@@ -36,6 +37,11 @@ class NotificationsScreen extends ConsumerWidget {
               },
               child: Text(context.t.notifications.markAllRead),
             ),
+          IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            tooltip: context.t.notifications.settingsTitle,
+            onPressed: () => context.push('/shared/notification-settings'),
+          ),
         ],
       ),
       body: ResponsiveBody(
