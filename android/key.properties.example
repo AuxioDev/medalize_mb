@@ -1,0 +1,9 @@
+# Copy to android/key.properties (gitignored, never commit the real file) and
+# fill in with the values from generating the release keystore:
+#   keytool -genkey -v -keystore ~/medalize-release.jks -keyalg RSA -keysize 2048 \
+#     -validity 10000 -alias medalize
+# storeFile can be an absolute path or relative to android/app/.
+storePassword=
+keyPassword=
+keyAlias=medalize
+storeFile=
