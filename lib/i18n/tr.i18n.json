@@ -331,7 +331,12 @@
     "noNotifications": "Bildirim yok",
     "allCaughtUp": "Her şeyi gördünüz",
     "couldNotLoad": "Bildirimler yüklenemedi",
-    "markAllRead": "Tümünü okundu işaretle"
+    "markAllRead": "Tümünü okundu işaretle",
+    "settingsTitle": "Bildirim ayarları",
+    "pushEnabled": "Push bildirimleri",
+    "pushEnabledSubtitle": "Randevular ve güncellemeler için bu cihazda uyarılar",
+    "emailEnabled": "E-posta bildirimleri",
+    "emailEnabledSubtitle": "Güncellemeler e-posta adresinize gönderilir"
   },
   "workplaces": {
     "title": "İş Yerlerim",

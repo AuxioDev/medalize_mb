@@ -331,7 +331,12 @@
     "noNotifications": "No notifications",
     "allCaughtUp": "You are all caught up",
     "couldNotLoad": "Could not load notifications",
-    "markAllRead": "Mark all read"
+    "markAllRead": "Mark all read",
+    "settingsTitle": "Notification settings",
+    "pushEnabled": "Push notifications",
+    "pushEnabledSubtitle": "Alerts on this device for bookings and updates",
+    "emailEnabled": "Email notifications",
+    "emailEnabledSubtitle": "Updates sent to your email address"
   },
   "workplaces": {
     "title": "My Workplaces",

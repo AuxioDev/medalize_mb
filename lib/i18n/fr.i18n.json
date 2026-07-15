@@ -331,7 +331,12 @@
     "noNotifications": "Aucune notification",
     "allCaughtUp": "Vous êtes à jour",
     "couldNotLoad": "Impossible de charger les notifications",
-    "markAllRead": "Tout marquer lu"
+    "markAllRead": "Tout marquer lu",
+    "settingsTitle": "Paramètres de notification",
+    "pushEnabled": "Notifications push",
+    "pushEnabledSubtitle": "Alertes sur cet appareil pour les rendez-vous et mises à jour",
+    "emailEnabled": "Notifications par e-mail",
+    "emailEnabledSubtitle": "Les mises à jour seront envoyées à votre adresse e-mail"
   },
   "workplaces": {
     "title": "Mes lieux de travail",

@@ -502,6 +502,11 @@ class _Translations$notifications$fr extends Translations$notifications$en {
 	@override String get allCaughtUp => 'Vous êtes à jour';
 	@override String get couldNotLoad => 'Impossible de charger les notifications';
 	@override String get markAllRead => 'Tout marquer lu';
+	@override String get settingsTitle => 'Paramètres de notification';
+	@override String get pushEnabled => 'Notifications push';
+	@override String get pushEnabledSubtitle => 'Alertes sur cet appareil pour les rendez-vous et mises à jour';
+	@override String get emailEnabled => 'Notifications par e-mail';
+	@override String get emailEnabledSubtitle => 'Les mises à jour seront envoyées à votre adresse e-mail';
 }
 
 // Path: workplaces
@@ -1081,6 +1086,11 @@ extension on TranslationsFr {
 			'notifications.allCaughtUp' => 'Vous êtes à jour',
 			'notifications.couldNotLoad' => 'Impossible de charger les notifications',
 			'notifications.markAllRead' => 'Tout marquer lu',
+			'notifications.settingsTitle' => 'Paramètres de notification',
+			'notifications.pushEnabled' => 'Notifications push',
+			'notifications.pushEnabledSubtitle' => 'Alertes sur cet appareil pour les rendez-vous et mises à jour',
+			'notifications.emailEnabled' => 'Notifications par e-mail',
+			'notifications.emailEnabledSubtitle' => 'Les mises à jour seront envoyées à votre adresse e-mail',
 			'workplaces.title' => 'Mes lieux de travail',
 			'workplaces.noWorkplacesYet' => 'Aucun lieu de travail',
 			'workplaces.tapToAdd' => 'Appuyez sur + pour ajouter votre premier lieu de travail',

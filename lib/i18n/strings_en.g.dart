@@ -1083,6 +1083,21 @@ class Translations$notifications$en {
 
 	/// en: 'Mark all read'
 	String get markAllRead => 'Mark all read';
+
+	/// en: 'Notification settings'
+	String get settingsTitle => 'Notification settings';
+
+	/// en: 'Push notifications'
+	String get pushEnabled => 'Push notifications';
+
+	/// en: 'Alerts on this device for bookings and updates'
+	String get pushEnabledSubtitle => 'Alerts on this device for bookings and updates';
+
+	/// en: 'Email notifications'
+	String get emailEnabled => 'Email notifications';
+
+	/// en: 'Updates sent to your email address'
+	String get emailEnabledSubtitle => 'Updates sent to your email address';
 }
 
 // Path: workplaces
@@ -1929,6 +1944,11 @@ extension on Translations {
 			'notifications.allCaughtUp' => 'You are all caught up',
 			'notifications.couldNotLoad' => 'Could not load notifications',
 			'notifications.markAllRead' => 'Mark all read',
+			'notifications.settingsTitle' => 'Notification settings',
+			'notifications.pushEnabled' => 'Push notifications',
+			'notifications.pushEnabledSubtitle' => 'Alerts on this device for bookings and updates',
+			'notifications.emailEnabled' => 'Email notifications',
+			'notifications.emailEnabledSubtitle' => 'Updates sent to your email address',
 			'workplaces.title' => 'My Workplaces',
 			'workplaces.noWorkplacesYet' => 'No workplaces yet',
 			'workplaces.tapToAdd' => 'Tap + to add your first workplace',

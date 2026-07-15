@@ -502,6 +502,11 @@ class _Translations$notifications$tr extends Translations$notifications$en {
 	@override String get allCaughtUp => 'Her şeyi gördünüz';
 	@override String get couldNotLoad => 'Bildirimler yüklenemedi';
 	@override String get markAllRead => 'Tümünü okundu işaretle';
+	@override String get settingsTitle => 'Bildirim ayarları';
+	@override String get pushEnabled => 'Push bildirimleri';
+	@override String get pushEnabledSubtitle => 'Randevular ve güncellemeler için bu cihazda uyarılar';
+	@override String get emailEnabled => 'E-posta bildirimleri';
+	@override String get emailEnabledSubtitle => 'Güncellemeler e-posta adresinize gönderilir';
 }
 
 // Path: workplaces
@@ -1081,6 +1086,11 @@ extension on TranslationsTr {
 			'notifications.allCaughtUp' => 'Her şeyi gördünüz',
 			'notifications.couldNotLoad' => 'Bildirimler yüklenemedi',
 			'notifications.markAllRead' => 'Tümünü okundu işaretle',
+			'notifications.settingsTitle' => 'Bildirim ayarları',
+			'notifications.pushEnabled' => 'Push bildirimleri',
+			'notifications.pushEnabledSubtitle' => 'Randevular ve güncellemeler için bu cihazda uyarılar',
+			'notifications.emailEnabled' => 'E-posta bildirimleri',
+			'notifications.emailEnabledSubtitle' => 'Güncellemeler e-posta adresinize gönderilir',
 			'workplaces.title' => 'İş Yerlerim',
 			'workplaces.noWorkplacesYet' => 'Henüz iş yeri yok',
 			'workplaces.tapToAdd' => 'İlk iş yerinizi eklemek için + simgesine dokunun',

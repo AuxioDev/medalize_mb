@@ -331,7 +331,12 @@
     "noNotifications": "Нет уведомлений",
     "allCaughtUp": "Вы всё просмотрели",
     "couldNotLoad": "Не удалось загрузить уведомления",
-    "markAllRead": "Отметить всё прочитанным"
+    "markAllRead": "Отметить всё прочитанным",
+    "settingsTitle": "Настройки уведомлений",
+    "pushEnabled": "Push-уведомления",
+    "pushEnabledSubtitle": "Оповещения на этом устройстве о записях и изменениях",
+    "emailEnabled": "Уведомления на email",
+    "emailEnabledSubtitle": "Изменения будут приходить на вашу почту"
   },
   "workplaces": {
     "title": "Мои места работы",

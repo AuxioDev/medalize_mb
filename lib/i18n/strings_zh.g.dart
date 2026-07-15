@@ -502,6 +502,11 @@ class _Translations$notifications$zh extends Translations$notifications$en {
 	@override String get allCaughtUp => '您已查看全部';
 	@override String get couldNotLoad => '无法加载通知';
 	@override String get markAllRead => '全部标为已读';
+	@override String get settingsTitle => '通知设置';
+	@override String get pushEnabled => '推送通知';
+	@override String get pushEnabledSubtitle => '在此设备上接收预约和更新提醒';
+	@override String get emailEnabled => '邮件通知';
+	@override String get emailEnabledSubtitle => '更新将发送到您的邮箱';
 }
 
 // Path: workplaces
@@ -1081,6 +1086,11 @@ extension on TranslationsZh {
 			'notifications.allCaughtUp' => '您已查看全部',
 			'notifications.couldNotLoad' => '无法加载通知',
 			'notifications.markAllRead' => '全部标为已读',
+			'notifications.settingsTitle' => '通知设置',
+			'notifications.pushEnabled' => '推送通知',
+			'notifications.pushEnabledSubtitle' => '在此设备上接收预约和更新提醒',
+			'notifications.emailEnabled' => '邮件通知',
+			'notifications.emailEnabledSubtitle' => '更新将发送到您的邮箱',
 			'workplaces.title' => '我的工作地点',
 			'workplaces.noWorkplacesYet' => '暂无工作地点',
 			'workplaces.tapToAdd' => '点击 + 添加您的第一个工作地点',

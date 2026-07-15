@@ -331,7 +331,12 @@
     "noNotifications": "Bildiriş yoxdur",
     "allCaughtUp": "Hər şey qaydasındadır",
     "couldNotLoad": "Bildirişlər yüklənə bilmədi",
-    "markAllRead": "Hamısını oxunmuş işarələ"
+    "markAllRead": "Hamısını oxunmuş işarələ",
+    "settingsTitle": "Bildiriş parametrləri",
+    "pushEnabled": "Push bildirişlər",
+    "pushEnabledSubtitle": "Qeydiyyatlar və yeniliklər üçün bu cihazda bildirişlər",
+    "emailEnabled": "E-poçt bildirişləri",
+    "emailEnabledSubtitle": "Yeniliklər e-poçt ünvanınıza göndəriləcək"
   },
   "workplaces": {
     "title": "İş yerlərim",

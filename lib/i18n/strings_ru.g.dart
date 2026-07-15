@@ -502,6 +502,11 @@ class _Translations$notifications$ru extends Translations$notifications$en {
 	@override String get allCaughtUp => 'Вы всё просмотрели';
 	@override String get couldNotLoad => 'Не удалось загрузить уведомления';
 	@override String get markAllRead => 'Отметить всё прочитанным';
+	@override String get settingsTitle => 'Настройки уведомлений';
+	@override String get pushEnabled => 'Push-уведомления';
+	@override String get pushEnabledSubtitle => 'Оповещения на этом устройстве о записях и изменениях';
+	@override String get emailEnabled => 'Уведомления на email';
+	@override String get emailEnabledSubtitle => 'Изменения будут приходить на вашу почту';
 }
 
 // Path: workplaces
@@ -1081,6 +1086,11 @@ extension on TranslationsRu {
 			'notifications.allCaughtUp' => 'Вы всё просмотрели',
 			'notifications.couldNotLoad' => 'Не удалось загрузить уведомления',
 			'notifications.markAllRead' => 'Отметить всё прочитанным',
+			'notifications.settingsTitle' => 'Настройки уведомлений',
+			'notifications.pushEnabled' => 'Push-уведомления',
+			'notifications.pushEnabledSubtitle' => 'Оповещения на этом устройстве о записях и изменениях',
+			'notifications.emailEnabled' => 'Уведомления на email',
+			'notifications.emailEnabledSubtitle' => 'Изменения будут приходить на вашу почту',
 			'workplaces.title' => 'Мои места работы',
 			'workplaces.noWorkplacesYet' => 'Пока нет мест работы',
 			'workplaces.tapToAdd' => 'Нажмите +, чтобы добавить первое место работы',

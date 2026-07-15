@@ -331,7 +331,12 @@
     "noNotifications": "没有通知",
     "allCaughtUp": "您已查看全部",
     "couldNotLoad": "无法加载通知",
-    "markAllRead": "全部标为已读"
+    "markAllRead": "全部标为已读",
+    "settingsTitle": "通知设置",
+    "pushEnabled": "推送通知",
+    "pushEnabledSubtitle": "在此设备上接收预约和更新提醒",
+    "emailEnabled": "邮件通知",
+    "emailEnabledSubtitle": "更新将发送到您的邮箱"
   },
   "workplaces": {
     "title": "我的工作地点",
