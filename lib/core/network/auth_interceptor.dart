@@ -7,11 +7,16 @@ class AuthInterceptor extends Interceptor {
     required this.storage,
     required this.dio,
     required this.onForceLogout,
-  });
+    Dio? refreshDio,
+  }) : _injectedRefreshDio = refreshDio;
 
   final SecureStorage storage;
   final Dio dio;
   final Future<void> Function() onForceLogout;
+  // Overrides the Dio used for the token-refresh POST — tests inject one
+  // wired to a fake adapter so the refresh response is controllable; unset in
+  // production, where a fresh plain Dio is created per refresh (see below).
+  final Dio? _injectedRefreshDio;
 
   bool _isRefreshing = false;
   bool _isForceLoggingOut = false;
@@ -89,11 +94,12 @@ class AuthInterceptor extends Interceptor {
         return handler.next(err);
       }
 
-      final refreshDio = Dio(BaseOptions(
-        baseUrl: AppConfig.baseUrl,
-        connectTimeout: AppConfig.connectTimeout,
-        receiveTimeout: AppConfig.receiveTimeout,
-      ));
+      final refreshDio = _injectedRefreshDio ??
+          Dio(BaseOptions(
+            baseUrl: AppConfig.baseUrl,
+            connectTimeout: AppConfig.connectTimeout,
+            receiveTimeout: AppConfig.receiveTimeout,
+          ));
 
       // Device identity accompanies the refresh so the backend can update
       // this device's entry (jti + last_seen_at) in the sessions list.
@@ -110,6 +116,16 @@ class AuthInterceptor extends Interceptor {
         },
       );
       final responseData = res.data as Map<String, dynamic>;
+
+      if (_isForceLoggingOut) {
+        // A concurrent request (e.g. a token_blacklisted 401) already forced a
+        // logout while this refresh was in flight. Don't resurrect the
+        // session with a stale "successful" refresh — discard it and flush
+        // anything that queued up in the meantime.
+        _forceLogoutAndDrain(err);
+        handler.next(err);
+        return;
+      }
 
       final newAccessToken = responseData['access'] as String;
       final newRefreshToken = responseData['refresh'] as String;
@@ -137,8 +153,16 @@ class AuthInterceptor extends Interceptor {
   }
 
   void _forceLogoutAndDrain(DioException triggeringError) {
-    _isForceLoggingOut = true;
-    onForceLogout();
+    // onForceLogout() must fire at most once per force-logout episode: two
+    // requests can independently discover a blacklisted/invalid token around
+    // the same time (e.g. right after a session revoke), and without this
+    // guard each would call it, double-navigating/double-clearing state.
+    // The queue is still drained every call, since later 401s can add fresh
+    // entries after the first trigger already emptied it once.
+    if (!_isForceLoggingOut) {
+      _isForceLoggingOut = true;
+      onForceLogout();
+    }
     final pending = List.of(_pendingQueue);
     _pendingQueue.clear();
     for (final entry in pending) {
@@ -149,6 +173,16 @@ class AuthInterceptor extends Interceptor {
         error: triggeringError.error,
       ));
     }
+  }
+
+  /// Clears the force-logout latch after a fresh, successful sign-in. Without
+  /// this, a logout forced earlier in the same app process would silently
+  /// disable 401-queue draining (see [_drainQueue]) for the rest of the
+  /// process's lifetime — this interceptor is a long-lived singleton reused
+  /// across login/logout cycles, not recreated per session. Called from
+  /// [AuthNotifier._applyAuthResponse].
+  void resetForceLogoutState() {
+    _isForceLoggingOut = false;
   }
 
   void _drainQueue(String newAccessToken) {

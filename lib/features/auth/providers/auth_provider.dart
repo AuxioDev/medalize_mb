@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/locale/language_sync.dart';
+import 'package:medalize_mb/core/network/auth_interceptor.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/security/biometric_service.dart';
 import 'package:medalize_mb/core/services/device_identity.dart';
@@ -253,6 +254,14 @@ class AuthNotifier extends Notifier<AuthState> {
   }
 
   Future<void> _applyAuthResponse(LoginResponse response) async {
+    // A fresh session is starting — clear any force-logout latch a previous
+    // session may have left set on the (process-lifetime-singleton) auth
+    // interceptor, or the 401 queue would silently stop draining forever.
+    ref
+        .read(dioClientProvider)
+        .interceptors
+        .whereType<AuthInterceptor>()
+        .forEach((i) => i.resetForceLogoutState());
     await _storage.saveTokens(
       accessToken: response.access,
       refreshToken: response.refresh,
