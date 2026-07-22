@@ -25,7 +25,12 @@ class SettingsScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(t.settings.title)),
       body: ResponsiveBody(
         child: ListView(
-          padding: const EdgeInsets.all(AppSpacing.md),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.md,
+            AppSpacing.md,
+            AppSpacing.md,
+            96,
+          ),
           children: [
             AnimatedEntrance(
               child: _SettingsGroup(
@@ -86,12 +91,16 @@ class SettingsScreen extends ConsumerWidget {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.logout, color: AppColors.error),
-                    title: Text(t.settings.logoutTitle,
-                        style: const TextStyle(
-                            color: AppColors.error,
-                            fontWeight: FontWeight.w600)),
+                    title: Text(
+                      t.settings.logoutTitle,
+                      style: const TextStyle(
+                        color: AppColors.error,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppRadius.lg)),
+                      borderRadius: BorderRadius.circular(AppRadius.lg),
+                    ),
                     onTap: () => _confirmLogout(context, ref),
                   ),
                 ],
@@ -129,7 +138,9 @@ class SettingsScreen extends ConsumerWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+                  horizontal: AppSpacing.md,
+                  vertical: AppSpacing.sm,
+                ),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -275,16 +286,16 @@ class _LanguageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final current =
-        locale == null ? context.t.settings.languageSystem : localeDisplayNames[locale]!;
+    final current = locale == null
+        ? context.t.settings.languageSystem
+        : localeDisplayNames[locale]!;
     return ListTile(
       leading: Icon(Icons.language_outlined, color: context.colors.primaryText),
       title: Text(context.t.settings.language),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(current,
-              style: TextStyle(color: context.colors.textSecondary)),
+          Text(current, style: TextStyle(color: context.colors.textSecondary)),
           const Icon(Icons.chevron_right),
         ],
       ),
@@ -338,9 +349,18 @@ class _ThemeModeSelector extends StatelessWidget {
       child: SegmentedButton<ThemeMode>(
         showSelectedIcon: false,
         segments: [
-          ButtonSegment(value: ThemeMode.system, label: Text(t.settings.themeSystem)),
-          ButtonSegment(value: ThemeMode.light, label: Text(t.settings.themeLight)),
-          ButtonSegment(value: ThemeMode.dark, label: Text(t.settings.themeDark)),
+          ButtonSegment(
+            value: ThemeMode.system,
+            label: Text(t.settings.themeSystem),
+          ),
+          ButtonSegment(
+            value: ThemeMode.light,
+            label: Text(t.settings.themeLight),
+          ),
+          ButtonSegment(
+            value: ThemeMode.dark,
+            label: Text(t.settings.themeDark),
+          ),
         ],
         selected: {mode},
         onSelectionChanged: (s) => onChanged(s.first),

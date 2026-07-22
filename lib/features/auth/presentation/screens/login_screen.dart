@@ -76,7 +76,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
 
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
-    await ref.read(authProvider.notifier).login(
+    await ref
+        .read(authProvider.notifier)
+        .login(
           _emailController.text.trim(),
           _passwordController.text,
           rememberMe: _rememberMe,
@@ -84,14 +86,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   }
 
   String _errorMessage(ApiException e) => switch (e) {
-        InvalidCredentialsException(:final message) =>
-          message ?? t.errors.invalidCredentials,
-        RateLimitException(:final retryAfterSeconds) => retryAfterSeconds != null
-            ? t.errors.rateLimitWithSeconds(seconds: retryAfterSeconds)
-            : t.errors.rateLimit,
-        NetworkException() => t.errors.network,
-        _ => e.userMessage,
-      };
+    InvalidCredentialsException(:final message) =>
+      message ?? t.errors.invalidCredentials,
+    RateLimitException(:final retryAfterSeconds) =>
+      retryAfterSeconds != null
+          ? t.errors.rateLimitWithSeconds(seconds: retryAfterSeconds)
+          : t.errors.rateLimit,
+    NetworkException() => t.errors.network,
+    _ => e.userMessage,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -141,26 +144,39 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                       onFieldSubmitted: (_) => _submit(),
                       suffix: VisibilityToggle(
                         obscure: _obscurePassword,
-                        onToggle: () =>
-                            setState(() => _obscurePassword = !_obscurePassword),
+                        onToggle: () => setState(
+                          () => _obscurePassword = !_obscurePassword,
+                        ),
                       ),
-                      validator: (v) =>
-                          (v == null || v.isEmpty) ? t.validation.passwordRequired : null,
+                      validator: (v) => (v == null || v.isEmpty)
+                          ? t.validation.passwordRequired
+                          : null,
                     ),
                     const SizedBox(height: 4),
                     Row(
+                      // spaceBetween (not a Spacer child) so the "Remember
+                      // me" cluster gets ALL leftover space instead of
+                      // splitting it 50/50 with a flex gap — a Spacer here
+                      // previously squeezed the label down to "Reme…" even
+                      // on a full-size phone screen.
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Flexible(
                           child: GestureDetector(
                             behavior: HitTestBehavior.opaque,
-                            onTap: () => setState(() => _rememberMe = !_rememberMe),
+                            onTap: () =>
+                                setState(() => _rememberMe = !_rememberMe),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Switch(
+                                Checkbox(
                                   value: _rememberMe,
-                                  onChanged: (v) => setState(() => _rememberMe = v),
-                                  activeThumbColor: AppColors.primary,
+                                  onChanged: (v) =>
+                                      setState(() => _rememberMe = v ?? false),
+                                  activeColor: AppColors.primary,
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                  visualDensity: VisualDensity.compact,
                                 ),
                                 const SizedBox(width: 4),
                                 Flexible(
@@ -171,16 +187,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
-                                        ?.copyWith(color: context.colors.textPrimary),
+                                        ?.copyWith(
+                                          color: context.colors.textPrimary,
+                                        ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        const Spacer(),
                         TextButton(
-                          onPressed: () => context.push('/auth/forgot-password'),
+                          onPressed: () =>
+                              context.push('/auth/forgot-password'),
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 4),
                           ),

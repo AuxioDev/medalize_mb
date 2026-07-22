@@ -28,7 +28,9 @@ class _NotificationSettingsScreenState
   Future<void> _update({bool? pushEnabled, bool? emailEnabled}) async {
     setState(() => _updating = true);
     try {
-      await ref.read(notificationRepositoryProvider).updatePreferences(
+      await ref
+          .read(notificationRepositoryProvider)
+          .updatePreferences(
             pushEnabled: pushEnabled,
             emailEnabled: emailEnabled,
           );
@@ -76,7 +78,12 @@ class _NotificationSettingsScreenState
             ),
           ),
           data: (prefs) => ListView(
-            padding: const EdgeInsets.all(AppSpacing.md),
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.md,
+              AppSpacing.md,
+              AppSpacing.md,
+              96,
+            ),
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -90,7 +97,9 @@ class _NotificationSettingsScreenState
                   child: Column(
                     children: [
                       SwitchListTile(
-                        secondary: const Icon(Icons.notifications_active_outlined),
+                        secondary: const Icon(
+                          Icons.notifications_active_outlined,
+                        ),
                         title: Text(t.notifications.pushEnabled),
                         subtitle: Text(t.notifications.pushEnabledSubtitle),
                         value: prefs.pushEnabled,
@@ -99,7 +108,11 @@ class _NotificationSettingsScreenState
                             : (v) => _update(pushEnabled: v),
                         activeThumbColor: AppColors.primary,
                       ),
-                      Divider(height: 1, indent: 56, color: context.colors.border),
+                      Divider(
+                        height: 1,
+                        indent: 56,
+                        color: context.colors.border,
+                      ),
                       SwitchListTile(
                         secondary: const Icon(Icons.email_outlined),
                         title: Text(t.notifications.emailEnabled),

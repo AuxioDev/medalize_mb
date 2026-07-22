@@ -68,8 +68,7 @@ class _OtpCodeFieldState extends State<OtpCodeField>
     super.dispose();
   }
 
-  String get _value =>
-      _controllers.map((c) => c.text).join();
+  String get _value => _controllers.map((c) => c.text).join();
 
   void _onChanged(int index, String value) {
     if (value.length > 1) {
@@ -114,28 +113,46 @@ class _OtpCodeFieldState extends State<OtpCodeField>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _shakeAnim,
-      builder: (_, child) => Transform.translate(
-        offset: Offset(_shakeAnim.value, 0),
-        child: child,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(_length, (i) => _OtpBox(
-          controller: _controllers[i],
-          focusNode: _focusNodes[i],
-          hasError: widget.hasError,
-          onChanged: (v) => _onChanged(i, v),
-          onKeyEvent: (e) => _onKeyEvent(i, e),
-        )),
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Shrinks each box to fit narrow phones — 6 boxes at the ideal 44px
+        // plus gaps can exceed the available width once AuthScaffold's own
+        // padding is subtracted on a ~360dp-wide screen, which would
+        // otherwise overflow the row instead of just looking tighter.
+        const gap = 8.0;
+        const idealBoxWidth = 44.0;
+        final available = constraints.maxWidth - gap * (_length - 1);
+        final boxWidth = (available / _length).clamp(32.0, idealBoxWidth);
+
+        return AnimatedBuilder(
+          animation: _shakeAnim,
+          builder: (_, child) => Transform.translate(
+            offset: Offset(_shakeAnim.value, 0),
+            child: child,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(
+              _length,
+              (i) => _OtpBox(
+                width: boxWidth,
+                controller: _controllers[i],
+                focusNode: _focusNodes[i],
+                hasError: widget.hasError,
+                onChanged: (v) => _onChanged(i, v),
+                onKeyEvent: (e) => _onKeyEvent(i, e),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
 
 class _OtpBox extends StatefulWidget {
   const _OtpBox({
+    required this.width,
     required this.controller,
     required this.focusNode,
     required this.hasError,
@@ -143,6 +160,7 @@ class _OtpBox extends StatefulWidget {
     required this.onKeyEvent,
   });
 
+  final double width;
   final TextEditingController controller;
   final FocusNode focusNode;
   final bool hasError;
@@ -180,16 +198,18 @@ class _OtpBoxState extends State<_OtpBox> {
     final borderColor = widget.hasError
         ? AppColors.error
         : _focused
-            ? AppColors.primary
-            : c.border;
+        ? AppColors.primary
+        : c.border;
     final borderWidth = (_focused || widget.hasError) ? 2.0 : 1.0;
 
     return AnimatedContainer(
       duration: AppDuration.fast,
-      width: 44,
+      width: widget.width,
       height: 52,
       decoration: BoxDecoration(
-        color: filled ? AppColors.primary.withValues(alpha: 0.06) : c.surfaceAlt,
+        color: filled
+            ? AppColors.primary.withValues(alpha: 0.06)
+            : c.surfaceAlt,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: borderColor, width: borderWidth),
       ),

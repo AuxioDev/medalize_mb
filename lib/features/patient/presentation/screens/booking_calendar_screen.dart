@@ -25,8 +25,7 @@ class BookingCalendarScreen extends ConsumerStatefulWidget {
       _BookingCalendarScreenState();
 }
 
-class _BookingCalendarScreenState
-    extends ConsumerState<BookingCalendarScreen> {
+class _BookingCalendarScreenState extends ConsumerState<BookingCalendarScreen> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   String? _selectedWorkplaceId;
@@ -46,139 +45,179 @@ class _BookingCalendarScreenState
   @override
   Widget build(BuildContext context) {
     final slotsAsync = _selectedDay != null && _selectedWorkplaceId != null
-        ? ref.watch(slotsProvider(SlotsParams(
-            doctorId: widget.doctor.id,
-            workplaceId: _selectedWorkplaceId!,
-            date: _selectedDay!,
-          )))
+        ? ref.watch(
+            slotsProvider(
+              SlotsParams(
+                doctorId: widget.doctor.id,
+                workplaceId: _selectedWorkplaceId!,
+                date: _selectedDay!,
+              ),
+            ),
+          )
         : null;
 
     return Scaffold(
       appBar: AppBar(
-          title: Text(context.t.booking.bookWith(name: widget.doctor.fullName))),
+        title: Text(context.t.booking.bookWith(name: widget.doctor.fullName)),
+      ),
       body: ResponsiveBody(
-        child: Column(
-          children: [
-            if (widget.doctor.workplaces.length > 1)
-              _WorkplaceSelector(
-                workplaces: widget.doctor.workplaces,
-                selected: _selectedWorkplaceId,
-                onChanged: (v) => setState(() {
-                  _selectedWorkplaceId = v;
-                  _selectedDay = null;
-                }),
-              ),
-            _StyledCalendar(
-              focusedDay: _focusedDay,
-              selectedDay: _selectedDay,
-              onDaySelected: (selected, focused) {
-                HapticFeedback.selectionClick();
-                setState(() {
-                  _selectedDay = selected;
-                  _focusedDay = focused;
-                });
-              },
-            ),
-            if (_selectedDay != null && _selectedWorkplaceId != null) ...[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.md, 12, AppSpacing.md, 8),
-                child: Row(
-                  children: [
-                    Icon(Icons.calendar_today_outlined,
-                        size: 14, color: context.colors.primaryText),
-                    const Gap(6),
-                    Text(
-                      DateFormat('EEEE, d MMMM y').format(_selectedDay!),
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall
-                          ?.copyWith(color: context.colors.primaryText),
+        // A CustomScrollView (rather than a fixed Column with an Expanded
+        // slot grid) lets the whole screen scroll on short devices, since
+        // the calendar's own intrinsic height varies and can otherwise push
+        // the slot grid/CTA past the bottom of the viewport.
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final crossAxisCount = ResponsiveBody.columnsFor(
+              constraints.maxWidth,
+              minTileWidth: 100,
+            );
+            return CustomScrollView(
+              slivers: [
+                if (widget.doctor.workplaces.length > 1)
+                  SliverToBoxAdapter(
+                    child: _WorkplaceSelector(
+                      workplaces: widget.doctor.workplaces,
+                      selected: _selectedWorkplaceId,
+                      onChanged: (v) => setState(() {
+                        _selectedWorkplaceId = v;
+                        _selectedDay = null;
+                      }),
                     ),
-                  ],
+                  ),
+                SliverToBoxAdapter(
+                  child: _StyledCalendar(
+                    focusedDay: _focusedDay,
+                    selectedDay: _selectedDay,
+                    onDaySelected: (selected, focused) {
+                      HapticFeedback.selectionClick();
+                      setState(() {
+                        _selectedDay = selected;
+                        _focusedDay = focused;
+                      });
+                    },
+                  ),
                 ),
-              ),
-              Expanded(
-                child: slotsAsync!.when(
-                  loading: () => Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-                    child: GridView.count(
-                      crossAxisCount: 3,
-                      childAspectRatio: 2.4,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: List.generate(
-                        9,
-                        (_) => const ShimmerSkeleton(
-                          height: double.infinity,
-                          margin: EdgeInsets.zero,
-                          radius: 10,
+                if (_selectedDay != null && _selectedWorkplaceId != null) ...[
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.md,
+                        12,
+                        AppSpacing.md,
+                        8,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.calendar_today_outlined,
+                            size: 14,
+                            color: context.colors.primaryText,
+                          ),
+                          const Gap(6),
+                          Text(
+                            DateFormat('EEEE, d MMMM y').format(_selectedDay!),
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(color: context.colors.primaryText),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  slotsAsync!.when(
+                    loading: () => SliverPadding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.md,
+                      ),
+                      sliver: SliverGrid(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: crossAxisCount,
+                          childAspectRatio: 2.4,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                          (_, _) => const ShimmerSkeleton(
+                            height: double.infinity,
+                            margin: EdgeInsets.zero,
+                            radius: 10,
+                          ),
+                          childCount: 9,
                         ),
                       ),
                     ),
-                  ),
-                  error: (_, _) => EmptyState(
-                    icon: Icons.cloud_off_outlined,
-                    title: context.t.booking.couldNotLoadSlots,
-                    subtitle: context.t.common.tryAgain,
-                    actionLabel: context.t.common.retry,
-                    onAction: () => ref.invalidate(slotsProvider),
-                  ),
-                  data: (slots) {
-                    if (slots.isEmpty) {
-                      return EmptyState(
-                        icon: Icons.event_busy_outlined,
-                        title: context.t.booking.noAvailableSlots,
-                        subtitle: context.t.booking.noOpenSlots,
-                      );
-                    }
-                    return GridView.builder(
-                      padding: const EdgeInsets.fromLTRB(
-                          AppSpacing.md, 0, AppSpacing.md, AppSpacing.md),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 2.4,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
+                    error: (_, _) => SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: EmptyState(
+                        icon: Icons.cloud_off_outlined,
+                        title: context.t.booking.couldNotLoadSlots,
+                        subtitle: context.t.common.tryAgain,
+                        actionLabel: context.t.common.retry,
+                        onAction: () => ref.invalidate(slotsProvider),
                       ),
-                      itemCount: slots.length,
-                      itemBuilder: (_, i) {
-                        final slot = slots[i];
-                        return AnimatedEntrance(
-                          index: i,
-                          slideY: 0,
-                          child: _SlotChip(
-                            time: DateFormat('HH:mm').format(slot.startsAt),
-                            onTap: () {
-                              HapticFeedback.lightImpact();
-                              context.push(
-                                '/patient/booking-confirm',
-                                extra: {
-                                  'doctor': widget.doctor,
-                                  'slot': slot,
-                                  'workplaceId': _selectedWorkplaceId,
-                                },
-                              );
-                            },
+                    ),
+                    data: (slots) {
+                      if (slots.isEmpty) {
+                        return SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: EmptyState(
+                            icon: Icons.event_busy_outlined,
+                            title: context.t.booking.noAvailableSlots,
+                            subtitle: context.t.booking.noOpenSlots,
                           ),
                         );
-                      },
-                    );
-                  },
-                ),
-              ),
-            ] else
-              Expanded(
-                child: EmptyState(
-                  icon: Icons.calendar_month_outlined,
-                  title: context.t.booking.pickDate,
-                  subtitle: context.t.booking.slotsAppear,
-                ),
-              ),
-          ],
+                      }
+                      return SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.md,
+                          0,
+                          AppSpacing.md,
+                          AppSpacing.md,
+                        ),
+                        sliver: SliverGrid(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: crossAxisCount,
+                                childAspectRatio: 2.4,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                              ),
+                          delegate: SliverChildBuilderDelegate((_, i) {
+                            final slot = slots[i];
+                            return AnimatedEntrance(
+                              index: i,
+                              slideY: 0,
+                              child: _SlotChip(
+                                time: DateFormat('HH:mm').format(slot.startsAt),
+                                onTap: () {
+                                  HapticFeedback.lightImpact();
+                                  context.push(
+                                    '/patient/booking-confirm',
+                                    extra: {
+                                      'doctor': widget.doctor,
+                                      'slot': slot,
+                                      'workplaceId': _selectedWorkplaceId,
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          }, childCount: slots.length),
+                        ),
+                      );
+                    },
+                  ),
+                ] else
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: EmptyState(
+                      icon: Icons.calendar_month_outlined,
+                      title: context.t.booking.pickDate,
+                      subtitle: context.t.booking.slotsAppear,
+                    ),
+                  ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -245,15 +284,20 @@ class _StyledCalendar extends StatelessWidget {
           color: AppColors.primary.withValues(alpha: 0.25),
           shape: BoxShape.circle,
         ),
-        selectedTextStyle:
-            const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-        todayTextStyle:
-            TextStyle(color: c.primaryText, fontWeight: FontWeight.w600),
+        selectedTextStyle: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
+        ),
+        todayTextStyle: TextStyle(
+          color: c.primaryText,
+          fontWeight: FontWeight.w600,
+        ),
         // Weekends are bookable, so keep them visually neutral (red would read
         // as "unavailable").
         weekendTextStyle: TextStyle(color: c.textPrimary),
-        outsideTextStyle:
-            TextStyle(color: c.textSecondary.withValues(alpha: 0.4)),
+        outsideTextStyle: TextStyle(
+          color: c.textSecondary.withValues(alpha: 0.4),
+        ),
         defaultTextStyle: TextStyle(color: c.textPrimary),
         rowDecoration: BoxDecoration(color: c.surface),
       ),
@@ -266,9 +310,15 @@ class _StyledCalendar extends StatelessWidget {
       ),
       daysOfWeekStyle: DaysOfWeekStyle(
         weekdayStyle: TextStyle(
-            color: c.textSecondary, fontSize: 12, fontWeight: FontWeight.w500),
+          color: c.textSecondary,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
         weekendStyle: TextStyle(
-            color: c.textSecondary, fontSize: 12, fontWeight: FontWeight.w500),
+          color: c.textSecondary,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }
@@ -328,11 +378,7 @@ class _SlotChipState extends State<_SlotChip> {
 /// state is unavailable (deep link, app restoration after kill). Falls back to
 /// loading the doctor from the API by [doctorId].
 class BookingCalendarLoader extends ConsumerWidget {
-  const BookingCalendarLoader({
-    super.key,
-    required this.doctorId,
-    this.doctor,
-  });
+  const BookingCalendarLoader({super.key, required this.doctorId, this.doctor});
 
   final String doctorId;
   final DoctorDetailModel? doctor;
@@ -348,12 +394,14 @@ class BookingCalendarLoader extends ConsumerWidget {
         appBar: AppBar(),
         body: const Padding(
           padding: EdgeInsets.all(16),
-          child: Column(children: [
-            ShimmerSkeleton(height: 64),
-            ShimmerSkeleton(height: 120),
-            ShimmerSkeleton(height: 120),
-            ShimmerSkeleton(height: 80),
-          ]),
+          child: Column(
+            children: [
+              ShimmerSkeleton(height: 64),
+              ShimmerSkeleton(height: 120),
+              ShimmerSkeleton(height: 120),
+              ShimmerSkeleton(height: 80),
+            ],
+          ),
         ),
       ),
       error: (_, _) => Scaffold(

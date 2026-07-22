@@ -74,10 +74,17 @@ class DoctorHomeScreen extends ConsumerWidget {
                 ),
               ),
               const Gap(AppSpacing.lg - 4),
-              const AnimatedEntrance(index: 1, slideY: 0.08, child: _StatsRow()),
+              const AnimatedEntrance(
+                index: 1,
+                slideY: 0.08,
+                child: _StatsRow(),
+              ),
               const Gap(AppSpacing.lg - 4),
               const AnimatedEntrance(
-                  index: 2, slideY: 0.08, child: _DoctorQuickActions()),
+                index: 2,
+                slideY: 0.08,
+                child: _DoctorQuickActions(),
+              ),
               const Gap(AppSpacing.lg),
               AnimatedEntrance(
                 index: 3,
@@ -134,7 +141,9 @@ class _StatsRow extends ConsumerWidget {
           const Gap(10),
           Expanded(
             child: _StatCard(
-              label: stats.acceptanceRate != null ? context.t.home.statsAcceptRate : context.t.home.statsPending,
+              label: stats.acceptanceRate != null
+                  ? context.t.home.statsAcceptRate
+                  : context.t.home.statsPending,
               value: stats.acceptanceRate != null
                   ? '${stats.acceptanceRate}%'
                   : '${stats.pendingCount}',
@@ -150,7 +159,11 @@ class _StatsRow extends ConsumerWidget {
 }
 
 class _StatCard extends StatelessWidget {
-  const _StatCard({required this.label, required this.value, required this.icon});
+  const _StatCard({
+    required this.label,
+    required this.value,
+    required this.icon,
+  });
   final String label;
   final String value;
   final IconData icon;
@@ -168,15 +181,11 @@ class _StatCard extends StatelessWidget {
           const Gap(6),
           Text(
             value,
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge
-                ?.copyWith(fontWeight: FontWeight.w700),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
           ),
-          Text(
-            label,
-            style: TextStyle(fontSize: 11, color: c.textSecondary),
-          ),
+          Text(label, style: TextStyle(fontSize: 11, color: c.textSecondary)),
         ],
       ),
     );
@@ -188,40 +197,42 @@ class _DoctorQuickActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisSpacing: 12,
-      mainAxisSpacing: 12,
-      childAspectRatio: 1.35,
-      children: [
-        _ActionCard(
-          icon: Icons.calendar_month_outlined,
-          label: context.t.home.appointments,
-          onTap: () => context.push('/doctor/appointments'),
-        ),
-        _ActionCard(
-          icon: Icons.event_note_outlined,
-          label: context.t.home.schedule,
-          onTap: () => context.push('/doctor/agenda'),
-        ),
-        _ActionCard(
-          icon: Icons.business_outlined,
-          label: context.t.home.workplaces,
-          onTap: () => context.push('/doctor/workplaces'),
-        ),
-        _ActionCard(
-          icon: Icons.block_outlined,
-          label: context.t.home.blockTime,
-          onTap: () => context.push('/doctor/block-time'),
-        ),
-        _ActionCard(
-          icon: Icons.person_outline_rounded,
-          label: context.t.home.profile,
-          onTap: () => context.push('/shared/profile'),
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) => GridView.count(
+        crossAxisCount: ResponsiveBody.columnsFor(constraints.maxWidth),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 1.35,
+        children: [
+          _ActionCard(
+            icon: Icons.calendar_month_outlined,
+            label: context.t.home.appointments,
+            onTap: () => context.push('/doctor/appointments'),
+          ),
+          _ActionCard(
+            icon: Icons.event_note_outlined,
+            label: context.t.home.schedule,
+            onTap: () => context.push('/doctor/agenda'),
+          ),
+          _ActionCard(
+            icon: Icons.business_outlined,
+            label: context.t.home.workplaces,
+            onTap: () => context.push('/doctor/workplaces'),
+          ),
+          _ActionCard(
+            icon: Icons.block_outlined,
+            label: context.t.home.blockTime,
+            onTap: () => context.push('/doctor/block-time'),
+          ),
+          _ActionCard(
+            icon: Icons.person_outline_rounded,
+            label: context.t.home.profile,
+            onTap: () => context.push('/shared/profile'),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -292,7 +303,10 @@ class _PendingAppointmentsList extends ConsumerWidget {
         onAction: () => ref.invalidate(doctorAppointmentsProvider),
       ),
       data: (all) {
-        final pending = all.where((a) => a.status == 'pending').take(5).toList();
+        final pending = all
+            .where((a) => a.status == 'pending')
+            .take(5)
+            .toList();
         if (pending.isEmpty) {
           return EmptyState(
             icon: Icons.check_circle_outline,
@@ -323,7 +337,10 @@ class _PendingCard extends ConsumerWidget {
   final VoidCallback onUpdated;
 
   Future<void> _updateStatus(
-      WidgetRef ref, BuildContext context, String status) async {
+    WidgetRef ref,
+    BuildContext context,
+    String status,
+  ) async {
     try {
       await ref
           .read(appointmentRepositoryProvider)
@@ -347,8 +364,10 @@ class _PendingCard extends ConsumerWidget {
     return AppCard(
       onTap: () {
         HapticFeedback.lightImpact();
-        context.push('/doctor/appointment-detail/${appointment.id}',
-            extra: appointment);
+        context.push(
+          '/doctor/appointment-detail/${appointment.id}',
+          extra: appointment,
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -371,8 +390,11 @@ class _PendingCard extends ConsumerWidget {
                     const Gap(2),
                     Row(
                       children: [
-                        Icon(Icons.schedule_outlined,
-                            size: 13, color: c.textSecondary),
+                        Icon(
+                          Icons.schedule_outlined,
+                          size: 13,
+                          color: c.textSecondary,
+                        ),
                         const Gap(4),
                         // Flexible: the localized date-time string must
                         // ellipsize instead of overflowing the info column.
@@ -402,10 +424,13 @@ class _PendingCard extends ConsumerWidget {
                   onPressed: () => _updateStatus(ref, context, 'declined'),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: AppColors.error,
-                    side: BorderSide(color: AppColors.error.withValues(alpha: 0.5)),
+                    side: BorderSide(
+                      color: AppColors.error.withValues(alpha: 0.5),
+                    ),
                     minimumSize: const Size(0, 40),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppRadius.sm + 2)),
+                      borderRadius: BorderRadius.circular(AppRadius.sm + 2),
+                    ),
                   ),
                   child: Text(context.t.common.decline),
                 ),
@@ -420,7 +445,8 @@ class _PendingCard extends ConsumerWidget {
                   style: FilledButton.styleFrom(
                     minimumSize: const Size(0, 40),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppRadius.sm + 2)),
+                      borderRadius: BorderRadius.circular(AppRadius.sm + 2),
+                    ),
                   ),
                   child: Text(context.t.common.confirm),
                 ),

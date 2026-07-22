@@ -32,10 +32,11 @@ class _DayState {
   TimeOfDay startTime;
   TimeOfDay endTime;
 
-  _DayState(
-      {required this.isActive,
-      required this.startTime,
-      required this.endTime});
+  _DayState({
+    required this.isActive,
+    required this.startTime,
+    required this.endTime,
+  });
 }
 
 class WorkingHoursEditorScreen extends ConsumerStatefulWidget {
@@ -47,8 +48,7 @@ class WorkingHoursEditorScreen extends ConsumerStatefulWidget {
       _WorkingHoursEditorState();
 }
 
-class _WorkingHoursEditorState
-    extends ConsumerState<WorkingHoursEditorScreen> {
+class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
   bool _loading = true;
   bool _saving = false;
   late List<_DayState> _days;
@@ -70,8 +70,9 @@ class _WorkingHoursEditorState
   Future<void> _load() async {
     final dio = ref.read(dioClientProvider);
     try {
-      final res =
-          await dio.get('/doctor/workplaces/${widget.workplaceId}/hours/');
+      final res = await dio.get(
+        '/doctor/workplaces/${widget.workplaceId}/hours/',
+      );
       final hours = res.data as List<dynamic>;
       setState(() {
         for (final h in hours) {
@@ -96,8 +97,11 @@ class _WorkingHoursEditorState
     } on DioException catch (e) {
       if (mounted) {
         setState(() => _loading = false);
-        AppSnackBar.show(context, mapDioError(e).userMessage,
-            type: SnackBarType.error);
+        AppSnackBar.show(
+          context,
+          mapDioError(e).userMessage,
+          type: SnackBarType.error,
+        );
       }
     } catch (_) {
       if (mounted) setState(() => _loading = false);
@@ -132,22 +136,33 @@ class _WorkingHoursEditorState
       };
     });
     try {
-      await dio.put('/doctor/workplaces/${widget.workplaceId}/hours/',
-          data: payload);
+      await dio.put(
+        '/doctor/workplaces/${widget.workplaceId}/hours/',
+        data: payload,
+      );
       if (mounted) {
-        AppSnackBar.show(context, context.t.workingHours.saved,
-            type: SnackBarType.success);
+        AppSnackBar.show(
+          context,
+          context.t.workingHours.saved,
+          type: SnackBarType.success,
+        );
         context.pop(true);
       }
     } on DioException catch (e) {
       if (mounted) {
-        AppSnackBar.show(context, mapDioError(e).userMessage,
-            type: SnackBarType.error);
+        AppSnackBar.show(
+          context,
+          mapDioError(e).userMessage,
+          type: SnackBarType.error,
+        );
       }
     } catch (_) {
       if (mounted) {
-        AppSnackBar.show(context, context.t.workingHours.failedToSave,
-            type: SnackBarType.error);
+        AppSnackBar.show(
+          context,
+          context.t.workingHours.failedToSave,
+          type: SnackBarType.error,
+        );
       }
     } finally {
       if (mounted) setState(() => _saving = false);
@@ -195,33 +210,58 @@ class _WorkingHoursEditorState
                     index: i,
                     child: AppCard(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 6),
+                        horizontal: 14,
+                        vertical: 6,
+                      ),
                       child: Row(
                         children: [
                           Expanded(
-                            child: Text(_dayName(context, i),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style:
-                                    Theme.of(context).textTheme.labelLarge),
+                            child: Text(
+                              _dayName(context, i),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
                           ),
                           Switch(
                             value: day.isActive,
-                            onChanged: (v) =>
-                                setState(() => day.isActive = v),
+                            onChanged: (v) => setState(() => day.isActive = v),
                           ),
                           if (day.isActive) ...[
-                            const Spacer(),
-                            _TimeButton(
-                              label: day.startTime.format(context),
-                              onTap: () => _pickTime(i, true),
-                            ),
-                            Text('—',
-                                style:
-                                    TextStyle(color: context.colors.textSecondary)),
-                            _TimeButton(
-                              label: day.endTime.format(context),
-                              onTap: () => _pickTime(i, false),
+                            const SizedBox(width: 8),
+                            // Flexible + FittedBox so a long 12-hour time
+                            // ("11:30 PM") at a large text scale on a narrow
+                            // phone shrinks the two time buttons instead of
+                            // overflowing the row.
+                            Flexible(
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerRight,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    _TimeButton(
+                                      label: day.startTime.format(context),
+                                      onTap: () => _pickTime(i, true),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 4,
+                                      ),
+                                      child: Text(
+                                        '—',
+                                        style: TextStyle(
+                                          color: context.colors.textSecondary,
+                                        ),
+                                      ),
+                                    ),
+                                    _TimeButton(
+                                      label: day.endTime.format(context),
+                                      onTap: () => _pickTime(i, false),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ],

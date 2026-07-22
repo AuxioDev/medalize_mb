@@ -23,21 +23,33 @@ class LegalScreen extends StatelessWidget {
       appBar: AppBar(title: Text(t.title)),
       body: ResponsiveBody(
         child: ListView(
-          padding: const EdgeInsets.all(AppSpacing.md),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.md,
+            AppSpacing.md,
+            AppSpacing.md,
+            96,
+          ),
           children: [
             AnimatedEntrance(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.warning.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(AppRadius.md),
-                  border:
-                      Border.all(color: AppColors.warning.withValues(alpha: 0.3)),
+                  border: Border.all(
+                    color: AppColors.warning.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.info_outline,
-                        size: 18, color: AppColors.warning),
+                    const Icon(
+                      Icons.info_outline,
+                      size: 18,
+                      color: AppColors.warning,
+                    ),
                     const Gap(8),
                     Expanded(
                       child: Text(
@@ -72,10 +84,9 @@ class LegalScreen extends StatelessWidget {
               child: Text(
                 t.contact,
                 textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall
-                    ?.copyWith(color: c.textSecondary),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: c.textSecondary),
               ),
             ),
             const Gap(AppSpacing.md),
@@ -115,10 +126,9 @@ class _LegalSection extends StatelessWidget {
           const Gap(10),
           Text(
             body,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(color: c.textPrimary, height: 1.5),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: c.textPrimary, height: 1.5),
           ),
         ],
       ),

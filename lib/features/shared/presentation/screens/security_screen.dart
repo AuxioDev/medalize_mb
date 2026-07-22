@@ -25,13 +25,17 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen> {
 
   Future<void> _onBiometricChanged(bool value) async {
     setState(() => _toggling = true);
-    final applied = await ref.read(biometricEnabledProvider.notifier).setEnabled(value);
+    final applied = await ref
+        .read(biometricEnabledProvider.notifier)
+        .setEnabled(value);
     if (mounted) {
       setState(() => _toggling = false);
       if (!applied) {
         AppSnackBar.show(
           context,
-          value ? context.t.security.biometricEnableFailed : context.t.security.biometricUnavailable,
+          value
+              ? context.t.security.biometricEnableFailed
+              : context.t.security.biometricUnavailable,
           type: SnackBarType.error,
         );
       }
@@ -65,7 +69,12 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen> {
       appBar: AppBar(title: Text(t.security.title)),
       body: ResponsiveBody(
         child: ListView(
-          padding: const EdgeInsets.all(AppSpacing.md),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.md,
+            AppSpacing.md,
+            AppSpacing.md,
+            96,
+          ),
           children: [
             Container(
               decoration: BoxDecoration(
@@ -87,22 +96,31 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen> {
                         supportedAsync.isLoading
                             ? ''
                             : (supported
-                                ? t.security.biometricLoginSubtitle
-                                : t.security.biometricUnavailable),
+                                  ? t.security.biometricLoginSubtitle
+                                  : t.security.biometricUnavailable),
                       ),
                       value: enabled,
-                      onChanged:
-                          (supported && !_toggling) ? _onBiometricChanged : null,
+                      onChanged: (supported && !_toggling)
+                          ? _onBiometricChanged
+                          : null,
                       activeThumbColor: AppColors.primary,
                     ),
-                    Divider(height: 1, indent: 56, color: context.colors.border),
+                    Divider(
+                      height: 1,
+                      indent: 56,
+                      color: context.colors.border,
+                    ),
                     ListTile(
                       leading: const Icon(Icons.devices_outlined),
                       title: Text(t.security.activeSessions),
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () => context.push('/shared/active-sessions'),
                     ),
-                    Divider(height: 1, indent: 56, color: context.colors.border),
+                    Divider(
+                      height: 1,
+                      indent: 56,
+                      color: context.colors.border,
+                    ),
                     ListTile(
                       leading: const Icon(Icons.alternate_email),
                       title: Text(t.security.changeEmail),
@@ -116,31 +134,39 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen> {
             const Gap(AppSpacing.lg),
             Padding(
               padding: const EdgeInsets.only(
-                  left: AppSpacing.sm, bottom: AppSpacing.sm),
+                left: AppSpacing.sm,
+                bottom: AppSpacing.sm,
+              ),
               child: Text(
                 t.security.dangerZone,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: AppColors.error,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: AppColors.error,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
             Container(
               decoration: BoxDecoration(
                 color: AppColors.error.withValues(alpha: 0.04),
                 borderRadius: BorderRadius.circular(AppRadius.lg),
-                border: Border.all(color: AppColors.error.withValues(alpha: 0.35)),
+                border: Border.all(
+                  color: AppColors.error.withValues(alpha: 0.35),
+                ),
               ),
               clipBehavior: Clip.antiAlias,
               child: Material(
                 color: Colors.transparent,
                 child: ListTile(
-                  leading:
-                      const Icon(Icons.person_off_outlined, color: AppColors.error),
+                  leading: const Icon(
+                    Icons.person_off_outlined,
+                    color: AppColors.error,
+                  ),
                   title: Text(
                     t.security.deactivateAccount,
                     style: const TextStyle(
-                        color: AppColors.error, fontWeight: FontWeight.w600),
+                      color: AppColors.error,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   subtitle: Text(t.security.deactivateAccountSubtitle),
                   onTap: _showDeactivateDialog,
@@ -242,7 +268,9 @@ class _DeactivateAccountDialogState
                   height: 18,
                   width: 18,
                   child: CircularProgressIndicator(
-                      strokeWidth: 2, color: Colors.white),
+                    strokeWidth: 2,
+                    color: Colors.white,
+                  ),
                 )
               : Text(t.security.deactivate),
         ),
