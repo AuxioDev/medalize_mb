@@ -99,12 +99,35 @@ void main() {
       ],
     });
 
-    final doctors = await _repo(adapter).searchDoctors(ordering: 'next_slot');
+    final page = await _repo(adapter).searchDoctors(ordering: 'next_slot');
 
-    expect(doctors, hasLength(2));
-    expect(doctors[0].nextSlotAt, DateTime(2026, 7, 5, 9, 30));
-    expect(doctors[0].distanceKm, 2.3);
-    expect(doctors[1].nextSlotAt, isNull);
-    expect(doctors[1].distanceKm, isNull);
+    expect(page.doctors, hasLength(2));
+    expect(page.doctors[0].nextSlotAt, DateTime(2026, 7, 5, 9, 30));
+    expect(page.doctors[0].distanceKm, 2.3);
+    expect(page.doctors[1].nextSlotAt, isNull);
+    expect(page.doctors[1].distanceKm, isNull);
+  });
+
+  test('searchDoctors defaults to page 1 and reports hasMore from `next`',
+      () async {
+    final adapter = _CapturingAdapter({
+      'results': <Object>[],
+      'next': 'http://localhost/api/doctors/?page=2',
+    });
+
+    final page = await _repo(adapter).searchDoctors();
+
+    expect(adapter.requests.single.queryParameters['page'], 1);
+    expect(page.hasMore, isTrue);
+  });
+
+  test('searchDoctors requests the given page and reports hasMore false '
+      'on the last page', () async {
+    final adapter = _CapturingAdapter({'results': <Object>[], 'next': null});
+
+    final page = await _repo(adapter).searchDoctors(page: 3);
+
+    expect(adapter.requests.single.queryParameters['page'], 3);
+    expect(page.hasMore, isFalse);
   });
 }

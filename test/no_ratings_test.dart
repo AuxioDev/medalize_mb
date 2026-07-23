@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart';
 import 'package:medalize_mb/features/assistant/presentation/widgets/suggested_doctor_card.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/patient/data/repository/favorites_repository.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_detail_screen.dart';
@@ -21,6 +22,24 @@ class _OfflineFavoritesRepository extends FavoritesRepository {
   @override
   Future<List<DoctorModel>> getFavorites() async =>
       throw const NetworkException();
+}
+
+class _FakeDoctorRepository extends DoctorRepository {
+  _FakeDoctorRepository(this._doctors) : super(Dio());
+  final List<DoctorModel> _doctors;
+
+  @override
+  Future<DoctorSearchPage> searchDoctors({
+    String? name,
+    String? specialization,
+    String? city,
+    int? minRating,
+    String? ordering,
+    double? lat,
+    double? lng,
+    int page = 1,
+  }) async =>
+      DoctorSearchPage(doctors: _doctors, hasMore: false);
 }
 
 const _unratedDoctor = DoctorModel(
@@ -49,8 +68,8 @@ void main() {
           overrides: [
             favoritesRepositoryProvider
                 .overrideWithValue(_OfflineFavoritesRepository()),
-            doctorSearchProvider
-                .overrideWith((ref, params) async => const [_unratedDoctor]),
+            doctorRepositoryProvider
+                .overrideWithValue(_FakeDoctorRepository(const [_unratedDoctor])),
             nextAvailableDateProvider.overrideWith((ref, id) async => null),
           ],
           child: MediaQuery(

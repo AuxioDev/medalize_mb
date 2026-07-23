@@ -104,5 +104,46 @@ void main() {
       final e = mapDioError(_dio(status: 500, data: {'code': 'server_error'}));
       expect((e as ServerException).statusCode, 500);
     });
+
+    test('conflict uses the backend message instead of a generic server error', () {
+      final e = mapDioError(_dio(status: 409, data: {
+        'code': 'conflict',
+        'message': 'Cannot cancel within 2 hours of appointment.',
+      }));
+      expect(e, isA<ConflictException>());
+      expect(e.userMessage, 'Cannot cancel within 2 hours of appointment.');
+    });
+
+    test('onboarding_incomplete carries the message and missing fields', () {
+      final e = mapDioError(_dio(status: 400, data: {
+        'code': 'onboarding_incomplete',
+        'message': 'Complete all required fields before finishing onboarding.',
+        'missing': ['specialization', 'diploma'],
+      })) as OnboardingIncompleteException;
+      expect(e.userMessage,
+          'Complete all required fields before finishing onboarding.');
+      expect(e.missing, ['specialization', 'diploma']);
+    });
+
+    test('social_email_unverified surfaces the backend guidance', () {
+      final e = mapDioError(_dio(status: 403, data: {
+        'code': 'social_email_unverified',
+        'message':
+            'An account with this email already exists. Please sign in with your password.',
+      }));
+      expect(e, isA<SocialLoginException>());
+      expect(e.userMessage, contains('sign in with your password'));
+    });
+
+    test('social_token_invalid and social_email_missing also map to SocialLoginException', () {
+      expect(
+        mapDioError(_dio(status: 401, data: {'code': 'social_token_invalid'})),
+        isA<SocialLoginException>(),
+      );
+      expect(
+        mapDioError(_dio(status: 400, data: {'code': 'social_email_missing'})),
+        isA<SocialLoginException>(),
+      );
+    });
   });
 }

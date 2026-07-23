@@ -364,6 +364,12 @@ class Translations$errors$en {
 
 	/// en: 'Sign-in failed. Please try again or use your email and password.'
 	String get socialLoginFailed => 'Sign-in failed. Please try again or use your email and password.';
+
+	/// en: 'This action can't be completed right now.'
+	String get conflict => 'This action can\'t be completed right now.';
+
+	/// en: 'Please complete all required fields before finishing onboarding.'
+	String get onboardingIncomplete => 'Please complete all required fields before finishing onboarding.';
 }
 
 // Path: settings
@@ -892,6 +898,9 @@ class Translations$doctorSearch$en {
 
 	/// en: 'Could not load doctors'
 	String get couldNotLoadDoctors => 'Could not load doctors';
+
+	/// en: 'Load more'
+	String get loadMore => 'Load more';
 
 	late final Translations$doctorSearch$spec$en spec = Translations$doctorSearch$spec$en.internal(_root);
 
@@ -1724,6 +1733,8 @@ extension on Translations {
 			'errors.validationError' => 'Validation error',
 			'errors.serverError' => ({required Object code}) => 'Server error (${code}). Please try again.',
 			'errors.socialLoginFailed' => 'Sign-in failed. Please try again or use your email and password.',
+			'errors.conflict' => 'This action can\'t be completed right now.',
+			'errors.onboardingIncomplete' => 'Please complete all required fields before finishing onboarding.',
 			'settings.title' => 'Settings',
 			'settings.account' => 'Account',
 			'settings.profile' => 'Profile',
@@ -1879,6 +1890,7 @@ extension on Translations {
 			'doctorSearch.noDoctorsFound' => 'No doctors found',
 			'doctorSearch.adjustSearch' => 'Try adjusting your search or filters',
 			'doctorSearch.couldNotLoadDoctors' => 'Could not load doctors',
+			'doctorSearch.loadMore' => 'Load more',
 			'doctorSearch.spec.general' => 'General',
 			'doctorSearch.spec.cardiology' => 'Cardiology',
 			'doctorSearch.spec.dermatology' => 'Dermatology',

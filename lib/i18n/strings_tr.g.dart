@@ -202,6 +202,8 @@ class _Translations$errors$tr extends Translations$errors$en {
 	@override String get validationError => 'Doğrulama hatası';
 	@override String serverError({required Object code}) => 'Sunucu hatası (${code}). Lütfen tekrar deneyin.';
 	@override String get socialLoginFailed => 'Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.';
+	@override String get conflict => 'Bu işlem şu anda tamamlanamıyor.';
+	@override String get onboardingIncomplete => 'Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun.';
 }
 
 // Path: settings
@@ -420,6 +422,7 @@ class _Translations$doctorSearch$tr extends Translations$doctorSearch$en {
 	@override String get noDoctorsFound => 'Doktor bulunamadı';
 	@override String get adjustSearch => 'Aramanızı veya filtrelerinizi değiştirmeyi deneyin';
 	@override String get couldNotLoadDoctors => 'Doktorlar yüklenemedi';
+	@override String get loadMore => 'Daha fazla göster';
 	@override late final _Translations$doctorSearch$spec$tr spec = _Translations$doctorSearch$spec$tr._(_root);
 	@override String get noAvailability => 'Uygunluk yok';
 	@override String get availableToday => 'Bugün müsait';
@@ -866,6 +869,8 @@ extension on TranslationsTr {
 			'errors.validationError' => 'Doğrulama hatası',
 			'errors.serverError' => ({required Object code}) => 'Sunucu hatası (${code}). Lütfen tekrar deneyin.',
 			'errors.socialLoginFailed' => 'Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.',
+			'errors.conflict' => 'Bu işlem şu anda tamamlanamıyor.',
+			'errors.onboardingIncomplete' => 'Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun.',
 			'settings.title' => 'Ayarlar',
 			'settings.account' => 'Hesap',
 			'settings.profile' => 'Profil',
@@ -1021,6 +1026,7 @@ extension on TranslationsTr {
 			'doctorSearch.noDoctorsFound' => 'Doktor bulunamadı',
 			'doctorSearch.adjustSearch' => 'Aramanızı veya filtrelerinizi değiştirmeyi deneyin',
 			'doctorSearch.couldNotLoadDoctors' => 'Doktorlar yüklenemedi',
+			'doctorSearch.loadMore' => 'Daha fazla göster',
 			'doctorSearch.spec.general' => 'Genel',
 			'doctorSearch.spec.cardiology' => 'Kardiyoloji',
 			'doctorSearch.spec.dermatology' => 'Dermatoloji',

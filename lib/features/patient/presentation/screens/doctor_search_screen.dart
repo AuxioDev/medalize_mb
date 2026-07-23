@@ -69,9 +69,16 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
   String? _cityInput;
   int? _minRating;
   _DoctorSort _sort = _DoctorSort.relevance;
-  SearchParams _params = const SearchParams();
   double? _lat;
   double? _lng;
+
+  @override
+  void initState() {
+    super.initState();
+    // Deferred: the notifier's first state write must happen after this
+    // build completes, not synchronously inside initState.
+    Future(() => ref.read(doctorSearchProvider.notifier).search(_buildParams()));
+  }
 
   /// Client-side ordering of the backend result list. "relevance" keeps the
   /// order the backend returned; rating/nearestSlot/distance are sorted
@@ -118,7 +125,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
         lng: _sort == _DoctorSort.distance ? _lng : null,
       );
 
-  void _search() => setState(() => _params = _buildParams());
+  void _search() => ref.read(doctorSearchProvider.notifier).search(_buildParams());
 
   /// Distance sort needs the patient's coordinates first. When the permission
   /// is refused or no fix can be obtained we keep the previous sort selection
@@ -146,29 +153,32 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
           return;
       }
     }
-    setState(() {
-      _sort = next;
-      _params = _buildParams();
-    });
+    setState(() => _sort = next);
+    _search();
   }
 
   void _selectSpec(String? spec) {
-    setState(() {
-      _selectedSpecialization = spec == _selectedSpecialization ? null : spec;
-      _params = _buildParams();
-    });
+    setState(() => _selectedSpecialization = spec == _selectedSpecialization ? null : spec);
+    _search();
   }
 
   void _selectRating(int? rating) {
-    setState(() {
-      _minRating = rating == _minRating ? null : rating;
-      _params = _buildParams();
-    });
+    setState(() => _minRating = rating == _minRating ? null : rating);
+    _search();
+  }
+
+  Future<void> _loadMore() async {
+    final ok = await ref.read(doctorSearchProvider.notifier).loadMore();
+    if (!ok && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.t.doctorSearch.couldNotLoadDoctors)),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final results = ref.watch(doctorSearchProvider(_params));
+    final results = ref.watch(doctorSearchProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(context.t.doctorSearch.title)),
@@ -232,73 +242,103 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
             ),
             const Gap(4),
             Expanded(
-              child: results.when(
-                loading: () => const Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 8),
-                  child: Column(
-                    children: [
-                      ShimmerSkeleton(height: 88),
-                      ShimmerSkeleton(height: 88),
-                      ShimmerSkeleton(height: 88),
-                      ShimmerSkeleton(height: 88),
-                    ],
+              child: switch (results.status) {
+                DoctorSearchStatus.initial ||
+                DoctorSearchStatus.loading =>
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppSpacing.md, vertical: 8),
+                    child: Column(
+                      children: [
+                        ShimmerSkeleton(height: 88),
+                        ShimmerSkeleton(height: 88),
+                        ShimmerSkeleton(height: 88),
+                        ShimmerSkeleton(height: 88),
+                      ],
+                    ),
                   ),
-                ),
-                error: (_, _) => RefreshableView(
-                  onRefresh: () async => ref.invalidate(doctorSearchProvider),
-                  child: EmptyState(
-                    icon: Icons.cloud_off_outlined,
-                    title: context.t.common.somethingWrong,
-                    subtitle: context.t.doctorSearch.couldNotLoadDoctors,
-                    actionLabel: context.t.common.retry,
-                    onAction: () => ref.invalidate(doctorSearchProvider),
+                DoctorSearchStatus.error => RefreshableView(
+                    onRefresh: () async => _search(),
+                    child: EmptyState(
+                      icon: Icons.cloud_off_outlined,
+                      title: context.t.common.somethingWrong,
+                      subtitle: context.t.doctorSearch.couldNotLoadDoctors,
+                      actionLabel: context.t.common.retry,
+                      onAction: _search,
+                    ),
                   ),
-                ),
-                data: (doctors) {
-                  if (doctors.isEmpty) {
-                    return RefreshableView(
-                      onRefresh: () async =>
-                          ref.invalidate(doctorSearchProvider),
-                      child: EmptyState(
-                        icon: Icons.person_search_outlined,
-                        title: context.t.doctorSearch.noDoctorsFound,
-                        subtitle: context.t.doctorSearch.adjustSearch,
-                      ),
-                    );
-                  }
-                  final sorted = _sortDoctors(doctors);
-                  return Column(
-                    children: [
-                      _SortBar(
-                        value: _sort,
-                        onChanged: _changeSort,
-                      ),
-                      Expanded(
-                        child: RefreshIndicator(
-                          onRefresh: () async =>
-                              ref.invalidate(doctorSearchProvider),
-                          color: AppColors.primary,
-                          child: ListView.builder(
-                            padding: const EdgeInsets.fromLTRB(
-                                AppSpacing.md, 4, AppSpacing.md, AppSpacing.md),
-                            physics: const BouncingScrollPhysics(
-                              parent: AlwaysScrollableScrollPhysics(),
-                            ),
-                            itemCount: sorted.length,
-                            itemBuilder: (_, i) => AnimatedEntrance(
-                              index: i,
-                              slideY: 0,
-                              slideX: 0.05,
-                              child: _DoctorCard(doctor: sorted[i]),
-                            ),
+                DoctorSearchStatus.loaded ||
+                DoctorSearchStatus.loadingMore =>
+                  results.doctors.isEmpty
+                      ? RefreshableView(
+                          onRefresh: () async => _search(),
+                          child: EmptyState(
+                            icon: Icons.person_search_outlined,
+                            title: context.t.doctorSearch.noDoctorsFound,
+                            subtitle: context.t.doctorSearch.adjustSearch,
                           ),
-                        ),
-                      ),
-                    ],
-                  );
+                        )
+                      : Builder(builder: (context) {
+                          final sorted = _sortDoctors(results.doctors);
+                          final isLoadingMore =
+                              results.status == DoctorSearchStatus.loadingMore;
+                          final footerCount =
+                              results.hasMore || isLoadingMore ? 1 : 0;
+                          return Column(
+                            children: [
+                              _SortBar(
+                                value: _sort,
+                                onChanged: _changeSort,
+                              ),
+                              Expanded(
+                                child: RefreshIndicator(
+                                  onRefresh: () async => _search(),
+                                  color: AppColors.primary,
+                                  child: ListView.builder(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        AppSpacing.md, 4, AppSpacing.md,
+                                        AppSpacing.md),
+                                    physics: const BouncingScrollPhysics(
+                                      parent: AlwaysScrollableScrollPhysics(),
+                                    ),
+                                    itemCount: sorted.length + footerCount,
+                                    itemBuilder: (_, i) {
+                                      if (i >= sorted.length) {
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 16),
+                                          child: Center(
+                                            child: isLoadingMore
+                                                ? const SizedBox(
+                                                    height: 24,
+                                                    width: 24,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                            strokeWidth: 2),
+                                                  )
+                                                : OutlinedButton(
+                                                    onPressed: _loadMore,
+                                                    child: Text(context
+                                                        .t.doctorSearch
+                                                        .loadMore),
+                                                  ),
+                                          ),
+                                        );
+                                      }
+                                      return AnimatedEntrance(
+                                        index: i,
+                                        slideY: 0,
+                                        slideX: 0.05,
+                                        child: _DoctorCard(doctor: sorted[i]),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
                 },
-              ),
             ),
           ],
         ),

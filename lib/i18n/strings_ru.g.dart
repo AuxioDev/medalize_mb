@@ -202,6 +202,8 @@ class _Translations$errors$ru extends Translations$errors$en {
 	@override String get validationError => 'Ошибка проверки';
 	@override String serverError({required Object code}) => 'Ошибка сервера (${code}). Повторите попытку.';
 	@override String get socialLoginFailed => 'Не удалось войти. Попробуйте снова или используйте эл. почту и пароль.';
+	@override String get conflict => 'Это действие сейчас невозможно выполнить.';
+	@override String get onboardingIncomplete => 'Заполните все обязательные поля, чтобы завершить регистрацию.';
 }
 
 // Path: settings
@@ -420,6 +422,7 @@ class _Translations$doctorSearch$ru extends Translations$doctorSearch$en {
 	@override String get noDoctorsFound => 'Врачи не найдены';
 	@override String get adjustSearch => 'Попробуйте изменить поиск или фильтры';
 	@override String get couldNotLoadDoctors => 'Не удалось загрузить врачей';
+	@override String get loadMore => 'Показать ещё';
 	@override late final _Translations$doctorSearch$spec$ru spec = _Translations$doctorSearch$spec$ru._(_root);
 	@override String get noAvailability => 'Нет свободного времени';
 	@override String get availableToday => 'Доступен сегодня';
@@ -866,6 +869,8 @@ extension on TranslationsRu {
 			'errors.validationError' => 'Ошибка проверки',
 			'errors.serverError' => ({required Object code}) => 'Ошибка сервера (${code}). Повторите попытку.',
 			'errors.socialLoginFailed' => 'Не удалось войти. Попробуйте снова или используйте эл. почту и пароль.',
+			'errors.conflict' => 'Это действие сейчас невозможно выполнить.',
+			'errors.onboardingIncomplete' => 'Заполните все обязательные поля, чтобы завершить регистрацию.',
 			'settings.title' => 'Настройки',
 			'settings.account' => 'Аккаунт',
 			'settings.profile' => 'Профиль',
@@ -1021,6 +1026,7 @@ extension on TranslationsRu {
 			'doctorSearch.noDoctorsFound' => 'Врачи не найдены',
 			'doctorSearch.adjustSearch' => 'Попробуйте изменить поиск или фильтры',
 			'doctorSearch.couldNotLoadDoctors' => 'Не удалось загрузить врачей',
+			'doctorSearch.loadMore' => 'Показать ещё',
 			'doctorSearch.spec.general' => 'Общий',
 			'doctorSearch.spec.cardiology' => 'Кардиология',
 			'doctorSearch.spec.dermatology' => 'Дерматология',

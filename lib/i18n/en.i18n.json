@@ -89,7 +89,9 @@
     "permissionDenied": "You do not have permission to do this.",
     "validationError": "Validation error",
     "serverError": "Server error ($code). Please try again.",
-    "socialLoginFailed": "Sign-in failed. Please try again or use your email and password."
+    "socialLoginFailed": "Sign-in failed. Please try again or use your email and password.",
+    "conflict": "This action can't be completed right now.",
+    "onboardingIncomplete": "Please complete all required fields before finishing onboarding."
   },
   "settings": {
     "title": "Settings",
@@ -259,6 +261,7 @@
     "noDoctorsFound": "No doctors found",
     "adjustSearch": "Try adjusting your search or filters",
     "couldNotLoadDoctors": "Could not load doctors",
+    "loadMore": "Load more",
     "spec": {
       "general": "General",
       "cardiology": "Cardiology",

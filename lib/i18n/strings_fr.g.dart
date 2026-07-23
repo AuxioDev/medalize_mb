@@ -202,6 +202,8 @@ class _Translations$errors$fr extends Translations$errors$en {
 	@override String get validationError => 'Erreur de validation';
 	@override String serverError({required Object code}) => 'Erreur serveur (${code}). Veuillez réessayer.';
 	@override String get socialLoginFailed => 'Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.';
+	@override String get conflict => 'Cette action ne peut pas être effectuée pour le moment.';
+	@override String get onboardingIncomplete => 'Veuillez remplir tous les champs requis pour terminer l\'inscription.';
 }
 
 // Path: settings
@@ -420,6 +422,7 @@ class _Translations$doctorSearch$fr extends Translations$doctorSearch$en {
 	@override String get noDoctorsFound => 'Aucun médecin trouvé';
 	@override String get adjustSearch => 'Essayez d\'ajuster votre recherche ou vos filtres';
 	@override String get couldNotLoadDoctors => 'Impossible de charger les médecins';
+	@override String get loadMore => 'Charger plus';
 	@override late final _Translations$doctorSearch$spec$fr spec = _Translations$doctorSearch$spec$fr._(_root);
 	@override String get noAvailability => 'Indisponible';
 	@override String get availableToday => 'Disponible auj.';
@@ -866,6 +869,8 @@ extension on TranslationsFr {
 			'errors.validationError' => 'Erreur de validation',
 			'errors.serverError' => ({required Object code}) => 'Erreur serveur (${code}). Veuillez réessayer.',
 			'errors.socialLoginFailed' => 'Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.',
+			'errors.conflict' => 'Cette action ne peut pas être effectuée pour le moment.',
+			'errors.onboardingIncomplete' => 'Veuillez remplir tous les champs requis pour terminer l\'inscription.',
 			'settings.title' => 'Paramètres',
 			'settings.account' => 'Compte',
 			'settings.profile' => 'Profil',
@@ -1021,6 +1026,7 @@ extension on TranslationsFr {
 			'doctorSearch.noDoctorsFound' => 'Aucun médecin trouvé',
 			'doctorSearch.adjustSearch' => 'Essayez d\'ajuster votre recherche ou vos filtres',
 			'doctorSearch.couldNotLoadDoctors' => 'Impossible de charger les médecins',
+			'doctorSearch.loadMore' => 'Charger plus',
 			'doctorSearch.spec.general' => 'Général',
 			'doctorSearch.spec.cardiology' => 'Cardiologie',
 			'doctorSearch.spec.dermatology' => 'Dermatologie',

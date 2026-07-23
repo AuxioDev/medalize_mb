@@ -89,7 +89,9 @@
     "permissionDenied": "Bunu yapma izniniz yok.",
     "validationError": "Doğrulama hatası",
     "serverError": "Sunucu hatası ($code). Lütfen tekrar deneyin.",
-    "socialLoginFailed": "Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın."
+    "socialLoginFailed": "Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.",
+    "conflict": "Bu işlem şu anda tamamlanamıyor.",
+    "onboardingIncomplete": "Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun."
   },
   "settings": {
     "title": "Ayarlar",
@@ -259,6 +261,7 @@
     "noDoctorsFound": "Doktor bulunamadı",
     "adjustSearch": "Aramanızı veya filtrelerinizi değiştirmeyi deneyin",
     "couldNotLoadDoctors": "Doktorlar yüklenemedi",
+    "loadMore": "Daha fazla göster",
     "spec": {
       "general": "Genel",
       "cardiology": "Kardiyoloji",

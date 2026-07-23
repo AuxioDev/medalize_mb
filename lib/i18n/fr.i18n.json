@@ -89,7 +89,9 @@
     "permissionDenied": "Vous n'avez pas la permission de faire cela.",
     "validationError": "Erreur de validation",
     "serverError": "Erreur serveur ($code). Veuillez réessayer.",
-    "socialLoginFailed": "Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe."
+    "socialLoginFailed": "Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.",
+    "conflict": "Cette action ne peut pas être effectuée pour le moment.",
+    "onboardingIncomplete": "Veuillez remplir tous les champs requis pour terminer l'inscription."
   },
   "settings": {
     "title": "Paramètres",
@@ -259,6 +261,7 @@
     "noDoctorsFound": "Aucun médecin trouvé",
     "adjustSearch": "Essayez d'ajuster votre recherche ou vos filtres",
     "couldNotLoadDoctors": "Impossible de charger les médecins",
+    "loadMore": "Charger plus",
     "spec": {
       "general": "Général",
       "cardiology": "Cardiologie",

@@ -90,6 +90,39 @@ class ServerException extends ApiException {
   String get userMessage => t.errors.serverError(code: statusCode);
 }
 
+/// A business-rule conflict (409) — e.g. cancelling within the doctor's
+/// notice window, or an invalid appointment status transition. [message] is
+/// the backend's specific, already-localized-enough explanation; it's
+/// always present in practice, the fallback only covers a malformed payload.
+class ConflictException extends ApiException {
+  const ConflictException([this.message]);
+  final String? message;
+  @override
+  String get userMessage => message ?? t.errors.conflict;
+}
+
+/// Doctor tried to finish onboarding with required fields/diploma still
+/// missing. [missing] lists the field names so a screen can highlight them
+/// specifically; [userMessage] alone is enough for a generic banner/snackbar.
+class OnboardingIncompleteException extends ApiException {
+  const OnboardingIncompleteException({this.message, this.missing = const []});
+  final String? message;
+  final List<String> missing;
+  @override
+  String get userMessage => message ?? t.errors.onboardingIncomplete;
+}
+
+/// Backend-side social sign-in rejection (invalid provider token, no email
+/// shared by the provider, or an unverified-email account collision) —
+/// distinct from [SocialAuthFailedException], which is for native-SDK
+/// failures that never reach the backend at all.
+class SocialLoginException extends ApiException {
+  const SocialLoginException([this.message]);
+  final String? message;
+  @override
+  String get userMessage => message ?? t.errors.socialLoginFailed;
+}
+
 ApiException mapDioError(Object err) {
   if (err is! DioException) return const NetworkException();
 
@@ -127,6 +160,19 @@ ApiException mapDioError(Object err) {
       return PermissionDeniedException(role: data['role'] as String?);
     case 'validation_error':
       return _mapValidationError(data as Map);
+    case 'conflict':
+      return ConflictException(data['message'] as String?);
+    case 'onboarding_incomplete':
+      return OnboardingIncompleteException(
+        message: data['message'] as String?,
+        missing: (data['missing'] as List<dynamic>?)
+                ?.map((e) => e.toString()).toList() ??
+            const [],
+      );
+    case 'social_token_invalid':
+    case 'social_email_missing':
+    case 'social_email_unverified':
+      return SocialLoginException(data['message'] as String?);
     default:
       return ServerException(response.statusCode ?? 500);
   }

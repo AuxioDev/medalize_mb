@@ -7,6 +7,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/services/location_service.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/patient/data/repository/favorites_repository.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_search_screen.dart';
@@ -31,6 +32,24 @@ class _OfflineFavoritesRepository extends FavoritesRepository {
       throw const NetworkException();
 }
 
+class _FakeDoctorRepository extends DoctorRepository {
+  _FakeDoctorRepository(this._doctors) : super(Dio());
+  final List<DoctorModel> _doctors;
+
+  @override
+  Future<DoctorSearchPage> searchDoctors({
+    String? name,
+    String? specialization,
+    String? city,
+    int? minRating,
+    String? ordering,
+    double? lat,
+    double? lng,
+    int page = 1,
+  }) async =>
+      DoctorSearchPage(doctors: _doctors, hasMore: false);
+}
+
 const _doctor = DoctorModel(
   id: 'doc-1',
   firstName: 'Aysel',
@@ -47,8 +66,8 @@ Widget _app(LocationResult locationResult) => TranslationProvider(
               .overrideWithValue(_FakeLocationService(locationResult)),
           favoritesRepositoryProvider
               .overrideWithValue(_OfflineFavoritesRepository()),
-          doctorSearchProvider
-              .overrideWith((ref, params) async => const [_doctor]),
+          doctorRepositoryProvider
+              .overrideWithValue(_FakeDoctorRepository(const [_doctor])),
           nextAvailableDateProvider.overrideWith((ref, id) async => null),
         ],
         child: MediaQuery(

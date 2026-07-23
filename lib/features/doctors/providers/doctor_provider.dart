@@ -61,9 +61,52 @@ class SlotsParams {
   int get hashCode => Object.hash(doctorId, workplaceId, date);
 }
 
-final doctorSearchProvider =
-    FutureProvider.family<List<DoctorModel>, SearchParams>((ref, params) {
-  return ref.watch(doctorRepositoryProvider).searchDoctors(
+enum DoctorSearchStatus { initial, loading, loadingMore, loaded, error }
+
+class DoctorSearchState {
+  const DoctorSearchState({
+    this.status = DoctorSearchStatus.initial,
+    this.doctors = const [],
+    this.hasMore = false,
+    this.page = 1,
+  });
+
+  final DoctorSearchStatus status;
+  final List<DoctorModel> doctors;
+  final bool hasMore;
+  final int page;
+
+  DoctorSearchState copyWith({
+    DoctorSearchStatus? status,
+    List<DoctorModel>? doctors,
+    bool? hasMore,
+    int? page,
+  }) =>
+      DoctorSearchState(
+        status: status ?? this.status,
+        doctors: doctors ?? this.doctors,
+        hasMore: hasMore ?? this.hasMore,
+        page: page ?? this.page,
+      );
+}
+
+/// Drives doctor search with server-side pagination: [search] replaces the
+/// result set for a new filter combination, [loadMore] appends the next
+/// page. Kept as a single (non-family) notifier — the screen re-triggers
+/// [search] explicitly on every filter change instead of relying on
+/// Riverpod's family-keyed rebuilds, so "load more" state doesn't have to be
+/// tracked per filter combination.
+class DoctorSearchNotifier extends StateNotifier<DoctorSearchState> {
+  DoctorSearchNotifier(this._repo) : super(const DoctorSearchState());
+
+  final DoctorRepository _repo;
+  SearchParams _params = const SearchParams();
+
+  Future<void> search(SearchParams params) async {
+    _params = params;
+    state = const DoctorSearchState(status: DoctorSearchStatus.loading);
+    try {
+      final result = await _repo.searchDoctors(
         name: params.name,
         specialization: params.specialization,
         city: params.city,
@@ -72,7 +115,58 @@ final doctorSearchProvider =
         lat: params.lat,
         lng: params.lng,
       );
-});
+      if (!mounted) return;
+      state = DoctorSearchState(
+        status: DoctorSearchStatus.loaded,
+        doctors: result.doctors,
+        hasMore: result.hasMore,
+        page: 1,
+      );
+    } catch (_) {
+      if (!mounted) return;
+      state = const DoctorSearchState(status: DoctorSearchStatus.error);
+    }
+  }
+
+  /// Returns false if the fetch failed, so the screen can show a retry
+  /// affordance while keeping the already-loaded results on screen.
+  Future<bool> loadMore() async {
+    if (!state.hasMore || state.status == DoctorSearchStatus.loadingMore) {
+      return true;
+    }
+    state = state.copyWith(status: DoctorSearchStatus.loadingMore);
+    final nextPage = state.page + 1;
+    try {
+      final result = await _repo.searchDoctors(
+        name: _params.name,
+        specialization: _params.specialization,
+        city: _params.city,
+        minRating: _params.minRating,
+        ordering: _params.ordering,
+        lat: _params.lat,
+        lng: _params.lng,
+        page: nextPage,
+      );
+      if (!mounted) return true;
+      state = state.copyWith(
+        status: DoctorSearchStatus.loaded,
+        doctors: [...state.doctors, ...result.doctors],
+        hasMore: result.hasMore,
+        page: nextPage,
+      );
+      return true;
+    } catch (_) {
+      if (!mounted) return false;
+      state = state.copyWith(status: DoctorSearchStatus.loaded);
+      return false;
+    }
+  }
+}
+
+final doctorSearchProvider =
+    StateNotifierProvider<DoctorSearchNotifier, DoctorSearchState>(
+  (ref) => DoctorSearchNotifier(ref.read(doctorRepositoryProvider)),
+);
 
 final doctorDetailProvider =
     FutureProvider.family<DoctorDetailModel, String>((ref, id) {

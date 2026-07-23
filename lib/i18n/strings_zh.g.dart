@@ -202,6 +202,8 @@ class _Translations$errors$zh extends Translations$errors$en {
 	@override String get validationError => '验证错误';
 	@override String serverError({required Object code}) => '服务器错误（${code}），请重试。';
 	@override String get socialLoginFailed => '登录失败，请重试或使用邮箱和密码登录。';
+	@override String get conflict => '当前无法完成此操作。';
+	@override String get onboardingIncomplete => '请填写所有必填项以完成入驻。';
 }
 
 // Path: settings
@@ -420,6 +422,7 @@ class _Translations$doctorSearch$zh extends Translations$doctorSearch$en {
 	@override String get noDoctorsFound => '未找到医生';
 	@override String get adjustSearch => '请尝试调整搜索或筛选条件';
 	@override String get couldNotLoadDoctors => '无法加载医生';
+	@override String get loadMore => '加载更多';
 	@override late final _Translations$doctorSearch$spec$zh spec = _Translations$doctorSearch$spec$zh._(_root);
 	@override String get noAvailability => '暂无时间';
 	@override String get availableToday => '今天可约';
@@ -866,6 +869,8 @@ extension on TranslationsZh {
 			'errors.validationError' => '验证错误',
 			'errors.serverError' => ({required Object code}) => '服务器错误（${code}），请重试。',
 			'errors.socialLoginFailed' => '登录失败，请重试或使用邮箱和密码登录。',
+			'errors.conflict' => '当前无法完成此操作。',
+			'errors.onboardingIncomplete' => '请填写所有必填项以完成入驻。',
 			'settings.title' => '设置',
 			'settings.account' => '账户',
 			'settings.profile' => '个人资料',
@@ -1021,6 +1026,7 @@ extension on TranslationsZh {
 			'doctorSearch.noDoctorsFound' => '未找到医生',
 			'doctorSearch.adjustSearch' => '请尝试调整搜索或筛选条件',
 			'doctorSearch.couldNotLoadDoctors' => '无法加载医生',
+			'doctorSearch.loadMore' => '加载更多',
 			'doctorSearch.spec.general' => '全科',
 			'doctorSearch.spec.cardiology' => '心脏科',
 			'doctorSearch.spec.dermatology' => '皮肤科',

@@ -89,7 +89,9 @@
     "permissionDenied": "Bunu etməyə icazəniz yoxdur.",
     "validationError": "Doğrulama xətası",
     "serverError": "Server xətası ($code). Zəhmət olmasa yenidən cəhd edin.",
-    "socialLoginFailed": "Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin."
+    "socialLoginFailed": "Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.",
+    "conflict": "Bu əməliyyat hazırda tamamlana bilmir.",
+    "onboardingIncomplete": "Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun."
   },
   "settings": {
     "title": "Parametrlər",
@@ -259,6 +261,7 @@
     "noDoctorsFound": "Həkim tapılmadı",
     "adjustSearch": "Axtarış və ya filtrləri dəyişməyə cəhd edin",
     "couldNotLoadDoctors": "Həkimlər yüklənə bilmədi",
+    "loadMore": "Daha çox göstər",
     "spec": {
       "general": "Ümumi",
       "cardiology": "Kardiologiya",

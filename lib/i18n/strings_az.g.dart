@@ -202,6 +202,8 @@ class _Translations$errors$az extends Translations$errors$en {
 	@override String get validationError => 'Doğrulama xətası';
 	@override String serverError({required Object code}) => 'Server xətası (${code}). Zəhmət olmasa yenidən cəhd edin.';
 	@override String get socialLoginFailed => 'Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.';
+	@override String get conflict => 'Bu əməliyyat hazırda tamamlana bilmir.';
+	@override String get onboardingIncomplete => 'Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.';
 }
 
 // Path: settings
@@ -420,6 +422,7 @@ class _Translations$doctorSearch$az extends Translations$doctorSearch$en {
 	@override String get noDoctorsFound => 'Həkim tapılmadı';
 	@override String get adjustSearch => 'Axtarış və ya filtrləri dəyişməyə cəhd edin';
 	@override String get couldNotLoadDoctors => 'Həkimlər yüklənə bilmədi';
+	@override String get loadMore => 'Daha çox göstər';
 	@override late final _Translations$doctorSearch$spec$az spec = _Translations$doctorSearch$spec$az._(_root);
 	@override String get noAvailability => 'Vaxt yoxdur';
 	@override String get availableToday => 'Bugün müsaittir';
@@ -866,6 +869,8 @@ extension on TranslationsAz {
 			'errors.validationError' => 'Doğrulama xətası',
 			'errors.serverError' => ({required Object code}) => 'Server xətası (${code}). Zəhmət olmasa yenidən cəhd edin.',
 			'errors.socialLoginFailed' => 'Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.',
+			'errors.conflict' => 'Bu əməliyyat hazırda tamamlana bilmir.',
+			'errors.onboardingIncomplete' => 'Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.',
 			'settings.title' => 'Parametrlər',
 			'settings.account' => 'Hesab',
 			'settings.profile' => 'Profil',
@@ -1021,6 +1026,7 @@ extension on TranslationsAz {
 			'doctorSearch.noDoctorsFound' => 'Həkim tapılmadı',
 			'doctorSearch.adjustSearch' => 'Axtarış və ya filtrləri dəyişməyə cəhd edin',
 			'doctorSearch.couldNotLoadDoctors' => 'Həkimlər yüklənə bilmədi',
+			'doctorSearch.loadMore' => 'Daha çox göstər',
 			'doctorSearch.spec.general' => 'Ümumi',
 			'doctorSearch.spec.cardiology' => 'Kardiologiya',
 			'doctorSearch.spec.dermatology' => 'Dermatologiya',

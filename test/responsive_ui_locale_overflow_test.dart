@@ -22,6 +22,7 @@ import 'package:medalize_mb/features/doctor/presentation/screens/doctor_appointm
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_home_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/working_hours_editor_screen.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/notifications/data/models/notification_model.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
@@ -50,6 +51,24 @@ class _OfflineFavoritesRepository extends FavoritesRepository {
   @override
   Future<List<DoctorModel>> getFavorites() async =>
       throw const NetworkException();
+}
+
+class _FakeDoctorRepository extends DoctorRepository {
+  _FakeDoctorRepository(this._doctors) : super(Dio());
+  final List<DoctorModel> _doctors;
+
+  @override
+  Future<DoctorSearchPage> searchDoctors({
+    String? name,
+    String? specialization,
+    String? city,
+    int? minRating,
+    String? ordering,
+    double? lat,
+    double? lng,
+    int page = 1,
+  }) async =>
+      DoctorSearchPage(doctors: _doctors, hasMore: false);
 }
 
 /// Stands in for AuthRepository's network calls (same as
@@ -321,8 +340,8 @@ void main() {
         overrides: [
           favoritesRepositoryProvider
               .overrideWithValue(_OfflineFavoritesRepository()),
-          doctorSearchProvider
-              .overrideWith((ref, params) async => [_searchDoctor()]),
+          doctorRepositoryProvider
+              .overrideWithValue(_FakeDoctorRepository([_searchDoctor()])),
           nextAvailableDateProvider.overrideWith(
               (ref, id) async => DateTime.now().add(const Duration(days: 2))),
         ],

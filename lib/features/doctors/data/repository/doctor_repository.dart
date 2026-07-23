@@ -11,11 +11,20 @@ final doctorRepositoryProvider = Provider<DoctorRepository>(
   (ref) => DoctorRepository(ref.read(dioClientProvider)),
 );
 
+/// One page of doctor search results, plus whether the backend has more
+/// (derived from DRF's `next` field) so the UI knows whether to show a
+/// "Load more" affordance.
+class DoctorSearchPage {
+  const DoctorSearchPage({required this.doctors, required this.hasMore});
+  final List<DoctorModel> doctors;
+  final bool hasMore;
+}
+
 class DoctorRepository {
   DoctorRepository(this._dio);
   final Dio _dio;
 
-  Future<List<DoctorModel>> searchDoctors({
+  Future<DoctorSearchPage> searchDoctors({
     String? name,
     String? specialization,
     String? city,
@@ -23,9 +32,10 @@ class DoctorRepository {
     String? ordering,
     double? lat,
     double? lng,
+    int page = 1,
   }) async {
     try {
-      final params = <String, dynamic>{};
+      final params = <String, dynamic>{'page': page};
       if (name != null && name.isNotEmpty) params['name'] = name;
       if (specialization != null && specialization.isNotEmpty) params['specialization'] = specialization;
       if (city != null && city.isNotEmpty) params['city'] = city;
@@ -34,8 +44,20 @@ class DoctorRepository {
       if (lat != null) params['lat'] = lat;
       if (lng != null) params['lng'] = lng;
       final res = await _dio.get('/doctors/', queryParameters: params);
-      final results = (res.data['results'] as List<dynamic>?) ?? res.data as List<dynamic>;
-      return results.map((e) => DoctorModel.fromJson(e as Map<String, dynamic>)).toList();
+      final data = res.data;
+      if (data is Map<String, dynamic>) {
+        final results = (data['results'] as List<dynamic>?) ?? const [];
+        return DoctorSearchPage(
+          doctors: results.map((e) => DoctorModel.fromJson(e as Map<String, dynamic>)).toList(),
+          hasMore: data['next'] != null,
+        );
+      }
+      // Defensive fallback for a non-paginated flat array response.
+      final results = data as List<dynamic>;
+      return DoctorSearchPage(
+        doctors: results.map((e) => DoctorModel.fromJson(e as Map<String, dynamic>)).toList(),
+        hasMore: false,
+      );
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {

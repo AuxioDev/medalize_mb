@@ -89,7 +89,9 @@
     "permissionDenied": "您没有执行此操作的权限。",
     "validationError": "验证错误",
     "serverError": "服务器错误（$code），请重试。",
-    "socialLoginFailed": "登录失败，请重试或使用邮箱和密码登录。"
+    "socialLoginFailed": "登录失败，请重试或使用邮箱和密码登录。",
+    "conflict": "当前无法完成此操作。",
+    "onboardingIncomplete": "请填写所有必填项以完成入驻。"
   },
   "settings": {
     "title": "设置",
@@ -259,6 +261,7 @@
     "noDoctorsFound": "未找到医生",
     "adjustSearch": "请尝试调整搜索或筛选条件",
     "couldNotLoadDoctors": "无法加载医生",
+    "loadMore": "加载更多",
     "spec": {
       "general": "全科",
       "cardiology": "心脏科",
