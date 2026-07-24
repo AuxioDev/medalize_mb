@@ -71,6 +71,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$legal$zh legal = _Translations$legal$zh._(_root);
 	@override late final _Translations$medications$zh medications = _Translations$medications$zh._(_root);
 	@override late final _Translations$prescriptions$zh prescriptions = _Translations$prescriptions$zh._(_root);
+	@override late final _Translations$records$zh records = _Translations$records$zh._(_root);
 }
 
 // Path: common
@@ -841,6 +842,40 @@ class _Translations$prescriptions$zh extends Translations$prescriptions$en {
 	@override String get youHavePrescription => '此预约已有处方';
 }
 
+// Path: records
+class _Translations$records$zh extends Translations$records$en {
+	_Translations$records$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '健康档案';
+	@override String get upload => '上传文件';
+	@override String get recordType => '文件类型';
+	@override String get typeLabResult => '化验结果';
+	@override String get typeImaging => '影像检查';
+	@override String get typeDocument => '文档';
+	@override String get typeOther => '其他';
+	@override String get recordTitle => '标题';
+	@override String get recordDate => '日期';
+	@override String get notes => '备注';
+	@override String get chooseFile => '选择文件';
+	@override String get changeFile => '更换文件';
+	@override String get noFileChosen => '未选择文件';
+	@override String get save => '保存';
+	@override String get delete => '删除';
+	@override String get deleteConfirmTitle => '删除档案';
+	@override String get deleteConfirmBody => '确定要删除这份档案吗?此操作无法撤销。';
+	@override String get empty => '暂无健康档案';
+	@override String get emptySubtitle => '将化验结果、影像检查和其他文档集中保存在这里。';
+	@override String get view => '查看';
+	@override String get fileRequired => '请选择要上传的文件';
+	@override String get titleRequired => '请填写标题';
+	@override String get uploadSuccess => '文件已上传。';
+	@override String get deletedSuccess => '文件已删除。';
+	@override String get couldNotOpen => '无法打开文件';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1391,6 +1426,33 @@ extension on TranslationsZh {
 			'prescriptions.itemsCount' => ({required Object count}) => '${count} 种药物',
 			'prescriptions.newPrescription' => '新处方',
 			'prescriptions.youHavePrescription' => '此预约已有处方',
+			'records.title' => '健康档案',
+			'records.upload' => '上传文件',
+			'records.recordType' => '文件类型',
+			'records.typeLabResult' => '化验结果',
+			'records.typeImaging' => '影像检查',
+			'records.typeDocument' => '文档',
+			_ => null,
+		} ?? switch (path) {
+			'records.typeOther' => '其他',
+			'records.recordTitle' => '标题',
+			'records.recordDate' => '日期',
+			'records.notes' => '备注',
+			'records.chooseFile' => '选择文件',
+			'records.changeFile' => '更换文件',
+			'records.noFileChosen' => '未选择文件',
+			'records.save' => '保存',
+			'records.delete' => '删除',
+			'records.deleteConfirmTitle' => '删除档案',
+			'records.deleteConfirmBody' => '确定要删除这份档案吗?此操作无法撤销。',
+			'records.empty' => '暂无健康档案',
+			'records.emptySubtitle' => '将化验结果、影像检查和其他文档集中保存在这里。',
+			'records.view' => '查看',
+			'records.fileRequired' => '请选择要上传的文件',
+			'records.titleRequired' => '请填写标题',
+			'records.uploadSuccess' => '文件已上传。',
+			'records.deletedSuccess' => '文件已删除。',
+			'records.couldNotOpen' => '无法打开文件',
 			_ => null,
 		};
 	}

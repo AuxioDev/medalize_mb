@@ -71,6 +71,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$legal$ru legal = _Translations$legal$ru._(_root);
 	@override late final _Translations$medications$ru medications = _Translations$medications$ru._(_root);
 	@override late final _Translations$prescriptions$ru prescriptions = _Translations$prescriptions$ru._(_root);
+	@override late final _Translations$records$ru records = _Translations$records$ru._(_root);
 }
 
 // Path: common
@@ -841,6 +842,40 @@ class _Translations$prescriptions$ru extends Translations$prescriptions$en {
 	@override String get youHavePrescription => 'Для этой записи есть рецепт';
 }
 
+// Path: records
+class _Translations$records$ru extends Translations$records$en {
+	_Translations$records$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Медицинские документы';
+	@override String get upload => 'Загрузить документ';
+	@override String get recordType => 'Тип документа';
+	@override String get typeLabResult => 'Анализ';
+	@override String get typeImaging => 'Снимок';
+	@override String get typeDocument => 'Документ';
+	@override String get typeOther => 'Другое';
+	@override String get recordTitle => 'Название';
+	@override String get recordDate => 'Дата';
+	@override String get notes => 'Заметки';
+	@override String get chooseFile => 'Выбрать файл';
+	@override String get changeFile => 'Изменить файл';
+	@override String get noFileChosen => 'Файл не выбран';
+	@override String get save => 'Сохранить';
+	@override String get delete => 'Удалить';
+	@override String get deleteConfirmTitle => 'Удалить документ';
+	@override String get deleteConfirmBody => 'Удалить этот документ? Это действие необратимо.';
+	@override String get empty => 'Пока нет документов';
+	@override String get emptySubtitle => 'Загружайте результаты анализов, снимки и другие документы в одном месте.';
+	@override String get view => 'Открыть';
+	@override String get fileRequired => 'Выберите файл для загрузки';
+	@override String get titleRequired => 'Укажите название';
+	@override String get uploadSuccess => 'Документ загружен.';
+	@override String get deletedSuccess => 'Документ удалён.';
+	@override String get couldNotOpen => 'Не удалось открыть файл';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -1391,6 +1426,33 @@ extension on TranslationsRu {
 			'prescriptions.itemsCount' => ({required Object count}) => 'Лекарств: ${count}',
 			'prescriptions.newPrescription' => 'Новый рецепт',
 			'prescriptions.youHavePrescription' => 'Для этой записи есть рецепт',
+			'records.title' => 'Медицинские документы',
+			'records.upload' => 'Загрузить документ',
+			'records.recordType' => 'Тип документа',
+			'records.typeLabResult' => 'Анализ',
+			'records.typeImaging' => 'Снимок',
+			'records.typeDocument' => 'Документ',
+			_ => null,
+		} ?? switch (path) {
+			'records.typeOther' => 'Другое',
+			'records.recordTitle' => 'Название',
+			'records.recordDate' => 'Дата',
+			'records.notes' => 'Заметки',
+			'records.chooseFile' => 'Выбрать файл',
+			'records.changeFile' => 'Изменить файл',
+			'records.noFileChosen' => 'Файл не выбран',
+			'records.save' => 'Сохранить',
+			'records.delete' => 'Удалить',
+			'records.deleteConfirmTitle' => 'Удалить документ',
+			'records.deleteConfirmBody' => 'Удалить этот документ? Это действие необратимо.',
+			'records.empty' => 'Пока нет документов',
+			'records.emptySubtitle' => 'Загружайте результаты анализов, снимки и другие документы в одном месте.',
+			'records.view' => 'Открыть',
+			'records.fileRequired' => 'Выберите файл для загрузки',
+			'records.titleRequired' => 'Укажите название',
+			'records.uploadSuccess' => 'Документ загружен.',
+			'records.deletedSuccess' => 'Документ удалён.',
+			'records.couldNotOpen' => 'Не удалось открыть файл',
 			_ => null,
 		};
 	}

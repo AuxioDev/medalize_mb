@@ -570,5 +570,32 @@
     "itemsCount": "Лекарств: $count",
     "newPrescription": "Новый рецепт",
     "youHavePrescription": "Для этой записи есть рецепт"
+  },
+  "records": {
+    "title": "Медицинские документы",
+    "upload": "Загрузить документ",
+    "recordType": "Тип документа",
+    "typeLabResult": "Анализ",
+    "typeImaging": "Снимок",
+    "typeDocument": "Документ",
+    "typeOther": "Другое",
+    "recordTitle": "Название",
+    "recordDate": "Дата",
+    "notes": "Заметки",
+    "chooseFile": "Выбрать файл",
+    "changeFile": "Изменить файл",
+    "noFileChosen": "Файл не выбран",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "deleteConfirmTitle": "Удалить документ",
+    "deleteConfirmBody": "Удалить этот документ? Это действие необратимо.",
+    "empty": "Пока нет документов",
+    "emptySubtitle": "Загружайте результаты анализов, снимки и другие документы в одном месте.",
+    "view": "Открыть",
+    "fileRequired": "Выберите файл для загрузки",
+    "titleRequired": "Укажите название",
+    "uploadSuccess": "Документ загружен.",
+    "deletedSuccess": "Документ удалён.",
+    "couldNotOpen": "Не удалось открыть файл"
   }
 }

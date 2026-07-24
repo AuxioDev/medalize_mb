@@ -405,12 +405,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   alignment: Alignment.centerLeft,
                   child: Material(
                     color: Colors.transparent,
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: const Icon(Icons.medication_outlined),
-                      title: Text(context.t.medications.title),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () => context.push('/patient/medications'),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          leading: const Icon(Icons.medication_outlined),
+                          title: Text(context.t.medications.title),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: () => context.push('/patient/medications'),
+                        ),
+                        ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          leading: const Icon(Icons.folder_shared_outlined),
+                          title: Text(context.t.records.title),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: () => context.push('/patient/records'),
+                        ),
+                      ],
                     ),
                   ),
                 ),

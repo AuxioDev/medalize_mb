@@ -570,5 +570,32 @@
     "itemsCount": "$count medications",
     "newPrescription": "New Prescription",
     "youHavePrescription": "This appointment has a prescription"
+  },
+  "records": {
+    "title": "Health Records",
+    "upload": "Upload Record",
+    "recordType": "Record Type",
+    "typeLabResult": "Lab Result",
+    "typeImaging": "Imaging",
+    "typeDocument": "Document",
+    "typeOther": "Other",
+    "recordTitle": "Title",
+    "recordDate": "Date",
+    "notes": "Notes",
+    "chooseFile": "Choose File",
+    "changeFile": "Change File",
+    "noFileChosen": "No file chosen",
+    "save": "Save",
+    "delete": "Delete",
+    "deleteConfirmTitle": "Delete Record",
+    "deleteConfirmBody": "Are you sure you want to delete this record? This cannot be undone.",
+    "empty": "No health records yet",
+    "emptySubtitle": "Upload lab results, imaging, or other documents to keep them all in one place.",
+    "view": "View",
+    "fileRequired": "Choose a file to upload",
+    "titleRequired": "Title is required",
+    "uploadSuccess": "Record uploaded.",
+    "deletedSuccess": "Record deleted.",
+    "couldNotOpen": "Could not open the file"
   }
 }

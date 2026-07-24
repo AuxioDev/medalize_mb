@@ -71,6 +71,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$legal$az legal = _Translations$legal$az._(_root);
 	@override late final _Translations$medications$az medications = _Translations$medications$az._(_root);
 	@override late final _Translations$prescriptions$az prescriptions = _Translations$prescriptions$az._(_root);
+	@override late final _Translations$records$az records = _Translations$records$az._(_root);
 }
 
 // Path: common
@@ -841,6 +842,40 @@ class _Translations$prescriptions$az extends Translations$prescriptions$en {
 	@override String get youHavePrescription => 'Bu qəbul üçün resept mövcuddur';
 }
 
+// Path: records
+class _Translations$records$az extends Translations$records$en {
+	_Translations$records$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tibbi sənədlər';
+	@override String get upload => 'Sənəd yüklə';
+	@override String get recordType => 'Sənəd növü';
+	@override String get typeLabResult => 'Analiz nəticəsi';
+	@override String get typeImaging => 'Görüntüləmə';
+	@override String get typeDocument => 'Sənəd';
+	@override String get typeOther => 'Digər';
+	@override String get recordTitle => 'Başlıq';
+	@override String get recordDate => 'Tarix';
+	@override String get notes => 'Qeydlər';
+	@override String get chooseFile => 'Fayl seç';
+	@override String get changeFile => 'Faylı dəyiş';
+	@override String get noFileChosen => 'Fayl seçilməyib';
+	@override String get save => 'Yadda saxla';
+	@override String get delete => 'Sil';
+	@override String get deleteConfirmTitle => 'Sənədi sil';
+	@override String get deleteConfirmBody => 'Bu sənədi silmək istədiyinizə əminsiniz? Bu geri qaytarıla bilməz.';
+	@override String get empty => 'Hələ tibbi sənəd yoxdur';
+	@override String get emptySubtitle => 'Analiz nəticələrini, görüntüləri və digər sənədləri bir yerdə saxlayın.';
+	@override String get view => 'Bax';
+	@override String get fileRequired => 'Yükləmək üçün fayl seçin';
+	@override String get titleRequired => 'Başlıq tələb olunur';
+	@override String get uploadSuccess => 'Sənəd yükləndi.';
+	@override String get deletedSuccess => 'Sənəd silindi.';
+	@override String get couldNotOpen => 'Fayl açılmadı';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -1391,6 +1426,33 @@ extension on TranslationsAz {
 			'prescriptions.itemsCount' => ({required Object count}) => '${count} dərman',
 			'prescriptions.newPrescription' => 'Yeni resept',
 			'prescriptions.youHavePrescription' => 'Bu qəbul üçün resept mövcuddur',
+			'records.title' => 'Tibbi sənədlər',
+			'records.upload' => 'Sənəd yüklə',
+			'records.recordType' => 'Sənəd növü',
+			'records.typeLabResult' => 'Analiz nəticəsi',
+			'records.typeImaging' => 'Görüntüləmə',
+			'records.typeDocument' => 'Sənəd',
+			_ => null,
+		} ?? switch (path) {
+			'records.typeOther' => 'Digər',
+			'records.recordTitle' => 'Başlıq',
+			'records.recordDate' => 'Tarix',
+			'records.notes' => 'Qeydlər',
+			'records.chooseFile' => 'Fayl seç',
+			'records.changeFile' => 'Faylı dəyiş',
+			'records.noFileChosen' => 'Fayl seçilməyib',
+			'records.save' => 'Yadda saxla',
+			'records.delete' => 'Sil',
+			'records.deleteConfirmTitle' => 'Sənədi sil',
+			'records.deleteConfirmBody' => 'Bu sənədi silmək istədiyinizə əminsiniz? Bu geri qaytarıla bilməz.',
+			'records.empty' => 'Hələ tibbi sənəd yoxdur',
+			'records.emptySubtitle' => 'Analiz nəticələrini, görüntüləri və digər sənədləri bir yerdə saxlayın.',
+			'records.view' => 'Bax',
+			'records.fileRequired' => 'Yükləmək üçün fayl seçin',
+			'records.titleRequired' => 'Başlıq tələb olunur',
+			'records.uploadSuccess' => 'Sənəd yükləndi.',
+			'records.deletedSuccess' => 'Sənəd silindi.',
+			'records.couldNotOpen' => 'Fayl açılmadı',
 			_ => null,
 		};
 	}

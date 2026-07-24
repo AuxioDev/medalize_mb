@@ -31,6 +31,8 @@ import 'package:medalize_mb/features/prescriptions/presentation/screens/prescrip
 import 'package:medalize_mb/features/prescriptions/presentation/screens/prescription_list_screen.dart';
 import 'package:medalize_mb/features/prescriptions/presentation/screens/write_prescription_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
+import 'package:medalize_mb/features/records/presentation/screens/records_list_screen.dart';
+import 'package:medalize_mb/features/records/presentation/screens/upload_record_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_calendar_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_detail_screen.dart';
@@ -223,6 +225,16 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, state) => _pushPage(
           PrescriptionDetailScreen(prescriptionId: state.pathParameters['id']!),
         ),
+      ),
+
+      // Health records (Phase 1, Section 3)
+      GoRoute(
+        path: '/patient/records',
+        pageBuilder: (_, _) => _pushPage(const RecordsListScreen()),
+      ),
+      GoRoute(
+        path: '/patient/records/upload',
+        pageBuilder: (_, _) => _modalPage(const UploadRecordScreen()),
       ),
 
       // Doctor routes

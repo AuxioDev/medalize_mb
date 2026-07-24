@@ -570,5 +570,32 @@
     "itemsCount": "$count ilaç",
     "newPrescription": "Yeni Reçete",
     "youHavePrescription": "Bu randevu için bir reçete var"
+  },
+  "records": {
+    "title": "Sağlık Kayıtları",
+    "upload": "Belge Yükle",
+    "recordType": "Belge Türü",
+    "typeLabResult": "Tahlil Sonucu",
+    "typeImaging": "Görüntüleme",
+    "typeDocument": "Belge",
+    "typeOther": "Diğer",
+    "recordTitle": "Başlık",
+    "recordDate": "Tarih",
+    "notes": "Notlar",
+    "chooseFile": "Dosya Seç",
+    "changeFile": "Dosyayı Değiştir",
+    "noFileChosen": "Dosya seçilmedi",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "deleteConfirmTitle": "Belgeyi Sil",
+    "deleteConfirmBody": "Bu belgeyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    "empty": "Henüz sağlık kaydı yok",
+    "emptySubtitle": "Tahlil sonuçlarını, görüntüleri ve diğer belgeleri tek bir yerde saklayın.",
+    "view": "Görüntüle",
+    "fileRequired": "Yüklemek için bir dosya seçin",
+    "titleRequired": "Başlık gereklidir",
+    "uploadSuccess": "Belge yüklendi.",
+    "deletedSuccess": "Belge silindi.",
+    "couldNotOpen": "Dosya açılamadı"
   }
 }

@@ -570,5 +570,32 @@
     "itemsCount": "$count 种药物",
     "newPrescription": "新处方",
     "youHavePrescription": "此预约已有处方"
+  },
+  "records": {
+    "title": "健康档案",
+    "upload": "上传文件",
+    "recordType": "文件类型",
+    "typeLabResult": "化验结果",
+    "typeImaging": "影像检查",
+    "typeDocument": "文档",
+    "typeOther": "其他",
+    "recordTitle": "标题",
+    "recordDate": "日期",
+    "notes": "备注",
+    "chooseFile": "选择文件",
+    "changeFile": "更换文件",
+    "noFileChosen": "未选择文件",
+    "save": "保存",
+    "delete": "删除",
+    "deleteConfirmTitle": "删除档案",
+    "deleteConfirmBody": "确定要删除这份档案吗?此操作无法撤销。",
+    "empty": "暂无健康档案",
+    "emptySubtitle": "将化验结果、影像检查和其他文档集中保存在这里。",
+    "view": "查看",
+    "fileRequired": "请选择要上传的文件",
+    "titleRequired": "请填写标题",
+    "uploadSuccess": "文件已上传。",
+    "deletedSuccess": "文件已删除。",
+    "couldNotOpen": "无法打开文件"
   }
 }

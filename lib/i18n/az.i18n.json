@@ -570,5 +570,32 @@
     "itemsCount": "$count dərman",
     "newPrescription": "Yeni resept",
     "youHavePrescription": "Bu qəbul üçün resept mövcuddur"
+  },
+  "records": {
+    "title": "Tibbi sənədlər",
+    "upload": "Sənəd yüklə",
+    "recordType": "Sənəd növü",
+    "typeLabResult": "Analiz nəticəsi",
+    "typeImaging": "Görüntüləmə",
+    "typeDocument": "Sənəd",
+    "typeOther": "Digər",
+    "recordTitle": "Başlıq",
+    "recordDate": "Tarix",
+    "notes": "Qeydlər",
+    "chooseFile": "Fayl seç",
+    "changeFile": "Faylı dəyiş",
+    "noFileChosen": "Fayl seçilməyib",
+    "save": "Yadda saxla",
+    "delete": "Sil",
+    "deleteConfirmTitle": "Sənədi sil",
+    "deleteConfirmBody": "Bu sənədi silmək istədiyinizə əminsiniz? Bu geri qaytarıla bilməz.",
+    "empty": "Hələ tibbi sənəd yoxdur",
+    "emptySubtitle": "Analiz nəticələrini, görüntüləri və digər sənədləri bir yerdə saxlayın.",
+    "view": "Bax",
+    "fileRequired": "Yükləmək üçün fayl seçin",
+    "titleRequired": "Başlıq tələb olunur",
+    "uploadSuccess": "Sənəd yükləndi.",
+    "deletedSuccess": "Sənəd silindi.",
+    "couldNotOpen": "Fayl açılmadı"
   }
 }

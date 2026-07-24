@@ -71,6 +71,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$legal$tr legal = _Translations$legal$tr._(_root);
 	@override late final _Translations$medications$tr medications = _Translations$medications$tr._(_root);
 	@override late final _Translations$prescriptions$tr prescriptions = _Translations$prescriptions$tr._(_root);
+	@override late final _Translations$records$tr records = _Translations$records$tr._(_root);
 }
 
 // Path: common
@@ -841,6 +842,40 @@ class _Translations$prescriptions$tr extends Translations$prescriptions$en {
 	@override String get youHavePrescription => 'Bu randevu için bir reçete var';
 }
 
+// Path: records
+class _Translations$records$tr extends Translations$records$en {
+	_Translations$records$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Sağlık Kayıtları';
+	@override String get upload => 'Belge Yükle';
+	@override String get recordType => 'Belge Türü';
+	@override String get typeLabResult => 'Tahlil Sonucu';
+	@override String get typeImaging => 'Görüntüleme';
+	@override String get typeDocument => 'Belge';
+	@override String get typeOther => 'Diğer';
+	@override String get recordTitle => 'Başlık';
+	@override String get recordDate => 'Tarih';
+	@override String get notes => 'Notlar';
+	@override String get chooseFile => 'Dosya Seç';
+	@override String get changeFile => 'Dosyayı Değiştir';
+	@override String get noFileChosen => 'Dosya seçilmedi';
+	@override String get save => 'Kaydet';
+	@override String get delete => 'Sil';
+	@override String get deleteConfirmTitle => 'Belgeyi Sil';
+	@override String get deleteConfirmBody => 'Bu belgeyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.';
+	@override String get empty => 'Henüz sağlık kaydı yok';
+	@override String get emptySubtitle => 'Tahlil sonuçlarını, görüntüleri ve diğer belgeleri tek bir yerde saklayın.';
+	@override String get view => 'Görüntüle';
+	@override String get fileRequired => 'Yüklemek için bir dosya seçin';
+	@override String get titleRequired => 'Başlık gereklidir';
+	@override String get uploadSuccess => 'Belge yüklendi.';
+	@override String get deletedSuccess => 'Belge silindi.';
+	@override String get couldNotOpen => 'Dosya açılamadı';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1391,6 +1426,33 @@ extension on TranslationsTr {
 			'prescriptions.itemsCount' => ({required Object count}) => '${count} ilaç',
 			'prescriptions.newPrescription' => 'Yeni Reçete',
 			'prescriptions.youHavePrescription' => 'Bu randevu için bir reçete var',
+			'records.title' => 'Sağlık Kayıtları',
+			'records.upload' => 'Belge Yükle',
+			'records.recordType' => 'Belge Türü',
+			'records.typeLabResult' => 'Tahlil Sonucu',
+			'records.typeImaging' => 'Görüntüleme',
+			'records.typeDocument' => 'Belge',
+			_ => null,
+		} ?? switch (path) {
+			'records.typeOther' => 'Diğer',
+			'records.recordTitle' => 'Başlık',
+			'records.recordDate' => 'Tarih',
+			'records.notes' => 'Notlar',
+			'records.chooseFile' => 'Dosya Seç',
+			'records.changeFile' => 'Dosyayı Değiştir',
+			'records.noFileChosen' => 'Dosya seçilmedi',
+			'records.save' => 'Kaydet',
+			'records.delete' => 'Sil',
+			'records.deleteConfirmTitle' => 'Belgeyi Sil',
+			'records.deleteConfirmBody' => 'Bu belgeyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.',
+			'records.empty' => 'Henüz sağlık kaydı yok',
+			'records.emptySubtitle' => 'Tahlil sonuçlarını, görüntüleri ve diğer belgeleri tek bir yerde saklayın.',
+			'records.view' => 'Görüntüle',
+			'records.fileRequired' => 'Yüklemek için bir dosya seçin',
+			'records.titleRequired' => 'Başlık gereklidir',
+			'records.uploadSuccess' => 'Belge yüklendi.',
+			'records.deletedSuccess' => 'Belge silindi.',
+			'records.couldNotOpen' => 'Dosya açılamadı',
 			_ => null,
 		};
 	}

@@ -71,6 +71,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$legal$fr legal = _Translations$legal$fr._(_root);
 	@override late final _Translations$medications$fr medications = _Translations$medications$fr._(_root);
 	@override late final _Translations$prescriptions$fr prescriptions = _Translations$prescriptions$fr._(_root);
+	@override late final _Translations$records$fr records = _Translations$records$fr._(_root);
 }
 
 // Path: common
@@ -841,6 +842,40 @@ class _Translations$prescriptions$fr extends Translations$prescriptions$en {
 	@override String get youHavePrescription => 'Ce rendez-vous a une ordonnance';
 }
 
+// Path: records
+class _Translations$records$fr extends Translations$records$en {
+	_Translations$records$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dossier Médical';
+	@override String get upload => 'Téléverser un document';
+	@override String get recordType => 'Type de document';
+	@override String get typeLabResult => 'Résultat d\'analyse';
+	@override String get typeImaging => 'Imagerie';
+	@override String get typeDocument => 'Document';
+	@override String get typeOther => 'Autre';
+	@override String get recordTitle => 'Titre';
+	@override String get recordDate => 'Date';
+	@override String get notes => 'Notes';
+	@override String get chooseFile => 'Choisir un fichier';
+	@override String get changeFile => 'Changer de fichier';
+	@override String get noFileChosen => 'Aucun fichier choisi';
+	@override String get save => 'Enregistrer';
+	@override String get delete => 'Supprimer';
+	@override String get deleteConfirmTitle => 'Supprimer le document';
+	@override String get deleteConfirmBody => 'Voulez-vous vraiment supprimer ce document ? Cette action est irréversible.';
+	@override String get empty => 'Aucun document médical pour l\'instant';
+	@override String get emptySubtitle => 'Conservez vos résultats d\'analyses, imageries et autres documents au même endroit.';
+	@override String get view => 'Ouvrir';
+	@override String get fileRequired => 'Choisissez un fichier à téléverser';
+	@override String get titleRequired => 'Le titre est requis';
+	@override String get uploadSuccess => 'Document téléversé.';
+	@override String get deletedSuccess => 'Document supprimé.';
+	@override String get couldNotOpen => 'Impossible d\'ouvrir le fichier';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -1391,6 +1426,33 @@ extension on TranslationsFr {
 			'prescriptions.itemsCount' => ({required Object count}) => '${count} médicaments',
 			'prescriptions.newPrescription' => 'Nouvelle ordonnance',
 			'prescriptions.youHavePrescription' => 'Ce rendez-vous a une ordonnance',
+			'records.title' => 'Dossier Médical',
+			'records.upload' => 'Téléverser un document',
+			'records.recordType' => 'Type de document',
+			'records.typeLabResult' => 'Résultat d\'analyse',
+			'records.typeImaging' => 'Imagerie',
+			'records.typeDocument' => 'Document',
+			_ => null,
+		} ?? switch (path) {
+			'records.typeOther' => 'Autre',
+			'records.recordTitle' => 'Titre',
+			'records.recordDate' => 'Date',
+			'records.notes' => 'Notes',
+			'records.chooseFile' => 'Choisir un fichier',
+			'records.changeFile' => 'Changer de fichier',
+			'records.noFileChosen' => 'Aucun fichier choisi',
+			'records.save' => 'Enregistrer',
+			'records.delete' => 'Supprimer',
+			'records.deleteConfirmTitle' => 'Supprimer le document',
+			'records.deleteConfirmBody' => 'Voulez-vous vraiment supprimer ce document ? Cette action est irréversible.',
+			'records.empty' => 'Aucun document médical pour l\'instant',
+			'records.emptySubtitle' => 'Conservez vos résultats d\'analyses, imageries et autres documents au même endroit.',
+			'records.view' => 'Ouvrir',
+			'records.fileRequired' => 'Choisissez un fichier à téléverser',
+			'records.titleRequired' => 'Le titre est requis',
+			'records.uploadSuccess' => 'Document téléversé.',
+			'records.deletedSuccess' => 'Document supprimé.',
+			'records.couldNotOpen' => 'Impossible d\'ouvrir le fichier',
 			_ => null,
 		};
 	}

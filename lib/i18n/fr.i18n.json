@@ -570,5 +570,32 @@
     "itemsCount": "$count médicaments",
     "newPrescription": "Nouvelle ordonnance",
     "youHavePrescription": "Ce rendez-vous a une ordonnance"
+  },
+  "records": {
+    "title": "Dossier Médical",
+    "upload": "Téléverser un document",
+    "recordType": "Type de document",
+    "typeLabResult": "Résultat d'analyse",
+    "typeImaging": "Imagerie",
+    "typeDocument": "Document",
+    "typeOther": "Autre",
+    "recordTitle": "Titre",
+    "recordDate": "Date",
+    "notes": "Notes",
+    "chooseFile": "Choisir un fichier",
+    "changeFile": "Changer de fichier",
+    "noFileChosen": "Aucun fichier choisi",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "deleteConfirmTitle": "Supprimer le document",
+    "deleteConfirmBody": "Voulez-vous vraiment supprimer ce document ? Cette action est irréversible.",
+    "empty": "Aucun document médical pour l'instant",
+    "emptySubtitle": "Conservez vos résultats d'analyses, imageries et autres documents au même endroit.",
+    "view": "Ouvrir",
+    "fileRequired": "Choisissez un fichier à téléverser",
+    "titleRequired": "Le titre est requis",
+    "uploadSuccess": "Document téléversé.",
+    "deletedSuccess": "Document supprimé.",
+    "couldNotOpen": "Impossible d'ouvrir le fichier"
   }
 }

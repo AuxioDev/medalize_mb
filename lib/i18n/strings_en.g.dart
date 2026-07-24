@@ -75,6 +75,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$legal$en legal = Translations$legal$en.internal(_root);
 	late final Translations$medications$en medications = Translations$medications$en.internal(_root);
 	late final Translations$prescriptions$en prescriptions = Translations$prescriptions$en.internal(_root);
+	late final Translations$records$en records = Translations$records$en.internal(_root);
 }
 
 // Path: common
@@ -1821,6 +1822,90 @@ class Translations$prescriptions$en {
 	String get youHavePrescription => 'This appointment has a prescription';
 }
 
+// Path: records
+class Translations$records$en {
+	Translations$records$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Health Records'
+	String get title => 'Health Records';
+
+	/// en: 'Upload Record'
+	String get upload => 'Upload Record';
+
+	/// en: 'Record Type'
+	String get recordType => 'Record Type';
+
+	/// en: 'Lab Result'
+	String get typeLabResult => 'Lab Result';
+
+	/// en: 'Imaging'
+	String get typeImaging => 'Imaging';
+
+	/// en: 'Document'
+	String get typeDocument => 'Document';
+
+	/// en: 'Other'
+	String get typeOther => 'Other';
+
+	/// en: 'Title'
+	String get recordTitle => 'Title';
+
+	/// en: 'Date'
+	String get recordDate => 'Date';
+
+	/// en: 'Notes'
+	String get notes => 'Notes';
+
+	/// en: 'Choose File'
+	String get chooseFile => 'Choose File';
+
+	/// en: 'Change File'
+	String get changeFile => 'Change File';
+
+	/// en: 'No file chosen'
+	String get noFileChosen => 'No file chosen';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	/// en: 'Delete'
+	String get delete => 'Delete';
+
+	/// en: 'Delete Record'
+	String get deleteConfirmTitle => 'Delete Record';
+
+	/// en: 'Are you sure you want to delete this record? This cannot be undone.'
+	String get deleteConfirmBody => 'Are you sure you want to delete this record? This cannot be undone.';
+
+	/// en: 'No health records yet'
+	String get empty => 'No health records yet';
+
+	/// en: 'Upload lab results, imaging, or other documents to keep them all in one place.'
+	String get emptySubtitle => 'Upload lab results, imaging, or other documents to keep them all in one place.';
+
+	/// en: 'View'
+	String get view => 'View';
+
+	/// en: 'Choose a file to upload'
+	String get fileRequired => 'Choose a file to upload';
+
+	/// en: 'Title is required'
+	String get titleRequired => 'Title is required';
+
+	/// en: 'Record uploaded.'
+	String get uploadSuccess => 'Record uploaded.';
+
+	/// en: 'Record deleted.'
+	String get deletedSuccess => 'Record deleted.';
+
+	/// en: 'Could not open the file'
+	String get couldNotOpen => 'Could not open the file';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -2407,6 +2492,33 @@ extension on Translations {
 			'prescriptions.itemsCount' => ({required Object count}) => '${count} medications',
 			'prescriptions.newPrescription' => 'New Prescription',
 			'prescriptions.youHavePrescription' => 'This appointment has a prescription',
+			'records.title' => 'Health Records',
+			'records.upload' => 'Upload Record',
+			'records.recordType' => 'Record Type',
+			'records.typeLabResult' => 'Lab Result',
+			'records.typeImaging' => 'Imaging',
+			'records.typeDocument' => 'Document',
+			_ => null,
+		} ?? switch (path) {
+			'records.typeOther' => 'Other',
+			'records.recordTitle' => 'Title',
+			'records.recordDate' => 'Date',
+			'records.notes' => 'Notes',
+			'records.chooseFile' => 'Choose File',
+			'records.changeFile' => 'Change File',
+			'records.noFileChosen' => 'No file chosen',
+			'records.save' => 'Save',
+			'records.delete' => 'Delete',
+			'records.deleteConfirmTitle' => 'Delete Record',
+			'records.deleteConfirmBody' => 'Are you sure you want to delete this record? This cannot be undone.',
+			'records.empty' => 'No health records yet',
+			'records.emptySubtitle' => 'Upload lab results, imaging, or other documents to keep them all in one place.',
+			'records.view' => 'View',
+			'records.fileRequired' => 'Choose a file to upload',
+			'records.titleRequired' => 'Title is required',
+			'records.uploadSuccess' => 'Record uploaded.',
+			'records.deletedSuccess' => 'Record deleted.',
+			'records.couldNotOpen' => 'Could not open the file',
 			_ => null,
 		};
 	}
