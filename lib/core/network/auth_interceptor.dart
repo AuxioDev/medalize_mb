@@ -138,10 +138,21 @@ class AuthInterceptor extends Interceptor {
         email: await storage.getUserEmail() ?? '',
       );
 
-      final retryOptions = err.requestOptions;
-      retryOptions.headers['Authorization'] = 'Bearer $newAccessToken';
-      final retryResponse = await dio.fetch(retryOptions);
-      handler.resolve(retryResponse);
+      // The session is valid again the moment the refresh above succeeds —
+      // a failure retrying the *original* request (transient network blip,
+      // an unrelated 500) is not an auth problem and must not force a
+      // logout. Scoped to its own try/catch so it can't fall into the outer
+      // catch below, which is reserved for actual refresh failures.
+      try {
+        final retryOptions = err.requestOptions;
+        retryOptions.headers['Authorization'] = 'Bearer $newAccessToken';
+        final retryResponse = await dio.fetch(retryOptions);
+        handler.resolve(retryResponse);
+      } catch (e) {
+        handler.next(e is DioException
+            ? e
+            : DioException(requestOptions: err.requestOptions, error: e));
+      }
 
       _drainQueue(newAccessToken);
     } catch (_) {

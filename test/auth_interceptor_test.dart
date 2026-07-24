@@ -219,6 +219,64 @@ void main() {
             'retry successfully again, not be silently dropped');
   });
 
+  test(
+      'a retry failure after a successful refresh does not force logout',
+      () async {
+    // Regression guard: the retried request used to share a try/catch with
+    // the refresh call itself, so an unrelated retry failure (network blip,
+    // a genuine 500 on that endpoint) was indistinguishable from a failed
+    // refresh and forced a spurious logout even though the session was fine.
+    var forceLogoutCalls = 0;
+    final storage = _FakeStorage();
+    final dio = Dio(BaseOptions(baseUrl: 'http://localhost/api'));
+    var patientACall = 0;
+    final adapter = _ScriptedAdapter({
+      '/patient/a': () async {
+        patientACall++;
+        // First call: 401 to trigger the refresh flow. Retry (after a
+        // successful refresh): an unrelated 500, not an auth failure.
+        if (patientACall == 1) {
+          return _jsonResponse(401, {'code': 'general_401'});
+        }
+        return _jsonResponse(500, {'code': 'server_error'});
+      },
+      '/auth/token/refresh/': () async => _jsonResponse(200, {
+            'access': 'new-access',
+            'refresh': 'new-refresh',
+            'role': 'patient',
+            'user_id': 'u1',
+          }),
+    });
+    dio.httpClientAdapter = adapter;
+    final refreshDio = Dio(BaseOptions(baseUrl: 'http://localhost/api'))
+      ..httpClientAdapter = adapter;
+    dio.interceptors.add(AuthInterceptor(
+      storage: storage,
+      dio: dio,
+      refreshDio: refreshDio,
+      onForceLogout: () async {
+        forceLogoutCalls++;
+      },
+    ));
+
+    DioException? caught;
+    try {
+      await dio.get<void>('/patient/a');
+    } on DioException catch (e) {
+      caught = e;
+    }
+
+    expect(forceLogoutCalls, 0,
+        reason: 'the refresh succeeded — the retry failing for its own, '
+            'unrelated reason must not force a logout');
+    expect(caught, isNotNull);
+    expect(caught!.response?.statusCode, 500,
+        reason: "the retry's own error must reach the original caller");
+    expect(storage.savedAccessToken, 'new-access',
+        reason: 'the successful refresh must still be persisted even though '
+            'the retry itself later failed');
+  });
+
   test('login 401 is passed through without forcing logout', () async {
     // Regression guard: a wrong-credentials 401 from /auth/login/ used to hit
     // the token-refresh path, whose forceLogout() async storage wipe overwrote
