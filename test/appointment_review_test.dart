@@ -7,6 +7,8 @@ import 'package:medalize_mb/features/appointments/data/models/appointment_model.
 import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
+import 'package:medalize_mb/features/prescriptions/data/models/prescription_model.dart';
+import 'package:medalize_mb/features/prescriptions/data/repository/prescription_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Records review calls instead of hitting the network.
@@ -38,6 +40,17 @@ class _FakeAppointmentRepository extends AppointmentRepository {
   Future<void> deleteReview(String appointmentId) async {
     deletedAppointmentId = appointmentId;
   }
+}
+
+/// The screen also renders a prescription summary card for completed
+/// appointments (see `_PrescriptionSection`) — stub it out so these
+/// review-focused tests don't hit the network.
+class _NoPrescriptionRepository extends PrescriptionRepository {
+  _NoPrescriptionRepository() : super(Dio());
+
+  @override
+  Future<PrescriptionModel?> getPrescriptionForAppointment(String appointmentId) async =>
+      null;
 }
 
 ReviewModel _review({int rating = 4, String comment = 'Great doctor'}) =>
@@ -84,7 +97,10 @@ AppointmentModel _completedWithReview({required bool canEditReview}) =>
 Widget _app(AppointmentModel appt, _FakeAppointmentRepository repo) =>
     TranslationProvider(
       child: ProviderScope(
-        overrides: [appointmentRepositoryProvider.overrideWithValue(repo)],
+        overrides: [
+          appointmentRepositoryProvider.overrideWithValue(repo),
+          prescriptionRepositoryProvider.overrideWithValue(_NoPrescriptionRepository()),
+        ],
         child: MaterialApp(
           theme: AppTheme.light,
           home: AppointmentDetailScreen(appointment: appt),

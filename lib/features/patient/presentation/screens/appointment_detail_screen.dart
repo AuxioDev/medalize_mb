@@ -18,6 +18,7 @@ import 'package:medalize_mb/features/appointments/data/models/appointment_model.
 import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/features/prescriptions/providers/prescription_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class AppointmentDetailScreen extends ConsumerStatefulWidget {
@@ -559,6 +560,11 @@ class _AppointmentDetailScreenState
                     ),
                   ),
                 ),
+              if (appt.status == 'completed')
+                AnimatedEntrance(
+                  index: 7,
+                  child: _PrescriptionSection(appointment: appt, asDoctor: widget.asDoctor),
+                ),
               const Gap(16),
             ],
           ),
@@ -934,6 +940,84 @@ class _InfoCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Doctor's "write prescription" entry point and patient's "view prescription"
+/// summary card both live here — same file, role-gated via [asDoctor] — per
+/// the shared appointment-detail convention this screen already follows for
+/// reviews. Only ever built for completed appointments (see the `build()`
+/// call site above), so it's the sole place that watches
+/// [appointmentPrescriptionProvider] — non-completed appointments never issue
+/// the network call.
+class _PrescriptionSection extends ConsumerWidget {
+  const _PrescriptionSection({required this.appointment, required this.asDoctor});
+
+  final AppointmentModel appointment;
+  final bool asDoctor;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final async = ref.watch(appointmentPrescriptionProvider(appointment.id));
+    return async.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (prescription) {
+        if (prescription == null) {
+          // Only the issuing doctor gets a call-to-action; a patient simply
+          // sees nothing until one exists.
+          if (!asDoctor) return const SizedBox.shrink();
+          return _InfoCard(
+            label: context.t.prescriptions.title,
+            icon: Icons.receipt_long_outlined,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  context.t.prescriptions.noPrescriptionYet,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const Gap(10),
+                OutlinedButton.icon(
+                  onPressed: () {
+                    HapticFeedback.lightImpact();
+                    context.push(
+                      '/doctor/write-prescription/${appointment.id}',
+                      extra: appointment,
+                    );
+                  },
+                  icon: const Icon(Icons.edit_note_outlined, size: 18),
+                  label: Text(context.t.prescriptions.writePrescription),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return _InfoCard(
+          label: context.t.prescriptions.title,
+          icon: Icons.receipt_long_outlined,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.t.prescriptions.itemsCount(count: prescription.items.length),
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              if (!asDoctor) ...[
+                const Gap(6),
+                TextButton.icon(
+                  onPressed: () =>
+                      context.push('/patient/prescriptions/${prescription.id}'),
+                  icon: const Icon(Icons.chevron_right, size: 16),
+                  label: Text(context.t.prescriptions.viewDetails),
+                ),
+              ],
+            ],
+          ),
+        );
+      },
     );
   }
 }

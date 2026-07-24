@@ -70,6 +70,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$assistant$fr assistant = _Translations$assistant$fr._(_root);
 	@override late final _Translations$legal$fr legal = _Translations$legal$fr._(_root);
 	@override late final _Translations$medications$fr medications = _Translations$medications$fr._(_root);
+	@override late final _Translations$prescriptions$fr prescriptions = _Translations$prescriptions$fr._(_root);
 }
 
 // Path: common
@@ -803,6 +804,43 @@ class _Translations$medications$fr extends Translations$medications$en {
 	@override String get atLeastOneTime => 'Ajoutez au moins une heure de rappel';
 }
 
+// Path: prescriptions
+class _Translations$prescriptions$fr extends Translations$prescriptions$en {
+	_Translations$prescriptions$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ordonnances';
+	@override String get writeTitle => 'Rédiger une ordonnance';
+	@override String get addDrug => 'Ajouter un médicament';
+	@override String get drugName => 'Nom du médicament';
+	@override String get dosage => 'Dosage';
+	@override String get frequency => 'Fréquence';
+	@override String get duration => 'Durée';
+	@override String get instructions => 'Instructions';
+	@override String get notes => 'Notes';
+	@override String get save => 'Enregistrer';
+	@override String get empty => 'Aucune ordonnance pour l\'instant';
+	@override String get emptySubtitle => 'Les ordonnances émises par votre médecin apparaîtront ici.';
+	@override String get viewDetails => 'Voir les détails';
+	@override String issuedBy({required Object name}) => 'Émise par le Dr ${name}';
+	@override String issuedOn({required Object date}) => 'Émise le ${date}';
+	@override String get applyToMedications => 'Ajouter à mes médicaments';
+	@override String get applySuccess => 'Ajouté à vos médicaments. Configurez les heures de rappel pour être notifié.';
+	@override String get alreadyApplied => 'Déjà ajouté à vos médicaments';
+	@override String get noPrescriptionYet => 'Aucune ordonnance pour ce rendez-vous pour l\'instant';
+	@override String get writePrescription => 'Rédiger une ordonnance';
+	@override String get prescriptionIssued => 'Ordonnance émise.';
+	@override String get removeDrug => 'Retirer';
+	@override String get atLeastOneDrug => 'Ajoutez au moins un médicament';
+	@override String get drugNameRequired => 'Le nom du médicament est requis';
+	@override String get summaryTitle => 'Ordonnance';
+	@override String itemsCount({required Object count}) => '${count} médicaments';
+	@override String get newPrescription => 'Nouvelle ordonnance';
+	@override String get youHavePrescription => 'Ce rendez-vous a une ordonnance';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -1325,6 +1363,34 @@ extension on TranslationsFr {
 			'medications.updatedSuccess' => 'Médicament mis à jour.',
 			'medications.deletedSuccess' => 'Médicament supprimé.',
 			'medications.atLeastOneTime' => 'Ajoutez au moins une heure de rappel',
+			'prescriptions.title' => 'Ordonnances',
+			'prescriptions.writeTitle' => 'Rédiger une ordonnance',
+			'prescriptions.addDrug' => 'Ajouter un médicament',
+			'prescriptions.drugName' => 'Nom du médicament',
+			'prescriptions.dosage' => 'Dosage',
+			'prescriptions.frequency' => 'Fréquence',
+			'prescriptions.duration' => 'Durée',
+			'prescriptions.instructions' => 'Instructions',
+			'prescriptions.notes' => 'Notes',
+			'prescriptions.save' => 'Enregistrer',
+			'prescriptions.empty' => 'Aucune ordonnance pour l\'instant',
+			'prescriptions.emptySubtitle' => 'Les ordonnances émises par votre médecin apparaîtront ici.',
+			'prescriptions.viewDetails' => 'Voir les détails',
+			'prescriptions.issuedBy' => ({required Object name}) => 'Émise par le Dr ${name}',
+			'prescriptions.issuedOn' => ({required Object date}) => 'Émise le ${date}',
+			'prescriptions.applyToMedications' => 'Ajouter à mes médicaments',
+			'prescriptions.applySuccess' => 'Ajouté à vos médicaments. Configurez les heures de rappel pour être notifié.',
+			'prescriptions.alreadyApplied' => 'Déjà ajouté à vos médicaments',
+			'prescriptions.noPrescriptionYet' => 'Aucune ordonnance pour ce rendez-vous pour l\'instant',
+			'prescriptions.writePrescription' => 'Rédiger une ordonnance',
+			'prescriptions.prescriptionIssued' => 'Ordonnance émise.',
+			'prescriptions.removeDrug' => 'Retirer',
+			'prescriptions.atLeastOneDrug' => 'Ajoutez au moins un médicament',
+			'prescriptions.drugNameRequired' => 'Le nom du médicament est requis',
+			'prescriptions.summaryTitle' => 'Ordonnance',
+			'prescriptions.itemsCount' => ({required Object count}) => '${count} médicaments',
+			'prescriptions.newPrescription' => 'Nouvelle ordonnance',
+			'prescriptions.youHavePrescription' => 'Ce rendez-vous a une ordonnance',
 			_ => null,
 		};
 	}

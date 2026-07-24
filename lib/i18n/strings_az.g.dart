@@ -70,6 +70,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$assistant$az assistant = _Translations$assistant$az._(_root);
 	@override late final _Translations$legal$az legal = _Translations$legal$az._(_root);
 	@override late final _Translations$medications$az medications = _Translations$medications$az._(_root);
+	@override late final _Translations$prescriptions$az prescriptions = _Translations$prescriptions$az._(_root);
 }
 
 // Path: common
@@ -803,6 +804,43 @@ class _Translations$medications$az extends Translations$medications$en {
 	@override String get atLeastOneTime => 'Ən azı bir xatırlatma vaxtı əlavə edin';
 }
 
+// Path: prescriptions
+class _Translations$prescriptions$az extends Translations$prescriptions$en {
+	_Translations$prescriptions$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Reseptlər';
+	@override String get writeTitle => 'Resept yaz';
+	@override String get addDrug => 'Dərman əlavə et';
+	@override String get drugName => 'Dərmanın adı';
+	@override String get dosage => 'Dozaj';
+	@override String get frequency => 'Qəbul tezliyi';
+	@override String get duration => 'Müddət';
+	@override String get instructions => 'Təlimatlar';
+	@override String get notes => 'Qeydlər';
+	@override String get save => 'Yadda saxla';
+	@override String get empty => 'Hələ resept yoxdur';
+	@override String get emptySubtitle => 'Həkiminizin yazdığı reseptlər burada görünəcək.';
+	@override String get viewDetails => 'Ətraflı';
+	@override String issuedBy({required Object name}) => 'Dr. ${name} tərəfindən yazılıb';
+	@override String issuedOn({required Object date}) => 'Verilmə tarixi: ${date}';
+	@override String get applyToMedications => 'Dərmanlarıma əlavə et';
+	@override String get applySuccess => 'Dərmanlarınıza əlavə edildi. Xatırlatma vaxtlarını təyin edin.';
+	@override String get alreadyApplied => 'Artıq dərmanlarınıza əlavə edilib';
+	@override String get noPrescriptionYet => 'Bu qəbul üçün hələ resept yazılmayıb';
+	@override String get writePrescription => 'Resept yaz';
+	@override String get prescriptionIssued => 'Resept yazıldı.';
+	@override String get removeDrug => 'Sil';
+	@override String get atLeastOneDrug => 'Ən azı bir dərman əlavə edin';
+	@override String get drugNameRequired => 'Dərmanın adını daxil edin';
+	@override String get summaryTitle => 'Resept';
+	@override String itemsCount({required Object count}) => '${count} dərman';
+	@override String get newPrescription => 'Yeni resept';
+	@override String get youHavePrescription => 'Bu qəbul üçün resept mövcuddur';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -1325,6 +1363,34 @@ extension on TranslationsAz {
 			'medications.updatedSuccess' => 'Dərman yeniləndi.',
 			'medications.deletedSuccess' => 'Dərman silindi.',
 			'medications.atLeastOneTime' => 'Ən azı bir xatırlatma vaxtı əlavə edin',
+			'prescriptions.title' => 'Reseptlər',
+			'prescriptions.writeTitle' => 'Resept yaz',
+			'prescriptions.addDrug' => 'Dərman əlavə et',
+			'prescriptions.drugName' => 'Dərmanın adı',
+			'prescriptions.dosage' => 'Dozaj',
+			'prescriptions.frequency' => 'Qəbul tezliyi',
+			'prescriptions.duration' => 'Müddət',
+			'prescriptions.instructions' => 'Təlimatlar',
+			'prescriptions.notes' => 'Qeydlər',
+			'prescriptions.save' => 'Yadda saxla',
+			'prescriptions.empty' => 'Hələ resept yoxdur',
+			'prescriptions.emptySubtitle' => 'Həkiminizin yazdığı reseptlər burada görünəcək.',
+			'prescriptions.viewDetails' => 'Ətraflı',
+			'prescriptions.issuedBy' => ({required Object name}) => 'Dr. ${name} tərəfindən yazılıb',
+			'prescriptions.issuedOn' => ({required Object date}) => 'Verilmə tarixi: ${date}',
+			'prescriptions.applyToMedications' => 'Dərmanlarıma əlavə et',
+			'prescriptions.applySuccess' => 'Dərmanlarınıza əlavə edildi. Xatırlatma vaxtlarını təyin edin.',
+			'prescriptions.alreadyApplied' => 'Artıq dərmanlarınıza əlavə edilib',
+			'prescriptions.noPrescriptionYet' => 'Bu qəbul üçün hələ resept yazılmayıb',
+			'prescriptions.writePrescription' => 'Resept yaz',
+			'prescriptions.prescriptionIssued' => 'Resept yazıldı.',
+			'prescriptions.removeDrug' => 'Sil',
+			'prescriptions.atLeastOneDrug' => 'Ən azı bir dərman əlavə edin',
+			'prescriptions.drugNameRequired' => 'Dərmanın adını daxil edin',
+			'prescriptions.summaryTitle' => 'Resept',
+			'prescriptions.itemsCount' => ({required Object count}) => '${count} dərman',
+			'prescriptions.newPrescription' => 'Yeni resept',
+			'prescriptions.youHavePrescription' => 'Bu qəbul üçün resept mövcuddur',
 			_ => null,
 		};
 	}

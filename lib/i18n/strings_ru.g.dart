@@ -70,6 +70,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$assistant$ru assistant = _Translations$assistant$ru._(_root);
 	@override late final _Translations$legal$ru legal = _Translations$legal$ru._(_root);
 	@override late final _Translations$medications$ru medications = _Translations$medications$ru._(_root);
+	@override late final _Translations$prescriptions$ru prescriptions = _Translations$prescriptions$ru._(_root);
 }
 
 // Path: common
@@ -803,6 +804,43 @@ class _Translations$medications$ru extends Translations$medications$en {
 	@override String get atLeastOneTime => 'Добавьте хотя бы одно время приёма';
 }
 
+// Path: prescriptions
+class _Translations$prescriptions$ru extends Translations$prescriptions$en {
+	_Translations$prescriptions$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Рецепты';
+	@override String get writeTitle => 'Выписать рецепт';
+	@override String get addDrug => 'Добавить препарат';
+	@override String get drugName => 'Название препарата';
+	@override String get dosage => 'Дозировка';
+	@override String get frequency => 'Частота приёма';
+	@override String get duration => 'Длительность';
+	@override String get instructions => 'Инструкции';
+	@override String get notes => 'Заметки';
+	@override String get save => 'Сохранить';
+	@override String get empty => 'Пока нет рецептов';
+	@override String get emptySubtitle => 'Здесь появятся рецепты, выписанные вашим врачом.';
+	@override String get viewDetails => 'Подробнее';
+	@override String issuedBy({required Object name}) => 'Выписал(а) д-р ${name}';
+	@override String issuedOn({required Object date}) => 'Дата выдачи: ${date}';
+	@override String get applyToMedications => 'Добавить в мои лекарства';
+	@override String get applySuccess => 'Добавлено в ваши лекарства. Настройте время приёма, чтобы получать напоминания.';
+	@override String get alreadyApplied => 'Уже добавлено в ваши лекарства';
+	@override String get noPrescriptionYet => 'Рецепт для этой записи ещё не выписан';
+	@override String get writePrescription => 'Выписать рецепт';
+	@override String get prescriptionIssued => 'Рецепт выписан.';
+	@override String get removeDrug => 'Удалить';
+	@override String get atLeastOneDrug => 'Добавьте хотя бы один препарат';
+	@override String get drugNameRequired => 'Укажите название препарата';
+	@override String get summaryTitle => 'Рецепт';
+	@override String itemsCount({required Object count}) => 'Лекарств: ${count}';
+	@override String get newPrescription => 'Новый рецепт';
+	@override String get youHavePrescription => 'Для этой записи есть рецепт';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -1325,6 +1363,34 @@ extension on TranslationsRu {
 			'medications.updatedSuccess' => 'Лекарство обновлено.',
 			'medications.deletedSuccess' => 'Лекарство удалено.',
 			'medications.atLeastOneTime' => 'Добавьте хотя бы одно время приёма',
+			'prescriptions.title' => 'Рецепты',
+			'prescriptions.writeTitle' => 'Выписать рецепт',
+			'prescriptions.addDrug' => 'Добавить препарат',
+			'prescriptions.drugName' => 'Название препарата',
+			'prescriptions.dosage' => 'Дозировка',
+			'prescriptions.frequency' => 'Частота приёма',
+			'prescriptions.duration' => 'Длительность',
+			'prescriptions.instructions' => 'Инструкции',
+			'prescriptions.notes' => 'Заметки',
+			'prescriptions.save' => 'Сохранить',
+			'prescriptions.empty' => 'Пока нет рецептов',
+			'prescriptions.emptySubtitle' => 'Здесь появятся рецепты, выписанные вашим врачом.',
+			'prescriptions.viewDetails' => 'Подробнее',
+			'prescriptions.issuedBy' => ({required Object name}) => 'Выписал(а) д-р ${name}',
+			'prescriptions.issuedOn' => ({required Object date}) => 'Дата выдачи: ${date}',
+			'prescriptions.applyToMedications' => 'Добавить в мои лекарства',
+			'prescriptions.applySuccess' => 'Добавлено в ваши лекарства. Настройте время приёма, чтобы получать напоминания.',
+			'prescriptions.alreadyApplied' => 'Уже добавлено в ваши лекарства',
+			'prescriptions.noPrescriptionYet' => 'Рецепт для этой записи ещё не выписан',
+			'prescriptions.writePrescription' => 'Выписать рецепт',
+			'prescriptions.prescriptionIssued' => 'Рецепт выписан.',
+			'prescriptions.removeDrug' => 'Удалить',
+			'prescriptions.atLeastOneDrug' => 'Добавьте хотя бы один препарат',
+			'prescriptions.drugNameRequired' => 'Укажите название препарата',
+			'prescriptions.summaryTitle' => 'Рецепт',
+			'prescriptions.itemsCount' => ({required Object count}) => 'Лекарств: ${count}',
+			'prescriptions.newPrescription' => 'Новый рецепт',
+			'prescriptions.youHavePrescription' => 'Для этой записи есть рецепт',
 			_ => null,
 		};
 	}

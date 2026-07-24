@@ -70,6 +70,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$assistant$tr assistant = _Translations$assistant$tr._(_root);
 	@override late final _Translations$legal$tr legal = _Translations$legal$tr._(_root);
 	@override late final _Translations$medications$tr medications = _Translations$medications$tr._(_root);
+	@override late final _Translations$prescriptions$tr prescriptions = _Translations$prescriptions$tr._(_root);
 }
 
 // Path: common
@@ -803,6 +804,43 @@ class _Translations$medications$tr extends Translations$medications$en {
 	@override String get atLeastOneTime => 'En az bir hatırlatma saati ekleyin';
 }
 
+// Path: prescriptions
+class _Translations$prescriptions$tr extends Translations$prescriptions$en {
+	_Translations$prescriptions$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Reçeteler';
+	@override String get writeTitle => 'Reçete Yaz';
+	@override String get addDrug => 'İlaç Ekle';
+	@override String get drugName => 'İlaç Adı';
+	@override String get dosage => 'Doz';
+	@override String get frequency => 'Kullanım Sıklığı';
+	@override String get duration => 'Süre';
+	@override String get instructions => 'Talimatlar';
+	@override String get notes => 'Notlar';
+	@override String get save => 'Kaydet';
+	@override String get empty => 'Henüz reçete yok';
+	@override String get emptySubtitle => 'Doktorunuzun yazdığı reçeteler burada görünecek.';
+	@override String get viewDetails => 'Detayları Gör';
+	@override String issuedBy({required Object name}) => 'Dr. ${name} tarafından yazıldı';
+	@override String issuedOn({required Object date}) => 'Yazılma tarihi: ${date}';
+	@override String get applyToMedications => 'İlaçlarıma Ekle';
+	@override String get applySuccess => 'İlaçlarınıza eklendi. Hatırlatma saatlerini ayarlayın.';
+	@override String get alreadyApplied => 'Zaten ilaçlarınıza eklendi';
+	@override String get noPrescriptionYet => 'Bu randevu için henüz reçete yazılmadı';
+	@override String get writePrescription => 'Reçete Yaz';
+	@override String get prescriptionIssued => 'Reçete yazıldı.';
+	@override String get removeDrug => 'Kaldır';
+	@override String get atLeastOneDrug => 'En az bir ilaç ekleyin';
+	@override String get drugNameRequired => 'İlaç adı gereklidir';
+	@override String get summaryTitle => 'Reçete';
+	@override String itemsCount({required Object count}) => '${count} ilaç';
+	@override String get newPrescription => 'Yeni Reçete';
+	@override String get youHavePrescription => 'Bu randevu için bir reçete var';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1325,6 +1363,34 @@ extension on TranslationsTr {
 			'medications.updatedSuccess' => 'İlaç güncellendi.',
 			'medications.deletedSuccess' => 'İlaç silindi.',
 			'medications.atLeastOneTime' => 'En az bir hatırlatma saati ekleyin',
+			'prescriptions.title' => 'Reçeteler',
+			'prescriptions.writeTitle' => 'Reçete Yaz',
+			'prescriptions.addDrug' => 'İlaç Ekle',
+			'prescriptions.drugName' => 'İlaç Adı',
+			'prescriptions.dosage' => 'Doz',
+			'prescriptions.frequency' => 'Kullanım Sıklığı',
+			'prescriptions.duration' => 'Süre',
+			'prescriptions.instructions' => 'Talimatlar',
+			'prescriptions.notes' => 'Notlar',
+			'prescriptions.save' => 'Kaydet',
+			'prescriptions.empty' => 'Henüz reçete yok',
+			'prescriptions.emptySubtitle' => 'Doktorunuzun yazdığı reçeteler burada görünecek.',
+			'prescriptions.viewDetails' => 'Detayları Gör',
+			'prescriptions.issuedBy' => ({required Object name}) => 'Dr. ${name} tarafından yazıldı',
+			'prescriptions.issuedOn' => ({required Object date}) => 'Yazılma tarihi: ${date}',
+			'prescriptions.applyToMedications' => 'İlaçlarıma Ekle',
+			'prescriptions.applySuccess' => 'İlaçlarınıza eklendi. Hatırlatma saatlerini ayarlayın.',
+			'prescriptions.alreadyApplied' => 'Zaten ilaçlarınıza eklendi',
+			'prescriptions.noPrescriptionYet' => 'Bu randevu için henüz reçete yazılmadı',
+			'prescriptions.writePrescription' => 'Reçete Yaz',
+			'prescriptions.prescriptionIssued' => 'Reçete yazıldı.',
+			'prescriptions.removeDrug' => 'Kaldır',
+			'prescriptions.atLeastOneDrug' => 'En az bir ilaç ekleyin',
+			'prescriptions.drugNameRequired' => 'İlaç adı gereklidir',
+			'prescriptions.summaryTitle' => 'Reçete',
+			'prescriptions.itemsCount' => ({required Object count}) => '${count} ilaç',
+			'prescriptions.newPrescription' => 'Yeni Reçete',
+			'prescriptions.youHavePrescription' => 'Bu randevu için bir reçete var',
 			_ => null,
 		};
 	}

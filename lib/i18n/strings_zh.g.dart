@@ -70,6 +70,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$assistant$zh assistant = _Translations$assistant$zh._(_root);
 	@override late final _Translations$legal$zh legal = _Translations$legal$zh._(_root);
 	@override late final _Translations$medications$zh medications = _Translations$medications$zh._(_root);
+	@override late final _Translations$prescriptions$zh prescriptions = _Translations$prescriptions$zh._(_root);
 }
 
 // Path: common
@@ -803,6 +804,43 @@ class _Translations$medications$zh extends Translations$medications$en {
 	@override String get atLeastOneTime => '请至少添加一个提醒时间';
 }
 
+// Path: prescriptions
+class _Translations$prescriptions$zh extends Translations$prescriptions$en {
+	_Translations$prescriptions$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '处方';
+	@override String get writeTitle => '开具处方';
+	@override String get addDrug => '添加药物';
+	@override String get drugName => '药物名称';
+	@override String get dosage => '剂量';
+	@override String get frequency => '服用频率';
+	@override String get duration => '疗程';
+	@override String get instructions => '用药说明';
+	@override String get notes => '备注';
+	@override String get save => '保存';
+	@override String get empty => '暂无处方';
+	@override String get emptySubtitle => '医生开具的处方将显示在这里。';
+	@override String get viewDetails => '查看详情';
+	@override String issuedBy({required Object name}) => '由 ${name} 医生开具';
+	@override String issuedOn({required Object date}) => '开具日期:${date}';
+	@override String get applyToMedications => '添加到我的用药';
+	@override String get applySuccess => '已添加到您的用药。请设置提醒时间以接收通知。';
+	@override String get alreadyApplied => '已添加到您的用药';
+	@override String get noPrescriptionYet => '此预约尚无处方';
+	@override String get writePrescription => '开具处方';
+	@override String get prescriptionIssued => '处方已开具。';
+	@override String get removeDrug => '移除';
+	@override String get atLeastOneDrug => '请至少添加一种药物';
+	@override String get drugNameRequired => '请填写药物名称';
+	@override String get summaryTitle => '处方';
+	@override String itemsCount({required Object count}) => '${count} 种药物';
+	@override String get newPrescription => '新处方';
+	@override String get youHavePrescription => '此预约已有处方';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1325,6 +1363,34 @@ extension on TranslationsZh {
 			'medications.updatedSuccess' => '药物已更新。',
 			'medications.deletedSuccess' => '药物已删除。',
 			'medications.atLeastOneTime' => '请至少添加一个提醒时间',
+			'prescriptions.title' => '处方',
+			'prescriptions.writeTitle' => '开具处方',
+			'prescriptions.addDrug' => '添加药物',
+			'prescriptions.drugName' => '药物名称',
+			'prescriptions.dosage' => '剂量',
+			'prescriptions.frequency' => '服用频率',
+			'prescriptions.duration' => '疗程',
+			'prescriptions.instructions' => '用药说明',
+			'prescriptions.notes' => '备注',
+			'prescriptions.save' => '保存',
+			'prescriptions.empty' => '暂无处方',
+			'prescriptions.emptySubtitle' => '医生开具的处方将显示在这里。',
+			'prescriptions.viewDetails' => '查看详情',
+			'prescriptions.issuedBy' => ({required Object name}) => '由 ${name} 医生开具',
+			'prescriptions.issuedOn' => ({required Object date}) => '开具日期:${date}',
+			'prescriptions.applyToMedications' => '添加到我的用药',
+			'prescriptions.applySuccess' => '已添加到您的用药。请设置提醒时间以接收通知。',
+			'prescriptions.alreadyApplied' => '已添加到您的用药',
+			'prescriptions.noPrescriptionYet' => '此预约尚无处方',
+			'prescriptions.writePrescription' => '开具处方',
+			'prescriptions.prescriptionIssued' => '处方已开具。',
+			'prescriptions.removeDrug' => '移除',
+			'prescriptions.atLeastOneDrug' => '请至少添加一种药物',
+			'prescriptions.drugNameRequired' => '请填写药物名称',
+			'prescriptions.summaryTitle' => '处方',
+			'prescriptions.itemsCount' => ({required Object count}) => '${count} 种药物',
+			'prescriptions.newPrescription' => '新处方',
+			'prescriptions.youHavePrescription' => '此预约已有处方',
 			_ => null,
 		};
 	}

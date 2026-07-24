@@ -27,6 +27,9 @@ import 'package:medalize_mb/features/medications/data/models/medication_model.da
 import 'package:medalize_mb/features/medications/presentation/screens/add_edit_medication_screen.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
 import 'package:medalize_mb/features/onboarding/presentation/screens/app_intro_screen.dart';
+import 'package:medalize_mb/features/prescriptions/presentation/screens/prescription_detail_screen.dart';
+import 'package:medalize_mb/features/prescriptions/presentation/screens/prescription_list_screen.dart';
+import 'package:medalize_mb/features/prescriptions/presentation/screens/write_prescription_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_calendar_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
@@ -210,6 +213,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
 
+      // Prescriptions (Phase 1, Section 2)
+      GoRoute(
+        path: '/patient/prescriptions',
+        pageBuilder: (_, _) => _pushPage(const PrescriptionListScreen()),
+      ),
+      GoRoute(
+        path: '/patient/prescriptions/:id',
+        pageBuilder: (_, state) => _pushPage(
+          PrescriptionDetailScreen(prescriptionId: state.pathParameters['id']!),
+        ),
+      ),
+
       // Doctor routes
       GoRoute(
         path: '/doctor/home',
@@ -271,6 +286,21 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/doctor/block-time',
         pageBuilder: (_, _) => _modalPage(const BlockTimeScreen()),
+      ),
+      GoRoute(
+        path: '/doctor/write-prescription/:id',
+        pageBuilder: (_, state) {
+          final appt = state.extra as AppointmentModel?;
+          // Only reachable from the appointment-detail screen, which always
+          // passes the appointment via `extra`.
+          if (appt == null) {
+            return _fadePage(const DoctorHomeScreen());
+          }
+          return _modalPage(WritePrescriptionScreen(
+            appointmentId: state.pathParameters['id']!,
+            patientName: appt.patient.fullName,
+          ));
+        },
       ),
 
       // Shared routes

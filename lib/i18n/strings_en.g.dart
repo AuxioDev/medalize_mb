@@ -74,6 +74,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$assistant$en assistant = Translations$assistant$en.internal(_root);
 	late final Translations$legal$en legal = Translations$legal$en.internal(_root);
 	late final Translations$medications$en medications = Translations$medications$en.internal(_root);
+	late final Translations$prescriptions$en prescriptions = Translations$prescriptions$en.internal(_root);
 }
 
 // Path: common
@@ -1727,6 +1728,99 @@ class Translations$medications$en {
 	String get atLeastOneTime => 'Add at least one reminder time';
 }
 
+// Path: prescriptions
+class Translations$prescriptions$en {
+	Translations$prescriptions$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Prescriptions'
+	String get title => 'Prescriptions';
+
+	/// en: 'Write Prescription'
+	String get writeTitle => 'Write Prescription';
+
+	/// en: 'Add Drug'
+	String get addDrug => 'Add Drug';
+
+	/// en: 'Drug Name'
+	String get drugName => 'Drug Name';
+
+	/// en: 'Dosage'
+	String get dosage => 'Dosage';
+
+	/// en: 'Frequency'
+	String get frequency => 'Frequency';
+
+	/// en: 'Duration'
+	String get duration => 'Duration';
+
+	/// en: 'Instructions'
+	String get instructions => 'Instructions';
+
+	/// en: 'Notes'
+	String get notes => 'Notes';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	/// en: 'No prescriptions yet'
+	String get empty => 'No prescriptions yet';
+
+	/// en: 'Prescriptions your doctor issues will appear here.'
+	String get emptySubtitle => 'Prescriptions your doctor issues will appear here.';
+
+	/// en: 'View Details'
+	String get viewDetails => 'View Details';
+
+	/// en: 'Issued by Dr. $name'
+	String issuedBy({required Object name}) => 'Issued by Dr. ${name}';
+
+	/// en: 'Issued on $date'
+	String issuedOn({required Object date}) => 'Issued on ${date}';
+
+	/// en: 'Add to My Medications'
+	String get applyToMedications => 'Add to My Medications';
+
+	/// en: 'Added to your medications. Set up reminder times to get notified.'
+	String get applySuccess => 'Added to your medications. Set up reminder times to get notified.';
+
+	/// en: 'Already added to your medications'
+	String get alreadyApplied => 'Already added to your medications';
+
+	/// en: 'No prescription for this appointment yet'
+	String get noPrescriptionYet => 'No prescription for this appointment yet';
+
+	/// en: 'Write Prescription'
+	String get writePrescription => 'Write Prescription';
+
+	/// en: 'Prescription issued.'
+	String get prescriptionIssued => 'Prescription issued.';
+
+	/// en: 'Remove'
+	String get removeDrug => 'Remove';
+
+	/// en: 'Add at least one drug'
+	String get atLeastOneDrug => 'Add at least one drug';
+
+	/// en: 'Drug name is required'
+	String get drugNameRequired => 'Drug name is required';
+
+	/// en: 'Prescription'
+	String get summaryTitle => 'Prescription';
+
+	/// en: '$count medications'
+	String itemsCount({required Object count}) => '${count} medications';
+
+	/// en: 'New Prescription'
+	String get newPrescription => 'New Prescription';
+
+	/// en: 'This appointment has a prescription'
+	String get youHavePrescription => 'This appointment has a prescription';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -2285,6 +2379,34 @@ extension on Translations {
 			'medications.updatedSuccess' => 'Medication updated.',
 			'medications.deletedSuccess' => 'Medication deleted.',
 			'medications.atLeastOneTime' => 'Add at least one reminder time',
+			'prescriptions.title' => 'Prescriptions',
+			'prescriptions.writeTitle' => 'Write Prescription',
+			'prescriptions.addDrug' => 'Add Drug',
+			'prescriptions.drugName' => 'Drug Name',
+			'prescriptions.dosage' => 'Dosage',
+			'prescriptions.frequency' => 'Frequency',
+			'prescriptions.duration' => 'Duration',
+			'prescriptions.instructions' => 'Instructions',
+			'prescriptions.notes' => 'Notes',
+			'prescriptions.save' => 'Save',
+			'prescriptions.empty' => 'No prescriptions yet',
+			'prescriptions.emptySubtitle' => 'Prescriptions your doctor issues will appear here.',
+			'prescriptions.viewDetails' => 'View Details',
+			'prescriptions.issuedBy' => ({required Object name}) => 'Issued by Dr. ${name}',
+			'prescriptions.issuedOn' => ({required Object date}) => 'Issued on ${date}',
+			'prescriptions.applyToMedications' => 'Add to My Medications',
+			'prescriptions.applySuccess' => 'Added to your medications. Set up reminder times to get notified.',
+			'prescriptions.alreadyApplied' => 'Already added to your medications',
+			'prescriptions.noPrescriptionYet' => 'No prescription for this appointment yet',
+			'prescriptions.writePrescription' => 'Write Prescription',
+			'prescriptions.prescriptionIssued' => 'Prescription issued.',
+			'prescriptions.removeDrug' => 'Remove',
+			'prescriptions.atLeastOneDrug' => 'Add at least one drug',
+			'prescriptions.drugNameRequired' => 'Drug name is required',
+			'prescriptions.summaryTitle' => 'Prescription',
+			'prescriptions.itemsCount' => ({required Object count}) => '${count} medications',
+			'prescriptions.newPrescription' => 'New Prescription',
+			'prescriptions.youHavePrescription' => 'This appointment has a prescription',
 			_ => null,
 		};
 	}

@@ -112,6 +112,7 @@ class FcmService {
   Future<void> _navigateFromData(Map<String, dynamic> data) async {
     final type = data['type'] as String?;
     final appointmentId = data['appointment_id'] as String?;
+    final prescriptionId = data['prescription_id'] as String?;
 
     if (type == 'appointment' && appointmentId != null) {
       final role = await _storage.getUserRole();
@@ -123,6 +124,11 @@ class FcmService {
           : '/patient/appointment-detail/$appointmentId';
       // ignore: use_build_context_synchronously
       GoRouter.of(context).push(path);
+    } else if (type == 'prescription' && prescriptionId != null) {
+      // Only patients receive `prescription_issued` pushes.
+      final context = navigatorKey.currentContext;
+      if (context == null) return;
+      GoRouter.of(context).push('/patient/prescriptions/$prescriptionId');
     } else {
       _navigateToNotifications();
     }
