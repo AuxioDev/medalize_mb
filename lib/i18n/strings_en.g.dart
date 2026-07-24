@@ -73,6 +73,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$favorites$en favorites = Translations$favorites$en.internal(_root);
 	late final Translations$assistant$en assistant = Translations$assistant$en.internal(_root);
 	late final Translations$legal$en legal = Translations$legal$en.internal(_root);
+	late final Translations$medications$en medications = Translations$medications$en.internal(_root);
 }
 
 // Path: common
@@ -1573,6 +1574,159 @@ class Translations$legal$en {
 	String get contact => 'Questions about your data? Contact support@medalize.app';
 }
 
+// Path: medications
+class Translations$medications$en {
+	Translations$medications$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Medications'
+	String get title => 'Medications';
+
+	/// en: 'Add Medication'
+	String get addMedication => 'Add Medication';
+
+	/// en: 'Edit Medication'
+	String get editMedication => 'Edit Medication';
+
+	/// en: 'Name'
+	String get name => 'Name';
+
+	/// en: 'Dosage'
+	String get dosage => 'Dosage';
+
+	/// en: 'Notes'
+	String get notes => 'Notes';
+
+	/// en: 'Form'
+	String get form => 'Form';
+
+	/// en: 'Pill'
+	String get formPill => 'Pill';
+
+	/// en: 'Capsule'
+	String get formCapsule => 'Capsule';
+
+	/// en: 'Liquid'
+	String get formLiquid => 'Liquid';
+
+	/// en: 'Injection'
+	String get formInjection => 'Injection';
+
+	/// en: 'Other'
+	String get formOther => 'Other';
+
+	/// en: 'Schedule'
+	String get schedule => 'Schedule';
+
+	/// en: 'Times'
+	String get times => 'Times';
+
+	/// en: 'Add Time'
+	String get addTime => 'Add Time';
+
+	/// en: 'Days of Week'
+	String get daysOfWeek => 'Days of Week';
+
+	/// en: 'Every day'
+	String get everyDay => 'Every day';
+
+	/// en: 'Start Date'
+	String get startDate => 'Start Date';
+
+	/// en: 'End Date'
+	String get endDate => 'End Date';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	/// en: 'Delete'
+	String get delete => 'Delete';
+
+	/// en: 'Delete Medication'
+	String get deleteConfirmTitle => 'Delete Medication';
+
+	/// en: 'Are you sure you want to delete this medication? Its dose history will be kept.'
+	String get deleteConfirmBody => 'Are you sure you want to delete this medication? Its dose history will be kept.';
+
+	/// en: 'No medications yet'
+	String get emptyTitle => 'No medications yet';
+
+	/// en: 'Add a medication to start tracking doses and get reminders.'
+	String get emptySubtitle => 'Add a medication to start tracking doses and get reminders.';
+
+	/// en: 'Today's Doses'
+	String get todaysDoses => 'Today\'s Doses';
+
+	/// en: 'Taken'
+	String get markTaken => 'Taken';
+
+	/// en: 'Skip'
+	String get markSkipped => 'Skip';
+
+	/// en: 'Taken'
+	String get statusTaken => 'Taken';
+
+	/// en: 'Skipped'
+	String get statusSkipped => 'Skipped';
+
+	/// en: 'Pending'
+	String get statusPending => 'Pending';
+
+	/// en: 'Time to take $name'
+	String reminderTitle({required Object name}) => 'Time to take ${name}';
+
+	/// en: 'Dose: $dosage'
+	String reminderBody({required Object dosage}) => 'Dose: ${dosage}';
+
+	/// en: 'Active'
+	String get tabActive => 'Active';
+
+	/// en: 'Archive'
+	String get tabArchive => 'Archive';
+
+	/// en: 'From prescription'
+	String get fromPrescription => 'From prescription';
+
+	/// en: 'No schedule set — tap to add reminder times'
+	String get noSchedule => 'No schedule set — tap to add reminder times';
+
+	/// en: 'Mon'
+	String get dayMon => 'Mon';
+
+	/// en: 'Tue'
+	String get dayTue => 'Tue';
+
+	/// en: 'Wed'
+	String get dayWed => 'Wed';
+
+	/// en: 'Thu'
+	String get dayThu => 'Thu';
+
+	/// en: 'Fri'
+	String get dayFri => 'Fri';
+
+	/// en: 'Sat'
+	String get daySat => 'Sat';
+
+	/// en: 'Sun'
+	String get daySun => 'Sun';
+
+	/// en: 'Medication added.'
+	String get addedSuccess => 'Medication added.';
+
+	/// en: 'Medication updated.'
+	String get updatedSuccess => 'Medication updated.';
+
+	/// en: 'Medication deleted.'
+	String get deletedSuccess => 'Medication deleted.';
+
+	/// en: 'Add at least one reminder time'
+	String get atLeastOneTime => 'Add at least one reminder time';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -2083,6 +2237,54 @@ extension on Translations {
 			'legal.termsBody' => 'By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.',
 			'legal.draftNotice' => 'Draft — pending final legal review.',
 			'legal.contact' => 'Questions about your data? Contact support@medalize.app',
+			'medications.title' => 'Medications',
+			'medications.addMedication' => 'Add Medication',
+			'medications.editMedication' => 'Edit Medication',
+			'medications.name' => 'Name',
+			'medications.dosage' => 'Dosage',
+			'medications.notes' => 'Notes',
+			'medications.form' => 'Form',
+			'medications.formPill' => 'Pill',
+			'medications.formCapsule' => 'Capsule',
+			'medications.formLiquid' => 'Liquid',
+			'medications.formInjection' => 'Injection',
+			'medications.formOther' => 'Other',
+			'medications.schedule' => 'Schedule',
+			'medications.times' => 'Times',
+			'medications.addTime' => 'Add Time',
+			'medications.daysOfWeek' => 'Days of Week',
+			'medications.everyDay' => 'Every day',
+			'medications.startDate' => 'Start Date',
+			'medications.endDate' => 'End Date',
+			'medications.save' => 'Save',
+			'medications.delete' => 'Delete',
+			'medications.deleteConfirmTitle' => 'Delete Medication',
+			'medications.deleteConfirmBody' => 'Are you sure you want to delete this medication? Its dose history will be kept.',
+			'medications.emptyTitle' => 'No medications yet',
+			'medications.emptySubtitle' => 'Add a medication to start tracking doses and get reminders.',
+			'medications.todaysDoses' => 'Today\'s Doses',
+			'medications.markTaken' => 'Taken',
+			'medications.markSkipped' => 'Skip',
+			'medications.statusTaken' => 'Taken',
+			'medications.statusSkipped' => 'Skipped',
+			'medications.statusPending' => 'Pending',
+			'medications.reminderTitle' => ({required Object name}) => 'Time to take ${name}',
+			'medications.reminderBody' => ({required Object dosage}) => 'Dose: ${dosage}',
+			'medications.tabActive' => 'Active',
+			'medications.tabArchive' => 'Archive',
+			'medications.fromPrescription' => 'From prescription',
+			'medications.noSchedule' => 'No schedule set — tap to add reminder times',
+			'medications.dayMon' => 'Mon',
+			'medications.dayTue' => 'Tue',
+			'medications.dayWed' => 'Wed',
+			'medications.dayThu' => 'Thu',
+			'medications.dayFri' => 'Fri',
+			'medications.daySat' => 'Sat',
+			'medications.daySun' => 'Sun',
+			'medications.addedSuccess' => 'Medication added.',
+			'medications.updatedSuccess' => 'Medication updated.',
+			'medications.deletedSuccess' => 'Medication deleted.',
+			'medications.atLeastOneTime' => 'Add at least one reminder time',
 			_ => null,
 		};
 	}

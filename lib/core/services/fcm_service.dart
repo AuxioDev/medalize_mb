@@ -17,7 +17,11 @@ final fcmServiceProvider = Provider<FcmService>((ref) {
 
 final _localNotifications = FlutterLocalNotificationsPlugin();
 
-const _androidChannel = AndroidNotificationChannel(
+/// Shared high-importance Android channel for all local/FCM notifications.
+/// Public so other local schedulers (e.g. medication dose reminders — see
+/// `lib/core/services/medication_scheduler.dart`) reuse the same channel
+/// instead of creating their own.
+const medalizeHighChannel = AndroidNotificationChannel(
   'medalize_high',
   'Medalize Notifications',
   description: 'Appointment and booking alerts',
@@ -42,7 +46,7 @@ class FcmService {
     await _localNotifications
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(_androidChannel);
+        ?.createNotificationChannel(medalizeHighChannel);
 
     // FCM permission + token. Guarded so a missing/placeholder Firebase config
     // (before the real project is registered) degrades gracefully instead of
@@ -89,9 +93,9 @@ class FcmService {
       n.body,
       NotificationDetails(
         android: AndroidNotificationDetails(
-          _androidChannel.id,
-          _androidChannel.name,
-          channelDescription: _androidChannel.description,
+          medalizeHighChannel.id,
+          medalizeHighChannel.name,
+          channelDescription: medalizeHighChannel.description,
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/ic_launcher',

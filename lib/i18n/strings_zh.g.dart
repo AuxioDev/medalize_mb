@@ -69,6 +69,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$favorites$zh favorites = _Translations$favorites$zh._(_root);
 	@override late final _Translations$assistant$zh assistant = _Translations$assistant$zh._(_root);
 	@override late final _Translations$legal$zh legal = _Translations$legal$zh._(_root);
+	@override late final _Translations$medications$zh medications = _Translations$medications$zh._(_root);
 }
 
 // Path: common
@@ -745,6 +746,63 @@ class _Translations$legal$zh extends Translations$legal$en {
 	@override String get contact => '对您的数据有疑问？请联系 support@medalize.app';
 }
 
+// Path: medications
+class _Translations$medications$zh extends Translations$medications$en {
+	_Translations$medications$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '用药';
+	@override String get addMedication => '添加药物';
+	@override String get editMedication => '编辑药物';
+	@override String get name => '名称';
+	@override String get dosage => '剂量';
+	@override String get notes => '备注';
+	@override String get form => '剂型';
+	@override String get formPill => '药片';
+	@override String get formCapsule => '胶囊';
+	@override String get formLiquid => '液体';
+	@override String get formInjection => '注射剂';
+	@override String get formOther => '其他';
+	@override String get schedule => '服药安排';
+	@override String get times => '服药时间';
+	@override String get addTime => '添加时间';
+	@override String get daysOfWeek => '星期';
+	@override String get everyDay => '每天';
+	@override String get startDate => '开始日期';
+	@override String get endDate => '结束日期';
+	@override String get save => '保存';
+	@override String get delete => '删除';
+	@override String get deleteConfirmTitle => '删除药物';
+	@override String get deleteConfirmBody => '确定要删除这个药物吗?服药记录将被保留。';
+	@override String get emptyTitle => '暂无药物';
+	@override String get emptySubtitle => '添加药物以跟踪服药情况并接收提醒。';
+	@override String get todaysDoses => '今日服药';
+	@override String get markTaken => '已服用';
+	@override String get markSkipped => '跳过';
+	@override String get statusTaken => '已服用';
+	@override String get statusSkipped => '已跳过';
+	@override String get statusPending => '待服用';
+	@override String reminderTitle({required Object name}) => '该服用${name}了';
+	@override String reminderBody({required Object dosage}) => '剂量:${dosage}';
+	@override String get tabActive => '使用中';
+	@override String get tabArchive => '已归档';
+	@override String get fromPrescription => '来自处方';
+	@override String get noSchedule => '尚未设置服药时间 — 点击添加提醒时间';
+	@override String get dayMon => '周一';
+	@override String get dayTue => '周二';
+	@override String get dayWed => '周三';
+	@override String get dayThu => '周四';
+	@override String get dayFri => '周五';
+	@override String get daySat => '周六';
+	@override String get daySun => '周日';
+	@override String get addedSuccess => '药物已添加。';
+	@override String get updatedSuccess => '药物已更新。';
+	@override String get deletedSuccess => '药物已删除。';
+	@override String get atLeastOneTime => '请至少添加一个提醒时间';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1219,6 +1277,54 @@ extension on TranslationsZh {
 			'legal.termsBody' => '使用 Medalize 即表示您同意负责任地使用本服务进行预约和管理。完整的服务条款将在公开发布前在此处发布。',
 			'legal.draftNotice' => '草稿 — 等待最终法律审核。',
 			'legal.contact' => '对您的数据有疑问？请联系 support@medalize.app',
+			'medications.title' => '用药',
+			'medications.addMedication' => '添加药物',
+			'medications.editMedication' => '编辑药物',
+			'medications.name' => '名称',
+			'medications.dosage' => '剂量',
+			'medications.notes' => '备注',
+			'medications.form' => '剂型',
+			'medications.formPill' => '药片',
+			'medications.formCapsule' => '胶囊',
+			'medications.formLiquid' => '液体',
+			'medications.formInjection' => '注射剂',
+			'medications.formOther' => '其他',
+			'medications.schedule' => '服药安排',
+			'medications.times' => '服药时间',
+			'medications.addTime' => '添加时间',
+			'medications.daysOfWeek' => '星期',
+			'medications.everyDay' => '每天',
+			'medications.startDate' => '开始日期',
+			'medications.endDate' => '结束日期',
+			'medications.save' => '保存',
+			'medications.delete' => '删除',
+			'medications.deleteConfirmTitle' => '删除药物',
+			'medications.deleteConfirmBody' => '确定要删除这个药物吗?服药记录将被保留。',
+			'medications.emptyTitle' => '暂无药物',
+			'medications.emptySubtitle' => '添加药物以跟踪服药情况并接收提醒。',
+			'medications.todaysDoses' => '今日服药',
+			'medications.markTaken' => '已服用',
+			'medications.markSkipped' => '跳过',
+			'medications.statusTaken' => '已服用',
+			'medications.statusSkipped' => '已跳过',
+			'medications.statusPending' => '待服用',
+			'medications.reminderTitle' => ({required Object name}) => '该服用${name}了',
+			'medications.reminderBody' => ({required Object dosage}) => '剂量:${dosage}',
+			'medications.tabActive' => '使用中',
+			'medications.tabArchive' => '已归档',
+			'medications.fromPrescription' => '来自处方',
+			'medications.noSchedule' => '尚未设置服药时间 — 点击添加提醒时间',
+			'medications.dayMon' => '周一',
+			'medications.dayTue' => '周二',
+			'medications.dayWed' => '周三',
+			'medications.dayThu' => '周四',
+			'medications.dayFri' => '周五',
+			'medications.daySat' => '周六',
+			'medications.daySun' => '周日',
+			'medications.addedSuccess' => '药物已添加。',
+			'medications.updatedSuccess' => '药物已更新。',
+			'medications.deletedSuccess' => '药物已删除。',
+			'medications.atLeastOneTime' => '请至少添加一个提醒时间',
 			_ => null,
 		};
 	}

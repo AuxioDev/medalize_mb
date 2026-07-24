@@ -22,6 +22,7 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/features/medications/presentation/widgets/todays_doses_section.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -86,6 +87,7 @@ class PatientHomeScreen extends ConsumerWidget {
               const Gap(AppSpacing.sm),
               const _UpcomingAppointments(),
               const _WaitlistSection(),
+              const TodaysDosesSection(),
             ],
           ),
         ),

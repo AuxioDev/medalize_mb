@@ -69,6 +69,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$favorites$ru favorites = _Translations$favorites$ru._(_root);
 	@override late final _Translations$assistant$ru assistant = _Translations$assistant$ru._(_root);
 	@override late final _Translations$legal$ru legal = _Translations$legal$ru._(_root);
+	@override late final _Translations$medications$ru medications = _Translations$medications$ru._(_root);
 }
 
 // Path: common
@@ -745,6 +746,63 @@ class _Translations$legal$ru extends Translations$legal$en {
 	@override String get contact => 'Вопросы о ваших данных? Напишите на support@medalize.app';
 }
 
+// Path: medications
+class _Translations$medications$ru extends Translations$medications$en {
+	_Translations$medications$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Лекарства';
+	@override String get addMedication => 'Добавить лекарство';
+	@override String get editMedication => 'Изменить лекарство';
+	@override String get name => 'Название';
+	@override String get dosage => 'Дозировка';
+	@override String get notes => 'Заметки';
+	@override String get form => 'Форма выпуска';
+	@override String get formPill => 'Таблетка';
+	@override String get formCapsule => 'Капсула';
+	@override String get formLiquid => 'Жидкость';
+	@override String get formInjection => 'Инъекция';
+	@override String get formOther => 'Другое';
+	@override String get schedule => 'Расписание';
+	@override String get times => 'Время приёма';
+	@override String get addTime => 'Добавить время';
+	@override String get daysOfWeek => 'Дни недели';
+	@override String get everyDay => 'Каждый день';
+	@override String get startDate => 'Дата начала';
+	@override String get endDate => 'Дата окончания';
+	@override String get save => 'Сохранить';
+	@override String get delete => 'Удалить';
+	@override String get deleteConfirmTitle => 'Удалить лекарство';
+	@override String get deleteConfirmBody => 'Удалить это лекарство? История приёма сохранится.';
+	@override String get emptyTitle => 'Пока нет лекарств';
+	@override String get emptySubtitle => 'Добавьте лекарство, чтобы отслеживать приём и получать напоминания.';
+	@override String get todaysDoses => 'Приёмы сегодня';
+	@override String get markTaken => 'Принято';
+	@override String get markSkipped => 'Пропустить';
+	@override String get statusTaken => 'Принято';
+	@override String get statusSkipped => 'Пропущено';
+	@override String get statusPending => 'Ожидает';
+	@override String reminderTitle({required Object name}) => 'Пора принять ${name}';
+	@override String reminderBody({required Object dosage}) => 'Доза: ${dosage}';
+	@override String get tabActive => 'Активные';
+	@override String get tabArchive => 'Архив';
+	@override String get fromPrescription => 'По рецепту';
+	@override String get noSchedule => 'Расписание не задано — нажмите, чтобы добавить время приёма';
+	@override String get dayMon => 'Пн';
+	@override String get dayTue => 'Вт';
+	@override String get dayWed => 'Ср';
+	@override String get dayThu => 'Чт';
+	@override String get dayFri => 'Пт';
+	@override String get daySat => 'Сб';
+	@override String get daySun => 'Вс';
+	@override String get addedSuccess => 'Лекарство добавлено.';
+	@override String get updatedSuccess => 'Лекарство обновлено.';
+	@override String get deletedSuccess => 'Лекарство удалено.';
+	@override String get atLeastOneTime => 'Добавьте хотя бы одно время приёма';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -1219,6 +1277,54 @@ extension on TranslationsRu {
 			'legal.termsBody' => 'Используя Medalize, вы соглашаетесь ответственно пользоваться сервисом для записи и управления приёмами. Полные условия использования будут опубликованы здесь до публичного запуска.',
 			'legal.draftNotice' => 'Черновик — ожидается финальная юридическая проверка.',
 			'legal.contact' => 'Вопросы о ваших данных? Напишите на support@medalize.app',
+			'medications.title' => 'Лекарства',
+			'medications.addMedication' => 'Добавить лекарство',
+			'medications.editMedication' => 'Изменить лекарство',
+			'medications.name' => 'Название',
+			'medications.dosage' => 'Дозировка',
+			'medications.notes' => 'Заметки',
+			'medications.form' => 'Форма выпуска',
+			'medications.formPill' => 'Таблетка',
+			'medications.formCapsule' => 'Капсула',
+			'medications.formLiquid' => 'Жидкость',
+			'medications.formInjection' => 'Инъекция',
+			'medications.formOther' => 'Другое',
+			'medications.schedule' => 'Расписание',
+			'medications.times' => 'Время приёма',
+			'medications.addTime' => 'Добавить время',
+			'medications.daysOfWeek' => 'Дни недели',
+			'medications.everyDay' => 'Каждый день',
+			'medications.startDate' => 'Дата начала',
+			'medications.endDate' => 'Дата окончания',
+			'medications.save' => 'Сохранить',
+			'medications.delete' => 'Удалить',
+			'medications.deleteConfirmTitle' => 'Удалить лекарство',
+			'medications.deleteConfirmBody' => 'Удалить это лекарство? История приёма сохранится.',
+			'medications.emptyTitle' => 'Пока нет лекарств',
+			'medications.emptySubtitle' => 'Добавьте лекарство, чтобы отслеживать приём и получать напоминания.',
+			'medications.todaysDoses' => 'Приёмы сегодня',
+			'medications.markTaken' => 'Принято',
+			'medications.markSkipped' => 'Пропустить',
+			'medications.statusTaken' => 'Принято',
+			'medications.statusSkipped' => 'Пропущено',
+			'medications.statusPending' => 'Ожидает',
+			'medications.reminderTitle' => ({required Object name}) => 'Пора принять ${name}',
+			'medications.reminderBody' => ({required Object dosage}) => 'Доза: ${dosage}',
+			'medications.tabActive' => 'Активные',
+			'medications.tabArchive' => 'Архив',
+			'medications.fromPrescription' => 'По рецепту',
+			'medications.noSchedule' => 'Расписание не задано — нажмите, чтобы добавить время приёма',
+			'medications.dayMon' => 'Пн',
+			'medications.dayTue' => 'Вт',
+			'medications.dayWed' => 'Ср',
+			'medications.dayThu' => 'Чт',
+			'medications.dayFri' => 'Пт',
+			'medications.daySat' => 'Сб',
+			'medications.daySun' => 'Вс',
+			'medications.addedSuccess' => 'Лекарство добавлено.',
+			'medications.updatedSuccess' => 'Лекарство обновлено.',
+			'medications.deletedSuccess' => 'Лекарство удалено.',
+			'medications.atLeastOneTime' => 'Добавьте хотя бы одно время приёма',
 			_ => null,
 		};
 	}

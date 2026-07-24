@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
@@ -397,6 +398,22 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 const Gap(AppSpacing.sm),
                 Text(_saveError!,
                     style: const TextStyle(color: AppColors.error)),
+              ],
+              if (_role == 'patient') ...[
+                const Gap(AppSpacing.lg),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.medication_outlined),
+                      title: Text(context.t.medications.title),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push('/patient/medications'),
+                    ),
+                  ),
+                ),
               ],
               const Gap(AppSpacing.lg),
               Align(

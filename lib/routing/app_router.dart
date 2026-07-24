@@ -23,6 +23,9 @@ import 'package:medalize_mb/features/doctor/presentation/screens/doctor_pending_
 import 'package:medalize_mb/features/doctor/presentation/screens/working_hours_editor_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/workplace_list_screen.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
+import 'package:medalize_mb/features/medications/presentation/screens/add_edit_medication_screen.dart';
+import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
 import 'package:medalize_mb/features/onboarding/presentation/screens/app_intro_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_calendar_screen.dart';
@@ -182,6 +185,28 @@ final routerProvider = Provider<GoRouter>((ref) {
             appointmentId: state.pathParameters['id']!,
             appointment: appt,
           ));
+        },
+      ),
+
+      // Medications (Phase 1, Section 1)
+      GoRoute(
+        path: '/patient/medications',
+        pageBuilder: (_, _) => _pushPage(const MedicationListScreen()),
+      ),
+      GoRoute(
+        path: '/patient/medications/add',
+        pageBuilder: (_, _) => _modalPage(const AddEditMedicationScreen()),
+      ),
+      GoRoute(
+        path: '/patient/medications/:id/edit',
+        pageBuilder: (_, state) {
+          final existing = state.extra as MedicationModel?;
+          // Only reachable from the medication list, which always passes the
+          // model via `extra` — without it there's nothing to edit.
+          if (existing == null) {
+            return _pushPage(const MedicationListScreen());
+          }
+          return _modalPage(AddEditMedicationScreen(existing: existing));
         },
       ),
 

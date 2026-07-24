@@ -69,6 +69,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$favorites$tr favorites = _Translations$favorites$tr._(_root);
 	@override late final _Translations$assistant$tr assistant = _Translations$assistant$tr._(_root);
 	@override late final _Translations$legal$tr legal = _Translations$legal$tr._(_root);
+	@override late final _Translations$medications$tr medications = _Translations$medications$tr._(_root);
 }
 
 // Path: common
@@ -745,6 +746,63 @@ class _Translations$legal$tr extends Translations$legal$en {
 	@override String get contact => 'Verilerinizle ilgili sorular mı var? support@medalize.app ile iletişime geçin';
 }
 
+// Path: medications
+class _Translations$medications$tr extends Translations$medications$en {
+	_Translations$medications$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'İlaçlar';
+	@override String get addMedication => 'İlaç Ekle';
+	@override String get editMedication => 'İlacı Düzenle';
+	@override String get name => 'Ad';
+	@override String get dosage => 'Doz';
+	@override String get notes => 'Notlar';
+	@override String get form => 'Form';
+	@override String get formPill => 'Hap';
+	@override String get formCapsule => 'Kapsül';
+	@override String get formLiquid => 'Sıvı';
+	@override String get formInjection => 'Enjeksiyon';
+	@override String get formOther => 'Diğer';
+	@override String get schedule => 'Program';
+	@override String get times => 'Alım Saatleri';
+	@override String get addTime => 'Saat Ekle';
+	@override String get daysOfWeek => 'Haftanın Günleri';
+	@override String get everyDay => 'Her gün';
+	@override String get startDate => 'Başlangıç Tarihi';
+	@override String get endDate => 'Bitiş Tarihi';
+	@override String get save => 'Kaydet';
+	@override String get delete => 'Sil';
+	@override String get deleteConfirmTitle => 'İlacı Sil';
+	@override String get deleteConfirmBody => 'Bu ilacı silmek istediğinizden emin misiniz? Alım geçmişi saklanacak.';
+	@override String get emptyTitle => 'Henüz ilaç yok';
+	@override String get emptySubtitle => 'Alımları takip etmek ve hatırlatma almak için bir ilaç ekleyin.';
+	@override String get todaysDoses => 'Bugünkü Alımlar';
+	@override String get markTaken => 'Alındı';
+	@override String get markSkipped => 'Atla';
+	@override String get statusTaken => 'Alındı';
+	@override String get statusSkipped => 'Atlandı';
+	@override String get statusPending => 'Bekliyor';
+	@override String reminderTitle({required Object name}) => '${name} alma vakti';
+	@override String reminderBody({required Object dosage}) => 'Doz: ${dosage}';
+	@override String get tabActive => 'Aktif';
+	@override String get tabArchive => 'Arşiv';
+	@override String get fromPrescription => 'Reçeteden';
+	@override String get noSchedule => 'Program ayarlanmadı — hatırlatma saati eklemek için dokunun';
+	@override String get dayMon => 'Pzt';
+	@override String get dayTue => 'Sal';
+	@override String get dayWed => 'Çar';
+	@override String get dayThu => 'Per';
+	@override String get dayFri => 'Cum';
+	@override String get daySat => 'Cmt';
+	@override String get daySun => 'Paz';
+	@override String get addedSuccess => 'İlaç eklendi.';
+	@override String get updatedSuccess => 'İlaç güncellendi.';
+	@override String get deletedSuccess => 'İlaç silindi.';
+	@override String get atLeastOneTime => 'En az bir hatırlatma saati ekleyin';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1219,6 +1277,54 @@ extension on TranslationsTr {
 			'legal.termsBody' => 'Medalize’ı kullanarak, hizmeti randevu alma ve yönetme için sorumlu bir şekilde kullanmayı kabul edersiniz. Tam Kullanım Koşulları, herkese açık lansmandan önce burada yayınlanacaktır.',
 			'legal.draftNotice' => 'Taslak — nihai hukuki inceleme bekleniyor.',
 			'legal.contact' => 'Verilerinizle ilgili sorular mı var? support@medalize.app ile iletişime geçin',
+			'medications.title' => 'İlaçlar',
+			'medications.addMedication' => 'İlaç Ekle',
+			'medications.editMedication' => 'İlacı Düzenle',
+			'medications.name' => 'Ad',
+			'medications.dosage' => 'Doz',
+			'medications.notes' => 'Notlar',
+			'medications.form' => 'Form',
+			'medications.formPill' => 'Hap',
+			'medications.formCapsule' => 'Kapsül',
+			'medications.formLiquid' => 'Sıvı',
+			'medications.formInjection' => 'Enjeksiyon',
+			'medications.formOther' => 'Diğer',
+			'medications.schedule' => 'Program',
+			'medications.times' => 'Alım Saatleri',
+			'medications.addTime' => 'Saat Ekle',
+			'medications.daysOfWeek' => 'Haftanın Günleri',
+			'medications.everyDay' => 'Her gün',
+			'medications.startDate' => 'Başlangıç Tarihi',
+			'medications.endDate' => 'Bitiş Tarihi',
+			'medications.save' => 'Kaydet',
+			'medications.delete' => 'Sil',
+			'medications.deleteConfirmTitle' => 'İlacı Sil',
+			'medications.deleteConfirmBody' => 'Bu ilacı silmek istediğinizden emin misiniz? Alım geçmişi saklanacak.',
+			'medications.emptyTitle' => 'Henüz ilaç yok',
+			'medications.emptySubtitle' => 'Alımları takip etmek ve hatırlatma almak için bir ilaç ekleyin.',
+			'medications.todaysDoses' => 'Bugünkü Alımlar',
+			'medications.markTaken' => 'Alındı',
+			'medications.markSkipped' => 'Atla',
+			'medications.statusTaken' => 'Alındı',
+			'medications.statusSkipped' => 'Atlandı',
+			'medications.statusPending' => 'Bekliyor',
+			'medications.reminderTitle' => ({required Object name}) => '${name} alma vakti',
+			'medications.reminderBody' => ({required Object dosage}) => 'Doz: ${dosage}',
+			'medications.tabActive' => 'Aktif',
+			'medications.tabArchive' => 'Arşiv',
+			'medications.fromPrescription' => 'Reçeteden',
+			'medications.noSchedule' => 'Program ayarlanmadı — hatırlatma saati eklemek için dokunun',
+			'medications.dayMon' => 'Pzt',
+			'medications.dayTue' => 'Sal',
+			'medications.dayWed' => 'Çar',
+			'medications.dayThu' => 'Per',
+			'medications.dayFri' => 'Cum',
+			'medications.daySat' => 'Cmt',
+			'medications.daySun' => 'Paz',
+			'medications.addedSuccess' => 'İlaç eklendi.',
+			'medications.updatedSuccess' => 'İlaç güncellendi.',
+			'medications.deletedSuccess' => 'İlaç silindi.',
+			'medications.atLeastOneTime' => 'En az bir hatırlatma saati ekleyin',
 			_ => null,
 		};
 	}

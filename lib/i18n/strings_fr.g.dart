@@ -69,6 +69,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$favorites$fr favorites = _Translations$favorites$fr._(_root);
 	@override late final _Translations$assistant$fr assistant = _Translations$assistant$fr._(_root);
 	@override late final _Translations$legal$fr legal = _Translations$legal$fr._(_root);
+	@override late final _Translations$medications$fr medications = _Translations$medications$fr._(_root);
 }
 
 // Path: common
@@ -745,6 +746,63 @@ class _Translations$legal$fr extends Translations$legal$en {
 	@override String get contact => 'Des questions sur vos données ? Contactez support@medalize.app';
 }
 
+// Path: medications
+class _Translations$medications$fr extends Translations$medications$en {
+	_Translations$medications$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Médicaments';
+	@override String get addMedication => 'Ajouter un médicament';
+	@override String get editMedication => 'Modifier le médicament';
+	@override String get name => 'Nom';
+	@override String get dosage => 'Dosage';
+	@override String get notes => 'Notes';
+	@override String get form => 'Forme';
+	@override String get formPill => 'Comprimé';
+	@override String get formCapsule => 'Gélule';
+	@override String get formLiquid => 'Liquide';
+	@override String get formInjection => 'Injection';
+	@override String get formOther => 'Autre';
+	@override String get schedule => 'Horaire';
+	@override String get times => 'Heures de prise';
+	@override String get addTime => 'Ajouter une heure';
+	@override String get daysOfWeek => 'Jours de la semaine';
+	@override String get everyDay => 'Tous les jours';
+	@override String get startDate => 'Date de début';
+	@override String get endDate => 'Date de fin';
+	@override String get save => 'Enregistrer';
+	@override String get delete => 'Supprimer';
+	@override String get deleteConfirmTitle => 'Supprimer le médicament';
+	@override String get deleteConfirmBody => 'Voulez-vous vraiment supprimer ce médicament ? L\'historique des prises sera conservé.';
+	@override String get emptyTitle => 'Aucun médicament pour l\'instant';
+	@override String get emptySubtitle => 'Ajoutez un médicament pour suivre les prises et recevoir des rappels.';
+	@override String get todaysDoses => 'Prises du jour';
+	@override String get markTaken => 'Pris';
+	@override String get markSkipped => 'Ignorer';
+	@override String get statusTaken => 'Pris';
+	@override String get statusSkipped => 'Ignoré';
+	@override String get statusPending => 'En attente';
+	@override String reminderTitle({required Object name}) => 'C\'est l\'heure de prendre ${name}';
+	@override String reminderBody({required Object dosage}) => 'Dose : ${dosage}';
+	@override String get tabActive => 'Actifs';
+	@override String get tabArchive => 'Archivés';
+	@override String get fromPrescription => 'Sur ordonnance';
+	@override String get noSchedule => 'Aucun horaire défini — appuyez pour ajouter des heures de rappel';
+	@override String get dayMon => 'Lun';
+	@override String get dayTue => 'Mar';
+	@override String get dayWed => 'Mer';
+	@override String get dayThu => 'Jeu';
+	@override String get dayFri => 'Ven';
+	@override String get daySat => 'Sam';
+	@override String get daySun => 'Dim';
+	@override String get addedSuccess => 'Médicament ajouté.';
+	@override String get updatedSuccess => 'Médicament mis à jour.';
+	@override String get deletedSuccess => 'Médicament supprimé.';
+	@override String get atLeastOneTime => 'Ajoutez au moins une heure de rappel';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -1219,6 +1277,54 @@ extension on TranslationsFr {
 			'legal.termsBody' => 'En utilisant Medalize, vous acceptez d’utiliser le service de manière responsable pour la prise et la gestion des rendez-vous. Les conditions d’utilisation complètes seront publiées ici avant le lancement public.',
 			'legal.draftNotice' => 'Brouillon — en attente de la révision juridique finale.',
 			'legal.contact' => 'Des questions sur vos données ? Contactez support@medalize.app',
+			'medications.title' => 'Médicaments',
+			'medications.addMedication' => 'Ajouter un médicament',
+			'medications.editMedication' => 'Modifier le médicament',
+			'medications.name' => 'Nom',
+			'medications.dosage' => 'Dosage',
+			'medications.notes' => 'Notes',
+			'medications.form' => 'Forme',
+			'medications.formPill' => 'Comprimé',
+			'medications.formCapsule' => 'Gélule',
+			'medications.formLiquid' => 'Liquide',
+			'medications.formInjection' => 'Injection',
+			'medications.formOther' => 'Autre',
+			'medications.schedule' => 'Horaire',
+			'medications.times' => 'Heures de prise',
+			'medications.addTime' => 'Ajouter une heure',
+			'medications.daysOfWeek' => 'Jours de la semaine',
+			'medications.everyDay' => 'Tous les jours',
+			'medications.startDate' => 'Date de début',
+			'medications.endDate' => 'Date de fin',
+			'medications.save' => 'Enregistrer',
+			'medications.delete' => 'Supprimer',
+			'medications.deleteConfirmTitle' => 'Supprimer le médicament',
+			'medications.deleteConfirmBody' => 'Voulez-vous vraiment supprimer ce médicament ? L\'historique des prises sera conservé.',
+			'medications.emptyTitle' => 'Aucun médicament pour l\'instant',
+			'medications.emptySubtitle' => 'Ajoutez un médicament pour suivre les prises et recevoir des rappels.',
+			'medications.todaysDoses' => 'Prises du jour',
+			'medications.markTaken' => 'Pris',
+			'medications.markSkipped' => 'Ignorer',
+			'medications.statusTaken' => 'Pris',
+			'medications.statusSkipped' => 'Ignoré',
+			'medications.statusPending' => 'En attente',
+			'medications.reminderTitle' => ({required Object name}) => 'C\'est l\'heure de prendre ${name}',
+			'medications.reminderBody' => ({required Object dosage}) => 'Dose : ${dosage}',
+			'medications.tabActive' => 'Actifs',
+			'medications.tabArchive' => 'Archivés',
+			'medications.fromPrescription' => 'Sur ordonnance',
+			'medications.noSchedule' => 'Aucun horaire défini — appuyez pour ajouter des heures de rappel',
+			'medications.dayMon' => 'Lun',
+			'medications.dayTue' => 'Mar',
+			'medications.dayWed' => 'Mer',
+			'medications.dayThu' => 'Jeu',
+			'medications.dayFri' => 'Ven',
+			'medications.daySat' => 'Sam',
+			'medications.daySun' => 'Dim',
+			'medications.addedSuccess' => 'Médicament ajouté.',
+			'medications.updatedSuccess' => 'Médicament mis à jour.',
+			'medications.deletedSuccess' => 'Médicament supprimé.',
+			'medications.atLeastOneTime' => 'Ajoutez au moins une heure de rappel',
 			_ => null,
 		};
 	}

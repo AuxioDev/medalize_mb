@@ -69,6 +69,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$favorites$az favorites = _Translations$favorites$az._(_root);
 	@override late final _Translations$assistant$az assistant = _Translations$assistant$az._(_root);
 	@override late final _Translations$legal$az legal = _Translations$legal$az._(_root);
+	@override late final _Translations$medications$az medications = _Translations$medications$az._(_root);
 }
 
 // Path: common
@@ -745,6 +746,63 @@ class _Translations$legal$az extends Translations$legal$en {
 	@override String get contact => 'Məlumatlarınızla bağlı suallar? support@medalize.app ünvanına yazın';
 }
 
+// Path: medications
+class _Translations$medications$az extends Translations$medications$en {
+	_Translations$medications$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Dərmanlar';
+	@override String get addMedication => 'Dərman əlavə et';
+	@override String get editMedication => 'Dərmanı redaktə et';
+	@override String get name => 'Ad';
+	@override String get dosage => 'Dozaj';
+	@override String get notes => 'Qeydlər';
+	@override String get form => 'Forma';
+	@override String get formPill => 'Həb';
+	@override String get formCapsule => 'Kapsul';
+	@override String get formLiquid => 'Maye';
+	@override String get formInjection => 'İnyeksiya';
+	@override String get formOther => 'Digər';
+	@override String get schedule => 'Qəbul cədvəli';
+	@override String get times => 'Qəbul vaxtları';
+	@override String get addTime => 'Vaxt əlavə et';
+	@override String get daysOfWeek => 'Həftənin günləri';
+	@override String get everyDay => 'Hər gün';
+	@override String get startDate => 'Başlama tarixi';
+	@override String get endDate => 'Bitmə tarixi';
+	@override String get save => 'Yadda saxla';
+	@override String get delete => 'Sil';
+	@override String get deleteConfirmTitle => 'Dərmanı sil';
+	@override String get deleteConfirmBody => 'Bu dərmanı silmək istədiyinizə əminsiniz? Qəbul tarixçəsi saxlanılacaq.';
+	@override String get emptyTitle => 'Hələ dərman yoxdur';
+	@override String get emptySubtitle => 'Qəbulları izləmək və xatırlatmalar almaq üçün dərman əlavə edin.';
+	@override String get todaysDoses => 'Bu günkü qəbullar';
+	@override String get markTaken => 'Qəbul edildi';
+	@override String get markSkipped => 'Buraxıldı';
+	@override String get statusTaken => 'Qəbul edildi';
+	@override String get statusSkipped => 'Buraxıldı';
+	@override String get statusPending => 'Gözləyir';
+	@override String reminderTitle({required Object name}) => '${name} qəbul etmə vaxtıdır';
+	@override String reminderBody({required Object dosage}) => 'Doza: ${dosage}';
+	@override String get tabActive => 'Aktiv';
+	@override String get tabArchive => 'Arxiv';
+	@override String get fromPrescription => 'Resept üzrə';
+	@override String get noSchedule => 'Cədvəl təyin edilməyib — xatırlatma vaxtı əlavə etmək üçün toxunun';
+	@override String get dayMon => 'B.e';
+	@override String get dayTue => 'Ç.a';
+	@override String get dayWed => 'Ç';
+	@override String get dayThu => 'C.a';
+	@override String get dayFri => 'C';
+	@override String get daySat => 'Ş';
+	@override String get daySun => 'B';
+	@override String get addedSuccess => 'Dərman əlavə edildi.';
+	@override String get updatedSuccess => 'Dərman yeniləndi.';
+	@override String get deletedSuccess => 'Dərman silindi.';
+	@override String get atLeastOneTime => 'Ən azı bir xatırlatma vaxtı əlavə edin';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -1219,6 +1277,54 @@ extension on TranslationsAz {
 			'legal.termsBody' => 'Medalize-dən istifadə edərək, xidmətdən görüşləri planlamaq və idarə etmək üçün məsuliyyətlə istifadə etməyə razılaşırsınız. Tam İstifadə Şərtləri ictimai buraxılışdan əvvəl burada dərc olunacaq.',
 			'legal.draftNotice' => 'Layihə — yekun hüquqi baxış gözlənilir.',
 			'legal.contact' => 'Məlumatlarınızla bağlı suallar? support@medalize.app ünvanına yazın',
+			'medications.title' => 'Dərmanlar',
+			'medications.addMedication' => 'Dərman əlavə et',
+			'medications.editMedication' => 'Dərmanı redaktə et',
+			'medications.name' => 'Ad',
+			'medications.dosage' => 'Dozaj',
+			'medications.notes' => 'Qeydlər',
+			'medications.form' => 'Forma',
+			'medications.formPill' => 'Həb',
+			'medications.formCapsule' => 'Kapsul',
+			'medications.formLiquid' => 'Maye',
+			'medications.formInjection' => 'İnyeksiya',
+			'medications.formOther' => 'Digər',
+			'medications.schedule' => 'Qəbul cədvəli',
+			'medications.times' => 'Qəbul vaxtları',
+			'medications.addTime' => 'Vaxt əlavə et',
+			'medications.daysOfWeek' => 'Həftənin günləri',
+			'medications.everyDay' => 'Hər gün',
+			'medications.startDate' => 'Başlama tarixi',
+			'medications.endDate' => 'Bitmə tarixi',
+			'medications.save' => 'Yadda saxla',
+			'medications.delete' => 'Sil',
+			'medications.deleteConfirmTitle' => 'Dərmanı sil',
+			'medications.deleteConfirmBody' => 'Bu dərmanı silmək istədiyinizə əminsiniz? Qəbul tarixçəsi saxlanılacaq.',
+			'medications.emptyTitle' => 'Hələ dərman yoxdur',
+			'medications.emptySubtitle' => 'Qəbulları izləmək və xatırlatmalar almaq üçün dərman əlavə edin.',
+			'medications.todaysDoses' => 'Bu günkü qəbullar',
+			'medications.markTaken' => 'Qəbul edildi',
+			'medications.markSkipped' => 'Buraxıldı',
+			'medications.statusTaken' => 'Qəbul edildi',
+			'medications.statusSkipped' => 'Buraxıldı',
+			'medications.statusPending' => 'Gözləyir',
+			'medications.reminderTitle' => ({required Object name}) => '${name} qəbul etmə vaxtıdır',
+			'medications.reminderBody' => ({required Object dosage}) => 'Doza: ${dosage}',
+			'medications.tabActive' => 'Aktiv',
+			'medications.tabArchive' => 'Arxiv',
+			'medications.fromPrescription' => 'Resept üzrə',
+			'medications.noSchedule' => 'Cədvəl təyin edilməyib — xatırlatma vaxtı əlavə etmək üçün toxunun',
+			'medications.dayMon' => 'B.e',
+			'medications.dayTue' => 'Ç.a',
+			'medications.dayWed' => 'Ç',
+			'medications.dayThu' => 'C.a',
+			'medications.dayFri' => 'C',
+			'medications.daySat' => 'Ş',
+			'medications.daySun' => 'B',
+			'medications.addedSuccess' => 'Dərman əlavə edildi.',
+			'medications.updatedSuccess' => 'Dərman yeniləndi.',
+			'medications.deletedSuccess' => 'Dərman silindi.',
+			'medications.atLeastOneTime' => 'Ən azı bir xatırlatma vaxtı əlavə edin',
 			_ => null,
 		};
 	}

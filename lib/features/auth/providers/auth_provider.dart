@@ -8,7 +8,9 @@ import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/security/biometric_service.dart';
 import 'package:medalize_mb/core/services/device_identity.dart';
 import 'package:medalize_mb/core/services/fcm_service.dart';
+import 'package:medalize_mb/core/services/medication_scheduler.dart';
 import 'package:medalize_mb/core/storage/secure_storage.dart';
+import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
 import 'package:medalize_mb/features/auth/data/models/login_request.dart';
 import 'package:medalize_mb/features/auth/data/models/login_response.dart';
 import 'package:medalize_mb/features/auth/data/models/register_request.dart';
@@ -112,6 +114,7 @@ class AuthNotifier extends Notifier<AuthState> {
       // explicit login() — otherwise push tokens are never registered after
       // the app is restarted while the user is already authenticated.
       ref.read(fcmServiceProvider).init();
+      unawaited(_syncMedicationReminders());
     } on ApiException catch (e) {
       // Only a genuine auth failure should wipe the session. A network/server
       // error (e.g. launching offline) must NOT log the user out — restore the
@@ -121,7 +124,10 @@ class AuthNotifier extends Notifier<AuthState> {
         state = const AuthUnauthenticated();
       } else {
         state = await _restoreFromStorage(storedAccess);
-        if (state is AuthAuthenticated) ref.read(fcmServiceProvider).init();
+        if (state is AuthAuthenticated) {
+          ref.read(fcmServiceProvider).init();
+          unawaited(_syncMedicationReminders());
+        }
       }
     } catch (_) {
       state = await _restoreFromStorage(storedAccess);
@@ -134,6 +140,21 @@ class AuthNotifier extends Notifier<AuthState> {
       e is TokenBlacklistedException ||
       e is InvalidCredentialsException ||
       e is PermissionDeniedException;
+
+  /// Pulls the patient's medications and (re)schedules every local dose
+  /// reminder from scratch. Called alongside `FcmService.init()` — on
+  /// cold-start restoration and after every login — so reminders survive a
+  /// reinstall/relogin. Best-effort: reminders are a convenience feature and
+  /// must never block or fail the auth flow itself. A no-op for doctors (the
+  /// medications endpoints are patient-only; a 403 is swallowed here).
+  Future<void> _syncMedicationReminders() async {
+    try {
+      final scheduler = ref.read(medicationSchedulerProvider);
+      await scheduler.ensureTimezoneReady();
+      final medications = await ref.read(medicationRepositoryProvider).getMedications();
+      await scheduler.rescheduleAll(medications);
+    } catch (_) {}
+  }
 
   /// Rebuilds an authenticated state from securely-stored identity + profile,
   /// used when the server is unreachable on cold start.
@@ -210,6 +231,7 @@ class AuthNotifier extends Notifier<AuthState> {
       );
       await _applyAuthResponse(response);
       ref.read(fcmServiceProvider).init();
+      unawaited(_syncMedicationReminders());
     } on ApiException catch (e) {
       state = AuthError(e);
     }
@@ -246,6 +268,7 @@ class AuthNotifier extends Notifier<AuthState> {
       );
       await _applyAuthResponse(response);
       ref.read(fcmServiceProvider).init();
+      unawaited(_syncMedicationReminders());
     } on SocialAuthException {
       state = const AuthError(SocialAuthFailedException());
     } on ApiException catch (e) {
@@ -327,6 +350,9 @@ class AuthNotifier extends Notifier<AuthState> {
     // Remove this device's push token first, while the access token is valid,
     // so notifications stop and don't leak to the next user of the device.
     await ref.read(fcmServiceProvider).deregisterToken();
+    // Also drop any locally-scheduled dose reminders — they must not keep
+    // firing for whoever uses this device next.
+    await ref.read(medicationSchedulerProvider).cancelAll();
     try {
       await _repo.logout(
         accessToken: s.accessToken,
@@ -355,6 +381,7 @@ class AuthNotifier extends Notifier<AuthState> {
     // The server has now revoked all sessions — drop this device's push token
     // before wiping local state, then force local logout.
     await ref.read(fcmServiceProvider).deregisterToken();
+    await ref.read(medicationSchedulerProvider).cancelAll();
     await _storage.clearAll();
     state = const AuthUnauthenticated();
   }

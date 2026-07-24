@@ -30,6 +30,13 @@ dependencies:
   firebase_core: ^3.0.0
   firebase_messaging: ^15.0.0
   flutter_local_notifications: ^18.0.0
+  # Promoted from a transitive dependency (pulled in by
+  # flutter_local_notifications) to direct: medication reminders need
+  # tz.initializeTimeZones()/setLocalLocation() and TZDateTime directly (see
+  # lib/core/services/medication_scheduler.dart).
+  timezone: ^0.10.1
+  # Resolves the device's IANA timezone name for local dose-reminder scheduling.
+  flutter_timezone: ^5.1.0
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^8.1.0
   local_auth: ^3.0.1
