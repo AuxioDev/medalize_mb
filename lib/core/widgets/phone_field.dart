@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
@@ -190,7 +191,7 @@ class _PhoneFieldState extends State<PhoneField> {
               duration: const Duration(milliseconds: 150),
               decoration: BoxDecoration(
                 color: c.surfaceAlt,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppRadius.md),
                 border: Border.all(
                   color: hasError
                       ? AppColors.error

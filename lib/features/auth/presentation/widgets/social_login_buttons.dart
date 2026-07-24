@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -41,7 +42,7 @@ class SocialLoginButtons extends StatelessWidget {
             onPressed: enabled ? onAppleTap : null,
             text: context.t.auth.continueWithApple,
             height: 48,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppRadius.md),
           ),
         ],
       ],
@@ -84,7 +85,7 @@ class _GoogleButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           side: BorderSide(color: context.colors.border),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.md)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

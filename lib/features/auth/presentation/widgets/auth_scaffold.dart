@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
+import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 
 /// Shared scaffold for all auth screens.
@@ -16,12 +18,8 @@ class AuthScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFF1E3A8A), Color(0xFF2563EB)],
-          ),
+        decoration: BoxDecoration(
+          gradient: AppColors.authGradient,
         ),
         child: SafeArea(
           child: LayoutBuilder(
@@ -55,7 +53,7 @@ class _Card extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: context.colors.surface,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(AppRadius.xxl),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.2),
@@ -78,7 +76,7 @@ class AuthCardHeader extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.subtitle,
-    this.iconColor = const Color(0xFF2563EB),
+    this.iconColor = AppColors.primary,
   });
 
   final IconData icon;
@@ -95,7 +93,7 @@ class AuthCardHeader extends StatelessWidget {
           height: 56,
           decoration: BoxDecoration(
             color: iconColor.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
           child: Icon(icon, color: iconColor, size: 28),
         ),

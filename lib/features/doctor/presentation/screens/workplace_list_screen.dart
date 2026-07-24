@@ -269,7 +269,7 @@ class EditWorkplaceLoader extends ConsumerWidget {
       loading: () => Scaffold(
         appBar: AppBar(),
         body: const Padding(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(AppSpacing.md),
           child: Column(children: [
             ShimmerSkeleton(height: 64),
             ShimmerSkeleton(height: 120),

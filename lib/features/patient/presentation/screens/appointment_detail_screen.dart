@@ -588,8 +588,10 @@ class _AppointmentDetailScreenState
                             _markNoShow();
                           },
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFFB45309),
-                      side: const BorderSide(color: Color(0x66B45309)),
+                      foregroundColor: StatusChip.colorFor('no_show'),
+                      side: BorderSide(
+                          color: StatusChip.colorFor('no_show')
+                              .withValues(alpha: 0.4)),
                       minimumSize: const Size.fromHeight(52),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AppRadius.md)),
@@ -847,7 +849,7 @@ class AppointmentDetailLoader extends ConsumerWidget {
       loading: () => Scaffold(
         appBar: AppBar(),
         body: const Padding(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(AppSpacing.md),
           child: Column(children: [
             ShimmerSkeleton(height: 64),
             ShimmerSkeleton(height: 120),

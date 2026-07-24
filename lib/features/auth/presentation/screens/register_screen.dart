@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
@@ -263,7 +264,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                             AppColors.primary.withValues(alpha: 0.08),
                         side: BorderSide(color: context.colors.border),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(AppRadius.md),
                         ),
                       ),
                     ),
@@ -432,13 +433,7 @@ class _InlineStrength extends StatelessWidget {
     final strength = evaluatePasswordStrength(password);
     if (strength == PasswordStrength.empty) return const SizedBox(height: 4);
 
-    final (color, label, value) = switch (strength) {
-      PasswordStrength.weak   => (AppColors.strengthWeak, 'Weak', 0.25),
-      PasswordStrength.fair   => (const Color(0xFFF97316), 'Fair', 0.5),
-      PasswordStrength.good   => (const Color(0xFF84CC16), 'Good', 0.75),
-      PasswordStrength.strong => (AppColors.strengthStrong, 'Strong', 1.0),
-      PasswordStrength.empty  => (AppColors.border, '', 0.0),
-    };
+    final (color, label, value) = passwordStrengthStyle(strength);
 
     return Padding(
       padding: const EdgeInsets.only(top: 6),
@@ -446,7 +441,7 @@ class _InlineStrength extends StatelessWidget {
         children: [
           Expanded(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(AppRadius.xs),
               child: TweenAnimationBuilder<double>(
                 tween: Tween(begin: 0, end: value),
                 duration: const Duration(milliseconds: 300),

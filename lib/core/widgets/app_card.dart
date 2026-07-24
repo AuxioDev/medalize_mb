@@ -10,7 +10,7 @@ class AppCard extends StatefulWidget {
     required this.child,
     this.onTap,
     this.onLongPress,
-    this.padding = const EdgeInsets.all(16),
+    this.padding = const EdgeInsets.all(AppSpacing.md),
     this.margin = const EdgeInsets.only(bottom: 10),
   });
 

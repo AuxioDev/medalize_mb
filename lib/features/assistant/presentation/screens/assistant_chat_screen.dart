@@ -255,7 +255,7 @@ class _MessageBubble extends StatelessWidget {
               const Gap(2),
               message.flagged
                   ? Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(AppSpacing.sm),
                       child: Icon(Icons.flag_rounded,
                           size: 16, color: c.textSecondary),
                     )

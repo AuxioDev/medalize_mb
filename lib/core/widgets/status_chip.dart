@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class StatusChip extends StatelessWidget {
@@ -37,7 +38,7 @@ class StatusChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Text(
         labelFor(status),

@@ -36,14 +36,14 @@ class PasswordStrengthIndicator extends StatelessWidget {
     final strength = evaluatePasswordStrength(password);
     if (strength == PasswordStrength.empty) return const SizedBox.shrink();
 
-    final (color, label, value) = _attrs(strength);
+    final (color, label, value) = passwordStrengthStyle(strength);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: AppSpacing.xs),
         ClipRRect(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(AppRadius.xs),
           child: TweenAnimationBuilder<double>(
             tween: Tween(begin: 0, end: value),
             duration: const Duration(milliseconds: 300),
@@ -69,10 +69,12 @@ class PasswordStrengthIndicator extends StatelessWidget {
   }
 }
 
-(Color, String, double) _attrs(PasswordStrength s) => switch (s) {
+/// Shared color/label/progress mapping for a password-strength level.
+/// Used by [PasswordStrengthIndicator] and the register screen's inline bar.
+(Color, String, double) passwordStrengthStyle(PasswordStrength s) => switch (s) {
       PasswordStrength.weak => (AppColors.strengthWeak, 'Weak', 0.25),
-      PasswordStrength.fair => (const Color(0xFFF97316), 'Fair', 0.5),
-      PasswordStrength.good => (const Color(0xFF84CC16), 'Good', 0.75),
+      PasswordStrength.fair => (AppColors.strengthFair, 'Fair', 0.5),
+      PasswordStrength.good => (AppColors.strengthGood, 'Good', 0.75),
       PasswordStrength.strong => (AppColors.strengthStrong, 'Strong', 1.0),
       PasswordStrength.empty => (AppColors.border, '', 0.0),
     };

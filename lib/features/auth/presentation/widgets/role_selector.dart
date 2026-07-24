@@ -67,7 +67,7 @@ class _RoleCard extends StatelessWidget {
         color: isSelected
             ? AppColors.primary.withValues(alpha: 0.08)
             : c.surface,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(
           color: isSelected ? AppColors.primary : c.border,
           width: isSelected ? 2 : 1,
@@ -75,7 +75,7 @@ class _RoleCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: AppSpacing.lg,

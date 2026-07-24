@@ -14,7 +14,8 @@ abstract final class AppColors {
   static const success = Color(0xFF10B981);
   static const warning = Color(0xFFF59E0B);
   static const strengthWeak = Color(0xFFEF4444);
-  static const strengthMedium = Color(0xFFF59E0B);
+  static const strengthFair = Color(0xFFF97316);
+  static const strengthGood = Color(0xFF84CC16);
   static const strengthStrong = Color(0xFF10B981);
 
   // ── Deprecated neutral aliases (light-theme values) ───────────────────────
@@ -32,6 +33,14 @@ abstract final class AppColors {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [primaryDark, primary],
+      );
+
+  /// Deeper-blue backdrop gradient used behind the auth flow scaffold.
+  static const _authGradientStart = Color(0xFF1E3A8A);
+  static LinearGradient get authGradient => const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [_authGradientStart, primary],
       );
 }
 
