@@ -73,6 +73,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$medications$ru medications = _Translations$medications$ru._(_root);
 	@override late final _Translations$prescriptions$ru prescriptions = _Translations$prescriptions$ru._(_root);
 	@override late final _Translations$records$ru records = _Translations$records$ru._(_root);
+	@override late final _Translations$payments$ru payments = _Translations$payments$ru._(_root);
 }
 
 // Path: common
@@ -910,6 +911,26 @@ class _Translations$records$ru extends Translations$records$en {
 	@override String get couldNotOpen => 'Не удалось открыть файл';
 }
 
+// Path: payments
+class _Translations$payments$ru extends Translations$payments$en {
+	_Translations$payments$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Оплата';
+	@override String get amount => 'Сумма';
+	@override String get payNow => 'Оплатить сейчас';
+	@override String get payLater => 'Оплатить позже';
+	@override String get statusPending => 'Ожидает оплаты';
+	@override String get statusPaid => 'Оплачено';
+	@override String get statusFailed => 'Оплата не прошла';
+	@override String get statusCancelled => 'Отменено';
+	@override String get paymentConfirmed => 'Оплата подтверждена. Спасибо!';
+	@override String get openingBrowser => 'Открываем браузер…';
+	@override String get checkStatus => 'Проверить статус';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -1511,6 +1532,17 @@ extension on TranslationsRu {
 			'records.uploadSuccess' => 'Документ загружен.',
 			'records.deletedSuccess' => 'Документ удалён.',
 			'records.couldNotOpen' => 'Не удалось открыть файл',
+			'payments.title' => 'Оплата',
+			'payments.amount' => 'Сумма',
+			'payments.payNow' => 'Оплатить сейчас',
+			'payments.payLater' => 'Оплатить позже',
+			'payments.statusPending' => 'Ожидает оплаты',
+			'payments.statusPaid' => 'Оплачено',
+			'payments.statusFailed' => 'Оплата не прошла',
+			'payments.statusCancelled' => 'Отменено',
+			'payments.paymentConfirmed' => 'Оплата подтверждена. Спасибо!',
+			'payments.openingBrowser' => 'Открываем браузер…',
+			'payments.checkStatus' => 'Проверить статус',
 			_ => null,
 		};
 	}

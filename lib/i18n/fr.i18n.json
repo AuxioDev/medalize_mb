@@ -623,5 +623,18 @@
     "uploadSuccess": "Document téléversé.",
     "deletedSuccess": "Document supprimé.",
     "couldNotOpen": "Impossible d'ouvrir le fichier"
+  },
+  "payments": {
+    "title": "Paiement",
+    "amount": "Montant",
+    "payNow": "Payer maintenant",
+    "payLater": "Payer plus tard",
+    "statusPending": "Paiement en attente",
+    "statusPaid": "Payé",
+    "statusFailed": "Échec du paiement",
+    "statusCancelled": "Annulé",
+    "paymentConfirmed": "Paiement confirmé. Merci !",
+    "openingBrowser": "Ouverture du navigateur…",
+    "checkStatus": "Vérifier le statut"
   }
 }

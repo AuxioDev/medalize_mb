@@ -19,6 +19,8 @@ import 'package:medalize_mb/features/appointments/data/models/review_model.dart'
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/messaging/data/repository/messaging_repository.dart';
+import 'package:medalize_mb/features/payments/presentation/screens/payment_screen.dart';
+import 'package:medalize_mb/features/payments/providers/payment_provider.dart';
 import 'package:medalize_mb/features/prescriptions/providers/prescription_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -568,6 +570,10 @@ class _AppointmentDetailScreenState
                 ),
               AnimatedEntrance(
                 index: 8,
+                child: _PaymentSection(appointment: appt, asDoctor: widget.asDoctor),
+              ),
+              AnimatedEntrance(
+                index: 9,
                 child: _MessageSection(appointment: appt, asDoctor: widget.asDoctor),
               ),
               const Gap(16),
@@ -1019,6 +1025,51 @@ class _PrescriptionSection extends ConsumerWidget {
                   label: Text(context.t.prescriptions.viewDetails),
                 ),
               ],
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// Small payment-status badge — same file, role-gated via [asDoctor], right
+/// alongside [_PrescriptionSection]/[_MessageSection] per the established
+/// appointment-detail convention. Shown for any appointment status (unlike
+/// [_PrescriptionSection], which only applies once completed): a `Payment`
+/// is created immediately after booking succeeds, before the doctor even
+/// confirms the request, so it can exist alongside a `pending` appointment
+/// too. Visible to both roles — the doctor benefits from seeing whether the
+/// visit has been paid for.
+class _PaymentSection extends ConsumerWidget {
+  const _PaymentSection({required this.appointment, required this.asDoctor});
+
+  final AppointmentModel appointment;
+  final bool asDoctor;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final async = ref.watch(paymentProvider(appointment.id));
+    return async.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (payment) {
+        // No payment created for this appointment (yet, or ever — payment is
+        // optional) — nothing to show for either role. Unlike prescriptions
+        // there's no "create payment" CTA here: that only happens right
+        // after booking, from booking_confirm_screen.dart.
+        if (payment == null) return const SizedBox.shrink();
+        return _InfoCard(
+          label: context.t.payments.title,
+          icon: Icons.payments_outlined,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '${payment.amount} ${payment.currency}',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              PaymentStatusChip(status: payment.status),
             ],
           ),
         );

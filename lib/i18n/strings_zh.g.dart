@@ -73,6 +73,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$medications$zh medications = _Translations$medications$zh._(_root);
 	@override late final _Translations$prescriptions$zh prescriptions = _Translations$prescriptions$zh._(_root);
 	@override late final _Translations$records$zh records = _Translations$records$zh._(_root);
+	@override late final _Translations$payments$zh payments = _Translations$payments$zh._(_root);
 }
 
 // Path: common
@@ -910,6 +911,26 @@ class _Translations$records$zh extends Translations$records$en {
 	@override String get couldNotOpen => '无法打开文件';
 }
 
+// Path: payments
+class _Translations$payments$zh extends Translations$payments$en {
+	_Translations$payments$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '支付';
+	@override String get amount => '金额';
+	@override String get payNow => '立即支付';
+	@override String get payLater => '稍后支付';
+	@override String get statusPending => '待支付';
+	@override String get statusPaid => '已支付';
+	@override String get statusFailed => '支付失败';
+	@override String get statusCancelled => '已取消';
+	@override String get paymentConfirmed => '支付已确认，谢谢！';
+	@override String get openingBrowser => '正在打开浏览器…';
+	@override String get checkStatus => '查看状态';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1511,6 +1532,17 @@ extension on TranslationsZh {
 			'records.uploadSuccess' => '文件已上传。',
 			'records.deletedSuccess' => '文件已删除。',
 			'records.couldNotOpen' => '无法打开文件',
+			'payments.title' => '支付',
+			'payments.amount' => '金额',
+			'payments.payNow' => '立即支付',
+			'payments.payLater' => '稍后支付',
+			'payments.statusPending' => '待支付',
+			'payments.statusPaid' => '已支付',
+			'payments.statusFailed' => '支付失败',
+			'payments.statusCancelled' => '已取消',
+			'payments.paymentConfirmed' => '支付已确认，谢谢！',
+			'payments.openingBrowser' => '正在打开浏览器…',
+			'payments.checkStatus' => '查看状态',
 			_ => null,
 		};
 	}

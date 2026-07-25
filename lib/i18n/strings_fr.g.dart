@@ -73,6 +73,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$medications$fr medications = _Translations$medications$fr._(_root);
 	@override late final _Translations$prescriptions$fr prescriptions = _Translations$prescriptions$fr._(_root);
 	@override late final _Translations$records$fr records = _Translations$records$fr._(_root);
+	@override late final _Translations$payments$fr payments = _Translations$payments$fr._(_root);
 }
 
 // Path: common
@@ -910,6 +911,26 @@ class _Translations$records$fr extends Translations$records$en {
 	@override String get couldNotOpen => 'Impossible d\'ouvrir le fichier';
 }
 
+// Path: payments
+class _Translations$payments$fr extends Translations$payments$en {
+	_Translations$payments$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Paiement';
+	@override String get amount => 'Montant';
+	@override String get payNow => 'Payer maintenant';
+	@override String get payLater => 'Payer plus tard';
+	@override String get statusPending => 'Paiement en attente';
+	@override String get statusPaid => 'Payé';
+	@override String get statusFailed => 'Échec du paiement';
+	@override String get statusCancelled => 'Annulé';
+	@override String get paymentConfirmed => 'Paiement confirmé. Merci !';
+	@override String get openingBrowser => 'Ouverture du navigateur…';
+	@override String get checkStatus => 'Vérifier le statut';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -1511,6 +1532,17 @@ extension on TranslationsFr {
 			'records.uploadSuccess' => 'Document téléversé.',
 			'records.deletedSuccess' => 'Document supprimé.',
 			'records.couldNotOpen' => 'Impossible d\'ouvrir le fichier',
+			'payments.title' => 'Paiement',
+			'payments.amount' => 'Montant',
+			'payments.payNow' => 'Payer maintenant',
+			'payments.payLater' => 'Payer plus tard',
+			'payments.statusPending' => 'Paiement en attente',
+			'payments.statusPaid' => 'Payé',
+			'payments.statusFailed' => 'Échec du paiement',
+			'payments.statusCancelled' => 'Annulé',
+			'payments.paymentConfirmed' => 'Paiement confirmé. Merci !',
+			'payments.openingBrowser' => 'Ouverture du navigateur…',
+			'payments.checkStatus' => 'Vérifier le statut',
 			_ => null,
 		};
 	}

@@ -623,5 +623,18 @@
     "uploadSuccess": "文件已上传。",
     "deletedSuccess": "文件已删除。",
     "couldNotOpen": "无法打开文件"
+  },
+  "payments": {
+    "title": "支付",
+    "amount": "金额",
+    "payNow": "立即支付",
+    "payLater": "稍后支付",
+    "statusPending": "待支付",
+    "statusPaid": "已支付",
+    "statusFailed": "支付失败",
+    "statusCancelled": "已取消",
+    "paymentConfirmed": "支付已确认，谢谢！",
+    "openingBrowser": "正在打开浏览器…",
+    "checkStatus": "查看状态"
   }
 }

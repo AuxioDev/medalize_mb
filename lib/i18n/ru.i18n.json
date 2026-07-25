@@ -623,5 +623,18 @@
     "uploadSuccess": "Документ загружен.",
     "deletedSuccess": "Документ удалён.",
     "couldNotOpen": "Не удалось открыть файл"
+  },
+  "payments": {
+    "title": "Оплата",
+    "amount": "Сумма",
+    "payNow": "Оплатить сейчас",
+    "payLater": "Оплатить позже",
+    "statusPending": "Ожидает оплаты",
+    "statusPaid": "Оплачено",
+    "statusFailed": "Оплата не прошла",
+    "statusCancelled": "Отменено",
+    "paymentConfirmed": "Оплата подтверждена. Спасибо!",
+    "openingBrowser": "Открываем браузер…",
+    "checkStatus": "Проверить статус"
   }
 }

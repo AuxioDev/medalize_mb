@@ -15,6 +15,7 @@ import 'package:medalize_mb/features/appointments/data/repository/appointment_re
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/features/payments/data/repository/payment_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class BookingConfirmScreen extends ConsumerStatefulWidget {
@@ -52,7 +53,7 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
     });
     try {
       final repo = ref.read(appointmentRepositoryProvider);
-      await repo.bookAppointment(BookingRequest(
+      final appointment = await repo.bookAppointment(BookingRequest(
         doctorId: widget.doctor.id,
         workplaceId: widget.workplaceId,
         startsAt: widget.slot.startsAt,
@@ -62,6 +63,20 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
       // and the slot availability so the just-booked slot disappears.
       ref.invalidate(patientAppointmentsProvider);
       ref.invalidate(slotsProvider);
+
+      // Payment is optional and never blocks booking success: attempt to
+      // create one, but a 503 (Payriff not configured in this environment —
+      // the current default) or any other failure just means no "Pay now"
+      // button appears. The success dialog below renders identically either
+      // way.
+      var paymentAvailable = false;
+      try {
+        await ref.read(paymentRepositoryProvider).createPayment(appointment.id);
+        paymentAvailable = true;
+      } catch (_) {
+        paymentAvailable = false;
+      }
+
       if (mounted) {
         showDialog<void>(
           context: context,
@@ -71,6 +86,15 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
             title: Text(context.t.appointments.bookedTitle),
             content: Text(context.t.appointments.bookedMessage),
             actions: [
+              if (paymentAvailable)
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    context.go('/patient/home');
+                    context.push('/patient/appointments/${appointment.id}/payment');
+                  },
+                  child: Text(context.t.payments.payNow),
+                ),
               FilledButton(
                 onPressed: () {
                   Navigator.pop(context);

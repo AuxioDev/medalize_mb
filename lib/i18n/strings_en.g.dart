@@ -77,6 +77,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$medications$en medications = Translations$medications$en.internal(_root);
 	late final Translations$prescriptions$en prescriptions = Translations$prescriptions$en.internal(_root);
 	late final Translations$records$en records = Translations$records$en.internal(_root);
+	late final Translations$payments$en payments = Translations$payments$en.internal(_root);
 }
 
 // Path: common
@@ -1988,6 +1989,48 @@ class Translations$records$en {
 	String get couldNotOpen => 'Could not open the file';
 }
 
+// Path: payments
+class Translations$payments$en {
+	Translations$payments$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Payment'
+	String get title => 'Payment';
+
+	/// en: 'Amount'
+	String get amount => 'Amount';
+
+	/// en: 'Pay Now'
+	String get payNow => 'Pay Now';
+
+	/// en: 'Pay Later'
+	String get payLater => 'Pay Later';
+
+	/// en: 'Payment Pending'
+	String get statusPending => 'Payment Pending';
+
+	/// en: 'Paid'
+	String get statusPaid => 'Paid';
+
+	/// en: 'Payment Failed'
+	String get statusFailed => 'Payment Failed';
+
+	/// en: 'Cancelled'
+	String get statusCancelled => 'Cancelled';
+
+	/// en: 'Payment confirmed. Thank you!'
+	String get paymentConfirmed => 'Payment confirmed. Thank you!';
+
+	/// en: 'Opening your browser…'
+	String get openingBrowser => 'Opening your browser…';
+
+	/// en: 'Check Status'
+	String get checkStatus => 'Check Status';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -2625,6 +2668,17 @@ extension on Translations {
 			'records.uploadSuccess' => 'Record uploaded.',
 			'records.deletedSuccess' => 'Record deleted.',
 			'records.couldNotOpen' => 'Could not open the file',
+			'payments.title' => 'Payment',
+			'payments.amount' => 'Amount',
+			'payments.payNow' => 'Pay Now',
+			'payments.payLater' => 'Pay Later',
+			'payments.statusPending' => 'Payment Pending',
+			'payments.statusPaid' => 'Paid',
+			'payments.statusFailed' => 'Payment Failed',
+			'payments.statusCancelled' => 'Cancelled',
+			'payments.paymentConfirmed' => 'Payment confirmed. Thank you!',
+			'payments.openingBrowser' => 'Opening your browser…',
+			'payments.checkStatus' => 'Check Status',
 			_ => null,
 		};
 	}

@@ -623,5 +623,18 @@
     "uploadSuccess": "Sənəd yükləndi.",
     "deletedSuccess": "Sənəd silindi.",
     "couldNotOpen": "Fayl açılmadı"
+  },
+  "payments": {
+    "title": "Ödəniş",
+    "amount": "Məbləğ",
+    "payNow": "İndi ödə",
+    "payLater": "Sonra ödə",
+    "statusPending": "Ödəniş gözlənilir",
+    "statusPaid": "Ödənilib",
+    "statusFailed": "Ödəniş uğursuz oldu",
+    "statusCancelled": "Ləğv edilib",
+    "paymentConfirmed": "Ödəniş təsdiqləndi. Təşəkkür edirik!",
+    "openingBrowser": "Brauzer açılır…",
+    "checkStatus": "Statusu yoxla"
   }
 }

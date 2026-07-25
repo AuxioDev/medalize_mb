@@ -73,6 +73,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$medications$az medications = _Translations$medications$az._(_root);
 	@override late final _Translations$prescriptions$az prescriptions = _Translations$prescriptions$az._(_root);
 	@override late final _Translations$records$az records = _Translations$records$az._(_root);
+	@override late final _Translations$payments$az payments = _Translations$payments$az._(_root);
 }
 
 // Path: common
@@ -910,6 +911,26 @@ class _Translations$records$az extends Translations$records$en {
 	@override String get couldNotOpen => 'Fayl açılmadı';
 }
 
+// Path: payments
+class _Translations$payments$az extends Translations$payments$en {
+	_Translations$payments$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ödəniş';
+	@override String get amount => 'Məbləğ';
+	@override String get payNow => 'İndi ödə';
+	@override String get payLater => 'Sonra ödə';
+	@override String get statusPending => 'Ödəniş gözlənilir';
+	@override String get statusPaid => 'Ödənilib';
+	@override String get statusFailed => 'Ödəniş uğursuz oldu';
+	@override String get statusCancelled => 'Ləğv edilib';
+	@override String get paymentConfirmed => 'Ödəniş təsdiqləndi. Təşəkkür edirik!';
+	@override String get openingBrowser => 'Brauzer açılır…';
+	@override String get checkStatus => 'Statusu yoxla';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -1511,6 +1532,17 @@ extension on TranslationsAz {
 			'records.uploadSuccess' => 'Sənəd yükləndi.',
 			'records.deletedSuccess' => 'Sənəd silindi.',
 			'records.couldNotOpen' => 'Fayl açılmadı',
+			'payments.title' => 'Ödəniş',
+			'payments.amount' => 'Məbləğ',
+			'payments.payNow' => 'İndi ödə',
+			'payments.payLater' => 'Sonra ödə',
+			'payments.statusPending' => 'Ödəniş gözlənilir',
+			'payments.statusPaid' => 'Ödənilib',
+			'payments.statusFailed' => 'Ödəniş uğursuz oldu',
+			'payments.statusCancelled' => 'Ləğv edilib',
+			'payments.paymentConfirmed' => 'Ödəniş təsdiqləndi. Təşəkkür edirik!',
+			'payments.openingBrowser' => 'Brauzer açılır…',
+			'payments.checkStatus' => 'Statusu yoxla',
 			_ => null,
 		};
 	}

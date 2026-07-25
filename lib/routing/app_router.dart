@@ -31,6 +31,7 @@ import 'package:medalize_mb/features/messaging/data/models/messaging_models.dart
 import 'package:medalize_mb/features/messaging/presentation/screens/thread_chat_screen.dart';
 import 'package:medalize_mb/features/messaging/presentation/screens/thread_list_screen.dart';
 import 'package:medalize_mb/features/onboarding/presentation/screens/app_intro_screen.dart';
+import 'package:medalize_mb/features/payments/presentation/screens/payment_screen.dart';
 import 'package:medalize_mb/features/prescriptions/presentation/screens/prescription_detail_screen.dart';
 import 'package:medalize_mb/features/prescriptions/presentation/screens/prescription_list_screen.dart';
 import 'package:medalize_mb/features/prescriptions/presentation/screens/write_prescription_screen.dart';
@@ -261,6 +262,14 @@ final routerProvider = Provider<GoRouter>((ref) {
             thread: thread,
           ));
         },
+      ),
+
+      // Payments (Phase 3, Section 1)
+      GoRoute(
+        path: '/patient/appointments/:id/payment',
+        pageBuilder: (_, state) => _pushPage(
+          PaymentScreen(appointmentId: state.pathParameters['id']!),
+        ),
       ),
 
       // Doctor routes

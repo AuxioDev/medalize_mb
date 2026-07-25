@@ -623,5 +623,18 @@
     "uploadSuccess": "Belge yüklendi.",
     "deletedSuccess": "Belge silindi.",
     "couldNotOpen": "Dosya açılamadı"
+  },
+  "payments": {
+    "title": "Ödeme",
+    "amount": "Tutar",
+    "payNow": "Şimdi Öde",
+    "payLater": "Sonra Öde",
+    "statusPending": "Ödeme Bekleniyor",
+    "statusPaid": "Ödendi",
+    "statusFailed": "Ödeme Başarısız",
+    "statusCancelled": "İptal Edildi",
+    "paymentConfirmed": "Ödeme onaylandı. Teşekkürler!",
+    "openingBrowser": "Tarayıcı açılıyor…",
+    "checkStatus": "Durumu Kontrol Et"
   }
 }

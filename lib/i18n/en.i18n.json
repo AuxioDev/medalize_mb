@@ -623,5 +623,18 @@
     "uploadSuccess": "Record uploaded.",
     "deletedSuccess": "Record deleted.",
     "couldNotOpen": "Could not open the file"
+  },
+  "payments": {
+    "title": "Payment",
+    "amount": "Amount",
+    "payNow": "Pay Now",
+    "payLater": "Pay Later",
+    "statusPending": "Payment Pending",
+    "statusPaid": "Paid",
+    "statusFailed": "Payment Failed",
+    "statusCancelled": "Cancelled",
+    "paymentConfirmed": "Payment confirmed. Thank you!",
+    "openingBrowser": "Opening your browser…",
+    "checkStatus": "Check Status"
   }
 }

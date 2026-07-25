@@ -73,6 +73,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$medications$tr medications = _Translations$medications$tr._(_root);
 	@override late final _Translations$prescriptions$tr prescriptions = _Translations$prescriptions$tr._(_root);
 	@override late final _Translations$records$tr records = _Translations$records$tr._(_root);
+	@override late final _Translations$payments$tr payments = _Translations$payments$tr._(_root);
 }
 
 // Path: common
@@ -910,6 +911,26 @@ class _Translations$records$tr extends Translations$records$en {
 	@override String get couldNotOpen => 'Dosya açılamadı';
 }
 
+// Path: payments
+class _Translations$payments$tr extends Translations$payments$en {
+	_Translations$payments$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ödeme';
+	@override String get amount => 'Tutar';
+	@override String get payNow => 'Şimdi Öde';
+	@override String get payLater => 'Sonra Öde';
+	@override String get statusPending => 'Ödeme Bekleniyor';
+	@override String get statusPaid => 'Ödendi';
+	@override String get statusFailed => 'Ödeme Başarısız';
+	@override String get statusCancelled => 'İptal Edildi';
+	@override String get paymentConfirmed => 'Ödeme onaylandı. Teşekkürler!';
+	@override String get openingBrowser => 'Tarayıcı açılıyor…';
+	@override String get checkStatus => 'Durumu Kontrol Et';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1511,6 +1532,17 @@ extension on TranslationsTr {
 			'records.uploadSuccess' => 'Belge yüklendi.',
 			'records.deletedSuccess' => 'Belge silindi.',
 			'records.couldNotOpen' => 'Dosya açılamadı',
+			'payments.title' => 'Ödeme',
+			'payments.amount' => 'Tutar',
+			'payments.payNow' => 'Şimdi Öde',
+			'payments.payLater' => 'Sonra Öde',
+			'payments.statusPending' => 'Ödeme Bekleniyor',
+			'payments.statusPaid' => 'Ödendi',
+			'payments.statusFailed' => 'Ödeme Başarısız',
+			'payments.statusCancelled' => 'İptal Edildi',
+			'payments.paymentConfirmed' => 'Ödeme onaylandı. Teşekkürler!',
+			'payments.openingBrowser' => 'Tarayıcı açılıyor…',
+			'payments.checkStatus' => 'Durumu Kontrol Et',
 			_ => null,
 		};
 	}
