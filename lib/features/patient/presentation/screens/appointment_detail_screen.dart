@@ -18,6 +18,7 @@ import 'package:medalize_mb/features/appointments/data/models/appointment_model.
 import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/features/messaging/data/repository/messaging_repository.dart';
 import 'package:medalize_mb/features/prescriptions/providers/prescription_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -565,6 +566,10 @@ class _AppointmentDetailScreenState
                   index: 7,
                   child: _PrescriptionSection(appointment: appt, asDoctor: widget.asDoctor),
                 ),
+              AnimatedEntrance(
+                index: 8,
+                child: _MessageSection(appointment: appt, asDoctor: widget.asDoctor),
+              ),
               const Gap(16),
             ],
           ),
@@ -1018,6 +1023,73 @@ class _PrescriptionSection extends ConsumerWidget {
           ),
         );
       },
+    );
+  }
+}
+
+/// "Write a message" entry point into the Phase 2 messaging thread with the
+/// other participant of this appointment — same file, role-gated via
+/// [asDoctor], right next to [_PrescriptionSection] per the established
+/// appointment-detail convention. Shown regardless of appointment status:
+/// any appointment (even pending/cancelled) already establishes the shared
+/// history the backend requires to create a thread.
+class _MessageSection extends ConsumerStatefulWidget {
+  const _MessageSection({required this.appointment, required this.asDoctor});
+
+  final AppointmentModel appointment;
+  final bool asDoctor;
+
+  @override
+  ConsumerState<_MessageSection> createState() => _MessageSectionState();
+}
+
+class _MessageSectionState extends ConsumerState<_MessageSection> {
+  bool _opening = false;
+
+  Future<void> _openChat() async {
+    setState(() => _opening = true);
+    try {
+      final otherId = widget.asDoctor
+          ? widget.appointment.patient.id
+          : widget.appointment.doctor.id;
+      final thread =
+          await ref.read(messagingRepositoryProvider).getOrCreateThread(otherId);
+      if (!mounted) return;
+      final path = widget.asDoctor
+          ? '/doctor/messages/${thread.id}'
+          : '/patient/messages/${thread.id}';
+      context.push(path, extra: thread);
+    } on ApiException catch (e) {
+      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+    } finally {
+      if (mounted) setState(() => _opening = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _InfoCard(
+      label: context.t.messaging.title,
+      icon: Icons.chat_bubble_outline_rounded,
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: OutlinedButton.icon(
+          onPressed: _opening
+              ? null
+              : () {
+                  HapticFeedback.lightImpact();
+                  _openChat();
+                },
+          icon: _opening
+              ? const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
+              : const Icon(Icons.send_outlined, size: 16),
+          label: Text(context.t.messaging.sendMessage),
+        ),
+      ),
     );
   }
 }

@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/greeting_banner.dart';
+import 'package:medalize_mb/core/widgets/message_bell.dart';
 import 'package:medalize_mb/core/widgets/notification_bell.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/section_header.dart';
@@ -23,6 +24,7 @@ import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/medications/presentation/widgets/todays_doses_section.dart';
+import 'package:medalize_mb/features/messaging/providers/messaging_provider.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -34,6 +36,9 @@ class PatientHomeScreen extends ConsumerWidget {
     final auth = ref.watch(authProvider);
     final name = auth is AuthAuthenticated ? auth.displayName : '';
     final unread = ref.watch(unreadCountProvider);
+    final unreadMessages = ref
+        .watch(unreadMessagesCountProvider)
+        .maybeWhen(data: (c) => c, orElse: () => 0);
 
     return Scaffold(
       appBar: AppBar(
@@ -43,6 +48,10 @@ class PatientHomeScreen extends ConsumerWidget {
             tooltip: context.t.favorites.title,
             icon: const Icon(Icons.favorite_border_rounded),
             onPressed: () => context.push('/patient/favorites'),
+          ),
+          MessageBell(
+            count: unreadMessages,
+            onTap: () => context.push('/patient/messages'),
           ),
           NotificationBell(
             count: unread,

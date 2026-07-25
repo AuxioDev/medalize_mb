@@ -21,6 +21,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/features/messaging/data/repository/messaging_repository.dart';
 import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -70,6 +71,26 @@ class _DetailBody extends ConsumerStatefulWidget {
 
 class _DetailBodyState extends ConsumerState<_DetailBody> {
   bool _joiningWaitlist = false;
+  bool _openingChat = false;
+
+  /// Rather than pre-checking appointment history client-side, this just
+  /// attempts `getOrCreateThread` and surfaces the backend's localized
+  /// `noSharedHistory` message if it declines — the simpler of the two
+  /// options this entry point's spec allows for.
+  Future<void> _openChat() async {
+    setState(() => _openingChat = true);
+    try {
+      final thread = await ref
+          .read(messagingRepositoryProvider)
+          .getOrCreateThread(widget.detail.id);
+      if (!mounted) return;
+      context.push('/patient/messages/${thread.id}', extra: thread);
+    } on ApiException catch (e) {
+      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+    } finally {
+      if (mounted) setState(() => _openingChat = false);
+    }
+  }
 
   Future<void> _toggleWaitlist(List<dynamic> myWaitlist) async {
     final existing = myWaitlist
@@ -252,6 +273,21 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                         isOnWaitlist ? Icons.notifications_active : Icons.notifications_none_outlined,
                         color: isOnWaitlist ? AppColors.primary : null,
                       ),
+                    ),
+            ),
+            const Gap(10),
+            SizedBox(
+              width: 48,
+              height: 48,
+              child: _openingChat
+                  ? const Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)))
+                  : IconButton.outlined(
+                      tooltip: context.t.messaging.sendMessage,
+                      onPressed: () {
+                        HapticFeedback.lightImpact();
+                        _openChat();
+                      },
+                      icon: const Icon(Icons.chat_bubble_outline_rounded),
                     ),
             ),
           ],

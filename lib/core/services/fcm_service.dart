@@ -113,6 +113,7 @@ class FcmService {
     final type = data['type'] as String?;
     final appointmentId = data['appointment_id'] as String?;
     final prescriptionId = data['prescription_id'] as String?;
+    final threadId = data['thread_id'] as String?;
 
     if (type == 'appointment' && appointmentId != null) {
       final role = await _storage.getUserRole();
@@ -129,6 +130,15 @@ class FcmService {
       final context = navigatorKey.currentContext;
       if (context == null) return;
       GoRouter.of(context).push('/patient/prescriptions/$prescriptionId');
+    } else if (type == 'message' && threadId != null) {
+      final role = await _storage.getUserRole();
+      final context = navigatorKey.currentContext;
+      if (context == null) return;
+      final path = role == 'doctor'
+          ? '/doctor/messages/$threadId'
+          : '/patient/messages/$threadId';
+      // ignore: use_build_context_synchronously
+      GoRouter.of(context).push(path);
     } else {
       _navigateToNotifications();
     }
