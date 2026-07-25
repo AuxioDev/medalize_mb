@@ -2109,6 +2109,9 @@ class Translations$family$en {
 	/// en: 'Add a child, spouse, or other family member to manage their appointments, medications, and records.'
 	String get emptySubtitle => 'Add a child, spouse, or other family member to manage their appointments, medications, and records.';
 
+	/// en: 'Who is this appointment for?'
+	String get bookingForQuestion => 'Who is this appointment for?';
+
 	/// en: 'Booking for: $name'
 	String bookingForLabel({required Object name}) => 'Booking for: ${name}';
 
@@ -2793,6 +2796,7 @@ extension on Translations {
 			'family.deleteConfirmBody' => 'Remove this family member? Their appointment, medication, and record history will be kept.',
 			'family.empty' => 'No family members yet',
 			'family.emptySubtitle' => 'Add a child, spouse, or other family member to manage their appointments, medications, and records.',
+			'family.bookingForQuestion' => 'Who is this appointment for?',
 			'family.bookingForLabel' => ({required Object name}) => 'Booking for: ${name}',
 			'family.forLabel' => ({required Object name}) => 'for ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} years old',

@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/labeled_info_card.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/core/widgets/profile_switcher.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/appointments/data/models/booking_request.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
@@ -129,9 +130,10 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
           ? widget.doctor.workplaces.first
           : throw StateError('Doctor has no workplaces'),
     );
-    // Non-null only when the patient switched the active profile away from
-    // "myself" — surfaced below so they don't accidentally book for the
-    // wrong person.
+    // Who this booking is for. Defaults to "myself" (null) and is picked
+    // right here via the switcher below, rather than relying solely on
+    // whatever was left active on the home screen — a patient shouldn't have
+    // to leave the booking flow to book for the right person.
     final activeProfile = ref.watch(activeProfileProvider);
 
     return Scaffold(
@@ -142,6 +144,15 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                context.t.family.bookingForQuestion,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+              const Gap(8),
+              const ProfileSwitcher(),
+              const Gap(AppSpacing.md),
               if (activeProfile != null) ...[
                 Container(
                   width: double.infinity,

@@ -661,6 +661,7 @@
     "deleteConfirmBody": "Remove this family member? Their appointment, medication, and record history will be kept.",
     "empty": "No family members yet",
     "emptySubtitle": "Add a child, spouse, or other family member to manage their appointments, medications, and records.",
+    "bookingForQuestion": "Who is this appointment for?",
     "bookingForLabel": "Booking for: $name",
     "forLabel": "for $name",
     "ageYears": "$age years old",

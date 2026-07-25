@@ -962,6 +962,7 @@ class _Translations$family$fr extends Translations$family$en {
 	@override String get deleteConfirmBody => 'Voulez-vous vraiment supprimer ce membre de la famille ? L\'historique des rendez-vous, médicaments et documents sera conservé.';
 	@override String get empty => 'Aucun membre de la famille pour l\'instant';
 	@override String get emptySubtitle => 'Ajoutez un enfant, un conjoint ou un autre proche pour gérer ses rendez-vous, médicaments et documents.';
+	@override String get bookingForQuestion => 'Pour qui est ce rendez-vous ?';
 	@override String bookingForLabel({required Object name}) => 'Rendez-vous pour : ${name}';
 	@override String forLabel({required Object name}) => 'pour ${name}';
 	@override String ageYears({required Object age}) => '${age} ans';
@@ -1603,6 +1604,7 @@ extension on TranslationsFr {
 			'family.deleteConfirmBody' => 'Voulez-vous vraiment supprimer ce membre de la famille ? L\'historique des rendez-vous, médicaments et documents sera conservé.',
 			'family.empty' => 'Aucun membre de la famille pour l\'instant',
 			'family.emptySubtitle' => 'Ajoutez un enfant, un conjoint ou un autre proche pour gérer ses rendez-vous, médicaments et documents.',
+			'family.bookingForQuestion' => 'Pour qui est ce rendez-vous ?',
 			'family.bookingForLabel' => ({required Object name}) => 'Rendez-vous pour : ${name}',
 			'family.forLabel' => ({required Object name}) => 'pour ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} ans',

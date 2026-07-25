@@ -661,6 +661,7 @@
     "deleteConfirmBody": "Bu ailə üzvünü silmək istədiyinizə əminsiniz? Qəbul, dərman və sənəd tarixçəsi saxlanılacaq.",
     "empty": "Hələ ailə üzvü yoxdur",
     "emptySubtitle": "Görüşlərini, dərmanlarını və sənədlərini idarə etmək üçün övladınızı, həyat yoldaşınızı və ya digər qohumunuzu əlavə edin.",
+    "bookingForQuestion": "Bu qəbul kim üçündür?",
     "bookingForLabel": "Qəbul kimin üçündür: $name",
     "forLabel": "$name üçün",
     "ageYears": "$age yaşında",

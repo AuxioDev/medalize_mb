@@ -661,6 +661,7 @@
     "deleteConfirmBody": "Bu aile üyesini kaldırmak istediğinizden emin misiniz? Randevu, ilaç ve belge geçmişi saklanacak.",
     "empty": "Henüz aile üyesi yok",
     "emptySubtitle": "Randevularını, ilaçlarını ve belgelerini yönetmek için çocuğunuzu, eşinizi veya başka bir aile üyenizi ekleyin.",
+    "bookingForQuestion": "Bu randevu kimin için?",
     "bookingForLabel": "Randevu kimin için: $name",
     "forLabel": "$name için",
     "ageYears": "$age yaşında",

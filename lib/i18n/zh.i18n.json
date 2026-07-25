@@ -661,6 +661,7 @@
     "deleteConfirmBody": "确定要删除这位家庭成员吗?其预约、用药和档案记录将被保留。",
     "empty": "暂无家庭成员",
     "emptySubtitle": "添加子女、配偶或其他家庭成员，以管理他们的预约、用药和健康档案。",
+    "bookingForQuestion": "这次预约是为谁安排的？",
     "bookingForLabel": "预约对象：$name",
     "forLabel": "$name 的",
     "ageYears": "$age 岁",

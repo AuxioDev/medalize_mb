@@ -962,6 +962,7 @@ class _Translations$family$ru extends Translations$family$en {
 	@override String get deleteConfirmBody => 'Удалить этого члена семьи? История записей, лекарств и документов сохранится.';
 	@override String get empty => 'Пока нет членов семьи';
 	@override String get emptySubtitle => 'Добавьте ребёнка, супруга или другого родственника, чтобы управлять их записями, лекарствами и документами.';
+	@override String get bookingForQuestion => 'Для кого эта запись на приём?';
 	@override String bookingForLabel({required Object name}) => 'Запись для: ${name}';
 	@override String forLabel({required Object name}) => 'для ${name}';
 	@override String ageYears({required Object age}) => '${age} лет';
@@ -1603,6 +1604,7 @@ extension on TranslationsRu {
 			'family.deleteConfirmBody' => 'Удалить этого члена семьи? История записей, лекарств и документов сохранится.',
 			'family.empty' => 'Пока нет членов семьи',
 			'family.emptySubtitle' => 'Добавьте ребёнка, супруга или другого родственника, чтобы управлять их записями, лекарствами и документами.',
+			'family.bookingForQuestion' => 'Для кого эта запись на приём?',
 			'family.bookingForLabel' => ({required Object name}) => 'Запись для: ${name}',
 			'family.forLabel' => ({required Object name}) => 'для ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} лет',

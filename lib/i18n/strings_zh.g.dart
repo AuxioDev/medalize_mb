@@ -962,6 +962,7 @@ class _Translations$family$zh extends Translations$family$en {
 	@override String get deleteConfirmBody => '确定要删除这位家庭成员吗?其预约、用药和档案记录将被保留。';
 	@override String get empty => '暂无家庭成员';
 	@override String get emptySubtitle => '添加子女、配偶或其他家庭成员，以管理他们的预约、用药和健康档案。';
+	@override String get bookingForQuestion => '这次预约是为谁安排的？';
 	@override String bookingForLabel({required Object name}) => '预约对象：${name}';
 	@override String forLabel({required Object name}) => '${name} 的';
 	@override String ageYears({required Object age}) => '${age} 岁';
@@ -1603,6 +1604,7 @@ extension on TranslationsZh {
 			'family.deleteConfirmBody' => '确定要删除这位家庭成员吗?其预约、用药和档案记录将被保留。',
 			'family.empty' => '暂无家庭成员',
 			'family.emptySubtitle' => '添加子女、配偶或其他家庭成员，以管理他们的预约、用药和健康档案。',
+			'family.bookingForQuestion' => '这次预约是为谁安排的？',
 			'family.bookingForLabel' => ({required Object name}) => '预约对象：${name}',
 			'family.forLabel' => ({required Object name}) => '${name} 的',
 			'family.ageYears' => ({required Object age}) => '${age} 岁',

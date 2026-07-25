@@ -962,6 +962,7 @@ class _Translations$family$tr extends Translations$family$en {
 	@override String get deleteConfirmBody => 'Bu aile üyesini kaldırmak istediğinizden emin misiniz? Randevu, ilaç ve belge geçmişi saklanacak.';
 	@override String get empty => 'Henüz aile üyesi yok';
 	@override String get emptySubtitle => 'Randevularını, ilaçlarını ve belgelerini yönetmek için çocuğunuzu, eşinizi veya başka bir aile üyenizi ekleyin.';
+	@override String get bookingForQuestion => 'Bu randevu kimin için?';
 	@override String bookingForLabel({required Object name}) => 'Randevu kimin için: ${name}';
 	@override String forLabel({required Object name}) => '${name} için';
 	@override String ageYears({required Object age}) => '${age} yaşında';
@@ -1603,6 +1604,7 @@ extension on TranslationsTr {
 			'family.deleteConfirmBody' => 'Bu aile üyesini kaldırmak istediğinizden emin misiniz? Randevu, ilaç ve belge geçmişi saklanacak.',
 			'family.empty' => 'Henüz aile üyesi yok',
 			'family.emptySubtitle' => 'Randevularını, ilaçlarını ve belgelerini yönetmek için çocuğunuzu, eşinizi veya başka bir aile üyenizi ekleyin.',
+			'family.bookingForQuestion' => 'Bu randevu kimin için?',
 			'family.bookingForLabel' => ({required Object name}) => 'Randevu kimin için: ${name}',
 			'family.forLabel' => ({required Object name}) => '${name} için',
 			'family.ageYears' => ({required Object age}) => '${age} yaşında',

@@ -21,7 +21,9 @@ import 'package:medalize_mb/i18n/strings.g.dart';
 /// content, by design — the active profile needs to always be on screen so a
 /// patient can't forget whose profile they're currently acting under and,
 /// say, book an appointment for themselves when they meant to book it for
-/// their child.
+/// their child. Also reused inline on `booking_confirm_screen.dart` so the
+/// choice can be made (or changed) right in the booking flow itself, not
+/// only ahead of time from the home screen.
 class ProfileSwitcher extends ConsumerWidget {
   const ProfileSwitcher({super.key});
 

@@ -661,6 +661,7 @@
     "deleteConfirmBody": "Voulez-vous vraiment supprimer ce membre de la famille ? L'historique des rendez-vous, médicaments et documents sera conservé.",
     "empty": "Aucun membre de la famille pour l'instant",
     "emptySubtitle": "Ajoutez un enfant, un conjoint ou un autre proche pour gérer ses rendez-vous, médicaments et documents.",
+    "bookingForQuestion": "Pour qui est ce rendez-vous ?",
     "bookingForLabel": "Rendez-vous pour : $name",
     "forLabel": "pour $name",
     "ageYears": "$age ans",
