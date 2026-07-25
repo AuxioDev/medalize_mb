@@ -24,6 +24,9 @@ class AppListCard extends StatelessWidget {
     this.trailing,
     this.onTap,
     this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.color,
+    this.iconBackgroundColor,
+    this.iconColor,
   }) : assert(
           (icon == null) != (leading == null),
           'pass exactly one of icon or leading',
@@ -42,11 +45,22 @@ class AppListCard extends StatelessWidget {
   final VoidCallback? onTap;
   final CrossAxisAlignment crossAxisAlignment;
 
+  /// Overrides the card's default `surfaceAlt` fill — e.g. a notification
+  /// tile that must look distinct while unread.
+  final Color? color;
+
+  /// Overrides the default icon square's `primarySurface` fill.
+  final Color? iconBackgroundColor;
+
+  /// Overrides the default icon's `primaryText` color.
+  final Color? iconColor;
+
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
     return AppCard(
       onTap: onTap,
+      color: color,
       child: Row(
         crossAxisAlignment: crossAxisAlignment,
         children: [
@@ -55,14 +69,14 @@ class AppListCard extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: c.primarySurface,
+                  color: iconBackgroundColor ?? c.primarySurface,
                   borderRadius: BorderRadius.circular(AppRadius.md),
                 ),
-                child: Icon(icon, color: c.primaryText, size: 22),
+                child: Icon(icon, color: iconColor ?? c.primaryText, size: 22),
               ),
           const Gap(12),
           Expanded(child: child),
-          ?trailing,
+          if (trailing != null) ...[const Gap(8), trailing!],
         ],
       ),
     );

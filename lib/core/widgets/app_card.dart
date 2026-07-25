@@ -12,6 +12,7 @@ class AppCard extends StatefulWidget {
     this.onLongPress,
     this.padding = const EdgeInsets.all(AppSpacing.md),
     this.margin = const EdgeInsets.only(bottom: 10),
+    this.color,
   });
 
   final Widget child;
@@ -22,6 +23,10 @@ class AppCard extends StatefulWidget {
   final VoidCallback? onLongPress;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry margin;
+
+  /// Overrides the default `context.colors.surfaceAlt` fill — e.g. for a
+  /// notification tile that must look visually distinct while unread.
+  final Color? color;
 
   @override
   State<AppCard> createState() => _AppCardState();
@@ -100,7 +105,7 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin {
           scale: _scale,
           child: Container(
             decoration: BoxDecoration(
-              color: c.surfaceAlt,
+              color: widget.color ?? c.surfaceAlt,
               borderRadius: BorderRadius.circular(AppRadius.lg),
               border: Border.all(color: c.border, width: 1),
             ),

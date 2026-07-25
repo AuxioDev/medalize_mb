@@ -8,7 +8,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
-import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -91,45 +91,30 @@ class _PrescriptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     final dateFmt = DateFormat('d MMM y');
-    return AppCard(
+    return AppListCard(
+      icon: Icons.receipt_long_outlined,
       onTap: () {
         HapticFeedback.lightImpact();
         context.push('/patient/prescriptions/${prescription.id}');
       },
-      child: Row(
+      trailing: Icon(Icons.chevron_right, color: c.textSecondary),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: c.primarySurface,
-              borderRadius: BorderRadius.circular(AppRadius.md),
-            ),
-            child: Icon(Icons.receipt_long_outlined, color: c.primaryText, size: 22),
+          Text(
+            context.t.prescriptions.issuedBy(name: prescription.doctorName),
+            style: Theme.of(context).textTheme.titleSmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          const Gap(12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  context.t.prescriptions.issuedBy(name: prescription.doctorName),
-                  style: Theme.of(context).textTheme.titleSmall,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const Gap(2),
-                Text(
-                  context.t.prescriptions.itemsCount(count: prescription.items.length),
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                const Gap(2),
-                Text(dateFmt.format(prescription.issuedAt),
-                    style: Theme.of(context).textTheme.bodySmall),
-              ],
-            ),
+          const Gap(2),
+          Text(
+            context.t.prescriptions.itemsCount(count: prescription.items.length),
+            style: Theme.of(context).textTheme.bodySmall,
           ),
-          Icon(Icons.chevron_right, color: c.textSecondary),
+          const Gap(2),
+          Text(dateFmt.format(prescription.issuedAt),
+              style: Theme.of(context).textTheme.bodySmall),
         ],
       ),
     );

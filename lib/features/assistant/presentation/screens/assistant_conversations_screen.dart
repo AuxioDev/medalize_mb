@@ -9,9 +9,10 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
-import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart';
@@ -102,37 +103,46 @@ class _AssistantConversationsScreenState
             : const Icon(Icons.add_comment_outlined),
         label: Text(context.t.assistant.newChat),
       ),
-      body: RefreshIndicator(
-        onRefresh: () async => ref.invalidate(assistantConversationsProvider),
-        color: AppColors.primary,
-        child: ResponsiveBody(
-          child: async.when(
-            loading: () => ListView(
-              padding: const EdgeInsets.all(AppSpacing.md),
-              children: const [
-                ShimmerSkeleton(height: 76),
-                ShimmerSkeleton(height: 76),
-                ShimmerSkeleton(height: 76),
-              ],
-            ),
-            error: (_, _) => EmptyState(
+      body: ResponsiveBody(
+        child: async.when(
+          loading: () => ListView(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            children: const [
+              ShimmerSkeleton(height: 76),
+              ShimmerSkeleton(height: 76),
+              ShimmerSkeleton(height: 76),
+            ],
+          ),
+          error: (_, _) => RefreshableView(
+            onRefresh: () async =>
+                ref.invalidate(assistantConversationsProvider),
+            child: EmptyState(
               icon: Icons.cloud_off_outlined,
               title: context.t.common.somethingWrong,
               subtitle: context.t.assistant.couldNotLoad,
               actionLabel: context.t.common.retry,
               onAction: () => ref.invalidate(assistantConversationsProvider),
             ),
-            data: (conversations) {
-              if (conversations.isEmpty) {
-                return EmptyState(
+          ),
+          data: (conversations) {
+            if (conversations.isEmpty) {
+              return RefreshableView(
+                onRefresh: () async =>
+                    ref.invalidate(assistantConversationsProvider),
+                child: EmptyState(
                   icon: Icons.health_and_safety_outlined,
                   title: context.t.assistant.empty,
                   subtitle: context.t.assistant.emptySubtitle,
                   actionLabel: context.t.assistant.newChat,
                   onAction: _newChat,
-                );
-              }
-              return ListView.builder(
+                ),
+              );
+            }
+            return RefreshIndicator(
+              onRefresh: () async =>
+                  ref.invalidate(assistantConversationsProvider),
+              color: AppColors.primary,
+              child: ListView.builder(
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
@@ -147,9 +157,9 @@ class _AssistantConversationsScreenState
                     onDelete: () => _delete(conversations[i]),
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -172,49 +182,31 @@ class _ConversationCard extends StatelessWidget {
     final c = context.colors;
     final preview = conversation.lastMessagePreview.trim();
 
-    return AppCard(
+    return AppListCard(
+      icon: Icons.smart_toy_outlined,
       onTap: () {
         HapticFeedback.lightImpact();
         onTap();
       },
-      child: Row(
+      trailing: IconButton(
+        tooltip: context.t.common.delete,
+        onPressed: onDelete,
+        icon: Icon(Icons.delete_outline_rounded,
+            size: 20, color: c.textSecondary),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: c.primarySurface,
-              borderRadius: BorderRadius.circular(AppRadius.md),
-            ),
-            child: Icon(Icons.smart_toy_outlined,
-                size: 22, color: c.primaryText),
+          Text(
+            preview.isEmpty ? context.t.assistant.newConversation : preview,
+            style: Theme.of(context).textTheme.labelLarge,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
-          const Gap(12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  preview.isEmpty
-                      ? context.t.assistant.newConversation
-                      : preview,
-                  style: Theme.of(context).textTheme.labelLarge,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const Gap(3),
-                Text(
-                  DateFormat('d MMM, HH:mm').format(conversation.updatedAt),
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ),
-          ),
-          IconButton(
-            tooltip: context.t.common.delete,
-            onPressed: onDelete,
-            icon: Icon(Icons.delete_outline_rounded,
-                size: 20, color: c.textSecondary),
+          const Gap(3),
+          Text(
+            DateFormat('d MMM, HH:mm').format(conversation.updatedAt),
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),

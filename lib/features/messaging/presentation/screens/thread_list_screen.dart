@@ -9,9 +9,10 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_badge.dart';
-import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
+import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
@@ -34,35 +35,41 @@ class ThreadListScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(context.t.messaging.title)),
-      body: RefreshIndicator(
-        onRefresh: () async => ref.invalidate(threadsProvider),
-        color: AppColors.primary,
-        child: ResponsiveBody(
-          child: async.when(
-            loading: () => ListView(
-              padding: const EdgeInsets.all(AppSpacing.md),
-              children: const [
-                ShimmerSkeleton(height: 76),
-                ShimmerSkeleton(height: 76),
-                ShimmerSkeleton(height: 76),
-              ],
-            ),
-            error: (_, _) => EmptyState(
+      body: ResponsiveBody(
+        child: async.when(
+          loading: () => ListView(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            children: const [
+              ShimmerSkeleton(height: 76),
+              ShimmerSkeleton(height: 76),
+              ShimmerSkeleton(height: 76),
+            ],
+          ),
+          error: (_, _) => RefreshableView(
+            onRefresh: () async => ref.invalidate(threadsProvider),
+            child: EmptyState(
               icon: Icons.cloud_off_outlined,
               title: context.t.common.somethingWrong,
               subtitle: context.t.common.tryAgain,
               actionLabel: context.t.common.retry,
               onAction: () => ref.invalidate(threadsProvider),
             ),
-            data: (threads) {
-              if (threads.isEmpty) {
-                return EmptyState(
+          ),
+          data: (threads) {
+            if (threads.isEmpty) {
+              return RefreshableView(
+                onRefresh: () async => ref.invalidate(threadsProvider),
+                child: EmptyState(
                   icon: Icons.chat_bubble_outline_rounded,
                   title: context.t.messaging.empty,
                   subtitle: context.t.messaging.emptySubtitle,
-                );
-              }
-              return ListView.builder(
+                ),
+              );
+            }
+            return RefreshIndicator(
+              onRefresh: () async => ref.invalidate(threadsProvider),
+              color: AppColors.primary,
+              child: ListView.builder(
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
@@ -72,9 +79,9 @@ class ThreadListScreen extends ConsumerWidget {
                   index: i,
                   child: _ThreadCard(thread: threads[i], asDoctor: asDoctor),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -93,7 +100,13 @@ class _ThreadCard extends StatelessWidget {
     final counterpart = thread.counterpart(asDoctor: asDoctor);
     final preview = thread.lastMessage?.body.trim() ?? '';
 
-    return AppCard(
+    return AppListCard(
+      leading: GradientAvatar(
+        initials: counterpart.firstName.isNotEmpty
+            ? counterpart.firstName
+            : counterpart.lastName,
+        size: 44,
+      ),
       onTap: () {
         HapticFeedback.lightImpact();
         final path = asDoctor
@@ -101,53 +114,39 @@ class _ThreadCard extends StatelessWidget {
             : '/patient/messages/${thread.id}';
         context.push(path, extra: thread);
       },
-      child: Row(
+      trailing: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          GradientAvatar(
-            initials: counterpart.firstName.isNotEmpty
-                ? counterpart.firstName
-                : counterpart.lastName,
-            size: 44,
+          Text(
+            DateFormat('d MMM, HH:mm').format(thread.updatedAt),
+            style: Theme.of(context).textTheme.labelSmall,
           ),
-          const Gap(12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  counterpart.fullName,
-                  style: Theme.of(context).textTheme.labelLarge,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const Gap(3),
-                Text(
-                  preview.isEmpty ? context.t.messaging.typeMessage : preview,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: c.textSecondary,
-                      ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+          if (thread.unreadCount > 0) ...[
+            const Gap(4),
+            AppBadge(
+              label: thread.unreadCount > 99 ? '99+' : '${thread.unreadCount}',
+              color: AppColors.primary,
             ),
+          ],
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            counterpart.fullName,
+            style: Theme.of(context).textTheme.labelLarge,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          const Gap(8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                DateFormat('d MMM, HH:mm').format(thread.updatedAt),
-                style: Theme.of(context).textTheme.labelSmall,
-              ),
-              if (thread.unreadCount > 0) ...[
-                const Gap(4),
-                AppBadge(
-                  label: thread.unreadCount > 99 ? '99+' : '${thread.unreadCount}',
-                  color: AppColors.primary,
+          const Gap(3),
+          Text(
+            preview.isEmpty ? context.t.messaging.typeMessage : preview,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: c.textSecondary,
                 ),
-              ],
-            ],
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

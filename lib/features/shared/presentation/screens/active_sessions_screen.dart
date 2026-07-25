@@ -5,9 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
-import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/app_badge.dart';
-import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
@@ -204,61 +203,45 @@ class _DeviceCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final c = context.colors;
     final t = context.t;
     final lastSeen = device.lastSeenAt;
 
-    return AppCard(
-      child: Row(
+    return AppListCard(
+      icon: _icon,
+      trailing: IconButton(
+        icon: const Icon(Icons.logout, color: AppColors.error),
+        tooltip: t.security.revoke,
+        onPressed: () => _confirmRevoke(context, ref),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 42,
-            height: 42,
-            decoration: BoxDecoration(
-              color: c.primarySurface,
-              borderRadius: BorderRadius.circular(AppRadius.md),
-            ),
-            child: Icon(_icon, color: c.primaryText, size: 22),
-          ),
-          const Gap(12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        device.deviceName.isNotEmpty
-                            ? device.deviceName
-                            : device.platform,
-                        style: Theme.of(context).textTheme.labelLarge,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    if (device.isCurrent) ...[
-                      const Gap(8),
-                      AppBadge(label: t.security.thisDevice),
-                    ],
-                  ],
+          Row(
+            children: [
+              Flexible(
+                child: Text(
+                  device.deviceName.isNotEmpty
+                      ? device.deviceName
+                      : device.platform,
+                  style: Theme.of(context).textTheme.labelLarge,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                if (lastSeen != null) ...[
-                  const Gap(2),
-                  Text(
-                    t.security.lastActive(
-                        date: DateFormat('d MMM, HH:mm').format(lastSeen)),
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
+              ),
+              if (device.isCurrent) ...[
+                const Gap(8),
+                AppBadge(label: t.security.thisDevice),
               ],
+            ],
+          ),
+          if (lastSeen != null) ...[
+            const Gap(2),
+            Text(
+              t.security.lastActive(
+                  date: DateFormat('d MMM, HH:mm').format(lastSeen)),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.logout, color: AppColors.error),
-            tooltip: t.security.revoke,
-            onPressed: () => _confirmRevoke(context, ref),
-          ),
+          ],
         ],
       ),
     );

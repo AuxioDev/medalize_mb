@@ -8,7 +8,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
-import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
@@ -146,40 +146,33 @@ class _DependentCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final c = context.colors;
-    return AppCard(
+    return AppListCard(
+      leading: GradientAvatar(initials: dependent.fullName, size: 44),
       onTap: () {
         HapticFeedback.lightImpact();
         context.push('/patient/family/${dependent.id}/edit', extra: dependent);
       },
-      child: Row(
+      trailing: IconButton(
+        icon: const Icon(Icons.delete_outline, size: 20),
+        color: c.textSecondary,
+        onPressed: () => _confirmDelete(context, ref),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          GradientAvatar(initials: dependent.fullName, size: 44),
-          const Gap(12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  dependent.fullName,
-                  style: Theme.of(context).textTheme.titleSmall,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const Gap(2),
-                Text(
-                  relationshipLabel(dependent.relationship),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.copyWith(color: c.textSecondary),
-                ),
-              ],
-            ),
+          Text(
+            dependent.fullName,
+            style: Theme.of(context).textTheme.titleSmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          IconButton(
-            icon: const Icon(Icons.delete_outline, size: 20),
-            color: c.textSecondary,
-            onPressed: () => _confirmDelete(context, ref),
+          const Gap(2),
+          Text(
+            relationshipLabel(dependent.relationship),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                ?.copyWith(color: c.textSecondary),
           ),
         ],
       ),

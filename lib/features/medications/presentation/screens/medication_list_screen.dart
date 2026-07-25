@@ -10,7 +10,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_badge.dart';
-import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
@@ -206,80 +206,66 @@ class _MedicationCard extends ConsumerWidget {
         .expand((s) => s.times)
         .toList();
 
-    return AppCard(
+    return AppListCard(
+      icon: medicationFormIcon(medication.form),
+      crossAxisAlignment: CrossAxisAlignment.start,
       onTap: () {
         HapticFeedback.lightImpact();
         context.push('/patient/medications/${medication.id}/edit', extra: medication);
       },
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: c.primarySurface,
-              borderRadius: BorderRadius.circular(AppRadius.md),
-            ),
-            child: Icon(medicationFormIcon(medication.form), color: c.primaryText, size: 22),
-          ),
-          const Gap(12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(medication.name,
-                    style: Theme.of(context).textTheme.titleSmall,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis),
-                if (medication.dosage.isNotEmpty) ...[
-                  const Gap(2),
-                  Text(medication.dosage, style: Theme.of(context).textTheme.bodySmall),
-                ],
-                const Gap(6),
-                Text(
-                  times.isEmpty
-                      ? context.t.medications.noSchedule
-                      : times.join(' · '),
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: times.isEmpty ? AppColors.warning : c.textSecondary,
-                      ),
-                ),
-                if (medication.isFromPrescription) ...[
-                  const Gap(6),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                    decoration: BoxDecoration(
-                      color: c.primarySurface,
-                      borderRadius: BorderRadius.circular(AppRadius.pill),
-                    ),
-                    child: Text(
-                      context.t.medications.fromPrescription,
-                      style: TextStyle(
-                          fontSize: 10, fontWeight: FontWeight.w600, color: c.primaryText),
-                    ),
-                  ),
-                ],
-                // Lists stay combined across the account holder and family
-                // members (see PHASE4_FAMILY_PROFILES_PROMPT.md) — this badge
-                // is the only way to tell whose medication it is; absent
-                // entirely when it's the account holder's own.
-                if (medication.dependent != null) ...[
-                  const Gap(6),
-                  AppBadge(
-                    label: context.t.family.forLabel(name: medication.dependent!.fullName),
-                    color: AppColors.primary,
-                  ),
-                ],
-              ],
-            ),
-          ),
-          if (medication.isActive)
-            IconButton(
+      trailing: medication.isActive
+          ? IconButton(
               icon: const Icon(Icons.delete_outline, size: 20),
               color: c.textSecondary,
               onPressed: () => _confirmDelete(context, ref),
+            )
+          : null,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(medication.name,
+              style: Theme.of(context).textTheme.titleSmall,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis),
+          if (medication.dosage.isNotEmpty) ...[
+            const Gap(2),
+            Text(medication.dosage, style: Theme.of(context).textTheme.bodySmall),
+          ],
+          const Gap(6),
+          Text(
+            times.isEmpty
+                ? context.t.medications.noSchedule
+                : times.join(' · '),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: times.isEmpty ? AppColors.warning : c.textSecondary,
+                ),
+          ),
+          if (medication.isFromPrescription) ...[
+            const Gap(6),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              decoration: BoxDecoration(
+                color: c.primarySurface,
+                borderRadius: BorderRadius.circular(AppRadius.pill),
+              ),
+              child: Text(
+                context.t.medications.fromPrescription,
+                style: TextStyle(
+                    fontSize: 10, fontWeight: FontWeight.w600, color: c.primaryText),
+              ),
             ),
+          ],
+          // Lists stay combined across the account holder and family
+          // members (see PHASE4_FAMILY_PROFILES_PROMPT.md) — this badge
+          // is the only way to tell whose medication it is; absent
+          // entirely when it's the account holder's own.
+          if (medication.dependent != null) ...[
+            const Gap(6),
+            AppBadge(
+              label: context.t.family.forLabel(name: medication.dependent!.fullName),
+              color: AppColors.primary,
+            ),
+          ],
         ],
       ),
     );

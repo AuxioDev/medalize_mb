@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -171,72 +172,38 @@ class _NotificationTile extends StatelessWidget {
     final fmt = DateFormat('d MMM, HH:mm');
     final unread = !notification.isRead;
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Material(
-        color: unread ? c.primarySurface : c.surfaceAlt,
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-        child: InkWell(
-          onTap: onRead,
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-          child: Container(
-            padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppRadius.lg),
-              border: Border.all(color: c.border),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: unread ? c.surface : c.background,
-                    borderRadius: BorderRadius.circular(AppRadius.md),
-                  ),
-                  child: Icon(
-                    _iconFor(notification.type),
-                    size: 20,
-                    color: unread ? c.primaryText : c.textSecondary,
-                  ),
-                ),
-                const Gap(12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              notification.title,
-                              style: TextStyle(
-                                color: c.textPrimary,
-                                fontSize: 14,
-                                fontWeight:
-                                    unread ? FontWeight.w700 : FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            fmt.format(notification.sentAt),
-                            style: Theme.of(context).textTheme.labelSmall,
-                          ),
-                        ],
+    return AppListCard(
+      onTap: onRead,
+      color: unread ? c.primarySurface : c.surfaceAlt,
+      iconBackgroundColor: unread ? c.surface : c.background,
+      iconColor: unread ? c.primaryText : c.textSecondary,
+      icon: _iconFor(notification.type),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  notification.title,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: unread ? FontWeight.w700 : FontWeight.w500,
                       ),
-                      const Gap(3),
-                      Text(
-                        notification.message,
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
-                  ),
                 ),
-              ],
-            ),
+              ),
+              Text(
+                fmt.format(notification.sentAt),
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+            ],
           ),
-        ),
+          const Gap(3),
+          Text(
+            notification.message,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
       ),
     );
   }

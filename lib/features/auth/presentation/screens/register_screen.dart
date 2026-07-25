@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/fade_slide_transition.dart';
 import 'package:medalize_mb/core/widgets/phone_field.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/core/widgets/tinted_notice_banner.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/password_strength_indicator.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
@@ -319,8 +320,19 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
 
               // ── Inline error ──────────────────────────────────────
               if (authState is AuthError &&
-                  authState.exception is! ValidationException)
-                _ErrorBanner(message: authState.exception.userMessage),
+                  authState.exception is! ValidationException) ...[
+                TintedNoticeBanner(
+                  color: AppColors.error,
+                  icon: Icons.error_outline_rounded,
+                  child: Text(
+                    authState.exception.userMessage,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: AppColors.error,
+                        ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
 
               // ── CTA + footer ──────────────────────────────────────
               FadeSlideTransition(
@@ -361,46 +373,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     );
   }
 }
-
-// ── Shared stagger section ────────────────────────────────────────────────────
-
-class _ErrorBanner extends StatelessWidget {
-  const _ErrorBanner({required this.message});
-
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        decoration: BoxDecoration(
-          color: AppColors.error.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
-        ),
-        child: Row(
-          children: [
-            Icon(Icons.error_outline_rounded, color: AppColors.error, size: 18),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                message,
-                style: TextStyle(
-                  color: AppColors.error,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 
 // ── Inline strength bar ───────────────────────────────────────────────────────
 

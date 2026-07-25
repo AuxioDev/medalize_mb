@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/fade_slide_transition.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/core/widgets/tinted_notice_banner.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/social_login_buttons.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
@@ -213,8 +214,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
               const SizedBox(height: 20),
 
               // ── Inline error ──────────────────────────────────────
-              if (authState is AuthError)
-                _ErrorBanner(message: _errorMessage(authState.exception)),
+              if (authState is AuthError) ...[
+                TintedNoticeBanner(
+                  color: AppColors.error,
+                  icon: Icons.error_outline_rounded,
+                  child: Text(
+                    _errorMessage(authState.exception),
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: AppColors.error,
+                        ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
 
               // ── CTA + footer ──────────────────────────────────────
               FadeSlideTransition(
@@ -264,40 +276,4 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   }
 }
 
-class _ErrorBanner extends StatelessWidget {
-  const _ErrorBanner({required this.message});
-
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        decoration: BoxDecoration(
-          color: AppColors.error.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
-        ),
-        child: Row(
-          children: [
-            Icon(Icons.error_outline_rounded, color: AppColors.error, size: 18),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                message,
-                style: TextStyle(
-                  color: AppColors.error,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
