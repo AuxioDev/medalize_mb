@@ -72,6 +72,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$agenda$en agenda = Translations$agenda$en.internal(_root);
 	late final Translations$favorites$en favorites = Translations$favorites$en.internal(_root);
 	late final Translations$assistant$en assistant = Translations$assistant$en.internal(_root);
+	late final Translations$messaging$en messaging = Translations$messaging$en.internal(_root);
 	late final Translations$legal$en legal = Translations$legal$en.internal(_root);
 	late final Translations$medications$en medications = Translations$medications$en.internal(_root);
 	late final Translations$prescriptions$en prescriptions = Translations$prescriptions$en.internal(_root);
@@ -1544,6 +1545,87 @@ class Translations$assistant$en {
 
 	/// en: 'Could not report the response. Please try again.'
 	String get reportFailed => 'Could not report the response. Please try again.';
+
+	/// en: 'Get Summary'
+	String get getSummary => 'Get Summary';
+
+	/// en: 'Conversation Summary'
+	String get summaryTitle => 'Conversation Summary';
+
+	/// en: 'Possible conditions to discuss'
+	String get possibleConditions => 'Possible conditions to discuss';
+
+	/// en: 'Low'
+	String get likelihoodLow => 'Low';
+
+	/// en: 'Medium'
+	String get likelihoodMedium => 'Medium';
+
+	/// en: 'High'
+	String get likelihoodHigh => 'High';
+
+	/// en: 'Routine'
+	String get urgencyRoutine => 'Routine';
+
+	/// en: 'See a doctor soon'
+	String get urgencySoon => 'See a doctor soon';
+
+	/// en: 'Urgent — within 24 hours'
+	String get urgencyUrgent => 'Urgent — within 24 hours';
+
+	/// en: 'Emergency'
+	String get urgencyEmergency => 'Emergency';
+
+	/// en: 'Seek emergency care now.'
+	String get emergencyWarning => 'Seek emergency care now.';
+
+	/// en: 'Recommended specialist'
+	String get recommendedSpecialization => 'Recommended specialist';
+
+	/// en: 'Find Doctors'
+	String get findDoctors => 'Find Doctors';
+
+	/// en: 'Share'
+	String get share => 'Share';
+
+	/// en: 'Not enough conversation yet to summarize.'
+	String get summaryNotReadyYet => 'Not enough conversation yet to summarize.';
+}
+
+// Path: messaging
+class Translations$messaging$en {
+	Translations$messaging$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Messages'
+	String get title => 'Messages';
+
+	/// en: 'Message'
+	String get sendMessage => 'Message';
+
+	/// en: 'Type a message…'
+	String get typeMessage => 'Type a message…';
+
+	/// en: 'Send'
+	String get send => 'Send';
+
+	/// en: 'No conversations yet'
+	String get empty => 'No conversations yet';
+
+	/// en: 'Your conversations will appear here.'
+	String get emptySubtitle => 'Your conversations will appear here.';
+
+	/// en: 'This is not an emergency line. For urgent issues, call emergency services.'
+	String get disclaimer => 'This is not an emergency line. For urgent issues, call emergency services.';
+
+	/// en: 'You can message a doctor once you have a shared appointment history.'
+	String get noSharedHistory => 'You can message a doctor once you have a shared appointment history.';
+
+	/// en: 'You have a new message'
+	String get newMessage => 'You have a new message';
 }
 
 // Path: legal
@@ -2409,6 +2491,30 @@ extension on Translations {
 			'assistant.reportSubmit' => 'Report',
 			'assistant.reportSuccess' => 'Thank you, the response was reported.',
 			'assistant.reportFailed' => 'Could not report the response. Please try again.',
+			'assistant.getSummary' => 'Get Summary',
+			'assistant.summaryTitle' => 'Conversation Summary',
+			'assistant.possibleConditions' => 'Possible conditions to discuss',
+			'assistant.likelihoodLow' => 'Low',
+			'assistant.likelihoodMedium' => 'Medium',
+			'assistant.likelihoodHigh' => 'High',
+			'assistant.urgencyRoutine' => 'Routine',
+			'assistant.urgencySoon' => 'See a doctor soon',
+			'assistant.urgencyUrgent' => 'Urgent — within 24 hours',
+			'assistant.urgencyEmergency' => 'Emergency',
+			'assistant.emergencyWarning' => 'Seek emergency care now.',
+			'assistant.recommendedSpecialization' => 'Recommended specialist',
+			'assistant.findDoctors' => 'Find Doctors',
+			'assistant.share' => 'Share',
+			'assistant.summaryNotReadyYet' => 'Not enough conversation yet to summarize.',
+			'messaging.title' => 'Messages',
+			'messaging.sendMessage' => 'Message',
+			'messaging.typeMessage' => 'Type a message…',
+			'messaging.send' => 'Send',
+			'messaging.empty' => 'No conversations yet',
+			'messaging.emptySubtitle' => 'Your conversations will appear here.',
+			'messaging.disclaimer' => 'This is not an emergency line. For urgent issues, call emergency services.',
+			'messaging.noSharedHistory' => 'You can message a doctor once you have a shared appointment history.',
+			'messaging.newMessage' => 'You have a new message',
 			'legal.title' => 'Privacy & Terms',
 			'legal.privacyTitle' => 'Privacy Policy',
 			'legal.privacyBody' => 'Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.',
@@ -2474,6 +2580,8 @@ extension on Translations {
 			'prescriptions.instructions' => 'Instructions',
 			'prescriptions.notes' => 'Notes',
 			'prescriptions.save' => 'Save',
+			_ => null,
+		} ?? switch (path) {
 			'prescriptions.empty' => 'No prescriptions yet',
 			'prescriptions.emptySubtitle' => 'Prescriptions your doctor issues will appear here.',
 			'prescriptions.viewDetails' => 'View Details',
@@ -2498,8 +2606,6 @@ extension on Translations {
 			'records.typeLabResult' => 'Lab Result',
 			'records.typeImaging' => 'Imaging',
 			'records.typeDocument' => 'Document',
-			_ => null,
-		} ?? switch (path) {
 			'records.typeOther' => 'Other',
 			'records.recordTitle' => 'Title',
 			'records.recordDate' => 'Date',

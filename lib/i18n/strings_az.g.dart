@@ -68,6 +68,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$agenda$az agenda = _Translations$agenda$az._(_root);
 	@override late final _Translations$favorites$az favorites = _Translations$favorites$az._(_root);
 	@override late final _Translations$assistant$az assistant = _Translations$assistant$az._(_root);
+	@override late final _Translations$messaging$az messaging = _Translations$messaging$az._(_root);
 	@override late final _Translations$legal$az legal = _Translations$legal$az._(_root);
 	@override late final _Translations$medications$az medications = _Translations$medications$az._(_root);
 	@override late final _Translations$prescriptions$az prescriptions = _Translations$prescriptions$az._(_root);
@@ -730,6 +731,39 @@ class _Translations$assistant$az extends Translations$assistant$en {
 	@override String get reportSubmit => 'Göndər';
 	@override String get reportSuccess => 'Təşəkkürlər, şikayət göndərildi.';
 	@override String get reportFailed => 'Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.';
+	@override String get getSummary => 'Xülasə al';
+	@override String get summaryTitle => 'Söhbətin xülasəsi';
+	@override String get possibleConditions => 'Müzakirə üçün mümkün vəziyyətlər';
+	@override String get likelihoodLow => 'Aşağı';
+	@override String get likelihoodMedium => 'Orta';
+	@override String get likelihoodHigh => 'Yüksək';
+	@override String get urgencyRoutine => 'Təcili deyil';
+	@override String get urgencySoon => 'Yaxın günlərdə həkimə müraciət edin';
+	@override String get urgencyUrgent => 'Təcili — 24 saat ərzində';
+	@override String get urgencyEmergency => 'Fövqəladə hal';
+	@override String get emergencyWarning => 'Dərhal təcili tibbi yardıma müraciət edin.';
+	@override String get recommendedSpecialization => 'Tövsiyə olunan mütəxəssis';
+	@override String get findDoctors => 'Həkim tap';
+	@override String get share => 'Paylaş';
+	@override String get summaryNotReadyYet => 'Xülasə hazırlamaq üçün söhbət hələ kifayət qədər deyil.';
+}
+
+// Path: messaging
+class _Translations$messaging$az extends Translations$messaging$en {
+	_Translations$messaging$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mesajlar';
+	@override String get sendMessage => 'Mesaj yaz';
+	@override String get typeMessage => 'Mesaj yazın…';
+	@override String get send => 'Göndər';
+	@override String get empty => 'Hələ yazışma yoxdur';
+	@override String get emptySubtitle => 'Yazışmalarınız burada görünəcək.';
+	@override String get disclaimer => 'Bu təcili yardım xətti deyil. Təcili hallarda təcili yardım xidmətinə zəng edin.';
+	@override String get noSharedHistory => 'Həkimə yalnız onunla ortaq qəbul tarixçəniz olduqdan sonra yaza bilərsiniz.';
+	@override String get newMessage => 'Yeni mesajınız var';
 }
 
 // Path: legal
@@ -1343,6 +1377,30 @@ extension on TranslationsAz {
 			'assistant.reportSubmit' => 'Göndər',
 			'assistant.reportSuccess' => 'Təşəkkürlər, şikayət göndərildi.',
 			'assistant.reportFailed' => 'Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.',
+			'assistant.getSummary' => 'Xülasə al',
+			'assistant.summaryTitle' => 'Söhbətin xülasəsi',
+			'assistant.possibleConditions' => 'Müzakirə üçün mümkün vəziyyətlər',
+			'assistant.likelihoodLow' => 'Aşağı',
+			'assistant.likelihoodMedium' => 'Orta',
+			'assistant.likelihoodHigh' => 'Yüksək',
+			'assistant.urgencyRoutine' => 'Təcili deyil',
+			'assistant.urgencySoon' => 'Yaxın günlərdə həkimə müraciət edin',
+			'assistant.urgencyUrgent' => 'Təcili — 24 saat ərzində',
+			'assistant.urgencyEmergency' => 'Fövqəladə hal',
+			'assistant.emergencyWarning' => 'Dərhal təcili tibbi yardıma müraciət edin.',
+			'assistant.recommendedSpecialization' => 'Tövsiyə olunan mütəxəssis',
+			'assistant.findDoctors' => 'Həkim tap',
+			'assistant.share' => 'Paylaş',
+			'assistant.summaryNotReadyYet' => 'Xülasə hazırlamaq üçün söhbət hələ kifayət qədər deyil.',
+			'messaging.title' => 'Mesajlar',
+			'messaging.sendMessage' => 'Mesaj yaz',
+			'messaging.typeMessage' => 'Mesaj yazın…',
+			'messaging.send' => 'Göndər',
+			'messaging.empty' => 'Hələ yazışma yoxdur',
+			'messaging.emptySubtitle' => 'Yazışmalarınız burada görünəcək.',
+			'messaging.disclaimer' => 'Bu təcili yardım xətti deyil. Təcili hallarda təcili yardım xidmətinə zəng edin.',
+			'messaging.noSharedHistory' => 'Həkimə yalnız onunla ortaq qəbul tarixçəniz olduqdan sonra yaza bilərsiniz.',
+			'messaging.newMessage' => 'Yeni mesajınız var',
 			'legal.title' => 'Məxfilik və Şərtlər',
 			'legal.privacyTitle' => 'Məxfilik Siyasəti',
 			'legal.privacyBody' => 'Medalize tibbi görüşləri planlamaq və idarə etmək üçün şəxsi və sağlamlıq məlumatlarınızı emal edir. Məlumatlarınızı satmırıq. Tam Məxfilik Siyasəti ictimai buraxılışdan əvvəl burada dərc olunacaq.',
@@ -1408,6 +1466,8 @@ extension on TranslationsAz {
 			'prescriptions.instructions' => 'Təlimatlar',
 			'prescriptions.notes' => 'Qeydlər',
 			'prescriptions.save' => 'Yadda saxla',
+			_ => null,
+		} ?? switch (path) {
 			'prescriptions.empty' => 'Hələ resept yoxdur',
 			'prescriptions.emptySubtitle' => 'Həkiminizin yazdığı reseptlər burada görünəcək.',
 			'prescriptions.viewDetails' => 'Ətraflı',
@@ -1432,8 +1492,6 @@ extension on TranslationsAz {
 			'records.typeLabResult' => 'Analiz nəticəsi',
 			'records.typeImaging' => 'Görüntüləmə',
 			'records.typeDocument' => 'Sənəd',
-			_ => null,
-		} ?? switch (path) {
 			'records.typeOther' => 'Digər',
 			'records.recordTitle' => 'Başlıq',
 			'records.recordDate' => 'Tarix',

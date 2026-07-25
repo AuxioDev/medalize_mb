@@ -68,6 +68,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$agenda$ru agenda = _Translations$agenda$ru._(_root);
 	@override late final _Translations$favorites$ru favorites = _Translations$favorites$ru._(_root);
 	@override late final _Translations$assistant$ru assistant = _Translations$assistant$ru._(_root);
+	@override late final _Translations$messaging$ru messaging = _Translations$messaging$ru._(_root);
 	@override late final _Translations$legal$ru legal = _Translations$legal$ru._(_root);
 	@override late final _Translations$medications$ru medications = _Translations$medications$ru._(_root);
 	@override late final _Translations$prescriptions$ru prescriptions = _Translations$prescriptions$ru._(_root);
@@ -730,6 +731,39 @@ class _Translations$assistant$ru extends Translations$assistant$en {
 	@override String get reportSubmit => 'Отправить';
 	@override String get reportSuccess => 'Спасибо, жалоба отправлена.';
 	@override String get reportFailed => 'Не удалось отправить жалобу. Попробуйте ещё раз.';
+	@override String get getSummary => 'Получить сводку';
+	@override String get summaryTitle => 'Сводка разговора';
+	@override String get possibleConditions => 'Возможные состояния для обсуждения';
+	@override String get likelihoodLow => 'Низкая';
+	@override String get likelihoodMedium => 'Средняя';
+	@override String get likelihoodHigh => 'Высокая';
+	@override String get urgencyRoutine => 'Не срочно';
+	@override String get urgencySoon => 'Обратитесь к врачу в ближайшие дни';
+	@override String get urgencyUrgent => 'Срочно — в течение 24 часов';
+	@override String get urgencyEmergency => 'Неотложная помощь';
+	@override String get emergencyWarning => 'Немедленно обратитесь за неотложной помощью.';
+	@override String get recommendedSpecialization => 'Рекомендуемый специалист';
+	@override String get findDoctors => 'Найти врачей';
+	@override String get share => 'Поделиться';
+	@override String get summaryNotReadyYet => 'Пока недостаточно разговора для составления сводки.';
+}
+
+// Path: messaging
+class _Translations$messaging$ru extends Translations$messaging$en {
+	_Translations$messaging$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Сообщения';
+	@override String get sendMessage => 'Написать';
+	@override String get typeMessage => 'Введите сообщение…';
+	@override String get send => 'Отправить';
+	@override String get empty => 'Пока нет переписок';
+	@override String get emptySubtitle => 'Здесь появятся ваши переписки.';
+	@override String get disclaimer => 'Это не экстренная связь. В неотложных случаях звоните в скорую помощь.';
+	@override String get noSharedHistory => 'Написать врачу можно после того, как у вас появится общая история записей на приём.';
+	@override String get newMessage => 'У вас новое сообщение';
 }
 
 // Path: legal
@@ -1343,6 +1377,30 @@ extension on TranslationsRu {
 			'assistant.reportSubmit' => 'Отправить',
 			'assistant.reportSuccess' => 'Спасибо, жалоба отправлена.',
 			'assistant.reportFailed' => 'Не удалось отправить жалобу. Попробуйте ещё раз.',
+			'assistant.getSummary' => 'Получить сводку',
+			'assistant.summaryTitle' => 'Сводка разговора',
+			'assistant.possibleConditions' => 'Возможные состояния для обсуждения',
+			'assistant.likelihoodLow' => 'Низкая',
+			'assistant.likelihoodMedium' => 'Средняя',
+			'assistant.likelihoodHigh' => 'Высокая',
+			'assistant.urgencyRoutine' => 'Не срочно',
+			'assistant.urgencySoon' => 'Обратитесь к врачу в ближайшие дни',
+			'assistant.urgencyUrgent' => 'Срочно — в течение 24 часов',
+			'assistant.urgencyEmergency' => 'Неотложная помощь',
+			'assistant.emergencyWarning' => 'Немедленно обратитесь за неотложной помощью.',
+			'assistant.recommendedSpecialization' => 'Рекомендуемый специалист',
+			'assistant.findDoctors' => 'Найти врачей',
+			'assistant.share' => 'Поделиться',
+			'assistant.summaryNotReadyYet' => 'Пока недостаточно разговора для составления сводки.',
+			'messaging.title' => 'Сообщения',
+			'messaging.sendMessage' => 'Написать',
+			'messaging.typeMessage' => 'Введите сообщение…',
+			'messaging.send' => 'Отправить',
+			'messaging.empty' => 'Пока нет переписок',
+			'messaging.emptySubtitle' => 'Здесь появятся ваши переписки.',
+			'messaging.disclaimer' => 'Это не экстренная связь. В неотложных случаях звоните в скорую помощь.',
+			'messaging.noSharedHistory' => 'Написать врачу можно после того, как у вас появится общая история записей на приём.',
+			'messaging.newMessage' => 'У вас новое сообщение',
 			'legal.title' => 'Конфиденциальность и условия',
 			'legal.privacyTitle' => 'Политика конфиденциальности',
 			'legal.privacyBody' => 'Medalize обрабатывает ваши персональные и медицинские данные, чтобы вы могли записываться на приёмы и управлять ими. Мы не продаём ваши данные. Полная политика конфиденциальности будет опубликована здесь до публичного запуска.',
@@ -1408,6 +1466,8 @@ extension on TranslationsRu {
 			'prescriptions.instructions' => 'Инструкции',
 			'prescriptions.notes' => 'Заметки',
 			'prescriptions.save' => 'Сохранить',
+			_ => null,
+		} ?? switch (path) {
 			'prescriptions.empty' => 'Пока нет рецептов',
 			'prescriptions.emptySubtitle' => 'Здесь появятся рецепты, выписанные вашим врачом.',
 			'prescriptions.viewDetails' => 'Подробнее',
@@ -1432,8 +1492,6 @@ extension on TranslationsRu {
 			'records.typeLabResult' => 'Анализ',
 			'records.typeImaging' => 'Снимок',
 			'records.typeDocument' => 'Документ',
-			_ => null,
-		} ?? switch (path) {
 			'records.typeOther' => 'Другое',
 			'records.recordTitle' => 'Название',
 			'records.recordDate' => 'Дата',

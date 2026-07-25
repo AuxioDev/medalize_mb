@@ -6,6 +6,7 @@ import 'package:medalize_mb/features/appointments/data/models/appointment_model.
 import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart';
 import 'package:medalize_mb/features/assistant/presentation/screens/assistant_chat_screen.dart';
 import 'package:medalize_mb/features/assistant/presentation/screens/assistant_conversations_screen.dart';
+import 'package:medalize_mb/features/assistant/presentation/screens/conversation_summary_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/login_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/register_screen.dart';
@@ -26,6 +27,9 @@ import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/add_edit_medication_screen.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
+import 'package:medalize_mb/features/messaging/data/models/messaging_models.dart';
+import 'package:medalize_mb/features/messaging/presentation/screens/thread_chat_screen.dart';
+import 'package:medalize_mb/features/messaging/presentation/screens/thread_list_screen.dart';
 import 'package:medalize_mb/features/onboarding/presentation/screens/app_intro_screen.dart';
 import 'package:medalize_mb/features/prescriptions/presentation/screens/prescription_detail_screen.dart';
 import 'package:medalize_mb/features/prescriptions/presentation/screens/prescription_list_screen.dart';
@@ -181,6 +185,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           ));
         },
       ),
+      GoRoute(
+        path: '/patient/assistant/:conversationId/summary',
+        pageBuilder: (_, state) => _pushPage(ConversationSummaryScreen(
+          conversationId: state.pathParameters['conversationId']!,
+        )),
+      ),
 
       GoRoute(
         path: '/patient/reschedule/:id',
@@ -235,6 +245,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/patient/records/upload',
         pageBuilder: (_, _) => _modalPage(const UploadRecordScreen()),
+      ),
+
+      // Messaging (Phase 2, Section 1)
+      GoRoute(
+        path: '/patient/messages',
+        pageBuilder: (_, _) => _pushPage(const ThreadListScreen()),
+      ),
+      GoRoute(
+        path: '/patient/messages/:id',
+        pageBuilder: (_, state) {
+          final thread = state.extra as ThreadModel?;
+          return _pushPage(ThreadChatScreen(
+            threadId: state.pathParameters['id']!,
+            thread: thread,
+          ));
+        },
       ),
 
       // Doctor routes
@@ -311,6 +337,22 @@ final routerProvider = Provider<GoRouter>((ref) {
           return _modalPage(WritePrescriptionScreen(
             appointmentId: state.pathParameters['id']!,
             patientName: appt.patient.fullName,
+          ));
+        },
+      ),
+
+      // Messaging (Phase 2, Section 1)
+      GoRoute(
+        path: '/doctor/messages',
+        pageBuilder: (_, _) => _pushPage(const ThreadListScreen()),
+      ),
+      GoRoute(
+        path: '/doctor/messages/:id',
+        pageBuilder: (_, state) {
+          final thread = state.extra as ThreadModel?;
+          return _pushPage(ThreadChatScreen(
+            threadId: state.pathParameters['id']!,
+            thread: thread,
           ));
         },
       ),

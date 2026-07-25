@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
@@ -106,8 +107,24 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(assistantChatProvider(widget.conversationId));
 
+    // Enabled only once the assistant has actually replied at least once —
+    // matches the backend's own guard (400 "not enough conversation yet") so
+    // the button never fires a request that's certain to fail.
+    final hasAssistantReply = state.messages.any((m) => m.isAssistant);
+
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.assistant.title)),
+      appBar: AppBar(
+        title: Text(context.t.assistant.title),
+        actions: [
+          IconButton(
+            tooltip: context.t.assistant.getSummary,
+            onPressed: hasAssistantReply
+                ? () => context.push('/patient/assistant/${widget.conversationId}/summary')
+                : null,
+            icon: const Icon(Icons.summarize_outlined),
+          ),
+        ],
+      ),
       body: ResponsiveBody(
         child: switch ((state.loading, state.loadFailed)) {
           (true, _) => const _LoadingSkeleton(),

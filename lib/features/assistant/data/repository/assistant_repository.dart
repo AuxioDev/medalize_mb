@@ -88,6 +88,21 @@ class AssistantRepository {
     }
   }
 
+  /// Generates (or regenerates) the structured summary for the whole
+  /// conversation and returns the updated conversation detail carrying it.
+  /// A paid Claude call server-side, so this is only ever invoked from an
+  /// explicit "Get Summary" action, never automatically.
+  Future<ConversationDetailModel> generateSummary(String conversationId) async {
+    try {
+      final res = await _dio.post('/assistant/conversations/$conversationId/summary/');
+      return ConversationDetailModel.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _mapError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
   Future<void> flagMessage(String messageId, {String reason = ''}) async {
     try {
       await _dio.post(

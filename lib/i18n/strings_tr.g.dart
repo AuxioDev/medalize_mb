@@ -68,6 +68,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$agenda$tr agenda = _Translations$agenda$tr._(_root);
 	@override late final _Translations$favorites$tr favorites = _Translations$favorites$tr._(_root);
 	@override late final _Translations$assistant$tr assistant = _Translations$assistant$tr._(_root);
+	@override late final _Translations$messaging$tr messaging = _Translations$messaging$tr._(_root);
 	@override late final _Translations$legal$tr legal = _Translations$legal$tr._(_root);
 	@override late final _Translations$medications$tr medications = _Translations$medications$tr._(_root);
 	@override late final _Translations$prescriptions$tr prescriptions = _Translations$prescriptions$tr._(_root);
@@ -730,6 +731,39 @@ class _Translations$assistant$tr extends Translations$assistant$en {
 	@override String get reportSubmit => 'Bildir';
 	@override String get reportSuccess => 'Teşekkürler, yanıt bildirildi.';
 	@override String get reportFailed => 'Yanıt bildirilemedi. Lütfen tekrar deneyin.';
+	@override String get getSummary => 'Özet Al';
+	@override String get summaryTitle => 'Görüşme Özeti';
+	@override String get possibleConditions => 'Görüşülecek olası durumlar';
+	@override String get likelihoodLow => 'Düşük';
+	@override String get likelihoodMedium => 'Orta';
+	@override String get likelihoodHigh => 'Yüksek';
+	@override String get urgencyRoutine => 'Acil değil';
+	@override String get urgencySoon => 'Yakın günlerde doktora görünün';
+	@override String get urgencyUrgent => 'Acil — 24 saat içinde';
+	@override String get urgencyEmergency => 'Acil durum';
+	@override String get emergencyWarning => 'Hemen acil tıbbi yardım alın.';
+	@override String get recommendedSpecialization => 'Önerilen uzmanlık';
+	@override String get findDoctors => 'Doktor Bul';
+	@override String get share => 'Paylaş';
+	@override String get summaryNotReadyYet => 'Özet çıkarmak için görüşme henüz yeterli değil.';
+}
+
+// Path: messaging
+class _Translations$messaging$tr extends Translations$messaging$en {
+	_Translations$messaging$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mesajlar';
+	@override String get sendMessage => 'Mesaj Gönder';
+	@override String get typeMessage => 'Bir mesaj yazın…';
+	@override String get send => 'Gönder';
+	@override String get empty => 'Henüz yazışma yok';
+	@override String get emptySubtitle => 'Yazışmalarınız burada görünecek.';
+	@override String get disclaimer => 'Bu bir acil durum hattı değildir. Acil durumlarda acil servisleri arayın.';
+	@override String get noSharedHistory => 'Bir doktora yalnızca onunla ortak bir randevu geçmişiniz olduğunda mesaj gönderebilirsiniz.';
+	@override String get newMessage => 'Yeni bir mesajınız var';
 }
 
 // Path: legal
@@ -1343,6 +1377,30 @@ extension on TranslationsTr {
 			'assistant.reportSubmit' => 'Bildir',
 			'assistant.reportSuccess' => 'Teşekkürler, yanıt bildirildi.',
 			'assistant.reportFailed' => 'Yanıt bildirilemedi. Lütfen tekrar deneyin.',
+			'assistant.getSummary' => 'Özet Al',
+			'assistant.summaryTitle' => 'Görüşme Özeti',
+			'assistant.possibleConditions' => 'Görüşülecek olası durumlar',
+			'assistant.likelihoodLow' => 'Düşük',
+			'assistant.likelihoodMedium' => 'Orta',
+			'assistant.likelihoodHigh' => 'Yüksek',
+			'assistant.urgencyRoutine' => 'Acil değil',
+			'assistant.urgencySoon' => 'Yakın günlerde doktora görünün',
+			'assistant.urgencyUrgent' => 'Acil — 24 saat içinde',
+			'assistant.urgencyEmergency' => 'Acil durum',
+			'assistant.emergencyWarning' => 'Hemen acil tıbbi yardım alın.',
+			'assistant.recommendedSpecialization' => 'Önerilen uzmanlık',
+			'assistant.findDoctors' => 'Doktor Bul',
+			'assistant.share' => 'Paylaş',
+			'assistant.summaryNotReadyYet' => 'Özet çıkarmak için görüşme henüz yeterli değil.',
+			'messaging.title' => 'Mesajlar',
+			'messaging.sendMessage' => 'Mesaj Gönder',
+			'messaging.typeMessage' => 'Bir mesaj yazın…',
+			'messaging.send' => 'Gönder',
+			'messaging.empty' => 'Henüz yazışma yok',
+			'messaging.emptySubtitle' => 'Yazışmalarınız burada görünecek.',
+			'messaging.disclaimer' => 'Bu bir acil durum hattı değildir. Acil durumlarda acil servisleri arayın.',
+			'messaging.noSharedHistory' => 'Bir doktora yalnızca onunla ortak bir randevu geçmişiniz olduğunda mesaj gönderebilirsiniz.',
+			'messaging.newMessage' => 'Yeni bir mesajınız var',
 			'legal.title' => 'Gizlilik ve Koşullar',
 			'legal.privacyTitle' => 'Gizlilik Politikası',
 			'legal.privacyBody' => 'Medalize, randevu almanız ve yönetmeniz için kişisel ve sağlık bilgilerinizi işler. Verilerinizi satmıyoruz. Tam Gizlilik Politikası, herkese açık lansmandan önce burada yayınlanacaktır.',
@@ -1408,6 +1466,8 @@ extension on TranslationsTr {
 			'prescriptions.instructions' => 'Talimatlar',
 			'prescriptions.notes' => 'Notlar',
 			'prescriptions.save' => 'Kaydet',
+			_ => null,
+		} ?? switch (path) {
 			'prescriptions.empty' => 'Henüz reçete yok',
 			'prescriptions.emptySubtitle' => 'Doktorunuzun yazdığı reçeteler burada görünecek.',
 			'prescriptions.viewDetails' => 'Detayları Gör',
@@ -1432,8 +1492,6 @@ extension on TranslationsTr {
 			'records.typeLabResult' => 'Tahlil Sonucu',
 			'records.typeImaging' => 'Görüntüleme',
 			'records.typeDocument' => 'Belge',
-			_ => null,
-		} ?? switch (path) {
 			'records.typeOther' => 'Diğer',
 			'records.recordTitle' => 'Başlık',
 			'records.recordDate' => 'Tarih',

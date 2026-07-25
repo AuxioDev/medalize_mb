@@ -68,6 +68,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$agenda$zh agenda = _Translations$agenda$zh._(_root);
 	@override late final _Translations$favorites$zh favorites = _Translations$favorites$zh._(_root);
 	@override late final _Translations$assistant$zh assistant = _Translations$assistant$zh._(_root);
+	@override late final _Translations$messaging$zh messaging = _Translations$messaging$zh._(_root);
 	@override late final _Translations$legal$zh legal = _Translations$legal$zh._(_root);
 	@override late final _Translations$medications$zh medications = _Translations$medications$zh._(_root);
 	@override late final _Translations$prescriptions$zh prescriptions = _Translations$prescriptions$zh._(_root);
@@ -730,6 +731,39 @@ class _Translations$assistant$zh extends Translations$assistant$en {
 	@override String get reportSubmit => '举报';
 	@override String get reportSuccess => '感谢反馈，该回复已被举报。';
 	@override String get reportFailed => '无法举报该回复，请重试。';
+	@override String get getSummary => '获取总结';
+	@override String get summaryTitle => '对话总结';
+	@override String get possibleConditions => '可与医生讨论的可能情况';
+	@override String get likelihoodLow => '低';
+	@override String get likelihoodMedium => '中';
+	@override String get likelihoodHigh => '高';
+	@override String get urgencyRoutine => '无需着急';
+	@override String get urgencySoon => '请尽快就医';
+	@override String get urgencyUrgent => '紧急 — 请在24小时内就医';
+	@override String get urgencyEmergency => '紧急情况';
+	@override String get emergencyWarning => '请立即寻求急诊救治。';
+	@override String get recommendedSpecialization => '建议就诊科室';
+	@override String get findDoctors => '查找医生';
+	@override String get share => '分享';
+	@override String get summaryNotReadyYet => '对话内容还不足以生成总结。';
+}
+
+// Path: messaging
+class _Translations$messaging$zh extends Translations$messaging$en {
+	_Translations$messaging$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '消息';
+	@override String get sendMessage => '发消息';
+	@override String get typeMessage => '输入消息…';
+	@override String get send => '发送';
+	@override String get empty => '暂无对话';
+	@override String get emptySubtitle => '您的消息记录将显示在这里。';
+	@override String get disclaimer => '这不是紧急联系渠道，如遇紧急情况请拨打急救电话。';
+	@override String get noSharedHistory => '只有与该医生有共同的预约记录后，才能给对方发消息。';
+	@override String get newMessage => '您有一条新消息';
 }
 
 // Path: legal
@@ -1343,6 +1377,30 @@ extension on TranslationsZh {
 			'assistant.reportSubmit' => '举报',
 			'assistant.reportSuccess' => '感谢反馈，该回复已被举报。',
 			'assistant.reportFailed' => '无法举报该回复，请重试。',
+			'assistant.getSummary' => '获取总结',
+			'assistant.summaryTitle' => '对话总结',
+			'assistant.possibleConditions' => '可与医生讨论的可能情况',
+			'assistant.likelihoodLow' => '低',
+			'assistant.likelihoodMedium' => '中',
+			'assistant.likelihoodHigh' => '高',
+			'assistant.urgencyRoutine' => '无需着急',
+			'assistant.urgencySoon' => '请尽快就医',
+			'assistant.urgencyUrgent' => '紧急 — 请在24小时内就医',
+			'assistant.urgencyEmergency' => '紧急情况',
+			'assistant.emergencyWarning' => '请立即寻求急诊救治。',
+			'assistant.recommendedSpecialization' => '建议就诊科室',
+			'assistant.findDoctors' => '查找医生',
+			'assistant.share' => '分享',
+			'assistant.summaryNotReadyYet' => '对话内容还不足以生成总结。',
+			'messaging.title' => '消息',
+			'messaging.sendMessage' => '发消息',
+			'messaging.typeMessage' => '输入消息…',
+			'messaging.send' => '发送',
+			'messaging.empty' => '暂无对话',
+			'messaging.emptySubtitle' => '您的消息记录将显示在这里。',
+			'messaging.disclaimer' => '这不是紧急联系渠道，如遇紧急情况请拨打急救电话。',
+			'messaging.noSharedHistory' => '只有与该医生有共同的预约记录后，才能给对方发消息。',
+			'messaging.newMessage' => '您有一条新消息',
 			'legal.title' => '隐私与条款',
 			'legal.privacyTitle' => '隐私政策',
 			'legal.privacyBody' => 'Medalize 处理您的个人和健康信息，以便您预约和管理就诊。我们不会出售您的数据。完整的隐私政策将在公开发布前在此处发布。',
@@ -1408,6 +1466,8 @@ extension on TranslationsZh {
 			'prescriptions.instructions' => '用药说明',
 			'prescriptions.notes' => '备注',
 			'prescriptions.save' => '保存',
+			_ => null,
+		} ?? switch (path) {
 			'prescriptions.empty' => '暂无处方',
 			'prescriptions.emptySubtitle' => '医生开具的处方将显示在这里。',
 			'prescriptions.viewDetails' => '查看详情',
@@ -1432,8 +1492,6 @@ extension on TranslationsZh {
 			'records.typeLabResult' => '化验结果',
 			'records.typeImaging' => '影像检查',
 			'records.typeDocument' => '文档',
-			_ => null,
-		} ?? switch (path) {
 			'records.typeOther' => '其他',
 			'records.recordTitle' => '标题',
 			'records.recordDate' => '日期',

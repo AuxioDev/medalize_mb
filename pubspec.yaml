@@ -46,6 +46,12 @@ dependencies:
   # Opens an uploaded medical record's signed Cloudinary URL in an external
   # viewer/browser (records feature — no in-app PDF viewer in this phase).
   url_launcher: ^6.3.2
+  # Native "Share" sheet for exporting the AI assistant's conversation summary
+  # as plain text (Phase 2, Section 2) — no other share mechanism existed yet.
+  # Pinned to the 12.x line (not the newest 13.x): 13.x bumps its Windows
+  # dependency (win32 ^6.0.1) past what device_info_plus ^12.4.0 allows
+  # (win32 ^5.11.0), which `flutter pub get` refuses to resolve.
+  share_plus: ^12.0.2
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +60,9 @@ dev_dependencies:
   # Test-only: MockPlatformInterfaceMixin, used to fake FilePicker.platform in
   # test/upload_record_screen_test.dart without a real platform channel.
   plugin_platform_interface: ^2.1.8
+  # Test-only: SharePlatform, used to fake the native share sheet in
+  # test/conversation_summary_screen_test.dart without a real platform channel.
+  share_plus_platform_interface: ^6.1.0
   slang_build_runner: ^4.4.0
   build_runner: ^2.4.0
   integration_test:
