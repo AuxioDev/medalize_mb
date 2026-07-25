@@ -78,6 +78,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$prescriptions$en prescriptions = Translations$prescriptions$en.internal(_root);
 	late final Translations$records$en records = Translations$records$en.internal(_root);
 	late final Translations$payments$en payments = Translations$payments$en.internal(_root);
+	late final Translations$family$en family = Translations$family$en.internal(_root);
 }
 
 // Path: common
@@ -2031,6 +2032,96 @@ class Translations$payments$en {
 	String get checkStatus => 'Check Status';
 }
 
+// Path: family
+class Translations$family$en {
+	Translations$family$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Family'
+	String get title => 'Family';
+
+	/// en: 'Myself'
+	String get myself => 'Myself';
+
+	/// en: 'Add Family Member'
+	String get addFamilyMember => 'Add Family Member';
+
+	/// en: 'Edit Family Member'
+	String get editFamilyMember => 'Edit Family Member';
+
+	/// en: 'First Name'
+	String get firstName => 'First Name';
+
+	/// en: 'Last Name'
+	String get lastName => 'Last Name';
+
+	/// en: 'Relationship'
+	String get relationship => 'Relationship';
+
+	/// en: 'Child'
+	String get relationshipChild => 'Child';
+
+	/// en: 'Spouse'
+	String get relationshipSpouse => 'Spouse';
+
+	/// en: 'Parent'
+	String get relationshipParent => 'Parent';
+
+	/// en: 'Sibling'
+	String get relationshipSibling => 'Sibling';
+
+	/// en: 'Other'
+	String get relationshipOther => 'Other';
+
+	/// en: 'Date of Birth'
+	String get dateOfBirth => 'Date of Birth';
+
+	/// en: 'Blood Type'
+	String get bloodType => 'Blood Type';
+
+	/// en: 'Allergies'
+	String get allergies => 'Allergies';
+
+	/// en: 'Chronic conditions'
+	String get chronicConditions => 'Chronic conditions';
+
+	/// en: 'Current medications'
+	String get medications => 'Current medications';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	/// en: 'Delete'
+	String get delete => 'Delete';
+
+	/// en: 'Remove Family Member'
+	String get deleteConfirmTitle => 'Remove Family Member';
+
+	/// en: 'Remove this family member? Their appointment, medication, and record history will be kept.'
+	String get deleteConfirmBody => 'Remove this family member? Their appointment, medication, and record history will be kept.';
+
+	/// en: 'No family members yet'
+	String get empty => 'No family members yet';
+
+	/// en: 'Add a child, spouse, or other family member to manage their appointments, medications, and records.'
+	String get emptySubtitle => 'Add a child, spouse, or other family member to manage their appointments, medications, and records.';
+
+	/// en: 'Booking for: $name'
+	String bookingForLabel({required Object name}) => 'Booking for: ${name}';
+
+	/// en: 'for $name'
+	String forLabel({required Object name}) => 'for ${name}';
+
+	/// en: '$age years old'
+	String ageYears({required Object age}) => '${age} years old';
+
+	/// en: 'Booked by $name'
+	String bookedByLabel({required Object name}) => 'Booked by ${name}';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -2679,6 +2770,33 @@ extension on Translations {
 			'payments.paymentConfirmed' => 'Payment confirmed. Thank you!',
 			'payments.openingBrowser' => 'Opening your browser…',
 			'payments.checkStatus' => 'Check Status',
+			'family.title' => 'Family',
+			'family.myself' => 'Myself',
+			'family.addFamilyMember' => 'Add Family Member',
+			'family.editFamilyMember' => 'Edit Family Member',
+			'family.firstName' => 'First Name',
+			'family.lastName' => 'Last Name',
+			'family.relationship' => 'Relationship',
+			'family.relationshipChild' => 'Child',
+			'family.relationshipSpouse' => 'Spouse',
+			'family.relationshipParent' => 'Parent',
+			'family.relationshipSibling' => 'Sibling',
+			'family.relationshipOther' => 'Other',
+			'family.dateOfBirth' => 'Date of Birth',
+			'family.bloodType' => 'Blood Type',
+			'family.allergies' => 'Allergies',
+			'family.chronicConditions' => 'Chronic conditions',
+			'family.medications' => 'Current medications',
+			'family.save' => 'Save',
+			'family.delete' => 'Delete',
+			'family.deleteConfirmTitle' => 'Remove Family Member',
+			'family.deleteConfirmBody' => 'Remove this family member? Their appointment, medication, and record history will be kept.',
+			'family.empty' => 'No family members yet',
+			'family.emptySubtitle' => 'Add a child, spouse, or other family member to manage their appointments, medications, and records.',
+			'family.bookingForLabel' => ({required Object name}) => 'Booking for: ${name}',
+			'family.forLabel' => ({required Object name}) => 'for ${name}',
+			'family.ageYears' => ({required Object age}) => '${age} years old',
+			'family.bookedByLabel' => ({required Object name}) => 'Booked by ${name}',
 			_ => null,
 		};
 	}

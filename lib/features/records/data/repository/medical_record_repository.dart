@@ -38,6 +38,7 @@ class MedicalRecordRepository {
     DateTime? recordDate,
     String notes = '',
     required String filePath,
+    String? dependentId,
   }) async {
     try {
       final form = FormData.fromMap({
@@ -45,6 +46,7 @@ class MedicalRecordRepository {
         'title': title,
         if (recordDate != null) 'record_date': DateFormat('yyyy-MM-dd').format(recordDate),
         'notes': notes,
+        'dependent_id': ?dependentId,
         'file': await MultipartFile.fromFile(
           filePath,
           filename: filePath.split('/').last,

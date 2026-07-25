@@ -9,6 +9,8 @@ import 'package:medalize_mb/features/appointments/data/models/booking_request.da
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
+import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
 import 'package:medalize_mb/features/payments/data/models/payment_model.dart';
 import 'package:medalize_mb/features/payments/data/repository/payment_repository.dart';
@@ -17,8 +19,14 @@ import 'package:medalize_mb/i18n/strings.g.dart';
 class _FakeAppointmentRepository extends AppointmentRepository {
   _FakeAppointmentRepository() : super(Dio());
 
+  /// Captures the request handed to the most recent `bookAppointment` call
+  /// so tests can assert what was actually sent (e.g. `dependentId`).
+  BookingRequest? lastRequest;
+
   @override
-  Future<AppointmentModel> bookAppointment(BookingRequest req) async => AppointmentModel(
+  Future<AppointmentModel> bookAppointment(BookingRequest req) async {
+    lastRequest = req;
+    return AppointmentModel(
         id: 'appt-1',
         doctor: const AppointmentDoctor(
           id: 'd1',
@@ -41,6 +49,7 @@ class _FakeAppointmentRepository extends AppointmentRepository {
         notes: '',
         createdAt: DateTime(2026, 7, 1),
       );
+  }
 }
 
 /// Payriff isn't configured in this (dev) environment — the default, current
@@ -101,6 +110,8 @@ final _slot = SlotModel(
 Future<void> _pump(
   WidgetTester tester, {
   required PaymentRepository paymentRepo,
+  _FakeAppointmentRepository? appointmentRepo,
+  DependentModel? activeProfile,
 }) async {
   tester.view.physicalSize = const Size(480, 1000);
   tester.view.devicePixelRatio = 1.0;
@@ -133,8 +144,11 @@ Future<void> _pump(
     TranslationProvider(
       child: ProviderScope(
         overrides: [
-          appointmentRepositoryProvider.overrideWithValue(_FakeAppointmentRepository()),
+          appointmentRepositoryProvider
+              .overrideWithValue(appointmentRepo ?? _FakeAppointmentRepository()),
           paymentRepositoryProvider.overrideWithValue(paymentRepo),
+          if (activeProfile != null)
+            activeProfileProvider.overrideWith((ref) => activeProfile),
         ],
         child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
       ),
@@ -208,5 +222,51 @@ void main() {
 
     expect(find.text('patient-home'), findsOneWidget);
     expect(find.text('payment-screen:appt-1'), findsNothing);
+  });
+
+  group('family profile switching (Phase 4)', () {
+    const daughter = DependentModel(
+      id: 'dep-1',
+      firstName: 'Anna',
+      lastName: 'Doe',
+      relationship: DependentModel.relationshipChild,
+    );
+
+    testWidgets(
+        'shows no "Booking for" banner and sends no dependentId when the '
+        'active profile is "myself" (the default)', (tester) async {
+      final appointmentRepo = _FakeAppointmentRepository();
+      await _pump(
+        tester,
+        paymentRepo: _PaymentsDisabledRepository(),
+        appointmentRepo: appointmentRepo,
+      );
+
+      expect(find.textContaining('Booking for:'), findsNothing);
+
+      await tester.tap(find.byType(LoadingFilledButton));
+      await tester.pumpAndSettle();
+
+      expect(appointmentRepo.lastRequest?.dependentId, isNull);
+    });
+
+    testWidgets(
+        'shows "Booking for: Anna" and sends her id as dependentId when she is '
+        'the active profile', (tester) async {
+      final appointmentRepo = _FakeAppointmentRepository();
+      await _pump(
+        tester,
+        paymentRepo: _PaymentsDisabledRepository(),
+        appointmentRepo: appointmentRepo,
+        activeProfile: daughter,
+      );
+
+      expect(find.text('Booking for: Anna Doe'), findsOneWidget);
+
+      await tester.tap(find.byType(LoadingFilledButton));
+      await tester.pumpAndSettle();
+
+      expect(appointmentRepo.lastRequest?.dependentId, 'dep-1');
+    });
   });
 }

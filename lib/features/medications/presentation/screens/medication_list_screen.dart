@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/services/medication_scheduler.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_badge.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
@@ -257,6 +258,17 @@ class _MedicationCard extends ConsumerWidget {
                       style: TextStyle(
                           fontSize: 10, fontWeight: FontWeight.w600, color: c.primaryText),
                     ),
+                  ),
+                ],
+                // Lists stay combined across the account holder and family
+                // members (see PHASE4_FAMILY_PROFILES_PROMPT.md) — this badge
+                // is the only way to tell whose medication it is; absent
+                // entirely when it's the account holder's own.
+                if (medication.dependent != null) ...[
+                  const Gap(6),
+                  AppBadge(
+                    label: context.t.family.forLabel(name: medication.dependent!.fullName),
+                    color: AppColors.primary,
                   ),
                 ],
               ],

@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/greeting_banner.dart';
 import 'package:medalize_mb/core/widgets/message_bell.dart';
 import 'package:medalize_mb/core/widgets/notification_bell.dart';
+import 'package:medalize_mb/core/widgets/profile_switcher.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/section_header.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
@@ -74,6 +75,11 @@ class PatientHomeScreen extends ConsumerWidget {
             ),
             padding: const EdgeInsets.all(AppSpacing.md),
             children: [
+              // Kept above everything else, including the greeting banner —
+              // the active profile must always be on screen so a patient
+              // never forgets whose profile they're currently acting under.
+              const AnimatedEntrance(child: ProfileSwitcher()),
+              const Gap(AppSpacing.sm),
               AnimatedEntrance(
                 slideY: 0.08,
                 child: GreetingBanner(

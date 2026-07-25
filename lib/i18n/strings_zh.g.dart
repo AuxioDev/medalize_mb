@@ -74,6 +74,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$prescriptions$zh prescriptions = _Translations$prescriptions$zh._(_root);
 	@override late final _Translations$records$zh records = _Translations$records$zh._(_root);
 	@override late final _Translations$payments$zh payments = _Translations$payments$zh._(_root);
+	@override late final _Translations$family$zh family = _Translations$family$zh._(_root);
 }
 
 // Path: common
@@ -931,6 +932,42 @@ class _Translations$payments$zh extends Translations$payments$en {
 	@override String get checkStatus => '查看状态';
 }
 
+// Path: family
+class _Translations$family$zh extends Translations$family$en {
+	_Translations$family$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '家庭成员';
+	@override String get myself => '本人';
+	@override String get addFamilyMember => '添加家庭成员';
+	@override String get editFamilyMember => '编辑家庭成员';
+	@override String get firstName => '名';
+	@override String get lastName => '姓';
+	@override String get relationship => '关系';
+	@override String get relationshipChild => '子女';
+	@override String get relationshipSpouse => '配偶';
+	@override String get relationshipParent => '父母';
+	@override String get relationshipSibling => '兄弟姐妹';
+	@override String get relationshipOther => '其他';
+	@override String get dateOfBirth => '出生日期';
+	@override String get bloodType => '血型';
+	@override String get allergies => '过敏史';
+	@override String get chronicConditions => '慢性病史';
+	@override String get medications => '当前用药';
+	@override String get save => '保存';
+	@override String get delete => '删除';
+	@override String get deleteConfirmTitle => '删除家庭成员';
+	@override String get deleteConfirmBody => '确定要删除这位家庭成员吗?其预约、用药和档案记录将被保留。';
+	@override String get empty => '暂无家庭成员';
+	@override String get emptySubtitle => '添加子女、配偶或其他家庭成员，以管理他们的预约、用药和健康档案。';
+	@override String bookingForLabel({required Object name}) => '预约对象：${name}';
+	@override String forLabel({required Object name}) => '${name} 的';
+	@override String ageYears({required Object age}) => '${age} 岁';
+	@override String bookedByLabel({required Object name}) => '预约人：${name}';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1543,6 +1580,33 @@ extension on TranslationsZh {
 			'payments.paymentConfirmed' => '支付已确认，谢谢！',
 			'payments.openingBrowser' => '正在打开浏览器…',
 			'payments.checkStatus' => '查看状态',
+			'family.title' => '家庭成员',
+			'family.myself' => '本人',
+			'family.addFamilyMember' => '添加家庭成员',
+			'family.editFamilyMember' => '编辑家庭成员',
+			'family.firstName' => '名',
+			'family.lastName' => '姓',
+			'family.relationship' => '关系',
+			'family.relationshipChild' => '子女',
+			'family.relationshipSpouse' => '配偶',
+			'family.relationshipParent' => '父母',
+			'family.relationshipSibling' => '兄弟姐妹',
+			'family.relationshipOther' => '其他',
+			'family.dateOfBirth' => '出生日期',
+			'family.bloodType' => '血型',
+			'family.allergies' => '过敏史',
+			'family.chronicConditions' => '慢性病史',
+			'family.medications' => '当前用药',
+			'family.save' => '保存',
+			'family.delete' => '删除',
+			'family.deleteConfirmTitle' => '删除家庭成员',
+			'family.deleteConfirmBody' => '确定要删除这位家庭成员吗?其预约、用药和档案记录将被保留。',
+			'family.empty' => '暂无家庭成员',
+			'family.emptySubtitle' => '添加子女、配偶或其他家庭成员，以管理他们的预约、用药和健康档案。',
+			'family.bookingForLabel' => ({required Object name}) => '预约对象：${name}',
+			'family.forLabel' => ({required Object name}) => '${name} 的',
+			'family.ageYears' => ({required Object age}) => '${age} 岁',
+			'family.bookedByLabel' => ({required Object name}) => '预约人：${name}',
 			_ => null,
 		};
 	}

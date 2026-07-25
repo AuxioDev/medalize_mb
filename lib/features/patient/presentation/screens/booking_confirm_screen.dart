@@ -15,6 +15,7 @@ import 'package:medalize_mb/features/appointments/data/repository/appointment_re
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/payments/data/repository/payment_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -58,6 +59,7 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
         workplaceId: widget.workplaceId,
         startsAt: widget.slot.startsAt,
         reason: _reasonController.text.trim(),
+        dependentId: ref.read(activeProfileProvider)?.id,
       ));
       // Refresh the patient's appointment lists so the new booking shows up,
       // and the slot availability so the just-booked slot disappears.
@@ -127,6 +129,10 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
           ? widget.doctor.workplaces.first
           : throw StateError('Doctor has no workplaces'),
     );
+    // Non-null only when the patient switched the active profile away from
+    // "myself" — surfaced below so they don't accidentally book for the
+    // wrong person.
+    final activeProfile = ref.watch(activeProfileProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(context.t.booking.confirmTitle)),
@@ -136,6 +142,34 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (activeProfile != null) ...[
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(AppRadius.md),
+                    border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.info_outline, size: 16, color: AppColors.primary),
+                      const Gap(8),
+                      Expanded(
+                        child: Text(
+                          context.t.family.bookingForLabel(name: activeProfile.fullName),
+                          style: const TextStyle(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Gap(AppSpacing.md),
+              ],
               AppCard(
                 margin: EdgeInsets.zero,
                 child: Column(

@@ -1,3 +1,5 @@
+import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
+
 class MedicalRecordModel {
   static const typeLabResult = 'lab_result';
   static const typeImaging = 'imaging';
@@ -16,6 +18,11 @@ class MedicalRecordModel {
   final String notes;
   final DateTime createdAt;
 
+  /// Set when this document belongs to a managed family member rather than
+  /// the account holder — see `activeProfileProvider`
+  /// (`lib/features/family/providers/family_provider.dart`).
+  final DependentModel? dependent;
+
   const MedicalRecordModel({
     required this.id,
     this.recordType = typeOther,
@@ -24,6 +31,7 @@ class MedicalRecordModel {
     this.recordDate,
     this.notes = '',
     required this.createdAt,
+    this.dependent,
   });
 
   factory MedicalRecordModel.fromJson(Map<String, dynamic> j) => MedicalRecordModel(
@@ -38,5 +46,8 @@ class MedicalRecordModel {
         createdAt: j['created_at'] != null
             ? DateTime.parse(j['created_at'] as String)
             : DateTime.now(),
+        dependent: j['dependent'] != null
+            ? DependentModel.fromJson(j['dependent'] as Map<String, dynamic>)
+            : null,
       );
 }

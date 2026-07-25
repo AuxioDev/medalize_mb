@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
+import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/records/data/models/medical_record_model.dart';
 import 'package:medalize_mb/features/records/data/repository/medical_record_repository.dart';
 import 'package:medalize_mb/features/records/presentation/screens/upload_record_screen.dart';
@@ -39,6 +41,7 @@ class _FakeMedicalRecordRepository extends MedicalRecordRepository {
   String? uploadedType;
   String? uploadedTitle;
   String? uploadedFilePath;
+  String? uploadedDependentId;
 
   @override
   Future<MedicalRecordModel> uploadRecord({
@@ -47,15 +50,21 @@ class _FakeMedicalRecordRepository extends MedicalRecordRepository {
     DateTime? recordDate,
     String notes = '',
     required String filePath,
+    String? dependentId,
   }) async {
     uploadedType = recordType;
     uploadedTitle = title;
     uploadedFilePath = filePath;
+    uploadedDependentId = dependentId;
     return MedicalRecordModel(id: 'new-r', title: title, createdAt: DateTime(2026, 1, 1));
   }
 }
 
-Future<void> _pump(WidgetTester tester, _FakeMedicalRecordRepository repo) async {
+Future<void> _pump(
+  WidgetTester tester,
+  _FakeMedicalRecordRepository repo, {
+  DependentModel? activeProfile,
+}) async {
   tester.view.physicalSize = const Size(480, 1400);
   tester.view.devicePixelRatio = 1.0;
   addTearDown(tester.view.reset);
@@ -70,7 +79,11 @@ Future<void> _pump(WidgetTester tester, _FakeMedicalRecordRepository repo) async
   await tester.pumpWidget(
     TranslationProvider(
       child: ProviderScope(
-        overrides: [medicalRecordRepositoryProvider.overrideWithValue(repo)],
+        overrides: [
+          medicalRecordRepositoryProvider.overrideWithValue(repo),
+          if (activeProfile != null)
+            activeProfileProvider.overrideWith((ref) => activeProfile),
+        ],
         child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
       ),
     ),
@@ -124,5 +137,44 @@ void main() {
     expect(repo.uploadedTitle, 'Blood Panel');
     expect(repo.uploadedType, MedicalRecordModel.typeLabResult);
     expect(repo.uploadedFilePath, '/tmp/blood-panel.pdf');
+  });
+
+  testWidgets(
+      'uploading a record while a family member is the active profile passes '
+      'her id as dependentId (Phase 4)', (tester) async {
+    const daughter = DependentModel(
+      id: 'dep-1',
+      firstName: 'Anna',
+      relationship: DependentModel.relationshipChild,
+    );
+    final repo = _FakeMedicalRecordRepository();
+    await _pump(tester, repo, activeProfile: daughter);
+
+    await tester.enterText(find.widgetWithText(TextField, 'Title'), 'Blood Panel');
+    await tester.tap(find.text('Choose File'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Save'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(repo.uploadedDependentId, 'dep-1');
+  });
+
+  testWidgets(
+      'uploading a record for "myself" (the default active profile) sends no '
+      'dependentId (Phase 4)', (tester) async {
+    final repo = _FakeMedicalRecordRepository();
+    await _pump(tester, repo);
+
+    await tester.enterText(find.widgetWithText(TextField, 'Title'), 'Blood Panel');
+    await tester.tap(find.text('Choose File'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Save'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(repo.uploadedDependentId, isNull);
   });
 }

@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 
 final DateFormat _dateOnlyFmt = DateFormat('yyyy-MM-dd');
 
@@ -93,6 +94,11 @@ class MedicationModel {
   final List<MedicationScheduleModel> schedules;
   final DateTime createdAt;
 
+  /// Set when this medication belongs to a managed family member rather
+  /// than the account holder — see `activeProfileProvider`
+  /// (`lib/features/family/providers/family_provider.dart`).
+  final DependentModel? dependent;
+
   const MedicationModel({
     required this.id,
     required this.name,
@@ -103,6 +109,7 @@ class MedicationModel {
     this.isActive = true,
     this.schedules = const [],
     required this.createdAt,
+    this.dependent,
   });
 
   factory MedicationModel.fromJson(Map<String, dynamic> j) => MedicationModel(
@@ -120,6 +127,9 @@ class MedicationModel {
         createdAt: j['created_at'] != null
             ? DateTime.parse(j['created_at'] as String)
             : DateTime.now(),
+        dependent: j['dependent'] != null
+            ? DependentModel.fromJson(j['dependent'] as Map<String, dynamic>)
+            : null,
       );
 
   bool get isFromPrescription => source == sourcePrescription;

@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
@@ -153,6 +154,7 @@ class _AddEditMedicationScreenState
           form: _form,
           notes: _notes.text.trim(),
           schedules: schedules,
+          dependentId: ref.read(activeProfileProvider)?.id,
         );
       }
       ref.invalidate(medicationsProvider);

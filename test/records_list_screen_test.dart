@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/app_badge.dart';
+import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/records/data/models/medical_record_model.dart';
 import 'package:medalize_mb/features/records/data/repository/medical_record_repository.dart';
 import 'package:medalize_mb/features/records/presentation/screens/records_list_screen.dart';
@@ -26,12 +28,14 @@ MedicalRecordModel _record({
   required String id,
   required String title,
   String type = MedicalRecordModel.typeLabResult,
+  DependentModel? dependent,
 }) =>
     MedicalRecordModel(
       id: id,
       recordType: type,
       title: title,
       createdAt: DateTime(2026, 1, 1),
+      dependent: dependent,
     );
 
 Widget _app(_FakeMedicalRecordRepository repo) => TranslationProvider(
@@ -82,5 +86,32 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(repo.deletedId, 'r1');
+  });
+
+  testWidgets(
+      'shows a "for" badge only on records that belong to a family member '
+      '(Phase 4)', (tester) async {
+    const daughter = DependentModel(
+      id: 'dep-1',
+      firstName: 'Anna',
+      relationship: DependentModel.relationshipChild,
+    );
+    final repo = _FakeMedicalRecordRepository([
+      _record(id: 'r1', title: 'Blood Panel'),
+      _record(id: 'r2', title: 'Chest X-Ray', type: MedicalRecordModel.typeImaging, dependent: daughter),
+    ]);
+    await tester.pumpWidget(_app(repo));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(AppBadge), findsOneWidget);
+    expect(find.text('for Anna'), findsOneWidget);
+  });
+
+  testWidgets('shows no "for" badge when no record has a dependent', (tester) async {
+    final repo = _FakeMedicalRecordRepository([_record(id: 'r1', title: 'Blood Panel')]);
+    await tester.pumpWidget(_app(repo));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(AppBadge), findsNothing);
   });
 }

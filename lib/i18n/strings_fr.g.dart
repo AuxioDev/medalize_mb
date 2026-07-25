@@ -74,6 +74,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$prescriptions$fr prescriptions = _Translations$prescriptions$fr._(_root);
 	@override late final _Translations$records$fr records = _Translations$records$fr._(_root);
 	@override late final _Translations$payments$fr payments = _Translations$payments$fr._(_root);
+	@override late final _Translations$family$fr family = _Translations$family$fr._(_root);
 }
 
 // Path: common
@@ -931,6 +932,42 @@ class _Translations$payments$fr extends Translations$payments$en {
 	@override String get checkStatus => 'Vérifier le statut';
 }
 
+// Path: family
+class _Translations$family$fr extends Translations$family$en {
+	_Translations$family$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Famille';
+	@override String get myself => 'Moi-même';
+	@override String get addFamilyMember => 'Ajouter un membre de la famille';
+	@override String get editFamilyMember => 'Modifier le membre de la famille';
+	@override String get firstName => 'Prénom';
+	@override String get lastName => 'Nom';
+	@override String get relationship => 'Lien de parenté';
+	@override String get relationshipChild => 'Enfant';
+	@override String get relationshipSpouse => 'Conjoint(e)';
+	@override String get relationshipParent => 'Parent';
+	@override String get relationshipSibling => 'Frère/Sœur';
+	@override String get relationshipOther => 'Autre';
+	@override String get dateOfBirth => 'Date de naissance';
+	@override String get bloodType => 'Groupe sanguin';
+	@override String get allergies => 'Allergies';
+	@override String get chronicConditions => 'Maladies chroniques';
+	@override String get medications => 'Médicaments actuels';
+	@override String get save => 'Enregistrer';
+	@override String get delete => 'Supprimer';
+	@override String get deleteConfirmTitle => 'Supprimer le membre de la famille';
+	@override String get deleteConfirmBody => 'Voulez-vous vraiment supprimer ce membre de la famille ? L\'historique des rendez-vous, médicaments et documents sera conservé.';
+	@override String get empty => 'Aucun membre de la famille pour l\'instant';
+	@override String get emptySubtitle => 'Ajoutez un enfant, un conjoint ou un autre proche pour gérer ses rendez-vous, médicaments et documents.';
+	@override String bookingForLabel({required Object name}) => 'Rendez-vous pour : ${name}';
+	@override String forLabel({required Object name}) => 'pour ${name}';
+	@override String ageYears({required Object age}) => '${age} ans';
+	@override String bookedByLabel({required Object name}) => 'Pris par ${name}';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -1543,6 +1580,33 @@ extension on TranslationsFr {
 			'payments.paymentConfirmed' => 'Paiement confirmé. Merci !',
 			'payments.openingBrowser' => 'Ouverture du navigateur…',
 			'payments.checkStatus' => 'Vérifier le statut',
+			'family.title' => 'Famille',
+			'family.myself' => 'Moi-même',
+			'family.addFamilyMember' => 'Ajouter un membre de la famille',
+			'family.editFamilyMember' => 'Modifier le membre de la famille',
+			'family.firstName' => 'Prénom',
+			'family.lastName' => 'Nom',
+			'family.relationship' => 'Lien de parenté',
+			'family.relationshipChild' => 'Enfant',
+			'family.relationshipSpouse' => 'Conjoint(e)',
+			'family.relationshipParent' => 'Parent',
+			'family.relationshipSibling' => 'Frère/Sœur',
+			'family.relationshipOther' => 'Autre',
+			'family.dateOfBirth' => 'Date de naissance',
+			'family.bloodType' => 'Groupe sanguin',
+			'family.allergies' => 'Allergies',
+			'family.chronicConditions' => 'Maladies chroniques',
+			'family.medications' => 'Médicaments actuels',
+			'family.save' => 'Enregistrer',
+			'family.delete' => 'Supprimer',
+			'family.deleteConfirmTitle' => 'Supprimer le membre de la famille',
+			'family.deleteConfirmBody' => 'Voulez-vous vraiment supprimer ce membre de la famille ? L\'historique des rendez-vous, médicaments et documents sera conservé.',
+			'family.empty' => 'Aucun membre de la famille pour l\'instant',
+			'family.emptySubtitle' => 'Ajoutez un enfant, un conjoint ou un autre proche pour gérer ses rendez-vous, médicaments et documents.',
+			'family.bookingForLabel' => ({required Object name}) => 'Rendez-vous pour : ${name}',
+			'family.forLabel' => ({required Object name}) => 'pour ${name}',
+			'family.ageYears' => ({required Object age}) => '${age} ans',
+			'family.bookedByLabel' => ({required Object name}) => 'Pris par ${name}',
 			_ => null,
 		};
 	}

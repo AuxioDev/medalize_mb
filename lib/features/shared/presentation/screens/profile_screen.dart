@@ -409,6 +409,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       children: [
                         ListTile(
                           contentPadding: EdgeInsets.zero,
+                          leading: const Icon(Icons.family_restroom_outlined),
+                          title: Text(context.t.family.title),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: () => context.push('/patient/family'),
+                        ),
+                        ListTile(
+                          contentPadding: EdgeInsets.zero,
                           leading: const Icon(Icons.medication_outlined),
                           title: Text(context.t.medications.title),
                           trailing: const Icon(Icons.chevron_right),

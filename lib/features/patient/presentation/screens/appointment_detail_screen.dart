@@ -18,6 +18,8 @@ import 'package:medalize_mb/features/appointments/data/models/appointment_model.
 import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/features/family/presentation/screens/family_list_screen.dart'
+    show relationshipLabel;
 import 'package:medalize_mb/features/messaging/data/repository/messaging_repository.dart';
 import 'package:medalize_mb/features/payments/presentation/screens/payment_screen.dart';
 import 'package:medalize_mb/features/payments/providers/payment_provider.dart';
@@ -421,12 +423,77 @@ class _AppointmentDetailScreenState
               AnimatedEntrance(
                 index: 1,
                 child: widget.asDoctor
-                    ? _InfoCard(
-                        label: context.t.appointments.patient,
-                        icon: Icons.person_outline_rounded,
-                        child: Text(appt.patient.fullName,
-                            style: Theme.of(context).textTheme.titleSmall),
-                      )
+                    ? (appt.dependent != null
+                        // Patient-safety point (see PHASE4_FAMILY_PROFILES_PROMPT.md):
+                        // when this visit is for a family member, the doctor
+                        // needs to immediately know *who they're actually
+                        // treating* — that must never be buried as a small
+                        // badge under the account holder's name. The
+                        // dependent is shown as the prominent, primary
+                        // identity here; the account holder becomes
+                        // secondary "booked by" contact/payer info below it.
+                        ? _InfoCard(
+                            label: context.t.appointments.patient,
+                            icon: Icons.person_outline_rounded,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  appt.dependent!.fullName,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(fontWeight: FontWeight.w800),
+                                ),
+                                const Gap(2),
+                                Text(
+                                  [
+                                    relationshipLabel(appt.dependent!.relationship),
+                                    if (appt.dependent!.age != null)
+                                      context.t.family
+                                          .ageYears(age: appt.dependent!.age!),
+                                  ].join(' · '),
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
+                                const Gap(8),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: context.colors.surface,
+                                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                                    border: Border.all(color: context.colors.border),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.badge_outlined,
+                                          size: 12, color: context.colors.textSecondary),
+                                      const Gap(4),
+                                      Flexible(
+                                        child: Text(
+                                          context.t.family
+                                              .bookedByLabel(name: appt.patient.fullName),
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            color: context.colors.textSecondary,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : _InfoCard(
+                            label: context.t.appointments.patient,
+                            icon: Icons.person_outline_rounded,
+                            child: Text(appt.patient.fullName,
+                                style: Theme.of(context).textTheme.titleSmall),
+                          ))
                     : _InfoCard(
                         label: context.t.appointments.doctor,
                         icon: Icons.person_outline_rounded,

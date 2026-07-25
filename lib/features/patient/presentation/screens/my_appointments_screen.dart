@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_badge.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
@@ -274,6 +275,16 @@ class _AppointmentCard extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                ],
+                // This list stays combined across the account holder and
+                // family members — this badge is the only differentiator,
+                // and it's absent entirely for the account holder's own.
+                if (appointment.dependent != null) ...[
+                  const Gap(4),
+                  AppBadge(
+                    label: context.t.family.forLabel(name: appointment.dependent!.fullName),
+                    color: AppColors.primary,
                   ),
                 ],
               ],

@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/records/data/models/medical_record_model.dart';
 import 'package:medalize_mb/features/records/data/repository/medical_record_repository.dart';
 import 'package:medalize_mb/features/records/presentation/screens/records_list_screen.dart';
@@ -93,6 +94,7 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
             recordDate: _recordDate,
             notes: _notes.text.trim(),
             filePath: _filePath!,
+            dependentId: ref.read(activeProfileProvider)?.id,
           );
       ref.invalidate(medicalRecordsProvider);
       if (mounted) {

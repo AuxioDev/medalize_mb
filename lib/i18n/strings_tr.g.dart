@@ -74,6 +74,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$prescriptions$tr prescriptions = _Translations$prescriptions$tr._(_root);
 	@override late final _Translations$records$tr records = _Translations$records$tr._(_root);
 	@override late final _Translations$payments$tr payments = _Translations$payments$tr._(_root);
+	@override late final _Translations$family$tr family = _Translations$family$tr._(_root);
 }
 
 // Path: common
@@ -931,6 +932,42 @@ class _Translations$payments$tr extends Translations$payments$en {
 	@override String get checkStatus => 'Durumu Kontrol Et';
 }
 
+// Path: family
+class _Translations$family$tr extends Translations$family$en {
+	_Translations$family$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Aile';
+	@override String get myself => 'Kendim';
+	@override String get addFamilyMember => 'Aile Üyesi Ekle';
+	@override String get editFamilyMember => 'Aile Üyesini Düzenle';
+	@override String get firstName => 'Ad';
+	@override String get lastName => 'Soyad';
+	@override String get relationship => 'Yakınlık';
+	@override String get relationshipChild => 'Çocuk';
+	@override String get relationshipSpouse => 'Eş';
+	@override String get relationshipParent => 'Ebeveyn';
+	@override String get relationshipSibling => 'Kardeş';
+	@override String get relationshipOther => 'Diğer';
+	@override String get dateOfBirth => 'Doğum Tarihi';
+	@override String get bloodType => 'Kan Grubu';
+	@override String get allergies => 'Alerjiler';
+	@override String get chronicConditions => 'Kronik hastalıklar';
+	@override String get medications => 'Mevcut ilaçlar';
+	@override String get save => 'Kaydet';
+	@override String get delete => 'Sil';
+	@override String get deleteConfirmTitle => 'Aile Üyesini Kaldır';
+	@override String get deleteConfirmBody => 'Bu aile üyesini kaldırmak istediğinizden emin misiniz? Randevu, ilaç ve belge geçmişi saklanacak.';
+	@override String get empty => 'Henüz aile üyesi yok';
+	@override String get emptySubtitle => 'Randevularını, ilaçlarını ve belgelerini yönetmek için çocuğunuzu, eşinizi veya başka bir aile üyenizi ekleyin.';
+	@override String bookingForLabel({required Object name}) => 'Randevu kimin için: ${name}';
+	@override String forLabel({required Object name}) => '${name} için';
+	@override String ageYears({required Object age}) => '${age} yaşında';
+	@override String bookedByLabel({required Object name}) => 'Randevuyu alan: ${name}';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1543,6 +1580,33 @@ extension on TranslationsTr {
 			'payments.paymentConfirmed' => 'Ödeme onaylandı. Teşekkürler!',
 			'payments.openingBrowser' => 'Tarayıcı açılıyor…',
 			'payments.checkStatus' => 'Durumu Kontrol Et',
+			'family.title' => 'Aile',
+			'family.myself' => 'Kendim',
+			'family.addFamilyMember' => 'Aile Üyesi Ekle',
+			'family.editFamilyMember' => 'Aile Üyesini Düzenle',
+			'family.firstName' => 'Ad',
+			'family.lastName' => 'Soyad',
+			'family.relationship' => 'Yakınlık',
+			'family.relationshipChild' => 'Çocuk',
+			'family.relationshipSpouse' => 'Eş',
+			'family.relationshipParent' => 'Ebeveyn',
+			'family.relationshipSibling' => 'Kardeş',
+			'family.relationshipOther' => 'Diğer',
+			'family.dateOfBirth' => 'Doğum Tarihi',
+			'family.bloodType' => 'Kan Grubu',
+			'family.allergies' => 'Alerjiler',
+			'family.chronicConditions' => 'Kronik hastalıklar',
+			'family.medications' => 'Mevcut ilaçlar',
+			'family.save' => 'Kaydet',
+			'family.delete' => 'Sil',
+			'family.deleteConfirmTitle' => 'Aile Üyesini Kaldır',
+			'family.deleteConfirmBody' => 'Bu aile üyesini kaldırmak istediğinizden emin misiniz? Randevu, ilaç ve belge geçmişi saklanacak.',
+			'family.empty' => 'Henüz aile üyesi yok',
+			'family.emptySubtitle' => 'Randevularını, ilaçlarını ve belgelerini yönetmek için çocuğunuzu, eşinizi veya başka bir aile üyenizi ekleyin.',
+			'family.bookingForLabel' => ({required Object name}) => 'Randevu kimin için: ${name}',
+			'family.forLabel' => ({required Object name}) => '${name} için',
+			'family.ageYears' => ({required Object age}) => '${age} yaşında',
+			'family.bookedByLabel' => ({required Object name}) => 'Randevuyu alan: ${name}',
 			_ => null,
 		};
 	}

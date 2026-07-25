@@ -74,6 +74,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$prescriptions$ru prescriptions = _Translations$prescriptions$ru._(_root);
 	@override late final _Translations$records$ru records = _Translations$records$ru._(_root);
 	@override late final _Translations$payments$ru payments = _Translations$payments$ru._(_root);
+	@override late final _Translations$family$ru family = _Translations$family$ru._(_root);
 }
 
 // Path: common
@@ -931,6 +932,42 @@ class _Translations$payments$ru extends Translations$payments$en {
 	@override String get checkStatus => 'Проверить статус';
 }
 
+// Path: family
+class _Translations$family$ru extends Translations$family$en {
+	_Translations$family$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Семья';
+	@override String get myself => 'Я сам(а)';
+	@override String get addFamilyMember => 'Добавить члена семьи';
+	@override String get editFamilyMember => 'Изменить члена семьи';
+	@override String get firstName => 'Имя';
+	@override String get lastName => 'Фамилия';
+	@override String get relationship => 'Кем приходится';
+	@override String get relationshipChild => 'Ребёнок';
+	@override String get relationshipSpouse => 'Супруг(а)';
+	@override String get relationshipParent => 'Родитель';
+	@override String get relationshipSibling => 'Брат/сестра';
+	@override String get relationshipOther => 'Другое';
+	@override String get dateOfBirth => 'Дата рождения';
+	@override String get bloodType => 'Группа крови';
+	@override String get allergies => 'Аллергии';
+	@override String get chronicConditions => 'Хронические заболевания';
+	@override String get medications => 'Принимаемые препараты';
+	@override String get save => 'Сохранить';
+	@override String get delete => 'Удалить';
+	@override String get deleteConfirmTitle => 'Удалить члена семьи';
+	@override String get deleteConfirmBody => 'Удалить этого члена семьи? История записей, лекарств и документов сохранится.';
+	@override String get empty => 'Пока нет членов семьи';
+	@override String get emptySubtitle => 'Добавьте ребёнка, супруга или другого родственника, чтобы управлять их записями, лекарствами и документами.';
+	@override String bookingForLabel({required Object name}) => 'Запись для: ${name}';
+	@override String forLabel({required Object name}) => 'для ${name}';
+	@override String ageYears({required Object age}) => '${age} лет';
+	@override String bookedByLabel({required Object name}) => 'Записал(а) ${name}';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -1543,6 +1580,33 @@ extension on TranslationsRu {
 			'payments.paymentConfirmed' => 'Оплата подтверждена. Спасибо!',
 			'payments.openingBrowser' => 'Открываем браузер…',
 			'payments.checkStatus' => 'Проверить статус',
+			'family.title' => 'Семья',
+			'family.myself' => 'Я сам(а)',
+			'family.addFamilyMember' => 'Добавить члена семьи',
+			'family.editFamilyMember' => 'Изменить члена семьи',
+			'family.firstName' => 'Имя',
+			'family.lastName' => 'Фамилия',
+			'family.relationship' => 'Кем приходится',
+			'family.relationshipChild' => 'Ребёнок',
+			'family.relationshipSpouse' => 'Супруг(а)',
+			'family.relationshipParent' => 'Родитель',
+			'family.relationshipSibling' => 'Брат/сестра',
+			'family.relationshipOther' => 'Другое',
+			'family.dateOfBirth' => 'Дата рождения',
+			'family.bloodType' => 'Группа крови',
+			'family.allergies' => 'Аллергии',
+			'family.chronicConditions' => 'Хронические заболевания',
+			'family.medications' => 'Принимаемые препараты',
+			'family.save' => 'Сохранить',
+			'family.delete' => 'Удалить',
+			'family.deleteConfirmTitle' => 'Удалить члена семьи',
+			'family.deleteConfirmBody' => 'Удалить этого члена семьи? История записей, лекарств и документов сохранится.',
+			'family.empty' => 'Пока нет членов семьи',
+			'family.emptySubtitle' => 'Добавьте ребёнка, супруга или другого родственника, чтобы управлять их записями, лекарствами и документами.',
+			'family.bookingForLabel' => ({required Object name}) => 'Запись для: ${name}',
+			'family.forLabel' => ({required Object name}) => 'для ${name}',
+			'family.ageYears' => ({required Object age}) => '${age} лет',
+			'family.bookedByLabel' => ({required Object name}) => 'Записал(а) ${name}',
 			_ => null,
 		};
 	}

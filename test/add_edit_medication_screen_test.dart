@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
+import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/add_edit_medication_screen.dart';
@@ -15,6 +17,7 @@ class _FakeMedicationRepository extends MedicationRepository {
   String? createdName;
   String? createdDosage;
   List<MedicationScheduleModel>? createdSchedules;
+  String? createdDependentId;
   String? updatedId;
 
   @override
@@ -27,10 +30,12 @@ class _FakeMedicationRepository extends MedicationRepository {
     String form = '',
     String notes = '',
     List<MedicationScheduleModel> schedules = const [],
+    String? dependentId,
   }) async {
     createdName = name;
     createdDosage = dosage;
     createdSchedules = schedules;
+    createdDependentId = dependentId;
     return MedicationModel(
       id: 'new-id',
       name: name,
@@ -70,6 +75,7 @@ Future<void> _pump(
   WidgetTester tester,
   _FakeMedicationRepository repo, {
   MedicationModel? existing,
+  DependentModel? activeProfile,
 }) async {
   // Tall viewport so the Save button (below the schedule builder) is always
   // on-screen without needing to scroll to it in every test.
@@ -90,7 +96,11 @@ Future<void> _pump(
   await tester.pumpWidget(
     TranslationProvider(
       child: ProviderScope(
-        overrides: [medicationRepositoryProvider.overrideWithValue(repo)],
+        overrides: [
+          medicationRepositoryProvider.overrideWithValue(repo),
+          if (activeProfile != null)
+            activeProfileProvider.overrideWith((ref) => activeProfile),
+        ],
         child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
       ),
     ),
@@ -165,5 +175,39 @@ void main() {
     await tester.pump(const Duration(milliseconds: 500));
 
     expect(repo.updatedId, 'm1');
+  });
+
+  testWidgets(
+      'creating a medication while a family member is the active profile '
+      'passes her id as dependentId (Phase 4)', (tester) async {
+    const daughter = DependentModel(
+      id: 'dep-1',
+      firstName: 'Anna',
+      relationship: DependentModel.relationshipChild,
+    );
+    final repo = _FakeMedicationRepository();
+    await _pump(tester, repo, activeProfile: daughter);
+
+    await tester.enterText(find.widgetWithText(TextField, 'Name'), 'Paracetamol');
+    await tester.tap(find.text('Save'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(repo.createdName, 'Paracetamol');
+    expect(repo.createdDependentId, 'dep-1');
+  });
+
+  testWidgets(
+      'creating a medication for "myself" (the default active profile) sends '
+      'no dependentId (Phase 4)', (tester) async {
+    final repo = _FakeMedicationRepository();
+    await _pump(tester, repo);
+
+    await tester.enterText(find.widgetWithText(TextField, 'Name'), 'Paracetamol');
+    await tester.tap(find.text('Save'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(repo.createdDependentId, isNull);
   });
 }

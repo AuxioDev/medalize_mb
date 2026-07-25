@@ -39,6 +39,7 @@ class MedicationRepository {
     String form = '',
     String notes = '',
     List<MedicationScheduleModel> schedules = const [],
+    String? dependentId,
   }) async {
     try {
       final res = await _dio.post('/medications/', data: {
@@ -47,6 +48,7 @@ class MedicationRepository {
         'form': form,
         'notes': notes,
         'schedules': schedules.map((s) => s.toJson()).toList(),
+        'dependent_id': ?dependentId,
       });
       return MedicationModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {

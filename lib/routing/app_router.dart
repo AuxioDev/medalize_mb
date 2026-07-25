@@ -24,6 +24,9 @@ import 'package:medalize_mb/features/doctor/presentation/screens/doctor_pending_
 import 'package:medalize_mb/features/doctor/presentation/screens/working_hours_editor_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/workplace_list_screen.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
+import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
+import 'package:medalize_mb/features/family/presentation/screens/add_edit_dependent_screen.dart';
+import 'package:medalize_mb/features/family/presentation/screens/family_list_screen.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/add_edit_medication_screen.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
@@ -246,6 +249,28 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/patient/records/upload',
         pageBuilder: (_, _) => _modalPage(const UploadRecordScreen()),
+      ),
+
+      // Family profiles (Phase 4)
+      GoRoute(
+        path: '/patient/family',
+        pageBuilder: (_, _) => _pushPage(const FamilyListScreen()),
+      ),
+      GoRoute(
+        path: '/patient/family/add',
+        pageBuilder: (_, _) => _modalPage(const AddEditDependentScreen()),
+      ),
+      GoRoute(
+        path: '/patient/family/:id/edit',
+        pageBuilder: (_, state) {
+          final existing = state.extra as DependentModel?;
+          // Only reachable from the family list, which always passes the
+          // model via `extra` — without it there's nothing to edit.
+          if (existing == null) {
+            return _pushPage(const FamilyListScreen());
+          }
+          return _modalPage(AddEditDependentScreen(existing: existing));
+        },
       ),
 
       // Messaging (Phase 2, Section 1)

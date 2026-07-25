@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_badge.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
@@ -204,6 +205,16 @@ class _RecordCard extends ConsumerWidget {
                   const Gap(2),
                   Text(dateFmt.format(record.recordDate!),
                       style: Theme.of(context).textTheme.bodySmall),
+                ],
+                // Records lists stay combined across the account holder and
+                // family members — this badge is the only differentiator,
+                // and it's absent entirely for the account holder's own.
+                if (record.dependent != null) ...[
+                  const Gap(4),
+                  AppBadge(
+                    label: context.t.family.forLabel(name: record.dependent!.fullName),
+                    color: AppColors.primary,
+                  ),
                 ],
               ],
             ),

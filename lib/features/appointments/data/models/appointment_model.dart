@@ -1,4 +1,5 @@
 import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
+import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 
 class AppointmentDoctor {
   final String id;
@@ -79,6 +80,13 @@ class AppointmentModel {
   final String notes;
   final DateTime createdAt;
 
+  /// Set when this visit is for one of [patient]'s managed family members
+  /// rather than for the account holder themselves. `patient` remains the
+  /// account owner (contact/payer) either way — `dependent`, when present,
+  /// is who the visit is clinically *for*. See the doctor-facing rendering
+  /// in `appointment_detail_screen.dart`, which must make this unmistakable.
+  final DependentModel? dependent;
+
   /// Server-computed cancel/reschedule eligibility (`can_cancel`/`can_reschedule`).
   /// Null when the backend didn't send them — we then fall back to the local
   /// rule below so older responses keep working.
@@ -108,6 +116,7 @@ class AppointmentModel {
     this.hasReview = false,
     this.review,
     this.canEditReview = false,
+    this.dependent,
   });
 
   factory AppointmentModel.fromJson(Map<String, dynamic> j) => AppointmentModel(
@@ -128,6 +137,9 @@ class AppointmentModel {
             ? ReviewModel.fromJson(j['review'] as Map<String, dynamic>)
             : null,
         canEditReview: j['can_edit_review'] as bool? ?? false,
+        dependent: j['dependent'] != null
+            ? DependentModel.fromJson(j['dependent'] as Map<String, dynamic>)
+            : null,
       );
 
   bool get isUpcoming {
