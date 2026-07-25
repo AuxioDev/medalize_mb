@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/app_date_field.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
@@ -140,7 +140,6 @@ class _AddEditDependentScreenState
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    final dateFmt = DateFormat('d MMM y');
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -180,18 +179,10 @@ class _AddEditDependentScreenState
                 ],
               ),
               const Gap(AppSpacing.md),
-              InkWell(
+              AppDateField(
+                label: t.family.dateOfBirth,
+                value: _dateOfBirth,
                 onTap: _pickDateOfBirth,
-                borderRadius: BorderRadius.circular(AppRadius.sm),
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: t.family.dateOfBirth,
-                    suffixIcon:
-                        const Icon(Icons.calendar_today_outlined, size: 18),
-                  ),
-                  child:
-                      Text(_dateOfBirth != null ? dateFmt.format(_dateOfBirth!) : '—'),
-                ),
               ),
               const Gap(12),
               TextField(

@@ -51,7 +51,11 @@ void main() {
     await _pump(tester, _FakeAuthRepository());
 
     expect(tester.takeException(), isNull);
-    expect(find.text('Danger Zone'), findsOneWidget);
+    // AppFormSection uppercases its caption (matching every other section
+    // header in the app, e.g. "ACCOUNT", "APPEARANCE" on the settings
+    // screen) — this one used to render in title case before the shared
+    // widget consolidated the two styles.
+    expect(find.text('DANGER ZONE'), findsOneWidget);
     expect(find.text('Deactivate Account'), findsOneWidget);
     expect(find.text('Change Email'), findsOneWidget);
   });

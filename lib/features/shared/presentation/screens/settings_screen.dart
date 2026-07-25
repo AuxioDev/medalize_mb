@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/theme/theme_mode_provider.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_form_section.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
@@ -33,7 +34,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           children: [
             AnimatedEntrance(
-              child: _SettingsGroup(
+              child: AppFormSection(
                 title: t.settings.account,
                 children: [
                   _SettingsTile(
@@ -41,19 +42,19 @@ class SettingsScreen extends ConsumerWidget {
                     label: t.settings.profile,
                     route: '/shared/profile',
                   ),
-                  const _Divider(),
+                  const AppFormSectionDivider(),
                   _SettingsTile(
                     icon: Icons.notifications_outlined,
                     label: t.settings.notifications,
                     route: '/shared/notifications',
                   ),
-                  const _Divider(),
+                  const AppFormSectionDivider(),
                   _SettingsTile(
                     icon: Icons.security_outlined,
                     label: t.security.title,
                     route: '/shared/security',
                   ),
-                  const _Divider(),
+                  const AppFormSectionDivider(),
                   _SettingsTile(
                     icon: Icons.privacy_tip_outlined,
                     label: t.settings.legal,
@@ -65,7 +66,7 @@ class SettingsScreen extends ConsumerWidget {
             const Gap(AppSpacing.md),
             AnimatedEntrance(
               index: 1,
-              child: _SettingsGroup(
+              child: AppFormSection(
                 title: t.settings.appearance,
                 children: [
                   Padding(
@@ -76,7 +77,7 @@ class SettingsScreen extends ConsumerWidget {
                           ref.read(themeModeProvider.notifier).setMode(m),
                     ),
                   ),
-                  const _Divider(),
+                  const AppFormSectionDivider(),
                   _LanguageTile(
                     locale: locale,
                     onTap: () => _showLanguagePicker(context, ref, locale),
@@ -87,7 +88,7 @@ class SettingsScreen extends ConsumerWidget {
             const Gap(AppSpacing.md),
             AnimatedEntrance(
               index: 2,
-              child: _SettingsGroup(
+              child: AppFormSection(
                 children: [
                   ListTile(
                     leading: const Icon(Icons.logout, color: AppColors.error),
@@ -216,46 +217,6 @@ class SettingsScreen extends ConsumerWidget {
   }
 }
 
-class _SettingsGroup extends StatelessWidget {
-  const _SettingsGroup({this.title, required this.children});
-
-  final String? title;
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (title != null) ...[
-          Padding(
-            padding: const EdgeInsets.only(left: 4, bottom: 8),
-            child: Text(
-              title!.toUpperCase(),
-              style: TextStyle(
-                color: c.textSecondary,
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.6,
-              ),
-            ),
-          ),
-        ],
-        Container(
-          decoration: BoxDecoration(
-            color: c.surfaceAlt,
-            borderRadius: BorderRadius.circular(AppRadius.lg),
-            border: Border.all(color: c.border),
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: Column(children: children),
-        ),
-      ],
-    );
-  }
-}
-
 class _SettingsTile extends StatelessWidget {
   const _SettingsTile({
     required this.icon,
@@ -325,14 +286,6 @@ class _LanguageOption extends StatelessWidget {
       onTap: onTap,
     );
   }
-}
-
-class _Divider extends StatelessWidget {
-  const _Divider();
-
-  @override
-  Widget build(BuildContext context) =>
-      Divider(height: 1, indent: 56, color: context.colors.border);
 }
 
 class _ThemeModeSelector extends StatelessWidget {

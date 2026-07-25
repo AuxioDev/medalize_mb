@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/app_date_field.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -112,7 +112,6 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    final dateFmt = DateFormat('d MMM y');
     return Scaffold(
       appBar: AppBar(title: Text(t.records.upload)),
       body: ResponsiveBody(
@@ -142,16 +141,10 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
                 decoration: InputDecoration(labelText: t.records.recordTitle),
               ),
               const Gap(12),
-              InkWell(
+              AppDateField(
+                label: t.records.recordDate,
+                value: _recordDate,
                 onTap: _pickDate,
-                borderRadius: BorderRadius.circular(AppRadius.sm),
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: t.records.recordDate,
-                    suffixIcon: const Icon(Icons.calendar_today_outlined, size: 18),
-                  ),
-                  child: Text(_recordDate != null ? dateFmt.format(_recordDate!) : '—'),
-                ),
               ),
               const Gap(12),
               TextField(

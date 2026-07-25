@@ -126,40 +126,61 @@ class _LoadingFilledButtonState extends State<LoadingFilledButton>
       overlayColor: Colors.transparent,
     );
 
-    final content = widget.loading
-        ? SizedBox(
-            height: 22,
-            width: 22,
-            child: CircularProgressIndicator(strokeWidth: 2.4, color: fg),
-          )
-        : (widget.icon == null
-            ? Text(
-                widget.label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              )
-            : Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(widget.icon, size: 20),
-                  const SizedBox(width: 8),
-                  // Flexible lets the min-size Row shrink the label instead
-                  // of overflowing when a long translation doesn't fit next
-                  // to the icon.
-                  Flexible(
-                    child: Text(
+    // Fade+scale cross-fade between the label and the loading spinner,
+    // instead of an instant swap.
+    final content = AnimatedSwitcher(
+      duration: const Duration(milliseconds: 220),
+      transitionBuilder: (child, anim) => FadeTransition(
+        opacity: anim,
+        child: ScaleTransition(
+          scale: Tween<double>(begin: 0.75, end: 1.0).animate(anim),
+          child: child,
+        ),
+      ),
+      child: widget.loading
+          ? SizedBox(
+              key: const ValueKey('loading'),
+              height: 22,
+              width: 22,
+              child: CircularProgressIndicator(strokeWidth: 2.4, color: fg),
+            )
+          : KeyedSubtree(
+              key: const ValueKey('label'),
+              child: widget.icon == null
+                  ? Text(
                       widget.label,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
+                    )
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(widget.icon, size: 20),
+                        const SizedBox(width: 8),
+                        // Flexible lets the min-size Row shrink the label
+                        // instead of overflowing when a long translation
+                        // doesn't fit next to the icon.
+                        Flexible(
+                          child: Text(
+                            widget.label,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ));
+            ),
+    );
 
-    Widget button = FilledButton(
-      onPressed: _enabled ? widget.onPressed : null,
-      style: style,
-      child: content,
+    // Full-width by default (matches every call site's expectation) so
+    // callers don't need to wrap this in their own SizedBox/Expanded.
+    Widget button = SizedBox(
+      width: double.infinity,
+      child: FilledButton(
+        onPressed: _enabled ? widget.onPressed : null,
+        style: style,
+        child: content,
+      ),
     );
 
     if (_holdCtrl != null) {

@@ -8,8 +8,9 @@ import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
+import 'package:medalize_mb/core/widgets/fade_slide_transition.dart';
 import 'package:medalize_mb/core/widgets/phone_field.dart';
-import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
+import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/password_strength_indicator.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
@@ -153,8 +154,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // ── Header ───────────────────────────────────────────
-              _Section(
-                anim: _headerAnim,
+              FadeSlideTransition(
+                animation: _headerAnim,
                 child: AuthCardHeader(
                   icon: Icons.medical_services_rounded,
                   title: context.t.auth.createYourAccount,
@@ -164,8 +165,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
               const SizedBox(height: 24),
 
               // ── Form ─────────────────────────────────────────────
-              _Section(
-                anim: _formAnim,
+              FadeSlideTransition(
+                animation: _formAnim,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -322,14 +323,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                 _ErrorBanner(message: authState.exception.userMessage),
 
               // ── CTA + footer ──────────────────────────────────────
-              _Section(
-                anim: _footerAnim,
+              FadeSlideTransition(
+                animation: _footerAnim,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    AnimatedButton(
+                    LoadingFilledButton(
                       label: context.t.auth.register,
-                      isLoading: isLoading,
+                      loading: isLoading,
                       onPressed: isLoading || !_isFormValid ? null : _submit,
                     ),
                     const SizedBox(height: 4),
@@ -400,26 +401,6 @@ class _ErrorBanner extends StatelessWidget {
   }
 }
 
-class _Section extends StatelessWidget {
-  const _Section({required this.anim, required this.child});
-
-  final Animation<double> anim;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: anim,
-      child: SlideTransition(
-        position: Tween<Offset>(
-          begin: const Offset(0, 0.14),
-          end: Offset.zero,
-        ).animate(anim),
-        child: child,
-      ),
-    );
-  }
-}
 
 // ── Inline strength bar ───────────────────────────────────────────────────────
 

@@ -7,7 +7,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
-import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/labeled_info_card.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/appointments/data/models/booking_request.dart';
@@ -158,11 +158,10 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
                       Expanded(
                         child: Text(
                           context.t.family.bookingForLabel(name: activeProfile.fullName),
-                          style: const TextStyle(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
-                          ),
+                          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
                       ),
                     ],
@@ -170,8 +169,7 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
                 ),
                 const Gap(AppSpacing.md),
               ],
-              AppCard(
-                margin: EdgeInsets.zero,
+              LabeledInfoCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -240,11 +238,10 @@ class _InfoRow extends StatelessWidget {
             child: Text(
               label,
               maxLines: 2,
-              style: TextStyle(
-                color: context.colors.primaryText,
-                fontWeight: FontWeight.w600,
-                fontSize: 13,
-              ),
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: context.colors.primaryText,
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
           ),
           const Gap(8),

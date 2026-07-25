@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
-import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
+import 'package:medalize_mb/core/widgets/labeled_info_card.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
@@ -89,7 +89,6 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t;
-    final c = context.colors;
     final dateFmt = DateFormat('d MMM y');
 
     return ResponsiveBody(
@@ -99,32 +98,34 @@ class _Body extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AnimatedEntrance(
-              child: Text(t.prescriptions.issuedBy(name: prescription.doctorName),
-                  style: Theme.of(context).textTheme.titleMedium),
+              child: LabeledInfoCard(
+                label: t.prescriptions.summaryTitle,
+                icon: Icons.receipt_long_outlined,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(t.prescriptions.issuedBy(name: prescription.doctorName),
+                        style: Theme.of(context).textTheme.titleMedium),
+                    const Gap(4),
+                    Text(
+                      t.prescriptions.issuedOn(date: dateFmt.format(prescription.issuedAt)),
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    if (prescription.notes.isNotEmpty) ...[
+                      const Gap(AppSpacing.sm),
+                      Text(t.prescriptions.notes, style: Theme.of(context).textTheme.labelLarge),
+                      const Gap(4),
+                      Text(prescription.notes),
+                    ],
+                  ],
+                ),
+              ),
             ),
-            const Gap(4),
-            Text(
-              t.prescriptions.issuedOn(date: dateFmt.format(prescription.issuedAt)),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            if (prescription.notes.isNotEmpty) ...[
-              const Gap(AppSpacing.md),
-              Text(t.prescriptions.notes, style: Theme.of(context).textTheme.labelLarge),
-              const Gap(4),
-              Text(prescription.notes),
-            ],
-            const Gap(AppSpacing.lg),
+            const Gap(AppSpacing.sm),
             for (int i = 0; i < prescription.items.length; i++)
               AnimatedEntrance(
                 index: i,
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  padding: const EdgeInsets.all(AppSpacing.md),
-                  decoration: BoxDecoration(
-                    color: c.surfaceAlt,
-                    borderRadius: BorderRadius.circular(AppRadius.md),
-                    border: Border.all(color: c.border),
-                  ),
+                child: LabeledInfoCard(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

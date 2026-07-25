@@ -6,7 +6,6 @@ import 'package:medalize_mb/core/widgets/app_chip.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/section_header.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
-import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/social_login_buttons.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/slot_duration_selector.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
@@ -189,10 +188,10 @@ void main() {
       expect(find.byIcon(Icons.check), findsOneWidget);
     });
 
-    testWidgets('AnimatedButton fits a long label in a narrow width',
+    testWidgets('LoadingFilledButton without an icon fits a long label in a narrow width',
         (tester) async {
       await tester.pumpWidget(_host(
-        AnimatedButton(label: _longLabel, onPressed: () {}),
+        LoadingFilledButton(label: _longLabel, onPressed: () {}),
         width: 200,
       ));
       final label = tester.widget<Text>(find.text(_longLabel));

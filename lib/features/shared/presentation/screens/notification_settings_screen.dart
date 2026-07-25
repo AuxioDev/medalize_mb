@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
-import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/app_form_section.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
@@ -85,47 +85,32 @@ class _NotificationSettingsScreenState
               96,
             ),
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: context.colors.surfaceAlt,
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
-                  border: Border.all(color: context.colors.border),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: Material(
-                  color: Colors.transparent,
-                  child: Column(
-                    children: [
-                      SwitchListTile(
-                        secondary: const Icon(
-                          Icons.notifications_active_outlined,
-                        ),
-                        title: Text(t.notifications.pushEnabled),
-                        subtitle: Text(t.notifications.pushEnabledSubtitle),
-                        value: prefs.pushEnabled,
-                        onChanged: _updating
-                            ? null
-                            : (v) => _update(pushEnabled: v),
-                        activeThumbColor: AppColors.primary,
-                      ),
-                      Divider(
-                        height: 1,
-                        indent: 56,
-                        color: context.colors.border,
-                      ),
-                      SwitchListTile(
-                        secondary: const Icon(Icons.email_outlined),
-                        title: Text(t.notifications.emailEnabled),
-                        subtitle: Text(t.notifications.emailEnabledSubtitle),
-                        value: prefs.emailEnabled,
-                        onChanged: _updating
-                            ? null
-                            : (v) => _update(emailEnabled: v),
-                        activeThumbColor: AppColors.primary,
-                      ),
-                    ],
+              AppFormSection(
+                children: [
+                  SwitchListTile(
+                    secondary: const Icon(
+                      Icons.notifications_active_outlined,
+                    ),
+                    title: Text(t.notifications.pushEnabled),
+                    subtitle: Text(t.notifications.pushEnabledSubtitle),
+                    value: prefs.pushEnabled,
+                    onChanged: _updating
+                        ? null
+                        : (v) => _update(pushEnabled: v),
+                    activeThumbColor: AppColors.primary,
                   ),
-                ),
+                  const AppFormSectionDivider(),
+                  SwitchListTile(
+                    secondary: const Icon(Icons.email_outlined),
+                    title: Text(t.notifications.emailEnabled),
+                    subtitle: Text(t.notifications.emailEnabledSubtitle),
+                    value: prefs.emailEnabled,
+                    onChanged: _updating
+                        ? null
+                        : (v) => _update(emailEnabled: v),
+                    activeThumbColor: AppColors.primary,
+                  ),
+                ],
               ),
             ],
           ),

@@ -7,8 +7,13 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/app_badge.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/app_chip.dart';
+import 'package:medalize_mb/core/widgets/app_form_section.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
+import 'package:medalize_mb/core/widgets/form_error_text.dart';
+import 'package:medalize_mb/core/widgets/labeled_info_card.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
+import 'package:medalize_mb/core/widgets/tinted_notice_banner.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/password_strength_indicator.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -61,6 +66,35 @@ class _DesignSystemShowcase extends StatelessWidget {
           AppCard(
             child: Text('Card content', style: Theme.of(context).textTheme.bodyMedium),
           ),
+          const SizedBox(height: 16),
+          LabeledInfoCard(
+            label: 'Label',
+            icon: Icons.info_outline,
+            child: Text('Info card content', style: Theme.of(context).textTheme.bodyMedium),
+          ),
+          const SizedBox(height: 16),
+          AppListCard(
+            icon: Icons.medication_outlined,
+            trailing: const Icon(Icons.chevron_right),
+            child: Text('List card content', style: Theme.of(context).textTheme.titleSmall),
+          ),
+          const SizedBox(height: 16),
+          AppFormSection(
+            title: 'Section',
+            children: [
+              ListTile(title: Text('Row one')),
+              const AppFormSectionDivider(),
+              ListTile(title: Text('Row two')),
+            ],
+          ),
+          const SizedBox(height: 16),
+          TintedNoticeBanner(
+            color: AppColors.warning,
+            icon: Icons.info_outline,
+            child: Text('Notice banner content', style: Theme.of(context).textTheme.bodySmall),
+          ),
+          const SizedBox(height: 16),
+          const FormErrorText('Form error content'),
           const SizedBox(height: 16),
           Wrap(
             spacing: 8,

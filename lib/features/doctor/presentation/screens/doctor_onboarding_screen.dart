@@ -176,9 +176,6 @@ class _DoctorOnboardingScreenState
                     Expanded(
                       child: OutlinedButton(
                         onPressed: _submitting ? null : _back,
-                        style: OutlinedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(52),
-                        ),
                         child: Text(context.t.common.back),
                       ),
                     ),

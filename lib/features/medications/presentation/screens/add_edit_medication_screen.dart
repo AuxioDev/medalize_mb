@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/services/medication_scheduler.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/app_date_field.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -277,7 +276,7 @@ class _AddEditMedicationScreenState
               Row(
                 children: [
                   Expanded(
-                    child: _DateField(
+                    child: AppDateField(
                       label: t.medications.startDate,
                       value: _startDate,
                       onTap: _pickStartDate,
@@ -285,7 +284,7 @@ class _AddEditMedicationScreenState
                   ),
                   const Gap(12),
                   Expanded(
-                    child: _DateField(
+                    child: AppDateField(
                       label: t.medications.endDate,
                       value: _endDate,
                       onTap: _pickEndDate,
@@ -323,37 +322,3 @@ class _AddEditMedicationScreenState
       };
 }
 
-class _DateField extends StatelessWidget {
-  const _DateField({
-    required this.label,
-    required this.value,
-    required this.onTap,
-    this.onClear,
-  });
-
-  final String label;
-  final DateTime? value;
-  final VoidCallback onTap;
-  final VoidCallback? onClear;
-
-  @override
-  Widget build(BuildContext context) {
-    final fmt = DateFormat('d MMM y');
-    return InkWell(
-      onTap: () {
-        HapticFeedback.selectionClick();
-        onTap();
-      },
-      borderRadius: BorderRadius.circular(AppRadius.sm),
-      child: InputDecorator(
-        decoration: InputDecoration(
-          labelText: label,
-          suffixIcon: onClear != null
-              ? IconButton(icon: const Icon(Icons.clear, size: 18), onPressed: onClear)
-              : const Icon(Icons.calendar_today_outlined, size: 18),
-        ),
-        child: Text(value != null ? fmt.format(value!) : '—'),
-      ),
-    );
-  }
-}

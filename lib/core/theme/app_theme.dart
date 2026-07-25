@@ -44,6 +44,17 @@ abstract final class AppColors {
       );
 }
 
+/// One-off button style variants that don't warrant their own
+/// `*ButtonThemeData` — they modify a single property of an otherwise
+/// standard-themed button (size, shape, text style all still come from
+/// [AppTheme]'s button themes).
+abstract final class AppButtonStyles {
+  /// A [FilledButton] styled for a destructive confirm action inside a
+  /// dialog (e.g. "Delete", "Cancel appointment", "Sign out everywhere").
+  static ButtonStyle get destructiveFilled =>
+      FilledButton.styleFrom(backgroundColor: AppColors.error);
+}
+
 abstract final class AppTheme {
   static ThemeData get light => _build(Brightness.light, ThemeColors.light);
   static ThemeData get dark => _build(Brightness.dark, ThemeColors.dark);
@@ -175,6 +186,11 @@ abstract final class AppTheme {
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primary,
           side: const BorderSide(color: AppColors.primary),
+          // Matches filledButtonTheme's height so a Filled/Outlined pair sits
+          // level without every call site re-patching minimumSize by hand.
+          // Screens that want a compact outlined button still override this
+          // explicitly (e.g. a Size(0, 40) pair), which continues to work.
+          minimumSize: const Size.fromHeight(52),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.sm)),
           textStyle: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14),

@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
-import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/app_form_section.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
@@ -76,87 +76,46 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen> {
             96,
           ),
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: context.colors.surfaceAlt,
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-                border: Border.all(color: context.colors.border),
-              ),
-              clipBehavior: Clip.antiAlias,
-              // Material ancestor so the tiles' ink splashes paint above this
-              // container's own background instead of being clipped under it.
-              child: Material(
-                color: Colors.transparent,
-                child: Column(
-                  children: [
-                    SwitchListTile(
-                      secondary: const Icon(Icons.fingerprint),
-                      title: Text(t.security.biometricLogin),
-                      subtitle: Text(
-                        supportedAsync.isLoading
-                            ? ''
-                            : (supported
-                                  ? t.security.biometricLoginSubtitle
-                                  : t.security.biometricUnavailable),
-                      ),
-                      value: enabled,
-                      onChanged: (supported && !_toggling)
-                          ? _onBiometricChanged
-                          : null,
-                      activeThumbColor: AppColors.primary,
-                    ),
-                    Divider(
-                      height: 1,
-                      indent: 56,
-                      color: context.colors.border,
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.devices_outlined),
-                      title: Text(t.security.activeSessions),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () => context.push('/shared/active-sessions'),
-                    ),
-                    Divider(
-                      height: 1,
-                      indent: 56,
-                      color: context.colors.border,
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.alternate_email),
-                      title: Text(t.security.changeEmail),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () => context.push('/shared/change-email'),
-                    ),
-                  ],
+            AppFormSection(
+              children: [
+                SwitchListTile(
+                  secondary: const Icon(Icons.fingerprint),
+                  title: Text(t.security.biometricLogin),
+                  subtitle: Text(
+                    supportedAsync.isLoading
+                        ? ''
+                        : (supported
+                              ? t.security.biometricLoginSubtitle
+                              : t.security.biometricUnavailable),
+                  ),
+                  value: enabled,
+                  onChanged: (supported && !_toggling)
+                      ? _onBiometricChanged
+                      : null,
+                  activeThumbColor: AppColors.primary,
                 ),
-              ),
+                const AppFormSectionDivider(),
+                ListTile(
+                  leading: const Icon(Icons.devices_outlined),
+                  title: Text(t.security.activeSessions),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/shared/active-sessions'),
+                ),
+                const AppFormSectionDivider(),
+                ListTile(
+                  leading: const Icon(Icons.alternate_email),
+                  title: Text(t.security.changeEmail),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.push('/shared/change-email'),
+                ),
+              ],
             ),
             const Gap(AppSpacing.lg),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: AppSpacing.sm,
-                bottom: AppSpacing.sm,
-              ),
-              child: Text(
-                t.security.dangerZone,
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.error,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.error.withValues(alpha: 0.04),
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-                border: Border.all(
-                  color: AppColors.error.withValues(alpha: 0.35),
-                ),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: Material(
-                color: Colors.transparent,
-                child: ListTile(
+            AppFormSection(
+              title: t.security.dangerZone,
+              tintColor: AppColors.error,
+              children: [
+                ListTile(
                   leading: const Icon(
                     Icons.person_off_outlined,
                     color: AppColors.error,
@@ -171,7 +130,7 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen> {
                   subtitle: Text(t.security.deactivateAccountSubtitle),
                   onTap: _showDeactivateDialog,
                 ),
-              ),
+              ],
             ),
           ],
         ),

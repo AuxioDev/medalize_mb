@@ -5,9 +5,10 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
-import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/calendar/slot_chip.dart';
+import 'package:medalize_mb/core/widgets/calendar/styled_slot_calendar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
@@ -15,7 +16,6 @@ import 'package:medalize_mb/features/appointments/data/models/appointment_model.
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class RescheduleCalendarScreen extends ConsumerStatefulWidget {
   const RescheduleCalendarScreen({super.key, required this.appointment});
@@ -68,7 +68,7 @@ class _RescheduleCalendarScreenState
             return CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
-                  child: _StyledCalendar(
+                  child: StyledSlotCalendar(
                     focusedDay: _focusedDay,
                     selectedDay: _selectedDay,
                     onDaySelected: (selected, focused) {
@@ -169,7 +169,7 @@ class _RescheduleCalendarScreenState
                             return AnimatedEntrance(
                               index: i,
                               slideY: 0,
-                              child: _SlotChip(
+                              child: SlotChip(
                                 time: DateFormat('HH:mm').format(slot.startsAt),
                                 onTap: () {
                                   HapticFeedback.lightImpact();
@@ -194,123 +194,6 @@ class _RescheduleCalendarScreenState
               ],
             );
           },
-        ),
-      ),
-    );
-  }
-}
-
-class _StyledCalendar extends StatelessWidget {
-  const _StyledCalendar({
-    required this.focusedDay,
-    required this.selectedDay,
-    required this.onDaySelected,
-  });
-
-  final DateTime focusedDay;
-  final DateTime? selectedDay;
-  final void Function(DateTime selected, DateTime focused) onDaySelected;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return TableCalendar(
-      firstDay: DateTime.now(),
-      lastDay: DateTime.now().add(const Duration(days: 60)),
-      focusedDay: focusedDay,
-      selectedDayPredicate: (d) => isSameDay(selectedDay, d),
-      onDaySelected: onDaySelected,
-      calendarStyle: CalendarStyle(
-        selectedDecoration: const BoxDecoration(
-          color: AppColors.primary,
-          shape: BoxShape.circle,
-        ),
-        todayDecoration: BoxDecoration(
-          color: AppColors.primary.withValues(alpha: 0.25),
-          shape: BoxShape.circle,
-        ),
-        selectedTextStyle: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
-        todayTextStyle: TextStyle(
-          color: c.primaryText,
-          fontWeight: FontWeight.w600,
-        ),
-        weekendTextStyle: TextStyle(color: c.textPrimary),
-        outsideTextStyle: TextStyle(
-          color: c.textSecondary.withValues(alpha: 0.4),
-        ),
-        defaultTextStyle: TextStyle(color: c.textPrimary),
-        rowDecoration: BoxDecoration(color: c.surface),
-      ),
-      headerStyle: HeaderStyle(
-        formatButtonVisible: false,
-        titleCentered: true,
-        titleTextStyle: Theme.of(context).textTheme.titleSmall!,
-        leftChevronIcon: Icon(Icons.chevron_left, color: c.primaryText),
-        rightChevronIcon: Icon(Icons.chevron_right, color: c.primaryText),
-      ),
-      daysOfWeekStyle: DaysOfWeekStyle(
-        weekdayStyle: TextStyle(
-          color: c.textSecondary,
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
-        weekendStyle: TextStyle(
-          color: c.textSecondary,
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    );
-  }
-}
-
-class _SlotChip extends StatefulWidget {
-  const _SlotChip({required this.time, required this.onTap});
-  final String time;
-  final VoidCallback onTap;
-
-  @override
-  State<_SlotChip> createState() => _SlotChipState();
-}
-
-class _SlotChipState extends State<_SlotChip> {
-  bool _pressed = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    final scale = _pressed ? 0.95 : 1.0;
-    return GestureDetector(
-      onTapDown: (_) => setState(() => _pressed = true),
-      onTapUp: (_) {
-        setState(() => _pressed = false);
-        widget.onTap();
-      },
-      onTapCancel: () => setState(() => _pressed = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 100),
-        transformAlignment: Alignment.center,
-        transform: Matrix4.diagonal3Values(scale, scale, 1),
-        decoration: BoxDecoration(
-          color: _pressed ? AppColors.primary : c.primarySurface,
-          borderRadius: BorderRadius.circular(AppRadius.sm + 2),
-          border: Border.all(
-            color: AppColors.primary,
-            width: _pressed ? 1.5 : 1,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            widget.time,
-            style: TextStyle(
-              color: _pressed ? Colors.white : c.primaryText,
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
         ),
       ),
     );

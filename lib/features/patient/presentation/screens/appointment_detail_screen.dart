@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
+import 'package:medalize_mb/core/widgets/labeled_info_card.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
@@ -432,7 +433,7 @@ class _AppointmentDetailScreenState
                         // dependent is shown as the prominent, primary
                         // identity here; the account holder becomes
                         // secondary "booked by" contact/payer info below it.
-                        ? _InfoCard(
+                        ? LabeledInfoCard(
                             label: context.t.appointments.patient,
                             icon: Icons.person_outline_rounded,
                             child: Column(
@@ -488,13 +489,13 @@ class _AppointmentDetailScreenState
                               ],
                             ),
                           )
-                        : _InfoCard(
+                        : LabeledInfoCard(
                             label: context.t.appointments.patient,
                             icon: Icons.person_outline_rounded,
                             child: Text(appt.patient.fullName,
                                 style: Theme.of(context).textTheme.titleSmall),
                           ))
-                    : _InfoCard(
+                    : LabeledInfoCard(
                         label: context.t.appointments.doctor,
                         icon: Icons.person_outline_rounded,
                         child: Column(
@@ -511,7 +512,7 @@ class _AppointmentDetailScreenState
               ),
               AnimatedEntrance(
                 index: 2,
-                child: _InfoCard(
+                child: LabeledInfoCard(
                   label: context.t.appointments.workplace,
                   icon: Icons.business_outlined,
                   child: Column(
@@ -528,7 +529,7 @@ class _AppointmentDetailScreenState
               ),
               AnimatedEntrance(
                 index: 3,
-                child: _InfoCard(
+                child: LabeledInfoCard(
                   label: context.t.appointments.dateTime,
                   icon: Icons.calendar_today_outlined,
                   child: Column(
@@ -548,7 +549,7 @@ class _AppointmentDetailScreenState
               if (appt.reason.isNotEmpty)
                 AnimatedEntrance(
                   index: 4,
-                  child: _InfoCard(
+                  child: LabeledInfoCard(
                     label: context.t.appointments.reason,
                     icon: Icons.notes_outlined,
                     child: Text(appt.reason,
@@ -560,7 +561,7 @@ class _AppointmentDetailScreenState
               if (appt.notes.isNotEmpty)
                 AnimatedEntrance(
                   index: 5,
-                  child: _InfoCard(
+                  child: LabeledInfoCard(
                     label: context.t.appointments.doctorNotes,
                     icon: Icons.medical_information_outlined,
                     child: Text(appt.notes,
@@ -572,7 +573,7 @@ class _AppointmentDetailScreenState
               if (!widget.asDoctor && _hasReview)
                 AnimatedEntrance(
                   index: 6,
-                  child: _InfoCard(
+                  child: LabeledInfoCard(
                     label: context.t.appointments.yourReview,
                     icon: Icons.star_outline_rounded,
                     child: Column(
@@ -676,7 +677,6 @@ class _AppointmentDetailScreenState
                       side: BorderSide(
                           color: StatusChip.colorFor('no_show')
                               .withValues(alpha: 0.4)),
-                      minimumSize: const Size.fromHeight(52),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AppRadius.md)),
                     ),
@@ -725,7 +725,6 @@ class _AppointmentDetailScreenState
             label: Text(context.t.appointments.requestReschedule,
                 style: const TextStyle(fontWeight: FontWeight.w600)),
             style: OutlinedButton.styleFrom(
-              minimumSize: const Size.fromHeight(52),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppRadius.md)),
             ),
@@ -744,7 +743,6 @@ class _AppointmentDetailScreenState
                   foregroundColor: AppColors.error,
                   side:
                       BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
-                  minimumSize: const Size.fromHeight(52),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppRadius.md)),
                 ),
@@ -854,7 +852,6 @@ class _AppointmentDetailScreenState
                     foregroundColor: AppColors.error,
                     side:
                         BorderSide(color: AppColors.error.withValues(alpha: 0.6)),
-                    minimumSize: const Size.fromHeight(52),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppRadius.md)),
                   ),
@@ -883,7 +880,6 @@ class _AppointmentDetailScreenState
                   icon: const Icon(Icons.schedule_outlined, size: 16),
                   label: Text(context.t.appointments.reschedule),
                   style: OutlinedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(52),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppRadius.md)),
                   ),
@@ -951,76 +947,6 @@ class AppointmentDetailLoader extends ConsumerWidget {
   }
 }
 
-class _InfoCard extends StatelessWidget {
-  const _InfoCard({
-    required this.label,
-    required this.icon,
-    required this.child,
-  });
-
-  final String label;
-  final IconData icon;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(
-        color: c.surfaceAlt,
-        borderRadius: BorderRadius.circular(AppRadius.md + 2),
-        border: Border.all(color: c.border, width: 1),
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Full-height accent bar. IntrinsicHeight gives the Row a bounded
-            // height so `stretch` can size this without an infinite constraint.
-            Container(
-              width: 4,
-              decoration: const BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(AppRadius.md + 2),
-                  bottomLeft: Radius.circular(AppRadius.md + 2),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(icon, size: 14, color: c.primaryText),
-                        const Gap(5),
-                        Text(
-                          label.toUpperCase(),
-                          style: TextStyle(
-                            color: c.primaryText,
-                            fontSize: 10,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.8,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Gap(8),
-                    child,
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 /// Doctor's "write prescription" entry point and patient's "view prescription"
 /// summary card both live here — same file, role-gated via [asDoctor] — per
@@ -1046,7 +972,7 @@ class _PrescriptionSection extends ConsumerWidget {
           // Only the issuing doctor gets a call-to-action; a patient simply
           // sees nothing until one exists.
           if (!asDoctor) return const SizedBox.shrink();
-          return _InfoCard(
+          return LabeledInfoCard(
             label: context.t.prescriptions.title,
             icon: Icons.receipt_long_outlined,
             child: Column(
@@ -1073,7 +999,7 @@ class _PrescriptionSection extends ConsumerWidget {
           );
         }
 
-        return _InfoCard(
+        return LabeledInfoCard(
           label: context.t.prescriptions.title,
           icon: Icons.receipt_long_outlined,
           child: Column(
@@ -1126,7 +1052,7 @@ class _PaymentSection extends ConsumerWidget {
         // there's no "create payment" CTA here: that only happens right
         // after booking, from booking_confirm_screen.dart.
         if (payment == null) return const SizedBox.shrink();
-        return _InfoCard(
+        return LabeledInfoCard(
           label: context.t.payments.title,
           icon: Icons.payments_outlined,
           child: Row(
@@ -1186,7 +1112,7 @@ class _MessageSectionState extends ConsumerState<_MessageSection> {
 
   @override
   Widget build(BuildContext context) {
-    return _InfoCard(
+    return LabeledInfoCard(
       label: context.t.messaging.title,
       icon: Icons.chat_bubble_outline_rounded,
       child: Align(

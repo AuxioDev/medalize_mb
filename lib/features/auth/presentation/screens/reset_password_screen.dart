@@ -6,9 +6,10 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
+import 'package:medalize_mb/core/widgets/fade_slide_transition.dart';
 import 'package:medalize_mb/core/widgets/otp_code_field.dart';
+import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
-import 'package:medalize_mb/features/auth/presentation/widgets/animated_button.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 
 class ResetPasswordScreen extends ConsumerStatefulWidget {
@@ -116,8 +117,8 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _Section(
-              anim: _headerAnim,
+            FadeSlideTransition(
+              animation: _headerAnim,
               child: AuthCardHeader(
                 icon: Icons.lock_reset_rounded,
                 title: context.t.resetPassword.title,
@@ -126,8 +127,8 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
             ),
             const SizedBox(height: 28),
 
-            _Section(
-              anim: _formAnim,
+            FadeSlideTransition(
+              animation: _formAnim,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -181,14 +182,14 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
             ),
             const SizedBox(height: 24),
 
-            _Section(
-              anim: _footerAnim,
+            FadeSlideTransition(
+              animation: _footerAnim,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  AnimatedButton(
+                  LoadingFilledButton(
                     label: context.t.resetPassword.button,
-                    isLoading: _isLoading,
+                    loading: _isLoading,
                     onPressed: _isLoading || !_isFormValid ? null : _submit,
                   ),
                   const SizedBox(height: 4),
@@ -209,23 +210,3 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
   }
 }
 
-class _Section extends StatelessWidget {
-  const _Section({required this.anim, required this.child});
-
-  final Animation<double> anim;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: anim,
-      child: SlideTransition(
-        position: Tween<Offset>(
-          begin: const Offset(0, 0.14),
-          end: Offset.zero,
-        ).animate(anim),
-        child: child,
-      ),
-    );
-  }
-}

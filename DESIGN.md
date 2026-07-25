@@ -54,7 +54,9 @@ Use these constants instead of numeric literals for anything that should sit on 
 
 ## Component conventions
 
-`AppTheme` (`lib/core/theme/app_theme.dart`) centralizes ~20 component themes: buttons (filled/text/outlined), inputs, cards, chips, dialogs, bottom sheets, snackbars, switches, list tiles, FAB, popup/dropdown menus, tab bar, app bar, dividers. **Inherit from these — don't re-style a stock Material widget locally** (e.g. don't pass a one-off `ElevatedButton.styleFrom` when `FilledButton` already has the right look).
+`AppTheme` (`lib/core/theme/app_theme.dart`) centralizes ~20 component themes: buttons (filled/text/outlined), inputs, cards, chips, dialogs, bottom sheets, snackbars, switches, list tiles, FAB, popup/dropdown menus, tab bar, app bar, dividers. **Inherit from these — don't re-style a stock Material widget locally** (e.g. don't pass a one-off `ElevatedButton.styleFrom` when `FilledButton` already has the right look). `outlinedButtonTheme` sets the same `minimumSize` as `filledButtonTheme` so a Filled/Outlined pair sits level by default — override `minimumSize` explicitly only for a genuinely compact button.
+
+For a destructive `FilledButton` (delete/cancel/deactivate confirm), use `AppButtonStyles.destructiveFilled` (`lib/core/theme/app_theme.dart`) instead of a one-off `FilledButton.styleFrom(backgroundColor: AppColors.error)`.
 
 Wiring lives in `lib/main.dart`: `theme: AppTheme.light`, `darkTheme: AppTheme.dark`, `themeMode:` driven by `themeModeProvider` (`lib/core/theme/theme_mode_provider.dart`).
 
@@ -62,25 +64,36 @@ Wiring lives in `lib/main.dart`: `theme: AppTheme.light`, `darkTheme: AppTheme.d
 
 | Widget | Purpose |
 |---|---|
-| `AnimatedEntrance` | Standard fade + slide entrance animation |
+| `AnimatedEntrance` | Standard fade + slide entrance animation (self-contained controller, per-widget stagger delay via `index`) |
 | `AppBadge` | Small pill badge ("Primary", "This device", …), overflow-safe |
 | `AppCard` | Interactive card: press-scale, spring release, tap/long-press |
 | `AppChip` | Selectable chip, overflow-safe label |
+| `AppDateField` | Date-picker trigger styled like a text field (label + value + calendar icon) |
+| `AppFormSection` / `AppFormSectionDivider` | Bordered, rounded group of rows with an optional uppercase caption (settings/security-style screens); optional `tintColor` for a "danger zone" variant |
+| `AppListCard` | "Leading icon-square/avatar + free-form content + trailing action" list row shell (medications, prescriptions, records, notifications, devices, conversations, dependents, threads) |
 | `AppSnackBar` | Snackbar helper matching the app's `snackBarTheme` |
+| `BottomActionBar` | Pinned bottom bar (surface + top divider + safe-area padding) for a primary call-to-action |
+| `lib/core/widgets/calendar/` (`StyledSlotCalendar`, `SlotChip`) | Themed `TableCalendar` + tappable time-slot pill, shared by the booking/reschedule calendar screens |
+| `lib/core/widgets/chat/` (`ChatDisclaimerBanner`, `ChatMessageBubble`, `ChatInputBar`, `ChatLoadingSkeleton`) | Shared chat-screen building blocks (thread messaging + the AI assistant chat) |
 | `EmptyState` | Icon + title/subtitle + optional action for empty lists |
+| `FadeSlideTransition` | Fade + upward-slide for an externally-driven `Animation<double>` (e.g. one `Interval` of a shared controller) — for a multi-section reveal that overlaps on one timeline, unlike `AnimatedEntrance`'s independent per-widget stagger |
+| `FormErrorText` | Inline validation/submit-error message (`bodyMedium` + `AppColors.error`) |
 | `GradientAvatar` | Avatar with a brand-gradient fallback background |
 | `GreetingBanner` | Gradient welcome banner atop patient/doctor home screens |
-| `NotificationBell` | App-bar bell icon with animated unread-count badge |
+| `LabeledInfoCard` | Bordered card with a primary accent bar + optional small-caps caption, for structured detail sections (appointment/booking/prescription info blocks) |
+| `LoadingFilledButton` | Full-width filled button: press-scale, spring release, haptic, loading state (fade+scale cross-fade to a spinner) |
+| `MessageBell` / `NotificationBell` | App-bar bell icon with animated unread-count badge |
 | `OtpCodeField` | 6-digit segmented OTP input |
 | `PhoneField` | Phone number input with country-code picker |
-| `PrimaryButton` (`LoadingFilledButton`) | Full-width filled button: press-scale, spring release, haptic, loading state |
-| `Refreshable` | Wraps non-scrolling content so pull-to-refresh still works |
+| `ProfileSwitcher` | Active-profile selector (self + family dependents) atop the patient home screen |
+| `RefreshableView` | Wraps non-scrolling content so pull-to-refresh still works |
 | `ResponsiveBody` | Centers + caps content width on tablets/landscape (`AppSpacing` breakpoints) |
 | `SectionHeader` | "Title … action" row above content sections |
 | `ShimmerSkeleton` | Loading skeleton (via `shimmer`) |
 | `StatusChip` | Colored status pill; `StatusChip.colorFor`/`labelFor` are the single source of truth for appointment-status color/label |
+| `TintedNoticeBanner` | Icon + message inside a color-tinted, color-bordered container — inline notices/warnings (parameterize `color`/`icon`; see `iconSize`/`radius`/`borderWidth` for a banner that must outrank a routine notice) |
 
-Check this table before writing a new small widget — most patterns (badges, chips, empty states, loading buttons) already exist.
+Check this table before writing a new small widget — most patterns (badges, chips, empty states, loading buttons, list rows, form sections, notice banners) already exist.
 
 ## Naming & preferred packages
 
