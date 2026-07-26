@@ -80,9 +80,11 @@ void main() {
         role: 'patient',
         firstName: 'Jane',
         lastName: 'Doe',
+        privacyConsent: true,
       ).toJson();
       expect(json.containsKey('phone'), isFalse);
       expect(json['password_confirm'], 'Pass1234');
+      expect(json['privacy_consent'], isTrue);
     });
 
     test('RegisterRequest includes phone when present', () {
@@ -93,6 +95,7 @@ void main() {
         role: 'patient',
         firstName: 'Jane',
         lastName: 'Doe',
+        privacyConsent: true,
         phone: '+994501234567',
       ).toJson();
       expect(json['phone'], '+994501234567');

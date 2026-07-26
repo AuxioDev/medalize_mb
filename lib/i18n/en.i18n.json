@@ -510,12 +510,83 @@
   },
   "legal": {
     "title": "Privacy & Terms",
+    "controllerNotice": "Medalize is operated by [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaijan (\"we\", \"us\"). Last updated: July 2026.",
     "privacyTitle": "Privacy Policy",
-    "privacyBody": "Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.",
+    "privacyIntro": "This policy explains what personal data Medalize collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.",
+    "sections": {
+      "identity": {
+        "title": "Identity data",
+        "body": "Full name, email address, phone number (optional), your password (stored as an irreversible hash, never in plain text), and your preferred app language."
+      },
+      "health": {
+        "title": "Health data",
+        "body": "As a patient: blood type, allergies, chronic conditions, current medications, the reason you give when booking an appointment, medical documents you upload (lab results, imaging, other records), prescriptions issued to you, and the content of your messages with your doctor. If you use the AI symptom-checking assistant, your questions and its responses are processed the same way. Health data receives the highest level of protection under Azerbaijani law, and we only collect it with your separate, explicit consent (see \"Legal basis\" below)."
+      },
+      "professional": {
+        "title": "Professional data (doctors)",
+        "body": "Medical specialization, licence number, diploma or other verification document, workplace details, and consultation fee. This is reviewed by our team before your profile becomes visible to patients."
+      },
+      "location": {
+        "title": "Location",
+        "body": "With your permission, an approximate or precise location so we can sort doctors by distance from you. Used only while the app is open — never stored on our servers."
+      },
+      "device": {
+        "title": "Device & technical data",
+        "body": "Device identifiers and session information, so you can see and revoke your active logins from Settings, and a push-notification token so we can deliver appointment reminders and messages to your device."
+      },
+      "payment": {
+        "title": "Payment data",
+        "body": "If you pay for a consultation in-app, payment is processed entirely by our payment partner, Payriff — we never see or store your card number. We keep the payment amount, status, and a reference id for your appointment history."
+      },
+      "family": {
+        "title": "Family / dependent profiles",
+        "body": "If you manage a family member's profile (a child, or a dependent without their own login), the same health data categories above may be recorded for them under your account. By adding a dependent, you confirm you are their parent, guardian, or otherwise authorized to manage their healthcare information on their behalf."
+      },
+      "purposes": {
+        "title": "Why we use your data",
+        "body": "To let you find and book appointments with doctors; let doctors manage their schedule and patients; send appointment reminders and updates; process payments for consultations; provide the optional AI symptom-checking feature; and keep your account secure."
+      },
+      "legalBasis": {
+        "title": "Legal basis and your consent",
+        "body": "We process your data on the basis of your consent, given when you register. Health data is a special category of personal data under the Law of the Republic of Azerbaijan \"On Personal Data\" (No. 998-IIIQ), which requires your explicit, written consent before we collect it — this is what the checkbox on the registration screen records. You may withdraw consent at any time by deleting your account, though we may keep limited records where required by law (for example, financial records for tax purposes)."
+      },
+      "thirdParties": {
+        "title": "Who else processes your data",
+        "body": "Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Anthropic (processes your messages if you use the AI assistant); Payriff (in-app payments). We do not sell your personal data."
+      },
+      "retention": {
+        "title": "How long we keep your data",
+        "body": "For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes)."
+      },
+      "rights": {
+        "title": "Your rights",
+        "body": "You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below."
+      },
+      "security": {
+        "title": "How we protect your data",
+        "body": "Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form."
+      },
+      "permissions": {
+        "title": "Permissions we ask for",
+        "body": "Camera and photo library — to set a profile picture and upload medical documents. Location — to sort doctors by distance from you. Notifications — to deliver appointment reminders and messages. Biometrics (Face ID / fingerprint) — an optional, faster way to unlock the app; your biometric data never leaves your device, we only receive a yes/no confirmation from its operating system."
+      },
+      "children": {
+        "title": "Age requirement",
+        "body": "Medalize accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature."
+      }
+    },
     "termsTitle": "Terms of Service",
-    "termsBody": "By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.",
-    "draftNotice": "Draft — pending final legal review.",
-    "contact": "Questions about your data? Contact support@medalize.app"
+    "termsIntro": "By creating an account, you agree to the following.",
+    "termsBody": "Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.",
+    "contact": "Questions about your data? Contact support@medalize.app",
+    "consentPrefix": "I have read and agree to the ",
+    "consentPrivacyLink": "Privacy Policy",
+    "consentMiddle": " and ",
+    "consentTermsLink": "Terms of Service",
+    "consentSuffix": ", and I explicitly consent to the processing of my health data as described.",
+    "viewAsPdf": "View as PDF",
+    "pdfDocumentTitle": "Medalize — Privacy Policy & Terms of Service",
+    "pdfLoadError": "Could not load the document. Please check your internet connection and try again."
   },
   "medications": {
     "title": "Medications",

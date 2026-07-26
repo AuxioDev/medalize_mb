@@ -510,12 +510,83 @@
   },
   "legal": {
     "title": "Gizlilik ve Koşullar",
+    "controllerNotice": "Medalize, [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaycan (\"biz\") tarafından işletilmektedir. Son güncelleme: Temmuz 2026.",
     "privacyTitle": "Gizlilik Politikası",
-    "privacyBody": "Medalize, randevu almanız ve yönetmeniz için kişisel ve sağlık bilgilerinizi işler. Verilerinizi satmıyoruz. Tam Gizlilik Politikası, herkese açık lansmandan önce burada yayınlanacaktır.",
+    "privacyIntro": "Bu politika, Medalize'nin hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.",
+    "sections": {
+      "identity": {
+        "title": "Kimlik verileri",
+        "body": "Ad ve soyad, e-posta adresi, telefon numarası (isteğe bağlı), şifreniz (geri döndürülemez bir hash olarak saklanır, asla düz metin olarak değil) ve tercih ettiğiniz uygulama dili."
+      },
+      "health": {
+        "title": "Sağlık verileri",
+        "body": "Hasta olarak: kan grubu, alerjiler, kronik hastalıklar, kullandığınız ilaçlar, randevu alırken belirttiğiniz sebep, yüklediğiniz tıbbi belgeler (tahlil sonuçları, görüntüleme, diğer kayıtlar), size yazılan reçeteler ve doktorunuzla mesajlaşma içeriğiniz. Semptom kontrol yapay zeka asistanını kullanırsanız, sorularınız ve yanıtları da aynı şekilde işlenir. Sağlık verileri Azerbaycan mevzuatına göre en yüksek koruma seviyesine sahiptir ve bunları yalnızca ayrı, açık rızanızla topluyoruz (aşağıda \"Hukuki dayanak\" bölümüne bakın)."
+      },
+      "professional": {
+        "title": "Mesleki veriler (doktorlar)",
+        "body": "Uzmanlık alanı, lisans numarası, diploma veya diğer doğrulama belgesi, işyeri bilgileri ve muayene ücreti. Bu bilgiler, profiliniz hastalara görünür olmadan önce ekibimiz tarafından incelenir."
+      },
+      "location": {
+        "title": "Konum",
+        "body": "İzninizle, doktorları size olan uzaklığa göre sıralamak için yaklaşık veya kesin konum. Yalnızca uygulama açıkken kullanılır — sunucularımızda asla saklanmaz."
+      },
+      "device": {
+        "title": "Cihaz ve teknik veriler",
+        "body": "Ayarlar bölümünden aktif oturumlarınızı görüp iptal edebilmeniz için cihaz kimlikleri ve oturum bilgileri, ayrıca randevu hatırlatmaları ve mesajları cihazınıza iletmek için bir push bildirim jetonu."
+      },
+      "payment": {
+        "title": "Ödeme verileri",
+        "body": "Uygulama içinden bir konsültasyon için ödeme yaparsanız, ödeme tamamen ödeme ortağımız Payriff tarafından işlenir — kart numaranızı asla görmez veya saklamayız. Randevu geçmişiniz için ödeme tutarını, durumunu ve bir referans kimliğini saklarız."
+      },
+      "family": {
+        "title": "Aile üyesi profilleri",
+        "body": "Kendi girişi olmayan bir aile üyesinin (çocuk veya bakmakla yükümlü olduğunuz biri) profilini yönetiyorsanız, yukarıdaki aynı sağlık verisi kategorileri onun için hesabınız altında kaydedilebilir. Bir aile üyesi eklediğinizde, onun ebeveyni, vasisi veya sağlık bilgilerini onun adına yönetmeye yetkili olduğunuzu onaylamış olursunuz."
+      },
+      "purposes": {
+        "title": "Verilerinizi neden kullanıyoruz",
+        "body": "Doktor bulup randevu alabilmeniz için; doktorların programlarını ve hastalarını yönetebilmesi için; randevu hatırlatmaları ve güncellemeler göndermek için; konsültasyon ödemelerini işlemek için; isteğe bağlı semptom kontrol yapay zeka özelliğini sunmak için; hesabınızı güvende tutmak için."
+      },
+      "legalBasis": {
+        "title": "Hukuki dayanak ve rızanız",
+        "body": "Verilerinizi, kayıt olurken verdiğiniz rıza temelinde işliyoruz. Sağlık verileri, Azerbaycan Cumhuriyeti \"Kişisel Veriler Hakkında\" Kanunu (No. 998-IIIQ) uyarınca özel kategori kişisel veridir ve toplanmadan önce açık, yazılı rızanızı gerektirir — kayıt ekranındaki onay kutusu tam olarak bunu kaydeder. Hesabınızı silerek rızanızı istediğiniz zaman geri çekebilirsiniz, ancak yasanın gerektirdiği durumlarda (örneğin vergi amaçlı mali kayıtlar) sınırlı kayıtları saklayabiliriz."
+      },
+      "thirdParties": {
+        "title": "Verilerinizi başka kim işler",
+        "body": "Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Anthropic (yapay zeka asistanını kullanırsanız mesajlarınızı işler); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız."
+      },
+      "retention": {
+        "title": "Verilerinizi ne kadar süre saklıyoruz",
+        "body": "Hesabınız aktif olduğu sürece. Hesabınızı silerseniz, yasal olarak saklamamız gereken kayıtlar (örneğin vergi amaçlı ödeme kayıtları) dışında, kişisel verilerinizi makul bir süre içinde kaldırırız."
+      },
+      "rights": {
+        "title": "Haklarınız",
+        "body": "Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin."
+      },
+      "security": {
+        "title": "Verilerinizi nasıl koruyoruz",
+        "body": "Doktorunuzla mesajlaşmalarınız ve yapay zeka asistanı konuşmaları şifrelenir. Yüklenen belgeler ve fotoğraflar özel olarak saklanır, yalnızca güvenli imzalı bağlantılarla erişilebilir, asla herkese açık dosyalar olarak değil. Şifreler asla okunabilir biçimde saklanmaz."
+      },
+      "permissions": {
+        "title": "İstediğimiz izinler",
+        "body": "Kamera ve fotoğraf galerisi — profil fotoğrafı ayarlamak ve tıbbi belgeler yüklemek için. Konum — doktorları size olan uzaklığa göre sıralamak için. Bildirimler — randevu hatırlatmaları ve mesajlar iletmek için. Biyometri (Face ID / parmak izi) — uygulamanın kilidini açmanın isteğe bağlı, daha hızlı bir yolu; biyometrik verileriniz asla cihazınızdan çıkmaz, yalnızca işletim sisteminden bir evet/hayır onayı alırız."
+      },
+      "children": {
+        "title": "Yaş şartı",
+        "body": "Medalize hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın."
+      }
+    },
     "termsTitle": "Kullanım Koşulları",
-    "termsBody": "Medalize’ı kullanarak, hizmeti randevu alma ve yönetme için sorumlu bir şekilde kullanmayı kabul edersiniz. Tam Kullanım Koşulları, herkese açık lansmandan önce burada yayınlanacaktır.",
-    "draftNotice": "Taslak — nihai hukuki inceleme bekleniyor.",
-    "contact": "Verilerinizle ilgili sorular mı var? support@medalize.app ile iletişime geçin"
+    "termsIntro": "Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.",
+    "termsBody": "Kendiniz hakkında doğru bilgi verin. Medalize'yi yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. Medalize sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.",
+    "contact": "Verileriniz hakkında sorularınız mı var? support@medalize.app adresine yazın",
+    "consentPrefix": "",
+    "consentPrivacyLink": "Gizlilik Politikası",
+    "consentMiddle": " ve ",
+    "consentTermsLink": "Kullanım Koşulları",
+    "consentSuffix": "'nı okudum, kabul ediyorum ve orada açıklandığı şekilde sağlık verilerimin işlenmesine açıkça rıza gösteriyorum.",
+    "viewAsPdf": "PDF olarak görüntüle",
+    "pdfDocumentTitle": "Medalize — Gizlilik Politikası ve Kullanım Koşulları",
+    "pdfLoadError": "Belge yüklenemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
   },
   "medications": {
     "title": "İlaçlar",

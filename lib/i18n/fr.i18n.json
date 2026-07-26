@@ -509,13 +509,84 @@
     "newMessage": "Vous avez un nouveau message"
   },
   "legal": {
-    "title": "Confidentialité et conditions",
+    "title": "Confidentialité et Conditions",
+    "controllerNotice": "Medalize est exploité par [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.",
     "privacyTitle": "Politique de confidentialité",
-    "privacyBody": "Medalize traite vos informations personnelles et de santé afin que vous puissiez prendre et gérer des rendez-vous médicaux. Nous ne vendons pas vos données. La politique de confidentialité complète sera publiée ici avant le lancement public.",
-    "termsTitle": "Conditions d’utilisation",
-    "termsBody": "En utilisant Medalize, vous acceptez d’utiliser le service de manière responsable pour la prise et la gestion des rendez-vous. Les conditions d’utilisation complètes seront publiées ici avant le lancement public.",
-    "draftNotice": "Brouillon — en attente de la révision juridique finale.",
-    "contact": "Des questions sur vos données ? Contactez support@medalize.app"
+    "privacyIntro": "Cette politique explique quelles données personnelles Medalize collecte, pourquoi, et comment elles sont protégées. La prise et la gestion de rendez-vous médicaux impliquent nécessairement des informations de santé vous concernant, détaillées ci-dessous.",
+    "sections": {
+      "identity": {
+        "title": "Données d'identité",
+        "body": "Nom et prénom, adresse e-mail, numéro de téléphone (facultatif), votre mot de passe (stocké sous forme de hachage irréversible, jamais en clair) et la langue préférée de l'application."
+      },
+      "health": {
+        "title": "Données de santé",
+        "body": "En tant que patient : groupe sanguin, allergies, maladies chroniques, médicaments actuels, motif indiqué lors de la prise de rendez-vous, documents médicaux téléversés (résultats de laboratoire, imagerie, autres dossiers), ordonnances qui vous sont délivrées, et le contenu de vos messages avec votre médecin. Si vous utilisez l'assistant IA de vérification des symptômes, vos questions et ses réponses sont traitées de la même manière. Les données de santé bénéficient du plus haut niveau de protection selon le droit azerbaïdjanais, et nous ne les collectons qu'avec votre consentement séparé et explicite (voir « Base légale » ci-dessous)."
+      },
+      "professional": {
+        "title": "Données professionnelles (médecins)",
+        "body": "Spécialisation médicale, numéro de licence, diplôme ou autre document de vérification, informations sur le lieu de travail et tarif de consultation. Ces informations sont vérifiées par notre équipe avant que votre profil ne devienne visible aux patients."
+      },
+      "location": {
+        "title": "Localisation",
+        "body": "Avec votre permission, une localisation approximative ou précise afin de trier les médecins par distance. Utilisée uniquement lorsque l'application est ouverte — jamais stockée sur nos serveurs."
+      },
+      "device": {
+        "title": "Données de l'appareil",
+        "body": "Identifiants de l'appareil et informations de session, afin que vous puissiez voir et révoquer vos connexions actives depuis les Paramètres, ainsi qu'un jeton de notification push pour vous transmettre rappels de rendez-vous et messages."
+      },
+      "payment": {
+        "title": "Données de paiement",
+        "body": "Si vous payez une consultation dans l'application, le paiement est traité entièrement par notre partenaire de paiement, Payriff — nous ne voyons ni ne stockons jamais votre numéro de carte. Nous conservons le montant du paiement, son statut et un identifiant de référence pour l'historique de vos rendez-vous."
+      },
+      "family": {
+        "title": "Profils de membres de la famille",
+        "body": "Si vous gérez le profil d'un membre de la famille (un enfant, ou une personne à charge sans compte propre), les mêmes catégories de données de santé ci-dessus peuvent être enregistrées pour lui sous votre compte. En ajoutant un membre de la famille, vous confirmez être son parent, tuteur, ou autrement autorisé à gérer ses informations de santé en son nom."
+      },
+      "purposes": {
+        "title": "Pourquoi nous utilisons vos données",
+        "body": "Pour vous permettre de trouver des médecins et de prendre rendez-vous ; permettre aux médecins de gérer leur agenda et leurs patients ; envoyer des rappels de rendez-vous et des mises à jour ; traiter les paiements des consultations ; fournir la fonctionnalité optionnelle de vérification des symptômes par IA ; et sécuriser votre compte."
+      },
+      "legalBasis": {
+        "title": "Base légale et votre consentement",
+        "body": "Nous traitons vos données sur la base du consentement donné lors de votre inscription. Les données de santé constituent une catégorie particulière de données personnelles selon la loi de la République d'Azerbaïdjan « Sur les données personnelles » (n° 998-IIIQ), qui exige votre consentement explicite et écrit avant leur collecte — c'est ce qu'enregistre la case à cocher de l'écran d'inscription. Vous pouvez retirer votre consentement à tout moment en supprimant votre compte, bien que nous puissions conserver certains registres lorsque la loi l'exige (par exemple, des registres financiers à des fins fiscales)."
+      },
+      "thirdParties": {
+        "title": "Qui traite également vos données",
+        "body": "Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Anthropic (traite vos messages si vous utilisez l'assistant IA) ; Payriff (paiements dans l'application). Nous ne vendons pas vos données personnelles."
+      },
+      "retention": {
+        "title": "Durée de conservation de vos données",
+        "body": "Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales)."
+      },
+      "rights": {
+        "title": "Vos droits",
+        "body": "Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous."
+      },
+      "security": {
+        "title": "Comment nous protégeons vos données",
+        "body": "Les messages entre vous et votre médecin, ainsi que les conversations avec l'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible."
+      },
+      "permissions": {
+        "title": "Autorisations que nous demandons",
+        "body": "Appareil photo et photothèque — pour définir une photo de profil et téléverser des documents médicaux. Localisation — pour trier les médecins par distance. Notifications — pour transmettre rappels de rendez-vous et messages. Biométrie (Face ID / empreinte digitale) — un moyen optionnel et plus rapide de déverrouiller l'application ; vos données biométriques ne quittent jamais votre appareil, nous recevons uniquement une confirmation oui/non de son système d'exploitation."
+      },
+      "children": {
+        "title": "Condition d'âge",
+        "body": "Les comptes Medalize sont destinés aux adultes. Si vous avez moins de 18 ans, demandez à un parent ou tuteur de créer et de gérer un compte en votre nom via la fonctionnalité de profils familiaux."
+      }
+    },
+    "termsTitle": "Conditions d'utilisation",
+    "termsIntro": "En créant un compte, vous acceptez ce qui suit.",
+    "termsBody": "Fournir des informations exactes vous concernant. Utiliser Medalize uniquement pour trouver, réserver et gérer des rendez-vous médicaux. Garder vos identifiants de connexion confidentiels. Medalize vous met en relation avec des professionnels de santé indépendants et agréés — nous ne sommes pas nous-mêmes un prestataire de soins, et l'assistant IA de vérification des symptômes ne remplace pas un diagnostic ou un avis médical professionnel. En cas d'urgence médicale, contactez directement les services d'urgence, pas cette application. Nous pouvons suspendre ou résilier les comptes qui enfreignent ces conditions ou qui font un usage abusif de la plateforme.",
+    "contact": "Des questions sur vos données ? Contactez support@medalize.app",
+    "consentPrefix": "J'ai lu et j'accepte la ",
+    "consentPrivacyLink": "Politique de confidentialité",
+    "consentMiddle": " et les ",
+    "consentTermsLink": "Conditions d'utilisation",
+    "consentSuffix": ", et je consens explicitement au traitement de mes données de santé tel que décrit.",
+    "viewAsPdf": "Voir en PDF",
+    "pdfDocumentTitle": "Medalize — Politique de confidentialité et conditions d'utilisation",
+    "pdfLoadError": "Impossible de charger le document. Vérifiez votre connexion internet et réessayez."
   },
   "medications": {
     "title": "Médicaments",

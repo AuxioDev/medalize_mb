@@ -775,13 +775,23 @@ class _Translations$legal$fr extends Translations$legal$en {
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Confidentialité et conditions';
+	@override String get title => 'Confidentialité et Conditions';
+	@override String get controllerNotice => 'Medalize est exploité par [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.';
 	@override String get privacyTitle => 'Politique de confidentialité';
-	@override String get privacyBody => 'Medalize traite vos informations personnelles et de santé afin que vous puissiez prendre et gérer des rendez-vous médicaux. Nous ne vendons pas vos données. La politique de confidentialité complète sera publiée ici avant le lancement public.';
-	@override String get termsTitle => 'Conditions d’utilisation';
-	@override String get termsBody => 'En utilisant Medalize, vous acceptez d’utiliser le service de manière responsable pour la prise et la gestion des rendez-vous. Les conditions d’utilisation complètes seront publiées ici avant le lancement public.';
-	@override String get draftNotice => 'Brouillon — en attente de la révision juridique finale.';
+	@override String get privacyIntro => 'Cette politique explique quelles données personnelles Medalize collecte, pourquoi, et comment elles sont protégées. La prise et la gestion de rendez-vous médicaux impliquent nécessairement des informations de santé vous concernant, détaillées ci-dessous.';
+	@override late final _Translations$legal$sections$fr sections = _Translations$legal$sections$fr._(_root);
+	@override String get termsTitle => 'Conditions d\'utilisation';
+	@override String get termsIntro => 'En créant un compte, vous acceptez ce qui suit.';
+	@override String get termsBody => 'Fournir des informations exactes vous concernant. Utiliser Medalize uniquement pour trouver, réserver et gérer des rendez-vous médicaux. Garder vos identifiants de connexion confidentiels. Medalize vous met en relation avec des professionnels de santé indépendants et agréés — nous ne sommes pas nous-mêmes un prestataire de soins, et l\'assistant IA de vérification des symptômes ne remplace pas un diagnostic ou un avis médical professionnel. En cas d\'urgence médicale, contactez directement les services d\'urgence, pas cette application. Nous pouvons suspendre ou résilier les comptes qui enfreignent ces conditions ou qui font un usage abusif de la plateforme.';
 	@override String get contact => 'Des questions sur vos données ? Contactez support@medalize.app';
+	@override String get consentPrefix => 'J\'ai lu et j\'accepte la ';
+	@override String get consentPrivacyLink => 'Politique de confidentialité';
+	@override String get consentMiddle => ' et les ';
+	@override String get consentTermsLink => 'Conditions d\'utilisation';
+	@override String get consentSuffix => ', et je consens explicitement au traitement de mes données de santé tel que décrit.';
+	@override String get viewAsPdf => 'Voir en PDF';
+	@override String get pdfDocumentTitle => 'Medalize — Politique de confidentialité et conditions d\'utilisation';
+	@override String get pdfLoadError => 'Impossible de charger le document. Vérifiez votre connexion internet et réessayez.';
 }
 
 // Path: medications
@@ -1004,6 +1014,195 @@ class _Translations$workingHours$days$fr extends Translations$workingHours$days$
 	@override String get friday => 'Vendredi';
 	@override String get saturday => 'Samedi';
 	@override String get sunday => 'Dimanche';
+}
+
+// Path: legal.sections
+class _Translations$legal$sections$fr extends Translations$legal$sections$en {
+	_Translations$legal$sections$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$legal$sections$identity$fr identity = _Translations$legal$sections$identity$fr._(_root);
+	@override late final _Translations$legal$sections$health$fr health = _Translations$legal$sections$health$fr._(_root);
+	@override late final _Translations$legal$sections$professional$fr professional = _Translations$legal$sections$professional$fr._(_root);
+	@override late final _Translations$legal$sections$location$fr location = _Translations$legal$sections$location$fr._(_root);
+	@override late final _Translations$legal$sections$device$fr device = _Translations$legal$sections$device$fr._(_root);
+	@override late final _Translations$legal$sections$payment$fr payment = _Translations$legal$sections$payment$fr._(_root);
+	@override late final _Translations$legal$sections$family$fr family = _Translations$legal$sections$family$fr._(_root);
+	@override late final _Translations$legal$sections$purposes$fr purposes = _Translations$legal$sections$purposes$fr._(_root);
+	@override late final _Translations$legal$sections$legalBasis$fr legalBasis = _Translations$legal$sections$legalBasis$fr._(_root);
+	@override late final _Translations$legal$sections$thirdParties$fr thirdParties = _Translations$legal$sections$thirdParties$fr._(_root);
+	@override late final _Translations$legal$sections$retention$fr retention = _Translations$legal$sections$retention$fr._(_root);
+	@override late final _Translations$legal$sections$rights$fr rights = _Translations$legal$sections$rights$fr._(_root);
+	@override late final _Translations$legal$sections$security$fr security = _Translations$legal$sections$security$fr._(_root);
+	@override late final _Translations$legal$sections$permissions$fr permissions = _Translations$legal$sections$permissions$fr._(_root);
+	@override late final _Translations$legal$sections$children$fr children = _Translations$legal$sections$children$fr._(_root);
+}
+
+// Path: legal.sections.identity
+class _Translations$legal$sections$identity$fr extends Translations$legal$sections$identity$en {
+	_Translations$legal$sections$identity$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Données d\'identité';
+	@override String get body => 'Nom et prénom, adresse e-mail, numéro de téléphone (facultatif), votre mot de passe (stocké sous forme de hachage irréversible, jamais en clair) et la langue préférée de l\'application.';
+}
+
+// Path: legal.sections.health
+class _Translations$legal$sections$health$fr extends Translations$legal$sections$health$en {
+	_Translations$legal$sections$health$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Données de santé';
+	@override String get body => 'En tant que patient : groupe sanguin, allergies, maladies chroniques, médicaments actuels, motif indiqué lors de la prise de rendez-vous, documents médicaux téléversés (résultats de laboratoire, imagerie, autres dossiers), ordonnances qui vous sont délivrées, et le contenu de vos messages avec votre médecin. Si vous utilisez l\'assistant IA de vérification des symptômes, vos questions et ses réponses sont traitées de la même manière. Les données de santé bénéficient du plus haut niveau de protection selon le droit azerbaïdjanais, et nous ne les collectons qu\'avec votre consentement séparé et explicite (voir « Base légale » ci-dessous).';
+}
+
+// Path: legal.sections.professional
+class _Translations$legal$sections$professional$fr extends Translations$legal$sections$professional$en {
+	_Translations$legal$sections$professional$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Données professionnelles (médecins)';
+	@override String get body => 'Spécialisation médicale, numéro de licence, diplôme ou autre document de vérification, informations sur le lieu de travail et tarif de consultation. Ces informations sont vérifiées par notre équipe avant que votre profil ne devienne visible aux patients.';
+}
+
+// Path: legal.sections.location
+class _Translations$legal$sections$location$fr extends Translations$legal$sections$location$en {
+	_Translations$legal$sections$location$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Localisation';
+	@override String get body => 'Avec votre permission, une localisation approximative ou précise afin de trier les médecins par distance. Utilisée uniquement lorsque l\'application est ouverte — jamais stockée sur nos serveurs.';
+}
+
+// Path: legal.sections.device
+class _Translations$legal$sections$device$fr extends Translations$legal$sections$device$en {
+	_Translations$legal$sections$device$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Données de l\'appareil';
+	@override String get body => 'Identifiants de l\'appareil et informations de session, afin que vous puissiez voir et révoquer vos connexions actives depuis les Paramètres, ainsi qu\'un jeton de notification push pour vous transmettre rappels de rendez-vous et messages.';
+}
+
+// Path: legal.sections.payment
+class _Translations$legal$sections$payment$fr extends Translations$legal$sections$payment$en {
+	_Translations$legal$sections$payment$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Données de paiement';
+	@override String get body => 'Si vous payez une consultation dans l\'application, le paiement est traité entièrement par notre partenaire de paiement, Payriff — nous ne voyons ni ne stockons jamais votre numéro de carte. Nous conservons le montant du paiement, son statut et un identifiant de référence pour l\'historique de vos rendez-vous.';
+}
+
+// Path: legal.sections.family
+class _Translations$legal$sections$family$fr extends Translations$legal$sections$family$en {
+	_Translations$legal$sections$family$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profils de membres de la famille';
+	@override String get body => 'Si vous gérez le profil d\'un membre de la famille (un enfant, ou une personne à charge sans compte propre), les mêmes catégories de données de santé ci-dessus peuvent être enregistrées pour lui sous votre compte. En ajoutant un membre de la famille, vous confirmez être son parent, tuteur, ou autrement autorisé à gérer ses informations de santé en son nom.';
+}
+
+// Path: legal.sections.purposes
+class _Translations$legal$sections$purposes$fr extends Translations$legal$sections$purposes$en {
+	_Translations$legal$sections$purposes$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Pourquoi nous utilisons vos données';
+	@override String get body => 'Pour vous permettre de trouver des médecins et de prendre rendez-vous ; permettre aux médecins de gérer leur agenda et leurs patients ; envoyer des rappels de rendez-vous et des mises à jour ; traiter les paiements des consultations ; fournir la fonctionnalité optionnelle de vérification des symptômes par IA ; et sécuriser votre compte.';
+}
+
+// Path: legal.sections.legalBasis
+class _Translations$legal$sections$legalBasis$fr extends Translations$legal$sections$legalBasis$en {
+	_Translations$legal$sections$legalBasis$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Base légale et votre consentement';
+	@override String get body => 'Nous traitons vos données sur la base du consentement donné lors de votre inscription. Les données de santé constituent une catégorie particulière de données personnelles selon la loi de la République d\'Azerbaïdjan « Sur les données personnelles » (n° 998-IIIQ), qui exige votre consentement explicite et écrit avant leur collecte — c\'est ce qu\'enregistre la case à cocher de l\'écran d\'inscription. Vous pouvez retirer votre consentement à tout moment en supprimant votre compte, bien que nous puissions conserver certains registres lorsque la loi l\'exige (par exemple, des registres financiers à des fins fiscales).';
+}
+
+// Path: legal.sections.thirdParties
+class _Translations$legal$sections$thirdParties$fr extends Translations$legal$sections$thirdParties$en {
+	_Translations$legal$sections$thirdParties$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Qui traite également vos données';
+	@override String get body => 'Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Anthropic (traite vos messages si vous utilisez l\'assistant IA) ; Payriff (paiements dans l\'application). Nous ne vendons pas vos données personnelles.';
+}
+
+// Path: legal.sections.retention
+class _Translations$legal$sections$retention$fr extends Translations$legal$sections$retention$en {
+	_Translations$legal$sections$retention$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Durée de conservation de vos données';
+	@override String get body => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).';
+}
+
+// Path: legal.sections.rights
+class _Translations$legal$sections$rights$fr extends Translations$legal$sections$rights$en {
+	_Translations$legal$sections$rights$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Vos droits';
+	@override String get body => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.';
+}
+
+// Path: legal.sections.security
+class _Translations$legal$sections$security$fr extends Translations$legal$sections$security$en {
+	_Translations$legal$sections$security$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Comment nous protégeons vos données';
+	@override String get body => 'Les messages entre vous et votre médecin, ainsi que les conversations avec l\'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible.';
+}
+
+// Path: legal.sections.permissions
+class _Translations$legal$sections$permissions$fr extends Translations$legal$sections$permissions$en {
+	_Translations$legal$sections$permissions$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Autorisations que nous demandons';
+	@override String get body => 'Appareil photo et photothèque — pour définir une photo de profil et téléverser des documents médicaux. Localisation — pour trier les médecins par distance. Notifications — pour transmettre rappels de rendez-vous et messages. Biométrie (Face ID / empreinte digitale) — un moyen optionnel et plus rapide de déverrouiller l\'application ; vos données biométriques ne quittent jamais votre appareil, nous recevons uniquement une confirmation oui/non de son système d\'exploitation.';
+}
+
+// Path: legal.sections.children
+class _Translations$legal$sections$children$fr extends Translations$legal$sections$children$en {
+	_Translations$legal$sections$children$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Condition d\'âge';
+	@override String get body => 'Les comptes Medalize sont destinés aux adultes. Si vous avez moins de 18 ans, demandez à un parent ou tuteur de créer et de gérer un compte en votre nom via la fonctionnalité de profils familiaux.';
 }
 
 /// The flat map containing all translations for locale <fr>.
@@ -1461,13 +1660,52 @@ extension on TranslationsFr {
 			'messaging.disclaimer' => 'Ceci n\'est pas une ligne d\'urgence. Pour toute urgence, appelez les services d\'urgence.',
 			'messaging.noSharedHistory' => 'Vous pourrez contacter un médecin dès que vous aurez un rendez-vous en commun avec lui.',
 			'messaging.newMessage' => 'Vous avez un nouveau message',
-			'legal.title' => 'Confidentialité et conditions',
+			'legal.title' => 'Confidentialité et Conditions',
+			'legal.controllerNotice' => 'Medalize est exploité par [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.',
 			'legal.privacyTitle' => 'Politique de confidentialité',
-			'legal.privacyBody' => 'Medalize traite vos informations personnelles et de santé afin que vous puissiez prendre et gérer des rendez-vous médicaux. Nous ne vendons pas vos données. La politique de confidentialité complète sera publiée ici avant le lancement public.',
-			'legal.termsTitle' => 'Conditions d’utilisation',
-			'legal.termsBody' => 'En utilisant Medalize, vous acceptez d’utiliser le service de manière responsable pour la prise et la gestion des rendez-vous. Les conditions d’utilisation complètes seront publiées ici avant le lancement public.',
-			'legal.draftNotice' => 'Brouillon — en attente de la révision juridique finale.',
+			'legal.privacyIntro' => 'Cette politique explique quelles données personnelles Medalize collecte, pourquoi, et comment elles sont protégées. La prise et la gestion de rendez-vous médicaux impliquent nécessairement des informations de santé vous concernant, détaillées ci-dessous.',
+			'legal.sections.identity.title' => 'Données d\'identité',
+			'legal.sections.identity.body' => 'Nom et prénom, adresse e-mail, numéro de téléphone (facultatif), votre mot de passe (stocké sous forme de hachage irréversible, jamais en clair) et la langue préférée de l\'application.',
+			'legal.sections.health.title' => 'Données de santé',
+			'legal.sections.health.body' => 'En tant que patient : groupe sanguin, allergies, maladies chroniques, médicaments actuels, motif indiqué lors de la prise de rendez-vous, documents médicaux téléversés (résultats de laboratoire, imagerie, autres dossiers), ordonnances qui vous sont délivrées, et le contenu de vos messages avec votre médecin. Si vous utilisez l\'assistant IA de vérification des symptômes, vos questions et ses réponses sont traitées de la même manière. Les données de santé bénéficient du plus haut niveau de protection selon le droit azerbaïdjanais, et nous ne les collectons qu\'avec votre consentement séparé et explicite (voir « Base légale » ci-dessous).',
+			'legal.sections.professional.title' => 'Données professionnelles (médecins)',
+			'legal.sections.professional.body' => 'Spécialisation médicale, numéro de licence, diplôme ou autre document de vérification, informations sur le lieu de travail et tarif de consultation. Ces informations sont vérifiées par notre équipe avant que votre profil ne devienne visible aux patients.',
+			'legal.sections.location.title' => 'Localisation',
+			'legal.sections.location.body' => 'Avec votre permission, une localisation approximative ou précise afin de trier les médecins par distance. Utilisée uniquement lorsque l\'application est ouverte — jamais stockée sur nos serveurs.',
+			'legal.sections.device.title' => 'Données de l\'appareil',
+			'legal.sections.device.body' => 'Identifiants de l\'appareil et informations de session, afin que vous puissiez voir et révoquer vos connexions actives depuis les Paramètres, ainsi qu\'un jeton de notification push pour vous transmettre rappels de rendez-vous et messages.',
+			'legal.sections.payment.title' => 'Données de paiement',
+			'legal.sections.payment.body' => 'Si vous payez une consultation dans l\'application, le paiement est traité entièrement par notre partenaire de paiement, Payriff — nous ne voyons ni ne stockons jamais votre numéro de carte. Nous conservons le montant du paiement, son statut et un identifiant de référence pour l\'historique de vos rendez-vous.',
+			'legal.sections.family.title' => 'Profils de membres de la famille',
+			'legal.sections.family.body' => 'Si vous gérez le profil d\'un membre de la famille (un enfant, ou une personne à charge sans compte propre), les mêmes catégories de données de santé ci-dessus peuvent être enregistrées pour lui sous votre compte. En ajoutant un membre de la famille, vous confirmez être son parent, tuteur, ou autrement autorisé à gérer ses informations de santé en son nom.',
+			'legal.sections.purposes.title' => 'Pourquoi nous utilisons vos données',
+			'legal.sections.purposes.body' => 'Pour vous permettre de trouver des médecins et de prendre rendez-vous ; permettre aux médecins de gérer leur agenda et leurs patients ; envoyer des rappels de rendez-vous et des mises à jour ; traiter les paiements des consultations ; fournir la fonctionnalité optionnelle de vérification des symptômes par IA ; et sécuriser votre compte.',
+			'legal.sections.legalBasis.title' => 'Base légale et votre consentement',
+			'legal.sections.legalBasis.body' => 'Nous traitons vos données sur la base du consentement donné lors de votre inscription. Les données de santé constituent une catégorie particulière de données personnelles selon la loi de la République d\'Azerbaïdjan « Sur les données personnelles » (n° 998-IIIQ), qui exige votre consentement explicite et écrit avant leur collecte — c\'est ce qu\'enregistre la case à cocher de l\'écran d\'inscription. Vous pouvez retirer votre consentement à tout moment en supprimant votre compte, bien que nous puissions conserver certains registres lorsque la loi l\'exige (par exemple, des registres financiers à des fins fiscales).',
+			'legal.sections.thirdParties.title' => 'Qui traite également vos données',
+			'legal.sections.thirdParties.body' => 'Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Anthropic (traite vos messages si vous utilisez l\'assistant IA) ; Payriff (paiements dans l\'application). Nous ne vendons pas vos données personnelles.',
+			'legal.sections.retention.title' => 'Durée de conservation de vos données',
+			'legal.sections.retention.body' => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).',
+			'legal.sections.rights.title' => 'Vos droits',
+			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
+			'legal.sections.security.title' => 'Comment nous protégeons vos données',
+			'legal.sections.security.body' => 'Les messages entre vous et votre médecin, ainsi que les conversations avec l\'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible.',
+			'legal.sections.permissions.title' => 'Autorisations que nous demandons',
+			'legal.sections.permissions.body' => 'Appareil photo et photothèque — pour définir une photo de profil et téléverser des documents médicaux. Localisation — pour trier les médecins par distance. Notifications — pour transmettre rappels de rendez-vous et messages. Biométrie (Face ID / empreinte digitale) — un moyen optionnel et plus rapide de déverrouiller l\'application ; vos données biométriques ne quittent jamais votre appareil, nous recevons uniquement une confirmation oui/non de son système d\'exploitation.',
+			'legal.sections.children.title' => 'Condition d\'âge',
+			'legal.sections.children.body' => 'Les comptes Medalize sont destinés aux adultes. Si vous avez moins de 18 ans, demandez à un parent ou tuteur de créer et de gérer un compte en votre nom via la fonctionnalité de profils familiaux.',
+			'legal.termsTitle' => 'Conditions d\'utilisation',
+			'legal.termsIntro' => 'En créant un compte, vous acceptez ce qui suit.',
+			'legal.termsBody' => 'Fournir des informations exactes vous concernant. Utiliser Medalize uniquement pour trouver, réserver et gérer des rendez-vous médicaux. Garder vos identifiants de connexion confidentiels. Medalize vous met en relation avec des professionnels de santé indépendants et agréés — nous ne sommes pas nous-mêmes un prestataire de soins, et l\'assistant IA de vérification des symptômes ne remplace pas un diagnostic ou un avis médical professionnel. En cas d\'urgence médicale, contactez directement les services d\'urgence, pas cette application. Nous pouvons suspendre ou résilier les comptes qui enfreignent ces conditions ou qui font un usage abusif de la plateforme.',
 			'legal.contact' => 'Des questions sur vos données ? Contactez support@medalize.app',
+			'legal.consentPrefix' => 'J\'ai lu et j\'accepte la ',
+			'legal.consentPrivacyLink' => 'Politique de confidentialité',
+			'legal.consentMiddle' => ' et les ',
+			'legal.consentTermsLink' => 'Conditions d\'utilisation',
+			'legal.consentSuffix' => ', et je consens explicitement au traitement de mes données de santé tel que décrit.',
+			'legal.viewAsPdf' => 'Voir en PDF',
+			'legal.pdfDocumentTitle' => 'Medalize — Politique de confidentialité et conditions d\'utilisation',
+			'legal.pdfLoadError' => 'Impossible de charger le document. Vérifiez votre connexion internet et réessayez.',
 			'medications.title' => 'Médicaments',
 			'medications.addMedication' => 'Ajouter un médicament',
 			'medications.editMedication' => 'Modifier le médicament',
@@ -1487,6 +1725,8 @@ extension on TranslationsFr {
 			'medications.everyDay' => 'Tous les jours',
 			'medications.startDate' => 'Date de début',
 			'medications.endDate' => 'Date de fin',
+			_ => null,
+		} ?? switch (path) {
 			'medications.save' => 'Enregistrer',
 			'medications.delete' => 'Supprimer',
 			'medications.deleteConfirmTitle' => 'Supprimer le médicament',
@@ -1526,8 +1766,6 @@ extension on TranslationsFr {
 			'prescriptions.instructions' => 'Instructions',
 			'prescriptions.notes' => 'Notes',
 			'prescriptions.save' => 'Enregistrer',
-			_ => null,
-		} ?? switch (path) {
 			'prescriptions.empty' => 'Aucune ordonnance pour l\'instant',
 			'prescriptions.emptySubtitle' => 'Les ordonnances émises par votre médecin apparaîtront ici.',
 			'prescriptions.viewDetails' => 'Voir les détails',

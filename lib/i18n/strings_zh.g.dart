@@ -776,12 +776,22 @@ class _Translations$legal$zh extends Translations$legal$en {
 
 	// Translations
 	@override String get title => '隐私与条款';
+	@override String get controllerNotice => 'Medalize 由 [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX]（阿塞拜疆,"我们"）运营。最后更新：2026年7月。';
 	@override String get privacyTitle => '隐私政策';
-	@override String get privacyBody => 'Medalize 处理您的个人和健康信息，以便您预约和管理就诊。我们不会出售您的数据。完整的隐私政策将在公开发布前在此处发布。';
+	@override String get privacyIntro => '本政策说明 Medalize 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。';
+	@override late final _Translations$legal$sections$zh sections = _Translations$legal$sections$zh._(_root);
 	@override String get termsTitle => '服务条款';
-	@override String get termsBody => '使用 Medalize 即表示您同意负责任地使用本服务进行预约和管理。完整的服务条款将在公开发布前在此处发布。';
-	@override String get draftNotice => '草稿 — 等待最终法律审核。';
+	@override String get termsIntro => '创建账号即表示您同意以下内容。';
+	@override String get termsBody => '提供关于您自己的准确信息。仅将 Medalize 用于查找、预约和管理医疗就诊。对您的登录凭证保密。Medalize 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。';
 	@override String get contact => '对您的数据有疑问？请联系 support@medalize.app';
+	@override String get consentPrefix => '我已阅读并同意';
+	@override String get consentPrivacyLink => '隐私政策';
+	@override String get consentMiddle => '和';
+	@override String get consentTermsLink => '服务条款';
+	@override String get consentSuffix => '，并明确同意按其中所述处理我的健康数据。';
+	@override String get viewAsPdf => '查看 PDF';
+	@override String get pdfDocumentTitle => 'Medalize — 隐私政策与服务条款';
+	@override String get pdfLoadError => '无法加载文档。请检查您的网络连接后重试。';
 }
 
 // Path: medications
@@ -1004,6 +1014,195 @@ class _Translations$workingHours$days$zh extends Translations$workingHours$days$
 	@override String get friday => '星期五';
 	@override String get saturday => '星期六';
 	@override String get sunday => '星期日';
+}
+
+// Path: legal.sections
+class _Translations$legal$sections$zh extends Translations$legal$sections$en {
+	_Translations$legal$sections$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$legal$sections$identity$zh identity = _Translations$legal$sections$identity$zh._(_root);
+	@override late final _Translations$legal$sections$health$zh health = _Translations$legal$sections$health$zh._(_root);
+	@override late final _Translations$legal$sections$professional$zh professional = _Translations$legal$sections$professional$zh._(_root);
+	@override late final _Translations$legal$sections$location$zh location = _Translations$legal$sections$location$zh._(_root);
+	@override late final _Translations$legal$sections$device$zh device = _Translations$legal$sections$device$zh._(_root);
+	@override late final _Translations$legal$sections$payment$zh payment = _Translations$legal$sections$payment$zh._(_root);
+	@override late final _Translations$legal$sections$family$zh family = _Translations$legal$sections$family$zh._(_root);
+	@override late final _Translations$legal$sections$purposes$zh purposes = _Translations$legal$sections$purposes$zh._(_root);
+	@override late final _Translations$legal$sections$legalBasis$zh legalBasis = _Translations$legal$sections$legalBasis$zh._(_root);
+	@override late final _Translations$legal$sections$thirdParties$zh thirdParties = _Translations$legal$sections$thirdParties$zh._(_root);
+	@override late final _Translations$legal$sections$retention$zh retention = _Translations$legal$sections$retention$zh._(_root);
+	@override late final _Translations$legal$sections$rights$zh rights = _Translations$legal$sections$rights$zh._(_root);
+	@override late final _Translations$legal$sections$security$zh security = _Translations$legal$sections$security$zh._(_root);
+	@override late final _Translations$legal$sections$permissions$zh permissions = _Translations$legal$sections$permissions$zh._(_root);
+	@override late final _Translations$legal$sections$children$zh children = _Translations$legal$sections$children$zh._(_root);
+}
+
+// Path: legal.sections.identity
+class _Translations$legal$sections$identity$zh extends Translations$legal$sections$identity$en {
+	_Translations$legal$sections$identity$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '身份数据';
+	@override String get body => '姓名、电子邮箱、电话号码（可选）、您的密码（以不可逆的哈希形式存储，绝不以明文存储）以及您偏好的应用语言。';
+}
+
+// Path: legal.sections.health
+class _Translations$legal$sections$health$zh extends Translations$legal$sections$health$en {
+	_Translations$legal$sections$health$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '健康数据';
+	@override String get body => '作为患者：血型、过敏史、慢性病、正在服用的药物、预约时填写的就诊原因、您上传的医疗文件（化验结果、影像资料、其他记录）、为您开具的处方，以及您与医生的聊天内容。如果您使用 AI 症状检查助手，您的问题和它的回复也会以同样方式处理。根据阿塞拜疆法律，健康数据受到最高级别的保护，我们仅在获得您单独、明确的同意后才会收集（见下方"法律依据"）。';
+}
+
+// Path: legal.sections.professional
+class _Translations$legal$sections$professional$zh extends Translations$legal$sections$professional$en {
+	_Translations$legal$sections$professional$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '专业数据（医生）';
+	@override String get body => '医学专业方向、执照号码、文凭或其他验证文件、工作地点信息以及问诊费用。在您的资料对患者可见之前，这些信息会由我们的团队审核。';
+}
+
+// Path: legal.sections.location
+class _Translations$legal$sections$location$zh extends Translations$legal$sections$location$en {
+	_Translations$legal$sections$location$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '位置信息';
+	@override String get body => '经您许可后获取大致或精确位置，以便按距离为您排序医生。仅在应用打开期间使用——绝不会存储在我们的服务器上。';
+}
+
+// Path: legal.sections.device
+class _Translations$legal$sections$device$zh extends Translations$legal$sections$device$en {
+	_Translations$legal$sections$device$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '设备与技术数据';
+	@override String get body => '设备标识符和会话信息，以便您可以在"设置"中查看并撤销当前登录的设备，以及用于向您的设备推送预约提醒和消息的推送通知令牌。';
+}
+
+// Path: legal.sections.payment
+class _Translations$legal$sections$payment$zh extends Translations$legal$sections$payment$en {
+	_Translations$legal$sections$payment$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '支付数据';
+	@override String get body => '如果您在应用内为问诊付款，付款将完全由我们的支付合作伙伴 Payriff 处理——我们绝不会看到或存储您的银行卡号。我们仅保留付款金额、状态以及用于您预约历史记录的参考编号。';
+}
+
+// Path: legal.sections.family
+class _Translations$legal$sections$family$zh extends Translations$legal$sections$family$en {
+	_Translations$legal$sections$family$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '家庭成员档案';
+	@override String get body => '如果您管理某位没有自己账号的家庭成员（子女或受抚养人）的档案，上述相同类别的健康数据可能会在您的账号下为其记录。添加家庭成员即表示您确认自己是其父母、监护人，或以其他方式获得授权代其管理健康信息。';
+}
+
+// Path: legal.sections.purposes
+class _Translations$legal$sections$purposes$zh extends Translations$legal$sections$purposes$en {
+	_Translations$legal$sections$purposes$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我们为何使用您的数据';
+	@override String get body => '使您能够找到医生并预约；使医生能够管理日程和患者；发送预约提醒和更新；处理问诊付款；提供可选的 AI 症状检查功能；以及保障您账号的安全。';
+}
+
+// Path: legal.sections.legalBasis
+class _Translations$legal$sections$legalBasis$zh extends Translations$legal$sections$legalBasis$en {
+	_Translations$legal$sections$legalBasis$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '法律依据与您的同意';
+	@override String get body => '我们基于您注册时给予的同意处理您的数据。根据阿塞拜疆共和国《个人数据法》（第998-IIIQ号），健康数据属于特殊类别的个人数据，在收集前需要您明确的书面同意——注册界面上的复选框正是记录这一同意。您可以随时通过删除账号撤回同意，但在法律要求的情况下（例如出于税务目的的财务记录），我们可能会保留有限的记录。';
+}
+
+// Path: legal.sections.thirdParties
+class _Translations$legal$sections$thirdParties$zh extends Translations$legal$sections$thirdParties$en {
+	_Translations$legal$sections$thirdParties$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '还有谁会处理您的数据';
+	@override String get body => '仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Anthropic（在您使用 AI 助手时处理您的消息）；Payriff（应用内支付）。我们不会出售您的个人数据。';
+}
+
+// Path: legal.sections.retention
+class _Translations$legal$sections$retention$zh extends Translations$legal$sections$retention$en {
+	_Translations$legal$sections$retention$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我们保留数据多长时间';
+	@override String get body => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。';
+}
+
+// Path: legal.sections.rights
+class _Translations$legal$sections$rights$zh extends Translations$legal$sections$rights$en {
+	_Translations$legal$sections$rights$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '您的权利';
+	@override String get body => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。';
+}
+
+// Path: legal.sections.security
+class _Translations$legal$sections$security$zh extends Translations$legal$sections$security$en {
+	_Translations$legal$sections$security$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我们如何保护您的数据';
+	@override String get body => '您与医生之间的消息以及与 AI 助手的对话均经过加密。上传的文档和照片以私密方式存储，仅可通过安全的签名链接访问，绝不会作为公开文件存在。密码绝不会以可读形式存储。';
+}
+
+// Path: legal.sections.permissions
+class _Translations$legal$sections$permissions$zh extends Translations$legal$sections$permissions$en {
+	_Translations$legal$sections$permissions$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我们请求的权限';
+	@override String get body => '相机和照片图库——用于设置头像和上传医疗文件。位置——用于按距离为您排序医生。通知——用于推送预约提醒和消息。生物识别（面容 ID / 指纹）——一种可选的、更快捷的应用解锁方式；您的生物识别数据绝不会离开您的设备，我们仅会收到设备操作系统返回的"是/否"确认。';
+}
+
+// Path: legal.sections.children
+class _Translations$legal$sections$children$zh extends Translations$legal$sections$children$en {
+	_Translations$legal$sections$children$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '年龄要求';
+	@override String get body => 'Medalize 账号面向成年人。如果您未满18岁，请让父母或监护人使用家庭成员档案功能代您创建和管理账号。';
 }
 
 /// The flat map containing all translations for locale <zh>.
@@ -1462,12 +1661,51 @@ extension on TranslationsZh {
 			'messaging.noSharedHistory' => '只有与该医生有共同的预约记录后，才能给对方发消息。',
 			'messaging.newMessage' => '您有一条新消息',
 			'legal.title' => '隐私与条款',
+			'legal.controllerNotice' => 'Medalize 由 [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX]（阿塞拜疆,"我们"）运营。最后更新：2026年7月。',
 			'legal.privacyTitle' => '隐私政策',
-			'legal.privacyBody' => 'Medalize 处理您的个人和健康信息，以便您预约和管理就诊。我们不会出售您的数据。完整的隐私政策将在公开发布前在此处发布。',
+			'legal.privacyIntro' => '本政策说明 Medalize 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。',
+			'legal.sections.identity.title' => '身份数据',
+			'legal.sections.identity.body' => '姓名、电子邮箱、电话号码（可选）、您的密码（以不可逆的哈希形式存储，绝不以明文存储）以及您偏好的应用语言。',
+			'legal.sections.health.title' => '健康数据',
+			'legal.sections.health.body' => '作为患者：血型、过敏史、慢性病、正在服用的药物、预约时填写的就诊原因、您上传的医疗文件（化验结果、影像资料、其他记录）、为您开具的处方，以及您与医生的聊天内容。如果您使用 AI 症状检查助手，您的问题和它的回复也会以同样方式处理。根据阿塞拜疆法律，健康数据受到最高级别的保护，我们仅在获得您单独、明确的同意后才会收集（见下方"法律依据"）。',
+			'legal.sections.professional.title' => '专业数据（医生）',
+			'legal.sections.professional.body' => '医学专业方向、执照号码、文凭或其他验证文件、工作地点信息以及问诊费用。在您的资料对患者可见之前，这些信息会由我们的团队审核。',
+			'legal.sections.location.title' => '位置信息',
+			'legal.sections.location.body' => '经您许可后获取大致或精确位置，以便按距离为您排序医生。仅在应用打开期间使用——绝不会存储在我们的服务器上。',
+			'legal.sections.device.title' => '设备与技术数据',
+			'legal.sections.device.body' => '设备标识符和会话信息，以便您可以在"设置"中查看并撤销当前登录的设备，以及用于向您的设备推送预约提醒和消息的推送通知令牌。',
+			'legal.sections.payment.title' => '支付数据',
+			'legal.sections.payment.body' => '如果您在应用内为问诊付款，付款将完全由我们的支付合作伙伴 Payriff 处理——我们绝不会看到或存储您的银行卡号。我们仅保留付款金额、状态以及用于您预约历史记录的参考编号。',
+			'legal.sections.family.title' => '家庭成员档案',
+			'legal.sections.family.body' => '如果您管理某位没有自己账号的家庭成员（子女或受抚养人）的档案，上述相同类别的健康数据可能会在您的账号下为其记录。添加家庭成员即表示您确认自己是其父母、监护人，或以其他方式获得授权代其管理健康信息。',
+			'legal.sections.purposes.title' => '我们为何使用您的数据',
+			'legal.sections.purposes.body' => '使您能够找到医生并预约；使医生能够管理日程和患者；发送预约提醒和更新；处理问诊付款；提供可选的 AI 症状检查功能；以及保障您账号的安全。',
+			'legal.sections.legalBasis.title' => '法律依据与您的同意',
+			'legal.sections.legalBasis.body' => '我们基于您注册时给予的同意处理您的数据。根据阿塞拜疆共和国《个人数据法》（第998-IIIQ号），健康数据属于特殊类别的个人数据，在收集前需要您明确的书面同意——注册界面上的复选框正是记录这一同意。您可以随时通过删除账号撤回同意，但在法律要求的情况下（例如出于税务目的的财务记录），我们可能会保留有限的记录。',
+			'legal.sections.thirdParties.title' => '还有谁会处理您的数据',
+			'legal.sections.thirdParties.body' => '仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Anthropic（在您使用 AI 助手时处理您的消息）；Payriff（应用内支付）。我们不会出售您的个人数据。',
+			'legal.sections.retention.title' => '我们保留数据多长时间',
+			'legal.sections.retention.body' => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。',
+			'legal.sections.rights.title' => '您的权利',
+			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
+			'legal.sections.security.title' => '我们如何保护您的数据',
+			'legal.sections.security.body' => '您与医生之间的消息以及与 AI 助手的对话均经过加密。上传的文档和照片以私密方式存储，仅可通过安全的签名链接访问，绝不会作为公开文件存在。密码绝不会以可读形式存储。',
+			'legal.sections.permissions.title' => '我们请求的权限',
+			'legal.sections.permissions.body' => '相机和照片图库——用于设置头像和上传医疗文件。位置——用于按距离为您排序医生。通知——用于推送预约提醒和消息。生物识别（面容 ID / 指纹）——一种可选的、更快捷的应用解锁方式；您的生物识别数据绝不会离开您的设备，我们仅会收到设备操作系统返回的"是/否"确认。',
+			'legal.sections.children.title' => '年龄要求',
+			'legal.sections.children.body' => 'Medalize 账号面向成年人。如果您未满18岁，请让父母或监护人使用家庭成员档案功能代您创建和管理账号。',
 			'legal.termsTitle' => '服务条款',
-			'legal.termsBody' => '使用 Medalize 即表示您同意负责任地使用本服务进行预约和管理。完整的服务条款将在公开发布前在此处发布。',
-			'legal.draftNotice' => '草稿 — 等待最终法律审核。',
+			'legal.termsIntro' => '创建账号即表示您同意以下内容。',
+			'legal.termsBody' => '提供关于您自己的准确信息。仅将 Medalize 用于查找、预约和管理医疗就诊。对您的登录凭证保密。Medalize 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。',
 			'legal.contact' => '对您的数据有疑问？请联系 support@medalize.app',
+			'legal.consentPrefix' => '我已阅读并同意',
+			'legal.consentPrivacyLink' => '隐私政策',
+			'legal.consentMiddle' => '和',
+			'legal.consentTermsLink' => '服务条款',
+			'legal.consentSuffix' => '，并明确同意按其中所述处理我的健康数据。',
+			'legal.viewAsPdf' => '查看 PDF',
+			'legal.pdfDocumentTitle' => 'Medalize — 隐私政策与服务条款',
+			'legal.pdfLoadError' => '无法加载文档。请检查您的网络连接后重试。',
 			'medications.title' => '用药',
 			'medications.addMedication' => '添加药物',
 			'medications.editMedication' => '编辑药物',
@@ -1487,6 +1725,8 @@ extension on TranslationsZh {
 			'medications.everyDay' => '每天',
 			'medications.startDate' => '开始日期',
 			'medications.endDate' => '结束日期',
+			_ => null,
+		} ?? switch (path) {
 			'medications.save' => '保存',
 			'medications.delete' => '删除',
 			'medications.deleteConfirmTitle' => '删除药物',
@@ -1526,8 +1766,6 @@ extension on TranslationsZh {
 			'prescriptions.instructions' => '用药说明',
 			'prescriptions.notes' => '备注',
 			'prescriptions.save' => '保存',
-			_ => null,
-		} ?? switch (path) {
 			'prescriptions.empty' => '暂无处方',
 			'prescriptions.emptySubtitle' => '医生开具的处方将显示在这里。',
 			'prescriptions.viewDetails' => '查看详情',

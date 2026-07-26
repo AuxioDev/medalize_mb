@@ -1641,23 +1641,52 @@ class Translations$legal$en {
 	/// en: 'Privacy & Terms'
 	String get title => 'Privacy & Terms';
 
+	/// en: 'Medalize is operated by [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaijan ("we", "us"). Last updated: July 2026.'
+	String get controllerNotice => 'Medalize is operated by [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaijan ("we", "us"). Last updated: July 2026.';
+
 	/// en: 'Privacy Policy'
 	String get privacyTitle => 'Privacy Policy';
 
-	/// en: 'Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.'
-	String get privacyBody => 'Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.';
+	/// en: 'This policy explains what personal data Medalize collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.'
+	String get privacyIntro => 'This policy explains what personal data Medalize collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.';
+
+	late final Translations$legal$sections$en sections = Translations$legal$sections$en.internal(_root);
 
 	/// en: 'Terms of Service'
 	String get termsTitle => 'Terms of Service';
 
-	/// en: 'By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.'
-	String get termsBody => 'By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.';
+	/// en: 'By creating an account, you agree to the following.'
+	String get termsIntro => 'By creating an account, you agree to the following.';
 
-	/// en: 'Draft — pending final legal review.'
-	String get draftNotice => 'Draft — pending final legal review.';
+	/// en: 'Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.'
+	String get termsBody => 'Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.';
 
 	/// en: 'Questions about your data? Contact support@medalize.app'
 	String get contact => 'Questions about your data? Contact support@medalize.app';
+
+	/// en: 'I have read and agree to the '
+	String get consentPrefix => 'I have read and agree to the ';
+
+	/// en: 'Privacy Policy'
+	String get consentPrivacyLink => 'Privacy Policy';
+
+	/// en: ' and '
+	String get consentMiddle => ' and ';
+
+	/// en: 'Terms of Service'
+	String get consentTermsLink => 'Terms of Service';
+
+	/// en: ', and I explicitly consent to the processing of my health data as described.'
+	String get consentSuffix => ', and I explicitly consent to the processing of my health data as described.';
+
+	/// en: 'View as PDF'
+	String get viewAsPdf => 'View as PDF';
+
+	/// en: 'Medalize — Privacy Policy & Terms of Service'
+	String get pdfDocumentTitle => 'Medalize — Privacy Policy & Terms of Service';
+
+	/// en: 'Could not load the document. Please check your internet connection and try again.'
+	String get pdfLoadError => 'Could not load the document. Please check your internet connection and try again.';
 }
 
 // Path: medications
@@ -2200,6 +2229,255 @@ class Translations$workingHours$days$en {
 	String get sunday => 'Sunday';
 }
 
+// Path: legal.sections
+class Translations$legal$sections$en {
+	Translations$legal$sections$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final Translations$legal$sections$identity$en identity = Translations$legal$sections$identity$en.internal(_root);
+	late final Translations$legal$sections$health$en health = Translations$legal$sections$health$en.internal(_root);
+	late final Translations$legal$sections$professional$en professional = Translations$legal$sections$professional$en.internal(_root);
+	late final Translations$legal$sections$location$en location = Translations$legal$sections$location$en.internal(_root);
+	late final Translations$legal$sections$device$en device = Translations$legal$sections$device$en.internal(_root);
+	late final Translations$legal$sections$payment$en payment = Translations$legal$sections$payment$en.internal(_root);
+	late final Translations$legal$sections$family$en family = Translations$legal$sections$family$en.internal(_root);
+	late final Translations$legal$sections$purposes$en purposes = Translations$legal$sections$purposes$en.internal(_root);
+	late final Translations$legal$sections$legalBasis$en legalBasis = Translations$legal$sections$legalBasis$en.internal(_root);
+	late final Translations$legal$sections$thirdParties$en thirdParties = Translations$legal$sections$thirdParties$en.internal(_root);
+	late final Translations$legal$sections$retention$en retention = Translations$legal$sections$retention$en.internal(_root);
+	late final Translations$legal$sections$rights$en rights = Translations$legal$sections$rights$en.internal(_root);
+	late final Translations$legal$sections$security$en security = Translations$legal$sections$security$en.internal(_root);
+	late final Translations$legal$sections$permissions$en permissions = Translations$legal$sections$permissions$en.internal(_root);
+	late final Translations$legal$sections$children$en children = Translations$legal$sections$children$en.internal(_root);
+}
+
+// Path: legal.sections.identity
+class Translations$legal$sections$identity$en {
+	Translations$legal$sections$identity$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Identity data'
+	String get title => 'Identity data';
+
+	/// en: 'Full name, email address, phone number (optional), your password (stored as an irreversible hash, never in plain text), and your preferred app language.'
+	String get body => 'Full name, email address, phone number (optional), your password (stored as an irreversible hash, never in plain text), and your preferred app language.';
+}
+
+// Path: legal.sections.health
+class Translations$legal$sections$health$en {
+	Translations$legal$sections$health$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Health data'
+	String get title => 'Health data';
+
+	/// en: 'As a patient: blood type, allergies, chronic conditions, current medications, the reason you give when booking an appointment, medical documents you upload (lab results, imaging, other records), prescriptions issued to you, and the content of your messages with your doctor. If you use the AI symptom-checking assistant, your questions and its responses are processed the same way. Health data receives the highest level of protection under Azerbaijani law, and we only collect it with your separate, explicit consent (see "Legal basis" below).'
+	String get body => 'As a patient: blood type, allergies, chronic conditions, current medications, the reason you give when booking an appointment, medical documents you upload (lab results, imaging, other records), prescriptions issued to you, and the content of your messages with your doctor. If you use the AI symptom-checking assistant, your questions and its responses are processed the same way. Health data receives the highest level of protection under Azerbaijani law, and we only collect it with your separate, explicit consent (see "Legal basis" below).';
+}
+
+// Path: legal.sections.professional
+class Translations$legal$sections$professional$en {
+	Translations$legal$sections$professional$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Professional data (doctors)'
+	String get title => 'Professional data (doctors)';
+
+	/// en: 'Medical specialization, licence number, diploma or other verification document, workplace details, and consultation fee. This is reviewed by our team before your profile becomes visible to patients.'
+	String get body => 'Medical specialization, licence number, diploma or other verification document, workplace details, and consultation fee. This is reviewed by our team before your profile becomes visible to patients.';
+}
+
+// Path: legal.sections.location
+class Translations$legal$sections$location$en {
+	Translations$legal$sections$location$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Location'
+	String get title => 'Location';
+
+	/// en: 'With your permission, an approximate or precise location so we can sort doctors by distance from you. Used only while the app is open — never stored on our servers.'
+	String get body => 'With your permission, an approximate or precise location so we can sort doctors by distance from you. Used only while the app is open — never stored on our servers.';
+}
+
+// Path: legal.sections.device
+class Translations$legal$sections$device$en {
+	Translations$legal$sections$device$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Device & technical data'
+	String get title => 'Device & technical data';
+
+	/// en: 'Device identifiers and session information, so you can see and revoke your active logins from Settings, and a push-notification token so we can deliver appointment reminders and messages to your device.'
+	String get body => 'Device identifiers and session information, so you can see and revoke your active logins from Settings, and a push-notification token so we can deliver appointment reminders and messages to your device.';
+}
+
+// Path: legal.sections.payment
+class Translations$legal$sections$payment$en {
+	Translations$legal$sections$payment$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Payment data'
+	String get title => 'Payment data';
+
+	/// en: 'If you pay for a consultation in-app, payment is processed entirely by our payment partner, Payriff — we never see or store your card number. We keep the payment amount, status, and a reference id for your appointment history.'
+	String get body => 'If you pay for a consultation in-app, payment is processed entirely by our payment partner, Payriff — we never see or store your card number. We keep the payment amount, status, and a reference id for your appointment history.';
+}
+
+// Path: legal.sections.family
+class Translations$legal$sections$family$en {
+	Translations$legal$sections$family$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Family / dependent profiles'
+	String get title => 'Family / dependent profiles';
+
+	/// en: 'If you manage a family member's profile (a child, or a dependent without their own login), the same health data categories above may be recorded for them under your account. By adding a dependent, you confirm you are their parent, guardian, or otherwise authorized to manage their healthcare information on their behalf.'
+	String get body => 'If you manage a family member\'s profile (a child, or a dependent without their own login), the same health data categories above may be recorded for them under your account. By adding a dependent, you confirm you are their parent, guardian, or otherwise authorized to manage their healthcare information on their behalf.';
+}
+
+// Path: legal.sections.purposes
+class Translations$legal$sections$purposes$en {
+	Translations$legal$sections$purposes$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Why we use your data'
+	String get title => 'Why we use your data';
+
+	/// en: 'To let you find and book appointments with doctors; let doctors manage their schedule and patients; send appointment reminders and updates; process payments for consultations; provide the optional AI symptom-checking feature; and keep your account secure.'
+	String get body => 'To let you find and book appointments with doctors; let doctors manage their schedule and patients; send appointment reminders and updates; process payments for consultations; provide the optional AI symptom-checking feature; and keep your account secure.';
+}
+
+// Path: legal.sections.legalBasis
+class Translations$legal$sections$legalBasis$en {
+	Translations$legal$sections$legalBasis$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Legal basis and your consent'
+	String get title => 'Legal basis and your consent';
+
+	/// en: 'We process your data on the basis of your consent, given when you register. Health data is a special category of personal data under the Law of the Republic of Azerbaijan "On Personal Data" (No. 998-IIIQ), which requires your explicit, written consent before we collect it — this is what the checkbox on the registration screen records. You may withdraw consent at any time by deleting your account, though we may keep limited records where required by law (for example, financial records for tax purposes).'
+	String get body => 'We process your data on the basis of your consent, given when you register. Health data is a special category of personal data under the Law of the Republic of Azerbaijan "On Personal Data" (No. 998-IIIQ), which requires your explicit, written consent before we collect it — this is what the checkbox on the registration screen records. You may withdraw consent at any time by deleting your account, though we may keep limited records where required by law (for example, financial records for tax purposes).';
+}
+
+// Path: legal.sections.thirdParties
+class Translations$legal$sections$thirdParties$en {
+	Translations$legal$sections$thirdParties$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Who else processes your data'
+	String get title => 'Who else processes your data';
+
+	/// en: 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Anthropic (processes your messages if you use the AI assistant); Payriff (in-app payments). We do not sell your personal data.'
+	String get body => 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Anthropic (processes your messages if you use the AI assistant); Payriff (in-app payments). We do not sell your personal data.';
+}
+
+// Path: legal.sections.retention
+class Translations$legal$sections$retention$en {
+	Translations$legal$sections$retention$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'How long we keep your data'
+	String get title => 'How long we keep your data';
+
+	/// en: 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).'
+	String get body => 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).';
+}
+
+// Path: legal.sections.rights
+class Translations$legal$sections$rights$en {
+	Translations$legal$sections$rights$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Your rights'
+	String get title => 'Your rights';
+
+	/// en: 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.'
+	String get body => 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.';
+}
+
+// Path: legal.sections.security
+class Translations$legal$sections$security$en {
+	Translations$legal$sections$security$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'How we protect your data'
+	String get title => 'How we protect your data';
+
+	/// en: 'Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form.'
+	String get body => 'Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form.';
+}
+
+// Path: legal.sections.permissions
+class Translations$legal$sections$permissions$en {
+	Translations$legal$sections$permissions$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Permissions we ask for'
+	String get title => 'Permissions we ask for';
+
+	/// en: 'Camera and photo library — to set a profile picture and upload medical documents. Location — to sort doctors by distance from you. Notifications — to deliver appointment reminders and messages. Biometrics (Face ID / fingerprint) — an optional, faster way to unlock the app; your biometric data never leaves your device, we only receive a yes/no confirmation from its operating system.'
+	String get body => 'Camera and photo library — to set a profile picture and upload medical documents. Location — to sort doctors by distance from you. Notifications — to deliver appointment reminders and messages. Biometrics (Face ID / fingerprint) — an optional, faster way to unlock the app; your biometric data never leaves your device, we only receive a yes/no confirmation from its operating system.';
+}
+
+// Path: legal.sections.children
+class Translations$legal$sections$children$en {
+	Translations$legal$sections$children$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Age requirement'
+	String get title => 'Age requirement';
+
+	/// en: 'Medalize accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.'
+	String get body => 'Medalize accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -2656,12 +2934,51 @@ extension on Translations {
 			'messaging.noSharedHistory' => 'You can message a doctor once you have a shared appointment history.',
 			'messaging.newMessage' => 'You have a new message',
 			'legal.title' => 'Privacy & Terms',
+			'legal.controllerNotice' => 'Medalize is operated by [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaijan ("we", "us"). Last updated: July 2026.',
 			'legal.privacyTitle' => 'Privacy Policy',
-			'legal.privacyBody' => 'Medalize handles your personal and health information so you can book and manage medical appointments. We do not sell your data. The full Privacy Policy will be published here before the public launch.',
+			'legal.privacyIntro' => 'This policy explains what personal data Medalize collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.',
+			'legal.sections.identity.title' => 'Identity data',
+			'legal.sections.identity.body' => 'Full name, email address, phone number (optional), your password (stored as an irreversible hash, never in plain text), and your preferred app language.',
+			'legal.sections.health.title' => 'Health data',
+			'legal.sections.health.body' => 'As a patient: blood type, allergies, chronic conditions, current medications, the reason you give when booking an appointment, medical documents you upload (lab results, imaging, other records), prescriptions issued to you, and the content of your messages with your doctor. If you use the AI symptom-checking assistant, your questions and its responses are processed the same way. Health data receives the highest level of protection under Azerbaijani law, and we only collect it with your separate, explicit consent (see "Legal basis" below).',
+			'legal.sections.professional.title' => 'Professional data (doctors)',
+			'legal.sections.professional.body' => 'Medical specialization, licence number, diploma or other verification document, workplace details, and consultation fee. This is reviewed by our team before your profile becomes visible to patients.',
+			'legal.sections.location.title' => 'Location',
+			'legal.sections.location.body' => 'With your permission, an approximate or precise location so we can sort doctors by distance from you. Used only while the app is open — never stored on our servers.',
+			'legal.sections.device.title' => 'Device & technical data',
+			'legal.sections.device.body' => 'Device identifiers and session information, so you can see and revoke your active logins from Settings, and a push-notification token so we can deliver appointment reminders and messages to your device.',
+			'legal.sections.payment.title' => 'Payment data',
+			'legal.sections.payment.body' => 'If you pay for a consultation in-app, payment is processed entirely by our payment partner, Payriff — we never see or store your card number. We keep the payment amount, status, and a reference id for your appointment history.',
+			'legal.sections.family.title' => 'Family / dependent profiles',
+			'legal.sections.family.body' => 'If you manage a family member\'s profile (a child, or a dependent without their own login), the same health data categories above may be recorded for them under your account. By adding a dependent, you confirm you are their parent, guardian, or otherwise authorized to manage their healthcare information on their behalf.',
+			'legal.sections.purposes.title' => 'Why we use your data',
+			'legal.sections.purposes.body' => 'To let you find and book appointments with doctors; let doctors manage their schedule and patients; send appointment reminders and updates; process payments for consultations; provide the optional AI symptom-checking feature; and keep your account secure.',
+			'legal.sections.legalBasis.title' => 'Legal basis and your consent',
+			'legal.sections.legalBasis.body' => 'We process your data on the basis of your consent, given when you register. Health data is a special category of personal data under the Law of the Republic of Azerbaijan "On Personal Data" (No. 998-IIIQ), which requires your explicit, written consent before we collect it — this is what the checkbox on the registration screen records. You may withdraw consent at any time by deleting your account, though we may keep limited records where required by law (for example, financial records for tax purposes).',
+			'legal.sections.thirdParties.title' => 'Who else processes your data',
+			'legal.sections.thirdParties.body' => 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Anthropic (processes your messages if you use the AI assistant); Payriff (in-app payments). We do not sell your personal data.',
+			'legal.sections.retention.title' => 'How long we keep your data',
+			'legal.sections.retention.body' => 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).',
+			'legal.sections.rights.title' => 'Your rights',
+			'legal.sections.rights.body' => 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.',
+			'legal.sections.security.title' => 'How we protect your data',
+			'legal.sections.security.body' => 'Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form.',
+			'legal.sections.permissions.title' => 'Permissions we ask for',
+			'legal.sections.permissions.body' => 'Camera and photo library — to set a profile picture and upload medical documents. Location — to sort doctors by distance from you. Notifications — to deliver appointment reminders and messages. Biometrics (Face ID / fingerprint) — an optional, faster way to unlock the app; your biometric data never leaves your device, we only receive a yes/no confirmation from its operating system.',
+			'legal.sections.children.title' => 'Age requirement',
+			'legal.sections.children.body' => 'Medalize accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.',
 			'legal.termsTitle' => 'Terms of Service',
-			'legal.termsBody' => 'By using Medalize you agree to use the service responsibly for booking and managing appointments. The full Terms of Service will be published here before the public launch.',
-			'legal.draftNotice' => 'Draft — pending final legal review.',
+			'legal.termsIntro' => 'By creating an account, you agree to the following.',
+			'legal.termsBody' => 'Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.',
 			'legal.contact' => 'Questions about your data? Contact support@medalize.app',
+			'legal.consentPrefix' => 'I have read and agree to the ',
+			'legal.consentPrivacyLink' => 'Privacy Policy',
+			'legal.consentMiddle' => ' and ',
+			'legal.consentTermsLink' => 'Terms of Service',
+			'legal.consentSuffix' => ', and I explicitly consent to the processing of my health data as described.',
+			'legal.viewAsPdf' => 'View as PDF',
+			'legal.pdfDocumentTitle' => 'Medalize — Privacy Policy & Terms of Service',
+			'legal.pdfLoadError' => 'Could not load the document. Please check your internet connection and try again.',
 			'medications.title' => 'Medications',
 			'medications.addMedication' => 'Add Medication',
 			'medications.editMedication' => 'Edit Medication',
@@ -2681,6 +2998,8 @@ extension on Translations {
 			'medications.everyDay' => 'Every day',
 			'medications.startDate' => 'Start Date',
 			'medications.endDate' => 'End Date',
+			_ => null,
+		} ?? switch (path) {
 			'medications.save' => 'Save',
 			'medications.delete' => 'Delete',
 			'medications.deleteConfirmTitle' => 'Delete Medication',
@@ -2720,8 +3039,6 @@ extension on Translations {
 			'prescriptions.instructions' => 'Instructions',
 			'prescriptions.notes' => 'Notes',
 			'prescriptions.save' => 'Save',
-			_ => null,
-		} ?? switch (path) {
 			'prescriptions.empty' => 'No prescriptions yet',
 			'prescriptions.emptySubtitle' => 'Prescriptions your doctor issues will appear here.',
 			'prescriptions.viewDetails' => 'View Details',

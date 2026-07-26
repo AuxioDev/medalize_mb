@@ -323,6 +323,7 @@ class AuthNotifier extends Notifier<AuthState> {
     required String role,
     required String firstName,
     required String lastName,
+    required bool privacyConsent,
     String phone = '',
   }) async {
     if (state is AuthLoading) return;
@@ -335,6 +336,7 @@ class AuthNotifier extends Notifier<AuthState> {
         role: role,
         firstName: firstName,
         lastName: lastName,
+        privacyConsent: privacyConsent,
         phone: phone,
       ));
       // API does not return tokens — auto-login after registration

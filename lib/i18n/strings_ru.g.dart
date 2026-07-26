@@ -776,12 +776,22 @@ class _Translations$legal$ru extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Конфиденциальность и условия';
+	@override String get controllerNotice => 'Medalize управляется: [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Азербайджан («мы»). Последнее обновление: июль 2026.';
 	@override String get privacyTitle => 'Политика конфиденциальности';
-	@override String get privacyBody => 'Medalize обрабатывает ваши персональные и медицинские данные, чтобы вы могли записываться на приёмы и управлять ими. Мы не продаём ваши данные. Полная политика конфиденциальности будет опубликована здесь до публичного запуска.';
+	@override String get privacyIntro => 'Здесь объясняется, какие персональные данные собирает Medalize, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.';
+	@override late final _Translations$legal$sections$ru sections = _Translations$legal$sections$ru._(_root);
 	@override String get termsTitle => 'Условия использования';
-	@override String get termsBody => 'Используя Medalize, вы соглашаетесь ответственно пользоваться сервисом для записи и управления приёмами. Полные условия использования будут опубликованы здесь до публичного запуска.';
-	@override String get draftNotice => 'Черновик — ожидается финальная юридическая проверка.';
+	@override String get termsIntro => 'Создавая аккаунт, вы соглашаетесь со следующим.';
+	@override String get termsBody => 'Указывать о себе достоверную информацию. Использовать Medalize только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. Medalize соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.';
 	@override String get contact => 'Вопросы о ваших данных? Напишите на support@medalize.app';
+	@override String get consentPrefix => 'Я прочитал(а) и согласен(на) с ';
+	@override String get consentPrivacyLink => 'Политикой конфиденциальности';
+	@override String get consentMiddle => ' и ';
+	@override String get consentTermsLink => 'Условиями использования';
+	@override String get consentSuffix => ', а также прямо даю согласие на обработку данных о моём здоровье, как описано в них.';
+	@override String get viewAsPdf => 'Открыть как PDF';
+	@override String get pdfDocumentTitle => 'Medalize — Политика конфиденциальности и условия использования';
+	@override String get pdfLoadError => 'Не удалось загрузить документ. Проверьте подключение к интернету и попробуйте снова.';
 }
 
 // Path: medications
@@ -1004,6 +1014,195 @@ class _Translations$workingHours$days$ru extends Translations$workingHours$days$
 	@override String get friday => 'Пятница';
 	@override String get saturday => 'Суббота';
 	@override String get sunday => 'Воскресенье';
+}
+
+// Path: legal.sections
+class _Translations$legal$sections$ru extends Translations$legal$sections$en {
+	_Translations$legal$sections$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$legal$sections$identity$ru identity = _Translations$legal$sections$identity$ru._(_root);
+	@override late final _Translations$legal$sections$health$ru health = _Translations$legal$sections$health$ru._(_root);
+	@override late final _Translations$legal$sections$professional$ru professional = _Translations$legal$sections$professional$ru._(_root);
+	@override late final _Translations$legal$sections$location$ru location = _Translations$legal$sections$location$ru._(_root);
+	@override late final _Translations$legal$sections$device$ru device = _Translations$legal$sections$device$ru._(_root);
+	@override late final _Translations$legal$sections$payment$ru payment = _Translations$legal$sections$payment$ru._(_root);
+	@override late final _Translations$legal$sections$family$ru family = _Translations$legal$sections$family$ru._(_root);
+	@override late final _Translations$legal$sections$purposes$ru purposes = _Translations$legal$sections$purposes$ru._(_root);
+	@override late final _Translations$legal$sections$legalBasis$ru legalBasis = _Translations$legal$sections$legalBasis$ru._(_root);
+	@override late final _Translations$legal$sections$thirdParties$ru thirdParties = _Translations$legal$sections$thirdParties$ru._(_root);
+	@override late final _Translations$legal$sections$retention$ru retention = _Translations$legal$sections$retention$ru._(_root);
+	@override late final _Translations$legal$sections$rights$ru rights = _Translations$legal$sections$rights$ru._(_root);
+	@override late final _Translations$legal$sections$security$ru security = _Translations$legal$sections$security$ru._(_root);
+	@override late final _Translations$legal$sections$permissions$ru permissions = _Translations$legal$sections$permissions$ru._(_root);
+	@override late final _Translations$legal$sections$children$ru children = _Translations$legal$sections$children$ru._(_root);
+}
+
+// Path: legal.sections.identity
+class _Translations$legal$sections$identity$ru extends Translations$legal$sections$identity$en {
+	_Translations$legal$sections$identity$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Данные для идентификации';
+	@override String get body => 'Имя и фамилия, email, номер телефона (необязательно), пароль (хранится в виде необратимого хэша, никогда в открытом виде), предпочитаемый язык приложения.';
+}
+
+// Path: legal.sections.health
+class _Translations$legal$sections$health$ru extends Translations$legal$sections$health$en {
+	_Translations$legal$sections$health$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Данные о здоровье';
+	@override String get body => 'Для пациентов: группа крови, аллергии, хронические заболевания, принимаемые лекарства, причина обращения при бронировании, загруженные медицинские документы (анализы, снимки, прочие записи), выписанные вам рецепты, содержание переписки с врачом. При использовании ИИ-ассистента для проверки симптомов таким же образом обрабатываются ваши вопросы и его ответы. Данные о здоровье получают наивысший уровень защиты по законодательству Азербайджана — мы собираем их только при вашем отдельном явном согласии (см. «Правовое основание» ниже).';
+}
+
+// Path: legal.sections.professional
+class _Translations$legal$sections$professional$ru extends Translations$legal$sections$professional$en {
+	_Translations$legal$sections$professional$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Профессиональные данные (врачи)';
+	@override String get body => 'Специализация, номер лицензии, диплом или иной подтверждающий документ, данные о месте работы, стоимость консультации. Эти данные проверяются нашей командой до того, как профиль станет виден пациентам.';
+}
+
+// Path: legal.sections.location
+class _Translations$legal$sections$location$ru extends Translations$legal$sections$location$en {
+	_Translations$legal$sections$location$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Геолокация';
+	@override String get body => 'С вашего разрешения — приблизительное или точное местоположение, чтобы сортировать врачей по расстоянию до вас. Используется только пока приложение открыто и никогда не сохраняется на наших серверах.';
+}
+
+// Path: legal.sections.device
+class _Translations$legal$sections$device$ru extends Translations$legal$sections$device$en {
+	_Translations$legal$sections$device$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Данные устройства';
+	@override String get body => 'Идентификаторы устройства и данные сессии — чтобы вы могли видеть и отзывать активные входы в разделе «Настройки», а также токен push-уведомлений для доставки напоминаний о приёмах и сообщений.';
+}
+
+// Path: legal.sections.payment
+class _Translations$legal$sections$payment$ru extends Translations$legal$sections$payment$en {
+	_Translations$legal$sections$payment$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Платёжные данные';
+	@override String get body => 'Если вы оплачиваете консультацию в приложении, оплата полностью обрабатывается нашим платёжным партнёром Payriff — мы никогда не видим и не храним номер вашей карты. Мы сохраняем сумму платежа, статус и идентификатор для истории ваших записей.';
+}
+
+// Path: legal.sections.family
+class _Translations$legal$sections$family$ru extends Translations$legal$sections$family$en {
+	_Translations$legal$sections$family$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Профили членов семьи';
+	@override String get body => 'Если вы управляете профилем члена семьи (ребёнка или иждивенца без собственного входа в аккаунт), те же категории данных о здоровье выше могут фиксироваться для него в рамках вашего аккаунта. Добавляя члена семьи, вы подтверждаете, что являетесь его родителем, опекуном или иным образом уполномочены управлять его медицинскими данными.';
+}
+
+// Path: legal.sections.purposes
+class _Translations$legal$sections$purposes$ru extends Translations$legal$sections$purposes$en {
+	_Translations$legal$sections$purposes$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Зачем нам ваши данные';
+	@override String get body => 'Чтобы вы могли находить врачей и записываться к ним на приём; чтобы врачи могли управлять расписанием и пациентами; для отправки напоминаний о приёмах и обновлений; для обработки платежей за консультации; для работы опциональной функции ИИ-проверки симптомов; для обеспечения безопасности вашего аккаунта.';
+}
+
+// Path: legal.sections.legalBasis
+class _Translations$legal$sections$legalBasis$ru extends Translations$legal$sections$legalBasis$en {
+	_Translations$legal$sections$legalBasis$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Правовое основание и ваше согласие';
+	@override String get body => 'Мы обрабатываем ваши данные на основании согласия, данного при регистрации. Данные о здоровье относятся к специальной категории персональных данных по Закону Азербайджанской Республики «О персональных данных» (№998-IIIQ), который требует явного письменного согласия до их сбора — именно это фиксирует чекбокс на экране регистрации. Вы можете отозвать согласие в любой момент, удалив аккаунт, хотя мы можем сохранить ограниченные записи, если это требуется законом (например, финансовые записи для налоговой отчётности).';
+}
+
+// Path: legal.sections.thirdParties
+class _Translations$legal$sections$thirdParties$ru extends Translations$legal$sections$thirdParties$en {
+	_Translations$legal$sections$thirdParties$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Кто ещё обрабатывает ваши данные';
+	@override String get body => 'Доверенные поставщики услуг, действующие только по нашему поручению и исключительно для описанных здесь целей: Cloudinary (безопасное хранение файлов — документы и фото никогда не доступны публично, только по подписанным ссылкам с ограниченным сроком действия); Firebase/Google (push-уведомления и вход через Google, если вы его выберете); Apple (вход через Apple, если вы его выберете); Anthropic (обрабатывает ваши сообщения при использовании ИИ-ассистента); Payriff (платежи в приложении). Мы не продаём ваши персональные данные.';
+}
+
+// Path: legal.sections.retention
+class _Translations$legal$sections$retention$ru extends Translations$legal$sections$retention$en {
+	_Translations$legal$sections$retention$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Сколько мы храним данные';
+	@override String get body => 'Пока ваш аккаунт активен. При удалении аккаунта мы удаляем ваши персональные данные в разумный срок, за исключением записей, которые обязаны хранить по закону (например, платёжные записи для налогового учёта).';
+}
+
+// Path: legal.sections.rights
+class _Translations$legal$sections$rights$ru extends Translations$legal$sections$rights$en {
+	_Translations$legal$sections$rights$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ваши права';
+	@override String get body => 'Вы можете запросить доступ к данным, которые мы о вас храним, потребовать исправления неточных данных, потребовать удаления аккаунта и данных, а также отозвать согласие в любой момент. Большая часть этого доступна прямо в разделе «Профиль» → «Настройки»; по остальным вопросам — свяжитесь с нами ниже.';
+}
+
+// Path: legal.sections.security
+class _Translations$legal$sections$security$ru extends Translations$legal$sections$security$en {
+	_Translations$legal$sections$security$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Как мы защищаем ваши данные';
+	@override String get body => 'Переписка с врачом и разговоры с ИИ-ассистентом шифруются. Загруженные документы и фото хранятся приватно и доступны только по защищённым подписанным ссылкам, никогда как публичные файлы. Пароли никогда не хранятся в читаемом виде.';
+}
+
+// Path: legal.sections.permissions
+class _Translations$legal$sections$permissions$ru extends Translations$legal$sections$permissions$en {
+	_Translations$legal$sections$permissions$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Какие разрешения мы запрашиваем';
+	@override String get body => 'Камера и фотогалерея — чтобы установить фото профиля и загрузить медицинские документы. Геолокация — чтобы сортировать врачей по расстоянию до вас. Уведомления — чтобы доставлять напоминания о приёмах и сообщения. Биометрия (Face ID / отпечаток пальца) — необязательный, более быстрый способ разблокировки приложения; ваши биометрические данные никогда не покидают устройство, мы получаем только подтверждение «да/нет» от его операционной системы.';
+}
+
+// Path: legal.sections.children
+class _Translations$legal$sections$children$ru extends Translations$legal$sections$children$en {
+	_Translations$legal$sections$children$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Возрастное ограничение';
+	@override String get body => 'Аккаунты Medalize предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.';
 }
 
 /// The flat map containing all translations for locale <ru>.
@@ -1462,12 +1661,51 @@ extension on TranslationsRu {
 			'messaging.noSharedHistory' => 'Написать врачу можно после того, как у вас появится общая история записей на приём.',
 			'messaging.newMessage' => 'У вас новое сообщение',
 			'legal.title' => 'Конфиденциальность и условия',
+			'legal.controllerNotice' => 'Medalize управляется: [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Азербайджан («мы»). Последнее обновление: июль 2026.',
 			'legal.privacyTitle' => 'Политика конфиденциальности',
-			'legal.privacyBody' => 'Medalize обрабатывает ваши персональные и медицинские данные, чтобы вы могли записываться на приёмы и управлять ими. Мы не продаём ваши данные. Полная политика конфиденциальности будет опубликована здесь до публичного запуска.',
+			'legal.privacyIntro' => 'Здесь объясняется, какие персональные данные собирает Medalize, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.',
+			'legal.sections.identity.title' => 'Данные для идентификации',
+			'legal.sections.identity.body' => 'Имя и фамилия, email, номер телефона (необязательно), пароль (хранится в виде необратимого хэша, никогда в открытом виде), предпочитаемый язык приложения.',
+			'legal.sections.health.title' => 'Данные о здоровье',
+			'legal.sections.health.body' => 'Для пациентов: группа крови, аллергии, хронические заболевания, принимаемые лекарства, причина обращения при бронировании, загруженные медицинские документы (анализы, снимки, прочие записи), выписанные вам рецепты, содержание переписки с врачом. При использовании ИИ-ассистента для проверки симптомов таким же образом обрабатываются ваши вопросы и его ответы. Данные о здоровье получают наивысший уровень защиты по законодательству Азербайджана — мы собираем их только при вашем отдельном явном согласии (см. «Правовое основание» ниже).',
+			'legal.sections.professional.title' => 'Профессиональные данные (врачи)',
+			'legal.sections.professional.body' => 'Специализация, номер лицензии, диплом или иной подтверждающий документ, данные о месте работы, стоимость консультации. Эти данные проверяются нашей командой до того, как профиль станет виден пациентам.',
+			'legal.sections.location.title' => 'Геолокация',
+			'legal.sections.location.body' => 'С вашего разрешения — приблизительное или точное местоположение, чтобы сортировать врачей по расстоянию до вас. Используется только пока приложение открыто и никогда не сохраняется на наших серверах.',
+			'legal.sections.device.title' => 'Данные устройства',
+			'legal.sections.device.body' => 'Идентификаторы устройства и данные сессии — чтобы вы могли видеть и отзывать активные входы в разделе «Настройки», а также токен push-уведомлений для доставки напоминаний о приёмах и сообщений.',
+			'legal.sections.payment.title' => 'Платёжные данные',
+			'legal.sections.payment.body' => 'Если вы оплачиваете консультацию в приложении, оплата полностью обрабатывается нашим платёжным партнёром Payriff — мы никогда не видим и не храним номер вашей карты. Мы сохраняем сумму платежа, статус и идентификатор для истории ваших записей.',
+			'legal.sections.family.title' => 'Профили членов семьи',
+			'legal.sections.family.body' => 'Если вы управляете профилем члена семьи (ребёнка или иждивенца без собственного входа в аккаунт), те же категории данных о здоровье выше могут фиксироваться для него в рамках вашего аккаунта. Добавляя члена семьи, вы подтверждаете, что являетесь его родителем, опекуном или иным образом уполномочены управлять его медицинскими данными.',
+			'legal.sections.purposes.title' => 'Зачем нам ваши данные',
+			'legal.sections.purposes.body' => 'Чтобы вы могли находить врачей и записываться к ним на приём; чтобы врачи могли управлять расписанием и пациентами; для отправки напоминаний о приёмах и обновлений; для обработки платежей за консультации; для работы опциональной функции ИИ-проверки симптомов; для обеспечения безопасности вашего аккаунта.',
+			'legal.sections.legalBasis.title' => 'Правовое основание и ваше согласие',
+			'legal.sections.legalBasis.body' => 'Мы обрабатываем ваши данные на основании согласия, данного при регистрации. Данные о здоровье относятся к специальной категории персональных данных по Закону Азербайджанской Республики «О персональных данных» (№998-IIIQ), который требует явного письменного согласия до их сбора — именно это фиксирует чекбокс на экране регистрации. Вы можете отозвать согласие в любой момент, удалив аккаунт, хотя мы можем сохранить ограниченные записи, если это требуется законом (например, финансовые записи для налоговой отчётности).',
+			'legal.sections.thirdParties.title' => 'Кто ещё обрабатывает ваши данные',
+			'legal.sections.thirdParties.body' => 'Доверенные поставщики услуг, действующие только по нашему поручению и исключительно для описанных здесь целей: Cloudinary (безопасное хранение файлов — документы и фото никогда не доступны публично, только по подписанным ссылкам с ограниченным сроком действия); Firebase/Google (push-уведомления и вход через Google, если вы его выберете); Apple (вход через Apple, если вы его выберете); Anthropic (обрабатывает ваши сообщения при использовании ИИ-ассистента); Payriff (платежи в приложении). Мы не продаём ваши персональные данные.',
+			'legal.sections.retention.title' => 'Сколько мы храним данные',
+			'legal.sections.retention.body' => 'Пока ваш аккаунт активен. При удалении аккаунта мы удаляем ваши персональные данные в разумный срок, за исключением записей, которые обязаны хранить по закону (например, платёжные записи для налогового учёта).',
+			'legal.sections.rights.title' => 'Ваши права',
+			'legal.sections.rights.body' => 'Вы можете запросить доступ к данным, которые мы о вас храним, потребовать исправления неточных данных, потребовать удаления аккаунта и данных, а также отозвать согласие в любой момент. Большая часть этого доступна прямо в разделе «Профиль» → «Настройки»; по остальным вопросам — свяжитесь с нами ниже.',
+			'legal.sections.security.title' => 'Как мы защищаем ваши данные',
+			'legal.sections.security.body' => 'Переписка с врачом и разговоры с ИИ-ассистентом шифруются. Загруженные документы и фото хранятся приватно и доступны только по защищённым подписанным ссылкам, никогда как публичные файлы. Пароли никогда не хранятся в читаемом виде.',
+			'legal.sections.permissions.title' => 'Какие разрешения мы запрашиваем',
+			'legal.sections.permissions.body' => 'Камера и фотогалерея — чтобы установить фото профиля и загрузить медицинские документы. Геолокация — чтобы сортировать врачей по расстоянию до вас. Уведомления — чтобы доставлять напоминания о приёмах и сообщения. Биометрия (Face ID / отпечаток пальца) — необязательный, более быстрый способ разблокировки приложения; ваши биометрические данные никогда не покидают устройство, мы получаем только подтверждение «да/нет» от его операционной системы.',
+			'legal.sections.children.title' => 'Возрастное ограничение',
+			'legal.sections.children.body' => 'Аккаунты Medalize предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.',
 			'legal.termsTitle' => 'Условия использования',
-			'legal.termsBody' => 'Используя Medalize, вы соглашаетесь ответственно пользоваться сервисом для записи и управления приёмами. Полные условия использования будут опубликованы здесь до публичного запуска.',
-			'legal.draftNotice' => 'Черновик — ожидается финальная юридическая проверка.',
+			'legal.termsIntro' => 'Создавая аккаунт, вы соглашаетесь со следующим.',
+			'legal.termsBody' => 'Указывать о себе достоверную информацию. Использовать Medalize только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. Medalize соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.',
 			'legal.contact' => 'Вопросы о ваших данных? Напишите на support@medalize.app',
+			'legal.consentPrefix' => 'Я прочитал(а) и согласен(на) с ',
+			'legal.consentPrivacyLink' => 'Политикой конфиденциальности',
+			'legal.consentMiddle' => ' и ',
+			'legal.consentTermsLink' => 'Условиями использования',
+			'legal.consentSuffix' => ', а также прямо даю согласие на обработку данных о моём здоровье, как описано в них.',
+			'legal.viewAsPdf' => 'Открыть как PDF',
+			'legal.pdfDocumentTitle' => 'Medalize — Политика конфиденциальности и условия использования',
+			'legal.pdfLoadError' => 'Не удалось загрузить документ. Проверьте подключение к интернету и попробуйте снова.',
 			'medications.title' => 'Лекарства',
 			'medications.addMedication' => 'Добавить лекарство',
 			'medications.editMedication' => 'Изменить лекарство',
@@ -1487,6 +1725,8 @@ extension on TranslationsRu {
 			'medications.everyDay' => 'Каждый день',
 			'medications.startDate' => 'Дата начала',
 			'medications.endDate' => 'Дата окончания',
+			_ => null,
+		} ?? switch (path) {
 			'medications.save' => 'Сохранить',
 			'medications.delete' => 'Удалить',
 			'medications.deleteConfirmTitle' => 'Удалить лекарство',
@@ -1526,8 +1766,6 @@ extension on TranslationsRu {
 			'prescriptions.instructions' => 'Инструкции',
 			'prescriptions.notes' => 'Заметки',
 			'prescriptions.save' => 'Сохранить',
-			_ => null,
-		} ?? switch (path) {
 			'prescriptions.empty' => 'Пока нет рецептов',
 			'prescriptions.emptySubtitle' => 'Здесь появятся рецепты, выписанные вашим врачом.',
 			'prescriptions.viewDetails' => 'Подробнее',

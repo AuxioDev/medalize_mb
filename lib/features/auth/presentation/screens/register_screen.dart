@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +18,7 @@ import 'package:medalize_mb/features/auth/presentation/widgets/password_strength
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/legal_pdf_popup.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
@@ -39,8 +41,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   String _dialCode = '+994';
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
+  bool _consentAccepted = false;
   Map<String, List<String>> _fieldErrors = {};
   final _phoneController = TextEditingController();
+  late final TapGestureRecognizer _privacyLinkRecognizer;
+  late final TapGestureRecognizer _termsLinkRecognizer;
 
   static final _nameFormatters = <TextInputFormatter>[
     FilteringTextInputFormatter.allow(RegExp(r"[a-zA-ZÀ-ÖØ-öø-ÿ' -]")),
@@ -55,7 +60,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
         _selectedRole != null &&
         Validators.passwordOk(password) &&
         _confirmController.text == password &&
-        Validators.phoneOk(_phoneController.text);
+        Validators.phoneOk(_phoneController.text) &&
+        _consentAccepted;
   }
 
   late final AnimationController _ctrl;
@@ -89,6 +95,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     _passwordController.addListener(_onFieldChanged);
     _confirmController.addListener(_onFieldChanged);
     _phoneController.addListener(_onFieldChanged);
+    _privacyLinkRecognizer = TapGestureRecognizer()
+      ..onTap = () => showLegalPdfPopup(context);
+    _termsLinkRecognizer = TapGestureRecognizer()
+      ..onTap = () => showLegalPdfPopup(context);
   }
 
   void _onFieldChanged() {
@@ -105,6 +115,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     _passwordController.dispose();
     _confirmController.dispose();
     _phoneController.dispose();
+    _privacyLinkRecognizer.dispose();
+    _termsLinkRecognizer.dispose();
     super.dispose();
   }
 
@@ -126,6 +138,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
           role: _selectedRole!,
           firstName: _firstNameController.text.trim(),
           lastName: _lastNameController.text.trim(),
+          privacyConsent: _consentAccepted,
           phone: phone,
         );
   }
@@ -312,6 +325,62 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                       onFieldSubmitted: (_) => _submit(),
                       validator: (v) =>
                           Validators.confirmPassword(v, _passwordController.text),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Privacy/health-data consent — required (see
+                    // apps.users.serializers.RegisterSerializer on the
+                    // backend, which rejects registration without it).
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          value: _consentAccepted,
+                          onChanged: (v) =>
+                              setState(() => _consentAccepted = v ?? false),
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => setState(
+                              () => _consentAccepted = !_consentAccepted,
+                            ),
+                            behavior: HitTestBehavior.translucent,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 14),
+                              child: Text.rich(
+                                TextSpan(
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                          color: context.colors.textSecondary),
+                                  children: [
+                                    TextSpan(text: context.t.legal.consentPrefix),
+                                    TextSpan(
+                                      text: context.t.legal.consentPrivacyLink,
+                                      style: const TextStyle(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      recognizer: _privacyLinkRecognizer,
+                                    ),
+                                    TextSpan(text: context.t.legal.consentMiddle),
+                                    TextSpan(
+                                      text: context.t.legal.consentTermsLink,
+                                      style: const TextStyle(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      recognizer: _termsLinkRecognizer,
+                                    ),
+                                    TextSpan(text: context.t.legal.consentSuffix),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

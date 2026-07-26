@@ -776,12 +776,22 @@ class _Translations$legal$tr extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Gizlilik ve Koşullar';
+	@override String get controllerNotice => 'Medalize, [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaycan ("biz") tarafından işletilmektedir. Son güncelleme: Temmuz 2026.';
 	@override String get privacyTitle => 'Gizlilik Politikası';
-	@override String get privacyBody => 'Medalize, randevu almanız ve yönetmeniz için kişisel ve sağlık bilgilerinizi işler. Verilerinizi satmıyoruz. Tam Gizlilik Politikası, herkese açık lansmandan önce burada yayınlanacaktır.';
+	@override String get privacyIntro => 'Bu politika, Medalize\'nin hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.';
+	@override late final _Translations$legal$sections$tr sections = _Translations$legal$sections$tr._(_root);
 	@override String get termsTitle => 'Kullanım Koşulları';
-	@override String get termsBody => 'Medalize’ı kullanarak, hizmeti randevu alma ve yönetme için sorumlu bir şekilde kullanmayı kabul edersiniz. Tam Kullanım Koşulları, herkese açık lansmandan önce burada yayınlanacaktır.';
-	@override String get draftNotice => 'Taslak — nihai hukuki inceleme bekleniyor.';
-	@override String get contact => 'Verilerinizle ilgili sorular mı var? support@medalize.app ile iletişime geçin';
+	@override String get termsIntro => 'Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.';
+	@override String get termsBody => 'Kendiniz hakkında doğru bilgi verin. Medalize\'yi yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. Medalize sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.';
+	@override String get contact => 'Verileriniz hakkında sorularınız mı var? support@medalize.app adresine yazın';
+	@override String get consentPrefix => '';
+	@override String get consentPrivacyLink => 'Gizlilik Politikası';
+	@override String get consentMiddle => ' ve ';
+	@override String get consentTermsLink => 'Kullanım Koşulları';
+	@override String get consentSuffix => '\'nı okudum, kabul ediyorum ve orada açıklandığı şekilde sağlık verilerimin işlenmesine açıkça rıza gösteriyorum.';
+	@override String get viewAsPdf => 'PDF olarak görüntüle';
+	@override String get pdfDocumentTitle => 'Medalize — Gizlilik Politikası ve Kullanım Koşulları';
+	@override String get pdfLoadError => 'Belge yüklenemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.';
 }
 
 // Path: medications
@@ -1004,6 +1014,195 @@ class _Translations$workingHours$days$tr extends Translations$workingHours$days$
 	@override String get friday => 'Cuma';
 	@override String get saturday => 'Cumartesi';
 	@override String get sunday => 'Pazar';
+}
+
+// Path: legal.sections
+class _Translations$legal$sections$tr extends Translations$legal$sections$en {
+	_Translations$legal$sections$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _Translations$legal$sections$identity$tr identity = _Translations$legal$sections$identity$tr._(_root);
+	@override late final _Translations$legal$sections$health$tr health = _Translations$legal$sections$health$tr._(_root);
+	@override late final _Translations$legal$sections$professional$tr professional = _Translations$legal$sections$professional$tr._(_root);
+	@override late final _Translations$legal$sections$location$tr location = _Translations$legal$sections$location$tr._(_root);
+	@override late final _Translations$legal$sections$device$tr device = _Translations$legal$sections$device$tr._(_root);
+	@override late final _Translations$legal$sections$payment$tr payment = _Translations$legal$sections$payment$tr._(_root);
+	@override late final _Translations$legal$sections$family$tr family = _Translations$legal$sections$family$tr._(_root);
+	@override late final _Translations$legal$sections$purposes$tr purposes = _Translations$legal$sections$purposes$tr._(_root);
+	@override late final _Translations$legal$sections$legalBasis$tr legalBasis = _Translations$legal$sections$legalBasis$tr._(_root);
+	@override late final _Translations$legal$sections$thirdParties$tr thirdParties = _Translations$legal$sections$thirdParties$tr._(_root);
+	@override late final _Translations$legal$sections$retention$tr retention = _Translations$legal$sections$retention$tr._(_root);
+	@override late final _Translations$legal$sections$rights$tr rights = _Translations$legal$sections$rights$tr._(_root);
+	@override late final _Translations$legal$sections$security$tr security = _Translations$legal$sections$security$tr._(_root);
+	@override late final _Translations$legal$sections$permissions$tr permissions = _Translations$legal$sections$permissions$tr._(_root);
+	@override late final _Translations$legal$sections$children$tr children = _Translations$legal$sections$children$tr._(_root);
+}
+
+// Path: legal.sections.identity
+class _Translations$legal$sections$identity$tr extends Translations$legal$sections$identity$en {
+	_Translations$legal$sections$identity$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Kimlik verileri';
+	@override String get body => 'Ad ve soyad, e-posta adresi, telefon numarası (isteğe bağlı), şifreniz (geri döndürülemez bir hash olarak saklanır, asla düz metin olarak değil) ve tercih ettiğiniz uygulama dili.';
+}
+
+// Path: legal.sections.health
+class _Translations$legal$sections$health$tr extends Translations$legal$sections$health$en {
+	_Translations$legal$sections$health$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Sağlık verileri';
+	@override String get body => 'Hasta olarak: kan grubu, alerjiler, kronik hastalıklar, kullandığınız ilaçlar, randevu alırken belirttiğiniz sebep, yüklediğiniz tıbbi belgeler (tahlil sonuçları, görüntüleme, diğer kayıtlar), size yazılan reçeteler ve doktorunuzla mesajlaşma içeriğiniz. Semptom kontrol yapay zeka asistanını kullanırsanız, sorularınız ve yanıtları da aynı şekilde işlenir. Sağlık verileri Azerbaycan mevzuatına göre en yüksek koruma seviyesine sahiptir ve bunları yalnızca ayrı, açık rızanızla topluyoruz (aşağıda "Hukuki dayanak" bölümüne bakın).';
+}
+
+// Path: legal.sections.professional
+class _Translations$legal$sections$professional$tr extends Translations$legal$sections$professional$en {
+	_Translations$legal$sections$professional$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mesleki veriler (doktorlar)';
+	@override String get body => 'Uzmanlık alanı, lisans numarası, diploma veya diğer doğrulama belgesi, işyeri bilgileri ve muayene ücreti. Bu bilgiler, profiliniz hastalara görünür olmadan önce ekibimiz tarafından incelenir.';
+}
+
+// Path: legal.sections.location
+class _Translations$legal$sections$location$tr extends Translations$legal$sections$location$en {
+	_Translations$legal$sections$location$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Konum';
+	@override String get body => 'İzninizle, doktorları size olan uzaklığa göre sıralamak için yaklaşık veya kesin konum. Yalnızca uygulama açıkken kullanılır — sunucularımızda asla saklanmaz.';
+}
+
+// Path: legal.sections.device
+class _Translations$legal$sections$device$tr extends Translations$legal$sections$device$en {
+	_Translations$legal$sections$device$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Cihaz ve teknik veriler';
+	@override String get body => 'Ayarlar bölümünden aktif oturumlarınızı görüp iptal edebilmeniz için cihaz kimlikleri ve oturum bilgileri, ayrıca randevu hatırlatmaları ve mesajları cihazınıza iletmek için bir push bildirim jetonu.';
+}
+
+// Path: legal.sections.payment
+class _Translations$legal$sections$payment$tr extends Translations$legal$sections$payment$en {
+	_Translations$legal$sections$payment$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ödeme verileri';
+	@override String get body => 'Uygulama içinden bir konsültasyon için ödeme yaparsanız, ödeme tamamen ödeme ortağımız Payriff tarafından işlenir — kart numaranızı asla görmez veya saklamayız. Randevu geçmişiniz için ödeme tutarını, durumunu ve bir referans kimliğini saklarız.';
+}
+
+// Path: legal.sections.family
+class _Translations$legal$sections$family$tr extends Translations$legal$sections$family$en {
+	_Translations$legal$sections$family$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Aile üyesi profilleri';
+	@override String get body => 'Kendi girişi olmayan bir aile üyesinin (çocuk veya bakmakla yükümlü olduğunuz biri) profilini yönetiyorsanız, yukarıdaki aynı sağlık verisi kategorileri onun için hesabınız altında kaydedilebilir. Bir aile üyesi eklediğinizde, onun ebeveyni, vasisi veya sağlık bilgilerini onun adına yönetmeye yetkili olduğunuzu onaylamış olursunuz.';
+}
+
+// Path: legal.sections.purposes
+class _Translations$legal$sections$purposes$tr extends Translations$legal$sections$purposes$en {
+	_Translations$legal$sections$purposes$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Verilerinizi neden kullanıyoruz';
+	@override String get body => 'Doktor bulup randevu alabilmeniz için; doktorların programlarını ve hastalarını yönetebilmesi için; randevu hatırlatmaları ve güncellemeler göndermek için; konsültasyon ödemelerini işlemek için; isteğe bağlı semptom kontrol yapay zeka özelliğini sunmak için; hesabınızı güvende tutmak için.';
+}
+
+// Path: legal.sections.legalBasis
+class _Translations$legal$sections$legalBasis$tr extends Translations$legal$sections$legalBasis$en {
+	_Translations$legal$sections$legalBasis$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hukuki dayanak ve rızanız';
+	@override String get body => 'Verilerinizi, kayıt olurken verdiğiniz rıza temelinde işliyoruz. Sağlık verileri, Azerbaycan Cumhuriyeti "Kişisel Veriler Hakkında" Kanunu (No. 998-IIIQ) uyarınca özel kategori kişisel veridir ve toplanmadan önce açık, yazılı rızanızı gerektirir — kayıt ekranındaki onay kutusu tam olarak bunu kaydeder. Hesabınızı silerek rızanızı istediğiniz zaman geri çekebilirsiniz, ancak yasanın gerektirdiği durumlarda (örneğin vergi amaçlı mali kayıtlar) sınırlı kayıtları saklayabiliriz.';
+}
+
+// Path: legal.sections.thirdParties
+class _Translations$legal$sections$thirdParties$tr extends Translations$legal$sections$thirdParties$en {
+	_Translations$legal$sections$thirdParties$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Verilerinizi başka kim işler';
+	@override String get body => 'Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Anthropic (yapay zeka asistanını kullanırsanız mesajlarınızı işler); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız.';
+}
+
+// Path: legal.sections.retention
+class _Translations$legal$sections$retention$tr extends Translations$legal$sections$retention$en {
+	_Translations$legal$sections$retention$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Verilerinizi ne kadar süre saklıyoruz';
+	@override String get body => 'Hesabınız aktif olduğu sürece. Hesabınızı silerseniz, yasal olarak saklamamız gereken kayıtlar (örneğin vergi amaçlı ödeme kayıtları) dışında, kişisel verilerinizi makul bir süre içinde kaldırırız.';
+}
+
+// Path: legal.sections.rights
+class _Translations$legal$sections$rights$tr extends Translations$legal$sections$rights$en {
+	_Translations$legal$sections$rights$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Haklarınız';
+	@override String get body => 'Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin.';
+}
+
+// Path: legal.sections.security
+class _Translations$legal$sections$security$tr extends Translations$legal$sections$security$en {
+	_Translations$legal$sections$security$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Verilerinizi nasıl koruyoruz';
+	@override String get body => 'Doktorunuzla mesajlaşmalarınız ve yapay zeka asistanı konuşmaları şifrelenir. Yüklenen belgeler ve fotoğraflar özel olarak saklanır, yalnızca güvenli imzalı bağlantılarla erişilebilir, asla herkese açık dosyalar olarak değil. Şifreler asla okunabilir biçimde saklanmaz.';
+}
+
+// Path: legal.sections.permissions
+class _Translations$legal$sections$permissions$tr extends Translations$legal$sections$permissions$en {
+	_Translations$legal$sections$permissions$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'İstediğimiz izinler';
+	@override String get body => 'Kamera ve fotoğraf galerisi — profil fotoğrafı ayarlamak ve tıbbi belgeler yüklemek için. Konum — doktorları size olan uzaklığa göre sıralamak için. Bildirimler — randevu hatırlatmaları ve mesajlar iletmek için. Biyometri (Face ID / parmak izi) — uygulamanın kilidini açmanın isteğe bağlı, daha hızlı bir yolu; biyometrik verileriniz asla cihazınızdan çıkmaz, yalnızca işletim sisteminden bir evet/hayır onayı alırız.';
+}
+
+// Path: legal.sections.children
+class _Translations$legal$sections$children$tr extends Translations$legal$sections$children$en {
+	_Translations$legal$sections$children$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Yaş şartı';
+	@override String get body => 'Medalize hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın.';
 }
 
 /// The flat map containing all translations for locale <tr>.
@@ -1462,12 +1661,51 @@ extension on TranslationsTr {
 			'messaging.noSharedHistory' => 'Bir doktora yalnızca onunla ortak bir randevu geçmişiniz olduğunda mesaj gönderebilirsiniz.',
 			'messaging.newMessage' => 'Yeni bir mesajınız var',
 			'legal.title' => 'Gizlilik ve Koşullar',
+			'legal.controllerNotice' => 'Medalize, [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaycan ("biz") tarafından işletilmektedir. Son güncelleme: Temmuz 2026.',
 			'legal.privacyTitle' => 'Gizlilik Politikası',
-			'legal.privacyBody' => 'Medalize, randevu almanız ve yönetmeniz için kişisel ve sağlık bilgilerinizi işler. Verilerinizi satmıyoruz. Tam Gizlilik Politikası, herkese açık lansmandan önce burada yayınlanacaktır.',
+			'legal.privacyIntro' => 'Bu politika, Medalize\'nin hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.',
+			'legal.sections.identity.title' => 'Kimlik verileri',
+			'legal.sections.identity.body' => 'Ad ve soyad, e-posta adresi, telefon numarası (isteğe bağlı), şifreniz (geri döndürülemez bir hash olarak saklanır, asla düz metin olarak değil) ve tercih ettiğiniz uygulama dili.',
+			'legal.sections.health.title' => 'Sağlık verileri',
+			'legal.sections.health.body' => 'Hasta olarak: kan grubu, alerjiler, kronik hastalıklar, kullandığınız ilaçlar, randevu alırken belirttiğiniz sebep, yüklediğiniz tıbbi belgeler (tahlil sonuçları, görüntüleme, diğer kayıtlar), size yazılan reçeteler ve doktorunuzla mesajlaşma içeriğiniz. Semptom kontrol yapay zeka asistanını kullanırsanız, sorularınız ve yanıtları da aynı şekilde işlenir. Sağlık verileri Azerbaycan mevzuatına göre en yüksek koruma seviyesine sahiptir ve bunları yalnızca ayrı, açık rızanızla topluyoruz (aşağıda "Hukuki dayanak" bölümüne bakın).',
+			'legal.sections.professional.title' => 'Mesleki veriler (doktorlar)',
+			'legal.sections.professional.body' => 'Uzmanlık alanı, lisans numarası, diploma veya diğer doğrulama belgesi, işyeri bilgileri ve muayene ücreti. Bu bilgiler, profiliniz hastalara görünür olmadan önce ekibimiz tarafından incelenir.',
+			'legal.sections.location.title' => 'Konum',
+			'legal.sections.location.body' => 'İzninizle, doktorları size olan uzaklığa göre sıralamak için yaklaşık veya kesin konum. Yalnızca uygulama açıkken kullanılır — sunucularımızda asla saklanmaz.',
+			'legal.sections.device.title' => 'Cihaz ve teknik veriler',
+			'legal.sections.device.body' => 'Ayarlar bölümünden aktif oturumlarınızı görüp iptal edebilmeniz için cihaz kimlikleri ve oturum bilgileri, ayrıca randevu hatırlatmaları ve mesajları cihazınıza iletmek için bir push bildirim jetonu.',
+			'legal.sections.payment.title' => 'Ödeme verileri',
+			'legal.sections.payment.body' => 'Uygulama içinden bir konsültasyon için ödeme yaparsanız, ödeme tamamen ödeme ortağımız Payriff tarafından işlenir — kart numaranızı asla görmez veya saklamayız. Randevu geçmişiniz için ödeme tutarını, durumunu ve bir referans kimliğini saklarız.',
+			'legal.sections.family.title' => 'Aile üyesi profilleri',
+			'legal.sections.family.body' => 'Kendi girişi olmayan bir aile üyesinin (çocuk veya bakmakla yükümlü olduğunuz biri) profilini yönetiyorsanız, yukarıdaki aynı sağlık verisi kategorileri onun için hesabınız altında kaydedilebilir. Bir aile üyesi eklediğinizde, onun ebeveyni, vasisi veya sağlık bilgilerini onun adına yönetmeye yetkili olduğunuzu onaylamış olursunuz.',
+			'legal.sections.purposes.title' => 'Verilerinizi neden kullanıyoruz',
+			'legal.sections.purposes.body' => 'Doktor bulup randevu alabilmeniz için; doktorların programlarını ve hastalarını yönetebilmesi için; randevu hatırlatmaları ve güncellemeler göndermek için; konsültasyon ödemelerini işlemek için; isteğe bağlı semptom kontrol yapay zeka özelliğini sunmak için; hesabınızı güvende tutmak için.',
+			'legal.sections.legalBasis.title' => 'Hukuki dayanak ve rızanız',
+			'legal.sections.legalBasis.body' => 'Verilerinizi, kayıt olurken verdiğiniz rıza temelinde işliyoruz. Sağlık verileri, Azerbaycan Cumhuriyeti "Kişisel Veriler Hakkında" Kanunu (No. 998-IIIQ) uyarınca özel kategori kişisel veridir ve toplanmadan önce açık, yazılı rızanızı gerektirir — kayıt ekranındaki onay kutusu tam olarak bunu kaydeder. Hesabınızı silerek rızanızı istediğiniz zaman geri çekebilirsiniz, ancak yasanın gerektirdiği durumlarda (örneğin vergi amaçlı mali kayıtlar) sınırlı kayıtları saklayabiliriz.',
+			'legal.sections.thirdParties.title' => 'Verilerinizi başka kim işler',
+			'legal.sections.thirdParties.body' => 'Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Anthropic (yapay zeka asistanını kullanırsanız mesajlarınızı işler); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız.',
+			'legal.sections.retention.title' => 'Verilerinizi ne kadar süre saklıyoruz',
+			'legal.sections.retention.body' => 'Hesabınız aktif olduğu sürece. Hesabınızı silerseniz, yasal olarak saklamamız gereken kayıtlar (örneğin vergi amaçlı ödeme kayıtları) dışında, kişisel verilerinizi makul bir süre içinde kaldırırız.',
+			'legal.sections.rights.title' => 'Haklarınız',
+			'legal.sections.rights.body' => 'Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin.',
+			'legal.sections.security.title' => 'Verilerinizi nasıl koruyoruz',
+			'legal.sections.security.body' => 'Doktorunuzla mesajlaşmalarınız ve yapay zeka asistanı konuşmaları şifrelenir. Yüklenen belgeler ve fotoğraflar özel olarak saklanır, yalnızca güvenli imzalı bağlantılarla erişilebilir, asla herkese açık dosyalar olarak değil. Şifreler asla okunabilir biçimde saklanmaz.',
+			'legal.sections.permissions.title' => 'İstediğimiz izinler',
+			'legal.sections.permissions.body' => 'Kamera ve fotoğraf galerisi — profil fotoğrafı ayarlamak ve tıbbi belgeler yüklemek için. Konum — doktorları size olan uzaklığa göre sıralamak için. Bildirimler — randevu hatırlatmaları ve mesajlar iletmek için. Biyometri (Face ID / parmak izi) — uygulamanın kilidini açmanın isteğe bağlı, daha hızlı bir yolu; biyometrik verileriniz asla cihazınızdan çıkmaz, yalnızca işletim sisteminden bir evet/hayır onayı alırız.',
+			'legal.sections.children.title' => 'Yaş şartı',
+			'legal.sections.children.body' => 'Medalize hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın.',
 			'legal.termsTitle' => 'Kullanım Koşulları',
-			'legal.termsBody' => 'Medalize’ı kullanarak, hizmeti randevu alma ve yönetme için sorumlu bir şekilde kullanmayı kabul edersiniz. Tam Kullanım Koşulları, herkese açık lansmandan önce burada yayınlanacaktır.',
-			'legal.draftNotice' => 'Taslak — nihai hukuki inceleme bekleniyor.',
-			'legal.contact' => 'Verilerinizle ilgili sorular mı var? support@medalize.app ile iletişime geçin',
+			'legal.termsIntro' => 'Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.',
+			'legal.termsBody' => 'Kendiniz hakkında doğru bilgi verin. Medalize\'yi yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. Medalize sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.',
+			'legal.contact' => 'Verileriniz hakkında sorularınız mı var? support@medalize.app adresine yazın',
+			'legal.consentPrefix' => '',
+			'legal.consentPrivacyLink' => 'Gizlilik Politikası',
+			'legal.consentMiddle' => ' ve ',
+			'legal.consentTermsLink' => 'Kullanım Koşulları',
+			'legal.consentSuffix' => '\'nı okudum, kabul ediyorum ve orada açıklandığı şekilde sağlık verilerimin işlenmesine açıkça rıza gösteriyorum.',
+			'legal.viewAsPdf' => 'PDF olarak görüntüle',
+			'legal.pdfDocumentTitle' => 'Medalize — Gizlilik Politikası ve Kullanım Koşulları',
+			'legal.pdfLoadError' => 'Belge yüklenemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.',
 			'medications.title' => 'İlaçlar',
 			'medications.addMedication' => 'İlaç Ekle',
 			'medications.editMedication' => 'İlacı Düzenle',
@@ -1487,6 +1725,8 @@ extension on TranslationsTr {
 			'medications.everyDay' => 'Her gün',
 			'medications.startDate' => 'Başlangıç Tarihi',
 			'medications.endDate' => 'Bitiş Tarihi',
+			_ => null,
+		} ?? switch (path) {
 			'medications.save' => 'Kaydet',
 			'medications.delete' => 'Sil',
 			'medications.deleteConfirmTitle' => 'İlacı Sil',
@@ -1526,8 +1766,6 @@ extension on TranslationsTr {
 			'prescriptions.instructions' => 'Talimatlar',
 			'prescriptions.notes' => 'Notlar',
 			'prescriptions.save' => 'Kaydet',
-			_ => null,
-		} ?? switch (path) {
 			'prescriptions.empty' => 'Henüz reçete yok',
 			'prescriptions.emptySubtitle' => 'Doktorunuzun yazdığı reçeteler burada görünecek.',
 			'prescriptions.viewDetails' => 'Detayları Gör',
