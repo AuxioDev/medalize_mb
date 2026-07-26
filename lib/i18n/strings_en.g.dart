@@ -1977,6 +1977,9 @@ class Translations$records$en {
 	/// en: 'Choose a file to upload'
 	String get fileRequired => 'Choose a file to upload';
 
+	/// en: 'File is too large (max 15 MB)'
+	String get fileTooLarge => 'File is too large (max 15 MB)';
+
 	/// en: 'Title is required'
 	String get titleRequired => 'Title is required';
 
@@ -2758,6 +2761,7 @@ extension on Translations {
 			'records.emptySubtitle' => 'Upload lab results, imaging, or other documents to keep them all in one place.',
 			'records.view' => 'View',
 			'records.fileRequired' => 'Choose a file to upload',
+			'records.fileTooLarge' => 'File is too large (max 15 MB)',
 			'records.titleRequired' => 'Title is required',
 			'records.uploadSuccess' => 'Record uploaded.',
 			'records.deletedSuccess' => 'Record deleted.',

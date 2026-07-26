@@ -906,6 +906,7 @@ class _Translations$records$ru extends Translations$records$en {
 	@override String get emptySubtitle => 'Загружайте результаты анализов, снимки и другие документы в одном месте.';
 	@override String get view => 'Открыть';
 	@override String get fileRequired => 'Выберите файл для загрузки';
+	@override String get fileTooLarge => 'Файл слишком большой (макс. 15 МБ)';
 	@override String get titleRequired => 'Укажите название';
 	@override String get uploadSuccess => 'Документ загружен.';
 	@override String get deletedSuccess => 'Документ удалён.';
@@ -1566,6 +1567,7 @@ extension on TranslationsRu {
 			'records.emptySubtitle' => 'Загружайте результаты анализов, снимки и другие документы в одном месте.',
 			'records.view' => 'Открыть',
 			'records.fileRequired' => 'Выберите файл для загрузки',
+			'records.fileTooLarge' => 'Файл слишком большой (макс. 15 МБ)',
 			'records.titleRequired' => 'Укажите название',
 			'records.uploadSuccess' => 'Документ загружен.',
 			'records.deletedSuccess' => 'Документ удалён.',

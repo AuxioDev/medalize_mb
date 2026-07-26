@@ -906,6 +906,7 @@ class _Translations$records$fr extends Translations$records$en {
 	@override String get emptySubtitle => 'Conservez vos résultats d\'analyses, imageries et autres documents au même endroit.';
 	@override String get view => 'Ouvrir';
 	@override String get fileRequired => 'Choisissez un fichier à téléverser';
+	@override String get fileTooLarge => 'Le fichier est trop volumineux (max 15 Mo)';
 	@override String get titleRequired => 'Le titre est requis';
 	@override String get uploadSuccess => 'Document téléversé.';
 	@override String get deletedSuccess => 'Document supprimé.';
@@ -1566,6 +1567,7 @@ extension on TranslationsFr {
 			'records.emptySubtitle' => 'Conservez vos résultats d\'analyses, imageries et autres documents au même endroit.',
 			'records.view' => 'Ouvrir',
 			'records.fileRequired' => 'Choisissez un fichier à téléverser',
+			'records.fileTooLarge' => 'Le fichier est trop volumineux (max 15 Mo)',
 			'records.titleRequired' => 'Le titre est requis',
 			'records.uploadSuccess' => 'Document téléversé.',
 			'records.deletedSuccess' => 'Document supprimé.',

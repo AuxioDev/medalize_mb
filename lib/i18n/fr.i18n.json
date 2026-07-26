@@ -619,6 +619,7 @@
     "emptySubtitle": "Conservez vos résultats d'analyses, imageries et autres documents au même endroit.",
     "view": "Ouvrir",
     "fileRequired": "Choisissez un fichier à téléverser",
+    "fileTooLarge": "Le fichier est trop volumineux (max 15 Mo)",
     "titleRequired": "Le titre est requis",
     "uploadSuccess": "Document téléversé.",
     "deletedSuccess": "Document supprimé.",

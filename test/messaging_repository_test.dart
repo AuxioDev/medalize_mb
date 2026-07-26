@@ -98,7 +98,7 @@ Map<String, dynamic> _messageJson({
     };
 
 void main() {
-  test('getThreads parses a plain (non-paginated) list', () async {
+  test('getThreads tolerates a plain (non-paginated) list response', () async {
     final adapter = _CapturingAdapter([
       [
         _threadJson(
@@ -113,6 +113,7 @@ void main() {
 
     expect(adapter.requests.single.method, 'GET');
     expect(adapter.requests.single.path, '/messaging/threads/');
+    expect(adapter.requests.single.queryParameters, {'page': 1});
     expect(threads, hasLength(1));
     expect(threads[0].id, 'thread-1');
     expect(threads[0].patient.fullName, 'Leyla Huseynova');
@@ -122,6 +123,30 @@ void main() {
     expect(threads[0].unreadCount, 2);
     expect(threads[0].counterpart(asDoctor: false).id, 'doctor-1');
     expect(threads[0].counterpart(asDoctor: true).id, 'patient-1');
+  });
+
+  test('getThreads walks every page via next until null', () async {
+    final adapter = _CapturingAdapter([
+      {
+        'count': 2,
+        'next': 'http://localhost/api/messaging/threads/?page=2',
+        'previous': null,
+        'results': [_threadJson(id: 'thread-1')],
+      },
+      {
+        'count': 2,
+        'next': null,
+        'previous': null,
+        'results': [_threadJson(id: 'thread-2')],
+      },
+    ]);
+
+    final threads = await _repo(adapter).getThreads();
+
+    expect(adapter.requests, hasLength(2));
+    expect(adapter.requests[0].queryParameters, {'page': 1});
+    expect(adapter.requests[1].queryParameters, {'page': 2});
+    expect(threads.map((t) => t.id), ['thread-1', 'thread-2']);
   });
 
   test('getOrCreateThread posts participant_id and parses the thread', () async {

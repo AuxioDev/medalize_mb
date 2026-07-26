@@ -619,6 +619,7 @@
     "emptySubtitle": "Tahlil sonuçlarını, görüntüleri ve diğer belgeleri tek bir yerde saklayın.",
     "view": "Görüntüle",
     "fileRequired": "Yüklemek için bir dosya seçin",
+    "fileTooLarge": "Dosya çok büyük (maks. 15 MB)",
     "titleRequired": "Başlık gereklidir",
     "uploadSuccess": "Belge yüklendi.",
     "deletedSuccess": "Belge silindi.",

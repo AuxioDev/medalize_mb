@@ -906,6 +906,7 @@ class _Translations$records$az extends Translations$records$en {
 	@override String get emptySubtitle => 'Analiz nəticələrini, görüntüləri və digər sənədləri bir yerdə saxlayın.';
 	@override String get view => 'Bax';
 	@override String get fileRequired => 'Yükləmək üçün fayl seçin';
+	@override String get fileTooLarge => 'Fayl həddindən artıq böyükdür (maks. 15 MB)';
 	@override String get titleRequired => 'Başlıq tələb olunur';
 	@override String get uploadSuccess => 'Sənəd yükləndi.';
 	@override String get deletedSuccess => 'Sənəd silindi.';
@@ -1566,6 +1567,7 @@ extension on TranslationsAz {
 			'records.emptySubtitle' => 'Analiz nəticələrini, görüntüləri və digər sənədləri bir yerdə saxlayın.',
 			'records.view' => 'Bax',
 			'records.fileRequired' => 'Yükləmək üçün fayl seçin',
+			'records.fileTooLarge' => 'Fayl həddindən artıq böyükdür (maks. 15 MB)',
 			'records.titleRequired' => 'Başlıq tələb olunur',
 			'records.uploadSuccess' => 'Sənəd yükləndi.',
 			'records.deletedSuccess' => 'Sənəd silindi.',

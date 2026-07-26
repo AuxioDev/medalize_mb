@@ -906,6 +906,7 @@ class _Translations$records$zh extends Translations$records$en {
 	@override String get emptySubtitle => '将化验结果、影像检查和其他文档集中保存在这里。';
 	@override String get view => '查看';
 	@override String get fileRequired => '请选择要上传的文件';
+	@override String get fileTooLarge => '文件过大（最大 15 MB）';
 	@override String get titleRequired => '请填写标题';
 	@override String get uploadSuccess => '文件已上传。';
 	@override String get deletedSuccess => '文件已删除。';
@@ -1566,6 +1567,7 @@ extension on TranslationsZh {
 			'records.emptySubtitle' => '将化验结果、影像检查和其他文档集中保存在这里。',
 			'records.view' => '查看',
 			'records.fileRequired' => '请选择要上传的文件',
+			'records.fileTooLarge' => '文件过大（最大 15 MB）',
 			'records.titleRequired' => '请填写标题',
 			'records.uploadSuccess' => '文件已上传。',
 			'records.deletedSuccess' => '文件已删除。',

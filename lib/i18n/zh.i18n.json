@@ -619,6 +619,7 @@
     "emptySubtitle": "将化验结果、影像检查和其他文档集中保存在这里。",
     "view": "查看",
     "fileRequired": "请选择要上传的文件",
+    "fileTooLarge": "文件过大（最大 15 MB）",
     "titleRequired": "请填写标题",
     "uploadSuccess": "文件已上传。",
     "deletedSuccess": "文件已删除。",

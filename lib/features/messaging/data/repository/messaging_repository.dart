@@ -25,16 +25,27 @@ class MessagingRepository {
     return mapDioError(e);
   }
 
+  /// Fetches every page and concatenates them, same pattern as
+  /// [getAllMessages] below — the backend paginates at 20/page, so a user
+  /// with more threads than that would otherwise silently lose the rest.
   Future<List<ThreadModel>> getThreads() async {
     try {
-      final res = await _dio.get('/messaging/threads/');
-      final data = res.data;
-      // The endpoint returns a plain (non-paginated) list, but tolerate a
-      // `results`-wrapped shape too in case that ever changes.
-      final results = data is List ? data : (data['results'] as List<dynamic>? ?? []);
-      return results
-          .map((e) => ThreadModel.fromJson(e as Map<String, dynamic>))
-          .toList();
+      final all = <ThreadModel>[];
+      var page = 1;
+      while (true) {
+        final res = await _dio.get('/messaging/threads/', queryParameters: {'page': page});
+        final data = res.data;
+        if (data is List) {
+          all.addAll(data.map((e) => ThreadModel.fromJson(e as Map<String, dynamic>)));
+          break;
+        }
+        final map = data as Map<String, dynamic>;
+        final pageResults = (map['results'] as List<dynamic>?) ?? [];
+        all.addAll(pageResults.map((e) => ThreadModel.fromJson(e as Map<String, dynamic>)));
+        if (map['next'] == null) break;
+        page++;
+      }
+      return all;
     } on DioException catch (e) {
       throw _mapError(e);
     } catch (_) {

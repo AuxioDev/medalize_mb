@@ -619,6 +619,7 @@
     "emptySubtitle": "Upload lab results, imaging, or other documents to keep them all in one place.",
     "view": "View",
     "fileRequired": "Choose a file to upload",
+    "fileTooLarge": "File is too large (max 15 MB)",
     "titleRequired": "Title is required",
     "uploadSuccess": "Record uploaded.",
     "deletedSuccess": "Record deleted.",

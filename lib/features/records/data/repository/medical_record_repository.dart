@@ -13,15 +13,27 @@ class MedicalRecordRepository {
   MedicalRecordRepository(this._dio);
   final Dio _dio;
 
+  /// Fetches every page and concatenates them — the backend paginates at
+  /// 20/page, so a patient with more records than that would otherwise
+  /// silently lose the rest.
   Future<List<MedicalRecordModel>> getRecords() async {
     try {
-      final res = await _dio.get('/records/');
-      final data = res.data;
-      final results = (data is Map ? data['results'] as List<dynamic>? : null) ??
-          data as List<dynamic>;
-      return results
-          .map((e) => MedicalRecordModel.fromJson(e as Map<String, dynamic>))
-          .toList();
+      final all = <MedicalRecordModel>[];
+      var page = 1;
+      while (true) {
+        final res = await _dio.get('/records/', queryParameters: {'page': page});
+        final data = res.data;
+        if (data is List) {
+          all.addAll(data.map((e) => MedicalRecordModel.fromJson(e as Map<String, dynamic>)));
+          break;
+        }
+        final map = data as Map<String, dynamic>;
+        final pageResults = (map['results'] as List<dynamic>?) ?? [];
+        all.addAll(pageResults.map((e) => MedicalRecordModel.fromJson(e as Map<String, dynamic>)));
+        if (map['next'] == null) break;
+        page++;
+      }
+      return all;
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {

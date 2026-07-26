@@ -21,6 +21,10 @@ dependencies:
   intl: ^0.20.2
   image_picker: ^1.1.0
   file_picker: ^8.1.2
+  # Compresses camera-shot photos before uploading them as medical records —
+  # image_picker's imageQuality (used for avatars) doesn't apply here since
+  # records also accept PDFs via file_picker, which has no compression option.
+  flutter_image_compress: ^2.5.1
   flutter_animate: ^4.5.0
   google_fonts: ^6.2.1
   shimmer: ^3.0.0
@@ -63,6 +67,9 @@ dev_dependencies:
   # Test-only: SharePlatform, used to fake the native share sheet in
   # test/conversation_summary_screen_test.dart without a real platform channel.
   share_plus_platform_interface: ^6.1.0
+  # Test-only: FlutterImageCompressPlatform, used to fake image compression in
+  # test/upload_record_screen_test.dart without a real platform channel.
+  flutter_image_compress_platform_interface: ^1.1.0
   slang_build_runner: ^4.4.0
   build_runner: ^2.4.0
   integration_test:

@@ -906,6 +906,7 @@ class _Translations$records$tr extends Translations$records$en {
 	@override String get emptySubtitle => 'Tahlil sonuçlarını, görüntüleri ve diğer belgeleri tek bir yerde saklayın.';
 	@override String get view => 'Görüntüle';
 	@override String get fileRequired => 'Yüklemek için bir dosya seçin';
+	@override String get fileTooLarge => 'Dosya çok büyük (maks. 15 MB)';
 	@override String get titleRequired => 'Başlık gereklidir';
 	@override String get uploadSuccess => 'Belge yüklendi.';
 	@override String get deletedSuccess => 'Belge silindi.';
@@ -1566,6 +1567,7 @@ extension on TranslationsTr {
 			'records.emptySubtitle' => 'Tahlil sonuçlarını, görüntüleri ve diğer belgeleri tek bir yerde saklayın.',
 			'records.view' => 'Görüntüle',
 			'records.fileRequired' => 'Yüklemek için bir dosya seçin',
+			'records.fileTooLarge' => 'Dosya çok büyük (maks. 15 MB)',
 			'records.titleRequired' => 'Başlık gereklidir',
 			'records.uploadSuccess' => 'Belge yüklendi.',
 			'records.deletedSuccess' => 'Belge silindi.',

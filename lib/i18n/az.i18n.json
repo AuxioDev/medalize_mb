@@ -619,6 +619,7 @@
     "emptySubtitle": "Analiz nəticələrini, görüntüləri və digər sənədləri bir yerdə saxlayın.",
     "view": "Bax",
     "fileRequired": "Yükləmək üçün fayl seçin",
+    "fileTooLarge": "Fayl həddindən artıq böyükdür (maks. 15 MB)",
     "titleRequired": "Başlıq tələb olunur",
     "uploadSuccess": "Sənəd yükləndi.",
     "deletedSuccess": "Sənəd silindi.",

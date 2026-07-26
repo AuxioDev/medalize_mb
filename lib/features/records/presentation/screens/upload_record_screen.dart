@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -24,6 +27,10 @@ const _kRecordTypes = [
   MedicalRecordModel.typeOther,
 ];
 
+// Mirrors apps/records/views.py::_MAX_RECORD_FILE_SIZE — client-side check so
+// an oversized file fails fast instead of a slow upload ending in a 400.
+const _kMaxUploadBytes = 15 * 1024 * 1024;
+
 class UploadRecordScreen extends ConsumerStatefulWidget {
   const UploadRecordScreen({super.key});
 
@@ -40,6 +47,7 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
   String? _fileName;
 
   bool _saving = false;
+  bool _compressing = false;
   String? _error;
 
   @override
@@ -56,9 +64,42 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
     );
     final file = result?.files.singleOrNull;
     if (file?.path == null) return;
+
+    var path = file!.path!;
+    var name = file.name;
+    final ext = name.contains('.') ? name.split('.').last.toLowerCase() : '';
+    if (ext == 'jpg' || ext == 'jpeg' || ext == 'png') {
+      // Camera-shot photos can be 10-50 MB — compress before it ever reaches
+      // the upload call. Quality matches the avatar picker (imageQuality: 85
+      // in profile_screen.dart) — not lower, since these are lab/scan photos
+      // where detail readability matters more than for an avatar.
+      setState(() => _compressing = true);
+      try {
+        final dot = path.lastIndexOf('.');
+        final base = dot == -1 ? path : path.substring(0, dot);
+        final targetPath = '${base}_compressed.jpg';
+        final compressed = await FlutterImageCompress.compressAndGetFile(
+          path,
+          targetPath,
+          quality: 85,
+        );
+        if (compressed != null) {
+          path = compressed.path;
+          final nameDot = name.lastIndexOf('.');
+          final nameBase = nameDot == -1 ? name : name.substring(0, nameDot);
+          name = '$nameBase.jpg';
+        }
+      } catch (_) {
+        // Compression failed — fall back to the original file rather than
+        // blocking the upload entirely over a transient compression error.
+      } finally {
+        if (mounted) setState(() => _compressing = false);
+      }
+    }
+
     setState(() {
-      _filePath = file!.path;
-      _fileName = file.name;
+      _filePath = path;
+      _fileName = name;
     });
   }
 
@@ -81,6 +122,15 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
     if (_filePath == null) {
       setState(() => _error = context.t.records.fileRequired);
       return;
+    }
+    try {
+      if (File(_filePath!).lengthSync() > _kMaxUploadBytes) {
+        setState(() => _error = context.t.records.fileTooLarge);
+        return;
+      }
+    } catch (_) {
+      // Can't stat the file (e.g. it disappeared) — let the upload attempt
+      // proceed and surface a clear error from the network layer instead.
     }
 
     setState(() {
@@ -157,7 +207,7 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
               ),
               const Gap(AppSpacing.md),
               OutlinedButton.icon(
-                onPressed: _pickFile,
+                onPressed: _compressing ? null : _pickFile,
                 icon: const Icon(Icons.attach_file, size: 18),
                 label: Text(_fileName == null ? t.records.chooseFile : t.records.changeFile),
               ),
