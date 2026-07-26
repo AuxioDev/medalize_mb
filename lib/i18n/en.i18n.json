@@ -480,22 +480,7 @@
     "reportHint": "Reason (optional)",
     "reportSubmit": "Report",
     "reportSuccess": "Thank you, the response was reported.",
-    "reportFailed": "Could not report the response. Please try again.",
-    "getSummary": "Get Summary",
-    "summaryTitle": "Conversation Summary",
-    "possibleConditions": "Possible conditions to discuss",
-    "likelihoodLow": "Low",
-    "likelihoodMedium": "Medium",
-    "likelihoodHigh": "High",
-    "urgencyRoutine": "Routine",
-    "urgencySoon": "See a doctor soon",
-    "urgencyUrgent": "Urgent — within 24 hours",
-    "urgencyEmergency": "Emergency",
-    "emergencyWarning": "Seek emergency care now.",
-    "recommendedSpecialization": "Recommended specialist",
-    "findDoctors": "Find Doctors",
-    "share": "Share",
-    "summaryNotReadyYet": "Not enough conversation yet to summarize."
+    "reportFailed": "Could not report the response. Please try again."
   },
   "messaging": {
     "title": "Messages",
@@ -552,7 +537,7 @@
       },
       "thirdParties": {
         "title": "Who else processes your data",
-        "body": "Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Anthropic (processes your messages if you use the AI assistant); Payriff (in-app payments). We do not sell your personal data."
+        "body": "Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Payriff (in-app payments). We do not sell your personal data."
       },
       "retention": {
         "title": "How long we keep your data",

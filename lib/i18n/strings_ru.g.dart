@@ -733,21 +733,6 @@ class _Translations$assistant$ru extends Translations$assistant$en {
 	@override String get reportSubmit => 'Отправить';
 	@override String get reportSuccess => 'Спасибо, жалоба отправлена.';
 	@override String get reportFailed => 'Не удалось отправить жалобу. Попробуйте ещё раз.';
-	@override String get getSummary => 'Получить сводку';
-	@override String get summaryTitle => 'Сводка разговора';
-	@override String get possibleConditions => 'Возможные состояния для обсуждения';
-	@override String get likelihoodLow => 'Низкая';
-	@override String get likelihoodMedium => 'Средняя';
-	@override String get likelihoodHigh => 'Высокая';
-	@override String get urgencyRoutine => 'Не срочно';
-	@override String get urgencySoon => 'Обратитесь к врачу в ближайшие дни';
-	@override String get urgencyUrgent => 'Срочно — в течение 24 часов';
-	@override String get urgencyEmergency => 'Неотложная помощь';
-	@override String get emergencyWarning => 'Немедленно обратитесь за неотложной помощью.';
-	@override String get recommendedSpecialization => 'Рекомендуемый специалист';
-	@override String get findDoctors => 'Найти врачей';
-	@override String get share => 'Поделиться';
-	@override String get summaryNotReadyYet => 'Пока недостаточно разговора для составления сводки.';
 }
 
 // Path: messaging
@@ -1147,7 +1132,7 @@ class _Translations$legal$sections$thirdParties$ru extends Translations$legal$se
 
 	// Translations
 	@override String get title => 'Кто ещё обрабатывает ваши данные';
-	@override String get body => 'Доверенные поставщики услуг, действующие только по нашему поручению и исключительно для описанных здесь целей: Cloudinary (безопасное хранение файлов — документы и фото никогда не доступны публично, только по подписанным ссылкам с ограниченным сроком действия); Firebase/Google (push-уведомления и вход через Google, если вы его выберете); Apple (вход через Apple, если вы его выберете); Anthropic (обрабатывает ваши сообщения при использовании ИИ-ассистента); Payriff (платежи в приложении). Мы не продаём ваши персональные данные.';
+	@override String get body => 'Доверенные поставщики услуг, действующие только по нашему поручению и исключительно для описанных здесь целей: Cloudinary (безопасное хранение файлов — документы и фото никогда не доступны публично, только по подписанным ссылкам с ограниченным сроком действия); Firebase/Google (push-уведомления и вход через Google, если вы его выберете); Apple (вход через Apple, если вы его выберете); Payriff (платежи в приложении). Мы не продаём ваши персональные данные.';
 }
 
 // Path: legal.sections.retention
@@ -1636,21 +1621,6 @@ extension on TranslationsRu {
 			'assistant.reportSubmit' => 'Отправить',
 			'assistant.reportSuccess' => 'Спасибо, жалоба отправлена.',
 			'assistant.reportFailed' => 'Не удалось отправить жалобу. Попробуйте ещё раз.',
-			'assistant.getSummary' => 'Получить сводку',
-			'assistant.summaryTitle' => 'Сводка разговора',
-			'assistant.possibleConditions' => 'Возможные состояния для обсуждения',
-			'assistant.likelihoodLow' => 'Низкая',
-			'assistant.likelihoodMedium' => 'Средняя',
-			'assistant.likelihoodHigh' => 'Высокая',
-			'assistant.urgencyRoutine' => 'Не срочно',
-			'assistant.urgencySoon' => 'Обратитесь к врачу в ближайшие дни',
-			'assistant.urgencyUrgent' => 'Срочно — в течение 24 часов',
-			'assistant.urgencyEmergency' => 'Неотложная помощь',
-			'assistant.emergencyWarning' => 'Немедленно обратитесь за неотложной помощью.',
-			'assistant.recommendedSpecialization' => 'Рекомендуемый специалист',
-			'assistant.findDoctors' => 'Найти врачей',
-			'assistant.share' => 'Поделиться',
-			'assistant.summaryNotReadyYet' => 'Пока недостаточно разговора для составления сводки.',
 			'messaging.title' => 'Сообщения',
 			'messaging.sendMessage' => 'Написать',
 			'messaging.typeMessage' => 'Введите сообщение…',
@@ -1683,7 +1653,7 @@ extension on TranslationsRu {
 			'legal.sections.legalBasis.title' => 'Правовое основание и ваше согласие',
 			'legal.sections.legalBasis.body' => 'Мы обрабатываем ваши данные на основании согласия, данного при регистрации. Данные о здоровье относятся к специальной категории персональных данных по Закону Азербайджанской Республики «О персональных данных» (№998-IIIQ), который требует явного письменного согласия до их сбора — именно это фиксирует чекбокс на экране регистрации. Вы можете отозвать согласие в любой момент, удалив аккаунт, хотя мы можем сохранить ограниченные записи, если это требуется законом (например, финансовые записи для налоговой отчётности).',
 			'legal.sections.thirdParties.title' => 'Кто ещё обрабатывает ваши данные',
-			'legal.sections.thirdParties.body' => 'Доверенные поставщики услуг, действующие только по нашему поручению и исключительно для описанных здесь целей: Cloudinary (безопасное хранение файлов — документы и фото никогда не доступны публично, только по подписанным ссылкам с ограниченным сроком действия); Firebase/Google (push-уведомления и вход через Google, если вы его выберете); Apple (вход через Apple, если вы его выберете); Anthropic (обрабатывает ваши сообщения при использовании ИИ-ассистента); Payriff (платежи в приложении). Мы не продаём ваши персональные данные.',
+			'legal.sections.thirdParties.body' => 'Доверенные поставщики услуг, действующие только по нашему поручению и исключительно для описанных здесь целей: Cloudinary (безопасное хранение файлов — документы и фото никогда не доступны публично, только по подписанным ссылкам с ограниченным сроком действия); Firebase/Google (push-уведомления и вход через Google, если вы его выберете); Apple (вход через Apple, если вы его выберете); Payriff (платежи в приложении). Мы не продаём ваши персональные данные.',
 			'legal.sections.retention.title' => 'Сколько мы храним данные',
 			'legal.sections.retention.body' => 'Пока ваш аккаунт активен. При удалении аккаунта мы удаляем ваши персональные данные в разумный срок, за исключением записей, которые обязаны хранить по закону (например, платёжные записи для налогового учёта).',
 			'legal.sections.rights.title' => 'Ваши права',
@@ -1725,8 +1695,6 @@ extension on TranslationsRu {
 			'medications.everyDay' => 'Каждый день',
 			'medications.startDate' => 'Дата начала',
 			'medications.endDate' => 'Дата окончания',
-			_ => null,
-		} ?? switch (path) {
 			'medications.save' => 'Сохранить',
 			'medications.delete' => 'Удалить',
 			'medications.deleteConfirmTitle' => 'Удалить лекарство',
@@ -1742,6 +1710,8 @@ extension on TranslationsRu {
 			'medications.reminderTitle' => ({required Object name}) => 'Пора принять ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Доза: ${dosage}',
 			'medications.tabActive' => 'Активные',
+			_ => null,
+		} ?? switch (path) {
 			'medications.tabArchive' => 'Архив',
 			'medications.fromPrescription' => 'По рецепту',
 			'medications.noSchedule' => 'Расписание не задано — нажмите, чтобы добавить время приёма',

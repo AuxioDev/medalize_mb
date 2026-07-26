@@ -480,22 +480,7 @@
     "reportHint": "Neden (isteğe bağlı)",
     "reportSubmit": "Bildir",
     "reportSuccess": "Teşekkürler, yanıt bildirildi.",
-    "reportFailed": "Yanıt bildirilemedi. Lütfen tekrar deneyin.",
-    "getSummary": "Özet Al",
-    "summaryTitle": "Görüşme Özeti",
-    "possibleConditions": "Görüşülecek olası durumlar",
-    "likelihoodLow": "Düşük",
-    "likelihoodMedium": "Orta",
-    "likelihoodHigh": "Yüksek",
-    "urgencyRoutine": "Acil değil",
-    "urgencySoon": "Yakın günlerde doktora görünün",
-    "urgencyUrgent": "Acil — 24 saat içinde",
-    "urgencyEmergency": "Acil durum",
-    "emergencyWarning": "Hemen acil tıbbi yardım alın.",
-    "recommendedSpecialization": "Önerilen uzmanlık",
-    "findDoctors": "Doktor Bul",
-    "share": "Paylaş",
-    "summaryNotReadyYet": "Özet çıkarmak için görüşme henüz yeterli değil."
+    "reportFailed": "Yanıt bildirilemedi. Lütfen tekrar deneyin."
   },
   "messaging": {
     "title": "Mesajlar",
@@ -552,7 +537,7 @@
       },
       "thirdParties": {
         "title": "Verilerinizi başka kim işler",
-        "body": "Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Anthropic (yapay zeka asistanını kullanırsanız mesajlarınızı işler); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız."
+        "body": "Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız."
       },
       "retention": {
         "title": "Verilerinizi ne kadar süre saklıyoruz",

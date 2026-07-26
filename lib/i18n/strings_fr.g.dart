@@ -733,21 +733,6 @@ class _Translations$assistant$fr extends Translations$assistant$en {
 	@override String get reportSubmit => 'Signaler';
 	@override String get reportSuccess => 'Merci, la réponse a été signalée.';
 	@override String get reportFailed => 'Impossible de signaler la réponse. Veuillez réessayer.';
-	@override String get getSummary => 'Obtenir un résumé';
-	@override String get summaryTitle => 'Résumé de la discussion';
-	@override String get possibleConditions => 'Pistes possibles à discuter';
-	@override String get likelihoodLow => 'Faible';
-	@override String get likelihoodMedium => 'Moyenne';
-	@override String get likelihoodHigh => 'Élevée';
-	@override String get urgencyRoutine => 'Non urgent';
-	@override String get urgencySoon => 'Consultez un médecin sous peu';
-	@override String get urgencyUrgent => 'Urgent — sous 24 heures';
-	@override String get urgencyEmergency => 'Urgence';
-	@override String get emergencyWarning => 'Consultez immédiatement un service d\'urgence.';
-	@override String get recommendedSpecialization => 'Spécialiste recommandé';
-	@override String get findDoctors => 'Trouver des médecins';
-	@override String get share => 'Partager';
-	@override String get summaryNotReadyYet => 'La discussion n\'est pas encore assez avancée pour être résumée.';
 }
 
 // Path: messaging
@@ -1147,7 +1132,7 @@ class _Translations$legal$sections$thirdParties$fr extends Translations$legal$se
 
 	// Translations
 	@override String get title => 'Qui traite également vos données';
-	@override String get body => 'Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Anthropic (traite vos messages si vous utilisez l\'assistant IA) ; Payriff (paiements dans l\'application). Nous ne vendons pas vos données personnelles.';
+	@override String get body => 'Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Payriff (paiements dans l\'application). Nous ne vendons pas vos données personnelles.';
 }
 
 // Path: legal.sections.retention
@@ -1636,21 +1621,6 @@ extension on TranslationsFr {
 			'assistant.reportSubmit' => 'Signaler',
 			'assistant.reportSuccess' => 'Merci, la réponse a été signalée.',
 			'assistant.reportFailed' => 'Impossible de signaler la réponse. Veuillez réessayer.',
-			'assistant.getSummary' => 'Obtenir un résumé',
-			'assistant.summaryTitle' => 'Résumé de la discussion',
-			'assistant.possibleConditions' => 'Pistes possibles à discuter',
-			'assistant.likelihoodLow' => 'Faible',
-			'assistant.likelihoodMedium' => 'Moyenne',
-			'assistant.likelihoodHigh' => 'Élevée',
-			'assistant.urgencyRoutine' => 'Non urgent',
-			'assistant.urgencySoon' => 'Consultez un médecin sous peu',
-			'assistant.urgencyUrgent' => 'Urgent — sous 24 heures',
-			'assistant.urgencyEmergency' => 'Urgence',
-			'assistant.emergencyWarning' => 'Consultez immédiatement un service d\'urgence.',
-			'assistant.recommendedSpecialization' => 'Spécialiste recommandé',
-			'assistant.findDoctors' => 'Trouver des médecins',
-			'assistant.share' => 'Partager',
-			'assistant.summaryNotReadyYet' => 'La discussion n\'est pas encore assez avancée pour être résumée.',
 			'messaging.title' => 'Messages',
 			'messaging.sendMessage' => 'Envoyer un message',
 			'messaging.typeMessage' => 'Écrivez un message…',
@@ -1683,7 +1653,7 @@ extension on TranslationsFr {
 			'legal.sections.legalBasis.title' => 'Base légale et votre consentement',
 			'legal.sections.legalBasis.body' => 'Nous traitons vos données sur la base du consentement donné lors de votre inscription. Les données de santé constituent une catégorie particulière de données personnelles selon la loi de la République d\'Azerbaïdjan « Sur les données personnelles » (n° 998-IIIQ), qui exige votre consentement explicite et écrit avant leur collecte — c\'est ce qu\'enregistre la case à cocher de l\'écran d\'inscription. Vous pouvez retirer votre consentement à tout moment en supprimant votre compte, bien que nous puissions conserver certains registres lorsque la loi l\'exige (par exemple, des registres financiers à des fins fiscales).',
 			'legal.sections.thirdParties.title' => 'Qui traite également vos données',
-			'legal.sections.thirdParties.body' => 'Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Anthropic (traite vos messages si vous utilisez l\'assistant IA) ; Payriff (paiements dans l\'application). Nous ne vendons pas vos données personnelles.',
+			'legal.sections.thirdParties.body' => 'Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Payriff (paiements dans l\'application). Nous ne vendons pas vos données personnelles.',
 			'legal.sections.retention.title' => 'Durée de conservation de vos données',
 			'legal.sections.retention.body' => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).',
 			'legal.sections.rights.title' => 'Vos droits',
@@ -1725,8 +1695,6 @@ extension on TranslationsFr {
 			'medications.everyDay' => 'Tous les jours',
 			'medications.startDate' => 'Date de début',
 			'medications.endDate' => 'Date de fin',
-			_ => null,
-		} ?? switch (path) {
 			'medications.save' => 'Enregistrer',
 			'medications.delete' => 'Supprimer',
 			'medications.deleteConfirmTitle' => 'Supprimer le médicament',
@@ -1742,6 +1710,8 @@ extension on TranslationsFr {
 			'medications.reminderTitle' => ({required Object name}) => 'C\'est l\'heure de prendre ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Dose : ${dosage}',
 			'medications.tabActive' => 'Actifs',
+			_ => null,
+		} ?? switch (path) {
 			'medications.tabArchive' => 'Archivés',
 			'medications.fromPrescription' => 'Sur ordonnance',
 			'medications.noSchedule' => 'Aucun horaire défini — appuyez pour ajouter des heures de rappel',

@@ -195,4 +195,41 @@ void main() {
     expect(find.text('Assistant is typing…'), findsNothing);
     expect(find.text('Please seek in-person care.'), findsOneWidget);
   });
+
+  testWidgets(
+      'a single-paragraph reply (emergency/off-topic/unclear) clears the '
+      'banner instead of pinning a stale disclaimer from an earlier turn',
+      (tester) async {
+    // The conversation already has a 2-paragraph reply, so the banner starts
+    // pinned to its disclaimer paragraph.
+    final repo = _FakeAssistantRepository(messages: _sampleMessages)
+      ..sendCompleter = Completer<MessageModel>();
+    await _pump(tester, repo);
+    expect(
+      find.text('This assistant does not provide medical diagnoses.'),
+      findsOneWidget,
+    );
+
+    await tester.enterText(find.byType(TextField), 'what is the weather today?');
+    await tester.pump();
+    await tester.tap(find.byIcon(Icons.arrow_upward_rounded));
+    await tester.pump();
+
+    // Single paragraph, no disclaimer — e.g. not_medical_refusal /
+    // assistant_unclear / emergency_warning.
+    repo.sendCompleter!.complete(MessageModel(
+      id: 'reply-10',
+      role: MessageModel.roleAssistant,
+      content: "I don't understand what you're asking.",
+      createdAt: DateTime(2026, 7, 4, 12, 1),
+    ));
+    await tester.pumpAndSettle();
+
+    expect(find.text("I don't understand what you're asking."), findsOneWidget);
+    // The banner must not fall back to the earlier turn's disclaimer.
+    expect(
+      find.text('This assistant does not provide medical diagnoses.'),
+      findsNothing,
+    );
+  });
 }

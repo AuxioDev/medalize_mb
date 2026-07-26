@@ -1547,51 +1547,6 @@ class Translations$assistant$en {
 
 	/// en: 'Could not report the response. Please try again.'
 	String get reportFailed => 'Could not report the response. Please try again.';
-
-	/// en: 'Get Summary'
-	String get getSummary => 'Get Summary';
-
-	/// en: 'Conversation Summary'
-	String get summaryTitle => 'Conversation Summary';
-
-	/// en: 'Possible conditions to discuss'
-	String get possibleConditions => 'Possible conditions to discuss';
-
-	/// en: 'Low'
-	String get likelihoodLow => 'Low';
-
-	/// en: 'Medium'
-	String get likelihoodMedium => 'Medium';
-
-	/// en: 'High'
-	String get likelihoodHigh => 'High';
-
-	/// en: 'Routine'
-	String get urgencyRoutine => 'Routine';
-
-	/// en: 'See a doctor soon'
-	String get urgencySoon => 'See a doctor soon';
-
-	/// en: 'Urgent — within 24 hours'
-	String get urgencyUrgent => 'Urgent — within 24 hours';
-
-	/// en: 'Emergency'
-	String get urgencyEmergency => 'Emergency';
-
-	/// en: 'Seek emergency care now.'
-	String get emergencyWarning => 'Seek emergency care now.';
-
-	/// en: 'Recommended specialist'
-	String get recommendedSpecialization => 'Recommended specialist';
-
-	/// en: 'Find Doctors'
-	String get findDoctors => 'Find Doctors';
-
-	/// en: 'Share'
-	String get share => 'Share';
-
-	/// en: 'Not enough conversation yet to summarize.'
-	String get summaryNotReadyYet => 'Not enough conversation yet to summarize.';
 }
 
 // Path: messaging
@@ -2399,8 +2354,8 @@ class Translations$legal$sections$thirdParties$en {
 	/// en: 'Who else processes your data'
 	String get title => 'Who else processes your data';
 
-	/// en: 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Anthropic (processes your messages if you use the AI assistant); Payriff (in-app payments). We do not sell your personal data.'
-	String get body => 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Anthropic (processes your messages if you use the AI assistant); Payriff (in-app payments). We do not sell your personal data.';
+	/// en: 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Payriff (in-app payments). We do not sell your personal data.'
+	String get body => 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Payriff (in-app payments). We do not sell your personal data.';
 }
 
 // Path: legal.sections.retention
@@ -2909,21 +2864,6 @@ extension on Translations {
 			'assistant.reportSubmit' => 'Report',
 			'assistant.reportSuccess' => 'Thank you, the response was reported.',
 			'assistant.reportFailed' => 'Could not report the response. Please try again.',
-			'assistant.getSummary' => 'Get Summary',
-			'assistant.summaryTitle' => 'Conversation Summary',
-			'assistant.possibleConditions' => 'Possible conditions to discuss',
-			'assistant.likelihoodLow' => 'Low',
-			'assistant.likelihoodMedium' => 'Medium',
-			'assistant.likelihoodHigh' => 'High',
-			'assistant.urgencyRoutine' => 'Routine',
-			'assistant.urgencySoon' => 'See a doctor soon',
-			'assistant.urgencyUrgent' => 'Urgent — within 24 hours',
-			'assistant.urgencyEmergency' => 'Emergency',
-			'assistant.emergencyWarning' => 'Seek emergency care now.',
-			'assistant.recommendedSpecialization' => 'Recommended specialist',
-			'assistant.findDoctors' => 'Find Doctors',
-			'assistant.share' => 'Share',
-			'assistant.summaryNotReadyYet' => 'Not enough conversation yet to summarize.',
 			'messaging.title' => 'Messages',
 			'messaging.sendMessage' => 'Message',
 			'messaging.typeMessage' => 'Type a message…',
@@ -2956,7 +2896,7 @@ extension on Translations {
 			'legal.sections.legalBasis.title' => 'Legal basis and your consent',
 			'legal.sections.legalBasis.body' => 'We process your data on the basis of your consent, given when you register. Health data is a special category of personal data under the Law of the Republic of Azerbaijan "On Personal Data" (No. 998-IIIQ), which requires your explicit, written consent before we collect it — this is what the checkbox on the registration screen records. You may withdraw consent at any time by deleting your account, though we may keep limited records where required by law (for example, financial records for tax purposes).',
 			'legal.sections.thirdParties.title' => 'Who else processes your data',
-			'legal.sections.thirdParties.body' => 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Anthropic (processes your messages if you use the AI assistant); Payriff (in-app payments). We do not sell your personal data.',
+			'legal.sections.thirdParties.body' => 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Payriff (in-app payments). We do not sell your personal data.',
 			'legal.sections.retention.title' => 'How long we keep your data',
 			'legal.sections.retention.body' => 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).',
 			'legal.sections.rights.title' => 'Your rights',
@@ -2998,8 +2938,6 @@ extension on Translations {
 			'medications.everyDay' => 'Every day',
 			'medications.startDate' => 'Start Date',
 			'medications.endDate' => 'End Date',
-			_ => null,
-		} ?? switch (path) {
 			'medications.save' => 'Save',
 			'medications.delete' => 'Delete',
 			'medications.deleteConfirmTitle' => 'Delete Medication',
@@ -3015,6 +2953,8 @@ extension on Translations {
 			'medications.reminderTitle' => ({required Object name}) => 'Time to take ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Dose: ${dosage}',
 			'medications.tabActive' => 'Active',
+			_ => null,
+		} ?? switch (path) {
 			'medications.tabArchive' => 'Archive',
 			'medications.fromPrescription' => 'From prescription',
 			'medications.noSchedule' => 'No schedule set — tap to add reminder times',

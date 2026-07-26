@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
@@ -57,18 +56,21 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
   /// The disclaimer arrives from the backend, already localized: either as a
   /// dedicated field on assistant messages or as the final paragraph appended
   /// to every substantive assistant reply. Never hardcoded on the client.
+  ///
+  /// Only looks at the LAST assistant message, not the whole history — some
+  /// replies (emergency warning, off-topic refusal, "didn't understand") are
+  /// a single paragraph with no disclaimer. Falling back to an older message
+  /// there would pin a stale disclaimer from a previous, unrelated turn.
   String? _disclaimerText(List<MessageModel> messages) {
-    for (final m in messages.reversed) {
-      if (!m.isAssistant) continue;
-      final d = m.disclaimer;
-      if (d != null && d.isNotEmpty) return d;
-      final parts = m.content
-          .split(RegExp(r'\n\s*\n'))
-          .where((p) => p.trim().isNotEmpty)
-          .toList();
-      if (parts.length > 1) return parts.last.trim();
-    }
-    return null;
+    final lastAssistant = messages.reversed.where((m) => m.isAssistant).firstOrNull;
+    if (lastAssistant == null) return null;
+    final d = lastAssistant.disclaimer;
+    if (d != null && d.isNotEmpty) return d;
+    final parts = lastAssistant.content
+        .split(RegExp(r'\n\s*\n'))
+        .where((p) => p.trim().isNotEmpty)
+        .toList();
+    return parts.length > 1 ? parts.last.trim() : null;
   }
 
   Future<void> _send() async {
@@ -108,23 +110,9 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(assistantChatProvider(widget.conversationId));
 
-    // Enabled only once the assistant has actually replied at least once —
-    // matches the backend's own guard (400 "not enough conversation yet") so
-    // the button never fires a request that's certain to fail.
-    final hasAssistantReply = state.messages.any((m) => m.isAssistant);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(context.t.assistant.title),
-        actions: [
-          IconButton(
-            tooltip: context.t.assistant.getSummary,
-            onPressed: hasAssistantReply
-                ? () => context.push('/patient/assistant/${widget.conversationId}/summary')
-                : null,
-            icon: const Icon(Icons.summarize_outlined),
-          ),
-        ],
       ),
       body: ResponsiveBody(
         child: switch ((state.loading, state.loadFailed)) {

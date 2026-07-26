@@ -116,14 +116,10 @@ class ConversationModel {
 class ConversationDetailModel {
   final String id;
   final List<MessageModel> messages;
-  final ConversationSummaryModel? summary;
-  final DateTime? summaryGeneratedAt;
 
   const ConversationDetailModel({
     required this.id,
     required this.messages,
-    this.summary,
-    this.summaryGeneratedAt,
   });
 
   factory ConversationDetailModel.fromJson(Map<String, dynamic> j) =>
@@ -132,70 +128,5 @@ class ConversationDetailModel {
         messages: (j['messages'] as List<dynamic>? ?? [])
             .map((e) => MessageModel.fromJson(e as Map<String, dynamic>))
             .toList(),
-        summary: j['summary'] != null
-            ? ConversationSummaryModel.fromJson(j['summary'] as Map<String, dynamic>)
-            : null,
-        summaryGeneratedAt: j['summary_generated_at'] != null
-            ? DateTime.tryParse(j['summary_generated_at'] as String)
-            : null,
-      );
-}
-
-/// One possible (unconfirmed) condition worth discussing with a doctor —
-/// never a diagnosis. Part of [ConversationSummaryModel.possibleConditions].
-class PossibleConditionModel {
-  static const likelihoodLow = 'low';
-  static const likelihoodMedium = 'medium';
-  static const likelihoodHigh = 'high';
-
-  final String name;
-  final String likelihood;
-  final String note;
-
-  const PossibleConditionModel({
-    required this.name,
-    required this.likelihood,
-    this.note = '',
-  });
-
-  factory PossibleConditionModel.fromJson(Map<String, dynamic> j) =>
-      PossibleConditionModel(
-        name: j['name'] as String? ?? '',
-        likelihood: j['likelihood'] as String? ?? likelihoodLow,
-        note: j['note'] as String? ?? '',
-      );
-}
-
-/// Structured, patient-shareable report generated on demand from the whole
-/// conversation via the `record_summary` forced tool call
-/// (`apps/assistant/service.py::generate_summary`). Field names mirror the
-/// tool's `input_schema` exactly, since the backend saves the tool call's raw
-/// input dict as `Conversation.summary` and serializes it unchanged.
-class ConversationSummaryModel {
-  static const urgencyRoutine = 'routine';
-  static const urgencySoon = 'soon';
-  static const urgencyUrgent = 'urgent';
-  static const urgencyEmergency = 'emergency';
-
-  final String summaryText;
-  final List<PossibleConditionModel> possibleConditions;
-  final String urgency;
-  final String recommendedSpecialization;
-
-  const ConversationSummaryModel({
-    required this.summaryText,
-    this.possibleConditions = const [],
-    required this.urgency,
-    required this.recommendedSpecialization,
-  });
-
-  factory ConversationSummaryModel.fromJson(Map<String, dynamic> j) =>
-      ConversationSummaryModel(
-        summaryText: j['summary_text'] as String? ?? '',
-        possibleConditions: (j['possible_conditions'] as List<dynamic>? ?? [])
-            .map((e) => PossibleConditionModel.fromJson(e as Map<String, dynamic>))
-            .toList(),
-        urgency: j['urgency'] as String? ?? urgencyRoutine,
-        recommendedSpecialization: j['recommended_specialization'] as String? ?? '',
       );
 }

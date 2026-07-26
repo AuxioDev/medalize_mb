@@ -8,16 +8,6 @@ final assistantConversationsProvider =
   (ref) => ref.watch(assistantRepositoryProvider).getConversations(),
 );
 
-/// Triggers (and caches) summary generation for one conversation. Reading
-/// this provider is itself the "explicit action" the paid Claude call is
-/// gated behind — it's only ever watched from the summary screen, which is
-/// only ever reached by tapping "Get Summary".
-final conversationSummaryProvider = FutureProvider.autoDispose
-    .family<ConversationDetailModel, String>(
-  (ref, conversationId) =>
-      ref.watch(assistantRepositoryProvider).generateSummary(conversationId),
-);
-
 class AssistantChatState {
   final List<MessageModel> messages;
   final bool loading;

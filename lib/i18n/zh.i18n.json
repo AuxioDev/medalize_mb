@@ -480,22 +480,7 @@
     "reportHint": "原因（可选）",
     "reportSubmit": "举报",
     "reportSuccess": "感谢反馈，该回复已被举报。",
-    "reportFailed": "无法举报该回复，请重试。",
-    "getSummary": "获取总结",
-    "summaryTitle": "对话总结",
-    "possibleConditions": "可与医生讨论的可能情况",
-    "likelihoodLow": "低",
-    "likelihoodMedium": "中",
-    "likelihoodHigh": "高",
-    "urgencyRoutine": "无需着急",
-    "urgencySoon": "请尽快就医",
-    "urgencyUrgent": "紧急 — 请在24小时内就医",
-    "urgencyEmergency": "紧急情况",
-    "emergencyWarning": "请立即寻求急诊救治。",
-    "recommendedSpecialization": "建议就诊科室",
-    "findDoctors": "查找医生",
-    "share": "分享",
-    "summaryNotReadyYet": "对话内容还不足以生成总结。"
+    "reportFailed": "无法举报该回复，请重试。"
   },
   "messaging": {
     "title": "消息",
@@ -552,7 +537,7 @@
       },
       "thirdParties": {
         "title": "还有谁会处理您的数据",
-        "body": "仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Anthropic（在您使用 AI 助手时处理您的消息）；Payriff（应用内支付）。我们不会出售您的个人数据。"
+        "body": "仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Payriff（应用内支付）。我们不会出售您的个人数据。"
       },
       "retention": {
         "title": "我们保留数据多长时间",

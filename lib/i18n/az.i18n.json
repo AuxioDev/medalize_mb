@@ -480,22 +480,7 @@
     "reportHint": "Səbəb (istəyə bağlı)",
     "reportSubmit": "Göndər",
     "reportSuccess": "Təşəkkürlər, şikayət göndərildi.",
-    "reportFailed": "Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.",
-    "getSummary": "Xülasə al",
-    "summaryTitle": "Söhbətin xülasəsi",
-    "possibleConditions": "Müzakirə üçün mümkün vəziyyətlər",
-    "likelihoodLow": "Aşağı",
-    "likelihoodMedium": "Orta",
-    "likelihoodHigh": "Yüksək",
-    "urgencyRoutine": "Təcili deyil",
-    "urgencySoon": "Yaxın günlərdə həkimə müraciət edin",
-    "urgencyUrgent": "Təcili — 24 saat ərzində",
-    "urgencyEmergency": "Fövqəladə hal",
-    "emergencyWarning": "Dərhal təcili tibbi yardıma müraciət edin.",
-    "recommendedSpecialization": "Tövsiyə olunan mütəxəssis",
-    "findDoctors": "Həkim tap",
-    "share": "Paylaş",
-    "summaryNotReadyYet": "Xülasə hazırlamaq üçün söhbət hələ kifayət qədər deyil."
+    "reportFailed": "Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin."
   },
   "messaging": {
     "title": "Mesajlar",
@@ -552,7 +537,7 @@
       },
       "thirdParties": {
         "title": "Məlumatlarınızı daha kim işləyir",
-        "body": "Yalnız bizim tapşırığımızla və burada təsvir olunan məqsədlər üçün fəaliyyət göstərən etibarlı xidmət təchizatçıları: Cloudinary (sənəd və şəkillərin təhlükəsiz saxlanması — heç vaxt ictimai əlçatan deyil, yalnız imzalanmış, məhdud müddətli keçidlərlə); Firebase/Google (push-bildirişlər və seçdiyiniz halda Google ilə giriş); Apple (seçdiyiniz halda Apple ilə giriş); Anthropic (süni intellekt köməkçisindən istifadə etdikdə mesajlarınızı işləyir); Payriff (tətbiq daxili ödənişlər). Şəxsi məlumatlarınızı heç kimə satmırıq."
+        "body": "Yalnız bizim tapşırığımızla və burada təsvir olunan məqsədlər üçün fəaliyyət göstərən etibarlı xidmət təchizatçıları: Cloudinary (sənəd və şəkillərin təhlükəsiz saxlanması — heç vaxt ictimai əlçatan deyil, yalnız imzalanmış, məhdud müddətli keçidlərlə); Firebase/Google (push-bildirişlər və seçdiyiniz halda Google ilə giriş); Apple (seçdiyiniz halda Apple ilə giriş); Payriff (tətbiq daxili ödənişlər). Şəxsi məlumatlarınızı heç kimə satmırıq."
       },
       "retention": {
         "title": "Məlumatları nə qədər saxlayırıq",

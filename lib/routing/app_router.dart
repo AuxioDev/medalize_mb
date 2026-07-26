@@ -6,7 +6,6 @@ import 'package:medalize_mb/features/appointments/data/models/appointment_model.
 import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart';
 import 'package:medalize_mb/features/assistant/presentation/screens/assistant_chat_screen.dart';
 import 'package:medalize_mb/features/assistant/presentation/screens/assistant_conversations_screen.dart';
-import 'package:medalize_mb/features/assistant/presentation/screens/conversation_summary_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/login_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/register_screen.dart';
@@ -189,13 +188,6 @@ final routerProvider = Provider<GoRouter>((ref) {
           ));
         },
       ),
-      GoRoute(
-        path: '/patient/assistant/:conversationId/summary',
-        pageBuilder: (_, state) => _pushPage(ConversationSummaryScreen(
-          conversationId: state.pathParameters['conversationId']!,
-        )),
-      ),
-
       GoRoute(
         path: '/patient/reschedule/:id',
         pageBuilder: (_, state) {

@@ -480,22 +480,7 @@
     "reportHint": "Motif (facultatif)",
     "reportSubmit": "Signaler",
     "reportSuccess": "Merci, la réponse a été signalée.",
-    "reportFailed": "Impossible de signaler la réponse. Veuillez réessayer.",
-    "getSummary": "Obtenir un résumé",
-    "summaryTitle": "Résumé de la discussion",
-    "possibleConditions": "Pistes possibles à discuter",
-    "likelihoodLow": "Faible",
-    "likelihoodMedium": "Moyenne",
-    "likelihoodHigh": "Élevée",
-    "urgencyRoutine": "Non urgent",
-    "urgencySoon": "Consultez un médecin sous peu",
-    "urgencyUrgent": "Urgent — sous 24 heures",
-    "urgencyEmergency": "Urgence",
-    "emergencyWarning": "Consultez immédiatement un service d'urgence.",
-    "recommendedSpecialization": "Spécialiste recommandé",
-    "findDoctors": "Trouver des médecins",
-    "share": "Partager",
-    "summaryNotReadyYet": "La discussion n'est pas encore assez avancée pour être résumée."
+    "reportFailed": "Impossible de signaler la réponse. Veuillez réessayer."
   },
   "messaging": {
     "title": "Messages",
@@ -552,7 +537,7 @@
       },
       "thirdParties": {
         "title": "Qui traite également vos données",
-        "body": "Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Anthropic (traite vos messages si vous utilisez l'assistant IA) ; Payriff (paiements dans l'application). Nous ne vendons pas vos données personnelles."
+        "body": "Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Payriff (paiements dans l'application). Nous ne vendons pas vos données personnelles."
       },
       "retention": {
         "title": "Durée de conservation de vos données",

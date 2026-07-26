@@ -733,21 +733,6 @@ class _Translations$assistant$tr extends Translations$assistant$en {
 	@override String get reportSubmit => 'Bildir';
 	@override String get reportSuccess => 'Teşekkürler, yanıt bildirildi.';
 	@override String get reportFailed => 'Yanıt bildirilemedi. Lütfen tekrar deneyin.';
-	@override String get getSummary => 'Özet Al';
-	@override String get summaryTitle => 'Görüşme Özeti';
-	@override String get possibleConditions => 'Görüşülecek olası durumlar';
-	@override String get likelihoodLow => 'Düşük';
-	@override String get likelihoodMedium => 'Orta';
-	@override String get likelihoodHigh => 'Yüksek';
-	@override String get urgencyRoutine => 'Acil değil';
-	@override String get urgencySoon => 'Yakın günlerde doktora görünün';
-	@override String get urgencyUrgent => 'Acil — 24 saat içinde';
-	@override String get urgencyEmergency => 'Acil durum';
-	@override String get emergencyWarning => 'Hemen acil tıbbi yardım alın.';
-	@override String get recommendedSpecialization => 'Önerilen uzmanlık';
-	@override String get findDoctors => 'Doktor Bul';
-	@override String get share => 'Paylaş';
-	@override String get summaryNotReadyYet => 'Özet çıkarmak için görüşme henüz yeterli değil.';
 }
 
 // Path: messaging
@@ -1147,7 +1132,7 @@ class _Translations$legal$sections$thirdParties$tr extends Translations$legal$se
 
 	// Translations
 	@override String get title => 'Verilerinizi başka kim işler';
-	@override String get body => 'Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Anthropic (yapay zeka asistanını kullanırsanız mesajlarınızı işler); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız.';
+	@override String get body => 'Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız.';
 }
 
 // Path: legal.sections.retention
@@ -1636,21 +1621,6 @@ extension on TranslationsTr {
 			'assistant.reportSubmit' => 'Bildir',
 			'assistant.reportSuccess' => 'Teşekkürler, yanıt bildirildi.',
 			'assistant.reportFailed' => 'Yanıt bildirilemedi. Lütfen tekrar deneyin.',
-			'assistant.getSummary' => 'Özet Al',
-			'assistant.summaryTitle' => 'Görüşme Özeti',
-			'assistant.possibleConditions' => 'Görüşülecek olası durumlar',
-			'assistant.likelihoodLow' => 'Düşük',
-			'assistant.likelihoodMedium' => 'Orta',
-			'assistant.likelihoodHigh' => 'Yüksek',
-			'assistant.urgencyRoutine' => 'Acil değil',
-			'assistant.urgencySoon' => 'Yakın günlerde doktora görünün',
-			'assistant.urgencyUrgent' => 'Acil — 24 saat içinde',
-			'assistant.urgencyEmergency' => 'Acil durum',
-			'assistant.emergencyWarning' => 'Hemen acil tıbbi yardım alın.',
-			'assistant.recommendedSpecialization' => 'Önerilen uzmanlık',
-			'assistant.findDoctors' => 'Doktor Bul',
-			'assistant.share' => 'Paylaş',
-			'assistant.summaryNotReadyYet' => 'Özet çıkarmak için görüşme henüz yeterli değil.',
 			'messaging.title' => 'Mesajlar',
 			'messaging.sendMessage' => 'Mesaj Gönder',
 			'messaging.typeMessage' => 'Bir mesaj yazın…',
@@ -1683,7 +1653,7 @@ extension on TranslationsTr {
 			'legal.sections.legalBasis.title' => 'Hukuki dayanak ve rızanız',
 			'legal.sections.legalBasis.body' => 'Verilerinizi, kayıt olurken verdiğiniz rıza temelinde işliyoruz. Sağlık verileri, Azerbaycan Cumhuriyeti "Kişisel Veriler Hakkında" Kanunu (No. 998-IIIQ) uyarınca özel kategori kişisel veridir ve toplanmadan önce açık, yazılı rızanızı gerektirir — kayıt ekranındaki onay kutusu tam olarak bunu kaydeder. Hesabınızı silerek rızanızı istediğiniz zaman geri çekebilirsiniz, ancak yasanın gerektirdiği durumlarda (örneğin vergi amaçlı mali kayıtlar) sınırlı kayıtları saklayabiliriz.',
 			'legal.sections.thirdParties.title' => 'Verilerinizi başka kim işler',
-			'legal.sections.thirdParties.body' => 'Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Anthropic (yapay zeka asistanını kullanırsanız mesajlarınızı işler); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız.',
+			'legal.sections.thirdParties.body' => 'Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız.',
 			'legal.sections.retention.title' => 'Verilerinizi ne kadar süre saklıyoruz',
 			'legal.sections.retention.body' => 'Hesabınız aktif olduğu sürece. Hesabınızı silerseniz, yasal olarak saklamamız gereken kayıtlar (örneğin vergi amaçlı ödeme kayıtları) dışında, kişisel verilerinizi makul bir süre içinde kaldırırız.',
 			'legal.sections.rights.title' => 'Haklarınız',
@@ -1725,8 +1695,6 @@ extension on TranslationsTr {
 			'medications.everyDay' => 'Her gün',
 			'medications.startDate' => 'Başlangıç Tarihi',
 			'medications.endDate' => 'Bitiş Tarihi',
-			_ => null,
-		} ?? switch (path) {
 			'medications.save' => 'Kaydet',
 			'medications.delete' => 'Sil',
 			'medications.deleteConfirmTitle' => 'İlacı Sil',
@@ -1742,6 +1710,8 @@ extension on TranslationsTr {
 			'medications.reminderTitle' => ({required Object name}) => '${name} alma vakti',
 			'medications.reminderBody' => ({required Object dosage}) => 'Doz: ${dosage}',
 			'medications.tabActive' => 'Aktif',
+			_ => null,
+		} ?? switch (path) {
 			'medications.tabArchive' => 'Arşiv',
 			'medications.fromPrescription' => 'Reçeteden',
 			'medications.noSchedule' => 'Program ayarlanmadı — hatırlatma saati eklemek için dokunun',

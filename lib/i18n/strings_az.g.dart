@@ -733,21 +733,6 @@ class _Translations$assistant$az extends Translations$assistant$en {
 	@override String get reportSubmit => 'Göndər';
 	@override String get reportSuccess => 'Təşəkkürlər, şikayət göndərildi.';
 	@override String get reportFailed => 'Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.';
-	@override String get getSummary => 'Xülasə al';
-	@override String get summaryTitle => 'Söhbətin xülasəsi';
-	@override String get possibleConditions => 'Müzakirə üçün mümkün vəziyyətlər';
-	@override String get likelihoodLow => 'Aşağı';
-	@override String get likelihoodMedium => 'Orta';
-	@override String get likelihoodHigh => 'Yüksək';
-	@override String get urgencyRoutine => 'Təcili deyil';
-	@override String get urgencySoon => 'Yaxın günlərdə həkimə müraciət edin';
-	@override String get urgencyUrgent => 'Təcili — 24 saat ərzində';
-	@override String get urgencyEmergency => 'Fövqəladə hal';
-	@override String get emergencyWarning => 'Dərhal təcili tibbi yardıma müraciət edin.';
-	@override String get recommendedSpecialization => 'Tövsiyə olunan mütəxəssis';
-	@override String get findDoctors => 'Həkim tap';
-	@override String get share => 'Paylaş';
-	@override String get summaryNotReadyYet => 'Xülasə hazırlamaq üçün söhbət hələ kifayət qədər deyil.';
 }
 
 // Path: messaging
@@ -1147,7 +1132,7 @@ class _Translations$legal$sections$thirdParties$az extends Translations$legal$se
 
 	// Translations
 	@override String get title => 'Məlumatlarınızı daha kim işləyir';
-	@override String get body => 'Yalnız bizim tapşırığımızla və burada təsvir olunan məqsədlər üçün fəaliyyət göstərən etibarlı xidmət təchizatçıları: Cloudinary (sənəd və şəkillərin təhlükəsiz saxlanması — heç vaxt ictimai əlçatan deyil, yalnız imzalanmış, məhdud müddətli keçidlərlə); Firebase/Google (push-bildirişlər və seçdiyiniz halda Google ilə giriş); Apple (seçdiyiniz halda Apple ilə giriş); Anthropic (süni intellekt köməkçisindən istifadə etdikdə mesajlarınızı işləyir); Payriff (tətbiq daxili ödənişlər). Şəxsi məlumatlarınızı heç kimə satmırıq.';
+	@override String get body => 'Yalnız bizim tapşırığımızla və burada təsvir olunan məqsədlər üçün fəaliyyət göstərən etibarlı xidmət təchizatçıları: Cloudinary (sənəd və şəkillərin təhlükəsiz saxlanması — heç vaxt ictimai əlçatan deyil, yalnız imzalanmış, məhdud müddətli keçidlərlə); Firebase/Google (push-bildirişlər və seçdiyiniz halda Google ilə giriş); Apple (seçdiyiniz halda Apple ilə giriş); Payriff (tətbiq daxili ödənişlər). Şəxsi məlumatlarınızı heç kimə satmırıq.';
 }
 
 // Path: legal.sections.retention
@@ -1636,21 +1621,6 @@ extension on TranslationsAz {
 			'assistant.reportSubmit' => 'Göndər',
 			'assistant.reportSuccess' => 'Təşəkkürlər, şikayət göndərildi.',
 			'assistant.reportFailed' => 'Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.',
-			'assistant.getSummary' => 'Xülasə al',
-			'assistant.summaryTitle' => 'Söhbətin xülasəsi',
-			'assistant.possibleConditions' => 'Müzakirə üçün mümkün vəziyyətlər',
-			'assistant.likelihoodLow' => 'Aşağı',
-			'assistant.likelihoodMedium' => 'Orta',
-			'assistant.likelihoodHigh' => 'Yüksək',
-			'assistant.urgencyRoutine' => 'Təcili deyil',
-			'assistant.urgencySoon' => 'Yaxın günlərdə həkimə müraciət edin',
-			'assistant.urgencyUrgent' => 'Təcili — 24 saat ərzində',
-			'assistant.urgencyEmergency' => 'Fövqəladə hal',
-			'assistant.emergencyWarning' => 'Dərhal təcili tibbi yardıma müraciət edin.',
-			'assistant.recommendedSpecialization' => 'Tövsiyə olunan mütəxəssis',
-			'assistant.findDoctors' => 'Həkim tap',
-			'assistant.share' => 'Paylaş',
-			'assistant.summaryNotReadyYet' => 'Xülasə hazırlamaq üçün söhbət hələ kifayət qədər deyil.',
 			'messaging.title' => 'Mesajlar',
 			'messaging.sendMessage' => 'Mesaj yaz',
 			'messaging.typeMessage' => 'Mesaj yazın…',
@@ -1683,7 +1653,7 @@ extension on TranslationsAz {
 			'legal.sections.legalBasis.title' => 'Hüquqi əsas və razılığınız',
 			'legal.sections.legalBasis.body' => 'Məlumatlarınızı qeydiyyatdan keçərkən verdiyiniz razılıq əsasında işləyirik. Sağlamlıq məlumatları Azərbaycan Respublikasının "Fərdi məlumatlar haqqında" Qanununa (№998-IIIQ) əsasən xüsusi kateqoriya fərdi məlumat sayılır və toplanmazdan əvvəl açıq, yazılı razılığınızı tələb edir — qeydiyyat ekranındakı checkbox məhz bunu qeydə alır. Hesabınızı silməklə razılığınızı istənilən vaxt geri götürə bilərsiniz, lakin qanunla tələb olunduğu hallarda (məsələn, vergi məqsədləri üçün maliyyə qeydləri) məhdud qeydləri saxlaya bilərik.',
 			'legal.sections.thirdParties.title' => 'Məlumatlarınızı daha kim işləyir',
-			'legal.sections.thirdParties.body' => 'Yalnız bizim tapşırığımızla və burada təsvir olunan məqsədlər üçün fəaliyyət göstərən etibarlı xidmət təchizatçıları: Cloudinary (sənəd və şəkillərin təhlükəsiz saxlanması — heç vaxt ictimai əlçatan deyil, yalnız imzalanmış, məhdud müddətli keçidlərlə); Firebase/Google (push-bildirişlər və seçdiyiniz halda Google ilə giriş); Apple (seçdiyiniz halda Apple ilə giriş); Anthropic (süni intellekt köməkçisindən istifadə etdikdə mesajlarınızı işləyir); Payriff (tətbiq daxili ödənişlər). Şəxsi məlumatlarınızı heç kimə satmırıq.',
+			'legal.sections.thirdParties.body' => 'Yalnız bizim tapşırığımızla və burada təsvir olunan məqsədlər üçün fəaliyyət göstərən etibarlı xidmət təchizatçıları: Cloudinary (sənəd və şəkillərin təhlükəsiz saxlanması — heç vaxt ictimai əlçatan deyil, yalnız imzalanmış, məhdud müddətli keçidlərlə); Firebase/Google (push-bildirişlər və seçdiyiniz halda Google ilə giriş); Apple (seçdiyiniz halda Apple ilə giriş); Payriff (tətbiq daxili ödənişlər). Şəxsi məlumatlarınızı heç kimə satmırıq.',
 			'legal.sections.retention.title' => 'Məlumatları nə qədər saxlayırıq',
 			'legal.sections.retention.body' => 'Hesabınız aktiv olduğu müddətcə. Hesabınızı sildikdə, qanunla saxlamağa borclu olduğumuz qeydlər (məsələn, vergi məqsədləri üçün ödəniş qeydləri) istisna olmaqla, şəxsi məlumatlarınızı ağlabatan müddət ərzində siliriz.',
 			'legal.sections.rights.title' => 'Hüquqlarınız',
@@ -1725,8 +1695,6 @@ extension on TranslationsAz {
 			'medications.everyDay' => 'Hər gün',
 			'medications.startDate' => 'Başlama tarixi',
 			'medications.endDate' => 'Bitmə tarixi',
-			_ => null,
-		} ?? switch (path) {
 			'medications.save' => 'Yadda saxla',
 			'medications.delete' => 'Sil',
 			'medications.deleteConfirmTitle' => 'Dərmanı sil',
@@ -1742,6 +1710,8 @@ extension on TranslationsAz {
 			'medications.reminderTitle' => ({required Object name}) => '${name} qəbul etmə vaxtıdır',
 			'medications.reminderBody' => ({required Object dosage}) => 'Doza: ${dosage}',
 			'medications.tabActive' => 'Aktiv',
+			_ => null,
+		} ?? switch (path) {
 			'medications.tabArchive' => 'Arxiv',
 			'medications.fromPrescription' => 'Resept üzrə',
 			'medications.noSchedule' => 'Cədvəl təyin edilməyib — xatırlatma vaxtı əlavə etmək üçün toxunun',

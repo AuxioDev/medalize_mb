@@ -733,21 +733,6 @@ class _Translations$assistant$zh extends Translations$assistant$en {
 	@override String get reportSubmit => '举报';
 	@override String get reportSuccess => '感谢反馈，该回复已被举报。';
 	@override String get reportFailed => '无法举报该回复，请重试。';
-	@override String get getSummary => '获取总结';
-	@override String get summaryTitle => '对话总结';
-	@override String get possibleConditions => '可与医生讨论的可能情况';
-	@override String get likelihoodLow => '低';
-	@override String get likelihoodMedium => '中';
-	@override String get likelihoodHigh => '高';
-	@override String get urgencyRoutine => '无需着急';
-	@override String get urgencySoon => '请尽快就医';
-	@override String get urgencyUrgent => '紧急 — 请在24小时内就医';
-	@override String get urgencyEmergency => '紧急情况';
-	@override String get emergencyWarning => '请立即寻求急诊救治。';
-	@override String get recommendedSpecialization => '建议就诊科室';
-	@override String get findDoctors => '查找医生';
-	@override String get share => '分享';
-	@override String get summaryNotReadyYet => '对话内容还不足以生成总结。';
 }
 
 // Path: messaging
@@ -1147,7 +1132,7 @@ class _Translations$legal$sections$thirdParties$zh extends Translations$legal$se
 
 	// Translations
 	@override String get title => '还有谁会处理您的数据';
-	@override String get body => '仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Anthropic（在您使用 AI 助手时处理您的消息）；Payriff（应用内支付）。我们不会出售您的个人数据。';
+	@override String get body => '仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Payriff（应用内支付）。我们不会出售您的个人数据。';
 }
 
 // Path: legal.sections.retention
@@ -1636,21 +1621,6 @@ extension on TranslationsZh {
 			'assistant.reportSubmit' => '举报',
 			'assistant.reportSuccess' => '感谢反馈，该回复已被举报。',
 			'assistant.reportFailed' => '无法举报该回复，请重试。',
-			'assistant.getSummary' => '获取总结',
-			'assistant.summaryTitle' => '对话总结',
-			'assistant.possibleConditions' => '可与医生讨论的可能情况',
-			'assistant.likelihoodLow' => '低',
-			'assistant.likelihoodMedium' => '中',
-			'assistant.likelihoodHigh' => '高',
-			'assistant.urgencyRoutine' => '无需着急',
-			'assistant.urgencySoon' => '请尽快就医',
-			'assistant.urgencyUrgent' => '紧急 — 请在24小时内就医',
-			'assistant.urgencyEmergency' => '紧急情况',
-			'assistant.emergencyWarning' => '请立即寻求急诊救治。',
-			'assistant.recommendedSpecialization' => '建议就诊科室',
-			'assistant.findDoctors' => '查找医生',
-			'assistant.share' => '分享',
-			'assistant.summaryNotReadyYet' => '对话内容还不足以生成总结。',
 			'messaging.title' => '消息',
 			'messaging.sendMessage' => '发消息',
 			'messaging.typeMessage' => '输入消息…',
@@ -1683,7 +1653,7 @@ extension on TranslationsZh {
 			'legal.sections.legalBasis.title' => '法律依据与您的同意',
 			'legal.sections.legalBasis.body' => '我们基于您注册时给予的同意处理您的数据。根据阿塞拜疆共和国《个人数据法》（第998-IIIQ号），健康数据属于特殊类别的个人数据，在收集前需要您明确的书面同意——注册界面上的复选框正是记录这一同意。您可以随时通过删除账号撤回同意，但在法律要求的情况下（例如出于税务目的的财务记录），我们可能会保留有限的记录。',
 			'legal.sections.thirdParties.title' => '还有谁会处理您的数据',
-			'legal.sections.thirdParties.body' => '仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Anthropic（在您使用 AI 助手时处理您的消息）；Payriff（应用内支付）。我们不会出售您的个人数据。',
+			'legal.sections.thirdParties.body' => '仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Payriff（应用内支付）。我们不会出售您的个人数据。',
 			'legal.sections.retention.title' => '我们保留数据多长时间',
 			'legal.sections.retention.body' => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。',
 			'legal.sections.rights.title' => '您的权利',
@@ -1725,8 +1695,6 @@ extension on TranslationsZh {
 			'medications.everyDay' => '每天',
 			'medications.startDate' => '开始日期',
 			'medications.endDate' => '结束日期',
-			_ => null,
-		} ?? switch (path) {
 			'medications.save' => '保存',
 			'medications.delete' => '删除',
 			'medications.deleteConfirmTitle' => '删除药物',
@@ -1742,6 +1710,8 @@ extension on TranslationsZh {
 			'medications.reminderTitle' => ({required Object name}) => '该服用${name}了',
 			'medications.reminderBody' => ({required Object dosage}) => '剂量:${dosage}',
 			'medications.tabActive' => '使用中',
+			_ => null,
+		} ?? switch (path) {
 			'medications.tabArchive' => '已归档',
 			'medications.fromPrescription' => '来自处方',
 			'medications.noSchedule' => '尚未设置服药时间 — 点击添加提醒时间',
