@@ -45,6 +45,11 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
   DateTime? _recordDate;
   String? _filePath;
   String? _fileName;
+  // The raw file_picker path before compression, when it differs from
+  // _filePath (jpg/png get compressed to a separate _compressed.jpg file
+  // next to it) — tracked only so both copies can be cleaned up, never
+  // used for upload.
+  String? _rawPickedPath;
 
   bool _saving = false;
   bool _compressing = false;
@@ -54,7 +59,23 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
   void dispose() {
     _title.dispose();
     _notes.dispose();
+    // Medical-record photos shouldn't linger in app cache after the screen
+    // is left, whether that's after a successful upload or the user just
+    // backing out — best-effort, must never throw.
+    _deletePickedFiles();
     super.dispose();
+  }
+
+  void _deletePickedFiles() {
+    for (final path in {_filePath, _rawPickedPath}) {
+      if (path == null) continue;
+      try {
+        final file = File(path);
+        if (file.existsSync()) file.deleteSync();
+      } catch (_) {
+        // Best-effort cache cleanup — never let this affect the user.
+      }
+    }
   }
 
   Future<void> _pickFile() async {
@@ -65,8 +86,13 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
     final file = result?.files.singleOrNull;
     if (file?.path == null) return;
 
+    // Replacing a previous selection ("Change File") — clean up its file(s)
+    // now rather than leaving them orphaned until dispose().
+    _deletePickedFiles();
+
     var path = file!.path!;
     var name = file.name;
+    final rawPickedPath = path;
     final ext = name.contains('.') ? name.split('.').last.toLowerCase() : '';
     if (ext == 'jpg' || ext == 'jpeg' || ext == 'png') {
       // Camera-shot photos can be 10-50 MB — compress before it ever reaches
@@ -100,6 +126,10 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
     setState(() {
       _filePath = path;
       _fileName = name;
+      // null when compression didn't happen/succeed and path == rawPickedPath
+      // — _deletePickedFiles' Set already dedupes either way, this is just
+      // to avoid holding a redundant reference.
+      _rawPickedPath = path == rawPickedPath ? null : rawPickedPath;
     });
   }
 

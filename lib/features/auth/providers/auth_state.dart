@@ -39,6 +39,16 @@ class AuthAuthenticated extends AuthState {
     final name = '$firstName $lastName'.trim();
     return name.isNotEmpty ? name : email.split('@')[0];
   }
+
+  // Redact tokens so they never end up in a crash report, error log, or a
+  // future ProviderObserver/breadcrumb that stringifies state for debugging
+  // — nothing currently does this, but a JWT is exactly the kind of value
+  // that must be safe-by-construction rather than relying on every future
+  // caller to remember not to print it.
+  @override
+  String toString() =>
+      'AuthAuthenticated(userId: $userId, role: $role, email: $email, '
+      'accessToken: ***, refreshToken: ***)';
 }
 
 class AuthUnauthenticated extends AuthState {
