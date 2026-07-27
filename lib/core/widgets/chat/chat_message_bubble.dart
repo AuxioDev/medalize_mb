@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/widgets/chat/typewriter_text.dart';
 
 /// One chat bubble, right-aligned and primary-filled for the current user's
 /// own messages, left-aligned and outlined for the other side. Shared by
@@ -20,6 +21,7 @@ class ChatMessageBubble extends StatelessWidget {
     required this.isMine,
     this.trailing,
     this.below,
+    this.animateTyping = false,
   });
 
   final String text;
@@ -32,9 +34,21 @@ class ChatMessageBubble extends StatelessWidget {
   /// Stacked beneath the bubble. Only rendered for a non-mine bubble.
   final List<Widget>? below;
 
+  /// Reveals [text] with [TypewriterText] instead of rendering it instantly —
+  /// for a reply that just arrived (never for message history being
+  /// scrolled back into view, and never for [isMine]). The caller is
+  /// responsible for only setting this true once per message; pair it with a
+  /// `key: ValueKey(message.id)` on this widget so the reveal doesn't
+  /// restart on an unrelated rebuild.
+  final bool animateTyping;
+
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final textStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: isMine ? Colors.white : c.textPrimary,
+          height: 1.4,
+        );
 
     final bubble = Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -48,13 +62,9 @@ class ChatMessageBubble extends StatelessWidget {
           bottomRight: Radius.circular(isMine ? AppRadius.sm - 2 : AppRadius.lg),
         ),
       ),
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: isMine ? Colors.white : c.textPrimary,
-              height: 1.4,
-            ),
-      ),
+      child: animateTyping && !isMine
+          ? TypewriterText(text: text, style: textStyle)
+          : Text(text, style: textStyle),
     );
 
     if (isMine) {

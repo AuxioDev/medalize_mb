@@ -8,6 +8,14 @@ final assistantConversationsProvider =
   (ref) => ref.watch(assistantRepositoryProvider).getConversations(),
 );
 
+/// Quick-reply chips for the chat's empty state. Not conversation-scoped —
+/// the same options apply to every new chat — so this is a plain
+/// autoDispose provider rather than a `.family`.
+final assistantTemplateOptionsProvider =
+    FutureProvider.autoDispose<List<AssistantTemplateOption>>(
+  (ref) => ref.watch(assistantRepositoryProvider).getTemplateOptions(),
+);
+
 class AssistantChatState {
   final List<MessageModel> messages;
   final bool loading;
@@ -59,6 +67,8 @@ class AssistantChatController extends StateNotifier<AssistantChatState> {
   final String conversationId;
   var _localSeq = 0;
 
+  static const _minThinkingTime = Duration(milliseconds: 700);
+
   Future<void> _load() async {
     state = state.copyWith(loading: true, loadFailed: false);
     try {
@@ -87,8 +97,15 @@ class AssistantChatController extends StateNotifier<AssistantChatState> {
       messages: [...state.messages, optimistic],
       sending: true,
     );
+    final stopwatch = Stopwatch()..start();
     try {
       final reply = await _repo.sendMessage(conversationId, text);
+      // Local template matching answers almost instantly — without a floor
+      // on how long the typing indicator stays up, it would flash and
+      // vanish before a patient can register it. Only tops up the wait,
+      // never adds to a reply that was already slow.
+      final remaining = _minThinkingTime - stopwatch.elapsed;
+      if (remaining > Duration.zero) await Future.delayed(remaining);
       if (!mounted) return true;
       state = state.copyWith(
         messages: [...state.messages, reply],

@@ -74,7 +74,7 @@ Wiring lives in `lib/main.dart`: `theme: AppTheme.light`, `darkTheme: AppTheme.d
 | `AppSnackBar` | Snackbar helper matching the app's `snackBarTheme` |
 | `BottomActionBar` | Pinned bottom bar (surface + top divider + safe-area padding) for a primary call-to-action |
 | `lib/core/widgets/calendar/` (`StyledSlotCalendar`, `SlotChip`) | Themed `TableCalendar` + tappable time-slot pill, shared by the booking/reschedule calendar screens |
-| `lib/core/widgets/chat/` (`ChatDisclaimerBanner`, `ChatMessageBubble`, `ChatInputBar`, `ChatLoadingSkeleton`) | Shared chat-screen building blocks (thread messaging + the AI assistant chat) |
+| `lib/core/widgets/chat/` (`ChatDisclaimerBanner`, `ChatMessageBubble`, `ChatInputBar`, `ChatLoadingSkeleton`, `TypewriterText`) | Shared chat-screen building blocks (thread messaging + the AI assistant chat). `ChatMessageBubble`'s `animateTyping` reveals a fresh AI reply via `TypewriterText` instead of rendering it instantly — the caller must set it only once per message id (see `AssistantChatScreen`'s `_typewriterMessageIds`) and pass a `key: ValueKey(message.id)` so an unrelated rebuild doesn't restart the reveal |
 | `EmptyState` | Icon + title/subtitle + optional action for empty lists |
 | `FadeSlideTransition` | Fade + upward-slide for an externally-driven `Animation<double>` (e.g. one `Interval` of a shared controller) — for a multi-section reveal that overlaps on one timeline, unlike `AnimatedEntrance`'s independent per-widget stagger |
 | `FormErrorText` | Inline validation/submit-error message (`bodyMedium` + `AppColors.error`) |

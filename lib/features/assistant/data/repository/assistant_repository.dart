@@ -88,6 +88,21 @@ class AssistantRepository {
     }
   }
 
+  /// The active template bank as quick-reply options, labeled in the
+  /// patient's language — shown as chips in the chat's empty state.
+  Future<List<AssistantTemplateOption>> getTemplateOptions() async {
+    try {
+      final res = await _dio.get('/assistant/templates/');
+      return (res.data as List<dynamic>)
+          .map((e) => AssistantTemplateOption.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw _mapError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
   Future<void> flagMessage(String messageId, {String reason = ''}) async {
     try {
       await _dio.post(

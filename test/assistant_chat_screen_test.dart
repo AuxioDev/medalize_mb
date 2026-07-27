@@ -12,9 +12,27 @@ import 'package:medalize_mb/features/assistant/presentation/screens/assistant_ch
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class _FakeAssistantRepository extends AssistantRepository {
-  _FakeAssistantRepository({this.messages = const []}) : super(Dio());
+  _FakeAssistantRepository({this.messages = const [], List<AssistantTemplateOption>? templateOptions})
+      : templateOptions = templateOptions ?? _defaultTemplateOptions,
+        super(Dio());
 
   final List<MessageModel> messages;
+  final List<AssistantTemplateOption> templateOptions;
+
+  static const _defaultTemplateOptions = [
+    AssistantTemplateOption(
+      id: 'tpl-1',
+      label: 'Headache',
+      specialization: 'general_practice',
+      specializationDisplay: 'General practice',
+    ),
+    AssistantTemplateOption(
+      id: 'tpl-2',
+      label: 'Sore throat',
+      specialization: 'ent',
+      specializationDisplay: 'ENT',
+    ),
+  ];
 
   /// When set, sendMessage waits on this so the typing indicator is
   /// observable; otherwise it replies immediately.
@@ -46,6 +64,9 @@ class _FakeAssistantRepository extends AssistantRepository {
     lastFlaggedId = messageId;
     lastFlagReason = reason;
   }
+
+  @override
+  Future<List<AssistantTemplateOption>> getTemplateOptions() async => templateOptions;
 }
 
 final _sampleMessages = [
@@ -181,7 +202,10 @@ void main() {
 
     // Optimistic: the message is on screen before the server answered.
     expect(find.text('It hurts when I breathe'), findsOneWidget);
-    expect(find.text('Assistant is typing…'), findsOneWidget);
+    // The typing bubble is three animated dots with no visible text — a
+    // screen reader label is what's left to assert on (see Semantics in
+    // _TypingIndicator).
+    expect(find.bySemanticsLabel('Assistant is typing…'), findsOneWidget);
     expect(repo.lastSentContent, 'It hurts when I breathe');
 
     repo.sendCompleter!.complete(MessageModel(
@@ -192,7 +216,7 @@ void main() {
     ));
     await tester.pumpAndSettle();
 
-    expect(find.text('Assistant is typing…'), findsNothing);
+    expect(find.bySemanticsLabel('Assistant is typing…'), findsNothing);
     expect(find.text('Please seek in-person care.'), findsOneWidget);
   });
 
@@ -231,5 +255,65 @@ void main() {
       find.text('This assistant does not provide medical diagnoses.'),
       findsNothing,
     );
+  });
+
+  testWidgets(
+      'empty conversation with templates from multiple specializations shows '
+      'topic chips first; drilling in reveals that topic\'s templates, and '
+      'tapping one sends its label like typed text', (tester) async {
+    final repo = _FakeAssistantRepository(messages: const []);
+    await _pump(tester, repo);
+
+    // Grouped by specialization — individual templates aren't shown yet.
+    expect(find.text('General practice'), findsOneWidget);
+    expect(find.text('ENT'), findsOneWidget);
+    expect(find.text('Headache'), findsNothing);
+    expect(find.text('Sore throat'), findsNothing);
+
+    await tester.tap(find.text('General practice'));
+    await tester.pumpAndSettle();
+
+    // Drilled into the topic: its template is visible, the other topic's
+    // isn't, and there's a way back to the topic list.
+    expect(find.text('Headache'), findsOneWidget);
+    expect(find.text('Sore throat'), findsNothing);
+    expect(find.text('General practice'), findsOneWidget); // the back button
+
+    await tester.tap(find.text('Headache'));
+    await tester.pumpAndSettle();
+
+    expect(repo.lastSentContent, 'Headache');
+    expect(find.text('Headache'), findsOneWidget); // now the user bubble
+    expect(find.text('Assistant reply'), findsOneWidget);
+  });
+
+  testWidgets(
+      'empty conversation with templates from a single specialization skips '
+      'the topic step and shows its templates directly', (tester) async {
+    final repo = _FakeAssistantRepository(
+      messages: const [],
+      templateOptions: const [
+        AssistantTemplateOption(
+          id: 'tpl-1',
+          label: 'Headache',
+          specialization: 'general_practice',
+          specializationDisplay: 'General practice',
+        ),
+        AssistantTemplateOption(
+          id: 'tpl-2',
+          label: 'Fever',
+          specialization: 'general_practice',
+          specializationDisplay: 'General practice',
+        ),
+      ],
+    );
+    await _pump(tester, repo);
+
+    // Both templates show immediately — a single topic isn't worth a
+    // drill-down step — and there's no back button since there's nowhere
+    // else to go.
+    expect(find.text('Headache'), findsOneWidget);
+    expect(find.text('Fever'), findsOneWidget);
+    expect(find.byIcon(Icons.arrow_back_rounded), findsNothing);
   });
 }

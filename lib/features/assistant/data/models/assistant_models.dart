@@ -113,6 +113,32 @@ class ConversationModel {
   }
 }
 
+/// A quick-reply option from the template bank, shown as a chip in the
+/// chat's empty state. Tapping one sends [label] as-is — it's already one of
+/// the template's own trigger phrases, so it's guaranteed to match back to
+/// this same template server-side.
+class AssistantTemplateOption {
+  final String id;
+  final String specialization;
+  final String specializationDisplay;
+  final String label;
+
+  const AssistantTemplateOption({
+    required this.id,
+    required this.label,
+    this.specialization = '',
+    this.specializationDisplay = '',
+  });
+
+  factory AssistantTemplateOption.fromJson(Map<String, dynamic> j) =>
+      AssistantTemplateOption(
+        id: '${j['id']}',
+        label: j['label'] as String? ?? '',
+        specialization: j['specialization'] as String? ?? '',
+        specializationDisplay: j['specialization_display'] as String? ?? '',
+      );
+}
+
 class ConversationDetailModel {
   final String id;
   final List<MessageModel> messages;
