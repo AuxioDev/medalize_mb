@@ -349,4 +349,36 @@ void main() {
 
     expect(find.text('Rest and drink water.'), findsOneWidget);
   });
+
+  testWidgets(
+      'topics stay reachable after the first message via the app bar button',
+      (tester) async {
+    final repo = _FakeAssistantRepository(messages: _sampleMessages);
+    await _pump(tester, repo);
+
+    // A non-empty conversation shows the normal message thread, not the
+    // empty-state chips — the app bar button is the only way in now.
+    expect(find.text('Headache'), findsNothing);
+    expect(find.byIcon(Icons.category_outlined), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.category_outlined));
+    await tester.pumpAndSettle();
+
+    // Two specializations in the fixture -> the top-level topic step shows
+    // first, not the templates directly.
+    expect(find.text('General practice'), findsOneWidget);
+    expect(find.text('Headache'), findsNothing);
+
+    await tester.tap(find.text('General practice'));
+    await tester.pumpAndSettle();
+    expect(find.text('Headache'), findsOneWidget);
+
+    await tester.tap(find.text('Headache'));
+    await tester.pumpAndSettle();
+
+    // Sheet closed and the tapped label was sent like typed text.
+    expect(find.text('Choose a topic'), findsNothing);
+    expect(repo.lastSentContent, 'Headache');
+    expect(find.text('Assistant reply'), findsOneWidget);
+  });
 }

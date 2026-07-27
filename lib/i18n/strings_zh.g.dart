@@ -733,6 +733,8 @@ class _Translations$assistant$zh extends Translations$assistant$en {
 	@override String get reportSubmit => '举报';
 	@override String get reportSuccess => '感谢反馈，该回复已被举报。';
 	@override String get reportFailed => '无法举报该回复，请重试。';
+	@override String get topicsTooltip => '主题';
+	@override String get topicsSheetTitle => '选择一个主题';
 }
 
 // Path: messaging
@@ -1621,6 +1623,8 @@ extension on TranslationsZh {
 			'assistant.reportSubmit' => '举报',
 			'assistant.reportSuccess' => '感谢反馈，该回复已被举报。',
 			'assistant.reportFailed' => '无法举报该回复，请重试。',
+			'assistant.topicsTooltip' => '主题',
+			'assistant.topicsSheetTitle' => '选择一个主题',
 			'messaging.title' => '消息',
 			'messaging.sendMessage' => '发消息',
 			'messaging.typeMessage' => '输入消息…',
@@ -1708,10 +1712,10 @@ extension on TranslationsZh {
 			'medications.statusSkipped' => '已跳过',
 			'medications.statusPending' => '待服用',
 			'medications.reminderTitle' => ({required Object name}) => '该服用${name}了',
-			'medications.reminderBody' => ({required Object dosage}) => '剂量:${dosage}',
-			'medications.tabActive' => '使用中',
 			_ => null,
 		} ?? switch (path) {
+			'medications.reminderBody' => ({required Object dosage}) => '剂量:${dosage}',
+			'medications.tabActive' => '使用中',
 			'medications.tabArchive' => '已归档',
 			'medications.fromPrescription' => '来自处方',
 			'medications.noSchedule' => '尚未设置服药时间 — 点击添加提醒时间',

@@ -480,7 +480,9 @@
     "reportHint": "原因（可选）",
     "reportSubmit": "举报",
     "reportSuccess": "感谢反馈，该回复已被举报。",
-    "reportFailed": "无法举报该回复，请重试。"
+    "reportFailed": "无法举报该回复，请重试。",
+    "topicsTooltip": "主题",
+    "topicsSheetTitle": "选择一个主题"
   },
   "messaging": {
     "title": "消息",

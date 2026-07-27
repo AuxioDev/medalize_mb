@@ -480,7 +480,9 @@
     "reportHint": "Səbəb (istəyə bağlı)",
     "reportSubmit": "Göndər",
     "reportSuccess": "Təşəkkürlər, şikayət göndərildi.",
-    "reportFailed": "Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin."
+    "reportFailed": "Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.",
+    "topicsTooltip": "Mövzular",
+    "topicsSheetTitle": "Mövzu seçin"
   },
   "messaging": {
     "title": "Mesajlar",

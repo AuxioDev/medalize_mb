@@ -480,7 +480,9 @@
     "reportHint": "Neden (isteğe bağlı)",
     "reportSubmit": "Bildir",
     "reportSuccess": "Teşekkürler, yanıt bildirildi.",
-    "reportFailed": "Yanıt bildirilemedi. Lütfen tekrar deneyin."
+    "reportFailed": "Yanıt bildirilemedi. Lütfen tekrar deneyin.",
+    "topicsTooltip": "Konular",
+    "topicsSheetTitle": "Bir konu seçin"
   },
   "messaging": {
     "title": "Mesajlar",

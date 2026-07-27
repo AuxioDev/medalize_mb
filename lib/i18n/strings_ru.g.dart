@@ -733,6 +733,8 @@ class _Translations$assistant$ru extends Translations$assistant$en {
 	@override String get reportSubmit => 'Отправить';
 	@override String get reportSuccess => 'Спасибо, жалоба отправлена.';
 	@override String get reportFailed => 'Не удалось отправить жалобу. Попробуйте ещё раз.';
+	@override String get topicsTooltip => 'Темы';
+	@override String get topicsSheetTitle => 'Выберите тему';
 }
 
 // Path: messaging
@@ -1621,6 +1623,8 @@ extension on TranslationsRu {
 			'assistant.reportSubmit' => 'Отправить',
 			'assistant.reportSuccess' => 'Спасибо, жалоба отправлена.',
 			'assistant.reportFailed' => 'Не удалось отправить жалобу. Попробуйте ещё раз.',
+			'assistant.topicsTooltip' => 'Темы',
+			'assistant.topicsSheetTitle' => 'Выберите тему',
 			'messaging.title' => 'Сообщения',
 			'messaging.sendMessage' => 'Написать',
 			'messaging.typeMessage' => 'Введите сообщение…',
@@ -1708,10 +1712,10 @@ extension on TranslationsRu {
 			'medications.statusSkipped' => 'Пропущено',
 			'medications.statusPending' => 'Ожидает',
 			'medications.reminderTitle' => ({required Object name}) => 'Пора принять ${name}',
-			'medications.reminderBody' => ({required Object dosage}) => 'Доза: ${dosage}',
-			'medications.tabActive' => 'Активные',
 			_ => null,
 		} ?? switch (path) {
+			'medications.reminderBody' => ({required Object dosage}) => 'Доза: ${dosage}',
+			'medications.tabActive' => 'Активные',
 			'medications.tabArchive' => 'Архив',
 			'medications.fromPrescription' => 'По рецепту',
 			'medications.noSchedule' => 'Расписание не задано — нажмите, чтобы добавить время приёма',

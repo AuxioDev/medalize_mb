@@ -480,7 +480,9 @@
     "reportHint": "Motif (facultatif)",
     "reportSubmit": "Signaler",
     "reportSuccess": "Merci, la réponse a été signalée.",
-    "reportFailed": "Impossible de signaler la réponse. Veuillez réessayer."
+    "reportFailed": "Impossible de signaler la réponse. Veuillez réessayer.",
+    "topicsTooltip": "Sujets",
+    "topicsSheetTitle": "Choisissez un sujet"
   },
   "messaging": {
     "title": "Messages",

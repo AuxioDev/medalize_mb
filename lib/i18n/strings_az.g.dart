@@ -733,6 +733,8 @@ class _Translations$assistant$az extends Translations$assistant$en {
 	@override String get reportSubmit => 'Göndər';
 	@override String get reportSuccess => 'Təşəkkürlər, şikayət göndərildi.';
 	@override String get reportFailed => 'Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.';
+	@override String get topicsTooltip => 'Mövzular';
+	@override String get topicsSheetTitle => 'Mövzu seçin';
 }
 
 // Path: messaging
@@ -1621,6 +1623,8 @@ extension on TranslationsAz {
 			'assistant.reportSubmit' => 'Göndər',
 			'assistant.reportSuccess' => 'Təşəkkürlər, şikayət göndərildi.',
 			'assistant.reportFailed' => 'Şikayəti göndərmək mümkün olmadı. Yenidən cəhd edin.',
+			'assistant.topicsTooltip' => 'Mövzular',
+			'assistant.topicsSheetTitle' => 'Mövzu seçin',
 			'messaging.title' => 'Mesajlar',
 			'messaging.sendMessage' => 'Mesaj yaz',
 			'messaging.typeMessage' => 'Mesaj yazın…',
@@ -1708,10 +1712,10 @@ extension on TranslationsAz {
 			'medications.statusSkipped' => 'Buraxıldı',
 			'medications.statusPending' => 'Gözləyir',
 			'medications.reminderTitle' => ({required Object name}) => '${name} qəbul etmə vaxtıdır',
-			'medications.reminderBody' => ({required Object dosage}) => 'Doza: ${dosage}',
-			'medications.tabActive' => 'Aktiv',
 			_ => null,
 		} ?? switch (path) {
+			'medications.reminderBody' => ({required Object dosage}) => 'Doza: ${dosage}',
+			'medications.tabActive' => 'Aktiv',
 			'medications.tabArchive' => 'Arxiv',
 			'medications.fromPrescription' => 'Resept üzrə',
 			'medications.noSchedule' => 'Cədvəl təyin edilməyib — xatırlatma vaxtı əlavə etmək üçün toxunun',

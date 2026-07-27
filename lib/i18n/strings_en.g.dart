@@ -1547,6 +1547,12 @@ class Translations$assistant$en {
 
 	/// en: 'Could not report the response. Please try again.'
 	String get reportFailed => 'Could not report the response. Please try again.';
+
+	/// en: 'Topics'
+	String get topicsTooltip => 'Topics';
+
+	/// en: 'Choose a topic'
+	String get topicsSheetTitle => 'Choose a topic';
 }
 
 // Path: messaging
@@ -2864,6 +2870,8 @@ extension on Translations {
 			'assistant.reportSubmit' => 'Report',
 			'assistant.reportSuccess' => 'Thank you, the response was reported.',
 			'assistant.reportFailed' => 'Could not report the response. Please try again.',
+			'assistant.topicsTooltip' => 'Topics',
+			'assistant.topicsSheetTitle' => 'Choose a topic',
 			'messaging.title' => 'Messages',
 			'messaging.sendMessage' => 'Message',
 			'messaging.typeMessage' => 'Type a message…',
@@ -2951,10 +2959,10 @@ extension on Translations {
 			'medications.statusSkipped' => 'Skipped',
 			'medications.statusPending' => 'Pending',
 			'medications.reminderTitle' => ({required Object name}) => 'Time to take ${name}',
-			'medications.reminderBody' => ({required Object dosage}) => 'Dose: ${dosage}',
-			'medications.tabActive' => 'Active',
 			_ => null,
 		} ?? switch (path) {
+			'medications.reminderBody' => ({required Object dosage}) => 'Dose: ${dosage}',
+			'medications.tabActive' => 'Active',
 			'medications.tabArchive' => 'Archive',
 			'medications.fromPrescription' => 'From prescription',
 			'medications.noSchedule' => 'No schedule set — tap to add reminder times',

@@ -733,6 +733,8 @@ class _Translations$assistant$tr extends Translations$assistant$en {
 	@override String get reportSubmit => 'Bildir';
 	@override String get reportSuccess => 'Teşekkürler, yanıt bildirildi.';
 	@override String get reportFailed => 'Yanıt bildirilemedi. Lütfen tekrar deneyin.';
+	@override String get topicsTooltip => 'Konular';
+	@override String get topicsSheetTitle => 'Bir konu seçin';
 }
 
 // Path: messaging
@@ -1621,6 +1623,8 @@ extension on TranslationsTr {
 			'assistant.reportSubmit' => 'Bildir',
 			'assistant.reportSuccess' => 'Teşekkürler, yanıt bildirildi.',
 			'assistant.reportFailed' => 'Yanıt bildirilemedi. Lütfen tekrar deneyin.',
+			'assistant.topicsTooltip' => 'Konular',
+			'assistant.topicsSheetTitle' => 'Bir konu seçin',
 			'messaging.title' => 'Mesajlar',
 			'messaging.sendMessage' => 'Mesaj Gönder',
 			'messaging.typeMessage' => 'Bir mesaj yazın…',
@@ -1708,10 +1712,10 @@ extension on TranslationsTr {
 			'medications.statusSkipped' => 'Atlandı',
 			'medications.statusPending' => 'Bekliyor',
 			'medications.reminderTitle' => ({required Object name}) => '${name} alma vakti',
-			'medications.reminderBody' => ({required Object dosage}) => 'Doz: ${dosage}',
-			'medications.tabActive' => 'Aktif',
 			_ => null,
 		} ?? switch (path) {
+			'medications.reminderBody' => ({required Object dosage}) => 'Doz: ${dosage}',
+			'medications.tabActive' => 'Aktif',
 			'medications.tabArchive' => 'Arşiv',
 			'medications.fromPrescription' => 'Reçeteden',
 			'medications.noSchedule' => 'Program ayarlanmadı — hatırlatma saati eklemek için dokunun',

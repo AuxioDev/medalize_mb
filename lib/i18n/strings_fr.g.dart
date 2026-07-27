@@ -733,6 +733,8 @@ class _Translations$assistant$fr extends Translations$assistant$en {
 	@override String get reportSubmit => 'Signaler';
 	@override String get reportSuccess => 'Merci, la réponse a été signalée.';
 	@override String get reportFailed => 'Impossible de signaler la réponse. Veuillez réessayer.';
+	@override String get topicsTooltip => 'Sujets';
+	@override String get topicsSheetTitle => 'Choisissez un sujet';
 }
 
 // Path: messaging
@@ -1621,6 +1623,8 @@ extension on TranslationsFr {
 			'assistant.reportSubmit' => 'Signaler',
 			'assistant.reportSuccess' => 'Merci, la réponse a été signalée.',
 			'assistant.reportFailed' => 'Impossible de signaler la réponse. Veuillez réessayer.',
+			'assistant.topicsTooltip' => 'Sujets',
+			'assistant.topicsSheetTitle' => 'Choisissez un sujet',
 			'messaging.title' => 'Messages',
 			'messaging.sendMessage' => 'Envoyer un message',
 			'messaging.typeMessage' => 'Écrivez un message…',
@@ -1708,10 +1712,10 @@ extension on TranslationsFr {
 			'medications.statusSkipped' => 'Ignoré',
 			'medications.statusPending' => 'En attente',
 			'medications.reminderTitle' => ({required Object name}) => 'C\'est l\'heure de prendre ${name}',
-			'medications.reminderBody' => ({required Object dosage}) => 'Dose : ${dosage}',
-			'medications.tabActive' => 'Actifs',
 			_ => null,
 		} ?? switch (path) {
+			'medications.reminderBody' => ({required Object dosage}) => 'Dose : ${dosage}',
+			'medications.tabActive' => 'Actifs',
 			'medications.tabArchive' => 'Archivés',
 			'medications.fromPrescription' => 'Sur ordonnance',
 			'medications.noSchedule' => 'Aucun horaire défini — appuyez pour ajouter des heures de rappel',

@@ -134,6 +134,42 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
     );
   }
 
+  /// Opens the same specialization → template drill-down used in the empty
+  /// state, in a modal sheet — the quick-reply chips aren't just a
+  /// first-message affordance, they stay reachable for the rest of the
+  /// conversation via this button.
+  Future<void> _showTopicsSheet() async {
+    final label = await showModalBottomSheet<String>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (sheetContext) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.6,
+        minChildSize: 0.3,
+        maxChildSize: 0.9,
+        builder: (_, scrollController) => SingleChildScrollView(
+          controller: scrollController,
+          padding: const EdgeInsets.fromLTRB(
+              AppSpacing.lg, 0, AppSpacing.lg, AppSpacing.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                context.t.assistant.topicsSheetTitle,
+                style: Theme.of(sheetContext).textTheme.titleMedium,
+                textAlign: TextAlign.center,
+              ),
+              const Gap(16),
+              _TopicPicker(onTap: (text) => Navigator.of(sheetContext).pop(text)),
+            ],
+          ),
+        ),
+      ),
+    );
+    if (label != null && mounted) await _sendText(label);
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(assistantChatProvider(widget.conversationId));
@@ -145,6 +181,13 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.t.assistant.title),
+        actions: [
+          IconButton(
+            tooltip: context.t.assistant.topicsTooltip,
+            onPressed: _showTopicsSheet,
+            icon: const Icon(Icons.category_outlined),
+          ),
+        ],
       ),
       body: ResponsiveBody(
         child: switch ((state.loading, state.loadFailed)) {
@@ -236,44 +279,14 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
 /// Empty-conversation state: the usual icon/title/subtitle plus every active
 /// template as a tappable quick-reply chip, so a patient can start the chat
 /// without typing. Scrollable — the bank easily exceeds one screen.
-class _EmptyStateWithTopics extends ConsumerStatefulWidget {
+class _EmptyStateWithTopics extends StatelessWidget {
   const _EmptyStateWithTopics({required this.onTopicTap});
 
   final ValueChanged<String> onTopicTap;
 
   @override
-  ConsumerState<_EmptyStateWithTopics> createState() => _EmptyStateWithTopicsState();
-}
-
-class _EmptyStateWithTopicsState extends ConsumerState<_EmptyStateWithTopics> {
-  /// null = showing the top-level topic list; otherwise the specialization
-  /// code of the topic currently drilled into.
-  String? _selectedSpecialization;
-
-  /// Groups the flat template bank by specialization, preserving the bank's
-  /// own order — both across groups and within each one — rather than
-  /// re-sorting; it's already curated server-side.
-  List<_TopicGroup> _groupBySpecialization(List<AssistantTemplateOption> opts) {
-    final groups = <String, _TopicGroup>{};
-    for (final opt in opts) {
-      groups
-          .putIfAbsent(
-            opt.specialization,
-            () => _TopicGroup(
-              specialization: opt.specialization,
-              display: opt.specializationDisplay,
-            ),
-          )
-          .options
-          .add(opt);
-    }
-    return groups.values.toList();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final options = ref.watch(assistantTemplateOptionsProvider);
 
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.xl),
@@ -300,54 +313,100 @@ class _EmptyStateWithTopicsState extends ConsumerState<_EmptyStateWithTopics> {
           textAlign: TextAlign.center,
         ),
         const Gap(20),
-        options.when(
-          data: (opts) {
-            if (opts.isEmpty) return const SizedBox.shrink();
-            final groups = _groupBySpecialization(opts);
-            final selectedSpec = _selectedSpecialization;
-            final selectedGroup = selectedSpec == null
-                ? null
-                : groups.where((g) => g.specialization == selectedSpec).firstOrNull;
-
-            // A single topic isn't worth a drill-down step — show its
-            // templates directly, flattened, same as the old flat layout.
-            final showTopics = groups.length > 1 && selectedGroup == null;
-
-            return AnimatedSwitcher(
-              duration: const Duration(milliseconds: 220),
-              transitionBuilder: (child, anim) =>
-                  FadeTransition(opacity: anim, child: child),
-              child: showTopics
-                  ? _TopicChips(
-                      key: const ValueKey('topics'),
-                      groups: groups,
-                      onSelect: (group) =>
-                          setState(() => _selectedSpecialization = group.specialization),
-                    )
-                  : _TemplateChips(
-                      key: ValueKey(selectedGroup?.specialization ?? 'all'),
-                      options: selectedGroup?.options ?? opts,
-                      // Omitted (rather than disabled) once there's only one
-                      // topic overall — there's nowhere to go back to.
-                      backLabel: (selectedGroup != null && groups.length > 1)
-                          ? (selectedGroup.display.isEmpty
-                              ? selectedGroup.specialization
-                              : selectedGroup.display)
-                          : null,
-                      onBack: () => setState(() => _selectedSpecialization = null),
-                      onTap: widget.onTopicTap,
-                    ),
-            );
-          },
-          loading: () => const Padding(
-            padding: EdgeInsets.all(AppSpacing.md),
-            child: Center(child: CircularProgressIndicator()),
-          ),
-          // Quiet failure — typing free text still works even if the
-          // quick-reply chips fail to load.
-          error: (_, _) => const SizedBox.shrink(),
-        ),
+        _TopicPicker(onTap: onTopicTap),
       ],
+    );
+  }
+}
+
+/// The specialization → template drill-down, on its own so it can be shown
+/// both in the empty state (above) and, once the conversation has messages
+/// and that empty state is gone, inside the modal sheet opened from the app
+/// bar's topics button — the whole point being that quick-replies aren't
+/// only reachable before the first message.
+class _TopicPicker extends ConsumerStatefulWidget {
+  const _TopicPicker({required this.onTap});
+
+  final ValueChanged<String> onTap;
+
+  @override
+  ConsumerState<_TopicPicker> createState() => _TopicPickerState();
+}
+
+class _TopicPickerState extends ConsumerState<_TopicPicker> {
+  /// null = showing the top-level topic list; otherwise the specialization
+  /// code of the topic currently drilled into.
+  String? _selectedSpecialization;
+
+  /// Groups the flat template bank by specialization, preserving the bank's
+  /// own order — both across groups and within each one — rather than
+  /// re-sorting; it's already curated server-side.
+  List<_TopicGroup> _groupBySpecialization(List<AssistantTemplateOption> opts) {
+    final groups = <String, _TopicGroup>{};
+    for (final opt in opts) {
+      groups
+          .putIfAbsent(
+            opt.specialization,
+            () => _TopicGroup(
+              specialization: opt.specialization,
+              display: opt.specializationDisplay,
+            ),
+          )
+          .options
+          .add(opt);
+    }
+    return groups.values.toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final options = ref.watch(assistantTemplateOptionsProvider);
+
+    return options.when(
+      data: (opts) {
+        if (opts.isEmpty) return const SizedBox.shrink();
+        final groups = _groupBySpecialization(opts);
+        final selectedSpec = _selectedSpecialization;
+        final selectedGroup = selectedSpec == null
+            ? null
+            : groups.where((g) => g.specialization == selectedSpec).firstOrNull;
+
+        // A single topic isn't worth a drill-down step — show its
+        // templates directly, flattened, same as the old flat layout.
+        final showTopics = groups.length > 1 && selectedGroup == null;
+
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 220),
+          transitionBuilder: (child, anim) => FadeTransition(opacity: anim, child: child),
+          child: showTopics
+              ? _TopicChips(
+                  key: const ValueKey('topics'),
+                  groups: groups,
+                  onSelect: (group) =>
+                      setState(() => _selectedSpecialization = group.specialization),
+                )
+              : _TemplateChips(
+                  key: ValueKey(selectedGroup?.specialization ?? 'all'),
+                  options: selectedGroup?.options ?? opts,
+                  // Omitted (rather than disabled) once there's only one
+                  // topic overall — there's nowhere to go back to.
+                  backLabel: (selectedGroup != null && groups.length > 1)
+                      ? (selectedGroup.display.isEmpty
+                          ? selectedGroup.specialization
+                          : selectedGroup.display)
+                      : null,
+                  onBack: () => setState(() => _selectedSpecialization = null),
+                  onTap: widget.onTap,
+                ),
+        );
+      },
+      loading: () => const Padding(
+        padding: EdgeInsets.all(AppSpacing.md),
+        child: Center(child: CircularProgressIndicator()),
+      ),
+      // Quiet failure — typing free text still works even if the
+      // quick-reply chips fail to load.
+      error: (_, _) => const SizedBox.shrink(),
     );
   }
 }
