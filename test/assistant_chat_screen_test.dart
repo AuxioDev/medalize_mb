@@ -316,4 +316,37 @@ void main() {
     expect(find.text('Fever'), findsOneWidget);
     expect(find.byIcon(Icons.arrow_back_rounded), findsNothing);
   });
+
+  testWidgets(
+      'a reply that already finished typing out does not replay when the '
+      'patient starts composing the next message', (tester) async {
+    final repo = _FakeAssistantRepository(messages: const [])
+      ..sendCompleter = Completer<MessageModel>();
+    await _pump(tester, repo);
+
+    await tester.enterText(find.byType(TextField), 'I have a headache');
+    await tester.pump();
+    await tester.tap(find.byIcon(Icons.arrow_upward_rounded));
+    await tester.pump();
+    repo.sendCompleter!.complete(MessageModel(
+      id: 'reply-1',
+      role: MessageModel.roleAssistant,
+      content: 'Rest and drink water.',
+      createdAt: DateTime(2026, 7, 4, 12),
+    ));
+    // Long enough to clear the ~700ms minimum "thinking" delay plus the
+    // typewriter reveal for this short reply — the reply is fully visible
+    // and its animation has completed by the end of this settle.
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.text('Rest and drink water.'), findsOneWidget);
+
+    // Composing the next message (not sending it) triggers a screen rebuild
+    // via the `_hasText` setState in the input listener — this alone must
+    // not touch the already-revealed reply above.
+    await tester.enterText(find.byType(TextField), 'and now also a fever');
+    await tester.pump();
+
+    expect(find.text('Rest and drink water.'), findsOneWidget);
+  });
 }

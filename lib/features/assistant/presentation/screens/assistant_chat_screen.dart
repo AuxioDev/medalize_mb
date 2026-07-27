@@ -40,11 +40,15 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
   var _hasText = false;
 
   // Every message id encountered so far (seeded from history on first load)
-  // and the subset of those that should render with the typewriter effect.
-  // A message earns the effect exactly once, the first time it's seen after
-  // history has loaded — never on the initial scroll-back through history,
-  // and the decision then stays stable across unrelated rebuilds (typing in
-  // the input field, etc.) instead of aborting an in-flight reveal.
+  // and the subset of those still mid-reveal. A message earns the effect
+  // exactly once, the first time it's seen after history has loaded — never
+  // on the initial scroll-back through history. It's removed from
+  // _typewriterMessageIds the moment its reveal completes (see
+  // _markTypewriterComplete), not left there for the rest of the session:
+  // ListView.builder can discard and remount an off-screen bubble (e.g. the
+  // keyboard opening shrinks the viewport while composing the next
+  // message), and TypewriterText has no memory of already having played —
+  // a stale "true" here would make a finished reply replay from scratch.
   final _seenMessageIds = <String>{};
   final _typewriterMessageIds = <String>{};
   var _historySeeded = false;
@@ -105,6 +109,15 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
         type: SnackBarType.error,
       );
     }
+  }
+
+  /// Called once a message's typewriter reveal finishes. Drops it from
+  /// [_typewriterMessageIds] so this message renders as plain [Text] from
+  /// here on — see the field's doc comment for why that's the part doing
+  /// the real work, not the reveal widget's own internal state.
+  void _markTypewriterComplete(String messageId) {
+    if (!mounted) return;
+    setState(() => _typewriterMessageIds.remove(messageId));
   }
 
   Future<void> _flag(MessageModel message) async {
@@ -181,6 +194,7 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
                       text: message.content,
                       isMine: message.isUser,
                       animateTyping: _typewriterMessageIds.contains(message.id),
+                      onTypingComplete: () => _markTypewriterComplete(message.id),
                       trailing: message.isUser
                           ? null
                           : (message.flagged

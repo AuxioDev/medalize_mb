@@ -22,6 +22,7 @@ class ChatMessageBubble extends StatelessWidget {
     this.trailing,
     this.below,
     this.animateTyping = false,
+    this.onTypingComplete,
   });
 
   final String text;
@@ -37,10 +38,14 @@ class ChatMessageBubble extends StatelessWidget {
   /// Reveals [text] with [TypewriterText] instead of rendering it instantly —
   /// for a reply that just arrived (never for message history being
   /// scrolled back into view, and never for [isMine]). The caller is
-  /// responsible for only setting this true once per message; pair it with a
-  /// `key: ValueKey(message.id)` on this widget so the reveal doesn't
-  /// restart on an unrelated rebuild.
+  /// responsible for only setting this true once per message, and for
+  /// flipping it back to false once [onTypingComplete] fires — this
+  /// widget's own state is not a reliable place to remember "already
+  /// played," since list recycling can discard and remount it mid-session.
   final bool animateTyping;
+
+  /// Forwarded to [TypewriterText.onComplete] when [animateTyping] is true.
+  final VoidCallback? onTypingComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +68,7 @@ class ChatMessageBubble extends StatelessWidget {
         ),
       ),
       child: animateTyping && !isMine
-          ? TypewriterText(text: text, style: textStyle)
+          ? TypewriterText(text: text, style: textStyle, onComplete: onTypingComplete)
           : Text(text, style: textStyle),
     );
 
