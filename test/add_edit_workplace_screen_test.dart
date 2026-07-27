@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/location_picker_field.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/workplace_map_picker_screen.dart';
 import 'package:medalize_mb/features/locations/data/repository/location_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:dio/dio.dart';
@@ -14,6 +16,12 @@ const _fakeRegions = <LocationRegion>[
     LocationOption(
       key: 'baku', type: 'city', label: 'Baku',
       lat: 40.4093, lng: 49.8671, regionKey: 'baku', regionLabel: 'Baku',
+    ),
+  ]),
+  LocationRegion(key: 'ganja_dashkasan', label: 'Ganja-Dashkasan', cities: [
+    LocationOption(
+      key: 'ganja', type: 'city', label: 'Ganja',
+      lat: 40.6828, lng: 46.3606, regionKey: 'ganja_dashkasan', regionLabel: 'Ganja-Dashkasan',
     ),
   ]),
 ];
@@ -26,6 +34,36 @@ Widget _wrap(Widget child, {List<Override> overrides = const []}) {
         ...overrides,
       ],
       child: MaterialApp(theme: AppTheme.light, home: child),
+    ),
+  );
+}
+
+/// Like [_wrap] but with a real GoRouter so `context.push` to the map
+/// picker route works — only needed by tests that tap "Pick on Map".
+Widget _wrapWithRouter(Widget child, {List<Override> overrides = const []}) {
+  final router = GoRouter(
+    initialLocation: '/host',
+    routes: [
+      GoRoute(path: '/host', builder: (_, _) => child),
+      GoRoute(
+        path: '/doctor/pick-workplace-location',
+        builder: (_, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WorkplaceMapPickerScreen(
+            initialLat: extra?['lat'] as double?,
+            initialLng: extra?['lng'] as double?,
+          );
+        },
+      ),
+    ],
+  );
+  return TranslationProvider(
+    child: ProviderScope(
+      overrides: [
+        locationsProvider.overrideWith((ref) async => _fakeRegions),
+        ...overrides,
+      ],
+      child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
     ),
   );
 }
@@ -151,5 +189,53 @@ void main() {
     expect(monday['is_active'], isTrue);
     expect(monday['start_time'], '09:00:00');
     expect(monday['end_time'], '17:00:00');
+  });
+
+  testWidgets(
+      'opening the map with no pin yet centers on the selected city, not a hardcoded default',
+      (tester) async {
+    await tester.pumpWidget(_wrapWithRouter(const AddEditWorkplaceScreen()));
+    await tester.pump();
+
+    await tester.tap(find.byType(LocationPickerField));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(ListTile, 'Ganja'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Pick on Map'));
+    await tester.pumpAndSettle();
+
+    final picker =
+        tester.widget<WorkplaceMapPickerScreen>(find.byType(WorkplaceMapPickerScreen));
+    expect(picker.initialLat, 40.6828);
+    expect(picker.initialLng, 46.3606);
+  });
+
+  testWidgets('opening the map for an existing workplace centers on its saved point',
+      (tester) async {
+    final existing = <String, dynamic>{
+      'id': 'w1',
+      'name': 'City Clinic',
+      'address': '12 Main St',
+      'city': 'baku',
+      'city_display': 'Baku',
+      'type': 'clinic',
+      'is_primary': true,
+      'latitude': '38.750000',
+      'longitude': '48.850000',
+    };
+    await tester.pumpWidget(
+      _wrapWithRouter(AddEditWorkplaceScreen(existing: existing)),
+    );
+    await tester.pump();
+
+    await tester.tap(find.text('Pick on Map'));
+    await tester.pumpAndSettle();
+
+    final picker =
+        tester.widget<WorkplaceMapPickerScreen>(find.byType(WorkplaceMapPickerScreen));
+    // The workplace's own saved point, not Ganja/Baku's city centroid.
+    expect(picker.initialLat, 38.75);
+    expect(picker.initialLng, 48.85);
   });
 }

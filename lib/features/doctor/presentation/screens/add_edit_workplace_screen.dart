@@ -12,6 +12,7 @@ import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/workplace_map_picker_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
+import 'package:medalize_mb/features/locations/data/repository/location_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class AddEditWorkplaceScreen extends ConsumerStatefulWidget {
@@ -66,10 +67,27 @@ class _AddEditWorkplaceScreenState
     super.dispose();
   }
 
+  /// The map should already show wherever this workplace's address
+  /// currently points to: the doctor's own pin if there is one, else the
+  /// centroid of the city already picked in the form, else nothing (the
+  /// map screen itself falls back to Baku).
+  ({double? lat, double? lng}) _mapStartingPoint() {
+    if (_lat != null && _lng != null) return (lat: _lat, lng: _lng);
+    final cityKey = _cityKey;
+    if (cityKey == null) return (lat: null, lng: null);
+    for (final region in ref.read(locationsProvider).valueOrNull ?? const []) {
+      for (final city in region.cities) {
+        if (city.key == cityKey) return (lat: city.lat, lng: city.lng);
+      }
+    }
+    return (lat: null, lng: null);
+  }
+
   Future<void> _pickOnMap() async {
+    final start = _mapStartingPoint();
     final result = await context.push<PickedLocation?>(
       '/doctor/pick-workplace-location',
-      extra: {'lat': _lat, 'lng': _lng},
+      extra: {'lat': start.lat, 'lng': start.lng},
     );
     if (result == null || !mounted) return;
     setState(() {
