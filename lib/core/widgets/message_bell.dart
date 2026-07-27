@@ -21,20 +21,20 @@ class MessageBell extends StatelessWidget {
           icon: const Icon(Icons.chat_bubble_outline_rounded),
           onPressed: onTap,
         ),
-        AnimatedSwitcher(
-          duration: AppDuration.fast,
-          transitionBuilder: (child, anim) => ScaleTransition(
-            scale: Tween<double>(begin: 0.5, end: 1.0).animate(
-              CurvedAnimation(parent: anim, curve: AppCurve.emphasized),
+        Positioned(
+          right: 8,
+          top: 8,
+          child: AnimatedSwitcher(
+            duration: AppDuration.fast,
+            transitionBuilder: (child, anim) => ScaleTransition(
+              scale: Tween<double>(begin: 0.5, end: 1.0).animate(
+                CurvedAnimation(parent: anim, curve: AppCurve.emphasized),
+              ),
+              child: FadeTransition(opacity: anim, child: child),
             ),
-            child: FadeTransition(opacity: anim, child: child),
-          ),
-          child: count > 0
-              ? Positioned(
-                  key: ValueKey(count),
-                  right: 8,
-                  top: 8,
-                  child: IgnorePointer(
+            child: count > 0
+                ? IgnorePointer(
+                    key: ValueKey(count),
                     child: Container(
                       padding: const EdgeInsets.all(2),
                       decoration: const BoxDecoration(
@@ -53,9 +53,9 @@ class MessageBell extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                )
-              : const SizedBox.shrink(key: ValueKey(0)),
+                  )
+                : const SizedBox.shrink(key: ValueKey(0)),
+          ),
         ),
       ],
     );
