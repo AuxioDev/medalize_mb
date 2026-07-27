@@ -368,6 +368,8 @@
   },
   "workingHours": {
     "title": "Çalışma Saatleri",
+    "sectionHint": "Hastaların bu adreste sizden randevu alabileceği gün ve saatleri belirleyin.",
+    "invalidRange": "Etkin her gün için bitiş saati başlangıç saatinden sonra olmalıdır.",
     "saved": "Çalışma saatleri kaydedildi",
     "failedToSave": "Çalışma saatleri kaydedilemedi",
     "days": {

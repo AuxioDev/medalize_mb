@@ -368,6 +368,8 @@
   },
   "workingHours": {
     "title": "İş saatları",
+    "sectionHint": "Bu ünvanda pasiyentlərin sizi qəbul edə biləcəyi günləri və saatları seçin.",
+    "invalidRange": "Aktiv hər gün üçün bitmə vaxtı başlama vaxtından sonra olmalıdır.",
     "saved": "İş saatları yadda saxlanıldı",
     "failedToSave": "İş saatları yadda saxlanıla bilmədi",
     "days": {

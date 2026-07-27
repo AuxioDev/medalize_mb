@@ -565,6 +565,8 @@ class _Translations$workingHours$fr extends Translations$workingHours$en {
 
 	// Translations
 	@override String get title => 'Heures de travail';
+	@override String get sectionHint => 'Définissez les jours et horaires où les patients peuvent prendre rendez-vous à cette adresse.';
+	@override String get invalidRange => 'L\'heure de fin doit être postérieure à l\'heure de début pour chaque jour actif.';
 	@override String get saved => 'Heures de travail enregistrées';
 	@override String get failedToSave => 'Échec de l\'enregistrement des heures de travail';
 	@override late final _Translations$workingHours$days$fr days = _Translations$workingHours$days$fr._(_root);
@@ -1530,6 +1532,8 @@ extension on TranslationsFr {
 			'addWorkplace.addButton' => 'Ajouter un lieu de travail',
 			'addWorkplace.saveChanges' => 'Enregistrer les modifications',
 			'workingHours.title' => 'Heures de travail',
+			'workingHours.sectionHint' => 'Définissez les jours et horaires où les patients peuvent prendre rendez-vous à cette adresse.',
+			'workingHours.invalidRange' => 'L\'heure de fin doit être postérieure à l\'heure de début pour chaque jour actif.',
 			'workingHours.saved' => 'Heures de travail enregistrées',
 			'workingHours.failedToSave' => 'Échec de l\'enregistrement des heures de travail',
 			'workingHours.days.monday' => 'Lundi',
@@ -1710,10 +1714,10 @@ extension on TranslationsFr {
 			'medications.markSkipped' => 'Ignorer',
 			'medications.statusTaken' => 'Pris',
 			'medications.statusSkipped' => 'Ignoré',
-			'medications.statusPending' => 'En attente',
-			'medications.reminderTitle' => ({required Object name}) => 'C\'est l\'heure de prendre ${name}',
 			_ => null,
 		} ?? switch (path) {
+			'medications.statusPending' => 'En attente',
+			'medications.reminderTitle' => ({required Object name}) => 'C\'est l\'heure de prendre ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Dose : ${dosage}',
 			'medications.tabActive' => 'Actifs',
 			'medications.tabArchive' => 'Archivés',

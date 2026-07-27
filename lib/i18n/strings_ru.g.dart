@@ -565,6 +565,8 @@ class _Translations$workingHours$ru extends Translations$workingHours$en {
 
 	// Translations
 	@override String get title => 'Часы работы';
+	@override String get sectionHint => 'Укажите дни и часы, когда пациенты смогут записаться к вам по этому адресу.';
+	@override String get invalidRange => 'Для каждого активного дня время окончания должно быть позже времени начала.';
 	@override String get saved => 'Часы работы сохранены';
 	@override String get failedToSave => 'Не удалось сохранить часы работы';
 	@override late final _Translations$workingHours$days$ru days = _Translations$workingHours$days$ru._(_root);
@@ -1530,6 +1532,8 @@ extension on TranslationsRu {
 			'addWorkplace.addButton' => 'Добавить место работы',
 			'addWorkplace.saveChanges' => 'Сохранить изменения',
 			'workingHours.title' => 'Часы работы',
+			'workingHours.sectionHint' => 'Укажите дни и часы, когда пациенты смогут записаться к вам по этому адресу.',
+			'workingHours.invalidRange' => 'Для каждого активного дня время окончания должно быть позже времени начала.',
 			'workingHours.saved' => 'Часы работы сохранены',
 			'workingHours.failedToSave' => 'Не удалось сохранить часы работы',
 			'workingHours.days.monday' => 'Понедельник',
@@ -1710,10 +1714,10 @@ extension on TranslationsRu {
 			'medications.markSkipped' => 'Пропустить',
 			'medications.statusTaken' => 'Принято',
 			'medications.statusSkipped' => 'Пропущено',
-			'medications.statusPending' => 'Ожидает',
-			'medications.reminderTitle' => ({required Object name}) => 'Пора принять ${name}',
 			_ => null,
 		} ?? switch (path) {
+			'medications.statusPending' => 'Ожидает',
+			'medications.reminderTitle' => ({required Object name}) => 'Пора принять ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Доза: ${dosage}',
 			'medications.tabActive' => 'Активные',
 			'medications.tabArchive' => 'Архив',

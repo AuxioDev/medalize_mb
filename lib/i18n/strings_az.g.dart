@@ -565,6 +565,8 @@ class _Translations$workingHours$az extends Translations$workingHours$en {
 
 	// Translations
 	@override String get title => 'İş saatları';
+	@override String get sectionHint => 'Bu ünvanda pasiyentlərin sizi qəbul edə biləcəyi günləri və saatları seçin.';
+	@override String get invalidRange => 'Aktiv hər gün üçün bitmə vaxtı başlama vaxtından sonra olmalıdır.';
 	@override String get saved => 'İş saatları yadda saxlanıldı';
 	@override String get failedToSave => 'İş saatları yadda saxlanıla bilmədi';
 	@override late final _Translations$workingHours$days$az days = _Translations$workingHours$days$az._(_root);
@@ -1530,6 +1532,8 @@ extension on TranslationsAz {
 			'addWorkplace.addButton' => 'İş yeri əlavə et',
 			'addWorkplace.saveChanges' => 'Dəyişiklikləri yadda saxla',
 			'workingHours.title' => 'İş saatları',
+			'workingHours.sectionHint' => 'Bu ünvanda pasiyentlərin sizi qəbul edə biləcəyi günləri və saatları seçin.',
+			'workingHours.invalidRange' => 'Aktiv hər gün üçün bitmə vaxtı başlama vaxtından sonra olmalıdır.',
 			'workingHours.saved' => 'İş saatları yadda saxlanıldı',
 			'workingHours.failedToSave' => 'İş saatları yadda saxlanıla bilmədi',
 			'workingHours.days.monday' => 'Bazar ertəsi',
@@ -1710,10 +1714,10 @@ extension on TranslationsAz {
 			'medications.markSkipped' => 'Buraxıldı',
 			'medications.statusTaken' => 'Qəbul edildi',
 			'medications.statusSkipped' => 'Buraxıldı',
-			'medications.statusPending' => 'Gözləyir',
-			'medications.reminderTitle' => ({required Object name}) => '${name} qəbul etmə vaxtıdır',
 			_ => null,
 		} ?? switch (path) {
+			'medications.statusPending' => 'Gözləyir',
+			'medications.reminderTitle' => ({required Object name}) => '${name} qəbul etmə vaxtıdır',
 			'medications.reminderBody' => ({required Object dosage}) => 'Doza: ${dosage}',
 			'medications.tabActive' => 'Aktiv',
 			'medications.tabArchive' => 'Arxiv',

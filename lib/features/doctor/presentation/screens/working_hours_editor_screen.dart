@@ -5,39 +5,11 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:dio/dio.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
-import 'package:medalize_mb/core/theme/theme_colors.dart';
-import 'package:medalize_mb/core/widgets/animated_entrance.dart';
-import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
-
-/// Localized weekday name for index 0 (Monday) … 6 (Sunday).
-String _dayName(BuildContext context, int i) {
-  final d = context.t.workingHours.days;
-  return [
-    d.monday,
-    d.tuesday,
-    d.wednesday,
-    d.thursday,
-    d.friday,
-    d.saturday,
-    d.sunday,
-  ][i];
-}
-
-class _DayState {
-  bool isActive;
-  TimeOfDay startTime;
-  TimeOfDay endTime;
-
-  _DayState({
-    required this.isActive,
-    required this.startTime,
-    required this.endTime,
-  });
-}
 
 class WorkingHoursEditorScreen extends ConsumerStatefulWidget {
   const WorkingHoursEditorScreen({super.key, required this.workplaceId});
@@ -51,19 +23,11 @@ class WorkingHoursEditorScreen extends ConsumerStatefulWidget {
 class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
   bool _loading = true;
   bool _saving = false;
-  late List<_DayState> _days;
+  List<WorkingHoursDay> _days = WorkingHoursDay.defaultWeek();
 
   @override
   void initState() {
     super.initState();
-    _days = List.generate(
-      7,
-      (_) => _DayState(
-        isActive: false,
-        startTime: const TimeOfDay(hour: 9, minute: 0),
-        endTime: const TimeOfDay(hour: 17, minute: 0),
-      ),
-    );
     _load();
   }
 
@@ -73,25 +37,8 @@ class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
       final res = await dio.get(
         '/doctor/workplaces/${widget.workplaceId}/hours/',
       );
-      final hours = res.data as List<dynamic>;
       setState(() {
-        for (final h in hours) {
-          final d = h as Map<String, dynamic>;
-          final weekday = d['weekday'] as int;
-          final parts = (d['start_time'] as String).split(':');
-          final endParts = (d['end_time'] as String).split(':');
-          _days[weekday] = _DayState(
-            isActive: d['is_active'] as bool? ?? false,
-            startTime: TimeOfDay(
-              hour: int.parse(parts[0]),
-              minute: int.parse(parts[1]),
-            ),
-            endTime: TimeOfDay(
-              hour: int.parse(endParts[0]),
-              minute: int.parse(endParts[1]),
-            ),
-          );
-        }
+        _days = WorkingHoursDay.fromApiList(res.data as List<dynamic>);
         _loading = false;
       });
     } on DioException catch (e) {
@@ -108,37 +55,21 @@ class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
     }
   }
 
-  Future<void> _pickTime(int day, bool isStart) async {
-    final current = isStart ? _days[day].startTime : _days[day].endTime;
-    final picked = await showTimePicker(context: context, initialTime: current);
-    if (picked == null) return;
-    setState(() {
-      if (isStart) {
-        _days[day].startTime = picked;
-      } else {
-        _days[day].endTime = picked;
-      }
-    });
-  }
-
   Future<void> _save() async {
+    if (WorkingHoursDay.hasInvalidRange(_days)) {
+      AppSnackBar.show(
+        context,
+        context.t.workingHours.invalidRange,
+        type: SnackBarType.error,
+      );
+      return;
+    }
     setState(() => _saving = true);
     final dio = ref.read(dioClientProvider);
-    final payload = List.generate(7, (i) {
-      final d = _days[i];
-      return {
-        'weekday': i,
-        'is_active': d.isActive,
-        'start_time':
-            '${d.startTime.hour.toString().padLeft(2, '0')}:${d.startTime.minute.toString().padLeft(2, '0')}:00',
-        'end_time':
-            '${d.endTime.hour.toString().padLeft(2, '0')}:${d.endTime.minute.toString().padLeft(2, '0')}:00',
-      };
-    });
     try {
       await dio.put(
         '/doctor/workplaces/${widget.workplaceId}/hours/',
-        data: payload,
+        data: WorkingHoursDay.toPayload(_days),
       );
       if (mounted) {
         AppSnackBar.show(
@@ -201,94 +132,14 @@ class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
                   ],
                 ),
               )
-            : ListView.builder(
+            : SingleChildScrollView(
                 padding: const EdgeInsets.all(AppSpacing.md),
-                itemCount: 7,
-                itemBuilder: (_, i) {
-                  final day = _days[i];
-                  return AnimatedEntrance(
-                    index: i,
-                    child: AppCard(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 6,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              _dayName(context, i),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.labelLarge,
-                            ),
-                          ),
-                          Switch(
-                            value: day.isActive,
-                            onChanged: (v) => setState(() => day.isActive = v),
-                          ),
-                          if (day.isActive) ...[
-                            const SizedBox(width: 8),
-                            // Flexible + FittedBox so a long 12-hour time
-                            // ("11:30 PM") at a large text scale on a narrow
-                            // phone shrinks the two time buttons instead of
-                            // overflowing the row.
-                            Flexible(
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.centerRight,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    _TimeButton(
-                                      label: day.startTime.format(context),
-                                      onTap: () => _pickTime(i, true),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 4,
-                                      ),
-                                      child: Text(
-                                        '—',
-                                        style: TextStyle(
-                                          color: context.colors.textSecondary,
-                                        ),
-                                      ),
-                                    ),
-                                    _TimeButton(
-                                      label: day.endTime.format(context),
-                                      onTap: () => _pickTime(i, false),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                    ),
-                  );
-                },
+                child: WorkingHoursFields(
+                  days: _days,
+                  onChanged: (days) => setState(() => _days = days),
+                ),
               ),
       ),
-    );
-  }
-}
-
-class _TimeButton extends StatelessWidget {
-  const _TimeButton({required this.label, required this.onTap});
-  final String label;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onTap,
-      style: TextButton.styleFrom(
-        minimumSize: Size.zero,
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      ),
-      child: Text(label),
     );
   }
 }

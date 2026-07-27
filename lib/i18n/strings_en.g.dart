@@ -1207,6 +1207,12 @@ class Translations$workingHours$en {
 	/// en: 'Working Hours'
 	String get title => 'Working Hours';
 
+	/// en: 'Set the days and hours patients can book you at this location.'
+	String get sectionHint => 'Set the days and hours patients can book you at this location.';
+
+	/// en: 'End time must be after start time for each active day.'
+	String get invalidRange => 'End time must be after start time for each active day.';
+
 	/// en: 'Working hours saved'
 	String get saved => 'Working hours saved';
 
@@ -2777,6 +2783,8 @@ extension on Translations {
 			'addWorkplace.addButton' => 'Add Workplace',
 			'addWorkplace.saveChanges' => 'Save Changes',
 			'workingHours.title' => 'Working Hours',
+			'workingHours.sectionHint' => 'Set the days and hours patients can book you at this location.',
+			'workingHours.invalidRange' => 'End time must be after start time for each active day.',
 			'workingHours.saved' => 'Working hours saved',
 			'workingHours.failedToSave' => 'Failed to save working hours',
 			'workingHours.days.monday' => 'Monday',
@@ -2957,10 +2965,10 @@ extension on Translations {
 			'medications.markSkipped' => 'Skip',
 			'medications.statusTaken' => 'Taken',
 			'medications.statusSkipped' => 'Skipped',
-			'medications.statusPending' => 'Pending',
-			'medications.reminderTitle' => ({required Object name}) => 'Time to take ${name}',
 			_ => null,
 		} ?? switch (path) {
+			'medications.statusPending' => 'Pending',
+			'medications.reminderTitle' => ({required Object name}) => 'Time to take ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Dose: ${dosage}',
 			'medications.tabActive' => 'Active',
 			'medications.tabArchive' => 'Archive',

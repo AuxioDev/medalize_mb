@@ -368,6 +368,8 @@
   },
   "workingHours": {
     "title": "Working Hours",
+    "sectionHint": "Set the days and hours patients can book you at this location.",
+    "invalidRange": "End time must be after start time for each active day.",
     "saved": "Working hours saved",
     "failedToSave": "Failed to save working hours",
     "days": {

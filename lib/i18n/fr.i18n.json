@@ -368,6 +368,8 @@
   },
   "workingHours": {
     "title": "Heures de travail",
+    "sectionHint": "Définissez les jours et horaires où les patients peuvent prendre rendez-vous à cette adresse.",
+    "invalidRange": "L'heure de fin doit être postérieure à l'heure de début pour chaque jour actif.",
     "saved": "Heures de travail enregistrées",
     "failedToSave": "Échec de l'enregistrement des heures de travail",
     "days": {

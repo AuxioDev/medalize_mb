@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class AddEditWorkplaceScreen extends ConsumerStatefulWidget {
@@ -27,8 +28,13 @@ class _AddEditWorkplaceScreenState
   late final TextEditingController _address;
   late final TextEditingController _city;
   String _type = 'clinic';
+  late List<WorkingHoursDay> _days;
   bool _loading = false;
   String? _error;
+
+  /// Set once a create-flow POST succeeds, so a retry after a failed hours
+  /// save PATCHes that workplace instead of creating a duplicate.
+  String? _createdWorkplaceId;
 
   bool get _isEdit => widget.existing != null;
 
@@ -40,6 +46,9 @@ class _AddEditWorkplaceScreenState
     _address = TextEditingController(text: e?['address'] as String? ?? '');
     _city = TextEditingController(text: e?['city'] as String? ?? '');
     _type = e?['type'] as String? ?? 'clinic';
+    _days = e != null
+        ? WorkingHoursDay.fromApiList(e['working_hours'] as List<dynamic>?)
+        : WorkingHoursDay.defaultWeek(weekdaysActive: true);
   }
 
   @override
@@ -52,6 +61,10 @@ class _AddEditWorkplaceScreenState
 
   Future<void> _save() async {
     if (!(_form.currentState?.validate() ?? false)) return;
+    if (WorkingHoursDay.hasInvalidRange(_days)) {
+      setState(() => _error = context.t.workingHours.invalidRange);
+      return;
+    }
     setState(() {
       _loading = true;
       _error = null;
@@ -62,13 +75,17 @@ class _AddEditWorkplaceScreenState
       'address': _address.text.trim(),
       'city': _city.text.trim(),
       'type': _type,
+      'working_hours': WorkingHoursDay.toPayload(_days),
     };
     try {
-      if (_isEdit) {
-        await dio.patch('/doctor/workplaces/${widget.existing!['id']}/',
-            data: body);
+      // A previously-created workplace (create flow retried after the first
+      // attempt failed downstream) is PATCHed, never re-POSTed.
+      final existingId = widget.existing?['id'] as String? ?? _createdWorkplaceId;
+      if (existingId != null) {
+        await dio.patch('/doctor/workplaces/$existingId/', data: body);
       } else {
-        await dio.post('/doctor/workplaces/', data: body);
+        final res = await dio.post('/doctor/workplaces/', data: body);
+        _createdWorkplaceId = res.data['id'] as String;
       }
       if (mounted) context.pop(true);
     } on DioException catch (e) {
@@ -139,6 +156,28 @@ class _AddEditWorkplaceScreenState
                         child: Text(context.t.addWorkplace.privatePractice)),
                   ],
                   onChanged: (v) => setState(() => _type = v!),
+                ),
+                const Gap(24),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    context.t.workplaces.workingHours,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                const Gap(4),
+                Text(
+                  context.t.workingHours.sectionHint,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const Gap(12),
+                WorkingHoursFields(
+                  days: _days,
+                  onChanged: (days) => setState(() => _days = days),
+                  // This form already scrolls as a whole; a per-row entrance
+                  // stagger (meant for the standalone hours list screen) just
+                  // adds jitter here.
+                  animateEntrance: false,
                 ),
                 if (_error != null) ...[
                   const Gap(12),

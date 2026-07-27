@@ -368,6 +368,8 @@
   },
   "workingHours": {
     "title": "工作时间",
+    "sectionHint": "设置患者可以在此地点预约您的工作日和时间。",
+    "invalidRange": "每个启用的工作日，结束时间必须晚于开始时间。",
     "saved": "工作时间已保存",
     "failedToSave": "保存工作时间失败",
     "days": {

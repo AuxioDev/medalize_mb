@@ -565,6 +565,8 @@ class _Translations$workingHours$zh extends Translations$workingHours$en {
 
 	// Translations
 	@override String get title => '工作时间';
+	@override String get sectionHint => '设置患者可以在此地点预约您的工作日和时间。';
+	@override String get invalidRange => '每个启用的工作日，结束时间必须晚于开始时间。';
 	@override String get saved => '工作时间已保存';
 	@override String get failedToSave => '保存工作时间失败';
 	@override late final _Translations$workingHours$days$zh days = _Translations$workingHours$days$zh._(_root);
@@ -1530,6 +1532,8 @@ extension on TranslationsZh {
 			'addWorkplace.addButton' => '添加工作地点',
 			'addWorkplace.saveChanges' => '保存更改',
 			'workingHours.title' => '工作时间',
+			'workingHours.sectionHint' => '设置患者可以在此地点预约您的工作日和时间。',
+			'workingHours.invalidRange' => '每个启用的工作日，结束时间必须晚于开始时间。',
 			'workingHours.saved' => '工作时间已保存',
 			'workingHours.failedToSave' => '保存工作时间失败',
 			'workingHours.days.monday' => '星期一',
@@ -1710,10 +1714,10 @@ extension on TranslationsZh {
 			'medications.markSkipped' => '跳过',
 			'medications.statusTaken' => '已服用',
 			'medications.statusSkipped' => '已跳过',
-			'medications.statusPending' => '待服用',
-			'medications.reminderTitle' => ({required Object name}) => '该服用${name}了',
 			_ => null,
 		} ?? switch (path) {
+			'medications.statusPending' => '待服用',
+			'medications.reminderTitle' => ({required Object name}) => '该服用${name}了',
 			'medications.reminderBody' => ({required Object dosage}) => '剂量:${dosage}',
 			'medications.tabActive' => '使用中',
 			'medications.tabArchive' => '已归档',
