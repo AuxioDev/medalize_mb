@@ -356,7 +356,7 @@
     "addTitle": "Ajouter un lieu de travail",
     "editTitle": "Modifier le lieu de travail",
     "name": "Nom",
-    "address": "Adresse",
+    "address": "Adresse (rue)",
     "city": "Ville",
     "type": "Type",
     "clinic": "Clinique",
@@ -364,7 +364,14 @@
     "privatePractice": "Cabinet privé",
     "failedToSave": "Échec de l'enregistrement du lieu de travail.",
     "addButton": "Ajouter un lieu de travail",
-    "saveChanges": "Enregistrer les modifications"
+    "saveChanges": "Enregistrer les modifications",
+    "pickOnMap": "Choisir sur la carte",
+    "mapPickerTitle": "Choisir l'emplacement",
+    "useMyLocation": "Utiliser ma position",
+    "confirmLocation": "Confirmer l'emplacement",
+    "locationSet": "Emplacement défini depuis la carte ✓",
+    "locationPermissionDenied": "L'autorisation de localisation est nécessaire pour utiliser votre position actuelle. Vous pouvez toujours déplacer la carte manuellement.",
+    "locationUnavailable": "Impossible d'obtenir votre position. Vous pouvez toujours déplacer la carte manuellement."
   },
   "workingHours": {
     "title": "Heures de travail",
@@ -432,6 +439,13 @@
     "selectCountry": "Sélectionner un pays",
     "searchCountry": "Rechercher un pays ou un code…",
     "noCountriesFound": "Aucun pays trouvé"
+  },
+  "locations": {
+    "pickCity": "Sélectionner une ville",
+    "searchHint": "Rechercher une ville ou une région…",
+    "noResultsFound": "Aucune ville trouvée",
+    "couldNotLoad": "Impossible de charger les villes. Appuyez pour réessayer.",
+    "allCities": "Toutes les villes"
   },
   "splash": {
     "tagline": "Votre santé, simplifiée"

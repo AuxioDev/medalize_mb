@@ -67,6 +67,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$onboarding$en onboarding = Translations$onboarding$en.internal(_root);
 	late final Translations$pendingVerification$en pendingVerification = Translations$pendingVerification$en.internal(_root);
 	late final Translations$phoneField$en phoneField = Translations$phoneField$en.internal(_root);
+	late final Translations$locations$en locations = Translations$locations$en.internal(_root);
 	late final Translations$splash$en splash = Translations$splash$en.internal(_root);
 	late final Translations$appIntro$en appIntro = Translations$appIntro$en.internal(_root);
 	late final Translations$agenda$en agenda = Translations$agenda$en.internal(_root);
@@ -1168,8 +1169,8 @@ class Translations$addWorkplace$en {
 	/// en: 'Name'
 	String get name => 'Name';
 
-	/// en: 'Address'
-	String get address => 'Address';
+	/// en: 'Street Address'
+	String get address => 'Street Address';
 
 	/// en: 'City'
 	String get city => 'City';
@@ -1194,6 +1195,27 @@ class Translations$addWorkplace$en {
 
 	/// en: 'Save Changes'
 	String get saveChanges => 'Save Changes';
+
+	/// en: 'Pick on Map'
+	String get pickOnMap => 'Pick on Map';
+
+	/// en: 'Choose Location'
+	String get mapPickerTitle => 'Choose Location';
+
+	/// en: 'Use my location'
+	String get useMyLocation => 'Use my location';
+
+	/// en: 'Confirm Location'
+	String get confirmLocation => 'Confirm Location';
+
+	/// en: 'Location set from map ✓'
+	String get locationSet => 'Location set from map ✓';
+
+	/// en: 'Location permission is needed to use your current position. You can still move the map manually.'
+	String get locationPermissionDenied => 'Location permission is needed to use your current position. You can still move the map manually.';
+
+	/// en: 'Couldn't get your location. You can still move the map manually.'
+	String get locationUnavailable => 'Couldn\'t get your location. You can still move the map manually.';
 }
 
 // Path: workingHours
@@ -1385,6 +1407,30 @@ class Translations$phoneField$en {
 
 	/// en: 'No countries found'
 	String get noCountriesFound => 'No countries found';
+}
+
+// Path: locations
+class Translations$locations$en {
+	Translations$locations$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Select City'
+	String get pickCity => 'Select City';
+
+	/// en: 'Search city or region…'
+	String get searchHint => 'Search city or region…';
+
+	/// en: 'No cities found'
+	String get noResultsFound => 'No cities found';
+
+	/// en: 'Could not load cities. Tap to retry.'
+	String get couldNotLoad => 'Could not load cities. Tap to retry.';
+
+	/// en: 'All cities'
+	String get allCities => 'All cities';
 }
 
 // Path: splash
@@ -2773,7 +2819,7 @@ extension on Translations {
 			'addWorkplace.addTitle' => 'Add Workplace',
 			'addWorkplace.editTitle' => 'Edit Workplace',
 			'addWorkplace.name' => 'Name',
-			'addWorkplace.address' => 'Address',
+			'addWorkplace.address' => 'Street Address',
 			'addWorkplace.city' => 'City',
 			'addWorkplace.type' => 'Type',
 			'addWorkplace.clinic' => 'Clinic',
@@ -2782,6 +2828,13 @@ extension on Translations {
 			'addWorkplace.failedToSave' => 'Failed to save workplace.',
 			'addWorkplace.addButton' => 'Add Workplace',
 			'addWorkplace.saveChanges' => 'Save Changes',
+			'addWorkplace.pickOnMap' => 'Pick on Map',
+			'addWorkplace.mapPickerTitle' => 'Choose Location',
+			'addWorkplace.useMyLocation' => 'Use my location',
+			'addWorkplace.confirmLocation' => 'Confirm Location',
+			'addWorkplace.locationSet' => 'Location set from map ✓',
+			'addWorkplace.locationPermissionDenied' => 'Location permission is needed to use your current position. You can still move the map manually.',
+			'addWorkplace.locationUnavailable' => 'Couldn\'t get your location. You can still move the map manually.',
 			'workingHours.title' => 'Working Hours',
 			'workingHours.sectionHint' => 'Set the days and hours patients can book you at this location.',
 			'workingHours.invalidRange' => 'End time must be after start time for each active day.',
@@ -2837,6 +2890,11 @@ extension on Translations {
 			'phoneField.selectCountry' => 'Select Country',
 			'phoneField.searchCountry' => 'Search country or code…',
 			'phoneField.noCountriesFound' => 'No countries found',
+			'locations.pickCity' => 'Select City',
+			'locations.searchHint' => 'Search city or region…',
+			'locations.noResultsFound' => 'No cities found',
+			'locations.couldNotLoad' => 'Could not load cities. Tap to retry.',
+			'locations.allCities' => 'All cities',
 			'splash.tagline' => 'Your health, simplified',
 			'appIntro.page1Title' => 'Find the right doctor',
 			'appIntro.page1Subtitle' => 'Search by specialty, city, and rating — then book a time that works for you.',
@@ -2953,6 +3011,8 @@ extension on Translations {
 			'medications.daysOfWeek' => 'Days of Week',
 			'medications.everyDay' => 'Every day',
 			'medications.startDate' => 'Start Date',
+			_ => null,
+		} ?? switch (path) {
 			'medications.endDate' => 'End Date',
 			'medications.save' => 'Save',
 			'medications.delete' => 'Delete',
@@ -2965,8 +3025,6 @@ extension on Translations {
 			'medications.markSkipped' => 'Skip',
 			'medications.statusTaken' => 'Taken',
 			'medications.statusSkipped' => 'Skipped',
-			_ => null,
-		} ?? switch (path) {
 			'medications.statusPending' => 'Pending',
 			'medications.reminderTitle' => ({required Object name}) => 'Time to take ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Dose: ${dosage}',

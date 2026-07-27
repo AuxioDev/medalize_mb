@@ -63,6 +63,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$az onboarding = _Translations$onboarding$az._(_root);
 	@override late final _Translations$pendingVerification$az pendingVerification = _Translations$pendingVerification$az._(_root);
 	@override late final _Translations$phoneField$az phoneField = _Translations$phoneField$az._(_root);
+	@override late final _Translations$locations$az locations = _Translations$locations$az._(_root);
 	@override late final _Translations$splash$az splash = _Translations$splash$az._(_root);
 	@override late final _Translations$appIntro$az appIntro = _Translations$appIntro$az._(_root);
 	@override late final _Translations$agenda$az agenda = _Translations$agenda$az._(_root);
@@ -546,7 +547,7 @@ class _Translations$addWorkplace$az extends Translations$addWorkplace$en {
 	@override String get addTitle => 'İş yeri əlavə et';
 	@override String get editTitle => 'İş yerini redaktə et';
 	@override String get name => 'Ad';
-	@override String get address => 'Ünvan';
+	@override String get address => 'Küçə ünvanı';
 	@override String get city => 'Şəhər';
 	@override String get type => 'Növ';
 	@override String get clinic => 'Klinika';
@@ -555,6 +556,13 @@ class _Translations$addWorkplace$az extends Translations$addWorkplace$en {
 	@override String get failedToSave => 'İş yeri yadda saxlanıla bilmədi.';
 	@override String get addButton => 'İş yeri əlavə et';
 	@override String get saveChanges => 'Dəyişiklikləri yadda saxla';
+	@override String get pickOnMap => 'Xəritədə göstər';
+	@override String get mapPickerTitle => 'Yerləşməni seçin';
+	@override String get useMyLocation => 'Mənim yerimi istifadə et';
+	@override String get confirmLocation => 'Yerləşməni təsdiqlə';
+	@override String get locationSet => 'Xəritədən yer seçildi ✓';
+	@override String get locationPermissionDenied => 'Cari yerinizi istifadə etmək üçün icazə lazımdır. Xəritəni əl ilə də hərəkət etdirə bilərsiniz.';
+	@override String get locationUnavailable => 'Yerləşməniz alınmadı. Xəritəni əl ilə də hərəkət etdirə bilərsiniz.';
 }
 
 // Path: workingHours
@@ -649,6 +657,20 @@ class _Translations$phoneField$az extends Translations$phoneField$en {
 	@override String get selectCountry => 'Ölkə seçin';
 	@override String get searchCountry => 'Ölkə və ya kod axtar…';
 	@override String get noCountriesFound => 'Ölkə tapılmadı';
+}
+
+// Path: locations
+class _Translations$locations$az extends Translations$locations$en {
+	_Translations$locations$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get pickCity => 'Şəhər seçin';
+	@override String get searchHint => 'Şəhər və ya region axtar…';
+	@override String get noResultsFound => 'Şəhər tapılmadı';
+	@override String get couldNotLoad => 'Şəhərlər yüklənmədi. Yenidən cəhd etmək üçün toxunun.';
+	@override String get allCities => 'Bütün şəhərlər';
 }
 
 // Path: splash
@@ -1522,7 +1544,7 @@ extension on TranslationsAz {
 			'addWorkplace.addTitle' => 'İş yeri əlavə et',
 			'addWorkplace.editTitle' => 'İş yerini redaktə et',
 			'addWorkplace.name' => 'Ad',
-			'addWorkplace.address' => 'Ünvan',
+			'addWorkplace.address' => 'Küçə ünvanı',
 			'addWorkplace.city' => 'Şəhər',
 			'addWorkplace.type' => 'Növ',
 			'addWorkplace.clinic' => 'Klinika',
@@ -1531,6 +1553,13 @@ extension on TranslationsAz {
 			'addWorkplace.failedToSave' => 'İş yeri yadda saxlanıla bilmədi.',
 			'addWorkplace.addButton' => 'İş yeri əlavə et',
 			'addWorkplace.saveChanges' => 'Dəyişiklikləri yadda saxla',
+			'addWorkplace.pickOnMap' => 'Xəritədə göstər',
+			'addWorkplace.mapPickerTitle' => 'Yerləşməni seçin',
+			'addWorkplace.useMyLocation' => 'Mənim yerimi istifadə et',
+			'addWorkplace.confirmLocation' => 'Yerləşməni təsdiqlə',
+			'addWorkplace.locationSet' => 'Xəritədən yer seçildi ✓',
+			'addWorkplace.locationPermissionDenied' => 'Cari yerinizi istifadə etmək üçün icazə lazımdır. Xəritəni əl ilə də hərəkət etdirə bilərsiniz.',
+			'addWorkplace.locationUnavailable' => 'Yerləşməniz alınmadı. Xəritəni əl ilə də hərəkət etdirə bilərsiniz.',
 			'workingHours.title' => 'İş saatları',
 			'workingHours.sectionHint' => 'Bu ünvanda pasiyentlərin sizi qəbul edə biləcəyi günləri və saatları seçin.',
 			'workingHours.invalidRange' => 'Aktiv hər gün üçün bitmə vaxtı başlama vaxtından sonra olmalıdır.',
@@ -1586,6 +1615,11 @@ extension on TranslationsAz {
 			'phoneField.selectCountry' => 'Ölkə seçin',
 			'phoneField.searchCountry' => 'Ölkə və ya kod axtar…',
 			'phoneField.noCountriesFound' => 'Ölkə tapılmadı',
+			'locations.pickCity' => 'Şəhər seçin',
+			'locations.searchHint' => 'Şəhər və ya region axtar…',
+			'locations.noResultsFound' => 'Şəhər tapılmadı',
+			'locations.couldNotLoad' => 'Şəhərlər yüklənmədi. Yenidən cəhd etmək üçün toxunun.',
+			'locations.allCities' => 'Bütün şəhərlər',
 			'splash.tagline' => 'Sağlamlığınız, sadələşdirilmiş',
 			'appIntro.page1Title' => 'Doğru həkimi tapın',
 			'appIntro.page1Subtitle' => 'İxtisas, şəhər və reytinqə görə axtarın — sizə uyğun vaxta yazılın.',
@@ -1702,6 +1736,8 @@ extension on TranslationsAz {
 			'medications.daysOfWeek' => 'Həftənin günləri',
 			'medications.everyDay' => 'Hər gün',
 			'medications.startDate' => 'Başlama tarixi',
+			_ => null,
+		} ?? switch (path) {
 			'medications.endDate' => 'Bitmə tarixi',
 			'medications.save' => 'Yadda saxla',
 			'medications.delete' => 'Sil',
@@ -1714,8 +1750,6 @@ extension on TranslationsAz {
 			'medications.markSkipped' => 'Buraxıldı',
 			'medications.statusTaken' => 'Qəbul edildi',
 			'medications.statusSkipped' => 'Buraxıldı',
-			_ => null,
-		} ?? switch (path) {
 			'medications.statusPending' => 'Gözləyir',
 			'medications.reminderTitle' => ({required Object name}) => '${name} qəbul etmə vaxtıdır',
 			'medications.reminderBody' => ({required Object dosage}) => 'Doza: ${dosage}',

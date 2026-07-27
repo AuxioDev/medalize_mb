@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/app_chip.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/location_picker_field.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
@@ -66,7 +67,7 @@ class DoctorSearchScreen extends ConsumerStatefulWidget {
 class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
   final _nameController = TextEditingController();
   String? _selectedSpecialization;
-  String? _cityInput;
+  String? _cityKey;
   int? _minRating;
   _DoctorSort _sort = _DoctorSort.relevance;
   double? _lat;
@@ -117,7 +118,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
 
   SearchParams _buildParams() => SearchParams(
         name: _nameController.text.trim().isEmpty ? null : _nameController.text.trim(),
-        city: (_cityInput?.trim().isEmpty ?? true) ? null : _cityInput?.trim(),
+        city: _cityKey,
         specialization: _selectedSpecialization,
         minRating: _minRating,
         ordering: _serverOrdering,
@@ -167,6 +168,11 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
     _search();
   }
 
+  void _selectCity(String? key) {
+    setState(() => _cityKey = key);
+    _search();
+  }
+
   Future<void> _loadMore() async {
     final ok = await ref.read(doctorSearchProvider.notifier).loadMore();
     if (!ok && mounted) {
@@ -203,7 +209,10 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextField(
+                        child: LocationPickerField(
+                          value: _cityKey,
+                          allowClear: true,
+                          onChanged: _selectCity,
                           decoration: InputDecoration(
                             hintText: context.t.doctorSearch.city,
                             prefixIcon: const Icon(Icons.location_on_outlined,
@@ -212,8 +221,6 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 12),
                           ),
-                          onChanged: (v) => _cityInput = v,
-                          onSubmitted: (_) => _search(),
                         ),
                       ),
                       const Gap(10),

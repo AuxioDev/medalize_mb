@@ -198,7 +198,7 @@ class _WorkplaceCard extends ConsumerWidget {
                 ),
                 const Gap(2),
                 Text(
-                  '${workplace['address']}, ${workplace['city']}',
+                  '${workplace['address']}, ${workplace['city_display'] ?? workplace['city']}',
                   style: Theme.of(context).textTheme.bodySmall,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

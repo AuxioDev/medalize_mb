@@ -356,7 +356,7 @@
     "addTitle": "Add Workplace",
     "editTitle": "Edit Workplace",
     "name": "Name",
-    "address": "Address",
+    "address": "Street Address",
     "city": "City",
     "type": "Type",
     "clinic": "Clinic",
@@ -364,7 +364,14 @@
     "privatePractice": "Private Practice",
     "failedToSave": "Failed to save workplace.",
     "addButton": "Add Workplace",
-    "saveChanges": "Save Changes"
+    "saveChanges": "Save Changes",
+    "pickOnMap": "Pick on Map",
+    "mapPickerTitle": "Choose Location",
+    "useMyLocation": "Use my location",
+    "confirmLocation": "Confirm Location",
+    "locationSet": "Location set from map ✓",
+    "locationPermissionDenied": "Location permission is needed to use your current position. You can still move the map manually.",
+    "locationUnavailable": "Couldn't get your location. You can still move the map manually."
   },
   "workingHours": {
     "title": "Working Hours",
@@ -432,6 +439,13 @@
     "selectCountry": "Select Country",
     "searchCountry": "Search country or code…",
     "noCountriesFound": "No countries found"
+  },
+  "locations": {
+    "pickCity": "Select City",
+    "searchHint": "Search city or region…",
+    "noResultsFound": "No cities found",
+    "couldNotLoad": "Could not load cities. Tap to retry.",
+    "allCities": "All cities"
   },
   "splash": {
     "tagline": "Your health, simplified"

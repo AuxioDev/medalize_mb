@@ -63,6 +63,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$fr onboarding = _Translations$onboarding$fr._(_root);
 	@override late final _Translations$pendingVerification$fr pendingVerification = _Translations$pendingVerification$fr._(_root);
 	@override late final _Translations$phoneField$fr phoneField = _Translations$phoneField$fr._(_root);
+	@override late final _Translations$locations$fr locations = _Translations$locations$fr._(_root);
 	@override late final _Translations$splash$fr splash = _Translations$splash$fr._(_root);
 	@override late final _Translations$appIntro$fr appIntro = _Translations$appIntro$fr._(_root);
 	@override late final _Translations$agenda$fr agenda = _Translations$agenda$fr._(_root);
@@ -546,7 +547,7 @@ class _Translations$addWorkplace$fr extends Translations$addWorkplace$en {
 	@override String get addTitle => 'Ajouter un lieu de travail';
 	@override String get editTitle => 'Modifier le lieu de travail';
 	@override String get name => 'Nom';
-	@override String get address => 'Adresse';
+	@override String get address => 'Adresse (rue)';
 	@override String get city => 'Ville';
 	@override String get type => 'Type';
 	@override String get clinic => 'Clinique';
@@ -555,6 +556,13 @@ class _Translations$addWorkplace$fr extends Translations$addWorkplace$en {
 	@override String get failedToSave => 'Échec de l\'enregistrement du lieu de travail.';
 	@override String get addButton => 'Ajouter un lieu de travail';
 	@override String get saveChanges => 'Enregistrer les modifications';
+	@override String get pickOnMap => 'Choisir sur la carte';
+	@override String get mapPickerTitle => 'Choisir l\'emplacement';
+	@override String get useMyLocation => 'Utiliser ma position';
+	@override String get confirmLocation => 'Confirmer l\'emplacement';
+	@override String get locationSet => 'Emplacement défini depuis la carte ✓';
+	@override String get locationPermissionDenied => 'L\'autorisation de localisation est nécessaire pour utiliser votre position actuelle. Vous pouvez toujours déplacer la carte manuellement.';
+	@override String get locationUnavailable => 'Impossible d\'obtenir votre position. Vous pouvez toujours déplacer la carte manuellement.';
 }
 
 // Path: workingHours
@@ -649,6 +657,20 @@ class _Translations$phoneField$fr extends Translations$phoneField$en {
 	@override String get selectCountry => 'Sélectionner un pays';
 	@override String get searchCountry => 'Rechercher un pays ou un code…';
 	@override String get noCountriesFound => 'Aucun pays trouvé';
+}
+
+// Path: locations
+class _Translations$locations$fr extends Translations$locations$en {
+	_Translations$locations$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get pickCity => 'Sélectionner une ville';
+	@override String get searchHint => 'Rechercher une ville ou une région…';
+	@override String get noResultsFound => 'Aucune ville trouvée';
+	@override String get couldNotLoad => 'Impossible de charger les villes. Appuyez pour réessayer.';
+	@override String get allCities => 'Toutes les villes';
 }
 
 // Path: splash
@@ -1522,7 +1544,7 @@ extension on TranslationsFr {
 			'addWorkplace.addTitle' => 'Ajouter un lieu de travail',
 			'addWorkplace.editTitle' => 'Modifier le lieu de travail',
 			'addWorkplace.name' => 'Nom',
-			'addWorkplace.address' => 'Adresse',
+			'addWorkplace.address' => 'Adresse (rue)',
 			'addWorkplace.city' => 'Ville',
 			'addWorkplace.type' => 'Type',
 			'addWorkplace.clinic' => 'Clinique',
@@ -1531,6 +1553,13 @@ extension on TranslationsFr {
 			'addWorkplace.failedToSave' => 'Échec de l\'enregistrement du lieu de travail.',
 			'addWorkplace.addButton' => 'Ajouter un lieu de travail',
 			'addWorkplace.saveChanges' => 'Enregistrer les modifications',
+			'addWorkplace.pickOnMap' => 'Choisir sur la carte',
+			'addWorkplace.mapPickerTitle' => 'Choisir l\'emplacement',
+			'addWorkplace.useMyLocation' => 'Utiliser ma position',
+			'addWorkplace.confirmLocation' => 'Confirmer l\'emplacement',
+			'addWorkplace.locationSet' => 'Emplacement défini depuis la carte ✓',
+			'addWorkplace.locationPermissionDenied' => 'L\'autorisation de localisation est nécessaire pour utiliser votre position actuelle. Vous pouvez toujours déplacer la carte manuellement.',
+			'addWorkplace.locationUnavailable' => 'Impossible d\'obtenir votre position. Vous pouvez toujours déplacer la carte manuellement.',
 			'workingHours.title' => 'Heures de travail',
 			'workingHours.sectionHint' => 'Définissez les jours et horaires où les patients peuvent prendre rendez-vous à cette adresse.',
 			'workingHours.invalidRange' => 'L\'heure de fin doit être postérieure à l\'heure de début pour chaque jour actif.',
@@ -1586,6 +1615,11 @@ extension on TranslationsFr {
 			'phoneField.selectCountry' => 'Sélectionner un pays',
 			'phoneField.searchCountry' => 'Rechercher un pays ou un code…',
 			'phoneField.noCountriesFound' => 'Aucun pays trouvé',
+			'locations.pickCity' => 'Sélectionner une ville',
+			'locations.searchHint' => 'Rechercher une ville ou une région…',
+			'locations.noResultsFound' => 'Aucune ville trouvée',
+			'locations.couldNotLoad' => 'Impossible de charger les villes. Appuyez pour réessayer.',
+			'locations.allCities' => 'Toutes les villes',
 			'splash.tagline' => 'Votre santé, simplifiée',
 			'appIntro.page1Title' => 'Trouvez le bon médecin',
 			'appIntro.page1Subtitle' => 'Recherchez par spécialité, ville et note — puis réservez un créneau qui vous convient.',
@@ -1702,6 +1736,8 @@ extension on TranslationsFr {
 			'medications.daysOfWeek' => 'Jours de la semaine',
 			'medications.everyDay' => 'Tous les jours',
 			'medications.startDate' => 'Date de début',
+			_ => null,
+		} ?? switch (path) {
 			'medications.endDate' => 'Date de fin',
 			'medications.save' => 'Enregistrer',
 			'medications.delete' => 'Supprimer',
@@ -1714,8 +1750,6 @@ extension on TranslationsFr {
 			'medications.markSkipped' => 'Ignorer',
 			'medications.statusTaken' => 'Pris',
 			'medications.statusSkipped' => 'Ignoré',
-			_ => null,
-		} ?? switch (path) {
 			'medications.statusPending' => 'En attente',
 			'medications.reminderTitle' => ({required Object name}) => 'C\'est l\'heure de prendre ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Dose : ${dosage}',

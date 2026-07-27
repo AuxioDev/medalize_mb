@@ -5,13 +5,15 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/workplace_list_screen.dart';
+import 'package:medalize_mb/features/locations/data/repository/location_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 const _workplace = <String, dynamic>{
   'id': 'w1',
   'name': 'City Clinic',
   'address': '12 Main St',
-  'city': 'Baku',
+  'city': 'baku',
+  'city_display': 'Baku',
   'type': 'clinic',
   'is_primary': true,
 };
@@ -19,7 +21,10 @@ const _workplace = <String, dynamic>{
 Widget _wrap(Widget child, {List<Override> overrides = const []}) {
   return TranslationProvider(
     child: ProviderScope(
-      overrides: overrides,
+      overrides: [
+        locationsProvider.overrideWith((ref) async => const <LocationRegion>[]),
+        ...overrides,
+      ],
       child: MaterialApp(theme: AppTheme.light, home: child),
     ),
   );

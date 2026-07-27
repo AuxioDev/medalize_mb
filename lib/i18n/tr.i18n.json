@@ -356,7 +356,7 @@
     "addTitle": "İş Yeri Ekle",
     "editTitle": "İş Yerini Düzenle",
     "name": "Ad",
-    "address": "Adres",
+    "address": "Sokak Adresi",
     "city": "Şehir",
     "type": "Tür",
     "clinic": "Klinik",
@@ -364,7 +364,14 @@
     "privatePractice": "Özel Muayenehane",
     "failedToSave": "İş yeri kaydedilemedi.",
     "addButton": "İş Yeri Ekle",
-    "saveChanges": "Değişiklikleri Kaydet"
+    "saveChanges": "Değişiklikleri Kaydet",
+    "pickOnMap": "Haritadan Seç",
+    "mapPickerTitle": "Konum Seçin",
+    "useMyLocation": "Konumumu kullan",
+    "confirmLocation": "Konumu Onayla",
+    "locationSet": "Konum haritadan ayarlandı ✓",
+    "locationPermissionDenied": "Mevcut konumunuzu kullanmak için izin gerekiyor. Haritayı elle de hareket ettirebilirsiniz.",
+    "locationUnavailable": "Konumunuz alınamadı. Haritayı elle de hareket ettirebilirsiniz."
   },
   "workingHours": {
     "title": "Çalışma Saatleri",
@@ -432,6 +439,13 @@
     "selectCountry": "Ülke Seçin",
     "searchCountry": "Ülke veya kod ara…",
     "noCountriesFound": "Ülke bulunamadı"
+  },
+  "locations": {
+    "pickCity": "Şehir Seçin",
+    "searchHint": "Şehir veya bölge ara…",
+    "noResultsFound": "Şehir bulunamadı",
+    "couldNotLoad": "Şehirler yüklenemedi. Tekrar denemek için dokunun.",
+    "allCities": "Tüm şehirler"
   },
   "splash": {
     "tagline": "Sağlığınız, basitleştirildi"

@@ -63,6 +63,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$zh onboarding = _Translations$onboarding$zh._(_root);
 	@override late final _Translations$pendingVerification$zh pendingVerification = _Translations$pendingVerification$zh._(_root);
 	@override late final _Translations$phoneField$zh phoneField = _Translations$phoneField$zh._(_root);
+	@override late final _Translations$locations$zh locations = _Translations$locations$zh._(_root);
 	@override late final _Translations$splash$zh splash = _Translations$splash$zh._(_root);
 	@override late final _Translations$appIntro$zh appIntro = _Translations$appIntro$zh._(_root);
 	@override late final _Translations$agenda$zh agenda = _Translations$agenda$zh._(_root);
@@ -546,7 +547,7 @@ class _Translations$addWorkplace$zh extends Translations$addWorkplace$en {
 	@override String get addTitle => '添加工作地点';
 	@override String get editTitle => '编辑工作地点';
 	@override String get name => '名称';
-	@override String get address => '地址';
+	@override String get address => '街道地址';
 	@override String get city => '城市';
 	@override String get type => '类型';
 	@override String get clinic => '诊所';
@@ -555,6 +556,13 @@ class _Translations$addWorkplace$zh extends Translations$addWorkplace$en {
 	@override String get failedToSave => '保存工作地点失败。';
 	@override String get addButton => '添加工作地点';
 	@override String get saveChanges => '保存更改';
+	@override String get pickOnMap => '在地图上选择';
+	@override String get mapPickerTitle => '选择位置';
+	@override String get useMyLocation => '使用我的位置';
+	@override String get confirmLocation => '确认位置';
+	@override String get locationSet => '已从地图设置位置 ✓';
+	@override String get locationPermissionDenied => '需要定位权限才能使用您的当前位置。您仍可以手动移动地图。';
+	@override String get locationUnavailable => '无法获取您的位置。您仍可以手动移动地图。';
 }
 
 // Path: workingHours
@@ -649,6 +657,20 @@ class _Translations$phoneField$zh extends Translations$phoneField$en {
 	@override String get selectCountry => '选择国家';
 	@override String get searchCountry => '搜索国家或区号…';
 	@override String get noCountriesFound => '未找到国家';
+}
+
+// Path: locations
+class _Translations$locations$zh extends Translations$locations$en {
+	_Translations$locations$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get pickCity => '选择城市';
+	@override String get searchHint => '搜索城市或地区…';
+	@override String get noResultsFound => '未找到城市';
+	@override String get couldNotLoad => '无法加载城市列表，点击重试。';
+	@override String get allCities => '所有城市';
 }
 
 // Path: splash
@@ -1522,7 +1544,7 @@ extension on TranslationsZh {
 			'addWorkplace.addTitle' => '添加工作地点',
 			'addWorkplace.editTitle' => '编辑工作地点',
 			'addWorkplace.name' => '名称',
-			'addWorkplace.address' => '地址',
+			'addWorkplace.address' => '街道地址',
 			'addWorkplace.city' => '城市',
 			'addWorkplace.type' => '类型',
 			'addWorkplace.clinic' => '诊所',
@@ -1531,6 +1553,13 @@ extension on TranslationsZh {
 			'addWorkplace.failedToSave' => '保存工作地点失败。',
 			'addWorkplace.addButton' => '添加工作地点',
 			'addWorkplace.saveChanges' => '保存更改',
+			'addWorkplace.pickOnMap' => '在地图上选择',
+			'addWorkplace.mapPickerTitle' => '选择位置',
+			'addWorkplace.useMyLocation' => '使用我的位置',
+			'addWorkplace.confirmLocation' => '确认位置',
+			'addWorkplace.locationSet' => '已从地图设置位置 ✓',
+			'addWorkplace.locationPermissionDenied' => '需要定位权限才能使用您的当前位置。您仍可以手动移动地图。',
+			'addWorkplace.locationUnavailable' => '无法获取您的位置。您仍可以手动移动地图。',
 			'workingHours.title' => '工作时间',
 			'workingHours.sectionHint' => '设置患者可以在此地点预约您的工作日和时间。',
 			'workingHours.invalidRange' => '每个启用的工作日，结束时间必须晚于开始时间。',
@@ -1586,6 +1615,11 @@ extension on TranslationsZh {
 			'phoneField.selectCountry' => '选择国家',
 			'phoneField.searchCountry' => '搜索国家或区号…',
 			'phoneField.noCountriesFound' => '未找到国家',
+			'locations.pickCity' => '选择城市',
+			'locations.searchHint' => '搜索城市或地区…',
+			'locations.noResultsFound' => '未找到城市',
+			'locations.couldNotLoad' => '无法加载城市列表，点击重试。',
+			'locations.allCities' => '所有城市',
 			'splash.tagline' => '让健康更简单',
 			'appIntro.page1Title' => '找到合适的医生',
 			'appIntro.page1Subtitle' => '按专科、城市和评分搜索，预约适合您的时间。',
@@ -1702,6 +1736,8 @@ extension on TranslationsZh {
 			'medications.daysOfWeek' => '星期',
 			'medications.everyDay' => '每天',
 			'medications.startDate' => '开始日期',
+			_ => null,
+		} ?? switch (path) {
 			'medications.endDate' => '结束日期',
 			'medications.save' => '保存',
 			'medications.delete' => '删除',
@@ -1714,8 +1750,6 @@ extension on TranslationsZh {
 			'medications.markSkipped' => '跳过',
 			'medications.statusTaken' => '已服用',
 			'medications.statusSkipped' => '已跳过',
-			_ => null,
-		} ?? switch (path) {
 			'medications.statusPending' => '待服用',
 			'medications.reminderTitle' => ({required Object name}) => '该服用${name}了',
 			'medications.reminderBody' => ({required Object dosage}) => '剂量:${dosage}',

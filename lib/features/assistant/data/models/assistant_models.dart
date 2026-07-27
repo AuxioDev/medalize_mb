@@ -25,7 +25,12 @@ class SuggestedDoctor {
         lastName: j['last_name'] as String? ?? '',
         specializationDisplay: j['specialization_display'] as String? ?? '',
         averageRating: (j['average_rating'] as num?)?.toDouble(),
-        city: j['city'] as String? ?? j['primary_workplace_city'] as String? ?? '',
+        // Localized display name, not the raw registry key — see
+        // apps.core.i18n.city_label on the backend.
+        city: j['city_display'] as String? ??
+            j['city'] as String? ??
+            j['primary_workplace_city'] as String? ??
+            '',
       );
 }
 

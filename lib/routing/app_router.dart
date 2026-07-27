@@ -22,6 +22,7 @@ import 'package:medalize_mb/features/doctor/presentation/screens/doctor_onboardi
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_pending_verification_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/working_hours_editor_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/workplace_list_screen.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/workplace_map_picker_screen.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/family/presentation/screens/add_edit_dependent_screen.dart';
@@ -337,6 +338,16 @@ final routerProvider = Provider<GoRouter>((ref) {
           return _modalPage(EditWorkplaceLoader(
             workplaceId: state.pathParameters['id']!,
             existing: existing,
+          ));
+        },
+      ),
+      GoRoute(
+        path: '/doctor/pick-workplace-location',
+        pageBuilder: (_, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return _modalPage(WorkplaceMapPickerScreen(
+            initialLat: extra?['lat'] as double?,
+            initialLng: extra?['lng'] as double?,
           ));
         },
       ),

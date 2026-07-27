@@ -356,7 +356,7 @@
     "addTitle": "İş yeri əlavə et",
     "editTitle": "İş yerini redaktə et",
     "name": "Ad",
-    "address": "Ünvan",
+    "address": "Küçə ünvanı",
     "city": "Şəhər",
     "type": "Növ",
     "clinic": "Klinika",
@@ -364,7 +364,14 @@
     "privatePractice": "Şəxsi praktika",
     "failedToSave": "İş yeri yadda saxlanıla bilmədi.",
     "addButton": "İş yeri əlavə et",
-    "saveChanges": "Dəyişiklikləri yadda saxla"
+    "saveChanges": "Dəyişiklikləri yadda saxla",
+    "pickOnMap": "Xəritədə göstər",
+    "mapPickerTitle": "Yerləşməni seçin",
+    "useMyLocation": "Mənim yerimi istifadə et",
+    "confirmLocation": "Yerləşməni təsdiqlə",
+    "locationSet": "Xəritədən yer seçildi ✓",
+    "locationPermissionDenied": "Cari yerinizi istifadə etmək üçün icazə lazımdır. Xəritəni əl ilə də hərəkət etdirə bilərsiniz.",
+    "locationUnavailable": "Yerləşməniz alınmadı. Xəritəni əl ilə də hərəkət etdirə bilərsiniz."
   },
   "workingHours": {
     "title": "İş saatları",
@@ -432,6 +439,13 @@
     "selectCountry": "Ölkə seçin",
     "searchCountry": "Ölkə və ya kod axtar…",
     "noCountriesFound": "Ölkə tapılmadı"
+  },
+  "locations": {
+    "pickCity": "Şəhər seçin",
+    "searchHint": "Şəhər və ya region axtar…",
+    "noResultsFound": "Şəhər tapılmadı",
+    "couldNotLoad": "Şəhərlər yüklənmədi. Yenidən cəhd etmək üçün toxunun.",
+    "allCities": "Bütün şəhərlər"
   },
   "splash": {
     "tagline": "Sağlamlığınız, sadələşdirilmiş"

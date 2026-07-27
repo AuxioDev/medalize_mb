@@ -63,6 +63,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$tr onboarding = _Translations$onboarding$tr._(_root);
 	@override late final _Translations$pendingVerification$tr pendingVerification = _Translations$pendingVerification$tr._(_root);
 	@override late final _Translations$phoneField$tr phoneField = _Translations$phoneField$tr._(_root);
+	@override late final _Translations$locations$tr locations = _Translations$locations$tr._(_root);
 	@override late final _Translations$splash$tr splash = _Translations$splash$tr._(_root);
 	@override late final _Translations$appIntro$tr appIntro = _Translations$appIntro$tr._(_root);
 	@override late final _Translations$agenda$tr agenda = _Translations$agenda$tr._(_root);
@@ -546,7 +547,7 @@ class _Translations$addWorkplace$tr extends Translations$addWorkplace$en {
 	@override String get addTitle => 'İş Yeri Ekle';
 	@override String get editTitle => 'İş Yerini Düzenle';
 	@override String get name => 'Ad';
-	@override String get address => 'Adres';
+	@override String get address => 'Sokak Adresi';
 	@override String get city => 'Şehir';
 	@override String get type => 'Tür';
 	@override String get clinic => 'Klinik';
@@ -555,6 +556,13 @@ class _Translations$addWorkplace$tr extends Translations$addWorkplace$en {
 	@override String get failedToSave => 'İş yeri kaydedilemedi.';
 	@override String get addButton => 'İş Yeri Ekle';
 	@override String get saveChanges => 'Değişiklikleri Kaydet';
+	@override String get pickOnMap => 'Haritadan Seç';
+	@override String get mapPickerTitle => 'Konum Seçin';
+	@override String get useMyLocation => 'Konumumu kullan';
+	@override String get confirmLocation => 'Konumu Onayla';
+	@override String get locationSet => 'Konum haritadan ayarlandı ✓';
+	@override String get locationPermissionDenied => 'Mevcut konumunuzu kullanmak için izin gerekiyor. Haritayı elle de hareket ettirebilirsiniz.';
+	@override String get locationUnavailable => 'Konumunuz alınamadı. Haritayı elle de hareket ettirebilirsiniz.';
 }
 
 // Path: workingHours
@@ -649,6 +657,20 @@ class _Translations$phoneField$tr extends Translations$phoneField$en {
 	@override String get selectCountry => 'Ülke Seçin';
 	@override String get searchCountry => 'Ülke veya kod ara…';
 	@override String get noCountriesFound => 'Ülke bulunamadı';
+}
+
+// Path: locations
+class _Translations$locations$tr extends Translations$locations$en {
+	_Translations$locations$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get pickCity => 'Şehir Seçin';
+	@override String get searchHint => 'Şehir veya bölge ara…';
+	@override String get noResultsFound => 'Şehir bulunamadı';
+	@override String get couldNotLoad => 'Şehirler yüklenemedi. Tekrar denemek için dokunun.';
+	@override String get allCities => 'Tüm şehirler';
 }
 
 // Path: splash
@@ -1522,7 +1544,7 @@ extension on TranslationsTr {
 			'addWorkplace.addTitle' => 'İş Yeri Ekle',
 			'addWorkplace.editTitle' => 'İş Yerini Düzenle',
 			'addWorkplace.name' => 'Ad',
-			'addWorkplace.address' => 'Adres',
+			'addWorkplace.address' => 'Sokak Adresi',
 			'addWorkplace.city' => 'Şehir',
 			'addWorkplace.type' => 'Tür',
 			'addWorkplace.clinic' => 'Klinik',
@@ -1531,6 +1553,13 @@ extension on TranslationsTr {
 			'addWorkplace.failedToSave' => 'İş yeri kaydedilemedi.',
 			'addWorkplace.addButton' => 'İş Yeri Ekle',
 			'addWorkplace.saveChanges' => 'Değişiklikleri Kaydet',
+			'addWorkplace.pickOnMap' => 'Haritadan Seç',
+			'addWorkplace.mapPickerTitle' => 'Konum Seçin',
+			'addWorkplace.useMyLocation' => 'Konumumu kullan',
+			'addWorkplace.confirmLocation' => 'Konumu Onayla',
+			'addWorkplace.locationSet' => 'Konum haritadan ayarlandı ✓',
+			'addWorkplace.locationPermissionDenied' => 'Mevcut konumunuzu kullanmak için izin gerekiyor. Haritayı elle de hareket ettirebilirsiniz.',
+			'addWorkplace.locationUnavailable' => 'Konumunuz alınamadı. Haritayı elle de hareket ettirebilirsiniz.',
 			'workingHours.title' => 'Çalışma Saatleri',
 			'workingHours.sectionHint' => 'Hastaların bu adreste sizden randevu alabileceği gün ve saatleri belirleyin.',
 			'workingHours.invalidRange' => 'Etkin her gün için bitiş saati başlangıç saatinden sonra olmalıdır.',
@@ -1586,6 +1615,11 @@ extension on TranslationsTr {
 			'phoneField.selectCountry' => 'Ülke Seçin',
 			'phoneField.searchCountry' => 'Ülke veya kod ara…',
 			'phoneField.noCountriesFound' => 'Ülke bulunamadı',
+			'locations.pickCity' => 'Şehir Seçin',
+			'locations.searchHint' => 'Şehir veya bölge ara…',
+			'locations.noResultsFound' => 'Şehir bulunamadı',
+			'locations.couldNotLoad' => 'Şehirler yüklenemedi. Tekrar denemek için dokunun.',
+			'locations.allCities' => 'Tüm şehirler',
 			'splash.tagline' => 'Sağlığınız, basitleştirildi',
 			'appIntro.page1Title' => 'Doğru doktoru bulun',
 			'appIntro.page1Subtitle' => 'Uzmanlığa, şehre ve puana göre arayın — size uygun bir randevu alın.',
@@ -1702,6 +1736,8 @@ extension on TranslationsTr {
 			'medications.daysOfWeek' => 'Haftanın Günleri',
 			'medications.everyDay' => 'Her gün',
 			'medications.startDate' => 'Başlangıç Tarihi',
+			_ => null,
+		} ?? switch (path) {
 			'medications.endDate' => 'Bitiş Tarihi',
 			'medications.save' => 'Kaydet',
 			'medications.delete' => 'Sil',
@@ -1714,8 +1750,6 @@ extension on TranslationsTr {
 			'medications.markSkipped' => 'Atla',
 			'medications.statusTaken' => 'Alındı',
 			'medications.statusSkipped' => 'Atlandı',
-			_ => null,
-		} ?? switch (path) {
 			'medications.statusPending' => 'Bekliyor',
 			'medications.reminderTitle' => ({required Object name}) => '${name} alma vakti',
 			'medications.reminderBody' => ({required Object dosage}) => 'Doz: ${dosage}',

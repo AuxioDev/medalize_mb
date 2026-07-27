@@ -63,6 +63,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$onboarding$ru onboarding = _Translations$onboarding$ru._(_root);
 	@override late final _Translations$pendingVerification$ru pendingVerification = _Translations$pendingVerification$ru._(_root);
 	@override late final _Translations$phoneField$ru phoneField = _Translations$phoneField$ru._(_root);
+	@override late final _Translations$locations$ru locations = _Translations$locations$ru._(_root);
 	@override late final _Translations$splash$ru splash = _Translations$splash$ru._(_root);
 	@override late final _Translations$appIntro$ru appIntro = _Translations$appIntro$ru._(_root);
 	@override late final _Translations$agenda$ru agenda = _Translations$agenda$ru._(_root);
@@ -546,7 +547,7 @@ class _Translations$addWorkplace$ru extends Translations$addWorkplace$en {
 	@override String get addTitle => 'Добавить место работы';
 	@override String get editTitle => 'Изменить место работы';
 	@override String get name => 'Название';
-	@override String get address => 'Адрес';
+	@override String get address => 'Улица, дом';
 	@override String get city => 'Город';
 	@override String get type => 'Тип';
 	@override String get clinic => 'Клиника';
@@ -555,6 +556,13 @@ class _Translations$addWorkplace$ru extends Translations$addWorkplace$en {
 	@override String get failedToSave => 'Не удалось сохранить место работы.';
 	@override String get addButton => 'Добавить место работы';
 	@override String get saveChanges => 'Сохранить изменения';
+	@override String get pickOnMap => 'Выбрать на карте';
+	@override String get mapPickerTitle => 'Выберите местоположение';
+	@override String get useMyLocation => 'Использовать моё местоположение';
+	@override String get confirmLocation => 'Подтвердить местоположение';
+	@override String get locationSet => 'Местоположение задано с карты ✓';
+	@override String get locationPermissionDenied => 'Нужно разрешение на геолокацию, чтобы использовать текущее положение. Карту можно передвинуть вручную.';
+	@override String get locationUnavailable => 'Не удалось определить местоположение. Карту можно передвинуть вручную.';
 }
 
 // Path: workingHours
@@ -649,6 +657,20 @@ class _Translations$phoneField$ru extends Translations$phoneField$en {
 	@override String get selectCountry => 'Выберите страну';
 	@override String get searchCountry => 'Поиск страны или кода…';
 	@override String get noCountriesFound => 'Страны не найдены';
+}
+
+// Path: locations
+class _Translations$locations$ru extends Translations$locations$en {
+	_Translations$locations$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get pickCity => 'Выберите город';
+	@override String get searchHint => 'Поиск города или региона…';
+	@override String get noResultsFound => 'Города не найдены';
+	@override String get couldNotLoad => 'Не удалось загрузить города. Нажмите, чтобы повторить.';
+	@override String get allCities => 'Все города';
 }
 
 // Path: splash
@@ -1522,7 +1544,7 @@ extension on TranslationsRu {
 			'addWorkplace.addTitle' => 'Добавить место работы',
 			'addWorkplace.editTitle' => 'Изменить место работы',
 			'addWorkplace.name' => 'Название',
-			'addWorkplace.address' => 'Адрес',
+			'addWorkplace.address' => 'Улица, дом',
 			'addWorkplace.city' => 'Город',
 			'addWorkplace.type' => 'Тип',
 			'addWorkplace.clinic' => 'Клиника',
@@ -1531,6 +1553,13 @@ extension on TranslationsRu {
 			'addWorkplace.failedToSave' => 'Не удалось сохранить место работы.',
 			'addWorkplace.addButton' => 'Добавить место работы',
 			'addWorkplace.saveChanges' => 'Сохранить изменения',
+			'addWorkplace.pickOnMap' => 'Выбрать на карте',
+			'addWorkplace.mapPickerTitle' => 'Выберите местоположение',
+			'addWorkplace.useMyLocation' => 'Использовать моё местоположение',
+			'addWorkplace.confirmLocation' => 'Подтвердить местоположение',
+			'addWorkplace.locationSet' => 'Местоположение задано с карты ✓',
+			'addWorkplace.locationPermissionDenied' => 'Нужно разрешение на геолокацию, чтобы использовать текущее положение. Карту можно передвинуть вручную.',
+			'addWorkplace.locationUnavailable' => 'Не удалось определить местоположение. Карту можно передвинуть вручную.',
 			'workingHours.title' => 'Часы работы',
 			'workingHours.sectionHint' => 'Укажите дни и часы, когда пациенты смогут записаться к вам по этому адресу.',
 			'workingHours.invalidRange' => 'Для каждого активного дня время окончания должно быть позже времени начала.',
@@ -1586,6 +1615,11 @@ extension on TranslationsRu {
 			'phoneField.selectCountry' => 'Выберите страну',
 			'phoneField.searchCountry' => 'Поиск страны или кода…',
 			'phoneField.noCountriesFound' => 'Страны не найдены',
+			'locations.pickCity' => 'Выберите город',
+			'locations.searchHint' => 'Поиск города или региона…',
+			'locations.noResultsFound' => 'Города не найдены',
+			'locations.couldNotLoad' => 'Не удалось загрузить города. Нажмите, чтобы повторить.',
+			'locations.allCities' => 'Все города',
 			'splash.tagline' => 'Ваше здоровье — это просто',
 			'appIntro.page1Title' => 'Найдите нужного врача',
 			'appIntro.page1Subtitle' => 'Ищите по специальности, городу и рейтингу — и запишитесь на удобное время.',
@@ -1702,6 +1736,8 @@ extension on TranslationsRu {
 			'medications.daysOfWeek' => 'Дни недели',
 			'medications.everyDay' => 'Каждый день',
 			'medications.startDate' => 'Дата начала',
+			_ => null,
+		} ?? switch (path) {
 			'medications.endDate' => 'Дата окончания',
 			'medications.save' => 'Сохранить',
 			'medications.delete' => 'Удалить',
@@ -1714,8 +1750,6 @@ extension on TranslationsRu {
 			'medications.markSkipped' => 'Пропустить',
 			'medications.statusTaken' => 'Принято',
 			'medications.statusSkipped' => 'Пропущено',
-			_ => null,
-		} ?? switch (path) {
 			'medications.statusPending' => 'Ожидает',
 			'medications.reminderTitle' => ({required Object name}) => 'Пора принять ${name}',
 			'medications.reminderBody' => ({required Object dosage}) => 'Доза: ${dosage}',

@@ -3,14 +3,28 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/location_picker_field.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
+import 'package:medalize_mb/features/locations/data/repository/location_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:dio/dio.dart';
+
+const _fakeRegions = <LocationRegion>[
+  LocationRegion(key: 'baku', label: 'Baku', cities: [
+    LocationOption(
+      key: 'baku', type: 'city', label: 'Baku',
+      lat: 40.4093, lng: 49.8671, regionKey: 'baku', regionLabel: 'Baku',
+    ),
+  ]),
+];
 
 Widget _wrap(Widget child, {List<Override> overrides = const []}) {
   return TranslationProvider(
     child: ProviderScope(
-      overrides: overrides,
+      overrides: [
+        locationsProvider.overrideWith((ref) async => _fakeRegions),
+        ...overrides,
+      ],
       child: MaterialApp(theme: AppTheme.light, home: child),
     ),
   );
@@ -117,11 +131,21 @@ void main() {
 
     await tester.enterText(find.byType(TextFormField).at(0), 'Test Clinic');
     await tester.enterText(find.byType(TextFormField).at(1), '1 Main St');
-    await tester.enterText(find.byType(TextFormField).at(2), 'Baku');
+
+    await tester.tap(find.byType(LocationPickerField));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Baku').last);
+    await tester.pumpAndSettle();
+
     await tester.tap(find.text('Add Workplace').last);
     await tester.pump();
 
     expect(dio.methods, ['POST /doctor/workplaces/']);
+    expect(dio.lastData?['city'], 'baku');
+    // The map picker was never opened — must not send coordinates at all,
+    // so the backend falls back to the city centroid (see WorkplaceSerializer).
+    expect(dio.lastData?.containsKey('latitude'), isFalse);
+    expect(dio.lastData?.containsKey('longitude'), isFalse);
     expect(dio.lastData?['working_hours'], hasLength(7));
     final monday = (dio.lastData?['working_hours'] as List).first as Map;
     expect(monday['is_active'], isTrue);

@@ -64,7 +64,9 @@ class AppointmentWorkplace {
         id: j['id'] as String,
         name: j['name'] as String? ?? '',
         address: j['address'] as String? ?? '',
-        city: j['city'] as String? ?? '',
+        // Localized display name, not the raw registry key — see
+        // apps.core.i18n.city_label on the backend.
+        city: j['city_display'] as String? ?? j['city'] as String? ?? '',
       );
 }
 

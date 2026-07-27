@@ -7,8 +7,10 @@ import 'package:dio/dio.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/location_picker_field.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/features/doctor/presentation/screens/workplace_map_picker_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -26,7 +28,10 @@ class _AddEditWorkplaceScreenState
   final _form = GlobalKey<FormState>();
   late final TextEditingController _name;
   late final TextEditingController _address;
-  late final TextEditingController _city;
+  String? _cityKey;
+  String? _cityFallbackLabel;
+  double? _lat;
+  double? _lng;
   String _type = 'clinic';
   late List<WorkingHoursDay> _days;
   bool _loading = false;
@@ -44,7 +49,10 @@ class _AddEditWorkplaceScreenState
     final e = widget.existing;
     _name = TextEditingController(text: e?['name'] as String? ?? '');
     _address = TextEditingController(text: e?['address'] as String? ?? '');
-    _city = TextEditingController(text: e?['city'] as String? ?? '');
+    _cityKey = e?['city'] as String?;
+    _cityFallbackLabel = e?['city_display'] as String?;
+    _lat = double.tryParse('${e?['latitude'] ?? ''}');
+    _lng = double.tryParse('${e?['longitude'] ?? ''}');
     _type = e?['type'] as String? ?? 'clinic';
     _days = e != null
         ? WorkingHoursDay.fromApiList(e['working_hours'] as List<dynamic>?)
@@ -55,8 +63,22 @@ class _AddEditWorkplaceScreenState
   void dispose() {
     _name.dispose();
     _address.dispose();
-    _city.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickOnMap() async {
+    final result = await context.push<PickedLocation?>(
+      '/doctor/pick-workplace-location',
+      extra: {'lat': _lat, 'lng': _lng},
+    );
+    if (result == null || !mounted) return;
+    setState(() {
+      _lat = result.lat;
+      _lng = result.lng;
+      if (result.address != null && result.address!.trim().isNotEmpty) {
+        _address.text = result.address!;
+      }
+    });
   }
 
   Future<void> _save() async {
@@ -73,9 +95,11 @@ class _AddEditWorkplaceScreenState
     final body = {
       'name': _name.text.trim(),
       'address': _address.text.trim(),
-      'city': _city.text.trim(),
+      'city': _cityKey,
       'type': _type,
       'working_hours': WorkingHoursDay.toPayload(_days),
+      if (_lat != null && _lng != null) 'latitude': _lat,
+      if (_lat != null && _lng != null) 'longitude': _lng,
     };
     try {
       // A previously-created workplace (create flow retried after the first
@@ -130,14 +154,34 @@ class _AddEditWorkplaceScreenState
                       ? context.t.common.required
                       : null,
                 ),
-                const Gap(12),
-                TextFormField(
-                  controller: _city,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton.icon(
+                    onPressed: _pickOnMap,
+                    icon: const Icon(Icons.map_outlined, size: 18),
+                    label: Text(context.t.addWorkplace.pickOnMap),
+                  ),
+                ),
+                if (_lat != null && _lng != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4, bottom: 4),
+                    child: Text(
+                      context.t.addWorkplace.locationSet,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: AppColors.success),
+                    ),
+                  ),
+                const Gap(4),
+                LocationPickerField(
+                  value: _cityKey,
+                  fallbackLabel: _cityFallbackLabel,
+                  onChanged: (key) => setState(() => _cityKey = key),
                   decoration:
                       InputDecoration(labelText: context.t.addWorkplace.city),
-                  validator: (v) => v?.trim().isEmpty == true
-                      ? context.t.common.required
-                      : null,
+                  validator: (v) =>
+                      v == null || v.isEmpty ? context.t.common.required : null,
                 ),
                 const Gap(12),
                 DropdownButtonFormField<String>(

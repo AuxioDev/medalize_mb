@@ -356,7 +356,7 @@
     "addTitle": "添加工作地点",
     "editTitle": "编辑工作地点",
     "name": "名称",
-    "address": "地址",
+    "address": "街道地址",
     "city": "城市",
     "type": "类型",
     "clinic": "诊所",
@@ -364,7 +364,14 @@
     "privatePractice": "私人诊所",
     "failedToSave": "保存工作地点失败。",
     "addButton": "添加工作地点",
-    "saveChanges": "保存更改"
+    "saveChanges": "保存更改",
+    "pickOnMap": "在地图上选择",
+    "mapPickerTitle": "选择位置",
+    "useMyLocation": "使用我的位置",
+    "confirmLocation": "确认位置",
+    "locationSet": "已从地图设置位置 ✓",
+    "locationPermissionDenied": "需要定位权限才能使用您的当前位置。您仍可以手动移动地图。",
+    "locationUnavailable": "无法获取您的位置。您仍可以手动移动地图。"
   },
   "workingHours": {
     "title": "工作时间",
@@ -432,6 +439,13 @@
     "selectCountry": "选择国家",
     "searchCountry": "搜索国家或区号…",
     "noCountriesFound": "未找到国家"
+  },
+  "locations": {
+    "pickCity": "选择城市",
+    "searchHint": "搜索城市或地区…",
+    "noResultsFound": "未找到城市",
+    "couldNotLoad": "无法加载城市列表，点击重试。",
+    "allCities": "所有城市"
   },
   "splash": {
     "tagline": "让健康更简单"

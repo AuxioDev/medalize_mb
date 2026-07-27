@@ -18,7 +18,9 @@ class DoctorWorkplace {
   factory DoctorWorkplace.fromJson(Map<String, dynamic> j) => DoctorWorkplace(
         id: j['id'] as String,
         name: j['name'] as String? ?? '',
-        city: j['city'] as String? ?? '',
+        // Localized display name, not the raw registry key — see
+        // apps.core.i18n.city_label on the backend.
+        city: j['city_display'] as String? ?? j['city'] as String? ?? '',
         address: j['address'] as String? ?? '',
         type: j['type'] as String? ?? '',
         isPrimary: j['is_primary'] as bool? ?? false,
@@ -75,7 +77,7 @@ class DoctorModel {
       averageRating: (j['average_rating'] as num?)?.toDouble(),
       reviewCount: j['review_count'] as int? ?? 0,
       primaryWorkplaceName: wp?['name'] as String?,
-      primaryWorkplaceCity: wp?['city'] as String?,
+      primaryWorkplaceCity: wp?['city_display'] as String? ?? wp?['city'] as String?,
       primaryWorkplaceId: wp?['id'] as String?,
       avatarUrl: j['avatar_url'] as String?,
       nextSlotAt: j['next_slot_at'] != null

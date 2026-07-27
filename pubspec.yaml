@@ -60,6 +60,8 @@ dependencies:
   # from Settings > Legal (see lib/features/shared/data/legal_pdf_builder.dart).
   pdf: ^3.13.0
   printing: ^5.15.0
+  flutter_map: ^8.3.1
+  latlong2: ^0.10.1
 
 dev_dependencies:
   flutter_test:
