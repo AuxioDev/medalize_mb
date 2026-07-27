@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -113,6 +114,37 @@ void main() {
     expect(_result!.lat, closeTo(40.1, 0.0001));
     expect(_result!.lng, closeTo(49.1, 0.0001));
     expect(_result!.address, '123 Test St, Baku');
+  });
+
+  testWidgets(
+      'confirming after panning the map rounds coordinates to 6 decimal places',
+      (tester) async {
+    // Regression test: dragging the map accumulates floating-point drift in
+    // FlutterMap's projection math (e.g. 40.40930000000004), which the
+    // backend's DecimalField(max_digits=9, decimal_places=6) rejects with a
+    // 400. Panning via a real gesture reproduces that drift; a hand-picked
+    // "clean" coordinate would not.
+    final dio = _StubDio(address: 'Panned St, Baku');
+    await _pump(tester, dio: dio, initialLat: 40.1, initialLng: 49.1);
+
+    await tester.drag(find.byType(FlutterMap), const Offset(137, 219));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Confirm Location'));
+    await tester.pumpAndSettle();
+
+    expect(_result, isNotNull);
+    final lat = _result!.lat;
+    final lng = _result!.lng;
+    expect(double.parse(lat.toStringAsFixed(6)), lat,
+        reason: 'latitude must not carry more than 6 decimal places');
+    expect(double.parse(lng.toStringAsFixed(6)), lng,
+        reason: 'longitude must not carry more than 6 decimal places');
+    // Also enforce the backend's max_digits=9 (3 integer digits + 6 decimal).
+    expect(lat.toStringAsFixed(6).replaceAll(RegExp('[-.]'), '').length,
+        lessThanOrEqualTo(9));
+    expect(lng.toStringAsFixed(6).replaceAll(RegExp('[-.]'), '').length,
+        lessThanOrEqualTo(9));
   });
 
   testWidgets('confirming still returns coordinates when geocoding fails',

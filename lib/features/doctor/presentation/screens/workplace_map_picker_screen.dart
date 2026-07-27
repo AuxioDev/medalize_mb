@@ -80,11 +80,19 @@ class _WorkplaceMapPickerScreenState
 
   Future<void> _confirm() async {
     setState(() => _confirming = true);
+    // The map camera's lat/lng carry far more precision than a double can
+    // cleanly hold (e.g. 40.40930000000004 from pan/zoom arithmetic) — the
+    // backend's DecimalField(max_digits=9, decimal_places=6) rejects that
+    // with a 400. Round to 6 decimal places (~11 cm) before it ever leaves
+    // this screen, so both the geocode lookup and the saved point agree.
     final center = _mapController.camera.center;
+    final lat = double.parse(center.latitude.toStringAsFixed(6));
+    final lng = double.parse(center.longitude.toStringAsFixed(6));
     String? address;
     try {
-      final res = await ref.read(dioClientProvider).get('/geocode/reverse/',
-          queryParameters: {'lat': center.latitude, 'lng': center.longitude});
+      final res = await ref
+          .read(dioClientProvider)
+          .get('/geocode/reverse/', queryParameters: {'lat': lat, 'lng': lng});
       address = res.data['address'] as String?;
     } catch (_) {
       // Reverse geocoding is best-effort — the doctor keeps typing the
@@ -92,11 +100,7 @@ class _WorkplaceMapPickerScreenState
       address = null;
     }
     if (!mounted) return;
-    context.pop(PickedLocation(
-      lat: center.latitude,
-      lng: center.longitude,
-      address: address,
-    ));
+    context.pop(PickedLocation(lat: lat, lng: lng, address: address));
   }
 
   @override
