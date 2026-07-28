@@ -593,7 +593,6 @@
   },
   "medications": {
     "title": "Médicaments",
-    "addMedication": "Ajouter un médicament",
     "editMedication": "Modifier le médicament",
     "name": "Nom",
     "dosage": "Dosage",
@@ -616,7 +615,7 @@
     "deleteConfirmTitle": "Supprimer le médicament",
     "deleteConfirmBody": "Voulez-vous vraiment supprimer ce médicament ? L'historique des prises sera conservé.",
     "emptyTitle": "Aucun médicament pour l'instant",
-    "emptySubtitle": "Ajoutez un médicament pour suivre les prises et recevoir des rappels.",
+    "emptySubtitle": "Les médicaments prescrits par votre médecin apparaîtront ici après votre consultation.",
     "todaysDoses": "Prises du jour",
     "markTaken": "Pris",
     "markSkipped": "Ignorer",
@@ -636,7 +635,6 @@
     "dayFri": "Ven",
     "daySat": "Sam",
     "daySun": "Dim",
-    "addedSuccess": "Médicament ajouté.",
     "updatedSuccess": "Médicament mis à jour.",
     "deletedSuccess": "Médicament supprimé.",
     "atLeastOneTime": "Ajoutez au moins une heure de rappel"

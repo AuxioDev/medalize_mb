@@ -813,7 +813,6 @@ class _Translations$medications$fr extends Translations$medications$en {
 
 	// Translations
 	@override String get title => 'Médicaments';
-	@override String get addMedication => 'Ajouter un médicament';
 	@override String get editMedication => 'Modifier le médicament';
 	@override String get name => 'Nom';
 	@override String get dosage => 'Dosage';
@@ -836,7 +835,7 @@ class _Translations$medications$fr extends Translations$medications$en {
 	@override String get deleteConfirmTitle => 'Supprimer le médicament';
 	@override String get deleteConfirmBody => 'Voulez-vous vraiment supprimer ce médicament ? L\'historique des prises sera conservé.';
 	@override String get emptyTitle => 'Aucun médicament pour l\'instant';
-	@override String get emptySubtitle => 'Ajoutez un médicament pour suivre les prises et recevoir des rappels.';
+	@override String get emptySubtitle => 'Les médicaments prescrits par votre médecin apparaîtront ici après votre consultation.';
 	@override String get todaysDoses => 'Prises du jour';
 	@override String get markTaken => 'Pris';
 	@override String get markSkipped => 'Ignorer';
@@ -856,7 +855,6 @@ class _Translations$medications$fr extends Translations$medications$en {
 	@override String get dayFri => 'Ven';
 	@override String get daySat => 'Sam';
 	@override String get daySun => 'Dim';
-	@override String get addedSuccess => 'Médicament ajouté.';
 	@override String get updatedSuccess => 'Médicament mis à jour.';
 	@override String get deletedSuccess => 'Médicament supprimé.';
 	@override String get atLeastOneTime => 'Ajoutez au moins une heure de rappel';
@@ -1719,7 +1717,6 @@ extension on TranslationsFr {
 			'legal.pdfDocumentTitle' => 'Medalize — Politique de confidentialité et conditions d\'utilisation',
 			'legal.pdfLoadError' => 'Impossible de charger le document. Vérifiez votre connexion internet et réessayez.',
 			'medications.title' => 'Médicaments',
-			'medications.addMedication' => 'Ajouter un médicament',
 			'medications.editMedication' => 'Modifier le médicament',
 			'medications.name' => 'Nom',
 			'medications.dosage' => 'Dosage',
@@ -1736,15 +1733,15 @@ extension on TranslationsFr {
 			'medications.daysOfWeek' => 'Jours de la semaine',
 			'medications.everyDay' => 'Tous les jours',
 			'medications.startDate' => 'Date de début',
+			'medications.endDate' => 'Date de fin',
 			_ => null,
 		} ?? switch (path) {
-			'medications.endDate' => 'Date de fin',
 			'medications.save' => 'Enregistrer',
 			'medications.delete' => 'Supprimer',
 			'medications.deleteConfirmTitle' => 'Supprimer le médicament',
 			'medications.deleteConfirmBody' => 'Voulez-vous vraiment supprimer ce médicament ? L\'historique des prises sera conservé.',
 			'medications.emptyTitle' => 'Aucun médicament pour l\'instant',
-			'medications.emptySubtitle' => 'Ajoutez un médicament pour suivre les prises et recevoir des rappels.',
+			'medications.emptySubtitle' => 'Les médicaments prescrits par votre médecin apparaîtront ici après votre consultation.',
 			'medications.todaysDoses' => 'Prises du jour',
 			'medications.markTaken' => 'Pris',
 			'medications.markSkipped' => 'Ignorer',
@@ -1764,7 +1761,6 @@ extension on TranslationsFr {
 			'medications.dayFri' => 'Ven',
 			'medications.daySat' => 'Sam',
 			'medications.daySun' => 'Dim',
-			'medications.addedSuccess' => 'Médicament ajouté.',
 			'medications.updatedSuccess' => 'Médicament mis à jour.',
 			'medications.deletedSuccess' => 'Médicament supprimé.',
 			'medications.atLeastOneTime' => 'Ajoutez au moins une heure de rappel',

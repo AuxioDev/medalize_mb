@@ -1713,9 +1713,6 @@ class Translations$medications$en {
 	/// en: 'Medications'
 	String get title => 'Medications';
 
-	/// en: 'Add Medication'
-	String get addMedication => 'Add Medication';
-
 	/// en: 'Edit Medication'
 	String get editMedication => 'Edit Medication';
 
@@ -1782,8 +1779,8 @@ class Translations$medications$en {
 	/// en: 'No medications yet'
 	String get emptyTitle => 'No medications yet';
 
-	/// en: 'Add a medication to start tracking doses and get reminders.'
-	String get emptySubtitle => 'Add a medication to start tracking doses and get reminders.';
+	/// en: 'Medications your doctor prescribes will appear here after your appointment.'
+	String get emptySubtitle => 'Medications your doctor prescribes will appear here after your appointment.';
 
 	/// en: 'Today's Doses'
 	String get todaysDoses => 'Today\'s Doses';
@@ -1841,9 +1838,6 @@ class Translations$medications$en {
 
 	/// en: 'Sun'
 	String get daySun => 'Sun';
-
-	/// en: 'Medication added.'
-	String get addedSuccess => 'Medication added.';
 
 	/// en: 'Medication updated.'
 	String get updatedSuccess => 'Medication updated.';
@@ -2994,7 +2988,6 @@ extension on Translations {
 			'legal.pdfDocumentTitle' => 'Medalize — Privacy Policy & Terms of Service',
 			'legal.pdfLoadError' => 'Could not load the document. Please check your internet connection and try again.',
 			'medications.title' => 'Medications',
-			'medications.addMedication' => 'Add Medication',
 			'medications.editMedication' => 'Edit Medication',
 			'medications.name' => 'Name',
 			'medications.dosage' => 'Dosage',
@@ -3011,15 +3004,15 @@ extension on Translations {
 			'medications.daysOfWeek' => 'Days of Week',
 			'medications.everyDay' => 'Every day',
 			'medications.startDate' => 'Start Date',
+			'medications.endDate' => 'End Date',
 			_ => null,
 		} ?? switch (path) {
-			'medications.endDate' => 'End Date',
 			'medications.save' => 'Save',
 			'medications.delete' => 'Delete',
 			'medications.deleteConfirmTitle' => 'Delete Medication',
 			'medications.deleteConfirmBody' => 'Are you sure you want to delete this medication? Its dose history will be kept.',
 			'medications.emptyTitle' => 'No medications yet',
-			'medications.emptySubtitle' => 'Add a medication to start tracking doses and get reminders.',
+			'medications.emptySubtitle' => 'Medications your doctor prescribes will appear here after your appointment.',
 			'medications.todaysDoses' => 'Today\'s Doses',
 			'medications.markTaken' => 'Taken',
 			'medications.markSkipped' => 'Skip',
@@ -3039,7 +3032,6 @@ extension on Translations {
 			'medications.dayFri' => 'Fri',
 			'medications.daySat' => 'Sat',
 			'medications.daySun' => 'Sun',
-			'medications.addedSuccess' => 'Medication added.',
 			'medications.updatedSuccess' => 'Medication updated.',
 			'medications.deletedSuccess' => 'Medication deleted.',
 			'medications.atLeastOneTime' => 'Add at least one reminder time',

@@ -33,48 +33,16 @@ class MedicationRepository {
     }
   }
 
-  Future<MedicationModel> createMedication({
-    required String name,
-    String dosage = '',
-    String form = '',
-    String notes = '',
-    List<MedicationScheduleModel> schedules = const [],
-    String? dependentId,
-  }) async {
-    try {
-      final res = await _dio.post('/medications/', data: {
-        'name': name,
-        'dosage': dosage,
-        'form': form,
-        'notes': notes,
-        'schedules': schedules.map((s) => s.toJson()).toList(),
-        'dependent_id': ?dependentId,
-      });
-      return MedicationModel.fromJson(res.data as Map<String, dynamic>);
-    } on DioException catch (e) {
-      throw mapDioError(e);
-    } catch (_) {
-      throw const ServerException(0);
-    }
-  }
-
+  /// Reminder schedule only — a Medication's identity (name/dosage/form/
+  /// notes) comes solely from the doctor's prescription and isn't
+  /// patient-editable, so this is the only field the backend accepts here.
   Future<MedicationModel> updateMedication(
     String id, {
-    String? name,
-    String? dosage,
-    String? form,
-    String? notes,
-    bool? isActive,
-    List<MedicationScheduleModel>? schedules,
+    required List<MedicationScheduleModel> schedules,
   }) async {
     try {
       final res = await _dio.patch('/medications/$id/', data: {
-        'name': ?name,
-        'dosage': ?dosage,
-        'form': ?form,
-        'notes': ?notes,
-        'is_active': ?isActive,
-        'schedules': ?schedules?.map((s) => s.toJson()).toList(),
+        'schedules': schedules.map((s) => s.toJson()).toList(),
       });
       return MedicationModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {

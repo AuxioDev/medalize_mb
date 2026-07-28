@@ -813,7 +813,6 @@ class _Translations$medications$zh extends Translations$medications$en {
 
 	// Translations
 	@override String get title => '用药';
-	@override String get addMedication => '添加药物';
 	@override String get editMedication => '编辑药物';
 	@override String get name => '名称';
 	@override String get dosage => '剂量';
@@ -836,7 +835,7 @@ class _Translations$medications$zh extends Translations$medications$en {
 	@override String get deleteConfirmTitle => '删除药物';
 	@override String get deleteConfirmBody => '确定要删除这个药物吗?服药记录将被保留。';
 	@override String get emptyTitle => '暂无药物';
-	@override String get emptySubtitle => '添加药物以跟踪服药情况并接收提醒。';
+	@override String get emptySubtitle => '医生开具的药物将在就诊后显示在这里。';
 	@override String get todaysDoses => '今日服药';
 	@override String get markTaken => '已服用';
 	@override String get markSkipped => '跳过';
@@ -856,7 +855,6 @@ class _Translations$medications$zh extends Translations$medications$en {
 	@override String get dayFri => '周五';
 	@override String get daySat => '周六';
 	@override String get daySun => '周日';
-	@override String get addedSuccess => '药物已添加。';
 	@override String get updatedSuccess => '药物已更新。';
 	@override String get deletedSuccess => '药物已删除。';
 	@override String get atLeastOneTime => '请至少添加一个提醒时间';
@@ -1719,7 +1717,6 @@ extension on TranslationsZh {
 			'legal.pdfDocumentTitle' => 'Medalize — 隐私政策与服务条款',
 			'legal.pdfLoadError' => '无法加载文档。请检查您的网络连接后重试。',
 			'medications.title' => '用药',
-			'medications.addMedication' => '添加药物',
 			'medications.editMedication' => '编辑药物',
 			'medications.name' => '名称',
 			'medications.dosage' => '剂量',
@@ -1736,15 +1733,15 @@ extension on TranslationsZh {
 			'medications.daysOfWeek' => '星期',
 			'medications.everyDay' => '每天',
 			'medications.startDate' => '开始日期',
+			'medications.endDate' => '结束日期',
 			_ => null,
 		} ?? switch (path) {
-			'medications.endDate' => '结束日期',
 			'medications.save' => '保存',
 			'medications.delete' => '删除',
 			'medications.deleteConfirmTitle' => '删除药物',
 			'medications.deleteConfirmBody' => '确定要删除这个药物吗?服药记录将被保留。',
 			'medications.emptyTitle' => '暂无药物',
-			'medications.emptySubtitle' => '添加药物以跟踪服药情况并接收提醒。',
+			'medications.emptySubtitle' => '医生开具的药物将在就诊后显示在这里。',
 			'medications.todaysDoses' => '今日服药',
 			'medications.markTaken' => '已服用',
 			'medications.markSkipped' => '跳过',
@@ -1764,7 +1761,6 @@ extension on TranslationsZh {
 			'medications.dayFri' => '周五',
 			'medications.daySat' => '周六',
 			'medications.daySun' => '周日',
-			'medications.addedSuccess' => '药物已添加。',
 			'medications.updatedSuccess' => '药物已更新。',
 			'medications.deletedSuccess' => '药物已删除。',
 			'medications.atLeastOneTime' => '请至少添加一个提醒时间',

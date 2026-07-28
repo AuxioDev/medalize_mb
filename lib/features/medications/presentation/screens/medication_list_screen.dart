@@ -73,14 +73,6 @@ class _MedicationListScreenState extends ConsumerState<MedicationListScreen>
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          HapticFeedback.lightImpact();
-          context.push('/patient/medications/add');
-        },
-        tooltip: context.t.medications.addMedication,
-        child: const Icon(Icons.add),
-      ),
       body: TabBarView(
         controller: _tab,
         children: const [

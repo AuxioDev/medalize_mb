@@ -813,7 +813,6 @@ class _Translations$medications$tr extends Translations$medications$en {
 
 	// Translations
 	@override String get title => 'İlaçlar';
-	@override String get addMedication => 'İlaç Ekle';
 	@override String get editMedication => 'İlacı Düzenle';
 	@override String get name => 'Ad';
 	@override String get dosage => 'Doz';
@@ -836,7 +835,7 @@ class _Translations$medications$tr extends Translations$medications$en {
 	@override String get deleteConfirmTitle => 'İlacı Sil';
 	@override String get deleteConfirmBody => 'Bu ilacı silmek istediğinizden emin misiniz? Alım geçmişi saklanacak.';
 	@override String get emptyTitle => 'Henüz ilaç yok';
-	@override String get emptySubtitle => 'Alımları takip etmek ve hatırlatma almak için bir ilaç ekleyin.';
+	@override String get emptySubtitle => 'Doktorunuzun yazdığı ilaçlar randevunuzdan sonra burada görünecek.';
 	@override String get todaysDoses => 'Bugünkü Alımlar';
 	@override String get markTaken => 'Alındı';
 	@override String get markSkipped => 'Atla';
@@ -856,7 +855,6 @@ class _Translations$medications$tr extends Translations$medications$en {
 	@override String get dayFri => 'Cum';
 	@override String get daySat => 'Cmt';
 	@override String get daySun => 'Paz';
-	@override String get addedSuccess => 'İlaç eklendi.';
 	@override String get updatedSuccess => 'İlaç güncellendi.';
 	@override String get deletedSuccess => 'İlaç silindi.';
 	@override String get atLeastOneTime => 'En az bir hatırlatma saati ekleyin';
@@ -1719,7 +1717,6 @@ extension on TranslationsTr {
 			'legal.pdfDocumentTitle' => 'Medalize — Gizlilik Politikası ve Kullanım Koşulları',
 			'legal.pdfLoadError' => 'Belge yüklenemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.',
 			'medications.title' => 'İlaçlar',
-			'medications.addMedication' => 'İlaç Ekle',
 			'medications.editMedication' => 'İlacı Düzenle',
 			'medications.name' => 'Ad',
 			'medications.dosage' => 'Doz',
@@ -1736,15 +1733,15 @@ extension on TranslationsTr {
 			'medications.daysOfWeek' => 'Haftanın Günleri',
 			'medications.everyDay' => 'Her gün',
 			'medications.startDate' => 'Başlangıç Tarihi',
+			'medications.endDate' => 'Bitiş Tarihi',
 			_ => null,
 		} ?? switch (path) {
-			'medications.endDate' => 'Bitiş Tarihi',
 			'medications.save' => 'Kaydet',
 			'medications.delete' => 'Sil',
 			'medications.deleteConfirmTitle' => 'İlacı Sil',
 			'medications.deleteConfirmBody' => 'Bu ilacı silmek istediğinizden emin misiniz? Alım geçmişi saklanacak.',
 			'medications.emptyTitle' => 'Henüz ilaç yok',
-			'medications.emptySubtitle' => 'Alımları takip etmek ve hatırlatma almak için bir ilaç ekleyin.',
+			'medications.emptySubtitle' => 'Doktorunuzun yazdığı ilaçlar randevunuzdan sonra burada görünecek.',
 			'medications.todaysDoses' => 'Bugünkü Alımlar',
 			'medications.markTaken' => 'Alındı',
 			'medications.markSkipped' => 'Atla',
@@ -1764,7 +1761,6 @@ extension on TranslationsTr {
 			'medications.dayFri' => 'Cum',
 			'medications.daySat' => 'Cmt',
 			'medications.daySun' => 'Paz',
-			'medications.addedSuccess' => 'İlaç eklendi.',
 			'medications.updatedSuccess' => 'İlaç güncellendi.',
 			'medications.deletedSuccess' => 'İlaç silindi.',
 			'medications.atLeastOneTime' => 'En az bir hatırlatma saati ekleyin',

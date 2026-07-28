@@ -593,7 +593,6 @@
   },
   "medications": {
     "title": "Medications",
-    "addMedication": "Add Medication",
     "editMedication": "Edit Medication",
     "name": "Name",
     "dosage": "Dosage",
@@ -616,7 +615,7 @@
     "deleteConfirmTitle": "Delete Medication",
     "deleteConfirmBody": "Are you sure you want to delete this medication? Its dose history will be kept.",
     "emptyTitle": "No medications yet",
-    "emptySubtitle": "Add a medication to start tracking doses and get reminders.",
+    "emptySubtitle": "Medications your doctor prescribes will appear here after your appointment.",
     "todaysDoses": "Today's Doses",
     "markTaken": "Taken",
     "markSkipped": "Skip",
@@ -636,7 +635,6 @@
     "dayFri": "Fri",
     "daySat": "Sat",
     "daySun": "Sun",
-    "addedSuccess": "Medication added.",
     "updatedSuccess": "Medication updated.",
     "deletedSuccess": "Medication deleted.",
     "atLeastOneTime": "Add at least one reminder time"

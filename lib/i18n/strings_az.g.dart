@@ -813,7 +813,6 @@ class _Translations$medications$az extends Translations$medications$en {
 
 	// Translations
 	@override String get title => 'Dərmanlar';
-	@override String get addMedication => 'Dərman əlavə et';
 	@override String get editMedication => 'Dərmanı redaktə et';
 	@override String get name => 'Ad';
 	@override String get dosage => 'Dozaj';
@@ -836,7 +835,7 @@ class _Translations$medications$az extends Translations$medications$en {
 	@override String get deleteConfirmTitle => 'Dərmanı sil';
 	@override String get deleteConfirmBody => 'Bu dərmanı silmək istədiyinizə əminsiniz? Qəbul tarixçəsi saxlanılacaq.';
 	@override String get emptyTitle => 'Hələ dərman yoxdur';
-	@override String get emptySubtitle => 'Qəbulları izləmək və xatırlatmalar almaq üçün dərman əlavə edin.';
+	@override String get emptySubtitle => 'Həkiminizin təyin etdiyi dərmanlar qəbuldan sonra burada görünəcək.';
 	@override String get todaysDoses => 'Bu günkü qəbullar';
 	@override String get markTaken => 'Qəbul edildi';
 	@override String get markSkipped => 'Buraxıldı';
@@ -856,7 +855,6 @@ class _Translations$medications$az extends Translations$medications$en {
 	@override String get dayFri => 'C';
 	@override String get daySat => 'Ş';
 	@override String get daySun => 'B';
-	@override String get addedSuccess => 'Dərman əlavə edildi.';
 	@override String get updatedSuccess => 'Dərman yeniləndi.';
 	@override String get deletedSuccess => 'Dərman silindi.';
 	@override String get atLeastOneTime => 'Ən azı bir xatırlatma vaxtı əlavə edin';
@@ -1719,7 +1717,6 @@ extension on TranslationsAz {
 			'legal.pdfDocumentTitle' => 'Medalize — Məxfilik Siyasəti və İstifadə Şərtləri',
 			'legal.pdfLoadError' => 'Sənəd yüklənmədi. İnternet bağlantınızı yoxlayıb yenidən cəhd edin.',
 			'medications.title' => 'Dərmanlar',
-			'medications.addMedication' => 'Dərman əlavə et',
 			'medications.editMedication' => 'Dərmanı redaktə et',
 			'medications.name' => 'Ad',
 			'medications.dosage' => 'Dozaj',
@@ -1736,15 +1733,15 @@ extension on TranslationsAz {
 			'medications.daysOfWeek' => 'Həftənin günləri',
 			'medications.everyDay' => 'Hər gün',
 			'medications.startDate' => 'Başlama tarixi',
+			'medications.endDate' => 'Bitmə tarixi',
 			_ => null,
 		} ?? switch (path) {
-			'medications.endDate' => 'Bitmə tarixi',
 			'medications.save' => 'Yadda saxla',
 			'medications.delete' => 'Sil',
 			'medications.deleteConfirmTitle' => 'Dərmanı sil',
 			'medications.deleteConfirmBody' => 'Bu dərmanı silmək istədiyinizə əminsiniz? Qəbul tarixçəsi saxlanılacaq.',
 			'medications.emptyTitle' => 'Hələ dərman yoxdur',
-			'medications.emptySubtitle' => 'Qəbulları izləmək və xatırlatmalar almaq üçün dərman əlavə edin.',
+			'medications.emptySubtitle' => 'Həkiminizin təyin etdiyi dərmanlar qəbuldan sonra burada görünəcək.',
 			'medications.todaysDoses' => 'Bu günkü qəbullar',
 			'medications.markTaken' => 'Qəbul edildi',
 			'medications.markSkipped' => 'Buraxıldı',
@@ -1764,7 +1761,6 @@ extension on TranslationsAz {
 			'medications.dayFri' => 'C',
 			'medications.daySat' => 'Ş',
 			'medications.daySun' => 'B',
-			'medications.addedSuccess' => 'Dərman əlavə edildi.',
 			'medications.updatedSuccess' => 'Dərman yeniləndi.',
 			'medications.deletedSuccess' => 'Dərman silindi.',
 			'medications.atLeastOneTime' => 'Ən azı bir xatırlatma vaxtı əlavə edin',

@@ -593,7 +593,6 @@
   },
   "medications": {
     "title": "İlaçlar",
-    "addMedication": "İlaç Ekle",
     "editMedication": "İlacı Düzenle",
     "name": "Ad",
     "dosage": "Doz",
@@ -616,7 +615,7 @@
     "deleteConfirmTitle": "İlacı Sil",
     "deleteConfirmBody": "Bu ilacı silmek istediğinizden emin misiniz? Alım geçmişi saklanacak.",
     "emptyTitle": "Henüz ilaç yok",
-    "emptySubtitle": "Alımları takip etmek ve hatırlatma almak için bir ilaç ekleyin.",
+    "emptySubtitle": "Doktorunuzun yazdığı ilaçlar randevunuzdan sonra burada görünecek.",
     "todaysDoses": "Bugünkü Alımlar",
     "markTaken": "Alındı",
     "markSkipped": "Atla",
@@ -636,7 +635,6 @@
     "dayFri": "Cum",
     "daySat": "Cmt",
     "daySun": "Paz",
-    "addedSuccess": "İlaç eklendi.",
     "updatedSuccess": "İlaç güncellendi.",
     "deletedSuccess": "İlaç silindi.",
     "atLeastOneTime": "En az bir hatırlatma saati ekleyin"

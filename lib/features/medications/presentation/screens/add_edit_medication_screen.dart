@@ -6,24 +6,26 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/services/medication_scheduler.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/app_date_field.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
-import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
 import 'package:medalize_mb/features/medications/providers/medication_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
-const _kForms = ['pill', 'capsule', 'liquid', 'injection', 'other'];
-
+/// Reminder-schedule editor for a medication the patient's doctor already
+/// prescribed. The drug itself (name/dosage/form/notes) is shown read-only —
+/// a Medication only ever exists because of a doctor's prescription (see
+/// apps.prescriptions.PrescriptionApplyView on the backend), so there is no
+/// "add medication" flow here, only "adjust when I get reminded".
 class AddEditMedicationScreen extends ConsumerStatefulWidget {
-  const AddEditMedicationScreen({super.key, this.existing});
+  const AddEditMedicationScreen({super.key, required this.existing});
 
-  /// Non-null when editing an existing medication.
-  final MedicationModel? existing;
+  final MedicationModel existing;
 
   @override
   ConsumerState<AddEditMedicationScreen> createState() =>
@@ -32,11 +34,6 @@ class AddEditMedicationScreen extends ConsumerStatefulWidget {
 
 class _AddEditMedicationScreenState
     extends ConsumerState<AddEditMedicationScreen> {
-  late final TextEditingController _name;
-  late final TextEditingController _dosage;
-  late final TextEditingController _notes;
-  late String _form;
-
   late List<String> _times;
   late Set<int> _selectedDays; // empty == every day
   late DateTime _startDate;
@@ -45,32 +42,16 @@ class _AddEditMedicationScreenState
   bool _saving = false;
   String? _error;
 
-  bool get _isEditing => widget.existing != null;
-
   @override
   void initState() {
     super.initState();
-    final existing = widget.existing;
-    _name = TextEditingController(text: existing?.name ?? '');
-    _dosage = TextEditingController(text: existing?.dosage ?? '');
-    _notes = TextEditingController(text: existing?.notes ?? '');
-    _form = existing?.form.isNotEmpty == true ? existing!.form : 'pill';
-
-    final schedule = existing?.schedules.isNotEmpty == true
-        ? existing!.schedules.first
+    final schedule = widget.existing.schedules.isNotEmpty
+        ? widget.existing.schedules.first
         : null;
     _times = List.of(schedule?.times ?? const []);
     _selectedDays = Set.of(schedule?.daysOfWeek ?? const []);
     _startDate = schedule?.startDate ?? DateTime.now();
     _endDate = schedule?.endDate;
-  }
-
-  @override
-  void dispose() {
-    _name.dispose();
-    _dosage.dispose();
-    _notes.dispose();
-    super.dispose();
   }
 
   Future<void> _addTime() async {
@@ -109,12 +90,6 @@ class _AddEditMedicationScreenState
   }
 
   Future<void> _save() async {
-    final name = _name.text.trim();
-    if (name.isEmpty) {
-      setState(() => _error =
-          context.t.validation.fieldRequired(field: context.t.medications.name));
-      return;
-    }
     setState(() {
       _saving = true;
       _error = null;
@@ -124,8 +99,8 @@ class _AddEditMedicationScreenState
         ? const <MedicationScheduleModel>[]
         : [
             MedicationScheduleModel(
-              id: widget.existing?.schedules.isNotEmpty == true
-                  ? widget.existing!.schedules.first.id
+              id: widget.existing.schedules.isNotEmpty
+                  ? widget.existing.schedules.first.id
                   : '',
               times: _times,
               daysOfWeek: _selectedDays.toList()..sort(),
@@ -137,38 +112,15 @@ class _AddEditMedicationScreenState
 
     try {
       final repo = ref.read(medicationRepositoryProvider);
-      if (_isEditing) {
-        await repo.updateMedication(
-          widget.existing!.id,
-          name: name,
-          dosage: _dosage.text.trim(),
-          form: _form,
-          notes: _notes.text.trim(),
-          schedules: schedules,
-        );
-      } else {
-        await repo.createMedication(
-          name: name,
-          dosage: _dosage.text.trim(),
-          form: _form,
-          notes: _notes.text.trim(),
-          schedules: schedules,
-          dependentId: ref.read(activeProfileProvider)?.id,
-        );
-      }
+      await repo.updateMedication(widget.existing.id, schedules: schedules);
       ref.invalidate(medicationsProvider);
       // Refresh device-local reminders from the server's source of truth.
       final all = await repo.getMedications();
       await ref.read(medicationSchedulerProvider).rescheduleAll(all);
 
       if (mounted) {
-        AppSnackBar.show(
-          context,
-          _isEditing
-              ? context.t.medications.updatedSuccess
-              : context.t.medications.addedSuccess,
-          type: SnackBarType.success,
-        );
+        AppSnackBar.show(context, context.t.medications.updatedSuccess,
+            type: SnackBarType.success);
         context.pop();
       }
     } on ApiException catch (e) {
@@ -181,48 +133,64 @@ class _AddEditMedicationScreenState
   @override
   Widget build(BuildContext context) {
     final t = context.t;
+    final c = context.colors;
+    final existing = widget.existing;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_isEditing ? t.medications.editMedication : t.medications.addMedication),
-      ),
+      appBar: AppBar(title: Text(t.medications.editMedication)),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextField(
-                controller: _name,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(labelText: t.medications.name),
-              ),
-              const Gap(12),
-              TextField(
-                controller: _dosage,
-                decoration: InputDecoration(labelText: t.medications.dosage),
-              ),
-              const Gap(AppSpacing.md),
-              Text(t.medications.form, style: Theme.of(context).textTheme.titleSmall),
-              const Gap(8),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final f in _kForms)
-                    ChoiceChip(
-                      label: Text(medicationFormLabel(f)),
-                      selected: _form == f,
-                      onSelected: (_) => setState(() => _form = f),
+              // Read-only — set by the doctor's prescription, not editable
+              // by the patient.
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(AppSpacing.md),
+                decoration: BoxDecoration(
+                  color: c.surfaceAlt,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                  border: Border.all(color: c.border),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(medicationFormIcon(existing.form), size: 18, color: c.textSecondary),
+                        const Gap(6),
+                        Expanded(
+                          child: Text(existing.name,
+                              style: Theme.of(context).textTheme.titleMedium),
+                        ),
+                      ],
                     ),
-                ],
-              ),
-              const Gap(AppSpacing.md),
-              TextField(
-                controller: _notes,
-                maxLines: 2,
-                decoration: InputDecoration(
-                  labelText: t.medications.notes,
-                  alignLabelWithHint: true,
+                    if (existing.dosage.isNotEmpty) ...[
+                      const Gap(4),
+                      Text('${t.medications.dosage}: ${existing.dosage}',
+                          style: Theme.of(context).textTheme.bodyMedium),
+                    ],
+                    if (existing.notes.isNotEmpty) ...[
+                      const Gap(4),
+                      Text(existing.notes, style: Theme.of(context).textTheme.bodySmall),
+                    ],
+                    if (existing.isFromPrescription) ...[
+                      const Gap(8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: c.primarySurface,
+                          borderRadius: BorderRadius.circular(AppRadius.pill),
+                        ),
+                        child: Text(
+                          t.medications.fromPrescription,
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.w600, color: c.primaryText),
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
               const Gap(AppSpacing.lg),
@@ -321,4 +289,3 @@ class _AddEditMedicationScreenState
         _ => context.t.medications.daySun,
       };
 }
-

@@ -4,8 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
-import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
-import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/add_edit_medication_screen.dart';
@@ -14,55 +12,23 @@ import 'package:medalize_mb/i18n/strings.g.dart';
 class _FakeMedicationRepository extends MedicationRepository {
   _FakeMedicationRepository() : super(Dio());
 
-  String? createdName;
-  String? createdDosage;
-  List<MedicationScheduleModel>? createdSchedules;
-  String? createdDependentId;
   String? updatedId;
+  List<MedicationScheduleModel>? updatedSchedules;
 
   @override
   Future<List<MedicationModel>> getMedications() async => const [];
 
   @override
-  Future<MedicationModel> createMedication({
-    required String name,
-    String dosage = '',
-    String form = '',
-    String notes = '',
-    List<MedicationScheduleModel> schedules = const [],
-    String? dependentId,
-  }) async {
-    createdName = name;
-    createdDosage = dosage;
-    createdSchedules = schedules;
-    createdDependentId = dependentId;
-    return MedicationModel(
-      id: 'new-id',
-      name: name,
-      dosage: dosage,
-      form: form,
-      notes: notes,
-      schedules: schedules,
-      createdAt: DateTime(2026, 1, 1),
-    );
-  }
-
-  @override
   Future<MedicationModel> updateMedication(
     String id, {
-    String? name,
-    String? dosage,
-    String? form,
-    String? notes,
-    bool? isActive,
-    List<MedicationScheduleModel>? schedules,
+    required List<MedicationScheduleModel> schedules,
   }) async {
     updatedId = id;
+    updatedSchedules = schedules;
     return MedicationModel(
       id: id,
-      name: name ?? '',
-      dosage: dosage ?? '',
-      schedules: schedules ?? const [],
+      name: 'Ibuprofen',
+      schedules: schedules,
       createdAt: DateTime(2026, 1, 1),
     );
   }
@@ -74,8 +40,7 @@ class _FakeMedicationRepository extends MedicationRepository {
 Future<void> _pump(
   WidgetTester tester,
   _FakeMedicationRepository repo, {
-  MedicationModel? existing,
-  DependentModel? activeProfile,
+  required MedicationModel existing,
 }) async {
   // Tall viewport so the Save button (below the schedule builder) is always
   // on-screen without needing to scroll to it in every test.
@@ -88,7 +53,7 @@ Future<void> _pump(
     routes: [
       GoRoute(path: '/list', builder: (_, _) => const Scaffold(body: Text('list-screen'))),
       GoRoute(
-        path: '/add',
+        path: '/edit',
         builder: (_, _) => AddEditMedicationScreen(existing: existing),
       ),
     ],
@@ -96,63 +61,23 @@ Future<void> _pump(
   await tester.pumpWidget(
     TranslationProvider(
       child: ProviderScope(
-        overrides: [
-          medicationRepositoryProvider.overrideWithValue(repo),
-          if (activeProfile != null)
-            activeProfileProvider.overrideWith((ref) => activeProfile),
-        ],
+        overrides: [medicationRepositoryProvider.overrideWithValue(repo)],
         child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
       ),
     ),
   );
-  router.push('/add');
+  router.push('/edit');
   await tester.pumpAndSettle();
 }
 
 void main() {
-  testWidgets('shows a validation error and does not submit when name is empty',
-      (tester) async {
-    final repo = _FakeMedicationRepository();
-    await _pump(tester, repo);
-
-    await tester.tap(find.text('Save'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Name is required'), findsOneWidget);
-    expect(repo.createdName, isNull);
-  });
-
-  testWidgets('adding a reminder time and saving creates the medication with a schedule',
-      (tester) async {
-    final repo = _FakeMedicationRepository();
-    await _pump(tester, repo);
-
-    await tester.enterText(find.widgetWithText(TextField, 'Name'), 'Metformin');
-    await tester.enterText(find.widgetWithText(TextField, 'Dosage'), '500mg');
-
-    // Add a reminder time via the time picker (defaults to "now" — we only
-    // need to confirm the dialog, not pick a specific time).
-    await tester.tap(find.text('Add Time'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('OK'));
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('Save'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 500));
-
-    expect(repo.createdName, 'Metformin');
-    expect(repo.createdDosage, '500mg');
-    expect(repo.createdSchedules, hasLength(1));
-    expect(repo.createdSchedules!.single.times, hasLength(1));
-  });
-
-  testWidgets('editing prefills the existing medication and updates on save',
+  testWidgets('shows the prescribed drug read-only and prefills its schedule',
       (tester) async {
     final existing = MedicationModel(
       id: 'm1',
       name: 'Ibuprofen',
       dosage: '200mg',
+      source: MedicationModel.sourcePrescription,
       schedules: [
         MedicationScheduleModel(
           id: 's1',
@@ -169,45 +94,58 @@ void main() {
     expect(find.text('Ibuprofen'), findsOneWidget);
     expect(find.text('08:00'), findsOneWidget);
     expect(find.text('Edit Medication'), findsOneWidget);
+    // The drug identity is shown, not an editable field.
+    expect(find.widgetWithText(TextField, 'Name'), findsNothing);
+    expect(find.widgetWithText(TextField, 'Dosage'), findsNothing);
+  });
+
+  testWidgets('saving without changes resubmits the existing schedule as-is',
+      (tester) async {
+    final existing = MedicationModel(
+      id: 'm1',
+      name: 'Ibuprofen',
+      schedules: [
+        MedicationScheduleModel(
+          id: 's1',
+          times: const ['08:00'],
+          daysOfWeek: const [],
+          startDate: DateTime(2026, 1, 1),
+        ),
+      ],
+      createdAt: DateTime(2026, 1, 1),
+    );
+    final repo = _FakeMedicationRepository();
+    await _pump(tester, repo, existing: existing);
 
     await tester.tap(find.text('Save'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
     expect(repo.updatedId, 'm1');
+    expect(repo.updatedSchedules, hasLength(1));
+    expect(repo.updatedSchedules!.single.times, ['08:00']);
   });
 
-  testWidgets(
-      'creating a medication while a family member is the active profile '
-      'passes her id as dependentId (Phase 4)', (tester) async {
-    const daughter = DependentModel(
-      id: 'dep-1',
-      firstName: 'Anna',
-      relationship: DependentModel.relationshipChild,
+  testWidgets('adding a reminder time updates the schedule on save', (tester) async {
+    final existing = MedicationModel(
+      id: 'm2',
+      name: 'Metformin',
+      createdAt: DateTime(2026, 1, 1),
     );
     final repo = _FakeMedicationRepository();
-    await _pump(tester, repo, activeProfile: daughter);
+    await _pump(tester, repo, existing: existing);
 
-    await tester.enterText(find.widgetWithText(TextField, 'Name'), 'Paracetamol');
+    await tester.tap(find.text('Add Time'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+
     await tester.tap(find.text('Save'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
-    expect(repo.createdName, 'Paracetamol');
-    expect(repo.createdDependentId, 'dep-1');
-  });
-
-  testWidgets(
-      'creating a medication for "myself" (the default active profile) sends '
-      'no dependentId (Phase 4)', (tester) async {
-    final repo = _FakeMedicationRepository();
-    await _pump(tester, repo);
-
-    await tester.enterText(find.widgetWithText(TextField, 'Name'), 'Paracetamol');
-    await tester.tap(find.text('Save'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 500));
-
-    expect(repo.createdDependentId, isNull);
+    expect(repo.updatedId, 'm2');
+    expect(repo.updatedSchedules, hasLength(1));
+    expect(repo.updatedSchedules!.single.times, hasLength(1));
   });
 }

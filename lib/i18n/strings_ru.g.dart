@@ -813,7 +813,6 @@ class _Translations$medications$ru extends Translations$medications$en {
 
 	// Translations
 	@override String get title => 'Лекарства';
-	@override String get addMedication => 'Добавить лекарство';
 	@override String get editMedication => 'Изменить лекарство';
 	@override String get name => 'Название';
 	@override String get dosage => 'Дозировка';
@@ -836,7 +835,7 @@ class _Translations$medications$ru extends Translations$medications$en {
 	@override String get deleteConfirmTitle => 'Удалить лекарство';
 	@override String get deleteConfirmBody => 'Удалить это лекарство? История приёма сохранится.';
 	@override String get emptyTitle => 'Пока нет лекарств';
-	@override String get emptySubtitle => 'Добавьте лекарство, чтобы отслеживать приём и получать напоминания.';
+	@override String get emptySubtitle => 'Лекарства, назначенные врачом, появятся здесь после приёма.';
 	@override String get todaysDoses => 'Приёмы сегодня';
 	@override String get markTaken => 'Принято';
 	@override String get markSkipped => 'Пропустить';
@@ -856,7 +855,6 @@ class _Translations$medications$ru extends Translations$medications$en {
 	@override String get dayFri => 'Пт';
 	@override String get daySat => 'Сб';
 	@override String get daySun => 'Вс';
-	@override String get addedSuccess => 'Лекарство добавлено.';
 	@override String get updatedSuccess => 'Лекарство обновлено.';
 	@override String get deletedSuccess => 'Лекарство удалено.';
 	@override String get atLeastOneTime => 'Добавьте хотя бы одно время приёма';
@@ -1719,7 +1717,6 @@ extension on TranslationsRu {
 			'legal.pdfDocumentTitle' => 'Medalize — Политика конфиденциальности и условия использования',
 			'legal.pdfLoadError' => 'Не удалось загрузить документ. Проверьте подключение к интернету и попробуйте снова.',
 			'medications.title' => 'Лекарства',
-			'medications.addMedication' => 'Добавить лекарство',
 			'medications.editMedication' => 'Изменить лекарство',
 			'medications.name' => 'Название',
 			'medications.dosage' => 'Дозировка',
@@ -1736,15 +1733,15 @@ extension on TranslationsRu {
 			'medications.daysOfWeek' => 'Дни недели',
 			'medications.everyDay' => 'Каждый день',
 			'medications.startDate' => 'Дата начала',
+			'medications.endDate' => 'Дата окончания',
 			_ => null,
 		} ?? switch (path) {
-			'medications.endDate' => 'Дата окончания',
 			'medications.save' => 'Сохранить',
 			'medications.delete' => 'Удалить',
 			'medications.deleteConfirmTitle' => 'Удалить лекарство',
 			'medications.deleteConfirmBody' => 'Удалить это лекарство? История приёма сохранится.',
 			'medications.emptyTitle' => 'Пока нет лекарств',
-			'medications.emptySubtitle' => 'Добавьте лекарство, чтобы отслеживать приём и получать напоминания.',
+			'medications.emptySubtitle' => 'Лекарства, назначенные врачом, появятся здесь после приёма.',
 			'medications.todaysDoses' => 'Приёмы сегодня',
 			'medications.markTaken' => 'Принято',
 			'medications.markSkipped' => 'Пропустить',
@@ -1764,7 +1761,6 @@ extension on TranslationsRu {
 			'medications.dayFri' => 'Пт',
 			'medications.daySat' => 'Сб',
 			'medications.daySun' => 'Вс',
-			'medications.addedSuccess' => 'Лекарство добавлено.',
 			'medications.updatedSuccess' => 'Лекарство обновлено.',
 			'medications.deletedSuccess' => 'Лекарство удалено.',
 			'medications.atLeastOneTime' => 'Добавьте хотя бы одно время приёма',

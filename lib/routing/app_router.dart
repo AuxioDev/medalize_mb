@@ -206,10 +206,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, _) => _pushPage(const MedicationListScreen()),
       ),
       GoRoute(
-        path: '/patient/medications/add',
-        pageBuilder: (_, _) => _modalPage(const AddEditMedicationScreen()),
-      ),
-      GoRoute(
         path: '/patient/medications/:id/edit',
         pageBuilder: (_, state) {
           final existing = state.extra as MedicationModel?;

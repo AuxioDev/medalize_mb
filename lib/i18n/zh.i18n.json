@@ -593,7 +593,6 @@
   },
   "medications": {
     "title": "用药",
-    "addMedication": "添加药物",
     "editMedication": "编辑药物",
     "name": "名称",
     "dosage": "剂量",
@@ -616,7 +615,7 @@
     "deleteConfirmTitle": "删除药物",
     "deleteConfirmBody": "确定要删除这个药物吗?服药记录将被保留。",
     "emptyTitle": "暂无药物",
-    "emptySubtitle": "添加药物以跟踪服药情况并接收提醒。",
+    "emptySubtitle": "医生开具的药物将在就诊后显示在这里。",
     "todaysDoses": "今日服药",
     "markTaken": "已服用",
     "markSkipped": "跳过",
@@ -636,7 +635,6 @@
     "dayFri": "周五",
     "daySat": "周六",
     "daySun": "周日",
-    "addedSuccess": "药物已添加。",
     "updatedSuccess": "药物已更新。",
     "deletedSuccess": "药物已删除。",
     "atLeastOneTime": "请至少添加一个提醒时间"

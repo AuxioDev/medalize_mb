@@ -593,7 +593,6 @@
   },
   "medications": {
     "title": "Dərmanlar",
-    "addMedication": "Dərman əlavə et",
     "editMedication": "Dərmanı redaktə et",
     "name": "Ad",
     "dosage": "Dozaj",
@@ -616,7 +615,7 @@
     "deleteConfirmTitle": "Dərmanı sil",
     "deleteConfirmBody": "Bu dərmanı silmək istədiyinizə əminsiniz? Qəbul tarixçəsi saxlanılacaq.",
     "emptyTitle": "Hələ dərman yoxdur",
-    "emptySubtitle": "Qəbulları izləmək və xatırlatmalar almaq üçün dərman əlavə edin.",
+    "emptySubtitle": "Həkiminizin təyin etdiyi dərmanlar qəbuldan sonra burada görünəcək.",
     "todaysDoses": "Bu günkü qəbullar",
     "markTaken": "Qəbul edildi",
     "markSkipped": "Buraxıldı",
@@ -636,7 +635,6 @@
     "dayFri": "C",
     "daySat": "Ş",
     "daySun": "B",
-    "addedSuccess": "Dərman əlavə edildi.",
     "updatedSuccess": "Dərman yeniləndi.",
     "deletedSuccess": "Dərman silindi.",
     "atLeastOneTime": "Ən azı bir xatırlatma vaxtı əlavə edin"
