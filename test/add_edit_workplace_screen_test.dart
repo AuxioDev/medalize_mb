@@ -4,12 +4,24 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/hospital_picker_field.dart';
 import 'package:medalize_mb/core/widgets/location_picker_field.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/workplace_map_picker_screen.dart';
+import 'package:medalize_mb/features/hospital/data/models/hospital_model.dart';
+import 'package:medalize_mb/features/hospital/data/repository/hospital_repository.dart';
 import 'package:medalize_mb/features/locations/data/repository/location_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:dio/dio.dart';
+
+class _FakeHospitalRepository extends HospitalRepository {
+  _FakeHospitalRepository() : super(Dio());
+
+  @override
+  Future<List<HospitalModel>> search({String q = '', String? city}) async => const [
+        HospitalModel(id: 'hosp-1', name: 'Central Hospital', city: 'baku'),
+      ];
+}
 
 const _fakeRegions = <LocationRegion>[
   LocationRegion(key: 'baku', label: 'Baku', cities: [
@@ -189,6 +201,49 @@ void main() {
     expect(monday['is_active'], isTrue);
     expect(monday['start_time'], '09:00:00');
     expect(monday['end_time'], '17:00:00');
+    // Private-practice path: no hospital ever picked — sent explicitly as
+    // null (not omitted), so a PATCH can clear a previously-set one too.
+    expect(dio.lastData?['hospital'], isNull);
+    expect(dio.lastData?.containsKey('hospital'), isTrue);
+  });
+
+  testWidgets(
+      'picking a hospital sends its id and defaults the name field',
+      (tester) async {
+    final dio = _RecordingDio();
+    await tester.pumpWidget(_wrap(
+      const AddEditWorkplaceScreen(),
+      overrides: [
+        dioClientProvider.overrideWithValue(dio),
+        hospitalRepositoryProvider.overrideWithValue(_FakeHospitalRepository()),
+      ],
+    ));
+    await tester.pump();
+
+    await tester.tap(find.byType(LocationPickerField));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Baku').last);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(HospitalPickerField));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Central Hospital'));
+    await tester.pumpAndSettle();
+
+    // The name field defaulted from the picked hospital — no need to type
+    // it manually, only the required address.
+    expect(
+      tester.widget<TextFormField>(find.byType(TextFormField).at(0)).controller?.text,
+      'Central Hospital',
+    );
+    await tester.enterText(find.byType(TextFormField).at(1), '1 Main St');
+
+    await tester.tap(find.text('Add Workplace').last);
+    await tester.pump();
+
+    expect(dio.methods, ['POST /doctor/workplaces/']);
+    expect(dio.lastData?['hospital'], 'hosp-1');
+    expect(dio.lastData?['name'], 'Central Hospital');
   });
 
   testWidgets(

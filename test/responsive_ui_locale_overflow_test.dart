@@ -17,6 +17,7 @@ import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart
 import 'package:medalize_mb/features/assistant/presentation/widgets/suggested_doctor_card.dart';
 import 'package:medalize_mb/features/auth/data/models/user_device_model.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
+import 'package:medalize_mb/features/auth/presentation/screens/register_screen.dart';
 import 'package:medalize_mb/features/doctor/data/models/doctor_stats_model.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_appointments_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/doctor_home_screen.dart';
@@ -242,6 +243,16 @@ void main() {
 
   setUp(() {
     FlutterSecureStorage.setMockInitialValues({});
+  });
+
+  testWidgets(
+      'RegisterScreen fits all six locales '
+      '(3-segment patient/doctor/hospital role selector)', (tester) async {
+    _usePhoneViewport(tester);
+    await expectNoOverflowAcrossLocales(
+      tester,
+      () => _wrap(const RegisterScreen()),
+    );
   });
 
   testWidgets('PatientHomeScreen fits all six locales', (tester) async {
