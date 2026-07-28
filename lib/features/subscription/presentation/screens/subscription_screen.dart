@@ -16,17 +16,24 @@ import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/core/widgets/tinted_notice_banner.dart';
+import 'package:medalize_mb/core/constants/user_roles.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
+import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/subscription/data/models/subscription_model.dart';
 import 'package:medalize_mb/features/subscription/data/repository/subscription_repository.dart';
 import 'package:medalize_mb/features/subscription/providers/subscription_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-/// The doctor-only paywall/status screen. Reached two ways:
+/// The doctor/hospital paywall+status screen — which role's endpoints and
+/// plan catalog it shows is inferred at runtime from the signed-in role
+/// (see [subscriptionRepositoryProvider]), not a constructor parameter, so
+/// both `/doctor/subscription` and `/hospital/subscription` push the exact
+/// same widget. Reached two ways:
 /// - [fromGate]=true: pushed by the router's `_homeFor` redirect when the
-///   subscription has expired — full-screen, no way back except subscribing
-///   or signing out (mirrors DoctorPendingVerificationScreen).
+///   subscription has expired (doctor) or was never started (hospital —
+///   no trial) — full-screen, no way back except subscribing or signing
+///   out (mirrors DoctorPendingVerificationScreen).
 /// - [fromGate]=false: opened voluntarily (e.g. from the profile screen) to
 ///   check status or change plans — a normal pushed screen with a back
 ///   button.
@@ -65,17 +72,31 @@ class _SubscriptionScreenState extends ConsumerState<SubscriptionScreen>
     }
   }
 
+  bool get _isHospital {
+    final auth = ref.read(authProvider);
+    return auth is AuthAuthenticated && auth.role == UserRole.hospital;
+  }
+
+  /// Hospitals are never `trialing` (no trial — see plans.TRIAL_ROLES on
+  /// the backend), so `!isExpired` alone would wrongly treat a hospital
+  /// that's merely `pending` (approved, never checked out) as entitled.
+  /// Mirrors app_router.dart's `_hospitalEntitled`.
+  bool _entitled(SubscriptionModel sub) => _isHospital
+      ? (sub.isTrialing || sub.status == SubscriptionModel.statusActive || sub.isPastDue)
+      : !sub.isExpired;
+
   Future<void> _refresh() async {
-    final wasEntitled = ref.read(subscriptionProvider).valueOrNull?.isExpired == false;
+    final previous = ref.read(subscriptionProvider).valueOrNull;
+    final wasEntitled = previous != null && _entitled(previous);
     refreshSubscriptionStatus(ref);
     await ref.read(authProvider.notifier).refreshProfile();
     final updated = await ref.read(subscriptionProvider.future);
     if (!mounted) return;
-    if (widget.fromGate && !updated.isExpired) {
-      context.go('/doctor/home');
+    if (widget.fromGate && _entitled(updated)) {
+      context.go(_isHospital ? '/hospital/home' : '/doctor/home');
       return;
     }
-    if (!wasEntitled && !updated.isExpired) {
+    if (!wasEntitled && _entitled(updated)) {
       AppSnackBar.show(context, context.t.subscription.nowActive,
           type: SnackBarType.success);
     }
@@ -246,7 +267,8 @@ class _PlanCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final isPro = plan.plan == SubscriptionPlanModel.pro;
+    final isPro = plan.plan == SubscriptionPlanModel.pro ||
+        plan.plan == SubscriptionPlanModel.hospitalPro;
 
     return AppCard(
       margin: EdgeInsets.zero,
@@ -283,23 +305,36 @@ class _PlanCard extends StatelessWidget {
             Text(context.t.subscription.manageOnWeb,
                 style: TextStyle(color: c.textSecondary)),
           const Gap(12),
-          _FeatureRow(
-            included: true,
-            label: plan.limits.workplaces == null
-                ? context.t.subscription.featureUnlimitedWorkplaces
-                : context.t.subscription.featureWorkplaces(count: plan.limits.workplaces!),
-          ),
-          _FeatureRow(
-            included: true,
-            label: plan.limits.appointmentsPerMonth == null
-                ? context.t.subscription.featureUnlimitedBookings
-                : context.t.subscription
-                    .featureBookingsPerMonth(count: plan.limits.appointmentsPerMonth!),
-          ),
-          _FeatureRow(included: plan.limits.chat, label: context.t.subscription.featureChat),
-          _FeatureRow(
-              included: plan.limits.promoted,
-              label: context.t.subscription.featurePromoted),
+          if (_isHospitalPlan(plan.plan)) ...[
+            _FeatureRow(
+              included: true,
+              label: plan.limits.doctors == null
+                  ? context.t.subscription.featureUnlimitedDoctors
+                  : context.t.subscription.featureDoctors(count: plan.limits.doctors!),
+            ),
+            _FeatureRow(
+              included: plan.limits.advancedStats,
+              label: context.t.subscription.featureAdvancedStats,
+            ),
+          ] else ...[
+            _FeatureRow(
+              included: true,
+              label: plan.limits.workplaces == null
+                  ? context.t.subscription.featureUnlimitedWorkplaces
+                  : context.t.subscription.featureWorkplaces(count: plan.limits.workplaces!),
+            ),
+            _FeatureRow(
+              included: true,
+              label: plan.limits.appointmentsPerMonth == null
+                  ? context.t.subscription.featureUnlimitedBookings
+                  : context.t.subscription
+                      .featureBookingsPerMonth(count: plan.limits.appointmentsPerMonth!),
+            ),
+            _FeatureRow(included: plan.limits.chat, label: context.t.subscription.featureChat),
+            _FeatureRow(
+                included: plan.limits.promoted,
+                label: context.t.subscription.featurePromoted),
+          ],
           if (AppConfig.showSubscriptionPricing) ...[
             const Gap(12),
             SizedBox(
@@ -330,8 +365,14 @@ class _PlanCard extends StatelessWidget {
 String _planDisplayName(BuildContext context, String planCode) => switch (planCode) {
       SubscriptionPlanModel.basic => context.t.subscription.planNameBasic,
       SubscriptionPlanModel.pro => context.t.subscription.planNamePro,
+      SubscriptionPlanModel.hospitalBasic => context.t.subscription.planNameHospitalBasic,
+      SubscriptionPlanModel.hospitalPro => context.t.subscription.planNameHospitalPro,
       _ => planCode,
     };
+
+bool _isHospitalPlan(String planCode) =>
+    planCode == SubscriptionPlanModel.hospitalBasic ||
+    planCode == SubscriptionPlanModel.hospitalPro;
 
 class _FeatureRow extends StatelessWidget {
   const _FeatureRow({required this.included, required this.label});

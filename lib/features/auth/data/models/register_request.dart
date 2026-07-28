@@ -8,6 +8,10 @@ class RegisterRequest {
     required this.lastName,
     required this.privacyConsent,
     this.phone = '',
+    this.hospitalId,
+    this.hospitalName = '',
+    this.hospitalCity = '',
+    this.hospitalAddress = '',
   });
 
   final String email;
@@ -23,6 +27,15 @@ class RegisterRequest {
   final bool privacyConsent;
   final String phone;
 
+  /// role == 'hospital' only — see apps.hospitals.services.
+  /// claim_or_create_hospital: either [hospitalId] (claiming a registry
+  /// entry the picker found) or [hospitalName]+[hospitalCity] (no match —
+  /// create a new one) must be set, never both.
+  final String? hospitalId;
+  final String hospitalName;
+  final String hospitalCity;
+  final String hospitalAddress;
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{
       'email': email,
@@ -34,6 +47,10 @@ class RegisterRequest {
       'privacy_consent': privacyConsent,
     };
     if (phone.isNotEmpty) map['phone'] = phone;
+    if (hospitalId != null) map['hospital_id'] = hospitalId;
+    if (hospitalName.isNotEmpty) map['hospital_name'] = hospitalName;
+    if (hospitalCity.isNotEmpty) map['hospital_city'] = hospitalCity;
+    if (hospitalAddress.isNotEmpty) map['hospital_address'] = hospitalAddress;
     return map;
   }
 }

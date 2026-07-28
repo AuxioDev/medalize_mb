@@ -5,12 +5,17 @@ class SubscriptionLimits {
   final bool promoted;
   final bool advancedStats;
 
+  /// Hospital plans only (apps.subscriptions.plans.HOSPITAL_PLAN_LIMITS) —
+  /// null for doctor plans, which have no such concept.
+  final int? doctors;
+
   const SubscriptionLimits({
     this.workplaces,
     this.appointmentsPerMonth,
     this.chat = false,
     this.promoted = false,
     this.advancedStats = false,
+    this.doctors,
   });
 
   factory SubscriptionLimits.fromJson(Map<String, dynamic> j) => SubscriptionLimits(
@@ -19,6 +24,7 @@ class SubscriptionLimits {
         chat: j['chat'] as bool? ?? false,
         promoted: j['promoted'] as bool? ?? false,
         advancedStats: j['advanced_stats'] as bool? ?? false,
+        doctors: j['doctors'] as int?,
       );
 }
 
@@ -26,11 +32,20 @@ class SubscriptionUsage {
   final int workplaces;
   final int appointmentsThisMonth;
 
-  const SubscriptionUsage({this.workplaces = 0, this.appointmentsThisMonth = 0});
+  /// Hospital plans only (GET /hospital/subscription/'s `usage.doctors` —
+  /// a distinct key from the doctor-plan `usage` shape, never both at once).
+  final int doctors;
+
+  const SubscriptionUsage({
+    this.workplaces = 0,
+    this.appointmentsThisMonth = 0,
+    this.doctors = 0,
+  });
 
   factory SubscriptionUsage.fromJson(Map<String, dynamic> j) => SubscriptionUsage(
         workplaces: j['workplaces'] as int? ?? 0,
         appointmentsThisMonth: j['appointments_this_month'] as int? ?? 0,
+        doctors: j['doctors'] as int? ?? 0,
       );
 }
 
@@ -94,6 +109,8 @@ class SubscriptionModel {
 class SubscriptionPlanModel {
   static const basic = 'basic';
   static const pro = 'pro';
+  static const hospitalBasic = 'hospital_basic';
+  static const hospitalPro = 'hospital_pro';
 
   final String plan;
   final String name;

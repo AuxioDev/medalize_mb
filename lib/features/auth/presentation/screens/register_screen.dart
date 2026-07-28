@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:medalize_mb/core/constants/user_roles.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
@@ -131,6 +132,22 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     final rawPhone = _phoneController.text.trim();
     final phone = rawPhone.isEmpty ? '' : '$_dialCode$rawPhone';
 
+    // A hospital account needs one more step (claim an existing registry
+    // entry, or add a new one) before the actual /auth/register/ call — see
+    // HospitalRegistrationScreen. Patients and doctors register directly.
+    if (_selectedRole == UserRole.hospital) {
+      context.push('/hospital/registration', extra: {
+        'email': _emailController.text.trim(),
+        'password': _passwordController.text,
+        'passwordConfirm': _confirmController.text,
+        'firstName': _firstNameController.text.trim(),
+        'lastName': _lastNameController.text.trim(),
+        'privacyConsent': _consentAccepted,
+        'phone': phone,
+      });
+      return;
+    }
+
     await ref.read(authProvider.notifier).register(
           email: _emailController.text.trim(),
           password: _passwordController.text,
@@ -253,16 +270,21 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     const SizedBox(height: 6),
                     SegmentedButton<String>(
                       showSelectedIcon: false,
+                      // Text-only, no icons: a third segment with an icon +
+                      // label overflows on narrow screens in longer locales
+                      // (see test/responsive_ui_locale_overflow_test.dart).
                       segments: [
                         ButtonSegment(
-                          value: 'patient',
+                          value: UserRole.patient,
                           label: Text(context.t.common.patient),
-                          icon: const Icon(Icons.person_outline_rounded, size: 16),
                         ),
                         ButtonSegment(
-                          value: 'doctor',
+                          value: UserRole.doctor,
                           label: Text(context.t.common.doctor),
-                          icon: const Icon(Icons.medical_services_outlined, size: 16),
+                        ),
+                        ButtonSegment(
+                          value: UserRole.hospital,
+                          label: Text(context.t.common.hospital),
                         ),
                       ],
                       selected: _selectedRole != null

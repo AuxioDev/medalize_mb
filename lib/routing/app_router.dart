@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medalize_mb/core/constants/user_roles.dart';
 import 'package:medalize_mb/core/onboarding/app_intro_provider.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart';
@@ -27,6 +28,15 @@ import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/family/presentation/screens/add_edit_dependent_screen.dart';
 import 'package:medalize_mb/features/family/presentation/screens/family_list_screen.dart';
+import 'package:medalize_mb/features/hospital/data/models/hospital_link_model.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/hospital_appointments_screen.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/hospital_doctor_hours_screen.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/hospital_doctors_screen.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/hospital_home_screen.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/hospital_invite_doctor_screen.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/hospital_pending_approval_screen.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/hospital_profile_screen.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/hospital_registration_screen.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/add_edit_medication_screen.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
@@ -109,6 +119,59 @@ final routerProvider = Provider<GoRouter>((ref) {
           final email = state.extra as String? ?? '';
           return _authPage(ResetPasswordScreen(email: email));
         },
+      ),
+      GoRoute(
+        path: '/hospital/registration',
+        pageBuilder: (_, state) {
+          final fields = state.extra as Map<String, dynamic>? ?? const {};
+          return _authPage(HospitalRegistrationScreen(accountFields: fields));
+        },
+      ),
+      GoRoute(
+        path: '/hospital/pending-approval',
+        pageBuilder: (_, _) => _fadePage(const HospitalPendingApprovalScreen()),
+      ),
+      GoRoute(
+        path: '/hospital/subscription',
+        pageBuilder: (_, state) {
+          // Same fromGate convention as /doctor/subscription above.
+          final fromGate = state.extra == null;
+          return fromGate
+              ? _fadePage(const SubscriptionScreen(fromGate: true))
+              : _modalPage(const SubscriptionScreen(fromGate: false));
+        },
+      ),
+      GoRoute(
+        path: '/hospital/home',
+        pageBuilder: (_, _) => _fadePage(const HospitalHomeScreen()),
+      ),
+      GoRoute(
+        path: '/hospital/doctors',
+        pageBuilder: (_, _) => _pushPage(const HospitalDoctorsScreen()),
+      ),
+      GoRoute(
+        path: '/hospital/invite-doctor',
+        pageBuilder: (_, _) => _modalPage(const HospitalInviteDoctorScreen()),
+      ),
+      GoRoute(
+        path: '/hospital/doctors/:doctorId/hours',
+        pageBuilder: (_, state) {
+          final doctor = state.extra as DoctorBriefModel?;
+          // Only reachable from the confirmed-doctors list, which always
+          // passes the doctor via `extra`.
+          if (doctor == null) {
+            return _fadePage(const HospitalHomeScreen());
+          }
+          return _pushPage(HospitalDoctorHoursScreen(doctor: doctor));
+        },
+      ),
+      GoRoute(
+        path: '/hospital/appointments',
+        pageBuilder: (_, _) => _pushPage(const HospitalAppointmentsScreen()),
+      ),
+      GoRoute(
+        path: '/hospital/profile',
+        pageBuilder: (_, _) => _pushPage(const HospitalProfileScreen()),
       ),
 
       // Patient routes
@@ -538,13 +601,31 @@ CustomTransitionPage<void> _modalPage(Widget child) {
   );
 }
 
+/// Hospital plans have no trial (see apps.subscriptions.plans.TRIAL_ROLES
+/// on the backend) — approval goes straight to the paywall. So unlike the
+/// doctor gate below (a deny-list: only `expired` blocks entry), this is
+/// an allow-list: `pending` (approved but never checked out) must gate a
+/// hospital, but must NOT gate a doctor, whose `pending` case is already
+/// handled by the verification-screen branch above it.
+bool _hospitalEntitled(String? status) =>
+    status == 'trialing' || status == 'active' || status == 'past_due';
+
 String _homeFor(
   String role,
   bool onboardingComplete,
   bool? isVerified,
   String? subscriptionStatus,
 ) {
-  if (role == 'patient') return '/patient/home';
+  if (role == UserRole.patient) return '/patient/home';
+  if (role == UserRole.hospital) {
+    // Backend overloads is_verified with the hospital's claim-approval
+    // state (claim_status == 'approved') specifically so this gate can
+    // reuse the exact same field/branch shape as the doctor one below —
+    // see apps.users.serializers.build_login_payload's hospital branch.
+    if (isVerified != true) return '/hospital/pending-approval';
+    if (!_hospitalEntitled(subscriptionStatus)) return '/hospital/subscription';
+    return '/hospital/home';
+  }
   if (!onboardingComplete) return '/doctor/onboarding';
   if (isVerified != true) return '/doctor/pending-verification';
   // Only `expired` (grace period exhausted) gates entry — `past_due` (still
@@ -554,6 +635,13 @@ String _homeFor(
   return '/doctor/home';
 }
 
+// Reachable while unauthenticated, alongside every '/auth/*' screen — the
+// hospital registration flow's second step (picking/adding the hospital)
+// runs entirely before any account or token exists, same as the register
+// screen itself. See _redirect below.
+bool _isPreAuthScreen(String location) =>
+    location.startsWith('/auth') || location == '/hospital/registration';
+
 String? _redirect(AuthState auth, String location, bool introSeen) {
   return switch (auth) {
     // Cold-start only: hold on splash until _init resolves.
@@ -561,12 +649,12 @@ String? _redirect(AuthState auth, String location, bool introSeen) {
     // In-flight login/register: stay on the current auth screen so the button
     // shows its spinner, the typed inputs are kept, and any resulting AuthError
     // renders inline instead of bouncing through splash to a fresh screen.
-    AuthLoading() => location.startsWith('/auth') ? null : '/splash',
+    AuthLoading() => _isPreAuthScreen(location) ? null : '/splash',
     // First install only: detour to the welcome carousel before login. Signed
     // in users never see it — the intro check lives in this branch alone.
     AuthUnauthenticated() || AuthError() => !introSeen && location != '/intro'
         ? '/intro'
-        : (location.startsWith('/auth') || location == '/intro'
+        : (_isPreAuthScreen(location) || location == '/intro'
             ? null
             : '/auth/login'),
     AuthAuthenticated(
@@ -575,9 +663,7 @@ String? _redirect(AuthState auth, String location, bool introSeen) {
       :final isVerified,
       :final subscriptionStatus,
     ) =>
-      (location == '/splash' ||
-              location.startsWith('/auth') ||
-              location == '/intro')
+      (location == '/splash' || _isPreAuthScreen(location) || location == '/intro')
           ? _homeFor(role, onboardingComplete, isVerified, subscriptionStatus)
           : null,
   };

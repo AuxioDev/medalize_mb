@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/hospital_picker_field.dart';
 import 'package:medalize_mb/core/widgets/location_picker_field.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -31,6 +32,9 @@ class _AddEditWorkplaceScreenState
   late final TextEditingController _address;
   String? _cityKey;
   String? _cityFallbackLabel;
+  String? _hospitalId;
+  String? _hospitalLabel;
+  String? _hospitalLinkStatus;
   double? _lat;
   double? _lng;
   String _type = 'clinic';
@@ -52,6 +56,9 @@ class _AddEditWorkplaceScreenState
     _address = TextEditingController(text: e?['address'] as String? ?? '');
     _cityKey = e?['city'] as String?;
     _cityFallbackLabel = e?['city_display'] as String?;
+    _hospitalId = e?['hospital'] as String?;
+    _hospitalLabel = e?['hospital_name'] as String?;
+    _hospitalLinkStatus = e?['hospital_link_status'] as String?;
     _lat = double.tryParse('${e?['latitude'] ?? ''}');
     _lng = double.tryParse('${e?['longitude'] ?? ''}');
     _type = e?['type'] as String? ?? 'clinic';
@@ -114,6 +121,7 @@ class _AddEditWorkplaceScreenState
       'name': _name.text.trim(),
       'address': _address.text.trim(),
       'city': _cityKey,
+      'hospital': _hospitalId,
       'type': _type,
       'working_hours': WorkingHoursDay.toPayload(_days),
       if (_lat != null && _lng != null) 'latitude': _lat,
@@ -155,11 +163,62 @@ class _AddEditWorkplaceScreenState
             padding: const EdgeInsets.all(AppSpacing.md),
             child: Column(
               children: [
+                // City first: both the hospital picker (undedupable without
+                // a city — see apps.hospitals.matching) and the map's
+                // starting point depend on it.
+                LocationPickerField(
+                  value: _cityKey,
+                  fallbackLabel: _cityFallbackLabel,
+                  onChanged: (key) => setState(() {
+                    _cityKey = key;
+                    // A hospital picked under the old city may not even
+                    // exist as an option under the new one — clear it
+                    // rather than silently keep a stale cross-city pick.
+                    _hospitalId = null;
+                    _hospitalLabel = null;
+                  }),
+                  decoration:
+                      InputDecoration(labelText: context.t.addWorkplace.city),
+                  validator: (v) =>
+                      v == null || v.isEmpty ? context.t.common.required : null,
+                ),
+                const Gap(12),
+                HospitalPickerField(
+                  selectedId: _hospitalId,
+                  selectedLabel: _hospitalLabel,
+                  city: _cityKey,
+                  onSelected: (hospital) => setState(() {
+                    _hospitalId = hospital?.id;
+                    _hospitalLabel = hospital?.name;
+                    // A freshly-picked hospital defaults the name field too
+                    // (mirrors the backend's own fallback in
+                    // WorkplaceSerializer._apply_hospital_name) — only when
+                    // the doctor hasn't already typed something themselves.
+                    if (hospital != null && _name.text.trim().isEmpty) {
+                      _name.text = hospital.name;
+                    }
+                  }),
+                  decoration: InputDecoration(
+                    labelText: context.t.hospitalPicker.title,
+                  ),
+                ),
+                if (_hospitalLinkStatus == 'pending')
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4, left: 4),
+                    child: Text(
+                      context.t.hospitalPicker.pendingReview,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: AppColors.warning),
+                    ),
+                  ),
+                const Gap(12),
                 TextFormField(
                   controller: _name,
                   decoration:
                       InputDecoration(labelText: context.t.addWorkplace.name),
-                  validator: (v) => v?.trim().isEmpty == true
+                  validator: (v) => v?.trim().isEmpty == true && _hospitalId == null
                       ? context.t.common.required
                       : null,
                 ),
@@ -192,16 +251,6 @@ class _AddEditWorkplaceScreenState
                     ),
                   ),
                 const Gap(4),
-                LocationPickerField(
-                  value: _cityKey,
-                  fallbackLabel: _cityFallbackLabel,
-                  onChanged: (key) => setState(() => _cityKey = key),
-                  decoration:
-                      InputDecoration(labelText: context.t.addWorkplace.city),
-                  validator: (v) =>
-                      v == null || v.isEmpty ? context.t.common.required : null,
-                ),
-                const Gap(12),
                 DropdownButtonFormField<String>(
                   initialValue: _type,
                   decoration:

@@ -332,6 +332,10 @@ class AuthNotifier extends Notifier<AuthState> {
     required String lastName,
     required bool privacyConsent,
     String phone = '',
+    String? hospitalId,
+    String hospitalName = '',
+    String hospitalCity = '',
+    String hospitalAddress = '',
   }) async {
     if (state is AuthLoading) return;
     state = const AuthLoading();
@@ -345,6 +349,10 @@ class AuthNotifier extends Notifier<AuthState> {
         lastName: lastName,
         privacyConsent: privacyConsent,
         phone: phone,
+        hospitalId: hospitalId,
+        hospitalName: hospitalName,
+        hospitalCity: hospitalCity,
+        hospitalAddress: hospitalAddress,
       ));
       // API does not return tokens — auto-login after registration
       await login(email, password);
