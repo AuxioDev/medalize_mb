@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/services.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 
 /// Full-width filled button with press-scale, spring-release, haptic feedback,
@@ -118,9 +119,14 @@ class _LoadingFilledButtonState extends State<LoadingFilledButton>
   @override
   Widget build(BuildContext context) {
     final fg = widget.foregroundColor ?? Colors.white;
+    // The brand's signature gradient fill is the default look for every
+    // primary action in the app; an explicit backgroundColor (e.g. a
+    // destructive confirm) opts out to a flat color instead.
+    final useGradient = widget.backgroundColor == null;
 
     final style = FilledButton.styleFrom(
-      backgroundColor: widget.backgroundColor,
+      backgroundColor: useGradient ? Colors.transparent : widget.backgroundColor,
+      disabledBackgroundColor: useGradient ? Colors.transparent : null,
       foregroundColor: fg,
       splashFactory: NoSplash.splashFactory,
       overlayColor: Colors.transparent,
@@ -172,15 +178,25 @@ class _LoadingFilledButtonState extends State<LoadingFilledButton>
             ),
     );
 
+    final filledButton = FilledButton(
+      onPressed: _enabled ? widget.onPressed : null,
+      style: style,
+      child: content,
+    );
+
     // Full-width by default (matches every call site's expectation) so
     // callers don't need to wrap this in their own SizedBox/Expanded.
     Widget button = SizedBox(
       width: double.infinity,
-      child: FilledButton(
-        onPressed: _enabled ? widget.onPressed : null,
-        style: style,
-        child: content,
-      ),
+      child: useGradient
+          ? DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: AppColors.primaryGradient,
+                borderRadius: BorderRadius.circular(AppRadius.md),
+              ),
+              child: filledButton,
+            )
+          : filledButton,
     );
 
     if (_holdCtrl != null) {

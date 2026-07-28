@@ -9,14 +9,8 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [AppColors.primaryDark, AppColors.primary],
-          ),
-        ),
+      body: DecoratedBox(
+        decoration: BoxDecoration(gradient: AppColors.authGradient),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,

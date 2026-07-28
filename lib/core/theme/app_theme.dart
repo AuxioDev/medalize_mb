@@ -18,6 +18,14 @@ abstract final class AppColors {
   static const strengthGood = Color(0xFF84CC16);
   static const strengthStrong = Color(0xFF10B981);
 
+  // Clinical teal — the brand's second hue. Every gradient in the app moves
+  // from `primary` (trust/diagnosis) into this (care/recovery) instead of
+  // just fading between two shades of the same blue, which is what made the
+  // whole app read as monotone. Kept distinct from `success` (a pure green,
+  // reserved for state/status) so the two are never visually confused.
+  static const secondary = Color(0xFF0D9488);
+  static const secondaryDark = Color(0xFF115E59);
+
   // ── Deprecated neutral aliases (light-theme values) ───────────────────────
   // Retained only so brand gradients and a few non-migrated spots compile.
   // Prefer `context.colors.*` for anything theme-dependent.
@@ -29,18 +37,22 @@ abstract final class AppColors {
   static const textSecondary = Color(0xFF64748B);
   static const border = Color(0xFFE2E8F0);
 
+  /// The app's one signature gradient: blue → teal. Used for the primary CTA
+  /// button, avatars, badges, and hero banners — anywhere brand color shows
+  /// up as a fill rather than text/icons/borders.
   static LinearGradient get primaryGradient => const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [primaryDark, primary],
+        colors: [primary, secondary],
       );
 
-  /// Deeper-blue backdrop gradient used behind the auth flow scaffold.
-  static const _authGradientStart = Color(0xFF1E3A8A);
+  /// Richer 3-stop backdrop for full-bleed surfaces (auth flow, splash) —
+  /// same hue journey as [primaryGradient], with a deeper indigo lead-in for
+  /// a canvas large enough to carry the extra stop.
   static LinearGradient get authGradient => const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [_authGradientStart, primary],
+        colors: [Color(0xFF1E3A8A), primary, secondary],
       );
 }
 
