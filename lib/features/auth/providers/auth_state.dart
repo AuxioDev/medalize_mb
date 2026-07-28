@@ -23,6 +23,7 @@ class AuthAuthenticated extends AuthState {
     this.isVerified,
     this.firstName = '',
     this.lastName = '',
+    this.subscriptionStatus,
   });
 
   final String accessToken;
@@ -34,6 +35,11 @@ class AuthAuthenticated extends AuthState {
   final bool? isVerified;
   final String firstName;
   final String lastName;
+
+  /// Doctor-only (null for patients) — one of
+  /// `SubscriptionModel.status{Pending,Trialing,Active,PastDue,Expired}`.
+  /// Drives the `_homeFor` paywall redirect in app_router.dart.
+  final String? subscriptionStatus;
 
   String get displayName {
     final name = '$firstName $lastName'.trim();

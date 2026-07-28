@@ -98,6 +98,7 @@ class AuthNotifier extends Notifier<AuthState> {
         isVerified: user.isVerified,
         firstName: user.firstName,
         lastName: user.lastName,
+        subscriptionStatus: user.subscriptionStatus,
       );
       state = AuthAuthenticated(
         accessToken: access,
@@ -109,6 +110,7 @@ class AuthNotifier extends Notifier<AuthState> {
         isVerified: user.isVerified,
         firstName: user.firstName,
         lastName: user.lastName,
+        subscriptionStatus: user.subscriptionStatus,
       );
       // FCM must also be initialised on cold-start restoration, not only on
       // explicit login() — otherwise push tokens are never registered after
@@ -175,6 +177,7 @@ class AuthNotifier extends Notifier<AuthState> {
       isVerified: await _storage.getIsVerified(),
       firstName: await _storage.getFirstName(),
       lastName: await _storage.getLastName(),
+      subscriptionStatus: await _storage.getSubscriptionStatus(),
     );
   }
 
@@ -194,6 +197,7 @@ class AuthNotifier extends Notifier<AuthState> {
         isVerified: user.isVerified,
         firstName: user.firstName,
         lastName: user.lastName,
+        subscriptionStatus: user.subscriptionStatus,
       );
       state = AuthAuthenticated(
         accessToken: access,
@@ -205,6 +209,7 @@ class AuthNotifier extends Notifier<AuthState> {
         isVerified: user.isVerified,
         firstName: user.firstName,
         lastName: user.lastName,
+        subscriptionStatus: user.subscriptionStatus,
       );
     } catch (_) {
       // Keep the existing state if the refresh fails.
@@ -297,6 +302,7 @@ class AuthNotifier extends Notifier<AuthState> {
       isVerified: response.isVerified,
       firstName: response.firstName,
       lastName: response.lastName,
+      subscriptionStatus: response.subscriptionStatus,
     );
     state = AuthAuthenticated(
       accessToken: response.access,
@@ -308,6 +314,7 @@ class AuthNotifier extends Notifier<AuthState> {
       isVerified: response.isVerified,
       firstName: response.firstName,
       lastName: response.lastName,
+      subscriptionStatus: response.subscriptionStatus,
     );
     // Fire-and-forget: push the locally selected UI language to the backend
     // so a language chosen before signing in (stored only on-device until

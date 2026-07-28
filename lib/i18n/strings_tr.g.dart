@@ -76,6 +76,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$records$tr records = _Translations$records$tr._(_root);
 	@override late final _Translations$payments$tr payments = _Translations$payments$tr._(_root);
 	@override late final _Translations$family$tr family = _Translations$family$tr._(_root);
+	@override late final _Translations$subscription$tr subscription = _Translations$subscription$tr._(_root);
 }
 
 // Path: common
@@ -211,6 +212,8 @@ class _Translations$errors$tr extends Translations$errors$en {
 	@override String get socialLoginFailed => 'Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.';
 	@override String get conflict => 'Bu işlem şu anda tamamlanamıyor.';
 	@override String get onboardingIncomplete => 'Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun.';
+	@override String get planLimitReached => 'Plan limitinize ulaştınız. Daha fazlası için planınızı yükseltin.';
+	@override String get chatUnavailable => 'Bu hekim mevcut planında sohbet sunmuyor.';
 }
 
 // Path: settings
@@ -989,6 +992,36 @@ class _Translations$family$tr extends Translations$family$en {
 	@override String bookedByLabel({required Object name}) => 'Randevuyu alan: ${name}';
 }
 
+// Path: subscription
+class _Translations$subscription$tr extends Translations$subscription$en {
+	_Translations$subscription$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Abonelik';
+	@override String get couldNotLoad => 'Abonelik bilgileri yüklenemedi.';
+	@override String get nowActive => 'Aboneliğiniz artık aktif!';
+	@override String get unavailable => 'Abonelik şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.';
+	@override String trialDaysLeft({required Object days}) => 'Ücretsiz deneme — ${days} gün kaldı';
+	@override String graceDaysLeft({required Object days}) => 'Ek süre — yenilemek için ${days} gün kaldı';
+	@override String get expiredNotice => 'Aboneliğinizin süresi doldu. Hastalar tarafından tekrar görünür olmak için abone olun.';
+	@override String get activeNotice => 'Aboneliğiniz aktif.';
+	@override String get choosePlan => 'Başlamak için bir plan seçin.';
+	@override String get currentPlan => 'Mevcut Plan';
+	@override String get mostPopular => 'En Popüler';
+	@override String get perMonth => 'aylık';
+	@override String get manageOnWeb => 'Aboneliğinizi medalize.az üzerinden yönetin';
+	@override String get featureUnlimitedWorkplaces => 'Sınırsız klinik';
+	@override String featureWorkplaces({required Object count}) => '${count} kliniğe kadar';
+	@override String get featureUnlimitedBookings => 'Sınırsız aylık randevu';
+	@override String featureBookingsPerMonth({required Object count}) => 'Ayda ${count} randevuya kadar';
+	@override String get featureChat => 'Hasta sohbeti';
+	@override String get featurePromoted => 'Öncelikli sıralama + "Peşəkar" rozeti';
+	@override String get renew => 'Yenile';
+	@override String get subscribe => 'Abone Ol';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1304,6 +1337,8 @@ extension on TranslationsTr {
 			'errors.socialLoginFailed' => 'Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.',
 			'errors.conflict' => 'Bu işlem şu anda tamamlanamıyor.',
 			'errors.onboardingIncomplete' => 'Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun.',
+			'errors.planLimitReached' => 'Plan limitinize ulaştınız. Daha fazlası için planınızı yükseltin.',
+			'errors.chatUnavailable' => 'Bu hekim mevcut planında sohbet sunmuyor.',
 			'settings.title' => 'Ayarlar',
 			'settings.account' => 'Hesap',
 			'settings.profile' => 'Profil',
@@ -1732,10 +1767,10 @@ extension on TranslationsTr {
 			'medications.addTime' => 'Saat Ekle',
 			'medications.daysOfWeek' => 'Haftanın Günleri',
 			'medications.everyDay' => 'Her gün',
-			'medications.startDate' => 'Başlangıç Tarihi',
-			'medications.endDate' => 'Bitiş Tarihi',
 			_ => null,
 		} ?? switch (path) {
+			'medications.startDate' => 'Başlangıç Tarihi',
+			'medications.endDate' => 'Bitiş Tarihi',
 			'medications.save' => 'Kaydet',
 			'medications.delete' => 'Sil',
 			'medications.deleteConfirmTitle' => 'İlacı Sil',
@@ -1857,6 +1892,27 @@ extension on TranslationsTr {
 			'family.forLabel' => ({required Object name}) => '${name} için',
 			'family.ageYears' => ({required Object age}) => '${age} yaşında',
 			'family.bookedByLabel' => ({required Object name}) => 'Randevuyu alan: ${name}',
+			'subscription.title' => 'Abonelik',
+			'subscription.couldNotLoad' => 'Abonelik bilgileri yüklenemedi.',
+			'subscription.nowActive' => 'Aboneliğiniz artık aktif!',
+			'subscription.unavailable' => 'Abonelik şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
+			'subscription.trialDaysLeft' => ({required Object days}) => 'Ücretsiz deneme — ${days} gün kaldı',
+			'subscription.graceDaysLeft' => ({required Object days}) => 'Ek süre — yenilemek için ${days} gün kaldı',
+			'subscription.expiredNotice' => 'Aboneliğinizin süresi doldu. Hastalar tarafından tekrar görünür olmak için abone olun.',
+			'subscription.activeNotice' => 'Aboneliğiniz aktif.',
+			'subscription.choosePlan' => 'Başlamak için bir plan seçin.',
+			'subscription.currentPlan' => 'Mevcut Plan',
+			'subscription.mostPopular' => 'En Popüler',
+			'subscription.perMonth' => 'aylık',
+			'subscription.manageOnWeb' => 'Aboneliğinizi medalize.az üzerinden yönetin',
+			'subscription.featureUnlimitedWorkplaces' => 'Sınırsız klinik',
+			'subscription.featureWorkplaces' => ({required Object count}) => '${count} kliniğe kadar',
+			'subscription.featureUnlimitedBookings' => 'Sınırsız aylık randevu',
+			'subscription.featureBookingsPerMonth' => ({required Object count}) => 'Ayda ${count} randevuya kadar',
+			'subscription.featureChat' => 'Hasta sohbeti',
+			'subscription.featurePromoted' => 'Öncelikli sıralama + "Peşəkar" rozeti',
+			'subscription.renew' => 'Yenile',
+			'subscription.subscribe' => 'Abone Ol',
 			_ => null,
 		};
 	}

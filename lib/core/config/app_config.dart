@@ -48,4 +48,15 @@ abstract final class AppConfig {
   /// True when [value] holds a real (non-placeholder) configuration value.
   static bool isConfigured(String value) =>
       value.isNotEmpty && !value.startsWith('REPLACE_WITH');
+
+  // ── Doctor subscription paywall ────────────────────────────────────────
+  // Single kill switch for showing prices / the "Subscribe" button inside
+  // the subscription screen. Checkout is a Payriff web checkout opened in an
+  // external browser (same pattern as PaymentScreen), positioned in App
+  // Store review as a B2B "professional listing fee" rather than IAP-gated
+  // digital content — a real risk under guideline 3.1.1. If Apple rejects
+  // that framing, flip this to `false` and ship: the screen falls back to
+  // "manage your subscription on the web" with no in-app price/purchase
+  // flow, no UI rewrite required. Android is unaffected either way.
+  static const bool showSubscriptionPricing = true;
 }

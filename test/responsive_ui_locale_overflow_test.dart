@@ -35,6 +35,8 @@ import 'package:medalize_mb/features/patient/presentation/screens/my_appointment
 import 'package:medalize_mb/features/patient/presentation/screens/patient_home_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/active_sessions_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/security_screen.dart';
+import 'package:medalize_mb/features/subscription/data/models/subscription_model.dart';
+import 'package:medalize_mb/features/subscription/providers/subscription_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 import 'support/locale_overflow_harness.dart';
@@ -293,6 +295,12 @@ void main() {
                 ),
                 _appointment(id: 'a2', status: 'pending'),
               ]),
+          // Exercises _SubscriptionBanner's trial-reminder text — the
+          // longest of the two banner strings it can render.
+          subscriptionProvider.overrideWith((ref) async => SubscriptionModel(
+                status: SubscriptionModel.statusTrialing,
+                trialEndsAt: DateTime.now().add(const Duration(days: 3)),
+              )),
         ],
       ),
     );

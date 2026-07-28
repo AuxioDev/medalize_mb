@@ -123,6 +123,27 @@ class SocialLoginException extends ApiException {
   String get userMessage => message ?? t.errors.socialLoginFailed;
 }
 
+/// A doctor's plan doesn't allow one more of [resource] (currently only
+/// `workplaces`) — thrown by the add-workplace flow so the screen can point
+/// the doctor at the paywall instead of showing a generic error.
+class PlanLimitException extends ApiException {
+  const PlanLimitException({required this.resource, this.limit});
+  final String resource;
+  final int? limit;
+  @override
+  String get userMessage => t.errors.planLimitReached;
+}
+
+/// The doctor a patient is trying to message doesn't currently offer chat
+/// (Başlanğıc plan, or a lapsed/expired subscription) — distinct from
+/// [PermissionDeniedException] so the message is about the doctor's plan,
+/// not about the requesting user's own permissions.
+class ChatUnavailableException extends ApiException {
+  const ChatUnavailableException();
+  @override
+  String get userMessage => t.errors.chatUnavailable;
+}
+
 ApiException mapDioError(Object err) {
   if (err is! DioException) return const NetworkException();
 
@@ -173,6 +194,13 @@ ApiException mapDioError(Object err) {
     case 'social_email_missing':
     case 'social_email_unverified':
       return SocialLoginException(data['message'] as String?);
+    case 'plan_limit_reached':
+      return PlanLimitException(
+        resource: data['resource'] as String? ?? '',
+        limit: data['limit'] as int?,
+      );
+    case 'chat_unavailable':
+      return const ChatUnavailableException();
     default:
       return ServerException(response.statusCode ?? 500);
   }

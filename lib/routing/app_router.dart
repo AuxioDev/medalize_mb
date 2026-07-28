@@ -58,6 +58,7 @@ import 'package:medalize_mb/features/shared/presentation/screens/profile_screen.
 import 'package:medalize_mb/features/shared/presentation/screens/security_screen.dart';
 import 'package:medalize_mb/core/services/navigator_key.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/settings_screen.dart';
+import 'package:medalize_mb/features/subscription/presentation/screens/subscription_screen.dart';
 
 final _authListenableProvider = Provider<_AuthChangeNotifier>((ref) {
   return _AuthChangeNotifier(ref);
@@ -300,6 +301,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, _) => _fadePage(const DoctorPendingVerificationScreen()),
       ),
       GoRoute(
+        path: '/doctor/subscription',
+        pageBuilder: (_, state) {
+          // The paywall gate (_homeFor) always pushes here with no `extra`;
+          // a doctor opening it voluntarily from the profile screen passes
+          // `fromGate: false` so the back button is shown instead of sign-out.
+          final fromGate = state.extra == null;
+          return fromGate
+              ? _fadePage(const SubscriptionScreen(fromGate: true))
+              : _modalPage(const SubscriptionScreen(fromGate: false));
+        },
+      ),
+      GoRoute(
         path: '/doctor/appointments',
         pageBuilder: (_, _) => _pushPage(const DoctorAppointmentsScreen()),
       ),
@@ -525,10 +538,19 @@ CustomTransitionPage<void> _modalPage(Widget child) {
   );
 }
 
-String _homeFor(String role, bool onboardingComplete, bool? isVerified) {
+String _homeFor(
+  String role,
+  bool onboardingComplete,
+  bool? isVerified,
+  String? subscriptionStatus,
+) {
   if (role == 'patient') return '/patient/home';
   if (!onboardingComplete) return '/doctor/onboarding';
   if (isVerified != true) return '/doctor/pending-verification';
+  // Only `expired` (grace period exhausted) gates entry — `past_due` (still
+  // in the 14-day grace window) and `trialing`/`active` all reach the normal
+  // home screen, matching the backend's ENTITLED_STATUSES.
+  if (subscriptionStatus == 'expired') return '/doctor/subscription';
   return '/doctor/home';
 }
 
@@ -551,11 +573,12 @@ String? _redirect(AuthState auth, String location, bool introSeen) {
       :final role,
       :final onboardingComplete,
       :final isVerified,
+      :final subscriptionStatus,
     ) =>
       (location == '/splash' ||
               location.startsWith('/auth') ||
               location == '/intro')
-          ? _homeFor(role, onboardingComplete, isVerified)
+          ? _homeFor(role, onboardingComplete, isVerified, subscriptionStatus)
           : null,
   };
 }

@@ -10,6 +10,7 @@ abstract final class _Keys {
   static const userEmail = 'user_email';
   static const onboardingComplete = 'onboarding_complete';
   static const isVerified = 'is_verified';
+  static const subscriptionStatus = 'subscription_status';
   static const firstName = 'first_name';
   static const lastName = 'last_name';
   static const themeMode = 'theme_mode';
@@ -59,13 +60,15 @@ class SecureStorage {
   Future<String?> getUserEmail() => _storage.read(key: _Keys.userEmail);
 
   /// Persists profile flags so an offline cold-start can restore an accurate
-  /// authenticated state (correct doctor onboarding/verification routing)
-  /// without a network round-trip. [isVerified] may be null (patients).
+  /// authenticated state (correct doctor onboarding/verification/paywall
+  /// routing) without a network round-trip. [isVerified] and
+  /// [subscriptionStatus] may be null (patients).
   Future<void> saveProfile({
     required bool onboardingComplete,
     required bool? isVerified,
     required String firstName,
     required String lastName,
+    String? subscriptionStatus,
   }) async {
     await Future.wait([
       _storage.write(
@@ -74,6 +77,7 @@ class SecureStorage {
           key: _Keys.isVerified, value: isVerified == null ? '' : isVerified.toString()),
       _storage.write(key: _Keys.firstName, value: firstName),
       _storage.write(key: _Keys.lastName, value: lastName),
+      _storage.write(key: _Keys.subscriptionStatus, value: subscriptionStatus ?? ''),
     ]);
   }
 
@@ -87,6 +91,12 @@ class SecureStorage {
     final raw = await _storage.read(key: _Keys.isVerified);
     if (raw == null || raw.isEmpty) return null;
     return raw == 'true';
+  }
+
+  Future<String?> getSubscriptionStatus() async {
+    final raw = await _storage.read(key: _Keys.subscriptionStatus);
+    if (raw == null || raw.isEmpty) return null;
+    return raw;
   }
 
   Future<String> getFirstName() async =>

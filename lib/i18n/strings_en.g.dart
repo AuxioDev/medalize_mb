@@ -80,6 +80,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$records$en records = Translations$records$en.internal(_root);
 	late final Translations$payments$en payments = Translations$payments$en.internal(_root);
 	late final Translations$family$en family = Translations$family$en.internal(_root);
+	late final Translations$subscription$en subscription = Translations$subscription$en.internal(_root);
 }
 
 // Path: common
@@ -377,6 +378,12 @@ class Translations$errors$en {
 
 	/// en: 'Please complete all required fields before finishing onboarding.'
 	String get onboardingIncomplete => 'Please complete all required fields before finishing onboarding.';
+
+	/// en: 'You've reached your plan's limit. Upgrade to add more.'
+	String get planLimitReached => 'You\'ve reached your plan\'s limit. Upgrade to add more.';
+
+	/// en: 'This doctor doesn't offer chat on their current plan.'
+	String get chatUnavailable => 'This doctor doesn\'t offer chat on their current plan.';
 }
 
 // Path: settings
@@ -2164,6 +2171,78 @@ class Translations$family$en {
 	String bookedByLabel({required Object name}) => 'Booked by ${name}';
 }
 
+// Path: subscription
+class Translations$subscription$en {
+	Translations$subscription$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Subscription'
+	String get title => 'Subscription';
+
+	/// en: 'Couldn't load your subscription.'
+	String get couldNotLoad => 'Couldn\'t load your subscription.';
+
+	/// en: 'Your subscription is now active!'
+	String get nowActive => 'Your subscription is now active!';
+
+	/// en: 'Subscriptions aren't available right now. Please try again later.'
+	String get unavailable => 'Subscriptions aren\'t available right now. Please try again later.';
+
+	/// en: 'Free trial — $days day(s) left'
+	String trialDaysLeft({required Object days}) => 'Free trial — ${days} day(s) left';
+
+	/// en: 'Grace period — $days day(s) left to renew'
+	String graceDaysLeft({required Object days}) => 'Grace period — ${days} day(s) left to renew';
+
+	/// en: 'Your subscription has expired. Subscribe to become visible to patients again.'
+	String get expiredNotice => 'Your subscription has expired. Subscribe to become visible to patients again.';
+
+	/// en: 'Your subscription is active.'
+	String get activeNotice => 'Your subscription is active.';
+
+	/// en: 'Choose a plan to get started.'
+	String get choosePlan => 'Choose a plan to get started.';
+
+	/// en: 'Current Plan'
+	String get currentPlan => 'Current Plan';
+
+	/// en: 'Most Popular'
+	String get mostPopular => 'Most Popular';
+
+	/// en: 'per month'
+	String get perMonth => 'per month';
+
+	/// en: 'Manage your subscription at medalize.az'
+	String get manageOnWeb => 'Manage your subscription at medalize.az';
+
+	/// en: 'Unlimited clinics'
+	String get featureUnlimitedWorkplaces => 'Unlimited clinics';
+
+	/// en: 'Up to $count clinic(s)'
+	String featureWorkplaces({required Object count}) => 'Up to ${count} clinic(s)';
+
+	/// en: 'Unlimited monthly bookings'
+	String get featureUnlimitedBookings => 'Unlimited monthly bookings';
+
+	/// en: 'Up to $count bookings per month'
+	String featureBookingsPerMonth({required Object count}) => 'Up to ${count} bookings per month';
+
+	/// en: 'Patient chat'
+	String get featureChat => 'Patient chat';
+
+	/// en: 'Priority placement + "Peşəkar" badge'
+	String get featurePromoted => 'Priority placement + "Peşəkar" badge';
+
+	/// en: 'Renew'
+	String get renew => 'Renew';
+
+	/// en: 'Subscribe'
+	String get subscribe => 'Subscribe';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -2575,6 +2654,8 @@ extension on Translations {
 			'errors.socialLoginFailed' => 'Sign-in failed. Please try again or use your email and password.',
 			'errors.conflict' => 'This action can\'t be completed right now.',
 			'errors.onboardingIncomplete' => 'Please complete all required fields before finishing onboarding.',
+			'errors.planLimitReached' => 'You\'ve reached your plan\'s limit. Upgrade to add more.',
+			'errors.chatUnavailable' => 'This doctor doesn\'t offer chat on their current plan.',
 			'settings.title' => 'Settings',
 			'settings.account' => 'Account',
 			'settings.profile' => 'Profile',
@@ -3003,10 +3084,10 @@ extension on Translations {
 			'medications.addTime' => 'Add Time',
 			'medications.daysOfWeek' => 'Days of Week',
 			'medications.everyDay' => 'Every day',
-			'medications.startDate' => 'Start Date',
-			'medications.endDate' => 'End Date',
 			_ => null,
 		} ?? switch (path) {
+			'medications.startDate' => 'Start Date',
+			'medications.endDate' => 'End Date',
 			'medications.save' => 'Save',
 			'medications.delete' => 'Delete',
 			'medications.deleteConfirmTitle' => 'Delete Medication',
@@ -3128,6 +3209,27 @@ extension on Translations {
 			'family.forLabel' => ({required Object name}) => 'for ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} years old',
 			'family.bookedByLabel' => ({required Object name}) => 'Booked by ${name}',
+			'subscription.title' => 'Subscription',
+			'subscription.couldNotLoad' => 'Couldn\'t load your subscription.',
+			'subscription.nowActive' => 'Your subscription is now active!',
+			'subscription.unavailable' => 'Subscriptions aren\'t available right now. Please try again later.',
+			'subscription.trialDaysLeft' => ({required Object days}) => 'Free trial — ${days} day(s) left',
+			'subscription.graceDaysLeft' => ({required Object days}) => 'Grace period — ${days} day(s) left to renew',
+			'subscription.expiredNotice' => 'Your subscription has expired. Subscribe to become visible to patients again.',
+			'subscription.activeNotice' => 'Your subscription is active.',
+			'subscription.choosePlan' => 'Choose a plan to get started.',
+			'subscription.currentPlan' => 'Current Plan',
+			'subscription.mostPopular' => 'Most Popular',
+			'subscription.perMonth' => 'per month',
+			'subscription.manageOnWeb' => 'Manage your subscription at medalize.az',
+			'subscription.featureUnlimitedWorkplaces' => 'Unlimited clinics',
+			'subscription.featureWorkplaces' => ({required Object count}) => 'Up to ${count} clinic(s)',
+			'subscription.featureUnlimitedBookings' => 'Unlimited monthly bookings',
+			'subscription.featureBookingsPerMonth' => ({required Object count}) => 'Up to ${count} bookings per month',
+			'subscription.featureChat' => 'Patient chat',
+			'subscription.featurePromoted' => 'Priority placement + "Peşəkar" badge',
+			'subscription.renew' => 'Renew',
+			'subscription.subscribe' => 'Subscribe',
 			_ => null,
 		};
 	}

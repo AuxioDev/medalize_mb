@@ -9,6 +9,7 @@ class LoginResponse {
     this.isVerified,
     this.firstName = '',
     this.lastName = '',
+    this.subscriptionStatus,
   });
 
   final String access;
@@ -20,6 +21,7 @@ class LoginResponse {
   final bool? isVerified;
   final String firstName;
   final String lastName;
+  final String? subscriptionStatus;
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     final access = json['access'] as String?;
@@ -32,6 +34,8 @@ class LoginResponse {
       throw FormatException('Incomplete login response: $json');
     }
 
+    final subscription = json['subscription'] as Map<String, dynamic>?;
+
     return LoginResponse(
       access: access,
       refresh: refresh,
@@ -42,6 +46,7 @@ class LoginResponse {
       isVerified: json['is_verified'] as bool?,
       firstName: json['first_name'] as String? ?? '',
       lastName: json['last_name'] as String? ?? '',
+      subscriptionStatus: subscription?['status'] as String?,
     );
   }
 }

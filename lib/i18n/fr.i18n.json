@@ -91,7 +91,9 @@
     "serverError": "Erreur serveur ($code). Veuillez réessayer.",
     "socialLoginFailed": "Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.",
     "conflict": "Cette action ne peut pas être effectuée pour le moment.",
-    "onboardingIncomplete": "Veuillez remplir tous les champs requis pour terminer l'inscription."
+    "onboardingIncomplete": "Veuillez remplir tous les champs requis pour terminer l'inscription.",
+    "planLimitReached": "Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.",
+    "chatUnavailable": "Ce médecin ne propose pas le chat avec son forfait actuel."
   },
   "settings": {
     "title": "Paramètres",
@@ -739,5 +741,28 @@
     "forLabel": "pour $name",
     "ageYears": "$age ans",
     "bookedByLabel": "Pris par $name"
+  },
+  "subscription": {
+    "title": "Abonnement",
+    "couldNotLoad": "Impossible de charger votre abonnement.",
+    "nowActive": "Votre abonnement est maintenant actif !",
+    "unavailable": "Les abonnements ne sont pas disponibles pour le moment. Veuillez réessayer plus tard.",
+    "trialDaysLeft": "Essai gratuit — $days jour(s) restant(s)",
+    "graceDaysLeft": "Période de grâce — $days jour(s) restant(s) pour renouveler",
+    "expiredNotice": "Votre abonnement a expiré. Abonnez-vous pour redevenir visible aux patients.",
+    "activeNotice": "Votre abonnement est actif.",
+    "choosePlan": "Choisissez un forfait pour commencer.",
+    "currentPlan": "Forfait Actuel",
+    "mostPopular": "Le Plus Populaire",
+    "perMonth": "par mois",
+    "manageOnWeb": "Gérez votre abonnement sur medalize.az",
+    "featureUnlimitedWorkplaces": "Cliniques illimitées",
+    "featureWorkplaces": "Jusqu'à $count clinique(s)",
+    "featureUnlimitedBookings": "Réservations mensuelles illimitées",
+    "featureBookingsPerMonth": "Jusqu'à $count réservations par mois",
+    "featureChat": "Chat avec les patients",
+    "featurePromoted": "Placement prioritaire + badge « Peşəkar »",
+    "renew": "Renouveler",
+    "subscribe": "S'abonner"
   }
 }

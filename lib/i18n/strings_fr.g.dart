@@ -76,6 +76,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$records$fr records = _Translations$records$fr._(_root);
 	@override late final _Translations$payments$fr payments = _Translations$payments$fr._(_root);
 	@override late final _Translations$family$fr family = _Translations$family$fr._(_root);
+	@override late final _Translations$subscription$fr subscription = _Translations$subscription$fr._(_root);
 }
 
 // Path: common
@@ -211,6 +212,8 @@ class _Translations$errors$fr extends Translations$errors$en {
 	@override String get socialLoginFailed => 'Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.';
 	@override String get conflict => 'Cette action ne peut pas être effectuée pour le moment.';
 	@override String get onboardingIncomplete => 'Veuillez remplir tous les champs requis pour terminer l\'inscription.';
+	@override String get planLimitReached => 'Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.';
+	@override String get chatUnavailable => 'Ce médecin ne propose pas le chat avec son forfait actuel.';
 }
 
 // Path: settings
@@ -989,6 +992,36 @@ class _Translations$family$fr extends Translations$family$en {
 	@override String bookedByLabel({required Object name}) => 'Pris par ${name}';
 }
 
+// Path: subscription
+class _Translations$subscription$fr extends Translations$subscription$en {
+	_Translations$subscription$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Abonnement';
+	@override String get couldNotLoad => 'Impossible de charger votre abonnement.';
+	@override String get nowActive => 'Votre abonnement est maintenant actif !';
+	@override String get unavailable => 'Les abonnements ne sont pas disponibles pour le moment. Veuillez réessayer plus tard.';
+	@override String trialDaysLeft({required Object days}) => 'Essai gratuit — ${days} jour(s) restant(s)';
+	@override String graceDaysLeft({required Object days}) => 'Période de grâce — ${days} jour(s) restant(s) pour renouveler';
+	@override String get expiredNotice => 'Votre abonnement a expiré. Abonnez-vous pour redevenir visible aux patients.';
+	@override String get activeNotice => 'Votre abonnement est actif.';
+	@override String get choosePlan => 'Choisissez un forfait pour commencer.';
+	@override String get currentPlan => 'Forfait Actuel';
+	@override String get mostPopular => 'Le Plus Populaire';
+	@override String get perMonth => 'par mois';
+	@override String get manageOnWeb => 'Gérez votre abonnement sur medalize.az';
+	@override String get featureUnlimitedWorkplaces => 'Cliniques illimitées';
+	@override String featureWorkplaces({required Object count}) => 'Jusqu\'à ${count} clinique(s)';
+	@override String get featureUnlimitedBookings => 'Réservations mensuelles illimitées';
+	@override String featureBookingsPerMonth({required Object count}) => 'Jusqu\'à ${count} réservations par mois';
+	@override String get featureChat => 'Chat avec les patients';
+	@override String get featurePromoted => 'Placement prioritaire + badge « Peşəkar »';
+	@override String get renew => 'Renouveler';
+	@override String get subscribe => 'S\'abonner';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -1304,6 +1337,8 @@ extension on TranslationsFr {
 			'errors.socialLoginFailed' => 'Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.',
 			'errors.conflict' => 'Cette action ne peut pas être effectuée pour le moment.',
 			'errors.onboardingIncomplete' => 'Veuillez remplir tous les champs requis pour terminer l\'inscription.',
+			'errors.planLimitReached' => 'Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.',
+			'errors.chatUnavailable' => 'Ce médecin ne propose pas le chat avec son forfait actuel.',
 			'settings.title' => 'Paramètres',
 			'settings.account' => 'Compte',
 			'settings.profile' => 'Profil',
@@ -1732,10 +1767,10 @@ extension on TranslationsFr {
 			'medications.addTime' => 'Ajouter une heure',
 			'medications.daysOfWeek' => 'Jours de la semaine',
 			'medications.everyDay' => 'Tous les jours',
-			'medications.startDate' => 'Date de début',
-			'medications.endDate' => 'Date de fin',
 			_ => null,
 		} ?? switch (path) {
+			'medications.startDate' => 'Date de début',
+			'medications.endDate' => 'Date de fin',
 			'medications.save' => 'Enregistrer',
 			'medications.delete' => 'Supprimer',
 			'medications.deleteConfirmTitle' => 'Supprimer le médicament',
@@ -1857,6 +1892,27 @@ extension on TranslationsFr {
 			'family.forLabel' => ({required Object name}) => 'pour ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} ans',
 			'family.bookedByLabel' => ({required Object name}) => 'Pris par ${name}',
+			'subscription.title' => 'Abonnement',
+			'subscription.couldNotLoad' => 'Impossible de charger votre abonnement.',
+			'subscription.nowActive' => 'Votre abonnement est maintenant actif !',
+			'subscription.unavailable' => 'Les abonnements ne sont pas disponibles pour le moment. Veuillez réessayer plus tard.',
+			'subscription.trialDaysLeft' => ({required Object days}) => 'Essai gratuit — ${days} jour(s) restant(s)',
+			'subscription.graceDaysLeft' => ({required Object days}) => 'Période de grâce — ${days} jour(s) restant(s) pour renouveler',
+			'subscription.expiredNotice' => 'Votre abonnement a expiré. Abonnez-vous pour redevenir visible aux patients.',
+			'subscription.activeNotice' => 'Votre abonnement est actif.',
+			'subscription.choosePlan' => 'Choisissez un forfait pour commencer.',
+			'subscription.currentPlan' => 'Forfait Actuel',
+			'subscription.mostPopular' => 'Le Plus Populaire',
+			'subscription.perMonth' => 'par mois',
+			'subscription.manageOnWeb' => 'Gérez votre abonnement sur medalize.az',
+			'subscription.featureUnlimitedWorkplaces' => 'Cliniques illimitées',
+			'subscription.featureWorkplaces' => ({required Object count}) => 'Jusqu\'à ${count} clinique(s)',
+			'subscription.featureUnlimitedBookings' => 'Réservations mensuelles illimitées',
+			'subscription.featureBookingsPerMonth' => ({required Object count}) => 'Jusqu\'à ${count} réservations par mois',
+			'subscription.featureChat' => 'Chat avec les patients',
+			'subscription.featurePromoted' => 'Placement prioritaire + badge « Peşəkar »',
+			'subscription.renew' => 'Renouveler',
+			'subscription.subscribe' => 'S\'abonner',
 			_ => null,
 		};
 	}

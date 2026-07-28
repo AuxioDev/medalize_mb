@@ -91,7 +91,9 @@
     "serverError": "Server error ($code). Please try again.",
     "socialLoginFailed": "Sign-in failed. Please try again or use your email and password.",
     "conflict": "This action can't be completed right now.",
-    "onboardingIncomplete": "Please complete all required fields before finishing onboarding."
+    "onboardingIncomplete": "Please complete all required fields before finishing onboarding.",
+    "planLimitReached": "You've reached your plan's limit. Upgrade to add more.",
+    "chatUnavailable": "This doctor doesn't offer chat on their current plan."
   },
   "settings": {
     "title": "Settings",
@@ -739,5 +741,28 @@
     "forLabel": "for $name",
     "ageYears": "$age years old",
     "bookedByLabel": "Booked by $name"
+  },
+  "subscription": {
+    "title": "Subscription",
+    "couldNotLoad": "Couldn't load your subscription.",
+    "nowActive": "Your subscription is now active!",
+    "unavailable": "Subscriptions aren't available right now. Please try again later.",
+    "trialDaysLeft": "Free trial — $days day(s) left",
+    "graceDaysLeft": "Grace period — $days day(s) left to renew",
+    "expiredNotice": "Your subscription has expired. Subscribe to become visible to patients again.",
+    "activeNotice": "Your subscription is active.",
+    "choosePlan": "Choose a plan to get started.",
+    "currentPlan": "Current Plan",
+    "mostPopular": "Most Popular",
+    "perMonth": "per month",
+    "manageOnWeb": "Manage your subscription at medalize.az",
+    "featureUnlimitedWorkplaces": "Unlimited clinics",
+    "featureWorkplaces": "Up to $count clinic(s)",
+    "featureUnlimitedBookings": "Unlimited monthly bookings",
+    "featureBookingsPerMonth": "Up to $count bookings per month",
+    "featureChat": "Patient chat",
+    "featurePromoted": "Priority placement + \"Peşəkar\" badge",
+    "renew": "Renew",
+    "subscribe": "Subscribe"
   }
 }

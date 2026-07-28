@@ -91,7 +91,9 @@
     "serverError": "服务器错误（$code），请重试。",
     "socialLoginFailed": "登录失败，请重试或使用邮箱和密码登录。",
     "conflict": "当前无法完成此操作。",
-    "onboardingIncomplete": "请填写所有必填项以完成入驻。"
+    "onboardingIncomplete": "请填写所有必填项以完成入驻。",
+    "planLimitReached": "您已达到当前套餐的限制，请升级套餐以获得更多。",
+    "chatUnavailable": "该医生当前套餐不提供聊天功能。"
   },
   "settings": {
     "title": "设置",
@@ -739,5 +741,28 @@
     "forLabel": "$name 的",
     "ageYears": "$age 岁",
     "bookedByLabel": "预约人：$name"
+  },
+  "subscription": {
+    "title": "订阅",
+    "couldNotLoad": "无法加载您的订阅信息。",
+    "nowActive": "您的订阅现已激活！",
+    "unavailable": "订阅功能暂时不可用，请稍后再试。",
+    "trialDaysLeft": "免费试用 — 剩余 $days 天",
+    "graceDaysLeft": "宽限期 — 剩余 $days 天可续订",
+    "expiredNotice": "您的订阅已过期。请订阅以重新对患者可见。",
+    "activeNotice": "您的订阅有效。",
+    "choosePlan": "选择一个套餐以开始。",
+    "currentPlan": "当前套餐",
+    "mostPopular": "最受欢迎",
+    "perMonth": "每月",
+    "manageOnWeb": "请在 medalize.az 管理您的订阅",
+    "featureUnlimitedWorkplaces": "无限诊所数量",
+    "featureWorkplaces": "最多 $count 家诊所",
+    "featureUnlimitedBookings": "每月预约次数不限",
+    "featureBookingsPerMonth": "每月最多 $count 次预约",
+    "featureChat": "患者聊天",
+    "featurePromoted": "优先展示 + \"Peşəkar\" 徽章",
+    "renew": "续订",
+    "subscribe": "订阅"
   }
 }

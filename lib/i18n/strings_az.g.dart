@@ -76,6 +76,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$records$az records = _Translations$records$az._(_root);
 	@override late final _Translations$payments$az payments = _Translations$payments$az._(_root);
 	@override late final _Translations$family$az family = _Translations$family$az._(_root);
+	@override late final _Translations$subscription$az subscription = _Translations$subscription$az._(_root);
 }
 
 // Path: common
@@ -211,6 +212,8 @@ class _Translations$errors$az extends Translations$errors$en {
 	@override String get socialLoginFailed => 'Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.';
 	@override String get conflict => 'Bu əməliyyat hazırda tamamlana bilmir.';
 	@override String get onboardingIncomplete => 'Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.';
+	@override String get planLimitReached => 'Planınızın limitinə çatmısınız. Daha çoxu üçün planı yüksəldin.';
+	@override String get chatUnavailable => 'Bu həkim cari planında çat təklif etmir.';
 }
 
 // Path: settings
@@ -989,6 +992,36 @@ class _Translations$family$az extends Translations$family$en {
 	@override String bookedByLabel({required Object name}) => 'Qeyd edən: ${name}';
 }
 
+// Path: subscription
+class _Translations$subscription$az extends Translations$subscription$en {
+	_Translations$subscription$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Abunəlik';
+	@override String get couldNotLoad => 'Abunəlik məlumatı yüklənmədi.';
+	@override String get nowActive => 'Abunəliyiniz aktivləşdirildi!';
+	@override String get unavailable => 'Abunəlik hazırda əlçatan deyil. Zəhmət olmasa sonra yenidən cəhd edin.';
+	@override String trialDaysLeft({required Object days}) => 'Pulsuz sınaq — ${days} gün qalıb';
+	@override String graceDaysLeft({required Object days}) => 'Güzəşt müddəti — yeniləmək üçün ${days} gün qalıb';
+	@override String get expiredNotice => 'Abunəliyinizin müddəti bitib. Pasiyentlərə yenidən görünmək üçün abunə olun.';
+	@override String get activeNotice => 'Abunəliyiniz aktivdir.';
+	@override String get choosePlan => 'Başlamaq üçün plan seçin.';
+	@override String get currentPlan => 'Cari Plan';
+	@override String get mostPopular => 'Ən Populyar';
+	@override String get perMonth => 'aylıq';
+	@override String get manageOnWeb => 'Abunəliyinizi medalize.az saytında idarə edin';
+	@override String get featureUnlimitedWorkplaces => 'Limitsiz klinika';
+	@override String featureWorkplaces({required Object count}) => '${count} klinikaya qədər';
+	@override String get featureUnlimitedBookings => 'Aylıq limitsiz qeydiyyat';
+	@override String featureBookingsPerMonth({required Object count}) => 'Ayda ${count} qeydiyyata qədər';
+	@override String get featureChat => 'Pasiyentlərlə çat';
+	@override String get featurePromoted => 'Axtarışda prioritet + «Peşəkar» nişanı';
+	@override String get renew => 'Yenilə';
+	@override String get subscribe => 'Abunə ol';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -1304,6 +1337,8 @@ extension on TranslationsAz {
 			'errors.socialLoginFailed' => 'Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.',
 			'errors.conflict' => 'Bu əməliyyat hazırda tamamlana bilmir.',
 			'errors.onboardingIncomplete' => 'Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.',
+			'errors.planLimitReached' => 'Planınızın limitinə çatmısınız. Daha çoxu üçün planı yüksəldin.',
+			'errors.chatUnavailable' => 'Bu həkim cari planında çat təklif etmir.',
 			'settings.title' => 'Parametrlər',
 			'settings.account' => 'Hesab',
 			'settings.profile' => 'Profil',
@@ -1732,10 +1767,10 @@ extension on TranslationsAz {
 			'medications.addTime' => 'Vaxt əlavə et',
 			'medications.daysOfWeek' => 'Həftənin günləri',
 			'medications.everyDay' => 'Hər gün',
-			'medications.startDate' => 'Başlama tarixi',
-			'medications.endDate' => 'Bitmə tarixi',
 			_ => null,
 		} ?? switch (path) {
+			'medications.startDate' => 'Başlama tarixi',
+			'medications.endDate' => 'Bitmə tarixi',
 			'medications.save' => 'Yadda saxla',
 			'medications.delete' => 'Sil',
 			'medications.deleteConfirmTitle' => 'Dərmanı sil',
@@ -1857,6 +1892,27 @@ extension on TranslationsAz {
 			'family.forLabel' => ({required Object name}) => '${name} üçün',
 			'family.ageYears' => ({required Object age}) => '${age} yaşında',
 			'family.bookedByLabel' => ({required Object name}) => 'Qeyd edən: ${name}',
+			'subscription.title' => 'Abunəlik',
+			'subscription.couldNotLoad' => 'Abunəlik məlumatı yüklənmədi.',
+			'subscription.nowActive' => 'Abunəliyiniz aktivləşdirildi!',
+			'subscription.unavailable' => 'Abunəlik hazırda əlçatan deyil. Zəhmət olmasa sonra yenidən cəhd edin.',
+			'subscription.trialDaysLeft' => ({required Object days}) => 'Pulsuz sınaq — ${days} gün qalıb',
+			'subscription.graceDaysLeft' => ({required Object days}) => 'Güzəşt müddəti — yeniləmək üçün ${days} gün qalıb',
+			'subscription.expiredNotice' => 'Abunəliyinizin müddəti bitib. Pasiyentlərə yenidən görünmək üçün abunə olun.',
+			'subscription.activeNotice' => 'Abunəliyiniz aktivdir.',
+			'subscription.choosePlan' => 'Başlamaq üçün plan seçin.',
+			'subscription.currentPlan' => 'Cari Plan',
+			'subscription.mostPopular' => 'Ən Populyar',
+			'subscription.perMonth' => 'aylıq',
+			'subscription.manageOnWeb' => 'Abunəliyinizi medalize.az saytında idarə edin',
+			'subscription.featureUnlimitedWorkplaces' => 'Limitsiz klinika',
+			'subscription.featureWorkplaces' => ({required Object count}) => '${count} klinikaya qədər',
+			'subscription.featureUnlimitedBookings' => 'Aylıq limitsiz qeydiyyat',
+			'subscription.featureBookingsPerMonth' => ({required Object count}) => 'Ayda ${count} qeydiyyata qədər',
+			'subscription.featureChat' => 'Pasiyentlərlə çat',
+			'subscription.featurePromoted' => 'Axtarışda prioritet + «Peşəkar» nişanı',
+			'subscription.renew' => 'Yenilə',
+			'subscription.subscribe' => 'Abunə ol',
 			_ => null,
 		};
 	}

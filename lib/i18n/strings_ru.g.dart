@@ -76,6 +76,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$records$ru records = _Translations$records$ru._(_root);
 	@override late final _Translations$payments$ru payments = _Translations$payments$ru._(_root);
 	@override late final _Translations$family$ru family = _Translations$family$ru._(_root);
+	@override late final _Translations$subscription$ru subscription = _Translations$subscription$ru._(_root);
 }
 
 // Path: common
@@ -211,6 +212,8 @@ class _Translations$errors$ru extends Translations$errors$en {
 	@override String get socialLoginFailed => 'Не удалось войти. Попробуйте снова или используйте эл. почту и пароль.';
 	@override String get conflict => 'Это действие сейчас невозможно выполнить.';
 	@override String get onboardingIncomplete => 'Заполните все обязательные поля, чтобы завершить регистрацию.';
+	@override String get planLimitReached => 'Вы достигли лимита вашего тарифа. Перейдите на более высокий тариф.';
+	@override String get chatUnavailable => 'Этот врач не предлагает чат на своём текущем тарифе.';
 }
 
 // Path: settings
@@ -989,6 +992,36 @@ class _Translations$family$ru extends Translations$family$en {
 	@override String bookedByLabel({required Object name}) => 'Записал(а) ${name}';
 }
 
+// Path: subscription
+class _Translations$subscription$ru extends Translations$subscription$en {
+	_Translations$subscription$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Подписка';
+	@override String get couldNotLoad => 'Не удалось загрузить данные подписки.';
+	@override String get nowActive => 'Ваша подписка активирована!';
+	@override String get unavailable => 'Подписки временно недоступны. Попробуйте позже.';
+	@override String trialDaysLeft({required Object days}) => 'Пробный период — осталось ${days} дн.';
+	@override String graceDaysLeft({required Object days}) => 'Льготный период — осталось ${days} дн. для продления';
+	@override String get expiredNotice => 'Срок действия вашей подписки истёк. Оформите подписку, чтобы снова быть видимым для пациентов.';
+	@override String get activeNotice => 'Ваша подписка активна.';
+	@override String get choosePlan => 'Выберите тариф, чтобы начать.';
+	@override String get currentPlan => 'Текущий тариф';
+	@override String get mostPopular => 'Популярный выбор';
+	@override String get perMonth => 'в месяц';
+	@override String get manageOnWeb => 'Управляйте подпиской на medalize.az';
+	@override String get featureUnlimitedWorkplaces => 'Неограниченное количество клиник';
+	@override String featureWorkplaces({required Object count}) => 'До ${count} клиник(и)';
+	@override String get featureUnlimitedBookings => 'Неограниченное количество записей в месяц';
+	@override String featureBookingsPerMonth({required Object count}) => 'До ${count} записей в месяц';
+	@override String get featureChat => 'Чат с пациентами';
+	@override String get featurePromoted => 'Приоритет в поиске + бейдж «Peşəkar»';
+	@override String get renew => 'Продлить';
+	@override String get subscribe => 'Оформить подписку';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -1304,6 +1337,8 @@ extension on TranslationsRu {
 			'errors.socialLoginFailed' => 'Не удалось войти. Попробуйте снова или используйте эл. почту и пароль.',
 			'errors.conflict' => 'Это действие сейчас невозможно выполнить.',
 			'errors.onboardingIncomplete' => 'Заполните все обязательные поля, чтобы завершить регистрацию.',
+			'errors.planLimitReached' => 'Вы достигли лимита вашего тарифа. Перейдите на более высокий тариф.',
+			'errors.chatUnavailable' => 'Этот врач не предлагает чат на своём текущем тарифе.',
 			'settings.title' => 'Настройки',
 			'settings.account' => 'Аккаунт',
 			'settings.profile' => 'Профиль',
@@ -1732,10 +1767,10 @@ extension on TranslationsRu {
 			'medications.addTime' => 'Добавить время',
 			'medications.daysOfWeek' => 'Дни недели',
 			'medications.everyDay' => 'Каждый день',
-			'medications.startDate' => 'Дата начала',
-			'medications.endDate' => 'Дата окончания',
 			_ => null,
 		} ?? switch (path) {
+			'medications.startDate' => 'Дата начала',
+			'medications.endDate' => 'Дата окончания',
 			'medications.save' => 'Сохранить',
 			'medications.delete' => 'Удалить',
 			'medications.deleteConfirmTitle' => 'Удалить лекарство',
@@ -1857,6 +1892,27 @@ extension on TranslationsRu {
 			'family.forLabel' => ({required Object name}) => 'для ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} лет',
 			'family.bookedByLabel' => ({required Object name}) => 'Записал(а) ${name}',
+			'subscription.title' => 'Подписка',
+			'subscription.couldNotLoad' => 'Не удалось загрузить данные подписки.',
+			'subscription.nowActive' => 'Ваша подписка активирована!',
+			'subscription.unavailable' => 'Подписки временно недоступны. Попробуйте позже.',
+			'subscription.trialDaysLeft' => ({required Object days}) => 'Пробный период — осталось ${days} дн.',
+			'subscription.graceDaysLeft' => ({required Object days}) => 'Льготный период — осталось ${days} дн. для продления',
+			'subscription.expiredNotice' => 'Срок действия вашей подписки истёк. Оформите подписку, чтобы снова быть видимым для пациентов.',
+			'subscription.activeNotice' => 'Ваша подписка активна.',
+			'subscription.choosePlan' => 'Выберите тариф, чтобы начать.',
+			'subscription.currentPlan' => 'Текущий тариф',
+			'subscription.mostPopular' => 'Популярный выбор',
+			'subscription.perMonth' => 'в месяц',
+			'subscription.manageOnWeb' => 'Управляйте подпиской на medalize.az',
+			'subscription.featureUnlimitedWorkplaces' => 'Неограниченное количество клиник',
+			'subscription.featureWorkplaces' => ({required Object count}) => 'До ${count} клиник(и)',
+			'subscription.featureUnlimitedBookings' => 'Неограниченное количество записей в месяц',
+			'subscription.featureBookingsPerMonth' => ({required Object count}) => 'До ${count} записей в месяц',
+			'subscription.featureChat' => 'Чат с пациентами',
+			'subscription.featurePromoted' => 'Приоритет в поиске + бейдж «Peşəkar»',
+			'subscription.renew' => 'Продлить',
+			'subscription.subscribe' => 'Оформить подписку',
 			_ => null,
 		};
 	}

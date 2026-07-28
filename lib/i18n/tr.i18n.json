@@ -91,7 +91,9 @@
     "serverError": "Sunucu hatası ($code). Lütfen tekrar deneyin.",
     "socialLoginFailed": "Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.",
     "conflict": "Bu işlem şu anda tamamlanamıyor.",
-    "onboardingIncomplete": "Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun."
+    "onboardingIncomplete": "Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun.",
+    "planLimitReached": "Plan limitinize ulaştınız. Daha fazlası için planınızı yükseltin.",
+    "chatUnavailable": "Bu hekim mevcut planında sohbet sunmuyor."
   },
   "settings": {
     "title": "Ayarlar",
@@ -739,5 +741,28 @@
     "forLabel": "$name için",
     "ageYears": "$age yaşında",
     "bookedByLabel": "Randevuyu alan: $name"
+  },
+  "subscription": {
+    "title": "Abonelik",
+    "couldNotLoad": "Abonelik bilgileri yüklenemedi.",
+    "nowActive": "Aboneliğiniz artık aktif!",
+    "unavailable": "Abonelik şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.",
+    "trialDaysLeft": "Ücretsiz deneme — $days gün kaldı",
+    "graceDaysLeft": "Ek süre — yenilemek için $days gün kaldı",
+    "expiredNotice": "Aboneliğinizin süresi doldu. Hastalar tarafından tekrar görünür olmak için abone olun.",
+    "activeNotice": "Aboneliğiniz aktif.",
+    "choosePlan": "Başlamak için bir plan seçin.",
+    "currentPlan": "Mevcut Plan",
+    "mostPopular": "En Popüler",
+    "perMonth": "aylık",
+    "manageOnWeb": "Aboneliğinizi medalize.az üzerinden yönetin",
+    "featureUnlimitedWorkplaces": "Sınırsız klinik",
+    "featureWorkplaces": "$count kliniğe kadar",
+    "featureUnlimitedBookings": "Sınırsız aylık randevu",
+    "featureBookingsPerMonth": "Ayda $count randevuya kadar",
+    "featureChat": "Hasta sohbeti",
+    "featurePromoted": "Öncelikli sıralama + \"Peşəkar\" rozeti",
+    "renew": "Yenile",
+    "subscribe": "Abone Ol"
   }
 }

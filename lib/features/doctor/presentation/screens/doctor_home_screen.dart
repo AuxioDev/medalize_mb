@@ -17,6 +17,7 @@ import 'package:medalize_mb/core/widgets/notification_bell.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/section_header.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
+import 'package:medalize_mb/core/widgets/tinted_notice_banner.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
@@ -27,6 +28,8 @@ import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/messaging/providers/messaging_provider.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
+import 'package:medalize_mb/features/subscription/data/models/subscription_model.dart';
+import 'package:medalize_mb/features/subscription/providers/subscription_provider.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -82,6 +85,7 @@ class DoctorHomeScreen extends ConsumerWidget {
                   avatarText: name,
                 ),
               ),
+              const _SubscriptionBanner(),
               const Gap(AppSpacing.lg - 4),
               const AnimatedEntrance(
                 index: 1,
@@ -463,6 +467,48 @@ class _PendingCard extends ConsumerWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Trial/grace-period reminder — omitted entirely once the doctor is
+/// `active` (or briefly `pending`, before their first verification) so it
+/// never nags a doctor in good standing. `expired` never reaches this
+/// screen at all: the router's `_homeFor` redirect sends it to
+/// `/doctor/subscription` before the doctor ever lands on `/doctor/home`.
+class _SubscriptionBanner extends ConsumerWidget {
+  const _SubscriptionBanner();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sub = ref.watch(subscriptionProvider).valueOrNull;
+    if (sub == null) return const SizedBox.shrink();
+
+    final Widget? banner = switch (sub.status) {
+      SubscriptionModel.statusTrialing => TintedNoticeBanner(
+          color: AppColors.primary,
+          icon: Icons.hourglass_top_rounded,
+          child: Text(context.t.subscription.trialDaysLeft(
+            days: sub.trialEndsAt?.difference(DateTime.now()).inDays.clamp(0, 999) ?? 0,
+          )),
+        ),
+      SubscriptionModel.statusPastDue => TintedNoticeBanner(
+          color: AppColors.warning,
+          icon: Icons.error_outline_rounded,
+          child: Text(context.t.subscription.graceDaysLeft(
+            days: sub.graceEndsAt?.difference(DateTime.now()).inDays.clamp(0, 999) ?? 0,
+          )),
+        ),
+      _ => null,
+    };
+    if (banner == null) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.sm),
+      child: GestureDetector(
+        onTap: () => context.push('/doctor/subscription', extra: const {}),
+        child: banner,
       ),
     );
   }

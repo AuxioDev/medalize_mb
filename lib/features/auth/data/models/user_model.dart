@@ -53,6 +53,7 @@ class UserModel {
     this.onboardingComplete,
     this.doctorProfile,
     this.patientProfile,
+    this.subscriptionStatus,
   });
 
   final String userId;
@@ -67,9 +68,13 @@ class UserModel {
   final DoctorProfile? doctorProfile;
   final PatientProfile? patientProfile;
 
+  /// Doctor-only (null for patients) — see AuthAuthenticated.subscriptionStatus.
+  final String? subscriptionStatus;
+
   factory UserModel.fromJson(Map<String, dynamic> json) {
     final role = json['role'] as String;
     final profile = json['profile'] as Map<String, dynamic>?;
+    final subscription = json['subscription'] as Map<String, dynamic>?;
     return UserModel(
       userId: json['user_id'] as String,
       email: json['email'] as String,
@@ -84,6 +89,7 @@ class UserModel {
           role == 'doctor' && profile != null ? DoctorProfile.fromJson(profile) : null,
       patientProfile:
           role == 'patient' && profile != null ? PatientProfile.fromJson(profile) : null,
+      subscriptionStatus: subscription?['status'] as String?,
     );
   }
 }

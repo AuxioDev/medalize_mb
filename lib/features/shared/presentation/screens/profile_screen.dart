@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
 
@@ -352,6 +353,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   selected: _cancellationWindow,
                   enabled: _editing,
                   onSelect: (h) => setState(() => _cancellationWindow = h),
+                ),
+                const Gap(AppSpacing.lg),
+                AppListCard(
+                  icon: Icons.workspace_premium_outlined,
+                  onTap: () => context.push('/doctor/subscription', extra: const {}),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  child: Text(context.t.subscription.title),
                 ),
               ],
               if (_role == 'patient') ...[

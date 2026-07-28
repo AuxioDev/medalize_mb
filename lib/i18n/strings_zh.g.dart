@@ -76,6 +76,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$records$zh records = _Translations$records$zh._(_root);
 	@override late final _Translations$payments$zh payments = _Translations$payments$zh._(_root);
 	@override late final _Translations$family$zh family = _Translations$family$zh._(_root);
+	@override late final _Translations$subscription$zh subscription = _Translations$subscription$zh._(_root);
 }
 
 // Path: common
@@ -211,6 +212,8 @@ class _Translations$errors$zh extends Translations$errors$en {
 	@override String get socialLoginFailed => '登录失败，请重试或使用邮箱和密码登录。';
 	@override String get conflict => '当前无法完成此操作。';
 	@override String get onboardingIncomplete => '请填写所有必填项以完成入驻。';
+	@override String get planLimitReached => '您已达到当前套餐的限制，请升级套餐以获得更多。';
+	@override String get chatUnavailable => '该医生当前套餐不提供聊天功能。';
 }
 
 // Path: settings
@@ -989,6 +992,36 @@ class _Translations$family$zh extends Translations$family$en {
 	@override String bookedByLabel({required Object name}) => '预约人：${name}';
 }
 
+// Path: subscription
+class _Translations$subscription$zh extends Translations$subscription$en {
+	_Translations$subscription$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '订阅';
+	@override String get couldNotLoad => '无法加载您的订阅信息。';
+	@override String get nowActive => '您的订阅现已激活！';
+	@override String get unavailable => '订阅功能暂时不可用，请稍后再试。';
+	@override String trialDaysLeft({required Object days}) => '免费试用 — 剩余 ${days} 天';
+	@override String graceDaysLeft({required Object days}) => '宽限期 — 剩余 ${days} 天可续订';
+	@override String get expiredNotice => '您的订阅已过期。请订阅以重新对患者可见。';
+	@override String get activeNotice => '您的订阅有效。';
+	@override String get choosePlan => '选择一个套餐以开始。';
+	@override String get currentPlan => '当前套餐';
+	@override String get mostPopular => '最受欢迎';
+	@override String get perMonth => '每月';
+	@override String get manageOnWeb => '请在 medalize.az 管理您的订阅';
+	@override String get featureUnlimitedWorkplaces => '无限诊所数量';
+	@override String featureWorkplaces({required Object count}) => '最多 ${count} 家诊所';
+	@override String get featureUnlimitedBookings => '每月预约次数不限';
+	@override String featureBookingsPerMonth({required Object count}) => '每月最多 ${count} 次预约';
+	@override String get featureChat => '患者聊天';
+	@override String get featurePromoted => '优先展示 + "Peşəkar" 徽章';
+	@override String get renew => '续订';
+	@override String get subscribe => '订阅';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1304,6 +1337,8 @@ extension on TranslationsZh {
 			'errors.socialLoginFailed' => '登录失败，请重试或使用邮箱和密码登录。',
 			'errors.conflict' => '当前无法完成此操作。',
 			'errors.onboardingIncomplete' => '请填写所有必填项以完成入驻。',
+			'errors.planLimitReached' => '您已达到当前套餐的限制，请升级套餐以获得更多。',
+			'errors.chatUnavailable' => '该医生当前套餐不提供聊天功能。',
 			'settings.title' => '设置',
 			'settings.account' => '账户',
 			'settings.profile' => '个人资料',
@@ -1732,10 +1767,10 @@ extension on TranslationsZh {
 			'medications.addTime' => '添加时间',
 			'medications.daysOfWeek' => '星期',
 			'medications.everyDay' => '每天',
-			'medications.startDate' => '开始日期',
-			'medications.endDate' => '结束日期',
 			_ => null,
 		} ?? switch (path) {
+			'medications.startDate' => '开始日期',
+			'medications.endDate' => '结束日期',
 			'medications.save' => '保存',
 			'medications.delete' => '删除',
 			'medications.deleteConfirmTitle' => '删除药物',
@@ -1857,6 +1892,27 @@ extension on TranslationsZh {
 			'family.forLabel' => ({required Object name}) => '${name} 的',
 			'family.ageYears' => ({required Object age}) => '${age} 岁',
 			'family.bookedByLabel' => ({required Object name}) => '预约人：${name}',
+			'subscription.title' => '订阅',
+			'subscription.couldNotLoad' => '无法加载您的订阅信息。',
+			'subscription.nowActive' => '您的订阅现已激活！',
+			'subscription.unavailable' => '订阅功能暂时不可用，请稍后再试。',
+			'subscription.trialDaysLeft' => ({required Object days}) => '免费试用 — 剩余 ${days} 天',
+			'subscription.graceDaysLeft' => ({required Object days}) => '宽限期 — 剩余 ${days} 天可续订',
+			'subscription.expiredNotice' => '您的订阅已过期。请订阅以重新对患者可见。',
+			'subscription.activeNotice' => '您的订阅有效。',
+			'subscription.choosePlan' => '选择一个套餐以开始。',
+			'subscription.currentPlan' => '当前套餐',
+			'subscription.mostPopular' => '最受欢迎',
+			'subscription.perMonth' => '每月',
+			'subscription.manageOnWeb' => '请在 medalize.az 管理您的订阅',
+			'subscription.featureUnlimitedWorkplaces' => '无限诊所数量',
+			'subscription.featureWorkplaces' => ({required Object count}) => '最多 ${count} 家诊所',
+			'subscription.featureUnlimitedBookings' => '每月预约次数不限',
+			'subscription.featureBookingsPerMonth' => ({required Object count}) => '每月最多 ${count} 次预约',
+			'subscription.featureChat' => '患者聊天',
+			'subscription.featurePromoted' => '优先展示 + "Peşəkar" 徽章',
+			'subscription.renew' => '续订',
+			'subscription.subscribe' => '订阅',
 			_ => null,
 		};
 	}

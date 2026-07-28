@@ -91,7 +91,9 @@
     "serverError": "Server xətası ($code). Zəhmət olmasa yenidən cəhd edin.",
     "socialLoginFailed": "Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.",
     "conflict": "Bu əməliyyat hazırda tamamlana bilmir.",
-    "onboardingIncomplete": "Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun."
+    "onboardingIncomplete": "Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.",
+    "planLimitReached": "Planınızın limitinə çatmısınız. Daha çoxu üçün planı yüksəldin.",
+    "chatUnavailable": "Bu həkim cari planında çat təklif etmir."
   },
   "settings": {
     "title": "Parametrlər",
@@ -739,5 +741,28 @@
     "forLabel": "$name üçün",
     "ageYears": "$age yaşında",
     "bookedByLabel": "Qeyd edən: $name"
+  },
+  "subscription": {
+    "title": "Abunəlik",
+    "couldNotLoad": "Abunəlik məlumatı yüklənmədi.",
+    "nowActive": "Abunəliyiniz aktivləşdirildi!",
+    "unavailable": "Abunəlik hazırda əlçatan deyil. Zəhmət olmasa sonra yenidən cəhd edin.",
+    "trialDaysLeft": "Pulsuz sınaq — $days gün qalıb",
+    "graceDaysLeft": "Güzəşt müddəti — yeniləmək üçün $days gün qalıb",
+    "expiredNotice": "Abunəliyinizin müddəti bitib. Pasiyentlərə yenidən görünmək üçün abunə olun.",
+    "activeNotice": "Abunəliyiniz aktivdir.",
+    "choosePlan": "Başlamaq üçün plan seçin.",
+    "currentPlan": "Cari Plan",
+    "mostPopular": "Ən Populyar",
+    "perMonth": "aylıq",
+    "manageOnWeb": "Abunəliyinizi medalize.az saytında idarə edin",
+    "featureUnlimitedWorkplaces": "Limitsiz klinika",
+    "featureWorkplaces": "$count klinikaya qədər",
+    "featureUnlimitedBookings": "Aylıq limitsiz qeydiyyat",
+    "featureBookingsPerMonth": "Ayda $count qeydiyyata qədər",
+    "featureChat": "Pasiyentlərlə çat",
+    "featurePromoted": "Axtarışda prioritet + «Peşəkar» nişanı",
+    "renew": "Yenilə",
+    "subscribe": "Abunə ol"
   }
 }
