@@ -21,7 +21,8 @@
     "search": "Search",
     "tryAgain": "Please try again",
     "required": "Required",
-    "noRatings": "No ratings yet"
+    "noRatings": "No ratings yet",
+    "hospital": "Hospital"
   },
   "auth": {
     "login": "Sign In",
@@ -765,6 +766,83 @@
     "featureChat": "Patient chat",
     "featurePromoted": "Priority placement + \"Peşəkar\" badge",
     "renew": "Renew",
-    "subscribe": "Subscribe"
+    "subscribe": "Subscribe",
+    "planNameHospitalBasic": "Clinic",
+    "planNameHospitalPro": "Clinic Plus",
+    "featureDoctors": "Up to $count doctor(s)",
+    "featureUnlimitedDoctors": "Unlimited doctors",
+    "featureAdvancedStats": "Advanced statistics"
+  },
+  "hospitalPicker": {
+    "title": "Select Hospital",
+    "searchHint": "Search hospital name…",
+    "noResultsFound": "No hospitals found",
+    "selectCityFirst": "Select a city first",
+    "addVariant": "Add \"$name\"",
+    "pendingReview": "Pending review"
+  },
+  "hospitalRegistration": {
+    "title": "Hospital Details",
+    "subtitle": "Select your city, then find your hospital below or add it.",
+    "cityStep": "1. City",
+    "hospitalStep": "2. Hospital",
+    "searchHint": "Search hospital name…",
+    "noResultsFound": "No hospitals found",
+    "notFoundPrompt": "Can't find your hospital?",
+    "addManually": "Add it manually",
+    "useSearchInstead": "Search instead",
+    "newHospitalName": "Hospital name",
+    "selectedPrefix": "Selected:",
+    "pendingReviewNotice": "New hospitals are reviewed by our team before appearing elsewhere.",
+    "submit": "Create Account",
+    "hospitalRequired": "Select or add your hospital to continue"
+  },
+  "hospitalHome": {
+    "greeting": "Hello, $name",
+    "subtitle": "Manage your doctors and appointments",
+    "doctors": "Doctors",
+    "inviteDoctor": "Invite Doctor",
+    "appointments": "Appointments",
+    "profile": "Profile",
+    "pendingRequests": "$count pending request(s)"
+  },
+  "hospitalDoctors": {
+    "title": "Doctors",
+    "tabConfirmed": "Confirmed",
+    "tabRequests": "Requests",
+    "tabInvited": "Invited",
+    "noConfirmedDoctors": "No confirmed doctors yet",
+    "noRequests": "No pending requests",
+    "noInvited": "No pending invites",
+    "approve": "Approve",
+    "reject": "Reject",
+    "remove": "Remove",
+    "removeConfirmTitle": "Remove doctor?",
+    "removeConfirmMessage": "$name will no longer be affiliated with your hospital. Their workplace and appointments are not affected.",
+    "requestedToJoin": "Requested to join",
+    "invitedAwaiting": "Invited — awaiting response",
+    "editHours": "Edit hours"
+  },
+  "hospitalInvite": {
+    "title": "Invite a Doctor",
+    "searchHint": "Search by name or specialization…",
+    "noResultsFound": "No doctors found",
+    "invite": "Invite",
+    "invited": "Invited"
+  },
+  "hospitalAppointments": {
+    "title": "Appointments",
+    "empty": "No appointments yet"
+  },
+  "hospitalProfile": {
+    "title": "Hospital Profile",
+    "usageDoctors": "$count of $limit doctors",
+    "usageDoctorsUnlimited": "$count doctors (unlimited)",
+    "manageSubscription": "Manage Subscription"
+  },
+  "hospitalDoctorHours": {
+    "title": "Working Hours",
+    "selectWorkplace": "Select a workplace",
+    "saved": "Hours saved"
   }
 }

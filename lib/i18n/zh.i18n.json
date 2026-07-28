@@ -21,7 +21,8 @@
     "search": "搜索",
     "tryAgain": "请重试",
     "required": "必填",
-    "noRatings": "暂无评分"
+    "noRatings": "暂无评分",
+    "hospital": "医院"
   },
   "auth": {
     "login": "登录",
@@ -765,6 +766,83 @@
     "featureChat": "患者聊天",
     "featurePromoted": "优先展示 + \"Peşəkar\" 徽章",
     "renew": "续订",
-    "subscribe": "订阅"
+    "subscribe": "订阅",
+    "planNameHospitalBasic": "诊所版",
+    "planNameHospitalPro": "诊所高级版",
+    "featureDoctors": "最多 $count 位医生",
+    "featureUnlimitedDoctors": "医生数量不限",
+    "featureAdvancedStats": "高级统计"
+  },
+  "hospitalPicker": {
+    "title": "选择医院",
+    "searchHint": "搜索医院名称…",
+    "noResultsFound": "未找到医院",
+    "selectCityFirst": "请先选择城市",
+    "addVariant": "添加“$name”",
+    "pendingReview": "待审核"
+  },
+  "hospitalRegistration": {
+    "title": "医院信息",
+    "subtitle": "请选择所在城市，然后在下方查找您的医院或添加它。",
+    "cityStep": "1. 城市",
+    "hospitalStep": "2. 医院",
+    "searchHint": "搜索医院名称…",
+    "noResultsFound": "未找到医院",
+    "notFoundPrompt": "找不到您的医院？",
+    "addManually": "手动添加",
+    "useSearchInstead": "重新搜索",
+    "newHospitalName": "医院名称",
+    "selectedPrefix": "已选择：",
+    "pendingReviewNotice": "新医院在对其他人可见之前会由我们的团队审核。",
+    "submit": "创建账户",
+    "hospitalRequired": "请选择或添加您的医院以继续"
+  },
+  "hospitalHome": {
+    "greeting": "您好，$name",
+    "subtitle": "管理您的医生和预约",
+    "doctors": "医生",
+    "inviteDoctor": "邀请医生",
+    "appointments": "预约",
+    "profile": "个人资料",
+    "pendingRequests": "$count 个待处理请求"
+  },
+  "hospitalDoctors": {
+    "title": "医生",
+    "tabConfirmed": "已确认",
+    "tabRequests": "请求",
+    "tabInvited": "已邀请",
+    "noConfirmedDoctors": "暂无已确认的医生",
+    "noRequests": "暂无待处理请求",
+    "noInvited": "暂无待处理邀请",
+    "approve": "批准",
+    "reject": "拒绝",
+    "remove": "移除",
+    "removeConfirmTitle": "移除该医生？",
+    "removeConfirmMessage": "$name 将不再与您的医院关联。这不会影响其工作地点和预约。",
+    "requestedToJoin": "已申请加入",
+    "invitedAwaiting": "已邀请 — 等待回复",
+    "editHours": "编辑工作时间"
+  },
+  "hospitalInvite": {
+    "title": "邀请医生",
+    "searchHint": "按姓名或专业搜索…",
+    "noResultsFound": "未找到医生",
+    "invite": "邀请",
+    "invited": "已邀请"
+  },
+  "hospitalAppointments": {
+    "title": "预约",
+    "empty": "暂无预约"
+  },
+  "hospitalProfile": {
+    "title": "医院资料",
+    "usageDoctors": "$count / $limit 位医生",
+    "usageDoctorsUnlimited": "$count 位医生（不限）",
+    "manageSubscription": "管理订阅"
+  },
+  "hospitalDoctorHours": {
+    "title": "工作时间",
+    "selectWorkplace": "选择工作地点",
+    "saved": "工作时间已保存"
   }
 }

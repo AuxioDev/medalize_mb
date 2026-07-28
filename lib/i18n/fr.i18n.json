@@ -21,7 +21,8 @@
     "search": "Rechercher",
     "tryAgain": "Veuillez réessayer",
     "required": "Requis",
-    "noRatings": "Pas encore de note"
+    "noRatings": "Pas encore de note",
+    "hospital": "Hôpital"
   },
   "auth": {
     "login": "Se connecter",
@@ -765,6 +766,83 @@
     "featureChat": "Chat avec les patients",
     "featurePromoted": "Placement prioritaire + badge « Peşəkar »",
     "renew": "Renouveler",
-    "subscribe": "S'abonner"
+    "subscribe": "S'abonner",
+    "planNameHospitalBasic": "Clinique",
+    "planNameHospitalPro": "Clinique Plus",
+    "featureDoctors": "Jusqu'à $count médecin(s)",
+    "featureUnlimitedDoctors": "Médecins illimités",
+    "featureAdvancedStats": "Statistiques avancées"
+  },
+  "hospitalPicker": {
+    "title": "Sélectionner un hôpital",
+    "searchHint": "Rechercher un hôpital…",
+    "noResultsFound": "Aucun hôpital trouvé",
+    "selectCityFirst": "Sélectionnez d'abord une ville",
+    "addVariant": "Ajouter « $name »",
+    "pendingReview": "En cours de vérification"
+  },
+  "hospitalRegistration": {
+    "title": "Détails de l'hôpital",
+    "subtitle": "Sélectionnez votre ville, puis trouvez votre hôpital ci-dessous ou ajoutez-le.",
+    "cityStep": "1. Ville",
+    "hospitalStep": "2. Hôpital",
+    "searchHint": "Rechercher un hôpital…",
+    "noResultsFound": "Aucun hôpital trouvé",
+    "notFoundPrompt": "Vous ne trouvez pas votre hôpital ?",
+    "addManually": "Ajouter manuellement",
+    "useSearchInstead": "Rechercher à nouveau",
+    "newHospitalName": "Nom de l'hôpital",
+    "selectedPrefix": "Sélectionné :",
+    "pendingReviewNotice": "Les nouveaux hôpitaux sont vérifiés par notre équipe avant d'apparaître ailleurs.",
+    "submit": "Créer un compte",
+    "hospitalRequired": "Sélectionnez ou ajoutez votre hôpital pour continuer"
+  },
+  "hospitalHome": {
+    "greeting": "Bonjour, $name",
+    "subtitle": "Gérez vos médecins et vos rendez-vous",
+    "doctors": "Médecins",
+    "inviteDoctor": "Inviter un médecin",
+    "appointments": "Rendez-vous",
+    "profile": "Profil",
+    "pendingRequests": "$count demande(s) en attente"
+  },
+  "hospitalDoctors": {
+    "title": "Médecins",
+    "tabConfirmed": "Confirmés",
+    "tabRequests": "Demandes",
+    "tabInvited": "Invités",
+    "noConfirmedDoctors": "Aucun médecin confirmé pour l'instant",
+    "noRequests": "Aucune demande en attente",
+    "noInvited": "Aucune invitation en attente",
+    "approve": "Approuver",
+    "reject": "Refuser",
+    "remove": "Retirer",
+    "removeConfirmTitle": "Retirer ce médecin ?",
+    "removeConfirmMessage": "$name ne sera plus affilié à votre hôpital. Cela n'affecte pas son lieu de travail ni ses rendez-vous.",
+    "requestedToJoin": "A demandé à rejoindre",
+    "invitedAwaiting": "Invité — en attente de réponse",
+    "editHours": "Modifier les horaires"
+  },
+  "hospitalInvite": {
+    "title": "Inviter un médecin",
+    "searchHint": "Rechercher par nom ou spécialité…",
+    "noResultsFound": "Aucun médecin trouvé",
+    "invite": "Inviter",
+    "invited": "Invité"
+  },
+  "hospitalAppointments": {
+    "title": "Rendez-vous",
+    "empty": "Aucun rendez-vous pour l'instant"
+  },
+  "hospitalProfile": {
+    "title": "Profil de l'hôpital",
+    "usageDoctors": "$count sur $limit médecins",
+    "usageDoctorsUnlimited": "$count médecins (illimité)",
+    "manageSubscription": "Gérer l'abonnement"
+  },
+  "hospitalDoctorHours": {
+    "title": "Horaires de travail",
+    "selectWorkplace": "Sélectionner un lieu de travail",
+    "saved": "Horaires enregistrés"
   }
 }

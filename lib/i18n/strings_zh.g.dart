@@ -77,6 +77,14 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$payments$zh payments = _Translations$payments$zh._(_root);
 	@override late final _Translations$family$zh family = _Translations$family$zh._(_root);
 	@override late final _Translations$subscription$zh subscription = _Translations$subscription$zh._(_root);
+	@override late final _Translations$hospitalPicker$zh hospitalPicker = _Translations$hospitalPicker$zh._(_root);
+	@override late final _Translations$hospitalRegistration$zh hospitalRegistration = _Translations$hospitalRegistration$zh._(_root);
+	@override late final _Translations$hospitalHome$zh hospitalHome = _Translations$hospitalHome$zh._(_root);
+	@override late final _Translations$hospitalDoctors$zh hospitalDoctors = _Translations$hospitalDoctors$zh._(_root);
+	@override late final _Translations$hospitalInvite$zh hospitalInvite = _Translations$hospitalInvite$zh._(_root);
+	@override late final _Translations$hospitalAppointments$zh hospitalAppointments = _Translations$hospitalAppointments$zh._(_root);
+	@override late final _Translations$hospitalProfile$zh hospitalProfile = _Translations$hospitalProfile$zh._(_root);
+	@override late final _Translations$hospitalDoctorHours$zh hospitalDoctorHours = _Translations$hospitalDoctorHours$zh._(_root);
 }
 
 // Path: common
@@ -107,6 +115,7 @@ class _Translations$common$zh extends Translations$common$en {
 	@override String get tryAgain => '请重试';
 	@override String get required => '必填';
 	@override String get noRatings => '暂无评分';
+	@override String get hospital => '医院';
 }
 
 // Path: auth
@@ -1022,6 +1031,139 @@ class _Translations$subscription$zh extends Translations$subscription$en {
 	@override String get featurePromoted => '优先展示 + "Peşəkar" 徽章';
 	@override String get renew => '续订';
 	@override String get subscribe => '订阅';
+	@override String get planNameHospitalBasic => '诊所版';
+	@override String get planNameHospitalPro => '诊所高级版';
+	@override String featureDoctors({required Object count}) => '最多 ${count} 位医生';
+	@override String get featureUnlimitedDoctors => '医生数量不限';
+	@override String get featureAdvancedStats => '高级统计';
+}
+
+// Path: hospitalPicker
+class _Translations$hospitalPicker$zh extends Translations$hospitalPicker$en {
+	_Translations$hospitalPicker$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '选择医院';
+	@override String get searchHint => '搜索医院名称…';
+	@override String get noResultsFound => '未找到医院';
+	@override String get selectCityFirst => '请先选择城市';
+	@override String addVariant({required Object name}) => '添加“${name}”';
+	@override String get pendingReview => '待审核';
+}
+
+// Path: hospitalRegistration
+class _Translations$hospitalRegistration$zh extends Translations$hospitalRegistration$en {
+	_Translations$hospitalRegistration$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '医院信息';
+	@override String get subtitle => '请选择所在城市，然后在下方查找您的医院或添加它。';
+	@override String get cityStep => '1. 城市';
+	@override String get hospitalStep => '2. 医院';
+	@override String get searchHint => '搜索医院名称…';
+	@override String get noResultsFound => '未找到医院';
+	@override String get notFoundPrompt => '找不到您的医院？';
+	@override String get addManually => '手动添加';
+	@override String get useSearchInstead => '重新搜索';
+	@override String get newHospitalName => '医院名称';
+	@override String get selectedPrefix => '已选择：';
+	@override String get pendingReviewNotice => '新医院在对其他人可见之前会由我们的团队审核。';
+	@override String get submit => '创建账户';
+	@override String get hospitalRequired => '请选择或添加您的医院以继续';
+}
+
+// Path: hospitalHome
+class _Translations$hospitalHome$zh extends Translations$hospitalHome$en {
+	_Translations$hospitalHome$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String greeting({required Object name}) => '您好，${name}';
+	@override String get subtitle => '管理您的医生和预约';
+	@override String get doctors => '医生';
+	@override String get inviteDoctor => '邀请医生';
+	@override String get appointments => '预约';
+	@override String get profile => '个人资料';
+	@override String pendingRequests({required Object count}) => '${count} 个待处理请求';
+}
+
+// Path: hospitalDoctors
+class _Translations$hospitalDoctors$zh extends Translations$hospitalDoctors$en {
+	_Translations$hospitalDoctors$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '医生';
+	@override String get tabConfirmed => '已确认';
+	@override String get tabRequests => '请求';
+	@override String get tabInvited => '已邀请';
+	@override String get noConfirmedDoctors => '暂无已确认的医生';
+	@override String get noRequests => '暂无待处理请求';
+	@override String get noInvited => '暂无待处理邀请';
+	@override String get approve => '批准';
+	@override String get reject => '拒绝';
+	@override String get remove => '移除';
+	@override String get removeConfirmTitle => '移除该医生？';
+	@override String removeConfirmMessage({required Object name}) => '${name} 将不再与您的医院关联。这不会影响其工作地点和预约。';
+	@override String get requestedToJoin => '已申请加入';
+	@override String get invitedAwaiting => '已邀请 — 等待回复';
+	@override String get editHours => '编辑工作时间';
+}
+
+// Path: hospitalInvite
+class _Translations$hospitalInvite$zh extends Translations$hospitalInvite$en {
+	_Translations$hospitalInvite$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '邀请医生';
+	@override String get searchHint => '按姓名或专业搜索…';
+	@override String get noResultsFound => '未找到医生';
+	@override String get invite => '邀请';
+	@override String get invited => '已邀请';
+}
+
+// Path: hospitalAppointments
+class _Translations$hospitalAppointments$zh extends Translations$hospitalAppointments$en {
+	_Translations$hospitalAppointments$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '预约';
+	@override String get empty => '暂无预约';
+}
+
+// Path: hospitalProfile
+class _Translations$hospitalProfile$zh extends Translations$hospitalProfile$en {
+	_Translations$hospitalProfile$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '医院资料';
+	@override String usageDoctors({required Object count, required Object limit}) => '${count} / ${limit} 位医生';
+	@override String usageDoctorsUnlimited({required Object count}) => '${count} 位医生（不限）';
+	@override String get manageSubscription => '管理订阅';
+}
+
+// Path: hospitalDoctorHours
+class _Translations$hospitalDoctorHours$zh extends Translations$hospitalDoctorHours$en {
+	_Translations$hospitalDoctorHours$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '工作时间';
+	@override String get selectWorkplace => '选择工作地点';
+	@override String get saved => '工作时间已保存';
 }
 
 // Path: doctorSearch.spec
@@ -1279,6 +1421,7 @@ extension on TranslationsZh {
 			'common.tryAgain' => '请重试',
 			'common.required' => '必填',
 			'common.noRatings' => '暂无评分',
+			'common.hospital' => '医院',
 			'auth.login' => '登录',
 			'auth.register' => '创建账户',
 			'auth.signIn' => '登录',
@@ -1768,9 +1911,9 @@ extension on TranslationsZh {
 			'medications.times' => '服药时间',
 			'medications.addTime' => '添加时间',
 			'medications.daysOfWeek' => '星期',
-			'medications.everyDay' => '每天',
 			_ => null,
 		} ?? switch (path) {
+			'medications.everyDay' => '每天',
 			'medications.startDate' => '开始日期',
 			'medications.endDate' => '结束日期',
 			'medications.save' => '保存',
@@ -1917,6 +2060,67 @@ extension on TranslationsZh {
 			'subscription.featurePromoted' => '优先展示 + "Peşəkar" 徽章',
 			'subscription.renew' => '续订',
 			'subscription.subscribe' => '订阅',
+			'subscription.planNameHospitalBasic' => '诊所版',
+			'subscription.planNameHospitalPro' => '诊所高级版',
+			'subscription.featureDoctors' => ({required Object count}) => '最多 ${count} 位医生',
+			'subscription.featureUnlimitedDoctors' => '医生数量不限',
+			'subscription.featureAdvancedStats' => '高级统计',
+			'hospitalPicker.title' => '选择医院',
+			'hospitalPicker.searchHint' => '搜索医院名称…',
+			'hospitalPicker.noResultsFound' => '未找到医院',
+			'hospitalPicker.selectCityFirst' => '请先选择城市',
+			'hospitalPicker.addVariant' => ({required Object name}) => '添加“${name}”',
+			'hospitalPicker.pendingReview' => '待审核',
+			'hospitalRegistration.title' => '医院信息',
+			'hospitalRegistration.subtitle' => '请选择所在城市，然后在下方查找您的医院或添加它。',
+			'hospitalRegistration.cityStep' => '1. 城市',
+			'hospitalRegistration.hospitalStep' => '2. 医院',
+			'hospitalRegistration.searchHint' => '搜索医院名称…',
+			'hospitalRegistration.noResultsFound' => '未找到医院',
+			'hospitalRegistration.notFoundPrompt' => '找不到您的医院？',
+			'hospitalRegistration.addManually' => '手动添加',
+			'hospitalRegistration.useSearchInstead' => '重新搜索',
+			'hospitalRegistration.newHospitalName' => '医院名称',
+			'hospitalRegistration.selectedPrefix' => '已选择：',
+			'hospitalRegistration.pendingReviewNotice' => '新医院在对其他人可见之前会由我们的团队审核。',
+			'hospitalRegistration.submit' => '创建账户',
+			'hospitalRegistration.hospitalRequired' => '请选择或添加您的医院以继续',
+			'hospitalHome.greeting' => ({required Object name}) => '您好，${name}',
+			'hospitalHome.subtitle' => '管理您的医生和预约',
+			'hospitalHome.doctors' => '医生',
+			'hospitalHome.inviteDoctor' => '邀请医生',
+			'hospitalHome.appointments' => '预约',
+			'hospitalHome.profile' => '个人资料',
+			'hospitalHome.pendingRequests' => ({required Object count}) => '${count} 个待处理请求',
+			'hospitalDoctors.title' => '医生',
+			'hospitalDoctors.tabConfirmed' => '已确认',
+			'hospitalDoctors.tabRequests' => '请求',
+			'hospitalDoctors.tabInvited' => '已邀请',
+			'hospitalDoctors.noConfirmedDoctors' => '暂无已确认的医生',
+			'hospitalDoctors.noRequests' => '暂无待处理请求',
+			'hospitalDoctors.noInvited' => '暂无待处理邀请',
+			'hospitalDoctors.approve' => '批准',
+			'hospitalDoctors.reject' => '拒绝',
+			'hospitalDoctors.remove' => '移除',
+			'hospitalDoctors.removeConfirmTitle' => '移除该医生？',
+			'hospitalDoctors.removeConfirmMessage' => ({required Object name}) => '${name} 将不再与您的医院关联。这不会影响其工作地点和预约。',
+			'hospitalDoctors.requestedToJoin' => '已申请加入',
+			'hospitalDoctors.invitedAwaiting' => '已邀请 — 等待回复',
+			'hospitalDoctors.editHours' => '编辑工作时间',
+			'hospitalInvite.title' => '邀请医生',
+			'hospitalInvite.searchHint' => '按姓名或专业搜索…',
+			'hospitalInvite.noResultsFound' => '未找到医生',
+			'hospitalInvite.invite' => '邀请',
+			'hospitalInvite.invited' => '已邀请',
+			'hospitalAppointments.title' => '预约',
+			'hospitalAppointments.empty' => '暂无预约',
+			'hospitalProfile.title' => '医院资料',
+			'hospitalProfile.usageDoctors' => ({required Object count, required Object limit}) => '${count} / ${limit} 位医生',
+			'hospitalProfile.usageDoctorsUnlimited' => ({required Object count}) => '${count} 位医生（不限）',
+			'hospitalProfile.manageSubscription' => '管理订阅',
+			'hospitalDoctorHours.title' => '工作时间',
+			'hospitalDoctorHours.selectWorkplace' => '选择工作地点',
+			'hospitalDoctorHours.saved' => '工作时间已保存',
 			_ => null,
 		};
 	}

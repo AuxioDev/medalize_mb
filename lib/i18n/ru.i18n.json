@@ -21,7 +21,8 @@
     "search": "Поиск",
     "tryAgain": "Повторите попытку",
     "required": "Обязательно",
-    "noRatings": "Нет оценок"
+    "noRatings": "Нет оценок",
+    "hospital": "Больница"
   },
   "auth": {
     "login": "Войти",
@@ -765,6 +766,83 @@
     "featureChat": "Чат с пациентами",
     "featurePromoted": "Приоритет в поиске + бейдж «Peşəkar»",
     "renew": "Продлить",
-    "subscribe": "Оформить подписку"
+    "subscribe": "Оформить подписку",
+    "planNameHospitalBasic": "Клиника",
+    "planNameHospitalPro": "Клиника Плюс",
+    "featureDoctors": "До $count врачей",
+    "featureUnlimitedDoctors": "Неограниченное количество врачей",
+    "featureAdvancedStats": "Расширенная статистика"
+  },
+  "hospitalPicker": {
+    "title": "Выбор больницы",
+    "searchHint": "Поиск по названию…",
+    "noResultsFound": "Больницы не найдены",
+    "selectCityFirst": "Сначала выберите город",
+    "addVariant": "Добавить «$name»",
+    "pendingReview": "На проверке"
+  },
+  "hospitalRegistration": {
+    "title": "Данные больницы",
+    "subtitle": "Выберите город, затем найдите свою больницу в списке или добавьте её.",
+    "cityStep": "1. Город",
+    "hospitalStep": "2. Больница",
+    "searchHint": "Поиск по названию…",
+    "noResultsFound": "Больницы не найдены",
+    "notFoundPrompt": "Не нашли свою больницу?",
+    "addManually": "Добавить вручную",
+    "useSearchInstead": "Искать снова",
+    "newHospitalName": "Название больницы",
+    "selectedPrefix": "Выбрано:",
+    "pendingReviewNotice": "Новые больницы проверяются нашей командой, прежде чем появиться у других пользователей.",
+    "submit": "Создать аккаунт",
+    "hospitalRequired": "Выберите или добавьте больницу, чтобы продолжить"
+  },
+  "hospitalHome": {
+    "greeting": "Здравствуйте, $name",
+    "subtitle": "Управляйте врачами и записями",
+    "doctors": "Врачи",
+    "inviteDoctor": "Пригласить врача",
+    "appointments": "Записи",
+    "profile": "Профиль",
+    "pendingRequests": "$count заявок ожидают решения"
+  },
+  "hospitalDoctors": {
+    "title": "Врачи",
+    "tabConfirmed": "Подтверждённые",
+    "tabRequests": "Заявки",
+    "tabInvited": "Приглашённые",
+    "noConfirmedDoctors": "Пока нет подтверждённых врачей",
+    "noRequests": "Нет ожидающих заявок",
+    "noInvited": "Нет ожидающих приглашений",
+    "approve": "Подтвердить",
+    "reject": "Отклонить",
+    "remove": "Удалить",
+    "removeConfirmTitle": "Удалить врача?",
+    "removeConfirmMessage": "$name больше не будет связан с вашей больницей. Это не повлияет на его место работы и записи.",
+    "requestedToJoin": "Запросил присоединение",
+    "invitedAwaiting": "Приглашён — ожидает ответа",
+    "editHours": "Изменить часы"
+  },
+  "hospitalInvite": {
+    "title": "Пригласить врача",
+    "searchHint": "Поиск по имени или специализации…",
+    "noResultsFound": "Врачи не найдены",
+    "invite": "Пригласить",
+    "invited": "Приглашён"
+  },
+  "hospitalAppointments": {
+    "title": "Записи",
+    "empty": "Пока нет записей"
+  },
+  "hospitalProfile": {
+    "title": "Профиль больницы",
+    "usageDoctors": "$count из $limit врачей",
+    "usageDoctorsUnlimited": "$count врачей (без ограничений)",
+    "manageSubscription": "Управление подпиской"
+  },
+  "hospitalDoctorHours": {
+    "title": "Часы работы",
+    "selectWorkplace": "Выберите место работы",
+    "saved": "Часы сохранены"
   }
 }

@@ -77,6 +77,14 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$payments$fr payments = _Translations$payments$fr._(_root);
 	@override late final _Translations$family$fr family = _Translations$family$fr._(_root);
 	@override late final _Translations$subscription$fr subscription = _Translations$subscription$fr._(_root);
+	@override late final _Translations$hospitalPicker$fr hospitalPicker = _Translations$hospitalPicker$fr._(_root);
+	@override late final _Translations$hospitalRegistration$fr hospitalRegistration = _Translations$hospitalRegistration$fr._(_root);
+	@override late final _Translations$hospitalHome$fr hospitalHome = _Translations$hospitalHome$fr._(_root);
+	@override late final _Translations$hospitalDoctors$fr hospitalDoctors = _Translations$hospitalDoctors$fr._(_root);
+	@override late final _Translations$hospitalInvite$fr hospitalInvite = _Translations$hospitalInvite$fr._(_root);
+	@override late final _Translations$hospitalAppointments$fr hospitalAppointments = _Translations$hospitalAppointments$fr._(_root);
+	@override late final _Translations$hospitalProfile$fr hospitalProfile = _Translations$hospitalProfile$fr._(_root);
+	@override late final _Translations$hospitalDoctorHours$fr hospitalDoctorHours = _Translations$hospitalDoctorHours$fr._(_root);
 }
 
 // Path: common
@@ -107,6 +115,7 @@ class _Translations$common$fr extends Translations$common$en {
 	@override String get tryAgain => 'Veuillez réessayer';
 	@override String get required => 'Requis';
 	@override String get noRatings => 'Pas encore de note';
+	@override String get hospital => 'Hôpital';
 }
 
 // Path: auth
@@ -1022,6 +1031,139 @@ class _Translations$subscription$fr extends Translations$subscription$en {
 	@override String get featurePromoted => 'Placement prioritaire + badge « Peşəkar »';
 	@override String get renew => 'Renouveler';
 	@override String get subscribe => 'S\'abonner';
+	@override String get planNameHospitalBasic => 'Clinique';
+	@override String get planNameHospitalPro => 'Clinique Plus';
+	@override String featureDoctors({required Object count}) => 'Jusqu\'à ${count} médecin(s)';
+	@override String get featureUnlimitedDoctors => 'Médecins illimités';
+	@override String get featureAdvancedStats => 'Statistiques avancées';
+}
+
+// Path: hospitalPicker
+class _Translations$hospitalPicker$fr extends Translations$hospitalPicker$en {
+	_Translations$hospitalPicker$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Sélectionner un hôpital';
+	@override String get searchHint => 'Rechercher un hôpital…';
+	@override String get noResultsFound => 'Aucun hôpital trouvé';
+	@override String get selectCityFirst => 'Sélectionnez d\'abord une ville';
+	@override String addVariant({required Object name}) => 'Ajouter « ${name} »';
+	@override String get pendingReview => 'En cours de vérification';
+}
+
+// Path: hospitalRegistration
+class _Translations$hospitalRegistration$fr extends Translations$hospitalRegistration$en {
+	_Translations$hospitalRegistration$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Détails de l\'hôpital';
+	@override String get subtitle => 'Sélectionnez votre ville, puis trouvez votre hôpital ci-dessous ou ajoutez-le.';
+	@override String get cityStep => '1. Ville';
+	@override String get hospitalStep => '2. Hôpital';
+	@override String get searchHint => 'Rechercher un hôpital…';
+	@override String get noResultsFound => 'Aucun hôpital trouvé';
+	@override String get notFoundPrompt => 'Vous ne trouvez pas votre hôpital ?';
+	@override String get addManually => 'Ajouter manuellement';
+	@override String get useSearchInstead => 'Rechercher à nouveau';
+	@override String get newHospitalName => 'Nom de l\'hôpital';
+	@override String get selectedPrefix => 'Sélectionné :';
+	@override String get pendingReviewNotice => 'Les nouveaux hôpitaux sont vérifiés par notre équipe avant d\'apparaître ailleurs.';
+	@override String get submit => 'Créer un compte';
+	@override String get hospitalRequired => 'Sélectionnez ou ajoutez votre hôpital pour continuer';
+}
+
+// Path: hospitalHome
+class _Translations$hospitalHome$fr extends Translations$hospitalHome$en {
+	_Translations$hospitalHome$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String greeting({required Object name}) => 'Bonjour, ${name}';
+	@override String get subtitle => 'Gérez vos médecins et vos rendez-vous';
+	@override String get doctors => 'Médecins';
+	@override String get inviteDoctor => 'Inviter un médecin';
+	@override String get appointments => 'Rendez-vous';
+	@override String get profile => 'Profil';
+	@override String pendingRequests({required Object count}) => '${count} demande(s) en attente';
+}
+
+// Path: hospitalDoctors
+class _Translations$hospitalDoctors$fr extends Translations$hospitalDoctors$en {
+	_Translations$hospitalDoctors$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Médecins';
+	@override String get tabConfirmed => 'Confirmés';
+	@override String get tabRequests => 'Demandes';
+	@override String get tabInvited => 'Invités';
+	@override String get noConfirmedDoctors => 'Aucun médecin confirmé pour l\'instant';
+	@override String get noRequests => 'Aucune demande en attente';
+	@override String get noInvited => 'Aucune invitation en attente';
+	@override String get approve => 'Approuver';
+	@override String get reject => 'Refuser';
+	@override String get remove => 'Retirer';
+	@override String get removeConfirmTitle => 'Retirer ce médecin ?';
+	@override String removeConfirmMessage({required Object name}) => '${name} ne sera plus affilié à votre hôpital. Cela n\'affecte pas son lieu de travail ni ses rendez-vous.';
+	@override String get requestedToJoin => 'A demandé à rejoindre';
+	@override String get invitedAwaiting => 'Invité — en attente de réponse';
+	@override String get editHours => 'Modifier les horaires';
+}
+
+// Path: hospitalInvite
+class _Translations$hospitalInvite$fr extends Translations$hospitalInvite$en {
+	_Translations$hospitalInvite$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Inviter un médecin';
+	@override String get searchHint => 'Rechercher par nom ou spécialité…';
+	@override String get noResultsFound => 'Aucun médecin trouvé';
+	@override String get invite => 'Inviter';
+	@override String get invited => 'Invité';
+}
+
+// Path: hospitalAppointments
+class _Translations$hospitalAppointments$fr extends Translations$hospitalAppointments$en {
+	_Translations$hospitalAppointments$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Rendez-vous';
+	@override String get empty => 'Aucun rendez-vous pour l\'instant';
+}
+
+// Path: hospitalProfile
+class _Translations$hospitalProfile$fr extends Translations$hospitalProfile$en {
+	_Translations$hospitalProfile$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profil de l\'hôpital';
+	@override String usageDoctors({required Object count, required Object limit}) => '${count} sur ${limit} médecins';
+	@override String usageDoctorsUnlimited({required Object count}) => '${count} médecins (illimité)';
+	@override String get manageSubscription => 'Gérer l\'abonnement';
+}
+
+// Path: hospitalDoctorHours
+class _Translations$hospitalDoctorHours$fr extends Translations$hospitalDoctorHours$en {
+	_Translations$hospitalDoctorHours$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Horaires de travail';
+	@override String get selectWorkplace => 'Sélectionner un lieu de travail';
+	@override String get saved => 'Horaires enregistrés';
 }
 
 // Path: doctorSearch.spec
@@ -1279,6 +1421,7 @@ extension on TranslationsFr {
 			'common.tryAgain' => 'Veuillez réessayer',
 			'common.required' => 'Requis',
 			'common.noRatings' => 'Pas encore de note',
+			'common.hospital' => 'Hôpital',
 			'auth.login' => 'Se connecter',
 			'auth.register' => 'Créer un compte',
 			'auth.signIn' => 'Se connecter',
@@ -1768,9 +1911,9 @@ extension on TranslationsFr {
 			'medications.times' => 'Heures de prise',
 			'medications.addTime' => 'Ajouter une heure',
 			'medications.daysOfWeek' => 'Jours de la semaine',
-			'medications.everyDay' => 'Tous les jours',
 			_ => null,
 		} ?? switch (path) {
+			'medications.everyDay' => 'Tous les jours',
 			'medications.startDate' => 'Date de début',
 			'medications.endDate' => 'Date de fin',
 			'medications.save' => 'Enregistrer',
@@ -1917,6 +2060,67 @@ extension on TranslationsFr {
 			'subscription.featurePromoted' => 'Placement prioritaire + badge « Peşəkar »',
 			'subscription.renew' => 'Renouveler',
 			'subscription.subscribe' => 'S\'abonner',
+			'subscription.planNameHospitalBasic' => 'Clinique',
+			'subscription.planNameHospitalPro' => 'Clinique Plus',
+			'subscription.featureDoctors' => ({required Object count}) => 'Jusqu\'à ${count} médecin(s)',
+			'subscription.featureUnlimitedDoctors' => 'Médecins illimités',
+			'subscription.featureAdvancedStats' => 'Statistiques avancées',
+			'hospitalPicker.title' => 'Sélectionner un hôpital',
+			'hospitalPicker.searchHint' => 'Rechercher un hôpital…',
+			'hospitalPicker.noResultsFound' => 'Aucun hôpital trouvé',
+			'hospitalPicker.selectCityFirst' => 'Sélectionnez d\'abord une ville',
+			'hospitalPicker.addVariant' => ({required Object name}) => 'Ajouter « ${name} »',
+			'hospitalPicker.pendingReview' => 'En cours de vérification',
+			'hospitalRegistration.title' => 'Détails de l\'hôpital',
+			'hospitalRegistration.subtitle' => 'Sélectionnez votre ville, puis trouvez votre hôpital ci-dessous ou ajoutez-le.',
+			'hospitalRegistration.cityStep' => '1. Ville',
+			'hospitalRegistration.hospitalStep' => '2. Hôpital',
+			'hospitalRegistration.searchHint' => 'Rechercher un hôpital…',
+			'hospitalRegistration.noResultsFound' => 'Aucun hôpital trouvé',
+			'hospitalRegistration.notFoundPrompt' => 'Vous ne trouvez pas votre hôpital ?',
+			'hospitalRegistration.addManually' => 'Ajouter manuellement',
+			'hospitalRegistration.useSearchInstead' => 'Rechercher à nouveau',
+			'hospitalRegistration.newHospitalName' => 'Nom de l\'hôpital',
+			'hospitalRegistration.selectedPrefix' => 'Sélectionné :',
+			'hospitalRegistration.pendingReviewNotice' => 'Les nouveaux hôpitaux sont vérifiés par notre équipe avant d\'apparaître ailleurs.',
+			'hospitalRegistration.submit' => 'Créer un compte',
+			'hospitalRegistration.hospitalRequired' => 'Sélectionnez ou ajoutez votre hôpital pour continuer',
+			'hospitalHome.greeting' => ({required Object name}) => 'Bonjour, ${name}',
+			'hospitalHome.subtitle' => 'Gérez vos médecins et vos rendez-vous',
+			'hospitalHome.doctors' => 'Médecins',
+			'hospitalHome.inviteDoctor' => 'Inviter un médecin',
+			'hospitalHome.appointments' => 'Rendez-vous',
+			'hospitalHome.profile' => 'Profil',
+			'hospitalHome.pendingRequests' => ({required Object count}) => '${count} demande(s) en attente',
+			'hospitalDoctors.title' => 'Médecins',
+			'hospitalDoctors.tabConfirmed' => 'Confirmés',
+			'hospitalDoctors.tabRequests' => 'Demandes',
+			'hospitalDoctors.tabInvited' => 'Invités',
+			'hospitalDoctors.noConfirmedDoctors' => 'Aucun médecin confirmé pour l\'instant',
+			'hospitalDoctors.noRequests' => 'Aucune demande en attente',
+			'hospitalDoctors.noInvited' => 'Aucune invitation en attente',
+			'hospitalDoctors.approve' => 'Approuver',
+			'hospitalDoctors.reject' => 'Refuser',
+			'hospitalDoctors.remove' => 'Retirer',
+			'hospitalDoctors.removeConfirmTitle' => 'Retirer ce médecin ?',
+			'hospitalDoctors.removeConfirmMessage' => ({required Object name}) => '${name} ne sera plus affilié à votre hôpital. Cela n\'affecte pas son lieu de travail ni ses rendez-vous.',
+			'hospitalDoctors.requestedToJoin' => 'A demandé à rejoindre',
+			'hospitalDoctors.invitedAwaiting' => 'Invité — en attente de réponse',
+			'hospitalDoctors.editHours' => 'Modifier les horaires',
+			'hospitalInvite.title' => 'Inviter un médecin',
+			'hospitalInvite.searchHint' => 'Rechercher par nom ou spécialité…',
+			'hospitalInvite.noResultsFound' => 'Aucun médecin trouvé',
+			'hospitalInvite.invite' => 'Inviter',
+			'hospitalInvite.invited' => 'Invité',
+			'hospitalAppointments.title' => 'Rendez-vous',
+			'hospitalAppointments.empty' => 'Aucun rendez-vous pour l\'instant',
+			'hospitalProfile.title' => 'Profil de l\'hôpital',
+			'hospitalProfile.usageDoctors' => ({required Object count, required Object limit}) => '${count} sur ${limit} médecins',
+			'hospitalProfile.usageDoctorsUnlimited' => ({required Object count}) => '${count} médecins (illimité)',
+			'hospitalProfile.manageSubscription' => 'Gérer l\'abonnement',
+			'hospitalDoctorHours.title' => 'Horaires de travail',
+			'hospitalDoctorHours.selectWorkplace' => 'Sélectionner un lieu de travail',
+			'hospitalDoctorHours.saved' => 'Horaires enregistrés',
 			_ => null,
 		};
 	}

@@ -77,6 +77,14 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$payments$az payments = _Translations$payments$az._(_root);
 	@override late final _Translations$family$az family = _Translations$family$az._(_root);
 	@override late final _Translations$subscription$az subscription = _Translations$subscription$az._(_root);
+	@override late final _Translations$hospitalPicker$az hospitalPicker = _Translations$hospitalPicker$az._(_root);
+	@override late final _Translations$hospitalRegistration$az hospitalRegistration = _Translations$hospitalRegistration$az._(_root);
+	@override late final _Translations$hospitalHome$az hospitalHome = _Translations$hospitalHome$az._(_root);
+	@override late final _Translations$hospitalDoctors$az hospitalDoctors = _Translations$hospitalDoctors$az._(_root);
+	@override late final _Translations$hospitalInvite$az hospitalInvite = _Translations$hospitalInvite$az._(_root);
+	@override late final _Translations$hospitalAppointments$az hospitalAppointments = _Translations$hospitalAppointments$az._(_root);
+	@override late final _Translations$hospitalProfile$az hospitalProfile = _Translations$hospitalProfile$az._(_root);
+	@override late final _Translations$hospitalDoctorHours$az hospitalDoctorHours = _Translations$hospitalDoctorHours$az._(_root);
 }
 
 // Path: common
@@ -107,6 +115,7 @@ class _Translations$common$az extends Translations$common$en {
 	@override String get tryAgain => 'Zəhmət olmasa yenidən cəhd edin';
 	@override String get required => 'Tələb olunur';
 	@override String get noRatings => 'Hələ qiymət yoxdur';
+	@override String get hospital => 'Xəstəxana';
 }
 
 // Path: auth
@@ -1022,6 +1031,139 @@ class _Translations$subscription$az extends Translations$subscription$en {
 	@override String get featurePromoted => 'Axtarışda prioritet + «Peşəkar» nişanı';
 	@override String get renew => 'Yenilə';
 	@override String get subscribe => 'Abunə ol';
+	@override String get planNameHospitalBasic => 'Klinika';
+	@override String get planNameHospitalPro => 'Klinika Plus';
+	@override String featureDoctors({required Object count}) => '${count} həkimə qədər';
+	@override String get featureUnlimitedDoctors => 'Limitsiz həkim';
+	@override String get featureAdvancedStats => 'Ətraflı statistika';
+}
+
+// Path: hospitalPicker
+class _Translations$hospitalPicker$az extends Translations$hospitalPicker$en {
+	_Translations$hospitalPicker$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Xəstəxana seçin';
+	@override String get searchHint => 'Xəstəxananın adını axtarın…';
+	@override String get noResultsFound => 'Xəstəxana tapılmadı';
+	@override String get selectCityFirst => 'Əvvəlcə şəhəri seçin';
+	@override String addVariant({required Object name}) => '"${name}" əlavə et';
+	@override String get pendingReview => 'Yoxlanılır';
+}
+
+// Path: hospitalRegistration
+class _Translations$hospitalRegistration$az extends Translations$hospitalRegistration$en {
+	_Translations$hospitalRegistration$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Xəstəxana məlumatları';
+	@override String get subtitle => 'Şəhərinizi seçin, sonra xəstəxananızı siyahıdan tapın və ya əlavə edin.';
+	@override String get cityStep => '1. Şəhər';
+	@override String get hospitalStep => '2. Xəstəxana';
+	@override String get searchHint => 'Xəstəxananın adını axtarın…';
+	@override String get noResultsFound => 'Xəstəxana tapılmadı';
+	@override String get notFoundPrompt => 'Xəstəxananızı tapa bilmirsiniz?';
+	@override String get addManually => 'Əl ilə əlavə et';
+	@override String get useSearchInstead => 'Yenidən axtar';
+	@override String get newHospitalName => 'Xəstəxananın adı';
+	@override String get selectedPrefix => 'Seçildi:';
+	@override String get pendingReviewNotice => 'Yeni xəstəxanalar başqalarına görünməzdən əvvəl komandamız tərəfindən yoxlanılır.';
+	@override String get submit => 'Hesab yarat';
+	@override String get hospitalRequired => 'Davam etmək üçün xəstəxananızı seçin və ya əlavə edin';
+}
+
+// Path: hospitalHome
+class _Translations$hospitalHome$az extends Translations$hospitalHome$en {
+	_Translations$hospitalHome$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String greeting({required Object name}) => 'Salam, ${name}';
+	@override String get subtitle => 'Həkimlərinizi və qəbulları idarə edin';
+	@override String get doctors => 'Həkimlər';
+	@override String get inviteDoctor => 'Həkim dəvət et';
+	@override String get appointments => 'Qəbullar';
+	@override String get profile => 'Profil';
+	@override String pendingRequests({required Object count}) => '${count} müraciət gözləyir';
+}
+
+// Path: hospitalDoctors
+class _Translations$hospitalDoctors$az extends Translations$hospitalDoctors$en {
+	_Translations$hospitalDoctors$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Həkimlər';
+	@override String get tabConfirmed => 'Təsdiqlənmiş';
+	@override String get tabRequests => 'Müraciətlər';
+	@override String get tabInvited => 'Dəvət olunmuş';
+	@override String get noConfirmedDoctors => 'Hələ təsdiqlənmiş həkim yoxdur';
+	@override String get noRequests => 'Gözləyən müraciət yoxdur';
+	@override String get noInvited => 'Gözləyən dəvət yoxdur';
+	@override String get approve => 'Təsdiqlə';
+	@override String get reject => 'Rədd et';
+	@override String get remove => 'Sil';
+	@override String get removeConfirmTitle => 'Həkim silinsin?';
+	@override String removeConfirmMessage({required Object name}) => '${name} artıq xəstəxananızla əlaqəli olmayacaq. Bu, onun iş yerinə və qəbullarına təsir etməyəcək.';
+	@override String get requestedToJoin => 'Qoşulmaq üçün müraciət edib';
+	@override String get invitedAwaiting => 'Dəvət olunub — cavab gözlənilir';
+	@override String get editHours => 'Saatları dəyiş';
+}
+
+// Path: hospitalInvite
+class _Translations$hospitalInvite$az extends Translations$hospitalInvite$en {
+	_Translations$hospitalInvite$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Həkim dəvət et';
+	@override String get searchHint => 'Ad və ya ixtisas üzrə axtarın…';
+	@override String get noResultsFound => 'Həkim tapılmadı';
+	@override String get invite => 'Dəvət et';
+	@override String get invited => 'Dəvət olunub';
+}
+
+// Path: hospitalAppointments
+class _Translations$hospitalAppointments$az extends Translations$hospitalAppointments$en {
+	_Translations$hospitalAppointments$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Qəbullar';
+	@override String get empty => 'Hələ qəbul yoxdur';
+}
+
+// Path: hospitalProfile
+class _Translations$hospitalProfile$az extends Translations$hospitalProfile$en {
+	_Translations$hospitalProfile$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Xəstəxana profili';
+	@override String usageDoctors({required Object limit, required Object count}) => '${limit} həkimdən ${count}';
+	@override String usageDoctorsUnlimited({required Object count}) => '${count} həkim (limitsiz)';
+	@override String get manageSubscription => 'Abunəliyi idarə et';
+}
+
+// Path: hospitalDoctorHours
+class _Translations$hospitalDoctorHours$az extends Translations$hospitalDoctorHours$en {
+	_Translations$hospitalDoctorHours$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'İş saatları';
+	@override String get selectWorkplace => 'İş yerini seçin';
+	@override String get saved => 'Saatlar saxlanıldı';
 }
 
 // Path: doctorSearch.spec
@@ -1279,6 +1421,7 @@ extension on TranslationsAz {
 			'common.tryAgain' => 'Zəhmət olmasa yenidən cəhd edin',
 			'common.required' => 'Tələb olunur',
 			'common.noRatings' => 'Hələ qiymət yoxdur',
+			'common.hospital' => 'Xəstəxana',
 			'auth.login' => 'Daxil ol',
 			'auth.register' => 'Hesab yarat',
 			'auth.signIn' => 'Daxil ol',
@@ -1768,9 +1911,9 @@ extension on TranslationsAz {
 			'medications.times' => 'Qəbul vaxtları',
 			'medications.addTime' => 'Vaxt əlavə et',
 			'medications.daysOfWeek' => 'Həftənin günləri',
-			'medications.everyDay' => 'Hər gün',
 			_ => null,
 		} ?? switch (path) {
+			'medications.everyDay' => 'Hər gün',
 			'medications.startDate' => 'Başlama tarixi',
 			'medications.endDate' => 'Bitmə tarixi',
 			'medications.save' => 'Yadda saxla',
@@ -1917,6 +2060,67 @@ extension on TranslationsAz {
 			'subscription.featurePromoted' => 'Axtarışda prioritet + «Peşəkar» nişanı',
 			'subscription.renew' => 'Yenilə',
 			'subscription.subscribe' => 'Abunə ol',
+			'subscription.planNameHospitalBasic' => 'Klinika',
+			'subscription.planNameHospitalPro' => 'Klinika Plus',
+			'subscription.featureDoctors' => ({required Object count}) => '${count} həkimə qədər',
+			'subscription.featureUnlimitedDoctors' => 'Limitsiz həkim',
+			'subscription.featureAdvancedStats' => 'Ətraflı statistika',
+			'hospitalPicker.title' => 'Xəstəxana seçin',
+			'hospitalPicker.searchHint' => 'Xəstəxananın adını axtarın…',
+			'hospitalPicker.noResultsFound' => 'Xəstəxana tapılmadı',
+			'hospitalPicker.selectCityFirst' => 'Əvvəlcə şəhəri seçin',
+			'hospitalPicker.addVariant' => ({required Object name}) => '"${name}" əlavə et',
+			'hospitalPicker.pendingReview' => 'Yoxlanılır',
+			'hospitalRegistration.title' => 'Xəstəxana məlumatları',
+			'hospitalRegistration.subtitle' => 'Şəhərinizi seçin, sonra xəstəxananızı siyahıdan tapın və ya əlavə edin.',
+			'hospitalRegistration.cityStep' => '1. Şəhər',
+			'hospitalRegistration.hospitalStep' => '2. Xəstəxana',
+			'hospitalRegistration.searchHint' => 'Xəstəxananın adını axtarın…',
+			'hospitalRegistration.noResultsFound' => 'Xəstəxana tapılmadı',
+			'hospitalRegistration.notFoundPrompt' => 'Xəstəxananızı tapa bilmirsiniz?',
+			'hospitalRegistration.addManually' => 'Əl ilə əlavə et',
+			'hospitalRegistration.useSearchInstead' => 'Yenidən axtar',
+			'hospitalRegistration.newHospitalName' => 'Xəstəxananın adı',
+			'hospitalRegistration.selectedPrefix' => 'Seçildi:',
+			'hospitalRegistration.pendingReviewNotice' => 'Yeni xəstəxanalar başqalarına görünməzdən əvvəl komandamız tərəfindən yoxlanılır.',
+			'hospitalRegistration.submit' => 'Hesab yarat',
+			'hospitalRegistration.hospitalRequired' => 'Davam etmək üçün xəstəxananızı seçin və ya əlavə edin',
+			'hospitalHome.greeting' => ({required Object name}) => 'Salam, ${name}',
+			'hospitalHome.subtitle' => 'Həkimlərinizi və qəbulları idarə edin',
+			'hospitalHome.doctors' => 'Həkimlər',
+			'hospitalHome.inviteDoctor' => 'Həkim dəvət et',
+			'hospitalHome.appointments' => 'Qəbullar',
+			'hospitalHome.profile' => 'Profil',
+			'hospitalHome.pendingRequests' => ({required Object count}) => '${count} müraciət gözləyir',
+			'hospitalDoctors.title' => 'Həkimlər',
+			'hospitalDoctors.tabConfirmed' => 'Təsdiqlənmiş',
+			'hospitalDoctors.tabRequests' => 'Müraciətlər',
+			'hospitalDoctors.tabInvited' => 'Dəvət olunmuş',
+			'hospitalDoctors.noConfirmedDoctors' => 'Hələ təsdiqlənmiş həkim yoxdur',
+			'hospitalDoctors.noRequests' => 'Gözləyən müraciət yoxdur',
+			'hospitalDoctors.noInvited' => 'Gözləyən dəvət yoxdur',
+			'hospitalDoctors.approve' => 'Təsdiqlə',
+			'hospitalDoctors.reject' => 'Rədd et',
+			'hospitalDoctors.remove' => 'Sil',
+			'hospitalDoctors.removeConfirmTitle' => 'Həkim silinsin?',
+			'hospitalDoctors.removeConfirmMessage' => ({required Object name}) => '${name} artıq xəstəxananızla əlaqəli olmayacaq. Bu, onun iş yerinə və qəbullarına təsir etməyəcək.',
+			'hospitalDoctors.requestedToJoin' => 'Qoşulmaq üçün müraciət edib',
+			'hospitalDoctors.invitedAwaiting' => 'Dəvət olunub — cavab gözlənilir',
+			'hospitalDoctors.editHours' => 'Saatları dəyiş',
+			'hospitalInvite.title' => 'Həkim dəvət et',
+			'hospitalInvite.searchHint' => 'Ad və ya ixtisas üzrə axtarın…',
+			'hospitalInvite.noResultsFound' => 'Həkim tapılmadı',
+			'hospitalInvite.invite' => 'Dəvət et',
+			'hospitalInvite.invited' => 'Dəvət olunub',
+			'hospitalAppointments.title' => 'Qəbullar',
+			'hospitalAppointments.empty' => 'Hələ qəbul yoxdur',
+			'hospitalProfile.title' => 'Xəstəxana profili',
+			'hospitalProfile.usageDoctors' => ({required Object limit, required Object count}) => '${limit} həkimdən ${count}',
+			'hospitalProfile.usageDoctorsUnlimited' => ({required Object count}) => '${count} həkim (limitsiz)',
+			'hospitalProfile.manageSubscription' => 'Abunəliyi idarə et',
+			'hospitalDoctorHours.title' => 'İş saatları',
+			'hospitalDoctorHours.selectWorkplace' => 'İş yerini seçin',
+			'hospitalDoctorHours.saved' => 'Saatlar saxlanıldı',
 			_ => null,
 		};
 	}

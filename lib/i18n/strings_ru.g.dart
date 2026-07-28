@@ -77,6 +77,14 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$payments$ru payments = _Translations$payments$ru._(_root);
 	@override late final _Translations$family$ru family = _Translations$family$ru._(_root);
 	@override late final _Translations$subscription$ru subscription = _Translations$subscription$ru._(_root);
+	@override late final _Translations$hospitalPicker$ru hospitalPicker = _Translations$hospitalPicker$ru._(_root);
+	@override late final _Translations$hospitalRegistration$ru hospitalRegistration = _Translations$hospitalRegistration$ru._(_root);
+	@override late final _Translations$hospitalHome$ru hospitalHome = _Translations$hospitalHome$ru._(_root);
+	@override late final _Translations$hospitalDoctors$ru hospitalDoctors = _Translations$hospitalDoctors$ru._(_root);
+	@override late final _Translations$hospitalInvite$ru hospitalInvite = _Translations$hospitalInvite$ru._(_root);
+	@override late final _Translations$hospitalAppointments$ru hospitalAppointments = _Translations$hospitalAppointments$ru._(_root);
+	@override late final _Translations$hospitalProfile$ru hospitalProfile = _Translations$hospitalProfile$ru._(_root);
+	@override late final _Translations$hospitalDoctorHours$ru hospitalDoctorHours = _Translations$hospitalDoctorHours$ru._(_root);
 }
 
 // Path: common
@@ -107,6 +115,7 @@ class _Translations$common$ru extends Translations$common$en {
 	@override String get tryAgain => 'Повторите попытку';
 	@override String get required => 'Обязательно';
 	@override String get noRatings => 'Нет оценок';
+	@override String get hospital => 'Больница';
 }
 
 // Path: auth
@@ -1022,6 +1031,139 @@ class _Translations$subscription$ru extends Translations$subscription$en {
 	@override String get featurePromoted => 'Приоритет в поиске + бейдж «Peşəkar»';
 	@override String get renew => 'Продлить';
 	@override String get subscribe => 'Оформить подписку';
+	@override String get planNameHospitalBasic => 'Клиника';
+	@override String get planNameHospitalPro => 'Клиника Плюс';
+	@override String featureDoctors({required Object count}) => 'До ${count} врачей';
+	@override String get featureUnlimitedDoctors => 'Неограниченное количество врачей';
+	@override String get featureAdvancedStats => 'Расширенная статистика';
+}
+
+// Path: hospitalPicker
+class _Translations$hospitalPicker$ru extends Translations$hospitalPicker$en {
+	_Translations$hospitalPicker$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Выбор больницы';
+	@override String get searchHint => 'Поиск по названию…';
+	@override String get noResultsFound => 'Больницы не найдены';
+	@override String get selectCityFirst => 'Сначала выберите город';
+	@override String addVariant({required Object name}) => 'Добавить «${name}»';
+	@override String get pendingReview => 'На проверке';
+}
+
+// Path: hospitalRegistration
+class _Translations$hospitalRegistration$ru extends Translations$hospitalRegistration$en {
+	_Translations$hospitalRegistration$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Данные больницы';
+	@override String get subtitle => 'Выберите город, затем найдите свою больницу в списке или добавьте её.';
+	@override String get cityStep => '1. Город';
+	@override String get hospitalStep => '2. Больница';
+	@override String get searchHint => 'Поиск по названию…';
+	@override String get noResultsFound => 'Больницы не найдены';
+	@override String get notFoundPrompt => 'Не нашли свою больницу?';
+	@override String get addManually => 'Добавить вручную';
+	@override String get useSearchInstead => 'Искать снова';
+	@override String get newHospitalName => 'Название больницы';
+	@override String get selectedPrefix => 'Выбрано:';
+	@override String get pendingReviewNotice => 'Новые больницы проверяются нашей командой, прежде чем появиться у других пользователей.';
+	@override String get submit => 'Создать аккаунт';
+	@override String get hospitalRequired => 'Выберите или добавьте больницу, чтобы продолжить';
+}
+
+// Path: hospitalHome
+class _Translations$hospitalHome$ru extends Translations$hospitalHome$en {
+	_Translations$hospitalHome$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String greeting({required Object name}) => 'Здравствуйте, ${name}';
+	@override String get subtitle => 'Управляйте врачами и записями';
+	@override String get doctors => 'Врачи';
+	@override String get inviteDoctor => 'Пригласить врача';
+	@override String get appointments => 'Записи';
+	@override String get profile => 'Профиль';
+	@override String pendingRequests({required Object count}) => '${count} заявок ожидают решения';
+}
+
+// Path: hospitalDoctors
+class _Translations$hospitalDoctors$ru extends Translations$hospitalDoctors$en {
+	_Translations$hospitalDoctors$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Врачи';
+	@override String get tabConfirmed => 'Подтверждённые';
+	@override String get tabRequests => 'Заявки';
+	@override String get tabInvited => 'Приглашённые';
+	@override String get noConfirmedDoctors => 'Пока нет подтверждённых врачей';
+	@override String get noRequests => 'Нет ожидающих заявок';
+	@override String get noInvited => 'Нет ожидающих приглашений';
+	@override String get approve => 'Подтвердить';
+	@override String get reject => 'Отклонить';
+	@override String get remove => 'Удалить';
+	@override String get removeConfirmTitle => 'Удалить врача?';
+	@override String removeConfirmMessage({required Object name}) => '${name} больше не будет связан с вашей больницей. Это не повлияет на его место работы и записи.';
+	@override String get requestedToJoin => 'Запросил присоединение';
+	@override String get invitedAwaiting => 'Приглашён — ожидает ответа';
+	@override String get editHours => 'Изменить часы';
+}
+
+// Path: hospitalInvite
+class _Translations$hospitalInvite$ru extends Translations$hospitalInvite$en {
+	_Translations$hospitalInvite$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Пригласить врача';
+	@override String get searchHint => 'Поиск по имени или специализации…';
+	@override String get noResultsFound => 'Врачи не найдены';
+	@override String get invite => 'Пригласить';
+	@override String get invited => 'Приглашён';
+}
+
+// Path: hospitalAppointments
+class _Translations$hospitalAppointments$ru extends Translations$hospitalAppointments$en {
+	_Translations$hospitalAppointments$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Записи';
+	@override String get empty => 'Пока нет записей';
+}
+
+// Path: hospitalProfile
+class _Translations$hospitalProfile$ru extends Translations$hospitalProfile$en {
+	_Translations$hospitalProfile$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Профиль больницы';
+	@override String usageDoctors({required Object count, required Object limit}) => '${count} из ${limit} врачей';
+	@override String usageDoctorsUnlimited({required Object count}) => '${count} врачей (без ограничений)';
+	@override String get manageSubscription => 'Управление подпиской';
+}
+
+// Path: hospitalDoctorHours
+class _Translations$hospitalDoctorHours$ru extends Translations$hospitalDoctorHours$en {
+	_Translations$hospitalDoctorHours$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Часы работы';
+	@override String get selectWorkplace => 'Выберите место работы';
+	@override String get saved => 'Часы сохранены';
 }
 
 // Path: doctorSearch.spec
@@ -1279,6 +1421,7 @@ extension on TranslationsRu {
 			'common.tryAgain' => 'Повторите попытку',
 			'common.required' => 'Обязательно',
 			'common.noRatings' => 'Нет оценок',
+			'common.hospital' => 'Больница',
 			'auth.login' => 'Войти',
 			'auth.register' => 'Создать аккаунт',
 			'auth.signIn' => 'Войти',
@@ -1768,9 +1911,9 @@ extension on TranslationsRu {
 			'medications.times' => 'Время приёма',
 			'medications.addTime' => 'Добавить время',
 			'medications.daysOfWeek' => 'Дни недели',
-			'medications.everyDay' => 'Каждый день',
 			_ => null,
 		} ?? switch (path) {
+			'medications.everyDay' => 'Каждый день',
 			'medications.startDate' => 'Дата начала',
 			'medications.endDate' => 'Дата окончания',
 			'medications.save' => 'Сохранить',
@@ -1917,6 +2060,67 @@ extension on TranslationsRu {
 			'subscription.featurePromoted' => 'Приоритет в поиске + бейдж «Peşəkar»',
 			'subscription.renew' => 'Продлить',
 			'subscription.subscribe' => 'Оформить подписку',
+			'subscription.planNameHospitalBasic' => 'Клиника',
+			'subscription.planNameHospitalPro' => 'Клиника Плюс',
+			'subscription.featureDoctors' => ({required Object count}) => 'До ${count} врачей',
+			'subscription.featureUnlimitedDoctors' => 'Неограниченное количество врачей',
+			'subscription.featureAdvancedStats' => 'Расширенная статистика',
+			'hospitalPicker.title' => 'Выбор больницы',
+			'hospitalPicker.searchHint' => 'Поиск по названию…',
+			'hospitalPicker.noResultsFound' => 'Больницы не найдены',
+			'hospitalPicker.selectCityFirst' => 'Сначала выберите город',
+			'hospitalPicker.addVariant' => ({required Object name}) => 'Добавить «${name}»',
+			'hospitalPicker.pendingReview' => 'На проверке',
+			'hospitalRegistration.title' => 'Данные больницы',
+			'hospitalRegistration.subtitle' => 'Выберите город, затем найдите свою больницу в списке или добавьте её.',
+			'hospitalRegistration.cityStep' => '1. Город',
+			'hospitalRegistration.hospitalStep' => '2. Больница',
+			'hospitalRegistration.searchHint' => 'Поиск по названию…',
+			'hospitalRegistration.noResultsFound' => 'Больницы не найдены',
+			'hospitalRegistration.notFoundPrompt' => 'Не нашли свою больницу?',
+			'hospitalRegistration.addManually' => 'Добавить вручную',
+			'hospitalRegistration.useSearchInstead' => 'Искать снова',
+			'hospitalRegistration.newHospitalName' => 'Название больницы',
+			'hospitalRegistration.selectedPrefix' => 'Выбрано:',
+			'hospitalRegistration.pendingReviewNotice' => 'Новые больницы проверяются нашей командой, прежде чем появиться у других пользователей.',
+			'hospitalRegistration.submit' => 'Создать аккаунт',
+			'hospitalRegistration.hospitalRequired' => 'Выберите или добавьте больницу, чтобы продолжить',
+			'hospitalHome.greeting' => ({required Object name}) => 'Здравствуйте, ${name}',
+			'hospitalHome.subtitle' => 'Управляйте врачами и записями',
+			'hospitalHome.doctors' => 'Врачи',
+			'hospitalHome.inviteDoctor' => 'Пригласить врача',
+			'hospitalHome.appointments' => 'Записи',
+			'hospitalHome.profile' => 'Профиль',
+			'hospitalHome.pendingRequests' => ({required Object count}) => '${count} заявок ожидают решения',
+			'hospitalDoctors.title' => 'Врачи',
+			'hospitalDoctors.tabConfirmed' => 'Подтверждённые',
+			'hospitalDoctors.tabRequests' => 'Заявки',
+			'hospitalDoctors.tabInvited' => 'Приглашённые',
+			'hospitalDoctors.noConfirmedDoctors' => 'Пока нет подтверждённых врачей',
+			'hospitalDoctors.noRequests' => 'Нет ожидающих заявок',
+			'hospitalDoctors.noInvited' => 'Нет ожидающих приглашений',
+			'hospitalDoctors.approve' => 'Подтвердить',
+			'hospitalDoctors.reject' => 'Отклонить',
+			'hospitalDoctors.remove' => 'Удалить',
+			'hospitalDoctors.removeConfirmTitle' => 'Удалить врача?',
+			'hospitalDoctors.removeConfirmMessage' => ({required Object name}) => '${name} больше не будет связан с вашей больницей. Это не повлияет на его место работы и записи.',
+			'hospitalDoctors.requestedToJoin' => 'Запросил присоединение',
+			'hospitalDoctors.invitedAwaiting' => 'Приглашён — ожидает ответа',
+			'hospitalDoctors.editHours' => 'Изменить часы',
+			'hospitalInvite.title' => 'Пригласить врача',
+			'hospitalInvite.searchHint' => 'Поиск по имени или специализации…',
+			'hospitalInvite.noResultsFound' => 'Врачи не найдены',
+			'hospitalInvite.invite' => 'Пригласить',
+			'hospitalInvite.invited' => 'Приглашён',
+			'hospitalAppointments.title' => 'Записи',
+			'hospitalAppointments.empty' => 'Пока нет записей',
+			'hospitalProfile.title' => 'Профиль больницы',
+			'hospitalProfile.usageDoctors' => ({required Object count, required Object limit}) => '${count} из ${limit} врачей',
+			'hospitalProfile.usageDoctorsUnlimited' => ({required Object count}) => '${count} врачей (без ограничений)',
+			'hospitalProfile.manageSubscription' => 'Управление подпиской',
+			'hospitalDoctorHours.title' => 'Часы работы',
+			'hospitalDoctorHours.selectWorkplace' => 'Выберите место работы',
+			'hospitalDoctorHours.saved' => 'Часы сохранены',
 			_ => null,
 		};
 	}

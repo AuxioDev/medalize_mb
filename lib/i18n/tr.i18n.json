@@ -21,7 +21,8 @@
     "search": "Ara",
     "tryAgain": "Lütfen tekrar deneyin",
     "required": "Gerekli",
-    "noRatings": "Henüz değerlendirme yok"
+    "noRatings": "Henüz değerlendirme yok",
+    "hospital": "Hastane"
   },
   "auth": {
     "login": "Giriş Yap",
@@ -765,6 +766,83 @@
     "featureChat": "Hasta sohbeti",
     "featurePromoted": "Öncelikli sıralama + \"Peşəkar\" rozeti",
     "renew": "Yenile",
-    "subscribe": "Abone Ol"
+    "subscribe": "Abone Ol",
+    "planNameHospitalBasic": "Klinik",
+    "planNameHospitalPro": "Klinik Plus",
+    "featureDoctors": "$count doktora kadar",
+    "featureUnlimitedDoctors": "Sınırsız doktor",
+    "featureAdvancedStats": "Gelişmiş istatistikler"
+  },
+  "hospitalPicker": {
+    "title": "Hastane Seçin",
+    "searchHint": "Hastane adını arayın…",
+    "noResultsFound": "Hastane bulunamadı",
+    "selectCityFirst": "Önce şehir seçin",
+    "addVariant": "\"$name\" ekle",
+    "pendingReview": "İncelemede"
+  },
+  "hospitalRegistration": {
+    "title": "Hastane Bilgileri",
+    "subtitle": "Şehrinizi seçin, ardından hastanenizi listede bulun veya ekleyin.",
+    "cityStep": "1. Şehir",
+    "hospitalStep": "2. Hastane",
+    "searchHint": "Hastane adını arayın…",
+    "noResultsFound": "Hastane bulunamadı",
+    "notFoundPrompt": "Hastanenizi bulamıyor musunuz?",
+    "addManually": "Manuel olarak ekle",
+    "useSearchInstead": "Tekrar ara",
+    "newHospitalName": "Hastane adı",
+    "selectedPrefix": "Seçildi:",
+    "pendingReviewNotice": "Yeni hastaneler başkalarına görünmeden önce ekibimiz tarafından incelenir.",
+    "submit": "Hesap Oluştur",
+    "hospitalRequired": "Devam etmek için hastanenizi seçin veya ekleyin"
+  },
+  "hospitalHome": {
+    "greeting": "Merhaba, $name",
+    "subtitle": "Doktorlarınızı ve randevularınızı yönetin",
+    "doctors": "Doktorlar",
+    "inviteDoctor": "Doktor Davet Et",
+    "appointments": "Randevular",
+    "profile": "Profil",
+    "pendingRequests": "$count bekleyen talep"
+  },
+  "hospitalDoctors": {
+    "title": "Doktorlar",
+    "tabConfirmed": "Onaylı",
+    "tabRequests": "Talepler",
+    "tabInvited": "Davet Edilen",
+    "noConfirmedDoctors": "Henüz onaylı doktor yok",
+    "noRequests": "Bekleyen talep yok",
+    "noInvited": "Bekleyen davet yok",
+    "approve": "Onayla",
+    "reject": "Reddet",
+    "remove": "Kaldır",
+    "removeConfirmTitle": "Doktor kaldırılsın mı?",
+    "removeConfirmMessage": "$name artık hastanenizle ilişkili olmayacak. Bu, iş yerini ve randevularını etkilemez.",
+    "requestedToJoin": "Katılma talebinde bulundu",
+    "invitedAwaiting": "Davet edildi — yanıt bekleniyor",
+    "editHours": "Saatleri düzenle"
+  },
+  "hospitalInvite": {
+    "title": "Doktor Davet Et",
+    "searchHint": "İsme veya uzmanlığa göre arayın…",
+    "noResultsFound": "Doktor bulunamadı",
+    "invite": "Davet Et",
+    "invited": "Davet Edildi"
+  },
+  "hospitalAppointments": {
+    "title": "Randevular",
+    "empty": "Henüz randevu yok"
+  },
+  "hospitalProfile": {
+    "title": "Hastane Profili",
+    "usageDoctors": "$limit doktordan $count",
+    "usageDoctorsUnlimited": "$count doktor (sınırsız)",
+    "manageSubscription": "Aboneliği Yönet"
+  },
+  "hospitalDoctorHours": {
+    "title": "Çalışma Saatleri",
+    "selectWorkplace": "Bir iş yeri seçin",
+    "saved": "Saatler kaydedildi"
   }
 }

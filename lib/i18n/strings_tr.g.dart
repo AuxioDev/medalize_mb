@@ -77,6 +77,14 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$payments$tr payments = _Translations$payments$tr._(_root);
 	@override late final _Translations$family$tr family = _Translations$family$tr._(_root);
 	@override late final _Translations$subscription$tr subscription = _Translations$subscription$tr._(_root);
+	@override late final _Translations$hospitalPicker$tr hospitalPicker = _Translations$hospitalPicker$tr._(_root);
+	@override late final _Translations$hospitalRegistration$tr hospitalRegistration = _Translations$hospitalRegistration$tr._(_root);
+	@override late final _Translations$hospitalHome$tr hospitalHome = _Translations$hospitalHome$tr._(_root);
+	@override late final _Translations$hospitalDoctors$tr hospitalDoctors = _Translations$hospitalDoctors$tr._(_root);
+	@override late final _Translations$hospitalInvite$tr hospitalInvite = _Translations$hospitalInvite$tr._(_root);
+	@override late final _Translations$hospitalAppointments$tr hospitalAppointments = _Translations$hospitalAppointments$tr._(_root);
+	@override late final _Translations$hospitalProfile$tr hospitalProfile = _Translations$hospitalProfile$tr._(_root);
+	@override late final _Translations$hospitalDoctorHours$tr hospitalDoctorHours = _Translations$hospitalDoctorHours$tr._(_root);
 }
 
 // Path: common
@@ -107,6 +115,7 @@ class _Translations$common$tr extends Translations$common$en {
 	@override String get tryAgain => 'Lütfen tekrar deneyin';
 	@override String get required => 'Gerekli';
 	@override String get noRatings => 'Henüz değerlendirme yok';
+	@override String get hospital => 'Hastane';
 }
 
 // Path: auth
@@ -1022,6 +1031,139 @@ class _Translations$subscription$tr extends Translations$subscription$en {
 	@override String get featurePromoted => 'Öncelikli sıralama + "Peşəkar" rozeti';
 	@override String get renew => 'Yenile';
 	@override String get subscribe => 'Abone Ol';
+	@override String get planNameHospitalBasic => 'Klinik';
+	@override String get planNameHospitalPro => 'Klinik Plus';
+	@override String featureDoctors({required Object count}) => '${count} doktora kadar';
+	@override String get featureUnlimitedDoctors => 'Sınırsız doktor';
+	@override String get featureAdvancedStats => 'Gelişmiş istatistikler';
+}
+
+// Path: hospitalPicker
+class _Translations$hospitalPicker$tr extends Translations$hospitalPicker$en {
+	_Translations$hospitalPicker$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hastane Seçin';
+	@override String get searchHint => 'Hastane adını arayın…';
+	@override String get noResultsFound => 'Hastane bulunamadı';
+	@override String get selectCityFirst => 'Önce şehir seçin';
+	@override String addVariant({required Object name}) => '"${name}" ekle';
+	@override String get pendingReview => 'İncelemede';
+}
+
+// Path: hospitalRegistration
+class _Translations$hospitalRegistration$tr extends Translations$hospitalRegistration$en {
+	_Translations$hospitalRegistration$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hastane Bilgileri';
+	@override String get subtitle => 'Şehrinizi seçin, ardından hastanenizi listede bulun veya ekleyin.';
+	@override String get cityStep => '1. Şehir';
+	@override String get hospitalStep => '2. Hastane';
+	@override String get searchHint => 'Hastane adını arayın…';
+	@override String get noResultsFound => 'Hastane bulunamadı';
+	@override String get notFoundPrompt => 'Hastanenizi bulamıyor musunuz?';
+	@override String get addManually => 'Manuel olarak ekle';
+	@override String get useSearchInstead => 'Tekrar ara';
+	@override String get newHospitalName => 'Hastane adı';
+	@override String get selectedPrefix => 'Seçildi:';
+	@override String get pendingReviewNotice => 'Yeni hastaneler başkalarına görünmeden önce ekibimiz tarafından incelenir.';
+	@override String get submit => 'Hesap Oluştur';
+	@override String get hospitalRequired => 'Devam etmek için hastanenizi seçin veya ekleyin';
+}
+
+// Path: hospitalHome
+class _Translations$hospitalHome$tr extends Translations$hospitalHome$en {
+	_Translations$hospitalHome$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String greeting({required Object name}) => 'Merhaba, ${name}';
+	@override String get subtitle => 'Doktorlarınızı ve randevularınızı yönetin';
+	@override String get doctors => 'Doktorlar';
+	@override String get inviteDoctor => 'Doktor Davet Et';
+	@override String get appointments => 'Randevular';
+	@override String get profile => 'Profil';
+	@override String pendingRequests({required Object count}) => '${count} bekleyen talep';
+}
+
+// Path: hospitalDoctors
+class _Translations$hospitalDoctors$tr extends Translations$hospitalDoctors$en {
+	_Translations$hospitalDoctors$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Doktorlar';
+	@override String get tabConfirmed => 'Onaylı';
+	@override String get tabRequests => 'Talepler';
+	@override String get tabInvited => 'Davet Edilen';
+	@override String get noConfirmedDoctors => 'Henüz onaylı doktor yok';
+	@override String get noRequests => 'Bekleyen talep yok';
+	@override String get noInvited => 'Bekleyen davet yok';
+	@override String get approve => 'Onayla';
+	@override String get reject => 'Reddet';
+	@override String get remove => 'Kaldır';
+	@override String get removeConfirmTitle => 'Doktor kaldırılsın mı?';
+	@override String removeConfirmMessage({required Object name}) => '${name} artık hastanenizle ilişkili olmayacak. Bu, iş yerini ve randevularını etkilemez.';
+	@override String get requestedToJoin => 'Katılma talebinde bulundu';
+	@override String get invitedAwaiting => 'Davet edildi — yanıt bekleniyor';
+	@override String get editHours => 'Saatleri düzenle';
+}
+
+// Path: hospitalInvite
+class _Translations$hospitalInvite$tr extends Translations$hospitalInvite$en {
+	_Translations$hospitalInvite$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Doktor Davet Et';
+	@override String get searchHint => 'İsme veya uzmanlığa göre arayın…';
+	@override String get noResultsFound => 'Doktor bulunamadı';
+	@override String get invite => 'Davet Et';
+	@override String get invited => 'Davet Edildi';
+}
+
+// Path: hospitalAppointments
+class _Translations$hospitalAppointments$tr extends Translations$hospitalAppointments$en {
+	_Translations$hospitalAppointments$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Randevular';
+	@override String get empty => 'Henüz randevu yok';
+}
+
+// Path: hospitalProfile
+class _Translations$hospitalProfile$tr extends Translations$hospitalProfile$en {
+	_Translations$hospitalProfile$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hastane Profili';
+	@override String usageDoctors({required Object limit, required Object count}) => '${limit} doktordan ${count}';
+	@override String usageDoctorsUnlimited({required Object count}) => '${count} doktor (sınırsız)';
+	@override String get manageSubscription => 'Aboneliği Yönet';
+}
+
+// Path: hospitalDoctorHours
+class _Translations$hospitalDoctorHours$tr extends Translations$hospitalDoctorHours$en {
+	_Translations$hospitalDoctorHours$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Çalışma Saatleri';
+	@override String get selectWorkplace => 'Bir iş yeri seçin';
+	@override String get saved => 'Saatler kaydedildi';
 }
 
 // Path: doctorSearch.spec
@@ -1279,6 +1421,7 @@ extension on TranslationsTr {
 			'common.tryAgain' => 'Lütfen tekrar deneyin',
 			'common.required' => 'Gerekli',
 			'common.noRatings' => 'Henüz değerlendirme yok',
+			'common.hospital' => 'Hastane',
 			'auth.login' => 'Giriş Yap',
 			'auth.register' => 'Hesap Oluştur',
 			'auth.signIn' => 'Giriş Yap',
@@ -1768,9 +1911,9 @@ extension on TranslationsTr {
 			'medications.times' => 'Alım Saatleri',
 			'medications.addTime' => 'Saat Ekle',
 			'medications.daysOfWeek' => 'Haftanın Günleri',
-			'medications.everyDay' => 'Her gün',
 			_ => null,
 		} ?? switch (path) {
+			'medications.everyDay' => 'Her gün',
 			'medications.startDate' => 'Başlangıç Tarihi',
 			'medications.endDate' => 'Bitiş Tarihi',
 			'medications.save' => 'Kaydet',
@@ -1917,6 +2060,67 @@ extension on TranslationsTr {
 			'subscription.featurePromoted' => 'Öncelikli sıralama + "Peşəkar" rozeti',
 			'subscription.renew' => 'Yenile',
 			'subscription.subscribe' => 'Abone Ol',
+			'subscription.planNameHospitalBasic' => 'Klinik',
+			'subscription.planNameHospitalPro' => 'Klinik Plus',
+			'subscription.featureDoctors' => ({required Object count}) => '${count} doktora kadar',
+			'subscription.featureUnlimitedDoctors' => 'Sınırsız doktor',
+			'subscription.featureAdvancedStats' => 'Gelişmiş istatistikler',
+			'hospitalPicker.title' => 'Hastane Seçin',
+			'hospitalPicker.searchHint' => 'Hastane adını arayın…',
+			'hospitalPicker.noResultsFound' => 'Hastane bulunamadı',
+			'hospitalPicker.selectCityFirst' => 'Önce şehir seçin',
+			'hospitalPicker.addVariant' => ({required Object name}) => '"${name}" ekle',
+			'hospitalPicker.pendingReview' => 'İncelemede',
+			'hospitalRegistration.title' => 'Hastane Bilgileri',
+			'hospitalRegistration.subtitle' => 'Şehrinizi seçin, ardından hastanenizi listede bulun veya ekleyin.',
+			'hospitalRegistration.cityStep' => '1. Şehir',
+			'hospitalRegistration.hospitalStep' => '2. Hastane',
+			'hospitalRegistration.searchHint' => 'Hastane adını arayın…',
+			'hospitalRegistration.noResultsFound' => 'Hastane bulunamadı',
+			'hospitalRegistration.notFoundPrompt' => 'Hastanenizi bulamıyor musunuz?',
+			'hospitalRegistration.addManually' => 'Manuel olarak ekle',
+			'hospitalRegistration.useSearchInstead' => 'Tekrar ara',
+			'hospitalRegistration.newHospitalName' => 'Hastane adı',
+			'hospitalRegistration.selectedPrefix' => 'Seçildi:',
+			'hospitalRegistration.pendingReviewNotice' => 'Yeni hastaneler başkalarına görünmeden önce ekibimiz tarafından incelenir.',
+			'hospitalRegistration.submit' => 'Hesap Oluştur',
+			'hospitalRegistration.hospitalRequired' => 'Devam etmek için hastanenizi seçin veya ekleyin',
+			'hospitalHome.greeting' => ({required Object name}) => 'Merhaba, ${name}',
+			'hospitalHome.subtitle' => 'Doktorlarınızı ve randevularınızı yönetin',
+			'hospitalHome.doctors' => 'Doktorlar',
+			'hospitalHome.inviteDoctor' => 'Doktor Davet Et',
+			'hospitalHome.appointments' => 'Randevular',
+			'hospitalHome.profile' => 'Profil',
+			'hospitalHome.pendingRequests' => ({required Object count}) => '${count} bekleyen talep',
+			'hospitalDoctors.title' => 'Doktorlar',
+			'hospitalDoctors.tabConfirmed' => 'Onaylı',
+			'hospitalDoctors.tabRequests' => 'Talepler',
+			'hospitalDoctors.tabInvited' => 'Davet Edilen',
+			'hospitalDoctors.noConfirmedDoctors' => 'Henüz onaylı doktor yok',
+			'hospitalDoctors.noRequests' => 'Bekleyen talep yok',
+			'hospitalDoctors.noInvited' => 'Bekleyen davet yok',
+			'hospitalDoctors.approve' => 'Onayla',
+			'hospitalDoctors.reject' => 'Reddet',
+			'hospitalDoctors.remove' => 'Kaldır',
+			'hospitalDoctors.removeConfirmTitle' => 'Doktor kaldırılsın mı?',
+			'hospitalDoctors.removeConfirmMessage' => ({required Object name}) => '${name} artık hastanenizle ilişkili olmayacak. Bu, iş yerini ve randevularını etkilemez.',
+			'hospitalDoctors.requestedToJoin' => 'Katılma talebinde bulundu',
+			'hospitalDoctors.invitedAwaiting' => 'Davet edildi — yanıt bekleniyor',
+			'hospitalDoctors.editHours' => 'Saatleri düzenle',
+			'hospitalInvite.title' => 'Doktor Davet Et',
+			'hospitalInvite.searchHint' => 'İsme veya uzmanlığa göre arayın…',
+			'hospitalInvite.noResultsFound' => 'Doktor bulunamadı',
+			'hospitalInvite.invite' => 'Davet Et',
+			'hospitalInvite.invited' => 'Davet Edildi',
+			'hospitalAppointments.title' => 'Randevular',
+			'hospitalAppointments.empty' => 'Henüz randevu yok',
+			'hospitalProfile.title' => 'Hastane Profili',
+			'hospitalProfile.usageDoctors' => ({required Object limit, required Object count}) => '${limit} doktordan ${count}',
+			'hospitalProfile.usageDoctorsUnlimited' => ({required Object count}) => '${count} doktor (sınırsız)',
+			'hospitalProfile.manageSubscription' => 'Aboneliği Yönet',
+			'hospitalDoctorHours.title' => 'Çalışma Saatleri',
+			'hospitalDoctorHours.selectWorkplace' => 'Bir iş yeri seçin',
+			'hospitalDoctorHours.saved' => 'Saatler kaydedildi',
 			_ => null,
 		};
 	}
