@@ -744,6 +744,8 @@
   },
   "subscription": {
     "title": "订阅",
+    "planNameBasic": "入门版",
+    "planNamePro": "专业版",
     "couldNotLoad": "无法加载您的订阅信息。",
     "nowActive": "您的订阅现已激活！",
     "unavailable": "订阅功能暂时不可用，请稍后再试。",

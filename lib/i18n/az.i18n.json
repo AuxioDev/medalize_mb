@@ -744,6 +744,8 @@
   },
   "subscription": {
     "title": "Abunəlik",
+    "planNameBasic": "Başlanğıc",
+    "planNamePro": "Peşəkar",
     "couldNotLoad": "Abunəlik məlumatı yüklənmədi.",
     "nowActive": "Abunəliyiniz aktivləşdirildi!",
     "unavailable": "Abunəlik hazırda əlçatan deyil. Zəhmət olmasa sonra yenidən cəhd edin.",

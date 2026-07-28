@@ -1000,6 +1000,8 @@ class _Translations$subscription$zh extends Translations$subscription$en {
 
 	// Translations
 	@override String get title => '订阅';
+	@override String get planNameBasic => '入门版';
+	@override String get planNamePro => '专业版';
 	@override String get couldNotLoad => '无法加载您的订阅信息。';
 	@override String get nowActive => '您的订阅现已激活！';
 	@override String get unavailable => '订阅功能暂时不可用，请稍后再试。';
@@ -1893,6 +1895,8 @@ extension on TranslationsZh {
 			'family.ageYears' => ({required Object age}) => '${age} 岁',
 			'family.bookedByLabel' => ({required Object name}) => '预约人：${name}',
 			'subscription.title' => '订阅',
+			'subscription.planNameBasic' => '入门版',
+			'subscription.planNamePro' => '专业版',
 			'subscription.couldNotLoad' => '无法加载您的订阅信息。',
 			'subscription.nowActive' => '您的订阅现已激活！',
 			'subscription.unavailable' => '订阅功能暂时不可用，请稍后再试。',

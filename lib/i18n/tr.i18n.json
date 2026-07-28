@@ -744,6 +744,8 @@
   },
   "subscription": {
     "title": "Abonelik",
+    "planNameBasic": "Başlangıç",
+    "planNamePro": "Profesyonel",
     "couldNotLoad": "Abonelik bilgileri yüklenemedi.",
     "nowActive": "Aboneliğiniz artık aktif!",
     "unavailable": "Abonelik şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.",

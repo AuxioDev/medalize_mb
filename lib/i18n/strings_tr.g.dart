@@ -1000,6 +1000,8 @@ class _Translations$subscription$tr extends Translations$subscription$en {
 
 	// Translations
 	@override String get title => 'Abonelik';
+	@override String get planNameBasic => 'Başlangıç';
+	@override String get planNamePro => 'Profesyonel';
 	@override String get couldNotLoad => 'Abonelik bilgileri yüklenemedi.';
 	@override String get nowActive => 'Aboneliğiniz artık aktif!';
 	@override String get unavailable => 'Abonelik şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.';
@@ -1893,6 +1895,8 @@ extension on TranslationsTr {
 			'family.ageYears' => ({required Object age}) => '${age} yaşında',
 			'family.bookedByLabel' => ({required Object name}) => 'Randevuyu alan: ${name}',
 			'subscription.title' => 'Abonelik',
+			'subscription.planNameBasic' => 'Başlangıç',
+			'subscription.planNamePro' => 'Profesyonel',
 			'subscription.couldNotLoad' => 'Abonelik bilgileri yüklenemedi.',
 			'subscription.nowActive' => 'Aboneliğiniz artık aktif!',
 			'subscription.unavailable' => 'Abonelik şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',

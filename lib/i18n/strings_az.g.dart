@@ -1000,6 +1000,8 @@ class _Translations$subscription$az extends Translations$subscription$en {
 
 	// Translations
 	@override String get title => 'Abunəlik';
+	@override String get planNameBasic => 'Başlanğıc';
+	@override String get planNamePro => 'Peşəkar';
 	@override String get couldNotLoad => 'Abunəlik məlumatı yüklənmədi.';
 	@override String get nowActive => 'Abunəliyiniz aktivləşdirildi!';
 	@override String get unavailable => 'Abunəlik hazırda əlçatan deyil. Zəhmət olmasa sonra yenidən cəhd edin.';
@@ -1893,6 +1895,8 @@ extension on TranslationsAz {
 			'family.ageYears' => ({required Object age}) => '${age} yaşında',
 			'family.bookedByLabel' => ({required Object name}) => 'Qeyd edən: ${name}',
 			'subscription.title' => 'Abunəlik',
+			'subscription.planNameBasic' => 'Başlanğıc',
+			'subscription.planNamePro' => 'Peşəkar',
 			'subscription.couldNotLoad' => 'Abunəlik məlumatı yüklənmədi.',
 			'subscription.nowActive' => 'Abunəliyiniz aktivləşdirildi!',
 			'subscription.unavailable' => 'Abunəlik hazırda əlçatan deyil. Zəhmət olmasa sonra yenidən cəhd edin.',

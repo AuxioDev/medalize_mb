@@ -256,7 +256,7 @@ class _PlanCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(plan.name,
+                child: Text(_planDisplayName(context, plan.plan),
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium
@@ -318,6 +318,20 @@ class _PlanCard extends StatelessWidget {
     );
   }
 }
+
+/// Localizes the tier name for display — the backend's `plan.name` field
+/// (apps.subscriptions.plans.PLAN_NAMES) is always the Azerbaijani brand
+/// name ("Başlanğıc"/"Peşəkar"), since it's also baked into notification
+/// copy and Payriff's checkout description where a single canonical name is
+/// wanted. The paywall screen itself localizes it per viewer language;
+/// falls back to the raw backend name for a plan code the client doesn't
+/// recognize yet, so a future third tier degrades gracefully instead of
+/// showing a blank string.
+String _planDisplayName(BuildContext context, String planCode) => switch (planCode) {
+      SubscriptionPlanModel.basic => context.t.subscription.planNameBasic,
+      SubscriptionPlanModel.pro => context.t.subscription.planNamePro,
+      _ => planCode,
+    };
 
 class _FeatureRow extends StatelessWidget {
   const _FeatureRow({required this.included, required this.label});

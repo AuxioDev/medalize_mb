@@ -744,6 +744,8 @@
   },
   "subscription": {
     "title": "Subscription",
+    "planNameBasic": "Starter",
+    "planNamePro": "Professional",
     "couldNotLoad": "Couldn't load your subscription.",
     "nowActive": "Your subscription is now active!",
     "unavailable": "Subscriptions aren't available right now. Please try again later.",

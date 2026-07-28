@@ -2182,6 +2182,12 @@ class Translations$subscription$en {
 	/// en: 'Subscription'
 	String get title => 'Subscription';
 
+	/// en: 'Starter'
+	String get planNameBasic => 'Starter';
+
+	/// en: 'Professional'
+	String get planNamePro => 'Professional';
+
 	/// en: 'Couldn't load your subscription.'
 	String get couldNotLoad => 'Couldn\'t load your subscription.';
 
@@ -3210,6 +3216,8 @@ extension on Translations {
 			'family.ageYears' => ({required Object age}) => '${age} years old',
 			'family.bookedByLabel' => ({required Object name}) => 'Booked by ${name}',
 			'subscription.title' => 'Subscription',
+			'subscription.planNameBasic' => 'Starter',
+			'subscription.planNamePro' => 'Professional',
 			'subscription.couldNotLoad' => 'Couldn\'t load your subscription.',
 			'subscription.nowActive' => 'Your subscription is now active!',
 			'subscription.unavailable' => 'Subscriptions aren\'t available right now. Please try again later.',

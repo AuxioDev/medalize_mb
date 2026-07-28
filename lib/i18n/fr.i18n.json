@@ -744,6 +744,8 @@
   },
   "subscription": {
     "title": "Abonnement",
+    "planNameBasic": "Débutant",
+    "planNamePro": "Professionnel",
     "couldNotLoad": "Impossible de charger votre abonnement.",
     "nowActive": "Votre abonnement est maintenant actif !",
     "unavailable": "Les abonnements ne sont pas disponibles pour le moment. Veuillez réessayer plus tard.",

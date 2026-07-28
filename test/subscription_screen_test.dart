@@ -136,8 +136,11 @@ void main() {
     await _pump(tester, repo);
 
     expect(tester.takeException(), isNull);
-    expect(find.text('Başlanğıc'), findsOneWidget);
-    expect(find.text('Peşəkar'), findsOneWidget);
+    // Plan names are localized client-side (Starter/Professional in the
+    // default test locale), not the raw Azerbaijani brand name the backend
+    // sends in `plan.name` — see _planDisplayName in subscription_screen.dart.
+    expect(find.text('Starter'), findsOneWidget);
+    expect(find.text('Professional'), findsOneWidget);
     expect(find.text('19.99 AZN'), findsOneWidget);
     expect(find.text('39.99 AZN'), findsOneWidget);
     expect(find.textContaining('Free trial'), findsOneWidget);

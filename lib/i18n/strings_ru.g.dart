@@ -1000,6 +1000,8 @@ class _Translations$subscription$ru extends Translations$subscription$en {
 
 	// Translations
 	@override String get title => 'Подписка';
+	@override String get planNameBasic => 'Стартовый';
+	@override String get planNamePro => 'Профессиональный';
 	@override String get couldNotLoad => 'Не удалось загрузить данные подписки.';
 	@override String get nowActive => 'Ваша подписка активирована!';
 	@override String get unavailable => 'Подписки временно недоступны. Попробуйте позже.';
@@ -1893,6 +1895,8 @@ extension on TranslationsRu {
 			'family.ageYears' => ({required Object age}) => '${age} лет',
 			'family.bookedByLabel' => ({required Object name}) => 'Записал(а) ${name}',
 			'subscription.title' => 'Подписка',
+			'subscription.planNameBasic' => 'Стартовый',
+			'subscription.planNamePro' => 'Профессиональный',
 			'subscription.couldNotLoad' => 'Не удалось загрузить данные подписки.',
 			'subscription.nowActive' => 'Ваша подписка активирована!',
 			'subscription.unavailable' => 'Подписки временно недоступны. Попробуйте позже.',

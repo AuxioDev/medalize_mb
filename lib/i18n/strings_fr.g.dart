@@ -1000,6 +1000,8 @@ class _Translations$subscription$fr extends Translations$subscription$en {
 
 	// Translations
 	@override String get title => 'Abonnement';
+	@override String get planNameBasic => 'Débutant';
+	@override String get planNamePro => 'Professionnel';
 	@override String get couldNotLoad => 'Impossible de charger votre abonnement.';
 	@override String get nowActive => 'Votre abonnement est maintenant actif !';
 	@override String get unavailable => 'Les abonnements ne sont pas disponibles pour le moment. Veuillez réessayer plus tard.';
@@ -1893,6 +1895,8 @@ extension on TranslationsFr {
 			'family.ageYears' => ({required Object age}) => '${age} ans',
 			'family.bookedByLabel' => ({required Object name}) => 'Pris par ${name}',
 			'subscription.title' => 'Abonnement',
+			'subscription.planNameBasic' => 'Débutant',
+			'subscription.planNamePro' => 'Professionnel',
 			'subscription.couldNotLoad' => 'Impossible de charger votre abonnement.',
 			'subscription.nowActive' => 'Votre abonnement est maintenant actif !',
 			'subscription.unavailable' => 'Les abonnements ne sont pas disponibles pour le moment. Veuillez réessayer plus tard.',
