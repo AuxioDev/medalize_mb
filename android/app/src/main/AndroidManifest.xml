@@ -40,6 +40,20 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <!-- Lets the payment-return page (apps.payments.views.
+                 PayriffReturnView on the backend) bounce the external
+                 browser straight back into the app after checkout, instead
+                 of leaving the user to switch back manually. No Dart-side
+                 handling needed: opening this intent alone brings the app
+                 to the foreground, which already triggers the existing
+                 AppLifecycleState.resumed-based payment/subscription status
+                 recheck in PaymentScreen/SubscriptionScreen. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="medalize"/>
+            </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
