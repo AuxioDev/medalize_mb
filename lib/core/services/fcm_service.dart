@@ -139,6 +139,19 @@ class FcmService {
           : '/patient/messages/$threadId';
       // ignore: use_build_context_synchronously
       GoRouter.of(context).push(path);
+    } else if (type == 'hospital') {
+      // Covers every hospital<->doctor affiliation event (invite received,
+      // a doctor's request confirmed, removed, etc. — see
+      // apps.notifications.tasks.send_hospital_notification, which always
+      // tags its push with this one type regardless of which template
+      // fired). Route by role: a doctor lands on their own invites/requests
+      // list, a hospital lands on its dashboard's doctors screen.
+      final role = await _storage.getUserRole();
+      final context = navigatorKey.currentContext;
+      if (context == null) return;
+      final path = role == 'hospital' ? '/hospital/doctors' : '/doctor/hospital-links';
+      // ignore: use_build_context_synchronously
+      GoRouter.of(context).push(path);
     } else {
       _navigateToNotifications();
     }

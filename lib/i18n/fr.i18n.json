@@ -844,5 +844,19 @@
     "title": "Horaires de travail",
     "selectWorkplace": "Sélectionner un lieu de travail",
     "saved": "Horaires enregistrés"
+  },
+  "doctorHospitals": {
+    "title": "Mes hôpitaux",
+    "tabInvitations": "Invitations",
+    "tabRequests": "Demandes",
+    "tabConfirmed": "Hôpitaux",
+    "noInvitations": "Aucune invitation en attente",
+    "noRequests": "Aucune demande en attente",
+    "noConfirmed": "Vous n'êtes affilié à aucun hôpital pour l'instant",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "cancelRequest": "Annuler la demande",
+    "invitedYouToJoin": "Vous a invité à le rejoindre",
+    "awaitingApproval": "En attente de l'approbation de l'hôpital"
   }
 }

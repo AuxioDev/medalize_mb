@@ -85,6 +85,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalAppointments$ru hospitalAppointments = _Translations$hospitalAppointments$ru._(_root);
 	@override late final _Translations$hospitalProfile$ru hospitalProfile = _Translations$hospitalProfile$ru._(_root);
 	@override late final _Translations$hospitalDoctorHours$ru hospitalDoctorHours = _Translations$hospitalDoctorHours$ru._(_root);
+	@override late final _Translations$doctorHospitals$ru doctorHospitals = _Translations$doctorHospitals$ru._(_root);
 }
 
 // Path: common
@@ -1166,6 +1167,27 @@ class _Translations$hospitalDoctorHours$ru extends Translations$hospitalDoctorHo
 	@override String get saved => 'Часы сохранены';
 }
 
+// Path: doctorHospitals
+class _Translations$doctorHospitals$ru extends Translations$doctorHospitals$en {
+	_Translations$doctorHospitals$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Мои больницы';
+	@override String get tabInvitations => 'Приглашения';
+	@override String get tabRequests => 'Заявки';
+	@override String get tabConfirmed => 'Больницы';
+	@override String get noInvitations => 'Нет ожидающих приглашений';
+	@override String get noRequests => 'Нет ожидающих заявок';
+	@override String get noConfirmed => 'Вы пока не связаны ни с одной больницей';
+	@override String get accept => 'Принять';
+	@override String get decline => 'Отклонить';
+	@override String get cancelRequest => 'Отменить заявку';
+	@override String get invitedYouToJoin => 'Пригласила вас присоединиться';
+	@override String get awaitingApproval => 'Ожидает подтверждения больницы';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -2121,6 +2143,18 @@ extension on TranslationsRu {
 			'hospitalDoctorHours.title' => 'Часы работы',
 			'hospitalDoctorHours.selectWorkplace' => 'Выберите место работы',
 			'hospitalDoctorHours.saved' => 'Часы сохранены',
+			'doctorHospitals.title' => 'Мои больницы',
+			'doctorHospitals.tabInvitations' => 'Приглашения',
+			'doctorHospitals.tabRequests' => 'Заявки',
+			'doctorHospitals.tabConfirmed' => 'Больницы',
+			'doctorHospitals.noInvitations' => 'Нет ожидающих приглашений',
+			'doctorHospitals.noRequests' => 'Нет ожидающих заявок',
+			'doctorHospitals.noConfirmed' => 'Вы пока не связаны ни с одной больницей',
+			'doctorHospitals.accept' => 'Принять',
+			'doctorHospitals.decline' => 'Отклонить',
+			'doctorHospitals.cancelRequest' => 'Отменить заявку',
+			'doctorHospitals.invitedYouToJoin' => 'Пригласила вас присоединиться',
+			'doctorHospitals.awaitingApproval' => 'Ожидает подтверждения больницы',
 			_ => null,
 		};
 	}

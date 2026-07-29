@@ -844,5 +844,19 @@
     "title": "Çalışma Saatleri",
     "selectWorkplace": "Bir iş yeri seçin",
     "saved": "Saatler kaydedildi"
+  },
+  "doctorHospitals": {
+    "title": "Hastanelerim",
+    "tabInvitations": "Davetler",
+    "tabRequests": "Talepler",
+    "tabConfirmed": "Hastaneler",
+    "noInvitations": "Bekleyen davet yok",
+    "noRequests": "Bekleyen talep yok",
+    "noConfirmed": "Henüz herhangi bir hastaneyle ilişkiniz yok",
+    "accept": "Kabul et",
+    "decline": "Reddet",
+    "cancelRequest": "Talebi iptal et",
+    "invitedYouToJoin": "Sizi katılmaya davet etti",
+    "awaitingApproval": "Hastane onayı bekleniyor"
   }
 }

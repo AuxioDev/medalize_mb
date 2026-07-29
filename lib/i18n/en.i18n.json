@@ -844,5 +844,19 @@
     "title": "Working Hours",
     "selectWorkplace": "Select a workplace",
     "saved": "Hours saved"
+  },
+  "doctorHospitals": {
+    "title": "My Hospitals",
+    "tabInvitations": "Invitations",
+    "tabRequests": "Requests",
+    "tabConfirmed": "Hospitals",
+    "noInvitations": "No pending invitations",
+    "noRequests": "No pending requests",
+    "noConfirmed": "You're not affiliated with any hospital yet",
+    "accept": "Accept",
+    "decline": "Decline",
+    "cancelRequest": "Cancel request",
+    "invitedYouToJoin": "Invited you to join",
+    "awaitingApproval": "Awaiting hospital approval"
   }
 }

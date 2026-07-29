@@ -844,5 +844,19 @@
     "title": "Часы работы",
     "selectWorkplace": "Выберите место работы",
     "saved": "Часы сохранены"
+  },
+  "doctorHospitals": {
+    "title": "Мои больницы",
+    "tabInvitations": "Приглашения",
+    "tabRequests": "Заявки",
+    "tabConfirmed": "Больницы",
+    "noInvitations": "Нет ожидающих приглашений",
+    "noRequests": "Нет ожидающих заявок",
+    "noConfirmed": "Вы пока не связаны ни с одной больницей",
+    "accept": "Принять",
+    "decline": "Отклонить",
+    "cancelRequest": "Отменить заявку",
+    "invitedYouToJoin": "Пригласила вас присоединиться",
+    "awaitingApproval": "Ожидает подтверждения больницы"
   }
 }

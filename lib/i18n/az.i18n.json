@@ -844,5 +844,19 @@
     "title": "İş saatları",
     "selectWorkplace": "İş yerini seçin",
     "saved": "Saatlar saxlanıldı"
+  },
+  "doctorHospitals": {
+    "title": "Xəstəxanalarım",
+    "tabInvitations": "Dəvətlər",
+    "tabRequests": "Müraciətlər",
+    "tabConfirmed": "Xəstəxanalar",
+    "noInvitations": "Gözləyən dəvət yoxdur",
+    "noRequests": "Gözləyən müraciət yoxdur",
+    "noConfirmed": "Hələ heç bir xəstəxana ilə əlaqəniz yoxdur",
+    "accept": "Qəbul et",
+    "decline": "Rədd et",
+    "cancelRequest": "Müraciəti ləğv et",
+    "invitedYouToJoin": "Sizi qoşulmağa dəvət etdi",
+    "awaitingApproval": "Xəstəxananın təsdiqini gözləyir"
   }
 }

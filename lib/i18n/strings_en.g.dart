@@ -89,6 +89,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$hospitalAppointments$en hospitalAppointments = Translations$hospitalAppointments$en.internal(_root);
 	late final Translations$hospitalProfile$en hospitalProfile = Translations$hospitalProfile$en.internal(_root);
 	late final Translations$hospitalDoctorHours$en hospitalDoctorHours = Translations$hospitalDoctorHours$en.internal(_root);
+	late final Translations$doctorHospitals$en doctorHospitals = Translations$doctorHospitals$en.internal(_root);
 }
 
 // Path: common
@@ -2515,6 +2516,51 @@ class Translations$hospitalDoctorHours$en {
 	String get saved => 'Hours saved';
 }
 
+// Path: doctorHospitals
+class Translations$doctorHospitals$en {
+	Translations$doctorHospitals$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'My Hospitals'
+	String get title => 'My Hospitals';
+
+	/// en: 'Invitations'
+	String get tabInvitations => 'Invitations';
+
+	/// en: 'Requests'
+	String get tabRequests => 'Requests';
+
+	/// en: 'Hospitals'
+	String get tabConfirmed => 'Hospitals';
+
+	/// en: 'No pending invitations'
+	String get noInvitations => 'No pending invitations';
+
+	/// en: 'No pending requests'
+	String get noRequests => 'No pending requests';
+
+	/// en: 'You're not affiliated with any hospital yet'
+	String get noConfirmed => 'You\'re not affiliated with any hospital yet';
+
+	/// en: 'Accept'
+	String get accept => 'Accept';
+
+	/// en: 'Decline'
+	String get decline => 'Decline';
+
+	/// en: 'Cancel request'
+	String get cancelRequest => 'Cancel request';
+
+	/// en: 'Invited you to join'
+	String get invitedYouToJoin => 'Invited you to join';
+
+	/// en: 'Awaiting hospital approval'
+	String get awaitingApproval => 'Awaiting hospital approval';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -3566,6 +3612,18 @@ extension on Translations {
 			'hospitalDoctorHours.title' => 'Working Hours',
 			'hospitalDoctorHours.selectWorkplace' => 'Select a workplace',
 			'hospitalDoctorHours.saved' => 'Hours saved',
+			'doctorHospitals.title' => 'My Hospitals',
+			'doctorHospitals.tabInvitations' => 'Invitations',
+			'doctorHospitals.tabRequests' => 'Requests',
+			'doctorHospitals.tabConfirmed' => 'Hospitals',
+			'doctorHospitals.noInvitations' => 'No pending invitations',
+			'doctorHospitals.noRequests' => 'No pending requests',
+			'doctorHospitals.noConfirmed' => 'You\'re not affiliated with any hospital yet',
+			'doctorHospitals.accept' => 'Accept',
+			'doctorHospitals.decline' => 'Decline',
+			'doctorHospitals.cancelRequest' => 'Cancel request',
+			'doctorHospitals.invitedYouToJoin' => 'Invited you to join',
+			'doctorHospitals.awaitingApproval' => 'Awaiting hospital approval',
 			_ => null,
 		};
 	}

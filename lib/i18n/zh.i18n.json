@@ -844,5 +844,19 @@
     "title": "工作时间",
     "selectWorkplace": "选择工作地点",
     "saved": "工作时间已保存"
+  },
+  "doctorHospitals": {
+    "title": "我的医院",
+    "tabInvitations": "邀请",
+    "tabRequests": "申请",
+    "tabConfirmed": "医院",
+    "noInvitations": "暂无待处理邀请",
+    "noRequests": "暂无待处理申请",
+    "noConfirmed": "您尚未与任何医院建立关联",
+    "accept": "接受",
+    "decline": "拒绝",
+    "cancelRequest": "取消申请",
+    "invitedYouToJoin": "邀请您加入",
+    "awaitingApproval": "等待医院审核"
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
+import 'package:medalize_mb/features/hospital/data/models/doctor_hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_appointment_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_model.dart';
@@ -223,6 +224,53 @@ class HospitalRepository {
       return results
           .map((e) => HospitalAppointmentModel.fromJson(e as Map<String, dynamic>))
           .toList();
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  // ─── Doctor-side: this doctor's own hospital affiliations ──────────
+
+  /// GET /api/doctor/hospital-links/ — every affiliation this doctor has
+  /// with any hospital, any status (invites to answer, their own pending
+  /// requests, confirmed affiliations, and past decisions). Not paginated
+  /// on the backend — a doctor realistically has a handful of these.
+  Future<List<DoctorHospitalLinkModel>> getDoctorHospitalLinks() async {
+    try {
+      final res = await _dio.get('/doctor/hospital-links/');
+      return (res.data as List)
+          .map((e) => DoctorHospitalLinkModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  /// `POST /api/doctor/hospital-links/<id>/accept/` — confirms a hospital's
+  /// invite.
+  Future<DoctorHospitalLinkModel> acceptHospitalInvite(String linkId) async {
+    try {
+      final res = await _dio.post('/doctor/hospital-links/$linkId/accept/');
+      return DoctorHospitalLinkModel.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  /// `POST /api/doctor/hospital-links/<id>/decline/` — declines a hospital's
+  /// invite, or withdraws the doctor's own still-pending request (the
+  /// backend's reject_link accepts either starting status, so this single
+  /// method covers both actions).
+  Future<DoctorHospitalLinkModel> declineHospitalLink(String linkId) async {
+    try {
+      final res = await _dio.post('/doctor/hospital-links/$linkId/decline/');
+      return DoctorHospitalLinkModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {

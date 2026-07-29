@@ -85,6 +85,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalAppointments$fr hospitalAppointments = _Translations$hospitalAppointments$fr._(_root);
 	@override late final _Translations$hospitalProfile$fr hospitalProfile = _Translations$hospitalProfile$fr._(_root);
 	@override late final _Translations$hospitalDoctorHours$fr hospitalDoctorHours = _Translations$hospitalDoctorHours$fr._(_root);
+	@override late final _Translations$doctorHospitals$fr doctorHospitals = _Translations$doctorHospitals$fr._(_root);
 }
 
 // Path: common
@@ -1166,6 +1167,27 @@ class _Translations$hospitalDoctorHours$fr extends Translations$hospitalDoctorHo
 	@override String get saved => 'Horaires enregistrés';
 }
 
+// Path: doctorHospitals
+class _Translations$doctorHospitals$fr extends Translations$doctorHospitals$en {
+	_Translations$doctorHospitals$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mes hôpitaux';
+	@override String get tabInvitations => 'Invitations';
+	@override String get tabRequests => 'Demandes';
+	@override String get tabConfirmed => 'Hôpitaux';
+	@override String get noInvitations => 'Aucune invitation en attente';
+	@override String get noRequests => 'Aucune demande en attente';
+	@override String get noConfirmed => 'Vous n\'êtes affilié à aucun hôpital pour l\'instant';
+	@override String get accept => 'Accepter';
+	@override String get decline => 'Refuser';
+	@override String get cancelRequest => 'Annuler la demande';
+	@override String get invitedYouToJoin => 'Vous a invité à le rejoindre';
+	@override String get awaitingApproval => 'En attente de l\'approbation de l\'hôpital';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -2121,6 +2143,18 @@ extension on TranslationsFr {
 			'hospitalDoctorHours.title' => 'Horaires de travail',
 			'hospitalDoctorHours.selectWorkplace' => 'Sélectionner un lieu de travail',
 			'hospitalDoctorHours.saved' => 'Horaires enregistrés',
+			'doctorHospitals.title' => 'Mes hôpitaux',
+			'doctorHospitals.tabInvitations' => 'Invitations',
+			'doctorHospitals.tabRequests' => 'Demandes',
+			'doctorHospitals.tabConfirmed' => 'Hôpitaux',
+			'doctorHospitals.noInvitations' => 'Aucune invitation en attente',
+			'doctorHospitals.noRequests' => 'Aucune demande en attente',
+			'doctorHospitals.noConfirmed' => 'Vous n\'êtes affilié à aucun hôpital pour l\'instant',
+			'doctorHospitals.accept' => 'Accepter',
+			'doctorHospitals.decline' => 'Refuser',
+			'doctorHospitals.cancelRequest' => 'Annuler la demande',
+			'doctorHospitals.invitedYouToJoin' => 'Vous a invité à le rejoindre',
+			'doctorHospitals.awaitingApproval' => 'En attente de l\'approbation de l\'hôpital',
 			_ => null,
 		};
 	}

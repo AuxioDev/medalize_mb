@@ -235,6 +235,11 @@ class _DoctorQuickActions extends StatelessWidget {
             onTap: () => context.push('/doctor/workplaces'),
           ),
           _ActionCard(
+            icon: Icons.local_hospital_outlined,
+            label: context.t.doctorHospitals.title,
+            onTap: () => context.push('/doctor/hospital-links'),
+          ),
+          _ActionCard(
             icon: Icons.block_outlined,
             label: context.t.home.blockTime,
             onTap: () => context.push('/doctor/block-time'),

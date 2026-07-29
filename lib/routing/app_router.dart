@@ -29,6 +29,7 @@ import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/family/presentation/screens/add_edit_dependent_screen.dart';
 import 'package:medalize_mb/features/family/presentation/screens/family_list_screen.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_link_model.dart';
+import 'package:medalize_mb/features/hospital/presentation/screens/doctor_hospital_links_screen.dart';
 import 'package:medalize_mb/features/hospital/presentation/screens/hospital_appointments_screen.dart';
 import 'package:medalize_mb/features/hospital/presentation/screens/hospital_doctor_hours_screen.dart';
 import 'package:medalize_mb/features/hospital/presentation/screens/hospital_doctors_screen.dart';
@@ -398,6 +399,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/doctor/workplaces',
         pageBuilder: (_, _) => _pushPage(const WorkplaceListScreen()),
+      ),
+      GoRoute(
+        path: '/doctor/hospital-links',
+        pageBuilder: (_, _) => _pushPage(const DoctorHospitalLinksScreen()),
       ),
       GoRoute(
         path: '/doctor/add-workplace',

@@ -85,6 +85,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalAppointments$az hospitalAppointments = _Translations$hospitalAppointments$az._(_root);
 	@override late final _Translations$hospitalProfile$az hospitalProfile = _Translations$hospitalProfile$az._(_root);
 	@override late final _Translations$hospitalDoctorHours$az hospitalDoctorHours = _Translations$hospitalDoctorHours$az._(_root);
+	@override late final _Translations$doctorHospitals$az doctorHospitals = _Translations$doctorHospitals$az._(_root);
 }
 
 // Path: common
@@ -1166,6 +1167,27 @@ class _Translations$hospitalDoctorHours$az extends Translations$hospitalDoctorHo
 	@override String get saved => 'Saatlar saxlanıldı';
 }
 
+// Path: doctorHospitals
+class _Translations$doctorHospitals$az extends Translations$doctorHospitals$en {
+	_Translations$doctorHospitals$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Xəstəxanalarım';
+	@override String get tabInvitations => 'Dəvətlər';
+	@override String get tabRequests => 'Müraciətlər';
+	@override String get tabConfirmed => 'Xəstəxanalar';
+	@override String get noInvitations => 'Gözləyən dəvət yoxdur';
+	@override String get noRequests => 'Gözləyən müraciət yoxdur';
+	@override String get noConfirmed => 'Hələ heç bir xəstəxana ilə əlaqəniz yoxdur';
+	@override String get accept => 'Qəbul et';
+	@override String get decline => 'Rədd et';
+	@override String get cancelRequest => 'Müraciəti ləğv et';
+	@override String get invitedYouToJoin => 'Sizi qoşulmağa dəvət etdi';
+	@override String get awaitingApproval => 'Xəstəxananın təsdiqini gözləyir';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -2121,6 +2143,18 @@ extension on TranslationsAz {
 			'hospitalDoctorHours.title' => 'İş saatları',
 			'hospitalDoctorHours.selectWorkplace' => 'İş yerini seçin',
 			'hospitalDoctorHours.saved' => 'Saatlar saxlanıldı',
+			'doctorHospitals.title' => 'Xəstəxanalarım',
+			'doctorHospitals.tabInvitations' => 'Dəvətlər',
+			'doctorHospitals.tabRequests' => 'Müraciətlər',
+			'doctorHospitals.tabConfirmed' => 'Xəstəxanalar',
+			'doctorHospitals.noInvitations' => 'Gözləyən dəvət yoxdur',
+			'doctorHospitals.noRequests' => 'Gözləyən müraciət yoxdur',
+			'doctorHospitals.noConfirmed' => 'Hələ heç bir xəstəxana ilə əlaqəniz yoxdur',
+			'doctorHospitals.accept' => 'Qəbul et',
+			'doctorHospitals.decline' => 'Rədd et',
+			'doctorHospitals.cancelRequest' => 'Müraciəti ləğv et',
+			'doctorHospitals.invitedYouToJoin' => 'Sizi qoşulmağa dəvət etdi',
+			'doctorHospitals.awaitingApproval' => 'Xəstəxananın təsdiqini gözləyir',
 			_ => null,
 		};
 	}

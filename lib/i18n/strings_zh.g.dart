@@ -85,6 +85,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalAppointments$zh hospitalAppointments = _Translations$hospitalAppointments$zh._(_root);
 	@override late final _Translations$hospitalProfile$zh hospitalProfile = _Translations$hospitalProfile$zh._(_root);
 	@override late final _Translations$hospitalDoctorHours$zh hospitalDoctorHours = _Translations$hospitalDoctorHours$zh._(_root);
+	@override late final _Translations$doctorHospitals$zh doctorHospitals = _Translations$doctorHospitals$zh._(_root);
 }
 
 // Path: common
@@ -1166,6 +1167,27 @@ class _Translations$hospitalDoctorHours$zh extends Translations$hospitalDoctorHo
 	@override String get saved => '工作时间已保存';
 }
 
+// Path: doctorHospitals
+class _Translations$doctorHospitals$zh extends Translations$doctorHospitals$en {
+	_Translations$doctorHospitals$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '我的医院';
+	@override String get tabInvitations => '邀请';
+	@override String get tabRequests => '申请';
+	@override String get tabConfirmed => '医院';
+	@override String get noInvitations => '暂无待处理邀请';
+	@override String get noRequests => '暂无待处理申请';
+	@override String get noConfirmed => '您尚未与任何医院建立关联';
+	@override String get accept => '接受';
+	@override String get decline => '拒绝';
+	@override String get cancelRequest => '取消申请';
+	@override String get invitedYouToJoin => '邀请您加入';
+	@override String get awaitingApproval => '等待医院审核';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2121,6 +2143,18 @@ extension on TranslationsZh {
 			'hospitalDoctorHours.title' => '工作时间',
 			'hospitalDoctorHours.selectWorkplace' => '选择工作地点',
 			'hospitalDoctorHours.saved' => '工作时间已保存',
+			'doctorHospitals.title' => '我的医院',
+			'doctorHospitals.tabInvitations' => '邀请',
+			'doctorHospitals.tabRequests' => '申请',
+			'doctorHospitals.tabConfirmed' => '医院',
+			'doctorHospitals.noInvitations' => '暂无待处理邀请',
+			'doctorHospitals.noRequests' => '暂无待处理申请',
+			'doctorHospitals.noConfirmed' => '您尚未与任何医院建立关联',
+			'doctorHospitals.accept' => '接受',
+			'doctorHospitals.decline' => '拒绝',
+			'doctorHospitals.cancelRequest' => '取消申请',
+			'doctorHospitals.invitedYouToJoin' => '邀请您加入',
+			'doctorHospitals.awaitingApproval' => '等待医院审核',
 			_ => null,
 		};
 	}

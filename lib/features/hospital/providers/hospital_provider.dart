@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:medalize_mb/features/hospital/data/models/doctor_hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_appointment_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_profile_model.dart';
@@ -31,3 +32,18 @@ final hospitalAppointmentsProvider =
     FutureProvider.autoDispose<List<HospitalAppointmentModel>>((ref) {
   return ref.watch(hospitalRepositoryProvider).getAppointments();
 });
+
+/// GET /api/doctor/hospital-links/ — this doctor's own affiliations with
+/// any hospital: invitations to answer, their own pending requests, and
+/// confirmed affiliations. A single unfiltered list (unlike
+/// hospitalLinksProvider above) because the backend doesn't paginate or
+/// filter this endpoint — the screen splits it into tabs client-side.
+final doctorHospitalLinksProvider =
+    FutureProvider.autoDispose<List<DoctorHospitalLinkModel>>((ref) {
+  return ref.watch(hospitalRepositoryProvider).getDoctorHospitalLinks();
+});
+
+/// Call after accept/decline changes a link's status.
+void refreshDoctorHospitalLinks(WidgetRef ref) {
+  ref.invalidate(doctorHospitalLinksProvider);
+}

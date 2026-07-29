@@ -85,6 +85,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalAppointments$tr hospitalAppointments = _Translations$hospitalAppointments$tr._(_root);
 	@override late final _Translations$hospitalProfile$tr hospitalProfile = _Translations$hospitalProfile$tr._(_root);
 	@override late final _Translations$hospitalDoctorHours$tr hospitalDoctorHours = _Translations$hospitalDoctorHours$tr._(_root);
+	@override late final _Translations$doctorHospitals$tr doctorHospitals = _Translations$doctorHospitals$tr._(_root);
 }
 
 // Path: common
@@ -1166,6 +1167,27 @@ class _Translations$hospitalDoctorHours$tr extends Translations$hospitalDoctorHo
 	@override String get saved => 'Saatler kaydedildi';
 }
 
+// Path: doctorHospitals
+class _Translations$doctorHospitals$tr extends Translations$doctorHospitals$en {
+	_Translations$doctorHospitals$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hastanelerim';
+	@override String get tabInvitations => 'Davetler';
+	@override String get tabRequests => 'Talepler';
+	@override String get tabConfirmed => 'Hastaneler';
+	@override String get noInvitations => 'Bekleyen davet yok';
+	@override String get noRequests => 'Bekleyen talep yok';
+	@override String get noConfirmed => 'Henüz herhangi bir hastaneyle ilişkiniz yok';
+	@override String get accept => 'Kabul et';
+	@override String get decline => 'Reddet';
+	@override String get cancelRequest => 'Talebi iptal et';
+	@override String get invitedYouToJoin => 'Sizi katılmaya davet etti';
+	@override String get awaitingApproval => 'Hastane onayı bekleniyor';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -2121,6 +2143,18 @@ extension on TranslationsTr {
 			'hospitalDoctorHours.title' => 'Çalışma Saatleri',
 			'hospitalDoctorHours.selectWorkplace' => 'Bir iş yeri seçin',
 			'hospitalDoctorHours.saved' => 'Saatler kaydedildi',
+			'doctorHospitals.title' => 'Hastanelerim',
+			'doctorHospitals.tabInvitations' => 'Davetler',
+			'doctorHospitals.tabRequests' => 'Talepler',
+			'doctorHospitals.tabConfirmed' => 'Hastaneler',
+			'doctorHospitals.noInvitations' => 'Bekleyen davet yok',
+			'doctorHospitals.noRequests' => 'Bekleyen talep yok',
+			'doctorHospitals.noConfirmed' => 'Henüz herhangi bir hastaneyle ilişkiniz yok',
+			'doctorHospitals.accept' => 'Kabul et',
+			'doctorHospitals.decline' => 'Reddet',
+			'doctorHospitals.cancelRequest' => 'Talebi iptal et',
+			'doctorHospitals.invitedYouToJoin' => 'Sizi katılmaya davet etti',
+			'doctorHospitals.awaitingApproval' => 'Hastane onayı bekleniyor',
 			_ => null,
 		};
 	}
