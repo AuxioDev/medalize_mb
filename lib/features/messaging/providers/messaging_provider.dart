@@ -72,11 +72,13 @@ final threadChatProvider = StateNotifierProvider.autoDispose
   (ref, threadId) => ThreadChatController(
     ref.read(messagingRepositoryProvider),
     threadId,
+    ref,
   ),
 );
 
 class ThreadChatController extends StateNotifier<ThreadChatState> {
-  ThreadChatController(this._repo, this.threadId) : super(const ThreadChatState()) {
+  ThreadChatController(this._repo, this.threadId, this._ref)
+      : super(const ThreadChatState()) {
     _load();
     // Short poll for the other participant's replies while this screen is
     // open — 12s, inside the 10-15s window the spec calls for. Cancelled in
@@ -86,6 +88,7 @@ class ThreadChatController extends StateNotifier<ThreadChatState> {
 
   final MessagingRepository _repo;
   final String threadId;
+  final Ref _ref;
   var _localSeq = 0;
   Timer? _poll;
 
@@ -95,6 +98,12 @@ class ThreadChatController extends StateNotifier<ThreadChatState> {
       final messages = await _repo.getAllMessages(threadId);
       if (!mounted) return;
       state = state.copyWith(loading: false, messages: messages);
+      // The GET above just marked every message from the other participant
+      // as read on the backend (see ThreadMessageListCreateView.get()), but
+      // [threadsProvider]/[unreadMessagesCountProvider] poll independently on
+      // their own 60s timers — without this they'd keep showing the old
+      // unread badge for up to a minute after the thread was actually read.
+      _invalidateUnreadCounts();
     } on ApiException {
       if (!mounted) return;
       state = state.copyWith(loading: false, loadFailed: true);
@@ -111,10 +120,20 @@ class ThreadChatController extends StateNotifier<ThreadChatState> {
     try {
       final messages = await _repo.getAllMessages(threadId);
       if (!mounted) return;
+      // Same reasoning as in [_load]: only messages from the other
+      // participant ever arrive via this poll, so a growing list means the
+      // GET just flipped some of them to read on the backend.
+      final hasNewMessages = messages.length != state.messages.length;
       state = state.copyWith(messages: messages);
+      if (hasNewMessages) _invalidateUnreadCounts();
     } on ApiException {
       // Silent — a failed background poll shouldn't disrupt the screen.
     }
+  }
+
+  void _invalidateUnreadCounts() {
+    _ref.invalidate(threadsProvider);
+    _ref.invalidate(unreadMessagesCountProvider);
   }
 
   /// Optimistically appends the patient's/doctor's own message, then swaps it
