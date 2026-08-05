@@ -147,7 +147,13 @@
     "deactivateConfirmTitle": "Hesap devre dışı bırakılsın mı?",
     "deactivateConfirmMessage": "Hesabınız devre dışı bırakılacak ve tüm cihazlarda oturumunuz kapatılacak. Verileriniz silinmez. Yeniden etkinleştirmek için destek ekibiyle iletişime geçin.",
     "deactivate": "Devre Dışı Bırak",
-    "deactivateSuccess": "Hesabınız devre dışı bırakıldı."
+    "deactivateSuccess": "Hesabınız devre dışı bırakıldı.",
+    "deleteAccount": "Hesabı Kalıcı Olarak Sil",
+    "deleteAccountSubtitle": "Verilerinizi silin. Bu işlem geri alınamaz.",
+    "deleteConfirmTitle": "Hesabınız kalıcı olarak silinsin mi?",
+    "deleteConfirmWarning": "Bu işlem kalıcıdır ve geri alınamaz.",
+    "deleteConfirmMessage": "Profiliniz, tıbbi kayıtlarınız, reçeteleriniz ve mesajlarınız kalıcı olarak silinecek. Yaklaşan randevularınız iptal edilecek ve uygun olduğunda ücret iadesi yapılacaktır. Ödeme kayıtları, kanunen gerekli muhasebe amaçları için anonimleştirilmiş biçimde saklanır.",
+    "deleteAccountSuccess": "Hesabınız kalıcı olarak silindi."
   },
   "status": {
     "confirmed": "Onaylandı",
@@ -212,6 +218,9 @@
     "cancelTitle": "Randevuyu İptal Et",
     "cancelConfirm": "Bu randevuyu iptal etmek istediğinizden emin misiniz?",
     "cancelAction": "Randevuyu İptal Et",
+    "cancelledSuccess": "Randevu iptal edildi.",
+    "cancelledRefunded": "Randevu iptal edildi. Ödemeniz iade edildi.",
+    "cancelledNoRefund": "Randevu iptal edildi. Randevu saatine çok yakın olduğu için iade yapılmadı.",
     "bookedTitle": "Randevu alındı!",
     "bookedMessage": "Randevu isteğiniz gönderildi.",
     "reschedule": "Yeniden planla",
@@ -709,6 +718,8 @@
     "statusPaid": "Ödendi",
     "statusFailed": "Ödeme Başarısız",
     "statusCancelled": "İptal Edildi",
+    "statusRefunded": "İade Edildi",
+    "statusRefundFailed": "İade Başarısız",
     "paymentConfirmed": "Ödeme onaylandı. Teşekkürler!",
     "openingBrowser": "Tarayıcı açılıyor…",
     "checkStatus": "Durumu Kontrol Et"

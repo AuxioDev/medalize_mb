@@ -291,6 +291,12 @@ class _Translations$security$az extends Translations$security$en {
 	@override String get deactivateConfirmMessage => 'Hesabınız deaktiv ediləcək və bütün cihazlarda çıxış ediləcək. Məlumatlarınız silinmir. Bərpa üçün dəstək xidmətinə müraciət edin.';
 	@override String get deactivate => 'Deaktiv et';
 	@override String get deactivateSuccess => 'Hesabınız deaktiv edildi.';
+	@override String get deleteAccount => 'Hesabı Həmişəlik Sil';
+	@override String get deleteAccountSubtitle => 'Məlumatlarınızı silin. Bu geri qaytarıla bilməz.';
+	@override String get deleteConfirmTitle => 'Hesabınız həmişəlik silinsin?';
+	@override String get deleteConfirmWarning => 'Bu əməliyyat geri qaytarıla bilməz.';
+	@override String get deleteConfirmMessage => 'Profiliniz, tibbi qeydləriniz, resepetləriniz və mesajlarınız həmişəlik silinəcək. Gələcək görüşləriniz ləğv ediləcək və uyğun olduqda geri ödəniləcək. Ödəniş qeydləri qanun tələb etdiyi kimi mühasibat uçotu məqsədləri üçün anonimləşdirilmiş formada saxlanılır.';
+	@override String get deleteAccountSuccess => 'Hesabınız həmişəlik silindi.';
 }
 
 // Path: status
@@ -376,6 +382,9 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get cancelTitle => 'Görüşü ləğv et';
 	@override String get cancelConfirm => 'Bu görüşü ləğv etmək istədiyinizə əminsiniz?';
 	@override String get cancelAction => 'Görüşü ləğv et';
+	@override String get cancelledSuccess => 'Görüş ləğv edildi.';
+	@override String get cancelledRefunded => 'Görüş ləğv edildi. Ödənişiniz geri qaytarıldı.';
+	@override String get cancelledNoRefund => 'Görüş ləğv edildi. Görüş vaxtına çox yaxın olduğu üçün geri ödəmə edilmədi.';
 	@override String get bookedTitle => 'Təyin edildi!';
 	@override String get bookedMessage => 'Görüş sorğunuz göndərildi.';
 	@override String get reschedule => 'Yenidən planla';
@@ -960,6 +969,8 @@ class _Translations$payments$az extends Translations$payments$en {
 	@override String get statusPaid => 'Ödənilib';
 	@override String get statusFailed => 'Ödəniş uğursuz oldu';
 	@override String get statusCancelled => 'Ləğv edilib';
+	@override String get statusRefunded => 'Geri qaytarıldı';
+	@override String get statusRefundFailed => 'Geri ödəmə uğursuz oldu';
 	@override String get paymentConfirmed => 'Ödəniş təsdiqləndi. Təşəkkür edirik!';
 	@override String get openingBrowser => 'Brauzer açılır…';
 	@override String get checkStatus => 'Statusu yoxla';
@@ -1562,6 +1573,12 @@ extension on TranslationsAz {
 			'security.deactivateConfirmMessage' => 'Hesabınız deaktiv ediləcək və bütün cihazlarda çıxış ediləcək. Məlumatlarınız silinmir. Bərpa üçün dəstək xidmətinə müraciət edin.',
 			'security.deactivate' => 'Deaktiv et',
 			'security.deactivateSuccess' => 'Hesabınız deaktiv edildi.',
+			'security.deleteAccount' => 'Hesabı Həmişəlik Sil',
+			'security.deleteAccountSubtitle' => 'Məlumatlarınızı silin. Bu geri qaytarıla bilməz.',
+			'security.deleteConfirmTitle' => 'Hesabınız həmişəlik silinsin?',
+			'security.deleteConfirmWarning' => 'Bu əməliyyat geri qaytarıla bilməz.',
+			'security.deleteConfirmMessage' => 'Profiliniz, tibbi qeydləriniz, resepetləriniz və mesajlarınız həmişəlik silinəcək. Gələcək görüşləriniz ləğv ediləcək və uyğun olduqda geri ödəniləcək. Ödəniş qeydləri qanun tələb etdiyi kimi mühasibat uçotu məqsədləri üçün anonimləşdirilmiş formada saxlanılır.',
+			'security.deleteAccountSuccess' => 'Hesabınız həmişəlik silindi.',
 			'status.confirmed' => 'Təsdiqləndi',
 			'status.pending' => 'Gözləyir',
 			'status.cancelled' => 'Ləğv edildi',
@@ -1620,6 +1637,9 @@ extension on TranslationsAz {
 			'appointments.cancelTitle' => 'Görüşü ləğv et',
 			'appointments.cancelConfirm' => 'Bu görüşü ləğv etmək istədiyinizə əminsiniz?',
 			'appointments.cancelAction' => 'Görüşü ləğv et',
+			'appointments.cancelledSuccess' => 'Görüş ləğv edildi.',
+			'appointments.cancelledRefunded' => 'Görüş ləğv edildi. Ödənişiniz geri qaytarıldı.',
+			'appointments.cancelledNoRefund' => 'Görüş ləğv edildi. Görüş vaxtına çox yaxın olduğu üçün geri ödəmə edilmədi.',
 			'appointments.bookedTitle' => 'Təyin edildi!',
 			'appointments.bookedMessage' => 'Görüş sorğunuz göndərildi.',
 			'appointments.reschedule' => 'Yenidən planla',
@@ -1931,6 +1951,8 @@ extension on TranslationsAz {
 			'medications.dosage' => 'Dozaj',
 			'medications.notes' => 'Qeydlər',
 			'medications.form' => 'Forma',
+			_ => null,
+		} ?? switch (path) {
 			'medications.formPill' => 'Həb',
 			'medications.formCapsule' => 'Kapsul',
 			'medications.formLiquid' => 'Maye',
@@ -1940,8 +1962,6 @@ extension on TranslationsAz {
 			'medications.times' => 'Qəbul vaxtları',
 			'medications.addTime' => 'Vaxt əlavə et',
 			'medications.daysOfWeek' => 'Həftənin günləri',
-			_ => null,
-		} ?? switch (path) {
 			'medications.everyDay' => 'Hər gün',
 			'medications.startDate' => 'Başlama tarixi',
 			'medications.endDate' => 'Bitmə tarixi',
@@ -2035,6 +2055,8 @@ extension on TranslationsAz {
 			'payments.statusPaid' => 'Ödənilib',
 			'payments.statusFailed' => 'Ödəniş uğursuz oldu',
 			'payments.statusCancelled' => 'Ləğv edilib',
+			'payments.statusRefunded' => 'Geri qaytarıldı',
+			'payments.statusRefundFailed' => 'Geri ödəmə uğursuz oldu',
 			'payments.paymentConfirmed' => 'Ödəniş təsdiqləndi. Təşəkkür edirik!',
 			'payments.openingBrowser' => 'Brauzer açılır…',
 			'payments.checkStatus' => 'Statusu yoxla',

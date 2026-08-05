@@ -147,7 +147,13 @@
     "deactivateConfirmTitle": "Deactivate account?",
     "deactivateConfirmMessage": "Your account will be deactivated and you will be signed out on all devices. Your data will not be deleted. Contact support to reactivate your account.",
     "deactivate": "Deactivate",
-    "deactivateSuccess": "Your account has been deactivated."
+    "deactivateSuccess": "Your account has been deactivated.",
+    "deleteAccount": "Delete Account Permanently",
+    "deleteAccountSubtitle": "Erase your data. This cannot be undone.",
+    "deleteConfirmTitle": "Delete your account permanently?",
+    "deleteConfirmWarning": "This action is permanent and cannot be undone.",
+    "deleteConfirmMessage": "Your profile, medical records, prescriptions, and messages will be permanently erased. Any upcoming appointments will be cancelled and refunded where eligible. Payment records are kept in anonymized form for accounting purposes as required by law.",
+    "deleteAccountSuccess": "Your account has been permanently deleted."
   },
   "status": {
     "confirmed": "Confirmed",
@@ -212,6 +218,9 @@
     "cancelTitle": "Cancel Appointment",
     "cancelConfirm": "Are you sure you want to cancel this appointment?",
     "cancelAction": "Cancel Appointment",
+    "cancelledSuccess": "Appointment cancelled.",
+    "cancelledRefunded": "Appointment cancelled. Your payment has been refunded.",
+    "cancelledNoRefund": "Appointment cancelled. No refund was issued — this was too close to the appointment time.",
     "bookedTitle": "Booked!",
     "bookedMessage": "Your appointment request has been sent.",
     "reschedule": "Reschedule",
@@ -709,6 +718,8 @@
     "statusPaid": "Paid",
     "statusFailed": "Payment Failed",
     "statusCancelled": "Cancelled",
+    "statusRefunded": "Refunded",
+    "statusRefundFailed": "Refund Failed",
     "paymentConfirmed": "Payment confirmed. Thank you!",
     "openingBrowser": "Opening your browser…",
     "checkStatus": "Check Status"

@@ -408,6 +408,27 @@ class AuthNotifier extends Notifier<AuthState> {
     state = const AuthUnauthenticated();
   }
 
+  /// Permanently deletes the account (re-authenticated with [password] —
+  /// the confirmation dialog is responsible for warning the user this is
+  /// irreversible before calling this). Throws [ApiException] on failure
+  /// (e.g. a wrong password) so the dialog can show it inline and leave the
+  /// account untouched; local state is only torn down after the backend
+  /// confirms the account is gone.
+  ///
+  /// The backend has already revoked every session by the time this
+  /// returns (same as [deactivateAccount]'s contract), so the local
+  /// cleanup here mirrors [logout]'s — not [forceLogout]'s — exactly:
+  /// deregister this device's push token and drop any locally-scheduled
+  /// dose reminders before wiping storage, so neither keeps referencing an
+  /// account that no longer exists.
+  Future<void> deleteAccount({required String password}) async {
+    await _repo.deleteAccount(password: password);
+    await ref.read(fcmServiceProvider).deregisterToken();
+    await ref.read(medicationSchedulerProvider).cancelAll();
+    await _storage.clearAll();
+    state = const AuthUnauthenticated();
+  }
+
   void clearError() {
     if (state is AuthError) state = const AuthUnauthenticated();
   }

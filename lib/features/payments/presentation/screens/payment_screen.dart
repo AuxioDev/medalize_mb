@@ -33,14 +33,18 @@ class PaymentStatusChip extends StatelessWidget {
   static Color colorFor(String status) => switch (status) {
         PaymentModel.statusPaid => AppColors.success,
         PaymentModel.statusFailed => AppColors.error,
+        PaymentModel.statusRefundFailed => AppColors.error,
         PaymentModel.statusCancelled => const Color(0xFF94A3B8),
+        PaymentModel.statusRefunded => const Color(0xFF94A3B8),
         _ => AppColors.warning,
       };
 
   static String labelFor(BuildContext context, String status) => switch (status) {
         PaymentModel.statusPaid => context.t.payments.statusPaid,
         PaymentModel.statusFailed => context.t.payments.statusFailed,
+        PaymentModel.statusRefundFailed => context.t.payments.statusRefundFailed,
         PaymentModel.statusCancelled => context.t.payments.statusCancelled,
+        PaymentModel.statusRefunded => context.t.payments.statusRefunded,
         _ => context.t.payments.statusPending,
       };
 

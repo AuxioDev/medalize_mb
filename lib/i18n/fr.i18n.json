@@ -147,7 +147,13 @@
     "deactivateConfirmTitle": "Désactiver le compte ?",
     "deactivateConfirmMessage": "Votre compte sera désactivé et vous serez déconnecté sur tous les appareils. Vos données ne seront pas supprimées. Contactez le support pour le réactiver.",
     "deactivate": "Désactiver",
-    "deactivateSuccess": "Votre compte a été désactivé."
+    "deactivateSuccess": "Votre compte a été désactivé.",
+    "deleteAccount": "Supprimer définitivement le compte",
+    "deleteAccountSubtitle": "Effacer vos données. Cette action est irréversible.",
+    "deleteConfirmTitle": "Supprimer définitivement votre compte ?",
+    "deleteConfirmWarning": "Cette action est définitive et ne peut pas être annulée.",
+    "deleteConfirmMessage": "Votre profil, vos dossiers médicaux, vos ordonnances et vos messages seront définitivement effacés. Vos rendez-vous à venir seront annulés et remboursés le cas échéant. Les enregistrements de paiement sont conservés sous forme anonymisée à des fins comptables, comme l'exige la loi.",
+    "deleteAccountSuccess": "Votre compte a été définitivement supprimé."
   },
   "status": {
     "confirmed": "Confirmé",
@@ -212,6 +218,9 @@
     "cancelTitle": "Annuler le rendez-vous",
     "cancelConfirm": "Voulez-vous vraiment annuler ce rendez-vous ?",
     "cancelAction": "Annuler le rendez-vous",
+    "cancelledSuccess": "Rendez-vous annulé.",
+    "cancelledRefunded": "Rendez-vous annulé. Votre paiement a été remboursé.",
+    "cancelledNoRefund": "Rendez-vous annulé. Aucun remboursement n'a été effectué car l'annulation est trop proche de l'heure du rendez-vous.",
     "bookedTitle": "Réservé !",
     "bookedMessage": "Votre demande de rendez-vous a été envoyée.",
     "reschedule": "Reporter",
@@ -709,6 +718,8 @@
     "statusPaid": "Payé",
     "statusFailed": "Échec du paiement",
     "statusCancelled": "Annulé",
+    "statusRefunded": "Remboursé",
+    "statusRefundFailed": "Échec du remboursement",
     "paymentConfirmed": "Paiement confirmé. Merci !",
     "openingBrowser": "Ouverture du navigateur…",
     "checkStatus": "Vérifier le statut"

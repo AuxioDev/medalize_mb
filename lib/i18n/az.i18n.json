@@ -147,7 +147,13 @@
     "deactivateConfirmTitle": "Hesab deaktiv edilsin?",
     "deactivateConfirmMessage": "Hesabınız deaktiv ediləcək və bütün cihazlarda çıxış ediləcək. Məlumatlarınız silinmir. Bərpa üçün dəstək xidmətinə müraciət edin.",
     "deactivate": "Deaktiv et",
-    "deactivateSuccess": "Hesabınız deaktiv edildi."
+    "deactivateSuccess": "Hesabınız deaktiv edildi.",
+    "deleteAccount": "Hesabı Həmişəlik Sil",
+    "deleteAccountSubtitle": "Məlumatlarınızı silin. Bu geri qaytarıla bilməz.",
+    "deleteConfirmTitle": "Hesabınız həmişəlik silinsin?",
+    "deleteConfirmWarning": "Bu əməliyyat geri qaytarıla bilməz.",
+    "deleteConfirmMessage": "Profiliniz, tibbi qeydləriniz, resepetləriniz və mesajlarınız həmişəlik silinəcək. Gələcək görüşləriniz ləğv ediləcək və uyğun olduqda geri ödəniləcək. Ödəniş qeydləri qanun tələb etdiyi kimi mühasibat uçotu məqsədləri üçün anonimləşdirilmiş formada saxlanılır.",
+    "deleteAccountSuccess": "Hesabınız həmişəlik silindi."
   },
   "status": {
     "confirmed": "Təsdiqləndi",
@@ -212,6 +218,9 @@
     "cancelTitle": "Görüşü ləğv et",
     "cancelConfirm": "Bu görüşü ləğv etmək istədiyinizə əminsiniz?",
     "cancelAction": "Görüşü ləğv et",
+    "cancelledSuccess": "Görüş ləğv edildi.",
+    "cancelledRefunded": "Görüş ləğv edildi. Ödənişiniz geri qaytarıldı.",
+    "cancelledNoRefund": "Görüş ləğv edildi. Görüş vaxtına çox yaxın olduğu üçün geri ödəmə edilmədi.",
     "bookedTitle": "Təyin edildi!",
     "bookedMessage": "Görüş sorğunuz göndərildi.",
     "reschedule": "Yenidən planla",
@@ -709,6 +718,8 @@
     "statusPaid": "Ödənilib",
     "statusFailed": "Ödəniş uğursuz oldu",
     "statusCancelled": "Ləğv edilib",
+    "statusRefunded": "Geri qaytarıldı",
+    "statusRefundFailed": "Geri ödəmə uğursuz oldu",
     "paymentConfirmed": "Ödəniş təsdiqləndi. Təşəkkür edirik!",
     "openingBrowser": "Brauzer açılır…",
     "checkStatus": "Statusu yoxla"

@@ -216,6 +216,23 @@ class AuthRepository {
     }
   }
 
+  /// Permanently and irreversibly deletes the account: PII and medical
+  /// content are erased, payments/reviews are retained but anonymized, and
+  /// future appointments are cancelled (refunded where eligible) — see
+  /// `apps.users.services.delete_account` on the backend for the full
+  /// cascade. The backend revokes every session as part of this, so
+  /// callers must force a local logout on success, same as
+  /// [deactivateAccount].
+  Future<void> deleteAccount({required String password}) async {
+    try {
+      await _dio.post('/auth/delete/', data: {'password': password});
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
   /// Step 1 of the email change flow: sends a 6-digit code to [newEmail].
   Future<void> requestEmailChange({
     required String newEmail,

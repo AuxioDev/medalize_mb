@@ -147,7 +147,13 @@
     "deactivateConfirmTitle": "停用账户？",
     "deactivateConfirmMessage": "您的账户将被停用，并在所有设备上退出登录。数据不会被删除。如需恢复，请联系客服。",
     "deactivate": "停用",
-    "deactivateSuccess": "您的账户已停用。"
+    "deactivateSuccess": "您的账户已停用。",
+    "deleteAccount": "永久删除账户",
+    "deleteAccountSubtitle": "清除您的数据。此操作无法撤销。",
+    "deleteConfirmTitle": "确定要永久删除您的账户吗？",
+    "deleteConfirmWarning": "此操作是永久性的，无法撤销。",
+    "deleteConfirmMessage": "您的个人资料、病历、处方和消息记录将被永久删除。即将到来的预约将被取消，符合条件的将予以退款。根据法律要求，付款记录将以匿名形式保留，用于会计目的。",
+    "deleteAccountSuccess": "您的账户已被永久删除。"
   },
   "status": {
     "confirmed": "已确认",
@@ -212,6 +218,9 @@
     "cancelTitle": "取消预约",
     "cancelConfirm": "您确定要取消此预约吗？",
     "cancelAction": "取消预约",
+    "cancelledSuccess": "预约已取消。",
+    "cancelledRefunded": "预约已取消。您的付款已退还。",
+    "cancelledNoRefund": "预约已取消。由于取消时间过于接近预约时间，未予退款。",
     "bookedTitle": "已预约！",
     "bookedMessage": "您的预约请求已发送。",
     "reschedule": "改期",
@@ -709,6 +718,8 @@
     "statusPaid": "已支付",
     "statusFailed": "支付失败",
     "statusCancelled": "已取消",
+    "statusRefunded": "已退款",
+    "statusRefundFailed": "退款失败",
     "paymentConfirmed": "支付已确认，谢谢！",
     "openingBrowser": "正在打开浏览器…",
     "checkStatus": "查看状态"

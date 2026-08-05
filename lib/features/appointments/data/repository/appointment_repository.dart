@@ -70,9 +70,16 @@ class AppointmentRepository {
     }
   }
 
-  Future<void> cancelAppointment(String id) async {
+  /// Cancels the appointment. The backend now answers `200 OK` with a body
+  /// (`{..appointment fields.., refund_eligible, payment}`) instead of a
+  /// bare `204` — cancellation itself is unconditional for a pending/
+  /// confirmed appointment, only the refund is gated by the cancellation
+  /// window. See `AppointmentCancelResult` for the two fields the caller
+  /// actually needs.
+  Future<AppointmentCancelResult> cancelAppointment(String id) async {
     try {
-      await _dio.delete('/appointments/$id/');
+      final res = await _dio.delete('/appointments/$id/');
+      return AppointmentCancelResult.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw mapDioError(e);
     }

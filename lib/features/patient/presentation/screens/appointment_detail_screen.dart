@@ -355,11 +355,24 @@ class _AppointmentDetailScreenState
 
     setState(() => _cancelling = true);
     try {
-      await ref
+      final result = await ref
           .read(appointmentRepositoryProvider)
           .cancelAppointment(widget.appointment.id);
       ref.invalidate(patientAppointmentsProvider);
-      if (mounted) context.pop();
+      if (mounted) {
+        // Shown before popping — same order as SecurityScreen's
+        // post-deactivate snackbar, so it survives the navigation below.
+        AppSnackBar.show(
+          context,
+          result.wasRefunded
+              ? context.t.appointments.cancelledRefunded
+              : (result.payment != null
+                  ? context.t.appointments.cancelledNoRefund
+                  : context.t.appointments.cancelledSuccess),
+          type: SnackBarType.success,
+        );
+        context.pop();
+      }
     } on ApiException catch (e) {
       if (mounted) {
         AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);

@@ -561,6 +561,24 @@ class Translations$security$en {
 
 	/// en: 'Your account has been deactivated.'
 	String get deactivateSuccess => 'Your account has been deactivated.';
+
+	/// en: 'Delete Account Permanently'
+	String get deleteAccount => 'Delete Account Permanently';
+
+	/// en: 'Erase your data. This cannot be undone.'
+	String get deleteAccountSubtitle => 'Erase your data. This cannot be undone.';
+
+	/// en: 'Delete your account permanently?'
+	String get deleteConfirmTitle => 'Delete your account permanently?';
+
+	/// en: 'This action is permanent and cannot be undone.'
+	String get deleteConfirmWarning => 'This action is permanent and cannot be undone.';
+
+	/// en: 'Your profile, medical records, prescriptions, and messages will be permanently erased. Any upcoming appointments will be cancelled and refunded where eligible. Payment records are kept in anonymized form for accounting purposes as required by law.'
+	String get deleteConfirmMessage => 'Your profile, medical records, prescriptions, and messages will be permanently erased. Any upcoming appointments will be cancelled and refunded where eligible. Payment records are kept in anonymized form for accounting purposes as required by law.';
+
+	/// en: 'Your account has been permanently deleted.'
+	String get deleteAccountSuccess => 'Your account has been permanently deleted.';
 }
 
 // Path: status
@@ -762,6 +780,15 @@ class Translations$appointments$en {
 
 	/// en: 'Cancel Appointment'
 	String get cancelAction => 'Cancel Appointment';
+
+	/// en: 'Appointment cancelled.'
+	String get cancelledSuccess => 'Appointment cancelled.';
+
+	/// en: 'Appointment cancelled. Your payment has been refunded.'
+	String get cancelledRefunded => 'Appointment cancelled. Your payment has been refunded.';
+
+	/// en: 'Appointment cancelled. No refund was issued — this was too close to the appointment time.'
+	String get cancelledNoRefund => 'Appointment cancelled. No refund was issued — this was too close to the appointment time.';
 
 	/// en: 'Booked!'
 	String get bookedTitle => 'Booked!';
@@ -2080,6 +2107,12 @@ class Translations$payments$en {
 	/// en: 'Cancelled'
 	String get statusCancelled => 'Cancelled';
 
+	/// en: 'Refunded'
+	String get statusRefunded => 'Refunded';
+
+	/// en: 'Refund Failed'
+	String get statusRefundFailed => 'Refund Failed';
+
 	/// en: 'Payment confirmed. Thank you!'
 	String get paymentConfirmed => 'Payment confirmed. Thank you!';
 
@@ -3045,6 +3078,12 @@ extension on Translations {
 			'security.deactivateConfirmMessage' => 'Your account will be deactivated and you will be signed out on all devices. Your data will not be deleted. Contact support to reactivate your account.',
 			'security.deactivate' => 'Deactivate',
 			'security.deactivateSuccess' => 'Your account has been deactivated.',
+			'security.deleteAccount' => 'Delete Account Permanently',
+			'security.deleteAccountSubtitle' => 'Erase your data. This cannot be undone.',
+			'security.deleteConfirmTitle' => 'Delete your account permanently?',
+			'security.deleteConfirmWarning' => 'This action is permanent and cannot be undone.',
+			'security.deleteConfirmMessage' => 'Your profile, medical records, prescriptions, and messages will be permanently erased. Any upcoming appointments will be cancelled and refunded where eligible. Payment records are kept in anonymized form for accounting purposes as required by law.',
+			'security.deleteAccountSuccess' => 'Your account has been permanently deleted.',
 			'status.confirmed' => 'Confirmed',
 			'status.pending' => 'Pending',
 			'status.cancelled' => 'Cancelled',
@@ -3103,6 +3142,9 @@ extension on Translations {
 			'appointments.cancelTitle' => 'Cancel Appointment',
 			'appointments.cancelConfirm' => 'Are you sure you want to cancel this appointment?',
 			'appointments.cancelAction' => 'Cancel Appointment',
+			'appointments.cancelledSuccess' => 'Appointment cancelled.',
+			'appointments.cancelledRefunded' => 'Appointment cancelled. Your payment has been refunded.',
+			'appointments.cancelledNoRefund' => 'Appointment cancelled. No refund was issued — this was too close to the appointment time.',
 			'appointments.bookedTitle' => 'Booked!',
 			'appointments.bookedMessage' => 'Your appointment request has been sent.',
 			'appointments.reschedule' => 'Reschedule',
@@ -3414,6 +3456,8 @@ extension on Translations {
 			'medications.dosage' => 'Dosage',
 			'medications.notes' => 'Notes',
 			'medications.form' => 'Form',
+			_ => null,
+		} ?? switch (path) {
 			'medications.formPill' => 'Pill',
 			'medications.formCapsule' => 'Capsule',
 			'medications.formLiquid' => 'Liquid',
@@ -3423,8 +3467,6 @@ extension on Translations {
 			'medications.times' => 'Times',
 			'medications.addTime' => 'Add Time',
 			'medications.daysOfWeek' => 'Days of Week',
-			_ => null,
-		} ?? switch (path) {
 			'medications.everyDay' => 'Every day',
 			'medications.startDate' => 'Start Date',
 			'medications.endDate' => 'End Date',
@@ -3518,6 +3560,8 @@ extension on Translations {
 			'payments.statusPaid' => 'Paid',
 			'payments.statusFailed' => 'Payment Failed',
 			'payments.statusCancelled' => 'Cancelled',
+			'payments.statusRefunded' => 'Refunded',
+			'payments.statusRefundFailed' => 'Refund Failed',
 			'payments.paymentConfirmed' => 'Payment confirmed. Thank you!',
 			'payments.openingBrowser' => 'Opening your browser…',
 			'payments.checkStatus' => 'Check Status',

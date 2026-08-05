@@ -291,6 +291,12 @@ class _Translations$security$zh extends Translations$security$en {
 	@override String get deactivateConfirmMessage => '您的账户将被停用，并在所有设备上退出登录。数据不会被删除。如需恢复，请联系客服。';
 	@override String get deactivate => '停用';
 	@override String get deactivateSuccess => '您的账户已停用。';
+	@override String get deleteAccount => '永久删除账户';
+	@override String get deleteAccountSubtitle => '清除您的数据。此操作无法撤销。';
+	@override String get deleteConfirmTitle => '确定要永久删除您的账户吗？';
+	@override String get deleteConfirmWarning => '此操作是永久性的，无法撤销。';
+	@override String get deleteConfirmMessage => '您的个人资料、病历、处方和消息记录将被永久删除。即将到来的预约将被取消，符合条件的将予以退款。根据法律要求，付款记录将以匿名形式保留，用于会计目的。';
+	@override String get deleteAccountSuccess => '您的账户已被永久删除。';
 }
 
 // Path: status
@@ -376,6 +382,9 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get cancelTitle => '取消预约';
 	@override String get cancelConfirm => '您确定要取消此预约吗？';
 	@override String get cancelAction => '取消预约';
+	@override String get cancelledSuccess => '预约已取消。';
+	@override String get cancelledRefunded => '预约已取消。您的付款已退还。';
+	@override String get cancelledNoRefund => '预约已取消。由于取消时间过于接近预约时间，未予退款。';
 	@override String get bookedTitle => '已预约！';
 	@override String get bookedMessage => '您的预约请求已发送。';
 	@override String get reschedule => '改期';
@@ -960,6 +969,8 @@ class _Translations$payments$zh extends Translations$payments$en {
 	@override String get statusPaid => '已支付';
 	@override String get statusFailed => '支付失败';
 	@override String get statusCancelled => '已取消';
+	@override String get statusRefunded => '已退款';
+	@override String get statusRefundFailed => '退款失败';
 	@override String get paymentConfirmed => '支付已确认，谢谢！';
 	@override String get openingBrowser => '正在打开浏览器…';
 	@override String get checkStatus => '查看状态';
@@ -1562,6 +1573,12 @@ extension on TranslationsZh {
 			'security.deactivateConfirmMessage' => '您的账户将被停用，并在所有设备上退出登录。数据不会被删除。如需恢复，请联系客服。',
 			'security.deactivate' => '停用',
 			'security.deactivateSuccess' => '您的账户已停用。',
+			'security.deleteAccount' => '永久删除账户',
+			'security.deleteAccountSubtitle' => '清除您的数据。此操作无法撤销。',
+			'security.deleteConfirmTitle' => '确定要永久删除您的账户吗？',
+			'security.deleteConfirmWarning' => '此操作是永久性的，无法撤销。',
+			'security.deleteConfirmMessage' => '您的个人资料、病历、处方和消息记录将被永久删除。即将到来的预约将被取消，符合条件的将予以退款。根据法律要求，付款记录将以匿名形式保留，用于会计目的。',
+			'security.deleteAccountSuccess' => '您的账户已被永久删除。',
 			'status.confirmed' => '已确认',
 			'status.pending' => '待处理',
 			'status.cancelled' => '已取消',
@@ -1620,6 +1637,9 @@ extension on TranslationsZh {
 			'appointments.cancelTitle' => '取消预约',
 			'appointments.cancelConfirm' => '您确定要取消此预约吗？',
 			'appointments.cancelAction' => '取消预约',
+			'appointments.cancelledSuccess' => '预约已取消。',
+			'appointments.cancelledRefunded' => '预约已取消。您的付款已退还。',
+			'appointments.cancelledNoRefund' => '预约已取消。由于取消时间过于接近预约时间，未予退款。',
 			'appointments.bookedTitle' => '已预约！',
 			'appointments.bookedMessage' => '您的预约请求已发送。',
 			'appointments.reschedule' => '改期',
@@ -1931,6 +1951,8 @@ extension on TranslationsZh {
 			'medications.dosage' => '剂量',
 			'medications.notes' => '备注',
 			'medications.form' => '剂型',
+			_ => null,
+		} ?? switch (path) {
 			'medications.formPill' => '药片',
 			'medications.formCapsule' => '胶囊',
 			'medications.formLiquid' => '液体',
@@ -1940,8 +1962,6 @@ extension on TranslationsZh {
 			'medications.times' => '服药时间',
 			'medications.addTime' => '添加时间',
 			'medications.daysOfWeek' => '星期',
-			_ => null,
-		} ?? switch (path) {
 			'medications.everyDay' => '每天',
 			'medications.startDate' => '开始日期',
 			'medications.endDate' => '结束日期',
@@ -2035,6 +2055,8 @@ extension on TranslationsZh {
 			'payments.statusPaid' => '已支付',
 			'payments.statusFailed' => '支付失败',
 			'payments.statusCancelled' => '已取消',
+			'payments.statusRefunded' => '已退款',
+			'payments.statusRefundFailed' => '退款失败',
 			'payments.paymentConfirmed' => '支付已确认，谢谢！',
 			'payments.openingBrowser' => '正在打开浏览器…',
 			'payments.checkStatus' => '查看状态',

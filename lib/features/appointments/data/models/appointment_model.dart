@@ -1,5 +1,6 @@
 import 'package:medalize_mb/features/appointments/data/models/review_model.dart';
 import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
+import 'package:medalize_mb/features/payments/data/models/payment_model.dart';
 
 class AppointmentDoctor {
   final String id;
@@ -167,4 +168,36 @@ class AppointmentModel {
     if (status != 'pending' && status != 'confirmed') return false;
     return startsAt.isAfter(DateTime.now().add(const Duration(hours: 2)));
   }
+}
+
+/// The body `DELETE /appointments/{id}/` now returns (backend contract —
+/// see `PatientAppointmentDetailView.delete`): the cancellation itself is
+/// unconditional (patients can always cancel a pending/confirmed
+/// appointment), but whether it was refund-eligible depends on the
+/// doctor's cancellation window, and [payment] is the post-refund-attempt
+/// snapshot (or null when the appointment was never paid for).
+class AppointmentCancelResult {
+  final bool refundEligible;
+  final PaymentModel? payment;
+
+  const AppointmentCancelResult({
+    required this.refundEligible,
+    this.payment,
+  });
+
+  factory AppointmentCancelResult.fromJson(Map<String, dynamic> j) =>
+      AppointmentCancelResult(
+        refundEligible: j['refund_eligible'] as bool? ?? false,
+        payment: j['payment'] != null
+            ? PaymentModel.fromJson(j['payment'] as Map<String, dynamic>)
+            : null,
+      );
+
+  /// True only when a refund was actually issued — checked against the
+  /// payment's own status rather than derived from [refundEligible] alone:
+  /// eligibility can still resolve to no refund at all (nothing was ever
+  /// paid) or to `refund_failed` (the provider call itself failed — see
+  /// apps.payments.service.refund_payment, which never blocks the
+  /// cancellation on that failure).
+  bool get wasRefunded => payment?.isRefunded ?? false;
 }

@@ -3,6 +3,13 @@ class PaymentModel {
   static const statusPaid = 'paid';
   static const statusFailed = 'failed';
   static const statusCancelled = 'cancelled';
+  // Set once a PAID payment is refunded via apps.payments.service.refund_payment
+  // (patient/doctor cancellation, decline, stale-pending expiry, ...) — see
+  // the cancel-appointment response the appointment detail screen reads
+  // (`AppointmentCancelResult`), the first surface that can actually return
+  // these two statuses.
+  static const statusRefunded = 'refunded';
+  static const statusRefundFailed = 'refund_failed';
 
   final String id;
   final String appointmentId;
@@ -17,6 +24,7 @@ class PaymentModel {
   final String paymentUrl;
   final DateTime? createdAt;
   final DateTime? paidAt;
+  final DateTime? refundedAt;
 
   const PaymentModel({
     required this.id,
@@ -27,12 +35,15 @@ class PaymentModel {
     this.paymentUrl = '',
     this.createdAt,
     this.paidAt,
+    this.refundedAt,
   });
 
   bool get isPending => status == statusPending;
   bool get isPaid => status == statusPaid;
   bool get isFailed => status == statusFailed;
   bool get isCancelled => status == statusCancelled;
+  bool get isRefunded => status == statusRefunded;
+  bool get isRefundFailed => status == statusRefundFailed;
 
   /// [appointmentIdFallback] covers the `POST .../payment/` response, which
   /// (per the backend contract) returns only
@@ -49,5 +60,8 @@ class PaymentModel {
         createdAt:
             j['created_at'] != null ? DateTime.tryParse(j['created_at'] as String) : null,
         paidAt: j['paid_at'] != null ? DateTime.tryParse(j['paid_at'] as String) : null,
+        refundedAt: j['refunded_at'] != null
+            ? DateTime.tryParse(j['refunded_at'] as String)
+            : null,
       );
 }

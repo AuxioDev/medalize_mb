@@ -291,6 +291,12 @@ class _Translations$security$ru extends Translations$security$en {
 	@override String get deactivateConfirmMessage => 'Аккаунт будет деактивирован, и вы выйдете из системы на всех устройствах. Данные не удаляются. Для восстановления обратитесь в поддержку.';
 	@override String get deactivate => 'Деактивировать';
 	@override String get deactivateSuccess => 'Ваш аккаунт деактивирован.';
+	@override String get deleteAccount => 'Удалить аккаунт навсегда';
+	@override String get deleteAccountSubtitle => 'Удалить ваши данные без возможности восстановления.';
+	@override String get deleteConfirmTitle => 'Удалить аккаунт навсегда?';
+	@override String get deleteConfirmWarning => 'Это действие необратимо и не может быть отменено.';
+	@override String get deleteConfirmMessage => 'Ваш профиль, медицинские записи, рецепты и сообщения будут безвозвратно удалены. Предстоящие приёмы будут отменены и возвращены при наличии права на возврат. Платёжные записи сохраняются в обезличенном виде для целей бухгалтерского учёта, как того требует закон.';
+	@override String get deleteAccountSuccess => 'Ваш аккаунт был безвозвратно удалён.';
 }
 
 // Path: status
@@ -376,6 +382,9 @@ class _Translations$appointments$ru extends Translations$appointments$en {
 	@override String get cancelTitle => 'Отменить приём';
 	@override String get cancelConfirm => 'Вы уверены, что хотите отменить этот приём?';
 	@override String get cancelAction => 'Отменить приём';
+	@override String get cancelledSuccess => 'Приём отменён.';
+	@override String get cancelledRefunded => 'Приём отменён. Оплата возвращена.';
+	@override String get cancelledNoRefund => 'Приём отменён. Возврат не произведён — отмена произошла слишком близко к времени приёма.';
 	@override String get bookedTitle => 'Записано!';
 	@override String get bookedMessage => 'Ваш запрос на приём отправлен.';
 	@override String get reschedule => 'Перенести';
@@ -960,6 +969,8 @@ class _Translations$payments$ru extends Translations$payments$en {
 	@override String get statusPaid => 'Оплачено';
 	@override String get statusFailed => 'Оплата не прошла';
 	@override String get statusCancelled => 'Отменено';
+	@override String get statusRefunded => 'Возвращено';
+	@override String get statusRefundFailed => 'Возврат не удался';
 	@override String get paymentConfirmed => 'Оплата подтверждена. Спасибо!';
 	@override String get openingBrowser => 'Открываем браузер…';
 	@override String get checkStatus => 'Проверить статус';
@@ -1562,6 +1573,12 @@ extension on TranslationsRu {
 			'security.deactivateConfirmMessage' => 'Аккаунт будет деактивирован, и вы выйдете из системы на всех устройствах. Данные не удаляются. Для восстановления обратитесь в поддержку.',
 			'security.deactivate' => 'Деактивировать',
 			'security.deactivateSuccess' => 'Ваш аккаунт деактивирован.',
+			'security.deleteAccount' => 'Удалить аккаунт навсегда',
+			'security.deleteAccountSubtitle' => 'Удалить ваши данные без возможности восстановления.',
+			'security.deleteConfirmTitle' => 'Удалить аккаунт навсегда?',
+			'security.deleteConfirmWarning' => 'Это действие необратимо и не может быть отменено.',
+			'security.deleteConfirmMessage' => 'Ваш профиль, медицинские записи, рецепты и сообщения будут безвозвратно удалены. Предстоящие приёмы будут отменены и возвращены при наличии права на возврат. Платёжные записи сохраняются в обезличенном виде для целей бухгалтерского учёта, как того требует закон.',
+			'security.deleteAccountSuccess' => 'Ваш аккаунт был безвозвратно удалён.',
 			'status.confirmed' => 'Подтверждено',
 			'status.pending' => 'В ожидании',
 			'status.cancelled' => 'Отменено',
@@ -1620,6 +1637,9 @@ extension on TranslationsRu {
 			'appointments.cancelTitle' => 'Отменить приём',
 			'appointments.cancelConfirm' => 'Вы уверены, что хотите отменить этот приём?',
 			'appointments.cancelAction' => 'Отменить приём',
+			'appointments.cancelledSuccess' => 'Приём отменён.',
+			'appointments.cancelledRefunded' => 'Приём отменён. Оплата возвращена.',
+			'appointments.cancelledNoRefund' => 'Приём отменён. Возврат не произведён — отмена произошла слишком близко к времени приёма.',
 			'appointments.bookedTitle' => 'Записано!',
 			'appointments.bookedMessage' => 'Ваш запрос на приём отправлен.',
 			'appointments.reschedule' => 'Перенести',
@@ -1931,6 +1951,8 @@ extension on TranslationsRu {
 			'medications.dosage' => 'Дозировка',
 			'medications.notes' => 'Заметки',
 			'medications.form' => 'Форма выпуска',
+			_ => null,
+		} ?? switch (path) {
 			'medications.formPill' => 'Таблетка',
 			'medications.formCapsule' => 'Капсула',
 			'medications.formLiquid' => 'Жидкость',
@@ -1940,8 +1962,6 @@ extension on TranslationsRu {
 			'medications.times' => 'Время приёма',
 			'medications.addTime' => 'Добавить время',
 			'medications.daysOfWeek' => 'Дни недели',
-			_ => null,
-		} ?? switch (path) {
 			'medications.everyDay' => 'Каждый день',
 			'medications.startDate' => 'Дата начала',
 			'medications.endDate' => 'Дата окончания',
@@ -2035,6 +2055,8 @@ extension on TranslationsRu {
 			'payments.statusPaid' => 'Оплачено',
 			'payments.statusFailed' => 'Оплата не прошла',
 			'payments.statusCancelled' => 'Отменено',
+			'payments.statusRefunded' => 'Возвращено',
+			'payments.statusRefundFailed' => 'Возврат не удался',
 			'payments.paymentConfirmed' => 'Оплата подтверждена. Спасибо!',
 			'payments.openingBrowser' => 'Открываем браузер…',
 			'payments.checkStatus' => 'Проверить статус',

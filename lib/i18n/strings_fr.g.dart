@@ -291,6 +291,12 @@ class _Translations$security$fr extends Translations$security$en {
 	@override String get deactivateConfirmMessage => 'Votre compte sera désactivé et vous serez déconnecté sur tous les appareils. Vos données ne seront pas supprimées. Contactez le support pour le réactiver.';
 	@override String get deactivate => 'Désactiver';
 	@override String get deactivateSuccess => 'Votre compte a été désactivé.';
+	@override String get deleteAccount => 'Supprimer définitivement le compte';
+	@override String get deleteAccountSubtitle => 'Effacer vos données. Cette action est irréversible.';
+	@override String get deleteConfirmTitle => 'Supprimer définitivement votre compte ?';
+	@override String get deleteConfirmWarning => 'Cette action est définitive et ne peut pas être annulée.';
+	@override String get deleteConfirmMessage => 'Votre profil, vos dossiers médicaux, vos ordonnances et vos messages seront définitivement effacés. Vos rendez-vous à venir seront annulés et remboursés le cas échéant. Les enregistrements de paiement sont conservés sous forme anonymisée à des fins comptables, comme l\'exige la loi.';
+	@override String get deleteAccountSuccess => 'Votre compte a été définitivement supprimé.';
 }
 
 // Path: status
@@ -376,6 +382,9 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get cancelTitle => 'Annuler le rendez-vous';
 	@override String get cancelConfirm => 'Voulez-vous vraiment annuler ce rendez-vous ?';
 	@override String get cancelAction => 'Annuler le rendez-vous';
+	@override String get cancelledSuccess => 'Rendez-vous annulé.';
+	@override String get cancelledRefunded => 'Rendez-vous annulé. Votre paiement a été remboursé.';
+	@override String get cancelledNoRefund => 'Rendez-vous annulé. Aucun remboursement n\'a été effectué car l\'annulation est trop proche de l\'heure du rendez-vous.';
 	@override String get bookedTitle => 'Réservé !';
 	@override String get bookedMessage => 'Votre demande de rendez-vous a été envoyée.';
 	@override String get reschedule => 'Reporter';
@@ -960,6 +969,8 @@ class _Translations$payments$fr extends Translations$payments$en {
 	@override String get statusPaid => 'Payé';
 	@override String get statusFailed => 'Échec du paiement';
 	@override String get statusCancelled => 'Annulé';
+	@override String get statusRefunded => 'Remboursé';
+	@override String get statusRefundFailed => 'Échec du remboursement';
 	@override String get paymentConfirmed => 'Paiement confirmé. Merci !';
 	@override String get openingBrowser => 'Ouverture du navigateur…';
 	@override String get checkStatus => 'Vérifier le statut';
@@ -1562,6 +1573,12 @@ extension on TranslationsFr {
 			'security.deactivateConfirmMessage' => 'Votre compte sera désactivé et vous serez déconnecté sur tous les appareils. Vos données ne seront pas supprimées. Contactez le support pour le réactiver.',
 			'security.deactivate' => 'Désactiver',
 			'security.deactivateSuccess' => 'Votre compte a été désactivé.',
+			'security.deleteAccount' => 'Supprimer définitivement le compte',
+			'security.deleteAccountSubtitle' => 'Effacer vos données. Cette action est irréversible.',
+			'security.deleteConfirmTitle' => 'Supprimer définitivement votre compte ?',
+			'security.deleteConfirmWarning' => 'Cette action est définitive et ne peut pas être annulée.',
+			'security.deleteConfirmMessage' => 'Votre profil, vos dossiers médicaux, vos ordonnances et vos messages seront définitivement effacés. Vos rendez-vous à venir seront annulés et remboursés le cas échéant. Les enregistrements de paiement sont conservés sous forme anonymisée à des fins comptables, comme l\'exige la loi.',
+			'security.deleteAccountSuccess' => 'Votre compte a été définitivement supprimé.',
 			'status.confirmed' => 'Confirmé',
 			'status.pending' => 'En attente',
 			'status.cancelled' => 'Annulé',
@@ -1620,6 +1637,9 @@ extension on TranslationsFr {
 			'appointments.cancelTitle' => 'Annuler le rendez-vous',
 			'appointments.cancelConfirm' => 'Voulez-vous vraiment annuler ce rendez-vous ?',
 			'appointments.cancelAction' => 'Annuler le rendez-vous',
+			'appointments.cancelledSuccess' => 'Rendez-vous annulé.',
+			'appointments.cancelledRefunded' => 'Rendez-vous annulé. Votre paiement a été remboursé.',
+			'appointments.cancelledNoRefund' => 'Rendez-vous annulé. Aucun remboursement n\'a été effectué car l\'annulation est trop proche de l\'heure du rendez-vous.',
 			'appointments.bookedTitle' => 'Réservé !',
 			'appointments.bookedMessage' => 'Votre demande de rendez-vous a été envoyée.',
 			'appointments.reschedule' => 'Reporter',
@@ -1931,6 +1951,8 @@ extension on TranslationsFr {
 			'medications.dosage' => 'Dosage',
 			'medications.notes' => 'Notes',
 			'medications.form' => 'Forme',
+			_ => null,
+		} ?? switch (path) {
 			'medications.formPill' => 'Comprimé',
 			'medications.formCapsule' => 'Gélule',
 			'medications.formLiquid' => 'Liquide',
@@ -1940,8 +1962,6 @@ extension on TranslationsFr {
 			'medications.times' => 'Heures de prise',
 			'medications.addTime' => 'Ajouter une heure',
 			'medications.daysOfWeek' => 'Jours de la semaine',
-			_ => null,
-		} ?? switch (path) {
 			'medications.everyDay' => 'Tous les jours',
 			'medications.startDate' => 'Date de début',
 			'medications.endDate' => 'Date de fin',
@@ -2035,6 +2055,8 @@ extension on TranslationsFr {
 			'payments.statusPaid' => 'Payé',
 			'payments.statusFailed' => 'Échec du paiement',
 			'payments.statusCancelled' => 'Annulé',
+			'payments.statusRefunded' => 'Remboursé',
+			'payments.statusRefundFailed' => 'Échec du remboursement',
 			'payments.paymentConfirmed' => 'Paiement confirmé. Merci !',
 			'payments.openingBrowser' => 'Ouverture du navigateur…',
 			'payments.checkStatus' => 'Vérifier le statut',

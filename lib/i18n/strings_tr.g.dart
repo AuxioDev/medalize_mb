@@ -291,6 +291,12 @@ class _Translations$security$tr extends Translations$security$en {
 	@override String get deactivateConfirmMessage => 'Hesabınız devre dışı bırakılacak ve tüm cihazlarda oturumunuz kapatılacak. Verileriniz silinmez. Yeniden etkinleştirmek için destek ekibiyle iletişime geçin.';
 	@override String get deactivate => 'Devre Dışı Bırak';
 	@override String get deactivateSuccess => 'Hesabınız devre dışı bırakıldı.';
+	@override String get deleteAccount => 'Hesabı Kalıcı Olarak Sil';
+	@override String get deleteAccountSubtitle => 'Verilerinizi silin. Bu işlem geri alınamaz.';
+	@override String get deleteConfirmTitle => 'Hesabınız kalıcı olarak silinsin mi?';
+	@override String get deleteConfirmWarning => 'Bu işlem kalıcıdır ve geri alınamaz.';
+	@override String get deleteConfirmMessage => 'Profiliniz, tıbbi kayıtlarınız, reçeteleriniz ve mesajlarınız kalıcı olarak silinecek. Yaklaşan randevularınız iptal edilecek ve uygun olduğunda ücret iadesi yapılacaktır. Ödeme kayıtları, kanunen gerekli muhasebe amaçları için anonimleştirilmiş biçimde saklanır.';
+	@override String get deleteAccountSuccess => 'Hesabınız kalıcı olarak silindi.';
 }
 
 // Path: status
@@ -376,6 +382,9 @@ class _Translations$appointments$tr extends Translations$appointments$en {
 	@override String get cancelTitle => 'Randevuyu İptal Et';
 	@override String get cancelConfirm => 'Bu randevuyu iptal etmek istediğinizden emin misiniz?';
 	@override String get cancelAction => 'Randevuyu İptal Et';
+	@override String get cancelledSuccess => 'Randevu iptal edildi.';
+	@override String get cancelledRefunded => 'Randevu iptal edildi. Ödemeniz iade edildi.';
+	@override String get cancelledNoRefund => 'Randevu iptal edildi. Randevu saatine çok yakın olduğu için iade yapılmadı.';
 	@override String get bookedTitle => 'Randevu alındı!';
 	@override String get bookedMessage => 'Randevu isteğiniz gönderildi.';
 	@override String get reschedule => 'Yeniden planla';
@@ -960,6 +969,8 @@ class _Translations$payments$tr extends Translations$payments$en {
 	@override String get statusPaid => 'Ödendi';
 	@override String get statusFailed => 'Ödeme Başarısız';
 	@override String get statusCancelled => 'İptal Edildi';
+	@override String get statusRefunded => 'İade Edildi';
+	@override String get statusRefundFailed => 'İade Başarısız';
 	@override String get paymentConfirmed => 'Ödeme onaylandı. Teşekkürler!';
 	@override String get openingBrowser => 'Tarayıcı açılıyor…';
 	@override String get checkStatus => 'Durumu Kontrol Et';
@@ -1562,6 +1573,12 @@ extension on TranslationsTr {
 			'security.deactivateConfirmMessage' => 'Hesabınız devre dışı bırakılacak ve tüm cihazlarda oturumunuz kapatılacak. Verileriniz silinmez. Yeniden etkinleştirmek için destek ekibiyle iletişime geçin.',
 			'security.deactivate' => 'Devre Dışı Bırak',
 			'security.deactivateSuccess' => 'Hesabınız devre dışı bırakıldı.',
+			'security.deleteAccount' => 'Hesabı Kalıcı Olarak Sil',
+			'security.deleteAccountSubtitle' => 'Verilerinizi silin. Bu işlem geri alınamaz.',
+			'security.deleteConfirmTitle' => 'Hesabınız kalıcı olarak silinsin mi?',
+			'security.deleteConfirmWarning' => 'Bu işlem kalıcıdır ve geri alınamaz.',
+			'security.deleteConfirmMessage' => 'Profiliniz, tıbbi kayıtlarınız, reçeteleriniz ve mesajlarınız kalıcı olarak silinecek. Yaklaşan randevularınız iptal edilecek ve uygun olduğunda ücret iadesi yapılacaktır. Ödeme kayıtları, kanunen gerekli muhasebe amaçları için anonimleştirilmiş biçimde saklanır.',
+			'security.deleteAccountSuccess' => 'Hesabınız kalıcı olarak silindi.',
 			'status.confirmed' => 'Onaylandı',
 			'status.pending' => 'Beklemede',
 			'status.cancelled' => 'İptal edildi',
@@ -1620,6 +1637,9 @@ extension on TranslationsTr {
 			'appointments.cancelTitle' => 'Randevuyu İptal Et',
 			'appointments.cancelConfirm' => 'Bu randevuyu iptal etmek istediğinizden emin misiniz?',
 			'appointments.cancelAction' => 'Randevuyu İptal Et',
+			'appointments.cancelledSuccess' => 'Randevu iptal edildi.',
+			'appointments.cancelledRefunded' => 'Randevu iptal edildi. Ödemeniz iade edildi.',
+			'appointments.cancelledNoRefund' => 'Randevu iptal edildi. Randevu saatine çok yakın olduğu için iade yapılmadı.',
 			'appointments.bookedTitle' => 'Randevu alındı!',
 			'appointments.bookedMessage' => 'Randevu isteğiniz gönderildi.',
 			'appointments.reschedule' => 'Yeniden planla',
@@ -1931,6 +1951,8 @@ extension on TranslationsTr {
 			'medications.dosage' => 'Doz',
 			'medications.notes' => 'Notlar',
 			'medications.form' => 'Form',
+			_ => null,
+		} ?? switch (path) {
 			'medications.formPill' => 'Hap',
 			'medications.formCapsule' => 'Kapsül',
 			'medications.formLiquid' => 'Sıvı',
@@ -1940,8 +1962,6 @@ extension on TranslationsTr {
 			'medications.times' => 'Alım Saatleri',
 			'medications.addTime' => 'Saat Ekle',
 			'medications.daysOfWeek' => 'Haftanın Günleri',
-			_ => null,
-		} ?? switch (path) {
 			'medications.everyDay' => 'Her gün',
 			'medications.startDate' => 'Başlangıç Tarihi',
 			'medications.endDate' => 'Bitiş Tarihi',
@@ -2035,6 +2055,8 @@ extension on TranslationsTr {
 			'payments.statusPaid' => 'Ödendi',
 			'payments.statusFailed' => 'Ödeme Başarısız',
 			'payments.statusCancelled' => 'İptal Edildi',
+			'payments.statusRefunded' => 'İade Edildi',
+			'payments.statusRefundFailed' => 'İade Başarısız',
 			'payments.paymentConfirmed' => 'Ödeme onaylandı. Teşekkürler!',
 			'payments.openingBrowser' => 'Tarayıcı açılıyor…',
 			'payments.checkStatus' => 'Durumu Kontrol Et',
