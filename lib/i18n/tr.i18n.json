@@ -584,7 +584,7 @@
     "termsTitle": "Kullanım Koşulları",
     "termsIntro": "Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.",
     "termsBody": "Kendiniz hakkında doğru bilgi verin. Medalize'yi yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. Medalize sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.",
-    "contact": "Verileriniz hakkında sorularınız mı var? support@medalize.app adresine yazın",
+    "contact": "Verileriniz hakkında sorularınız mı var? support@medalize.az adresine yazın",
     "consentPrefix": "",
     "consentPrivacyLink": "Gizlilik Politikası",
     "consentMiddle": " ve ",
@@ -741,7 +741,14 @@
     "bookingForLabel": "Randevu kimin için: $name",
     "forLabel": "$name için",
     "ageYears": "$age yaşında",
-    "bookedByLabel": "Randevuyu alan: $name"
+    "bookedByLabel": "Randevuyu alan: $name",
+    "contactEmail": "İletişim E-postası",
+    "contactEmailHelp": "Eklendiklerini onlara bildireceğiz ve reddetmeleri için kolay bir yol sunacağız.",
+    "contactPhoneOptional": "İletişim Telefonu (isteğe bağlı)",
+    "contactEmailRequiredForAdult": "Bu aile üyesini bilgilendirebilmemiz için bir e-posta adresi gereklidir",
+    "adultConsentNotice": "18 yaşından büyük oldukları için onlara sizin tarafınızdan eklendiklerini bildiren bir e-posta göndereceğiz — uygulamaya ihtiyaçları yok ve bu bağlantıyı istedikleri zaman kaldırabilirler.",
+    "noticeAlreadySent": "Eklendikleri konusunda onları bilgilendirdik. Bu bağlantıyı istedikleri zaman kaldırabilirler.",
+    "noticePendingBadge": "Bildirim gönderildi"
   },
   "subscription": {
     "title": "Abonelik",

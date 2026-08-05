@@ -27,8 +27,14 @@ DependentModel _dependent({
   required String id,
   required String firstName,
   String relationship = DependentModel.relationshipChild,
+  DateTime? consentNoticeSentAt,
 }) =>
-    DependentModel(id: id, firstName: firstName, relationship: relationship);
+    DependentModel(
+      id: id,
+      firstName: firstName,
+      relationship: relationship,
+      consentNoticeSentAt: consentNoticeSentAt,
+    );
 
 Widget _app(_FakeFamilyRepository repo) => TranslationProvider(
       child: ProviderScope(
@@ -56,6 +62,22 @@ void main() {
     expect(find.text('Child'), findsOneWidget);
     expect(find.text('Mark'), findsOneWidget);
     expect(find.text('Spouse'), findsOneWidget);
+  });
+
+  testWidgets(
+      'shows a "notice sent" badge only for a dependent whose consent notice has gone out',
+      (tester) async {
+    final repo = _FakeFamilyRepository([
+      _dependent(id: 'd1', firstName: 'Anna', relationship: DependentModel.relationshipChild),
+      _dependent(
+        id: 'd2', firstName: 'Mark', relationship: DependentModel.relationshipSpouse,
+        consentNoticeSentAt: DateTime.now(),
+      ),
+    ]);
+    await tester.pumpWidget(_app(repo));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Notice sent'), findsOneWidget);
   });
 
   testWidgets('shows the empty state when there are no family members',

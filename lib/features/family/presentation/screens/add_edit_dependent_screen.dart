@@ -5,9 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/app_date_field.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/core/widgets/tinted_notice_banner.dart';
 import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/family/data/repository/family_repository.dart';
 import 'package:medalize_mb/features/family/presentation/screens/family_list_screen.dart';
@@ -46,6 +48,8 @@ class _AddEditDependentScreenState
   late final TextEditingController _allergies;
   late final TextEditingController _chronicConditions;
   late final TextEditingController _medications;
+  late final TextEditingController _contactEmail;
+  late final TextEditingController _contactPhone;
   late String _relationship;
   DateTime? _dateOfBirth;
 
@@ -53,6 +57,13 @@ class _AddEditDependentScreenState
   String? _error;
 
   bool get _isEditing => widget.existing != null;
+
+  /// Whether the currently-picked date of birth computes to 18+ — gates the
+  /// contact-email requirement and the consent-notice copy below. Uses the
+  /// same DependentModel.ageFromDob the backend's apps.family.services.
+  /// dependent_age mirrors, so client-side and server-side "is this an
+  /// adult" agree.
+  bool get _isAdult => (DependentModel.ageFromDob(_dateOfBirth) ?? 0) >= 18;
 
   @override
   void initState() {
@@ -65,6 +76,8 @@ class _AddEditDependentScreenState
     _chronicConditions =
         TextEditingController(text: existing?.chronicConditions ?? '');
     _medications = TextEditingController(text: existing?.medications ?? '');
+    _contactEmail = TextEditingController(text: existing?.contactEmail ?? '');
+    _contactPhone = TextEditingController(text: existing?.contactPhone ?? '');
     _relationship = existing?.relationship ?? DependentModel.relationshipChild;
     _dateOfBirth = existing?.dateOfBirth;
   }
@@ -77,6 +90,8 @@ class _AddEditDependentScreenState
     _allergies.dispose();
     _chronicConditions.dispose();
     _medications.dispose();
+    _contactEmail.dispose();
+    _contactPhone.dispose();
     super.dispose();
   }
 
@@ -97,6 +112,37 @@ class _AddEditDependentScreenState
           .fieldRequired(field: context.t.family.firstName));
       return;
     }
+    // Required on create, matching the backend (DependentCreateSerializer.
+    // date_of_birth). Deliberately NOT required on every edit: a PATCH that
+    // never sets date_of_birth leaves an existing legacy null value alone
+    // (see FamilyRepository.updateDependent, which already only includes
+    // the field when non-null) rather than forcing a disruptive backfill —
+    // same "existing dependents without a DOB are left alone" call the
+    // backend makes. The date picker itself never produces `null`, so there
+    // is no path here that could null out an existing DOB either way.
+    if (!_isEditing && _dateOfBirth == null) {
+      setState(() => _error = context.t.validation
+          .fieldRequired(field: context.t.family.dateOfBirth));
+      return;
+    }
+    final contactEmail = _contactEmail.text.trim();
+    if (_isAdult) {
+      // A dependent 18 or older must be positively notified that they were
+      // added, with a way to object — see the backend's
+      // DependentCreateSerializer.validate/apps.family.services.
+      // issue_consent_notice. Email is the only channel that can actually
+      // deliver that notice (no SMS infra), so it's required here even
+      // though the phone field below stays optional.
+      if (contactEmail.isEmpty) {
+        setState(() => _error = context.t.family.contactEmailRequiredForAdult);
+        return;
+      }
+      final emailError = Validators.email(contactEmail);
+      if (emailError != null) {
+        setState(() => _error = emailError);
+        return;
+      }
+    }
     setState(() {
       _saving = true;
       _error = null;
@@ -115,6 +161,8 @@ class _AddEditDependentScreenState
           allergies: _allergies.text.trim(),
           chronicConditions: _chronicConditions.text.trim(),
           medications: _medications.text.trim(),
+          contactEmail: contactEmail,
+          contactPhone: _contactPhone.text.trim(),
         );
       } else {
         await repo.createDependent(
@@ -126,6 +174,8 @@ class _AddEditDependentScreenState
           allergies: _allergies.text.trim(),
           chronicConditions: _chronicConditions.text.trim(),
           medications: _medications.text.trim(),
+          contactEmail: contactEmail,
+          contactPhone: _contactPhone.text.trim(),
         );
       }
       ref.invalidate(dependentsProvider);
@@ -184,6 +234,36 @@ class _AddEditDependentScreenState
                 value: _dateOfBirth,
                 onTap: _pickDateOfBirth,
               ),
+              if (_isAdult) ...[
+                const Gap(AppSpacing.md),
+                TintedNoticeBanner(
+                  color: AppColors.warning,
+                  icon: widget.existing?.consentNoticeSentAt != null
+                      ? Icons.mark_email_read_outlined
+                      : Icons.info_outline,
+                  child: Text(
+                    widget.existing?.consentNoticeSentAt != null
+                        ? t.family.noticeAlreadySent
+                        : t.family.adultConsentNotice,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                const Gap(12),
+                TextField(
+                  controller: _contactEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: t.family.contactEmail,
+                    helperText: t.family.contactEmailHelp,
+                  ),
+                ),
+                const Gap(12),
+                TextField(
+                  controller: _contactPhone,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(labelText: t.family.contactPhoneOptional),
+                ),
+              ],
               const Gap(12),
               TextField(
                 controller: _bloodType,

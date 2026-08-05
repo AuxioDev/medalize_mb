@@ -807,7 +807,7 @@ class _Translations$legal$fr extends Translations$legal$en {
 	@override String get termsTitle => 'Conditions d\'utilisation';
 	@override String get termsIntro => 'En créant un compte, vous acceptez ce qui suit.';
 	@override String get termsBody => 'Fournir des informations exactes vous concernant. Utiliser Medalize uniquement pour trouver, réserver et gérer des rendez-vous médicaux. Garder vos identifiants de connexion confidentiels. Medalize vous met en relation avec des professionnels de santé indépendants et agréés — nous ne sommes pas nous-mêmes un prestataire de soins, et l\'assistant IA de vérification des symptômes ne remplace pas un diagnostic ou un avis médical professionnel. En cas d\'urgence médicale, contactez directement les services d\'urgence, pas cette application. Nous pouvons suspendre ou résilier les comptes qui enfreignent ces conditions ou qui font un usage abusif de la plateforme.';
-	@override String get contact => 'Des questions sur vos données ? Contactez support@medalize.app';
+	@override String get contact => 'Des questions sur vos données ? Contactez support@medalize.az';
 	@override String get consentPrefix => 'J\'ai lu et j\'accepte la ';
 	@override String get consentPrivacyLink => 'Politique de confidentialité';
 	@override String get consentMiddle => ' et les ';
@@ -1000,6 +1000,13 @@ class _Translations$family$fr extends Translations$family$en {
 	@override String forLabel({required Object name}) => 'pour ${name}';
 	@override String ageYears({required Object age}) => '${age} ans';
 	@override String bookedByLabel({required Object name}) => 'Pris par ${name}';
+	@override String get contactEmail => 'E-mail de contact';
+	@override String get contactEmailHelp => 'Nous les informerons qu\'ils ont été ajoutés, avec un moyen simple de refuser.';
+	@override String get contactPhoneOptional => 'Téléphone de contact (facultatif)';
+	@override String get contactEmailRequiredForAdult => 'Une adresse e-mail est requise pour que nous puissions informer ce membre de la famille';
+	@override String get adultConsentNotice => 'Comme cette personne a 18 ans ou plus, nous lui enverrons un e-mail pour l\'informer que vous l\'avez ajoutée — elle n\'a pas besoin de l\'application et peut supprimer cette connexion à tout moment.';
+	@override String get noticeAlreadySent => 'Nous l\'avons informée qu\'elle a été ajoutée. Elle peut supprimer cette connexion à tout moment.';
+	@override String get noticePendingBadge => 'Notification envoyée';
 }
 
 // Path: subscription
@@ -1909,7 +1916,7 @@ extension on TranslationsFr {
 			'legal.termsTitle' => 'Conditions d\'utilisation',
 			'legal.termsIntro' => 'En créant un compte, vous acceptez ce qui suit.',
 			'legal.termsBody' => 'Fournir des informations exactes vous concernant. Utiliser Medalize uniquement pour trouver, réserver et gérer des rendez-vous médicaux. Garder vos identifiants de connexion confidentiels. Medalize vous met en relation avec des professionnels de santé indépendants et agréés — nous ne sommes pas nous-mêmes un prestataire de soins, et l\'assistant IA de vérification des symptômes ne remplace pas un diagnostic ou un avis médical professionnel. En cas d\'urgence médicale, contactez directement les services d\'urgence, pas cette application. Nous pouvons suspendre ou résilier les comptes qui enfreignent ces conditions ou qui font un usage abusif de la plateforme.',
-			'legal.contact' => 'Des questions sur vos données ? Contactez support@medalize.app',
+			'legal.contact' => 'Des questions sur vos données ? Contactez support@medalize.az',
 			'legal.consentPrefix' => 'J\'ai lu et j\'accepte la ',
 			'legal.consentPrivacyLink' => 'Politique de confidentialité',
 			'legal.consentMiddle' => ' et les ',
@@ -2059,6 +2066,13 @@ extension on TranslationsFr {
 			'family.forLabel' => ({required Object name}) => 'pour ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} ans',
 			'family.bookedByLabel' => ({required Object name}) => 'Pris par ${name}',
+			'family.contactEmail' => 'E-mail de contact',
+			'family.contactEmailHelp' => 'Nous les informerons qu\'ils ont été ajoutés, avec un moyen simple de refuser.',
+			'family.contactPhoneOptional' => 'Téléphone de contact (facultatif)',
+			'family.contactEmailRequiredForAdult' => 'Une adresse e-mail est requise pour que nous puissions informer ce membre de la famille',
+			'family.adultConsentNotice' => 'Comme cette personne a 18 ans ou plus, nous lui enverrons un e-mail pour l\'informer que vous l\'avez ajoutée — elle n\'a pas besoin de l\'application et peut supprimer cette connexion à tout moment.',
+			'family.noticeAlreadySent' => 'Nous l\'avons informée qu\'elle a été ajoutée. Elle peut supprimer cette connexion à tout moment.',
+			'family.noticePendingBadge' => 'Notification envoyée',
 			'subscription.title' => 'Abonnement',
 			'subscription.planNameBasic' => 'Débutant',
 			'subscription.planNamePro' => 'Professionnel',

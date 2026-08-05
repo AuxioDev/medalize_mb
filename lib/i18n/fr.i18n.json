@@ -584,7 +584,7 @@
     "termsTitle": "Conditions d'utilisation",
     "termsIntro": "En créant un compte, vous acceptez ce qui suit.",
     "termsBody": "Fournir des informations exactes vous concernant. Utiliser Medalize uniquement pour trouver, réserver et gérer des rendez-vous médicaux. Garder vos identifiants de connexion confidentiels. Medalize vous met en relation avec des professionnels de santé indépendants et agréés — nous ne sommes pas nous-mêmes un prestataire de soins, et l'assistant IA de vérification des symptômes ne remplace pas un diagnostic ou un avis médical professionnel. En cas d'urgence médicale, contactez directement les services d'urgence, pas cette application. Nous pouvons suspendre ou résilier les comptes qui enfreignent ces conditions ou qui font un usage abusif de la plateforme.",
-    "contact": "Des questions sur vos données ? Contactez support@medalize.app",
+    "contact": "Des questions sur vos données ? Contactez support@medalize.az",
     "consentPrefix": "J'ai lu et j'accepte la ",
     "consentPrivacyLink": "Politique de confidentialité",
     "consentMiddle": " et les ",
@@ -741,7 +741,14 @@
     "bookingForLabel": "Rendez-vous pour : $name",
     "forLabel": "pour $name",
     "ageYears": "$age ans",
-    "bookedByLabel": "Pris par $name"
+    "bookedByLabel": "Pris par $name",
+    "contactEmail": "E-mail de contact",
+    "contactEmailHelp": "Nous les informerons qu'ils ont été ajoutés, avec un moyen simple de refuser.",
+    "contactPhoneOptional": "Téléphone de contact (facultatif)",
+    "contactEmailRequiredForAdult": "Une adresse e-mail est requise pour que nous puissions informer ce membre de la famille",
+    "adultConsentNotice": "Comme cette personne a 18 ans ou plus, nous lui enverrons un e-mail pour l'informer que vous l'avez ajoutée — elle n'a pas besoin de l'application et peut supprimer cette connexion à tout moment.",
+    "noticeAlreadySent": "Nous l'avons informée qu'elle a été ajoutée. Elle peut supprimer cette connexion à tout moment.",
+    "noticePendingBadge": "Notification envoyée"
   },
   "subscription": {
     "title": "Abonnement",

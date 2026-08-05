@@ -40,6 +40,8 @@ class FamilyRepository {
     String allergies = '',
     String chronicConditions = '',
     String medications = '',
+    String contactEmail = '',
+    String contactPhone = '',
   }) async {
     try {
       final res = await _dio.post('/dependents/', data: {
@@ -51,6 +53,8 @@ class FamilyRepository {
         'allergies': allergies,
         'chronic_conditions': chronicConditions,
         'medications': medications,
+        'contact_email': contactEmail,
+        'contact_phone': contactPhone,
       });
       return DependentModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
@@ -70,6 +74,8 @@ class FamilyRepository {
     String? allergies,
     String? chronicConditions,
     String? medications,
+    String? contactEmail,
+    String? contactPhone,
   }) async {
     try {
       final res = await _dio.patch('/dependents/$id/', data: {
@@ -81,6 +87,8 @@ class FamilyRepository {
         'allergies': ?allergies,
         'chronic_conditions': ?chronicConditions,
         'medications': ?medications,
+        'contact_email': ?contactEmail,
+        'contact_phone': ?contactPhone,
       });
       return DependentModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {

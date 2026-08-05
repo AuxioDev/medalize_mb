@@ -807,7 +807,7 @@ class _Translations$legal$zh extends Translations$legal$en {
 	@override String get termsTitle => '服务条款';
 	@override String get termsIntro => '创建账号即表示您同意以下内容。';
 	@override String get termsBody => '提供关于您自己的准确信息。仅将 Medalize 用于查找、预约和管理医疗就诊。对您的登录凭证保密。Medalize 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。';
-	@override String get contact => '对您的数据有疑问？请联系 support@medalize.app';
+	@override String get contact => '对您的数据有疑问？请联系 support@medalize.az';
 	@override String get consentPrefix => '我已阅读并同意';
 	@override String get consentPrivacyLink => '隐私政策';
 	@override String get consentMiddle => '和';
@@ -1000,6 +1000,13 @@ class _Translations$family$zh extends Translations$family$en {
 	@override String forLabel({required Object name}) => '${name} 的';
 	@override String ageYears({required Object age}) => '${age} 岁';
 	@override String bookedByLabel({required Object name}) => '预约人：${name}';
+	@override String get contactEmail => '联系邮箱';
+	@override String get contactEmailHelp => '我们会通知对方已被添加，并提供简单的拒绝方式。';
+	@override String get contactPhoneOptional => '联系电话（可选）';
+	@override String get contactEmailRequiredForAdult => '需要提供邮箱地址，以便我们通知该家庭成员';
+	@override String get adultConsentNotice => '由于对方已年满 18 岁，我们会通过邮件通知对方您已将其添加为家庭成员——对方无需安装应用，并且可以随时解除此关联。';
+	@override String get noticeAlreadySent => '我们已通知对方其被添加为家庭成员。对方可以随时解除此关联。';
+	@override String get noticePendingBadge => '通知已发送';
 }
 
 // Path: subscription
@@ -1909,7 +1916,7 @@ extension on TranslationsZh {
 			'legal.termsTitle' => '服务条款',
 			'legal.termsIntro' => '创建账号即表示您同意以下内容。',
 			'legal.termsBody' => '提供关于您自己的准确信息。仅将 Medalize 用于查找、预约和管理医疗就诊。对您的登录凭证保密。Medalize 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。',
-			'legal.contact' => '对您的数据有疑问？请联系 support@medalize.app',
+			'legal.contact' => '对您的数据有疑问？请联系 support@medalize.az',
 			'legal.consentPrefix' => '我已阅读并同意',
 			'legal.consentPrivacyLink' => '隐私政策',
 			'legal.consentMiddle' => '和',
@@ -2059,6 +2066,13 @@ extension on TranslationsZh {
 			'family.forLabel' => ({required Object name}) => '${name} 的',
 			'family.ageYears' => ({required Object age}) => '${age} 岁',
 			'family.bookedByLabel' => ({required Object name}) => '预约人：${name}',
+			'family.contactEmail' => '联系邮箱',
+			'family.contactEmailHelp' => '我们会通知对方已被添加，并提供简单的拒绝方式。',
+			'family.contactPhoneOptional' => '联系电话（可选）',
+			'family.contactEmailRequiredForAdult' => '需要提供邮箱地址，以便我们通知该家庭成员',
+			'family.adultConsentNotice' => '由于对方已年满 18 岁，我们会通过邮件通知对方您已将其添加为家庭成员——对方无需安装应用，并且可以随时解除此关联。',
+			'family.noticeAlreadySent' => '我们已通知对方其被添加为家庭成员。对方可以随时解除此关联。',
+			'family.noticePendingBadge' => '通知已发送',
 			'subscription.title' => '订阅',
 			'subscription.planNameBasic' => '入门版',
 			'subscription.planNamePro' => '专业版',

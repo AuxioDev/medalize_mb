@@ -1693,8 +1693,8 @@ class Translations$legal$en {
 	/// en: 'Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.'
 	String get termsBody => 'Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.';
 
-	/// en: 'Questions about your data? Contact support@medalize.app'
-	String get contact => 'Questions about your data? Contact support@medalize.app';
+	/// en: 'Questions about your data? Contact support@medalize.az'
+	String get contact => 'Questions about your data? Contact support@medalize.az';
 
 	/// en: 'I have read and agree to the '
 	String get consentPrefix => 'I have read and agree to the ';
@@ -2181,6 +2181,27 @@ class Translations$family$en {
 
 	/// en: 'Booked by $name'
 	String bookedByLabel({required Object name}) => 'Booked by ${name}';
+
+	/// en: 'Contact Email'
+	String get contactEmail => 'Contact Email';
+
+	/// en: 'We'll let them know they were added, with an easy way to opt out.'
+	String get contactEmailHelp => 'We\'ll let them know they were added, with an easy way to opt out.';
+
+	/// en: 'Contact Phone (optional)'
+	String get contactPhoneOptional => 'Contact Phone (optional)';
+
+	/// en: 'An email address is required so we can notify this family member'
+	String get contactEmailRequiredForAdult => 'An email address is required so we can notify this family member';
+
+	/// en: 'Since they're 18 or older, we'll email them to let them know you added them — they don't need the app, and they can disconnect this connection at any time.'
+	String get adultConsentNotice => 'Since they\'re 18 or older, we\'ll email them to let them know you added them — they don\'t need the app, and they can disconnect this connection at any time.';
+
+	/// en: 'We've let them know they were added. They can disconnect this connection at any time.'
+	String get noticeAlreadySent => 'We\'ve let them know they were added. They can disconnect this connection at any time.';
+
+	/// en: 'Notice sent'
+	String get noticePendingBadge => 'Notice sent';
 }
 
 // Path: subscription
@@ -3378,7 +3399,7 @@ extension on Translations {
 			'legal.termsTitle' => 'Terms of Service',
 			'legal.termsIntro' => 'By creating an account, you agree to the following.',
 			'legal.termsBody' => 'Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.',
-			'legal.contact' => 'Questions about your data? Contact support@medalize.app',
+			'legal.contact' => 'Questions about your data? Contact support@medalize.az',
 			'legal.consentPrefix' => 'I have read and agree to the ',
 			'legal.consentPrivacyLink' => 'Privacy Policy',
 			'legal.consentMiddle' => ' and ',
@@ -3528,6 +3549,13 @@ extension on Translations {
 			'family.forLabel' => ({required Object name}) => 'for ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} years old',
 			'family.bookedByLabel' => ({required Object name}) => 'Booked by ${name}',
+			'family.contactEmail' => 'Contact Email',
+			'family.contactEmailHelp' => 'We\'ll let them know they were added, with an easy way to opt out.',
+			'family.contactPhoneOptional' => 'Contact Phone (optional)',
+			'family.contactEmailRequiredForAdult' => 'An email address is required so we can notify this family member',
+			'family.adultConsentNotice' => 'Since they\'re 18 or older, we\'ll email them to let them know you added them — they don\'t need the app, and they can disconnect this connection at any time.',
+			'family.noticeAlreadySent' => 'We\'ve let them know they were added. They can disconnect this connection at any time.',
+			'family.noticePendingBadge' => 'Notice sent',
 			'subscription.title' => 'Subscription',
 			'subscription.planNameBasic' => 'Starter',
 			'subscription.planNamePro' => 'Professional',

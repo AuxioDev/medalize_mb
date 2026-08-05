@@ -584,7 +584,7 @@
     "termsTitle": "Terms of Service",
     "termsIntro": "By creating an account, you agree to the following.",
     "termsBody": "Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.",
-    "contact": "Questions about your data? Contact support@medalize.app",
+    "contact": "Questions about your data? Contact support@medalize.az",
     "consentPrefix": "I have read and agree to the ",
     "consentPrivacyLink": "Privacy Policy",
     "consentMiddle": " and ",
@@ -741,7 +741,14 @@
     "bookingForLabel": "Booking for: $name",
     "forLabel": "for $name",
     "ageYears": "$age years old",
-    "bookedByLabel": "Booked by $name"
+    "bookedByLabel": "Booked by $name",
+    "contactEmail": "Contact Email",
+    "contactEmailHelp": "We'll let them know they were added, with an easy way to opt out.",
+    "contactPhoneOptional": "Contact Phone (optional)",
+    "contactEmailRequiredForAdult": "An email address is required so we can notify this family member",
+    "adultConsentNotice": "Since they're 18 or older, we'll email them to let them know you added them — they don't need the app, and they can disconnect this connection at any time.",
+    "noticeAlreadySent": "We've let them know they were added. They can disconnect this connection at any time.",
+    "noticePendingBadge": "Notice sent"
   },
   "subscription": {
     "title": "Subscription",

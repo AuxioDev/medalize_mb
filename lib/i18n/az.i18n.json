@@ -584,7 +584,7 @@
     "termsTitle": "İstifadə Şərtləri",
     "termsIntro": "Hesab yaratmaqla aşağıdakılarla razılaşırsınız.",
     "termsBody": "Özünüz haqqında dəqiq məlumat verin. Medalize-dən yalnız həkim tapmaq, təyinat bron etmək və idarə etmək üçün istifadə edin. Giriş məlumatlarınızı məxfi saxlayın. Medalize sizi müstəqil, lisenziyalı tibb mütəxəssisləri ilə əlaqələndirir — biz özümüz tibb müəssisəsi deyilik, simptom yoxlama süni intellekt köməkçisi peşəkar tibbi diaqnoz və ya məsləhəti əvəz etmir. Təcili tibbi vəziyyətdə birbaşa təcili yardım xidmətinə müraciət edin, bu tətbiqə deyil. Bu şərtləri pozan və ya platformadan sui-istifadə edən hesabları dayandıra və ya silə bilərik.",
-    "contact": "Məlumatlarınızla bağlı sualınız var? support@medalize.app ünvanına yazın",
+    "contact": "Məlumatlarınızla bağlı sualınız var? support@medalize.az ünvanına yazın",
     "consentPrefix": "Mən ",
     "consentPrivacyLink": "Məxfilik Siyasəti",
     "consentMiddle": " və ",
@@ -741,7 +741,14 @@
     "bookingForLabel": "Qəbul kimin üçündür: $name",
     "forLabel": "$name üçün",
     "ageYears": "$age yaşında",
-    "bookedByLabel": "Qeyd edən: $name"
+    "bookedByLabel": "Qeyd edən: $name",
+    "contactEmail": "Əlaqə e-poçtu",
+    "contactEmailHelp": "Əlavə edildiklərini onlara bildirəcəyik və rədd etmək üçün asan bir yol təqdim edəcəyik.",
+    "contactPhoneOptional": "Əlaqə telefonu (istəyə bağlı)",
+    "contactEmailRequiredForAdult": "Bu ailə üzvünə bildiriş göndərə bilmək üçün e-poçt ünvanı tələb olunur",
+    "adultConsentNotice": "18 yaşdan böyük olduqları üçün onlara sizin tərəfinizdən əlavə edildiklərini bildirən e-poçt göndərəcəyik — tətbiqə ehtiyacları yoxdur və istənilən vaxt bu əlaqəni kəsə bilərlər.",
+    "noticeAlreadySent": "Əlavə edildikləri barədə onlara bildiriş göndərdik. İstənilən vaxt bu əlaqəni kəsə bilərlər.",
+    "noticePendingBadge": "Bildiriş göndərildi"
   },
   "subscription": {
     "title": "Abunəlik",

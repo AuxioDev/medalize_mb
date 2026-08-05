@@ -807,7 +807,7 @@ class _Translations$legal$tr extends Translations$legal$en {
 	@override String get termsTitle => 'Kullanım Koşulları';
 	@override String get termsIntro => 'Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.';
 	@override String get termsBody => 'Kendiniz hakkında doğru bilgi verin. Medalize\'yi yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. Medalize sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.';
-	@override String get contact => 'Verileriniz hakkında sorularınız mı var? support@medalize.app adresine yazın';
+	@override String get contact => 'Verileriniz hakkında sorularınız mı var? support@medalize.az adresine yazın';
 	@override String get consentPrefix => '';
 	@override String get consentPrivacyLink => 'Gizlilik Politikası';
 	@override String get consentMiddle => ' ve ';
@@ -1000,6 +1000,13 @@ class _Translations$family$tr extends Translations$family$en {
 	@override String forLabel({required Object name}) => '${name} için';
 	@override String ageYears({required Object age}) => '${age} yaşında';
 	@override String bookedByLabel({required Object name}) => 'Randevuyu alan: ${name}';
+	@override String get contactEmail => 'İletişim E-postası';
+	@override String get contactEmailHelp => 'Eklendiklerini onlara bildireceğiz ve reddetmeleri için kolay bir yol sunacağız.';
+	@override String get contactPhoneOptional => 'İletişim Telefonu (isteğe bağlı)';
+	@override String get contactEmailRequiredForAdult => 'Bu aile üyesini bilgilendirebilmemiz için bir e-posta adresi gereklidir';
+	@override String get adultConsentNotice => '18 yaşından büyük oldukları için onlara sizin tarafınızdan eklendiklerini bildiren bir e-posta göndereceğiz — uygulamaya ihtiyaçları yok ve bu bağlantıyı istedikleri zaman kaldırabilirler.';
+	@override String get noticeAlreadySent => 'Eklendikleri konusunda onları bilgilendirdik. Bu bağlantıyı istedikleri zaman kaldırabilirler.';
+	@override String get noticePendingBadge => 'Bildirim gönderildi';
 }
 
 // Path: subscription
@@ -1909,7 +1916,7 @@ extension on TranslationsTr {
 			'legal.termsTitle' => 'Kullanım Koşulları',
 			'legal.termsIntro' => 'Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.',
 			'legal.termsBody' => 'Kendiniz hakkında doğru bilgi verin. Medalize\'yi yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. Medalize sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.',
-			'legal.contact' => 'Verileriniz hakkında sorularınız mı var? support@medalize.app adresine yazın',
+			'legal.contact' => 'Verileriniz hakkında sorularınız mı var? support@medalize.az adresine yazın',
 			'legal.consentPrefix' => '',
 			'legal.consentPrivacyLink' => 'Gizlilik Politikası',
 			'legal.consentMiddle' => ' ve ',
@@ -2059,6 +2066,13 @@ extension on TranslationsTr {
 			'family.forLabel' => ({required Object name}) => '${name} için',
 			'family.ageYears' => ({required Object age}) => '${age} yaşında',
 			'family.bookedByLabel' => ({required Object name}) => 'Randevuyu alan: ${name}',
+			'family.contactEmail' => 'İletişim E-postası',
+			'family.contactEmailHelp' => 'Eklendiklerini onlara bildireceğiz ve reddetmeleri için kolay bir yol sunacağız.',
+			'family.contactPhoneOptional' => 'İletişim Telefonu (isteğe bağlı)',
+			'family.contactEmailRequiredForAdult' => 'Bu aile üyesini bilgilendirebilmemiz için bir e-posta adresi gereklidir',
+			'family.adultConsentNotice' => '18 yaşından büyük oldukları için onlara sizin tarafınızdan eklendiklerini bildiren bir e-posta göndereceğiz — uygulamaya ihtiyaçları yok ve bu bağlantıyı istedikleri zaman kaldırabilirler.',
+			'family.noticeAlreadySent' => 'Eklendikleri konusunda onları bilgilendirdik. Bu bağlantıyı istedikleri zaman kaldırabilirler.',
+			'family.noticePendingBadge' => 'Bildirim gönderildi',
 			'subscription.title' => 'Abonelik',
 			'subscription.planNameBasic' => 'Başlangıç',
 			'subscription.planNamePro' => 'Profesyonel',

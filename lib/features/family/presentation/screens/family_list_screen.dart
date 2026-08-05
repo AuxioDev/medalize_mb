@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
+import 'package:medalize_mb/core/widgets/app_badge.dart';
 import 'package:medalize_mb/core/widgets/app_list_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
@@ -174,6 +175,15 @@ class _DependentCard extends ConsumerWidget {
                 .bodySmall
                 ?.copyWith(color: c.textSecondary),
           ),
+          // A dependent who objected via their no-login link is
+          // soft-deleted and simply stops appearing here (same
+          // active-only filtering as an ordinary deleted dependent) — so
+          // any dependent shown with a sent notice is still an open,
+          // unresolved notice, not (yet) an accepted or rejected one.
+          if (dependent.consentNoticeSentAt != null) ...[
+            const Gap(4),
+            AppBadge(label: context.t.family.noticePendingBadge, color: AppColors.warning),
+          ],
         ],
       ),
     );

@@ -807,7 +807,7 @@ class _Translations$legal$ru extends Translations$legal$en {
 	@override String get termsTitle => 'Условия использования';
 	@override String get termsIntro => 'Создавая аккаунт, вы соглашаетесь со следующим.';
 	@override String get termsBody => 'Указывать о себе достоверную информацию. Использовать Medalize только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. Medalize соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.';
-	@override String get contact => 'Вопросы о ваших данных? Напишите на support@medalize.app';
+	@override String get contact => 'Вопросы о ваших данных? Напишите на support@medalize.az';
 	@override String get consentPrefix => 'Я прочитал(а) и согласен(на) с ';
 	@override String get consentPrivacyLink => 'Политикой конфиденциальности';
 	@override String get consentMiddle => ' и ';
@@ -1000,6 +1000,13 @@ class _Translations$family$ru extends Translations$family$en {
 	@override String forLabel({required Object name}) => 'для ${name}';
 	@override String ageYears({required Object age}) => '${age} лет';
 	@override String bookedByLabel({required Object name}) => 'Записал(а) ${name}';
+	@override String get contactEmail => 'Контактный email';
+	@override String get contactEmailHelp => 'Мы сообщим им, что их добавили, и дадим простой способ отказаться.';
+	@override String get contactPhoneOptional => 'Контактный телефон (необязательно)';
+	@override String get contactEmailRequiredForAdult => 'Email обязателен, чтобы мы могли уведомить этого члена семьи';
+	@override String get adultConsentNotice => 'Поскольку им исполнилось 18 лет, мы отправим им письмо о том, что вы их добавили — приложение им не понадобится, и они смогут отключить эту связь в любой момент.';
+	@override String get noticeAlreadySent => 'Мы сообщили им, что их добавили. Они могут отключить эту связь в любой момент.';
+	@override String get noticePendingBadge => 'Уведомление отправлено';
 }
 
 // Path: subscription
@@ -1909,7 +1916,7 @@ extension on TranslationsRu {
 			'legal.termsTitle' => 'Условия использования',
 			'legal.termsIntro' => 'Создавая аккаунт, вы соглашаетесь со следующим.',
 			'legal.termsBody' => 'Указывать о себе достоверную информацию. Использовать Medalize только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. Medalize соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.',
-			'legal.contact' => 'Вопросы о ваших данных? Напишите на support@medalize.app',
+			'legal.contact' => 'Вопросы о ваших данных? Напишите на support@medalize.az',
 			'legal.consentPrefix' => 'Я прочитал(а) и согласен(на) с ',
 			'legal.consentPrivacyLink' => 'Политикой конфиденциальности',
 			'legal.consentMiddle' => ' и ',
@@ -2059,6 +2066,13 @@ extension on TranslationsRu {
 			'family.forLabel' => ({required Object name}) => 'для ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} лет',
 			'family.bookedByLabel' => ({required Object name}) => 'Записал(а) ${name}',
+			'family.contactEmail' => 'Контактный email',
+			'family.contactEmailHelp' => 'Мы сообщим им, что их добавили, и дадим простой способ отказаться.',
+			'family.contactPhoneOptional' => 'Контактный телефон (необязательно)',
+			'family.contactEmailRequiredForAdult' => 'Email обязателен, чтобы мы могли уведомить этого члена семьи',
+			'family.adultConsentNotice' => 'Поскольку им исполнилось 18 лет, мы отправим им письмо о том, что вы их добавили — приложение им не понадобится, и они смогут отключить эту связь в любой момент.',
+			'family.noticeAlreadySent' => 'Мы сообщили им, что их добавили. Они могут отключить эту связь в любой момент.',
+			'family.noticePendingBadge' => 'Уведомление отправлено',
 			'subscription.title' => 'Подписка',
 			'subscription.planNameBasic' => 'Стартовый',
 			'subscription.planNamePro' => 'Профессиональный',
