@@ -8,7 +8,13 @@ import 'package:medalize_mb/features/messaging/data/repository/messaging_reposit
 /// Thread list, auto-refreshed every 60 seconds while watched — same
 /// `Timer.periodic` + `ref.onDispose` pattern as
 /// `lib/features/notifications/providers/notification_provider.dart::notificationsProvider`.
-final threadsProvider = FutureProvider<List<ThreadModel>>((ref) {
+/// `autoDispose`: holds the signed-in user's own message threads — must not
+/// survive a logout/login as someone else on a shared device. Disposed once
+/// nothing is watching it (which also stops the periodic timer via
+/// `ref.onDispose` below), which the auth redirect guarantees happens on
+/// both logout and the next login (see `medicationsProvider` for the full
+/// rationale).
+final threadsProvider = FutureProvider.autoDispose<List<ThreadModel>>((ref) {
   final timer = Timer.periodic(const Duration(seconds: 60), (_) {
     ref.invalidateSelf();
   });
@@ -18,8 +24,9 @@ final threadsProvider = FutureProvider<List<ThreadModel>>((ref) {
 
 /// Total unread message count across every thread, for the [MessageBell]
 /// badge. Polls its own dedicated endpoint (not derived from [threadsProvider])
-/// on the same 60-second cadence.
-final unreadMessagesCountProvider = FutureProvider<int>((ref) {
+/// on the same 60-second cadence. `autoDispose` — same per-user-data
+/// rationale as [threadsProvider].
+final unreadMessagesCountProvider = FutureProvider.autoDispose<int>((ref) {
   final timer = Timer.periodic(const Duration(seconds: 60), (_) {
     ref.invalidateSelf();
   });

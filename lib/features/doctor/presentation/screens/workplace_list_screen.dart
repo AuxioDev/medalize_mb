@@ -21,8 +21,14 @@ import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// The doctor's workplaces. Also consumed by [EditWorkplaceLoader] to recover
 /// a single workplace by id when GoRouter `extra` is unavailable.
+///
+/// `autoDispose`: this doctor's own data — must not survive a logout/login
+/// as another doctor on a shared device. Disposed once nothing is watching
+/// it, which the auth redirect guarantees happens on both logout and the
+/// next login (see `medications/providers/medication_provider.dart` for the
+/// full rationale).
 final workplacesProvider =
-    FutureProvider<List<Map<String, dynamic>>>((ref) async {
+    FutureProvider.autoDispose<List<Map<String, dynamic>>>((ref) async {
   final dio = ref.read(dioClientProvider);
   final res = await dio.get('/doctor/workplaces/');
   return (res.data as List<dynamic>).cast<Map<String, dynamic>>();

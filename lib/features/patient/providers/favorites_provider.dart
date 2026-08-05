@@ -6,8 +6,15 @@ import 'package:medalize_mb/features/patient/data/repository/favorites_repositor
 /// Favorite doctor IDs, synced with the backend (`/favorites/`). The
 /// [SecureStorage] copy is kept as an offline fallback: reads use it when the
 /// network is down, and every successful server round-trip refreshes it.
+///
+/// `autoDispose`: this is per-patient data — must not survive a logout/login
+/// as another patient on a shared device (the `SecureStorage` fallback copy
+/// is already wiped on logout, see `SecureStorage.clearAll`, but the
+/// in-memory Riverpod state also needs to reset). Disposed once nothing is
+/// watching it, which the auth redirect guarantees happens on both logout
+/// and the next login (see `medicationsProvider` for the full rationale).
 final favoritesProvider =
-    StateNotifierProvider<FavoritesNotifier, Set<String>>(
+    StateNotifierProvider.autoDispose<FavoritesNotifier, Set<String>>(
   (ref) => FavoritesNotifier(ref.read(favoritesRepositoryProvider)),
 );
 

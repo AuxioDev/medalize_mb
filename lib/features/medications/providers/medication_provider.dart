@@ -2,14 +2,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
 
-final medicationsProvider = FutureProvider<List<MedicationModel>>((ref) {
+/// `autoDispose`: holds the signed-in patient's own medications — must not
+/// survive a logout/login as another patient on a shared device (see
+/// `active_sessions_screen.dart`/`payment_provider.dart` for the same
+/// rationale). Disposed once nothing is watching it, which the auth
+/// redirect (`app_router.dart`'s `_redirect`) guarantees happens on both
+/// logout and the next login, since it fully replaces the navigation stack.
+final medicationsProvider = FutureProvider.autoDispose<List<MedicationModel>>((ref) {
   return ref.watch(medicationRepositoryProvider).getMedications();
 });
 
 /// Today's dose logs (server default when no `date` is passed is "today",
 /// but we pass it explicitly so the provider key stays stable regardless of
-/// when it's first read).
-final todaysDoseLogsProvider = FutureProvider<List<DoseLogModel>>((ref) {
+/// when it's first read). `autoDispose` — same per-patient-data rationale as
+/// [medicationsProvider].
+final todaysDoseLogsProvider = FutureProvider.autoDispose<List<DoseLogModel>>((ref) {
   return ref.watch(medicationRepositoryProvider).getDoseLogs(date: DateTime.now());
 });
 
@@ -44,8 +51,11 @@ class TodayDose {
 
 /// Expands every active medication/schedule into today's concrete dose slots,
 /// sorted chronologically, cross-referencing [todaysDoseLogsProvider] so each
-/// slot already knows whether it was taken/skipped.
-final todaysDosesProvider = Provider<AsyncValue<List<TodayDose>>>((ref) {
+/// slot already knows whether it was taken/skipped. `autoDispose`: required
+/// because it watches [medicationsProvider]/[todaysDoseLogsProvider], which
+/// are themselves `autoDispose` — Riverpod disallows a non-autoDispose
+/// provider depending on an autoDispose one.
+final todaysDosesProvider = Provider.autoDispose<AsyncValue<List<TodayDose>>>((ref) {
   final medsAsync = ref.watch(medicationsProvider);
   final logsAsync = ref.watch(todaysDoseLogsProvider);
 

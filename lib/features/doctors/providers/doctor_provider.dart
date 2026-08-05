@@ -187,11 +187,18 @@ final nextAvailableDateProvider =
   return ref.watch(doctorRepositoryProvider).getNextAvailableDate(doctorId);
 });
 
-final doctorStatsProvider = FutureProvider<DoctorStatsModel>((ref) {
+/// `autoDispose`: this doctor's own stats — must not survive a logout/login
+/// as another doctor/patient on a shared device. Disposed once nothing is
+/// watching it, which the auth redirect guarantees happens on both logout
+/// and the next login (see `medications/providers/medication_provider.dart`
+/// for the full rationale).
+final doctorStatsProvider = FutureProvider.autoDispose<DoctorStatsModel>((ref) {
   return ref.watch(doctorRepositoryProvider).getStats();
 });
 
-final myWaitlistProvider = FutureProvider<List<WaitlistModel>>((ref) {
+/// This patient's own waitlist entries. `autoDispose` — same per-user-data
+/// rationale as [doctorStatsProvider].
+final myWaitlistProvider = FutureProvider.autoDispose<List<WaitlistModel>>((ref) {
   return ref.watch(doctorRepositoryProvider).getMyWaitlist();
 });
 

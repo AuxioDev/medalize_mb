@@ -85,8 +85,14 @@ DoctorModel _doctor(String id) => DoctorModel(
 
 /// Reads the notifier and waits out its async `_load()` bootstrap so tests
 /// don't race the initial server fetch.
+///
+/// `favoritesProvider` is `autoDispose` (see its doc comment), so a bare
+/// `container.read()` with no listener can be torn down again before the
+/// `await` below resumes, silently swapping in a fresh, unloaded notifier.
+/// `container.listen` keeps it alive for the rest of the test, the same way
+/// a mounted widget's `ref.watch` would.
 Future<FavoritesNotifier> _readSettled(ProviderContainer container) async {
-  container.read(favoritesProvider);
+  container.listen(favoritesProvider, (_, _) {});
   await Future<void>.delayed(Duration.zero);
   return container.read(favoritesProvider.notifier);
 }
