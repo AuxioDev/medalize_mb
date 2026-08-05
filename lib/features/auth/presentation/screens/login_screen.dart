@@ -114,7 +114,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
               FadeSlideTransition(
                 animation: _headerAnim,
                 child: AuthCardHeader(
-                  icon: Icons.medical_services_rounded,
+                  imageAsset: 'assets/icon/app_icon_fg.png',
                   title: context.t.auth.welcomeBack,
                   subtitle: context.t.auth.signInToContinue,
                 ),

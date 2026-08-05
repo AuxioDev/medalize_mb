@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
+import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/labeled_info_card.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -301,11 +302,7 @@ class _AppointmentDetailScreenState
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            style: FilledButton.styleFrom(
-              backgroundColor: AppColors.error,
-              minimumSize: Size.zero,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            ),
+            style: AppButtonStyles.destructiveFilled,
             child: Text(context.t.common.delete),
           ),
         ],
@@ -348,11 +345,7 @@ class _AppointmentDetailScreenState
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            style: FilledButton.styleFrom(
-              backgroundColor: AppColors.error,
-              minimumSize: Size.zero,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            ),
+            style: AppButtonStyles.destructiveFilled,
             child: Text(context.t.appointments.cancelAction),
           ),
         ],
@@ -395,7 +388,11 @@ class _AppointmentDetailScreenState
                 slideY: 0.05,
                 child: Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  // Horizontal padding added alongside the titleSmall font
+                  // bump below — a long RU/TR status label now wraps to a
+                  // second line instead of overflowing, and needs breathing
+                  // room from the rounded border when it does.
+                  padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
                   decoration: BoxDecoration(
                     color: statusColor.withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(AppRadius.md),
@@ -407,13 +404,21 @@ class _AppointmentDetailScreenState
                     children: [
                       Icon(_statusIcon(appt.status), color: statusColor, size: 18),
                       const Gap(8),
-                      Text(
-                        StatusChip.labelFor(appt.status).toUpperCase(),
-                        style: TextStyle(
-                          color: statusColor,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 13,
-                          letterSpacing: 0.5,
+                      // The single most important piece of text on this
+                      // screen — bumped a step up the type scale
+                      // (titleSmall/14, vs. StatusChip's labelSmall/11 used
+                      // everywhere else) for legibility. Flexible + no
+                      // maxLines so long RU/TR status translations wrap
+                      // instead of overflowing the banner.
+                      Flexible(
+                        child: Text(
+                          StatusChip.labelFor(appt.status).toUpperCase(),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                color: statusColor,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.5,
+                              ),
                         ),
                       ),
                     ],
@@ -940,7 +945,13 @@ class AppointmentDetailLoader extends ConsumerWidget {
       ),
       error: (_, _) => Scaffold(
         appBar: AppBar(),
-        body: Center(child: Text(context.t.common.somethingWrong)),
+        body: EmptyState(
+          icon: Icons.cloud_off_outlined,
+          title: context.t.common.somethingWrong,
+          subtitle: context.t.appointments.couldNotLoad,
+          actionLabel: context.t.common.retry,
+          onAction: () => ref.invalidate(appointmentByIdProvider(appointmentId)),
+        ),
       ),
       data: (appt) => AppointmentDetailScreen(appointment: appt, asDoctor: asDoctor),
     );

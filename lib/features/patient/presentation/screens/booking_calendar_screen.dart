@@ -287,7 +287,13 @@ class BookingCalendarLoader extends ConsumerWidget {
       ),
       error: (_, _) => Scaffold(
         appBar: AppBar(),
-        body: Center(child: Text(context.t.common.somethingWrong)),
+        body: EmptyState(
+          icon: Icons.cloud_off_outlined,
+          title: context.t.common.somethingWrong,
+          subtitle: context.t.common.tryAgain,
+          actionLabel: context.t.common.retry,
+          onAction: () => ref.invalidate(doctorDetailProvider(doctorId)),
+        ),
       ),
       data: (d) => BookingCalendarScreen(doctor: d),
     );

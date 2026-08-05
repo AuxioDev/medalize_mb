@@ -29,11 +29,13 @@ import 'package:medalize_mb/features/notifications/data/models/notification_mode
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
 import 'package:medalize_mb/features/patient/data/models/waitlist_model.dart';
 import 'package:medalize_mb/features/patient/data/repository/favorites_repository.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_detail_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_search_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/my_appointments_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/patient_home_screen.dart';
+import 'package:medalize_mb/features/payments/providers/payment_provider.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/active_sessions_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/security_screen.dart';
 import 'package:medalize_mb/features/subscription/data/models/subscription_model.dart';
@@ -331,6 +333,24 @@ void main() {
           ),
           workplaceId: 'w1',
         ),
+      ),
+    );
+  });
+
+  testWidgets(
+      'AppointmentDetailScreen fits all six locales '
+      '(requires_rescheduling status banner — the longest status label, at '
+      'the bumped titleSmall font size)', (tester) async {
+    _usePhoneViewport(tester);
+    await expectNoOverflowAcrossLocales(
+      tester,
+      () => _wrap(
+        AppointmentDetailScreen(
+          appointment: _appointment(id: 'a1', status: 'requires_rescheduling'),
+        ),
+        overrides: [
+          paymentProvider.overrideWith((ref, appointmentId) async => null),
+        ],
       ),
     );
   });

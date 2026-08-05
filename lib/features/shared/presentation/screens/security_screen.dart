@@ -220,7 +220,7 @@ class _DeactivateAccountDialogState
           child: Text(t.common.cancel),
         ),
         FilledButton(
-          style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+          style: AppButtonStyles.destructiveFilled,
           onPressed: canSubmit ? _submit : null,
           child: _loading
               ? const SizedBox(

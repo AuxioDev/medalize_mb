@@ -84,6 +84,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  # Runtime use of the brand mark (splash screen, auth headers) — the
+  # transparent foreground-only layer, not the launcher-icon composites
+  # (app_icon.png/app_icon_bg.png stay build-time-only, consumed by
+  # flutter_launcher_icons below).
+  assets:
+    - assets/icon/app_icon_fg.png
 
 # App launcher icon. Source art: assets/icon/source/app_icon_source.svg
 # (medal + medical cross mark). Regenerate after editing the source SVGs:

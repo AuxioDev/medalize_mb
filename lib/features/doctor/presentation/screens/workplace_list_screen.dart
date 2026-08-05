@@ -133,11 +133,7 @@ class _WorkplaceCard extends ConsumerWidget {
               child: Text(context.t.common.cancel)),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            style: FilledButton.styleFrom(
-              backgroundColor: AppColors.error,
-              minimumSize: Size.zero,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            ),
+            style: AppButtonStyles.destructiveFilled,
             child: Text(context.t.common.delete),
           ),
         ],
@@ -280,7 +276,13 @@ class EditWorkplaceLoader extends ConsumerWidget {
       ),
       error: (_, _) => Scaffold(
         appBar: AppBar(),
-        body: Center(child: Text(context.t.common.somethingWrong)),
+        body: EmptyState(
+          icon: Icons.cloud_off_outlined,
+          title: context.t.common.somethingWrong,
+          subtitle: context.t.workplaces.couldNotLoad,
+          actionLabel: context.t.common.retry,
+          onAction: () => ref.invalidate(workplacesProvider),
+        ),
       ),
       data: (workplaces) {
         Map<String, dynamic>? match;
@@ -293,7 +295,13 @@ class EditWorkplaceLoader extends ConsumerWidget {
         if (match == null) {
           return Scaffold(
             appBar: AppBar(),
-            body: Center(child: Text(context.t.common.somethingWrong)),
+            body: EmptyState(
+              icon: Icons.business_outlined,
+              title: context.t.common.somethingWrong,
+              subtitle: context.t.workplaces.couldNotLoad,
+              actionLabel: context.t.common.retry,
+              onAction: () => ref.invalidate(workplacesProvider),
+            ),
           );
         }
         return AddEditWorkplaceScreen(existing: match);

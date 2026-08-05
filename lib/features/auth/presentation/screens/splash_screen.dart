@@ -69,10 +69,15 @@ class _Logo extends StatelessWidget {
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1.5),
       ),
-      child: const Icon(
-        Icons.medical_services_rounded,
-        size: 44,
-        color: Colors.white,
+      // The real brand mark (launcher icon's transparent foreground layer —
+      // see pubspec.yaml) instead of a generic Material glyph. Already a
+      // white silhouette, so it needs no tint here (unlike AuthCardHeader's
+      // use of the same asset on a light tinted circle).
+      child: Image.asset(
+        'assets/icon/app_icon_fg.png',
+        width: 60,
+        height: 60,
+        fit: BoxFit.contain,
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
+import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/labeled_info_card.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
@@ -61,7 +62,14 @@ class _PrescriptionDetailScreenState extends ConsumerState<PrescriptionDetailScr
             ShimmerSkeleton(height: 120),
           ]),
         ),
-        error: (_, _) => Center(child: Text(context.t.common.somethingWrong)),
+        error: (_, _) => EmptyState(
+          icon: Icons.cloud_off_outlined,
+          title: context.t.common.somethingWrong,
+          subtitle: context.t.common.tryAgain,
+          actionLabel: context.t.common.retry,
+          onAction: () =>
+              ref.invalidate(prescriptionByIdProvider(widget.prescriptionId)),
+        ),
         data: (prescription) => _Body(
           prescription: prescription,
           applying: _applying,

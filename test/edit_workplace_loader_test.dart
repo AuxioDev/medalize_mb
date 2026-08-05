@@ -92,6 +92,10 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.text('Something went wrong'), findsOneWidget);
     expect(find.byType(AddEditWorkplaceScreen), findsNothing);
+
+    // Let flutter_animate stagger-delay timers fire; the error state's
+    // EmptyState repeats forever, so pumpAndSettle would never settle.
+    await tester.pump(const Duration(seconds: 1));
   });
 
   testWidgets('shows error state when the fetch fails', (tester) async {
@@ -109,5 +113,9 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.text('Something went wrong'), findsOneWidget);
     expect(find.byType(AddEditWorkplaceScreen), findsNothing);
+
+    // Let flutter_animate stagger-delay timers fire; the error state's
+    // EmptyState repeats forever, so pumpAndSettle would never settle.
+    await tester.pump(const Duration(seconds: 1));
   });
 }

@@ -73,13 +73,26 @@ class _Card extends StatelessWidget {
 class AuthCardHeader extends StatelessWidget {
   const AuthCardHeader({
     super.key,
-    required this.icon,
+    this.icon,
+    this.imageAsset,
     required this.title,
     required this.subtitle,
     this.iconColor = AppColors.primary,
-  });
+  }) : assert(icon != null || imageAsset != null,
+            'AuthCardHeader needs either icon or imageAsset');
 
-  final IconData icon;
+  /// Stock Material glyph — used by screens with no brand-specific mark
+  /// (forgot/reset password). Ignored when [imageAsset] is set.
+  final IconData? icon;
+
+  /// The real brand mark (`assets/icon/app_icon_fg.png` — the launcher
+  /// icon's transparent foreground layer) for screens that should show the
+  /// actual logo instead of a generic icon (login/register). It's a white
+  /// silhouette on transparent, so it's recolored via [BlendMode.srcIn] to
+  /// [iconColor] the same way [icon] is tinted, rather than removing the
+  /// tinted-circle treatment.
+  final String? imageAsset;
+
   final String title;
   final String subtitle;
   final Color iconColor;
@@ -95,7 +108,16 @@ class AuthCardHeader extends StatelessWidget {
             color: iconColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
-          child: Icon(icon, color: iconColor, size: 28),
+          child: imageAsset != null
+              ? Image.asset(
+                  imageAsset!,
+                  width: 38,
+                  height: 38,
+                  fit: BoxFit.contain,
+                  color: iconColor,
+                  colorBlendMode: BlendMode.srcIn,
+                )
+              : Icon(icon, color: iconColor, size: 28),
         ),
         const SizedBox(height: 16),
         Text(

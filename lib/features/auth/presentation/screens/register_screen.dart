@@ -188,7 +188,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
               FadeSlideTransition(
                 animation: _headerAnim,
                 child: AuthCardHeader(
-                  icon: Icons.medical_services_rounded,
+                  imageAsset: 'assets/icon/app_icon_fg.png',
                   title: context.t.auth.createYourAccount,
                   subtitle: context.t.auth.joinMedalize,
                 ),

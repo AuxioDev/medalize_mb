@@ -120,7 +120,7 @@ class ActiveSessionsScreen extends ConsumerWidget {
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            style: AppButtonStyles.destructiveFilled,
             child: Text(t.security.signOutAllDevices),
           ),
         ],
@@ -173,7 +173,7 @@ class _DeviceCard extends ConsumerWidget {
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            style: AppButtonStyles.destructiveFilled,
             child: Text(t.security.revoke),
           ),
         ],

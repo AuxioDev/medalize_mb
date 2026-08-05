@@ -67,7 +67,7 @@ class _AssistantConversationsScreenState
             child: Text(context.t.common.cancel),
           ),
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            style: AppButtonStyles.destructiveFilled,
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(context.t.common.delete),
           ),

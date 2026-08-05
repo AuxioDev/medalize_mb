@@ -236,7 +236,13 @@ class RescheduleCalendarLoader extends ConsumerWidget {
       ),
       error: (_, _) => Scaffold(
         appBar: AppBar(),
-        body: Center(child: Text(context.t.common.somethingWrong)),
+        body: EmptyState(
+          icon: Icons.cloud_off_outlined,
+          title: context.t.common.somethingWrong,
+          subtitle: context.t.appointments.couldNotLoad,
+          actionLabel: context.t.common.retry,
+          onAction: () => ref.invalidate(appointmentByIdProvider(appointmentId)),
+        ),
       ),
       data: (appt) => RescheduleCalendarScreen(appointment: appt),
     );

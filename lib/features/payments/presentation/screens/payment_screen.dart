@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
+import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
@@ -196,6 +198,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen>
   Widget _body(BuildContext context, AsyncValue<PaymentModel?> async, PaymentModel? payment) {
     if (payment != null) {
       final c = context.colors;
+      final reducedMotion = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
       return SingleChildScrollView(
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Column(
@@ -230,20 +233,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen>
                   ),
                   if (payment.isPaid) ...[
                     const Gap(14),
-                    Row(
-                      children: [
-                        const Icon(Icons.check_circle_outline_rounded,
-                            color: AppColors.success, size: 18),
-                        const Gap(8),
-                        Expanded(
-                          child: Text(
-                            context.t.payments.paymentConfirmed,
-                            style: const TextStyle(
-                                color: AppColors.success, fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ],
-                    ),
+                    _PaymentConfirmedRow(reducedMotion: reducedMotion),
                   ],
                 ],
               ),
@@ -275,6 +265,55 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen>
       );
     }
 
-    return Center(child: Text(context.t.common.somethingWrong));
+    return EmptyState(
+      icon: Icons.cloud_off_outlined,
+      title: context.t.common.somethingWrong,
+      subtitle: context.t.common.tryAgain,
+      actionLabel: context.t.common.retry,
+      onAction: () => ref.invalidate(paymentProvider(widget.appointmentId)),
+    );
+  }
+}
+
+/// Scale + fade reveal for the "payment confirmed" checkmark — the second of
+/// the two high-relief success moments in the patient journey (the other is
+/// the booking-confirmed dialog, booking_confirm_screen.dart). Mirrors the
+/// splash screen's literal `elasticOut` icon "pop" followed by a delayed text
+/// fade-in (see splash_screen.dart's `_Logo`/tagline) rather than the routine
+/// `AppCurve` tokens, which read too subtle for a one-off celebratory reveal.
+/// Honors reduced-motion like the assistant chat's typing indicator and
+/// [EmptyState].
+class _PaymentConfirmedRow extends StatelessWidget {
+  const _PaymentConfirmedRow({required this.reducedMotion});
+
+  final bool reducedMotion;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget icon = const Icon(Icons.check_circle_outline_rounded,
+        color: AppColors.success, size: 18);
+    Widget label = Text(
+      context.t.payments.paymentConfirmed,
+      style: const TextStyle(color: AppColors.success, fontWeight: FontWeight.w600),
+    );
+    if (!reducedMotion) {
+      icon = icon
+          .animate()
+          .scale(
+            begin: const Offset(0.4, 0.4),
+            end: const Offset(1.0, 1.0),
+            duration: 450.ms,
+            curve: Curves.elasticOut,
+          )
+          .fadeIn(duration: 200.ms);
+      label = label.animate().fadeIn(delay: 150.ms, duration: 250.ms);
+    }
+    return Row(
+      children: [
+        icon,
+        const Gap(8),
+        Expanded(child: label),
+      ],
+    );
   }
 }

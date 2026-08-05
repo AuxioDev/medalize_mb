@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -81,11 +82,11 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
       }
 
       if (mounted) {
+        final reducedMotion = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
         showDialog<void>(
           context: context,
           builder: (_) => AlertDialog(
-            icon: const Icon(Icons.check_circle_outline,
-                color: AppColors.success, size: 40),
+            icon: _SuccessIcon(reducedMotion: reducedMotion),
             title: Text(context.t.appointments.bookedTitle),
             content: Text(context.t.appointments.bookedMessage),
             actions: [
@@ -268,5 +269,34 @@ class _InfoRow extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/// Scale + fade reveal for the booking-confirmed checkmark — the first of the
+/// two high-relief success moments in the patient journey (the other is
+/// payment confirmation, payment_screen.dart's `_PaymentConfirmedRow`).
+/// Mirrors the splash screen's literal `elasticOut` "pop" (see
+/// splash_screen.dart's `_Logo`) rather than the routine `AppCurve` tokens,
+/// which read too subtle for a one-off celebratory reveal. Honors
+/// reduced-motion like the assistant chat's typing indicator and
+/// `EmptyState`.
+class _SuccessIcon extends StatelessWidget {
+  const _SuccessIcon({required this.reducedMotion});
+
+  final bool reducedMotion;
+
+  @override
+  Widget build(BuildContext context) {
+    const icon = Icon(Icons.check_circle_outline, color: AppColors.success, size: 40);
+    if (reducedMotion) return icon;
+    return icon
+        .animate()
+        .scale(
+          begin: const Offset(0.4, 0.4),
+          end: const Offset(1.0, 1.0),
+          duration: 450.ms,
+          curve: Curves.elasticOut,
+        )
+        .fadeIn(duration: 200.ms);
   }
 }

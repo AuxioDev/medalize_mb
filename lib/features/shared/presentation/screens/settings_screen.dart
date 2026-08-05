@@ -203,11 +203,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            style: FilledButton.styleFrom(
-              backgroundColor: AppColors.error,
-              minimumSize: Size.zero,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            ),
+            style: AppButtonStyles.destructiveFilled,
             child: Text(t.settings.logoutTitle),
           ),
         ],

@@ -150,7 +150,7 @@ class _RecordCard extends ConsumerWidget {
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            style: AppButtonStyles.destructiveFilled,
             child: Text(context.t.common.delete),
           ),
         ],
