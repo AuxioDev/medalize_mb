@@ -809,7 +809,7 @@ class _Translations$legal$fr extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Confidentialité et Conditions';
-	@override String get controllerNotice => 'Medalize est exploité par [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.';
+	@override String get controllerNotice => 'Medalize est créé et exploité par AuxioDev (auxiodev.com), Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.';
 	@override String get privacyTitle => 'Politique de confidentialité';
 	@override String get privacyIntro => 'Cette politique explique quelles données personnelles Medalize collecte, pourquoi, et comment elles sont protégées. La prise et la gestion de rendez-vous médicaux impliquent nécessairement des informations de santé vous concernant, détaillées ci-dessous.';
 	@override late final _Translations$legal$sections$fr sections = _Translations$legal$sections$fr._(_root);
@@ -1900,7 +1900,7 @@ extension on TranslationsFr {
 			'messaging.noSharedHistory' => 'Vous pourrez contacter un médecin dès que vous aurez un rendez-vous en commun avec lui.',
 			'messaging.newMessage' => 'Vous avez un nouveau message',
 			'legal.title' => 'Confidentialité et Conditions',
-			'legal.controllerNotice' => 'Medalize est exploité par [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.',
+			'legal.controllerNotice' => 'Medalize est créé et exploité par AuxioDev (auxiodev.com), Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.',
 			'legal.privacyTitle' => 'Politique de confidentialité',
 			'legal.privacyIntro' => 'Cette politique explique quelles données personnelles Medalize collecte, pourquoi, et comment elles sont protégées. La prise et la gestion de rendez-vous médicaux impliquent nécessairement des informations de santé vous concernant, détaillées ci-dessous.',
 			'legal.sections.identity.title' => 'Données d\'identité',

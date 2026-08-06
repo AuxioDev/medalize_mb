@@ -1700,8 +1700,8 @@ class Translations$legal$en {
 	/// en: 'Privacy & Terms'
 	String get title => 'Privacy & Terms';
 
-	/// en: 'Medalize is operated by [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaijan ("we", "us"). Last updated: July 2026.'
-	String get controllerNotice => 'Medalize is operated by [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaijan ("we", "us"). Last updated: July 2026.';
+	/// en: 'Medalize is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.'
+	String get controllerNotice => 'Medalize is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.';
 
 	/// en: 'Privacy Policy'
 	String get privacyTitle => 'Privacy Policy';
@@ -3405,7 +3405,7 @@ extension on Translations {
 			'messaging.noSharedHistory' => 'You can message a doctor once you have a shared appointment history.',
 			'messaging.newMessage' => 'You have a new message',
 			'legal.title' => 'Privacy & Terms',
-			'legal.controllerNotice' => 'Medalize is operated by [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaijan ("we", "us"). Last updated: July 2026.',
+			'legal.controllerNotice' => 'Medalize is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.',
 			'legal.privacyTitle' => 'Privacy Policy',
 			'legal.privacyIntro' => 'This policy explains what personal data Medalize collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.',
 			'legal.sections.identity.title' => 'Identity data',

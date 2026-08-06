@@ -809,7 +809,7 @@ class _Translations$legal$zh extends Translations$legal$en {
 
 	// Translations
 	@override String get title => '隐私与条款';
-	@override String get controllerNotice => 'Medalize 由 [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX]（阿塞拜疆,"我们"）运营。最后更新：2026年7月。';
+	@override String get controllerNotice => 'Medalize 由 AuxioDev（auxiodev.com）在阿塞拜疆创建并运营（"我们"）。最后更新：2026年7月。';
 	@override String get privacyTitle => '隐私政策';
 	@override String get privacyIntro => '本政策说明 Medalize 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。';
 	@override late final _Translations$legal$sections$zh sections = _Translations$legal$sections$zh._(_root);
@@ -1900,7 +1900,7 @@ extension on TranslationsZh {
 			'messaging.noSharedHistory' => '只有与该医生有共同的预约记录后，才能给对方发消息。',
 			'messaging.newMessage' => '您有一条新消息',
 			'legal.title' => '隐私与条款',
-			'legal.controllerNotice' => 'Medalize 由 [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX]（阿塞拜疆,"我们"）运营。最后更新：2026年7月。',
+			'legal.controllerNotice' => 'Medalize 由 AuxioDev（auxiodev.com）在阿塞拜疆创建并运营（"我们"）。最后更新：2026年7月。',
 			'legal.privacyTitle' => '隐私政策',
 			'legal.privacyIntro' => '本政策说明 Medalize 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。',
 			'legal.sections.identity.title' => '身份数据',

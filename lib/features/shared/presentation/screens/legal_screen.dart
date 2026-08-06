@@ -1,12 +1,16 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
+import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/shared/presentation/widgets/legal_pdf_popup.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Privacy Policy + Terms of Service, also shown as a PDF popup from the
 /// registration screen's consent checkbox (see [showLegalPdfPopup]) — both
@@ -52,13 +56,7 @@ class LegalScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    t.controllerNotice,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: c.textSecondary,
-                          fontStyle: FontStyle.italic,
-                        ),
-                  ),
+                  _ControllerNoticeText(text: t.controllerNotice),
                   const Gap(AppSpacing.sm),
                   OutlinedButton.icon(
                     onPressed: () => showLegalPdfPopup(context),
@@ -98,6 +96,82 @@ class LegalScreen extends StatelessWidget {
             const Gap(AppSpacing.md),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Renders [text] with the literal `auxiodev.com` substring (present in
+/// every locale's `legal.controllerNotice` — see `lib/i18n/*.i18n.json`,
+/// the domain itself isn't translated) as a tappable external link,
+/// styled like the Privacy/Terms links in `register_screen.dart`'s consent
+/// row (`AppColors.primary` + `FontWeight.w600`). A `TapGestureRecognizer`
+/// needs an explicit `dispose()` (unlike a plain `GestureDetector`), which
+/// is why this is a small dedicated `StatefulWidget` rather than inlined
+/// into `LegalScreen`'s otherwise-stateless `build()`.
+class _ControllerNoticeText extends StatefulWidget {
+  const _ControllerNoticeText({required this.text});
+
+  final String text;
+
+  @override
+  State<_ControllerNoticeText> createState() => _ControllerNoticeTextState();
+}
+
+class _ControllerNoticeTextState extends State<_ControllerNoticeText> {
+  static const _domain = 'auxiodev.com';
+
+  late final TapGestureRecognizer _linkRecognizer;
+
+  @override
+  void initState() {
+    super.initState();
+    _linkRecognizer = TapGestureRecognizer()..onTap = _openWebsite;
+  }
+
+  @override
+  void dispose() {
+    _linkRecognizer.dispose();
+    super.dispose();
+  }
+
+  Future<void> _openWebsite() async {
+    final uri = Uri.https(_domain);
+    final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (!opened && mounted) {
+      AppSnackBar.show(context, context.t.common.somethingWrong, type: SnackBarType.error);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final baseStyle = Theme.of(context).textTheme.bodySmall?.copyWith(
+          color: context.colors.textSecondary,
+          fontStyle: FontStyle.italic,
+        );
+    final index = widget.text.indexOf(_domain);
+    // Falls back to plain (non-linked) text if a future edit to any
+    // locale's controllerNotice ever drops or renames the literal
+    // substring — never worth a crash over a cosmetic link.
+    if (index == -1) {
+      return Text(widget.text, style: baseStyle);
+    }
+    return Text.rich(
+      TextSpan(
+        style: baseStyle,
+        children: [
+          TextSpan(text: widget.text.substring(0, index)),
+          TextSpan(
+            text: _domain,
+            style: const TextStyle(
+              color: AppColors.primary,
+              fontWeight: FontWeight.w600,
+              fontStyle: FontStyle.normal,
+            ),
+            recognizer: _linkRecognizer,
+          ),
+          TextSpan(text: widget.text.substring(index + _domain.length)),
+        ],
       ),
     );
   }

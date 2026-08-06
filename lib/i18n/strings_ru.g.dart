@@ -809,7 +809,7 @@ class _Translations$legal$ru extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Конфиденциальность и условия';
-	@override String get controllerNotice => 'Medalize управляется: [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Азербайджан («мы»). Последнее обновление: июль 2026.';
+	@override String get controllerNotice => 'Medalize создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.';
 	@override String get privacyTitle => 'Политика конфиденциальности';
 	@override String get privacyIntro => 'Здесь объясняется, какие персональные данные собирает Medalize, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.';
 	@override late final _Translations$legal$sections$ru sections = _Translations$legal$sections$ru._(_root);
@@ -1900,7 +1900,7 @@ extension on TranslationsRu {
 			'messaging.noSharedHistory' => 'Написать врачу можно после того, как у вас появится общая история записей на приём.',
 			'messaging.newMessage' => 'У вас новое сообщение',
 			'legal.title' => 'Конфиденциальность и условия',
-			'legal.controllerNotice' => 'Medalize управляется: [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Азербайджан («мы»). Последнее обновление: июль 2026.',
+			'legal.controllerNotice' => 'Medalize создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.',
 			'legal.privacyTitle' => 'Политика конфиденциальности',
 			'legal.privacyIntro' => 'Здесь объясняется, какие персональные данные собирает Medalize, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.',
 			'legal.sections.identity.title' => 'Данные для идентификации',

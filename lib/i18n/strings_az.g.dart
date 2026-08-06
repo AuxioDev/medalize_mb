@@ -809,7 +809,7 @@ class _Translations$legal$az extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Məxfilik və Şərtlər';
-	@override String get controllerNotice => 'Medalize [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azərbaycan («biz») tərəfindən idarə olunur. Son yenilənmə: iyul 2026.';
+	@override String get controllerNotice => 'Medalize AuxioDev (auxiodev.com) tərəfindən Azərbaycanda yaradılıb və idarə olunur («biz»). Son yenilənmə: iyul 2026.';
 	@override String get privacyTitle => 'Məxfilik Siyasəti';
 	@override String get privacyIntro => 'Bu sənəd Medalize-nin hansı şəxsi məlumatları, nə üçün topladığını və necə qoruduğunu izah edir. Həkim təyinatlarının bronlanması və idarə olunması qaçılmaz olaraq sağlamlıq məlumatlarınızı əhatə edir — bu, aşağıda ətraflı izah olunur.';
 	@override late final _Translations$legal$sections$az sections = _Translations$legal$sections$az._(_root);
@@ -1900,7 +1900,7 @@ extension on TranslationsAz {
 			'messaging.noSharedHistory' => 'Həkimə yalnız onunla ortaq qəbul tarixçəniz olduqdan sonra yaza bilərsiniz.',
 			'messaging.newMessage' => 'Yeni mesajınız var',
 			'legal.title' => 'Məxfilik və Şərtlər',
-			'legal.controllerNotice' => 'Medalize [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azərbaycan («biz») tərəfindən idarə olunur. Son yenilənmə: iyul 2026.',
+			'legal.controllerNotice' => 'Medalize AuxioDev (auxiodev.com) tərəfindən Azərbaycanda yaradılıb və idarə olunur («biz»). Son yenilənmə: iyul 2026.',
 			'legal.privacyTitle' => 'Məxfilik Siyasəti',
 			'legal.privacyIntro' => 'Bu sənəd Medalize-nin hansı şəxsi məlumatları, nə üçün topladığını və necə qoruduğunu izah edir. Həkim təyinatlarının bronlanması və idarə olunması qaçılmaz olaraq sağlamlıq məlumatlarınızı əhatə edir — bu, aşağıda ətraflı izah olunur.',
 			'legal.sections.identity.title' => 'Şəxsiyyət məlumatları',

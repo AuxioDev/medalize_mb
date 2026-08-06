@@ -525,7 +525,7 @@
   },
   "legal": {
     "title": "Confidentialité et Conditions",
-    "controllerNotice": "Medalize est exploité par [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.",
+    "controllerNotice": "Medalize est créé et exploité par AuxioDev (auxiodev.com), Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.",
     "privacyTitle": "Politique de confidentialité",
     "privacyIntro": "Cette politique explique quelles données personnelles Medalize collecte, pourquoi, et comment elles sont protégées. La prise et la gestion de rendez-vous médicaux impliquent nécessairement des informations de santé vous concernant, détaillées ci-dessous.",
     "sections": {

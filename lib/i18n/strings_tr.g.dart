@@ -809,7 +809,7 @@ class _Translations$legal$tr extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Gizlilik ve Koşullar';
-	@override String get controllerNotice => 'Medalize, [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaycan ("biz") tarafından işletilmektedir. Son güncelleme: Temmuz 2026.';
+	@override String get controllerNotice => 'Medalize, AuxioDev (auxiodev.com) tarafından Azerbaycan\'da oluşturulmuş ve işletilmektedir ("biz"). Son güncelleme: Temmuz 2026.';
 	@override String get privacyTitle => 'Gizlilik Politikası';
 	@override String get privacyIntro => 'Bu politika, Medalize\'nin hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.';
 	@override late final _Translations$legal$sections$tr sections = _Translations$legal$sections$tr._(_root);
@@ -1900,7 +1900,7 @@ extension on TranslationsTr {
 			'messaging.noSharedHistory' => 'Bir doktora yalnızca onunla ortak bir randevu geçmişiniz olduğunda mesaj gönderebilirsiniz.',
 			'messaging.newMessage' => 'Yeni bir mesajınız var',
 			'legal.title' => 'Gizlilik ve Koşullar',
-			'legal.controllerNotice' => 'Medalize, [Fərdi Sahibkar adı — VÖEN: XXXXXXXXXXXX], Azerbaycan ("biz") tarafından işletilmektedir. Son güncelleme: Temmuz 2026.',
+			'legal.controllerNotice' => 'Medalize, AuxioDev (auxiodev.com) tarafından Azerbaycan\'da oluşturulmuş ve işletilmektedir ("biz"). Son güncelleme: Temmuz 2026.',
 			'legal.privacyTitle' => 'Gizlilik Politikası',
 			'legal.privacyIntro' => 'Bu politika, Medalize\'nin hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.',
 			'legal.sections.identity.title' => 'Kimlik verileri',
