@@ -46,7 +46,7 @@ class StatusChip extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: color,
-          fontSize: 11,
+          fontSize: 13,
           fontWeight: FontWeight.w600,
         ),
       ),

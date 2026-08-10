@@ -62,7 +62,7 @@ class PaymentStatusChip extends StatelessWidget {
         labelFor(context, status),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.w600),
+        style: TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.w600),
       ),
     );
   }
