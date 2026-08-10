@@ -39,7 +39,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	TranslationsRu $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsRu(meta: meta ?? this.$meta);
 
 	// Translations
-	@override String get appName => 'Medalize';
+	@override String get appName => 'Medoro';
 	@override late final _Translations$common$ru common = _Translations$common$ru._(_root);
 	@override late final _Translations$auth$ru auth = _Translations$auth$ru._(_root);
 	@override late final _Translations$forgotPassword$ru forgotPassword = _Translations$forgotPassword$ru._(_root);
@@ -144,7 +144,7 @@ class _Translations$auth$ru extends Translations$auth$en {
 	@override String get welcomeBack => 'С возвращением';
 	@override String get signInToContinue => 'Войдите в аккаунт, чтобы продолжить';
 	@override String get createYourAccount => 'Создайте аккаунт';
-	@override String get joinMedalize => 'Присоединяйтесь к Medalize';
+	@override String get joinMedalize => 'Присоединяйтесь к Medoro';
 	@override String get iAmA => 'Я —';
 	@override String get emailHint => 'you@example.com';
 	@override String get passwordHint => '••••••••';
@@ -261,7 +261,7 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get languageSystem => 'Как в системе';
 	@override String get logoutTitle => 'Выход';
 	@override String get logoutConfirm => 'Вы уверены, что хотите выйти?';
-	@override String get version => 'Medalize v1.0.0';
+	@override String get version => 'Medoro v1.0.0';
 	@override String get legal => 'Конфиденциальность и условия';
 }
 
@@ -275,7 +275,7 @@ class _Translations$security$ru extends Translations$security$en {
 	@override String get title => 'Безопасность';
 	@override String get biometricLogin => 'Вход по биометрии';
 	@override String get biometricLoginSubtitle => 'Используйте Face ID / Touch ID для разблокировки приложения';
-	@override String get biometricPrompt => 'Подтвердите личность для доступа к Medalize';
+	@override String get biometricPrompt => 'Подтвердите личность для доступа к Medoro';
 	@override String get biometricUnavailable => 'Биометрическая аутентификация недоступна на этом устройстве';
 	@override String get biometricEnableFailed => 'Не удалось подтвердить биометрию. Попробуйте снова.';
 	@override String get activeSessions => 'Активные сессии';
@@ -843,21 +843,21 @@ class _Translations$legal$ru extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Конфиденциальность и условия';
-	@override String get controllerNotice => 'Medalize создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.';
+	@override String get controllerNotice => 'Medoro создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.';
 	@override String get privacyTitle => 'Политика конфиденциальности';
-	@override String get privacyIntro => 'Здесь объясняется, какие персональные данные собирает Medalize, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.';
+	@override String get privacyIntro => 'Здесь объясняется, какие персональные данные собирает Medoro, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.';
 	@override late final _Translations$legal$sections$ru sections = _Translations$legal$sections$ru._(_root);
 	@override String get termsTitle => 'Условия использования';
 	@override String get termsIntro => 'Создавая аккаунт, вы соглашаетесь со следующим.';
-	@override String get termsBody => 'Указывать о себе достоверную информацию. Использовать Medalize только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. Medalize соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.';
-	@override String get contact => 'Вопросы о ваших данных? Напишите на support@medalize.az';
+	@override String get termsBody => 'Указывать о себе достоверную информацию. Использовать Medoro только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. Medoro соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.';
+	@override String get contact => 'Вопросы о ваших данных? Напишите на support@auxiodev.com';
 	@override String get consentPrefix => 'Я прочитал(а) и согласен(на) с ';
 	@override String get consentPrivacyLink => 'Политикой конфиденциальности';
 	@override String get consentMiddle => ' и ';
 	@override String get consentTermsLink => 'Условиями использования';
 	@override String get consentSuffix => ', а также прямо даю согласие на обработку данных о моём здоровье, как описано в них.';
 	@override String get viewAsPdf => 'Открыть как PDF';
-	@override String get pdfDocumentTitle => 'Medalize — Политика конфиденциальности и условия использования';
+	@override String get pdfDocumentTitle => 'Medoro — Политика конфиденциальности и условия использования';
 	@override String get pdfLoadError => 'Не удалось загрузить документ. Проверьте подключение к интернету и попробуйте снова.';
 }
 
@@ -1075,7 +1075,7 @@ class _Translations$subscription$ru extends Translations$subscription$en {
 	@override String get currentPlan => 'Текущий тариф';
 	@override String get mostPopular => 'Популярный выбор';
 	@override String get perMonth => 'в месяц';
-	@override String get manageOnWeb => 'Управляйте подпиской на medalize.az';
+	@override String get manageOnWeb => 'Управляйте подпиской на auxiodev.com';
 	@override String get featureUnlimitedWorkplaces => 'Неограниченное количество клиник';
 	@override String featureWorkplaces({required Object count}) => 'До ${count} клиник(и)';
 	@override String get featureUnlimitedBookings => 'Неограниченное количество записей в месяц';
@@ -1462,7 +1462,7 @@ class _Translations$legal$sections$children$ru extends Translations$legal$sectio
 
 	// Translations
 	@override String get title => 'Возрастное ограничение';
-	@override String get body => 'Аккаунты Medalize предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.';
+	@override String get body => 'Аккаунты Medoro предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.';
 }
 
 /// The flat map containing all translations for locale <ru>.
@@ -1473,7 +1473,7 @@ class _Translations$legal$sections$children$ru extends Translations$legal$sectio
 extension on TranslationsRu {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'appName' => 'Medalize',
+			'appName' => 'Medoro',
 			'common.cancel' => 'Отмена',
 			'common.logout' => 'Выйти',
 			'common.doctor' => 'Врач',
@@ -1513,7 +1513,7 @@ extension on TranslationsRu {
 			'auth.welcomeBack' => 'С возвращением',
 			'auth.signInToContinue' => 'Войдите в аккаунт, чтобы продолжить',
 			'auth.createYourAccount' => 'Создайте аккаунт',
-			'auth.joinMedalize' => 'Присоединяйтесь к Medalize',
+			'auth.joinMedalize' => 'Присоединяйтесь к Medoro',
 			'auth.iAmA' => 'Я —',
 			'auth.emailHint' => 'you@example.com',
 			'auth.passwordHint' => '••••••••',
@@ -1576,12 +1576,12 @@ extension on TranslationsRu {
 			'settings.languageSystem' => 'Как в системе',
 			'settings.logoutTitle' => 'Выход',
 			'settings.logoutConfirm' => 'Вы уверены, что хотите выйти?',
-			'settings.version' => 'Medalize v1.0.0',
+			'settings.version' => 'Medoro v1.0.0',
 			'settings.legal' => 'Конфиденциальность и условия',
 			'security.title' => 'Безопасность',
 			'security.biometricLogin' => 'Вход по биометрии',
 			'security.biometricLoginSubtitle' => 'Используйте Face ID / Touch ID для разблокировки приложения',
-			'security.biometricPrompt' => 'Подтвердите личность для доступа к Medalize',
+			'security.biometricPrompt' => 'Подтвердите личность для доступа к Medoro',
 			'security.biometricUnavailable' => 'Биометрическая аутентификация недоступна на этом устройстве',
 			'security.biometricEnableFailed' => 'Не удалось подтвердить биометрию. Попробуйте снова.',
 			'security.activeSessions' => 'Активные сессии',
@@ -1958,9 +1958,9 @@ extension on TranslationsRu {
 			'messaging.noSharedHistory' => 'Написать врачу можно после того, как у вас появится общая история записей на приём.',
 			'messaging.newMessage' => 'У вас новое сообщение',
 			'legal.title' => 'Конфиденциальность и условия',
-			'legal.controllerNotice' => 'Medalize создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.',
+			'legal.controllerNotice' => 'Medoro создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.',
 			'legal.privacyTitle' => 'Политика конфиденциальности',
-			'legal.privacyIntro' => 'Здесь объясняется, какие персональные данные собирает Medalize, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.',
+			'legal.privacyIntro' => 'Здесь объясняется, какие персональные данные собирает Medoro, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.',
 			'legal.sections.identity.title' => 'Данные для идентификации',
 			'legal.sections.identity.body' => 'Имя и фамилия, email, номер телефона (необязательно), пароль (хранится в виде необратимого хэша, никогда в открытом виде), предпочитаемый язык приложения.',
 			'legal.sections.health.title' => 'Данные о здоровье',
@@ -1992,18 +1992,18 @@ extension on TranslationsRu {
 			'legal.sections.permissions.title' => 'Какие разрешения мы запрашиваем',
 			'legal.sections.permissions.body' => 'Камера и фотогалерея — чтобы установить фото профиля и загрузить медицинские документы. Геолокация — чтобы сортировать врачей по расстоянию до вас. Уведомления — чтобы доставлять напоминания о приёмах и сообщения. Биометрия (Face ID / отпечаток пальца) — необязательный, более быстрый способ разблокировки приложения; ваши биометрические данные никогда не покидают устройство, мы получаем только подтверждение «да/нет» от его операционной системы.',
 			'legal.sections.children.title' => 'Возрастное ограничение',
-			'legal.sections.children.body' => 'Аккаунты Medalize предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.',
+			'legal.sections.children.body' => 'Аккаунты Medoro предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.',
 			'legal.termsTitle' => 'Условия использования',
 			'legal.termsIntro' => 'Создавая аккаунт, вы соглашаетесь со следующим.',
-			'legal.termsBody' => 'Указывать о себе достоверную информацию. Использовать Medalize только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. Medalize соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.',
-			'legal.contact' => 'Вопросы о ваших данных? Напишите на support@medalize.az',
+			'legal.termsBody' => 'Указывать о себе достоверную информацию. Использовать Medoro только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. Medoro соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.',
+			'legal.contact' => 'Вопросы о ваших данных? Напишите на support@auxiodev.com',
 			'legal.consentPrefix' => 'Я прочитал(а) и согласен(на) с ',
 			'legal.consentPrivacyLink' => 'Политикой конфиденциальности',
 			'legal.consentMiddle' => ' и ',
 			'legal.consentTermsLink' => 'Условиями использования',
 			'legal.consentSuffix' => ', а также прямо даю согласие на обработку данных о моём здоровье, как описано в них.',
 			'legal.viewAsPdf' => 'Открыть как PDF',
-			'legal.pdfDocumentTitle' => 'Medalize — Политика конфиденциальности и условия использования',
+			'legal.pdfDocumentTitle' => 'Medoro — Политика конфиденциальности и условия использования',
 			'legal.pdfLoadError' => 'Не удалось загрузить документ. Проверьте подключение к интернету и попробуйте снова.',
 			'medications.title' => 'Лекарства',
 			'medications.editMedication' => 'Изменить лекарство',
@@ -2167,7 +2167,7 @@ extension on TranslationsRu {
 			'subscription.currentPlan' => 'Текущий тариф',
 			'subscription.mostPopular' => 'Популярный выбор',
 			'subscription.perMonth' => 'в месяц',
-			'subscription.manageOnWeb' => 'Управляйте подпиской на medalize.az',
+			'subscription.manageOnWeb' => 'Управляйте подпиской на auxiodev.com',
 			'subscription.featureUnlimitedWorkplaces' => 'Неограниченное количество клиник',
 			'subscription.featureWorkplaces' => ({required Object count}) => 'До ${count} клиник(и)',
 			'subscription.featureUnlimitedBookings' => 'Неограниченное количество записей в месяц',

@@ -1,5 +1,5 @@
 {
-  "appName": "Medalize",
+  "appName": "Medoro",
   "common": {
     "cancel": "Cancel",
     "logout": "Log Out",
@@ -42,7 +42,7 @@
     "welcomeBack": "Welcome back",
     "signInToContinue": "Sign in to your account to continue",
     "createYourAccount": "Create your account",
-    "joinMedalize": "Join Medalize today",
+    "joinMedalize": "Join Medoro today",
     "iAmA": "I am a",
     "emailHint": "you@example.com",
     "passwordHint": "••••••••",
@@ -117,14 +117,14 @@
     "languageSystem": "System default",
     "logoutTitle": "Logout",
     "logoutConfirm": "Are you sure you want to logout?",
-    "version": "Medalize v1.0.0",
+    "version": "Medoro v1.0.0",
     "legal": "Privacy & Terms"
   },
   "security": {
     "title": "Security",
     "biometricLogin": "Biometric Login",
     "biometricLoginSubtitle": "Use Face ID / Touch ID to unlock the app",
-    "biometricPrompt": "Authenticate to access Medalize",
+    "biometricPrompt": "Authenticate to access Medoro",
     "biometricUnavailable": "Biometric authentication isn't available on this device",
     "biometricEnableFailed": "Couldn't verify your biometrics. Please try again.",
     "activeSessions": "Active Sessions",
@@ -551,9 +551,9 @@
   },
   "legal": {
     "title": "Privacy & Terms",
-    "controllerNotice": "Medalize is created and operated by AuxioDev (auxiodev.com), Azerbaijan (\"we\", \"us\"). Last updated: July 2026.",
+    "controllerNotice": "Medoro is created and operated by AuxioDev (auxiodev.com), Azerbaijan (\"we\", \"us\"). Last updated: July 2026.",
     "privacyTitle": "Privacy Policy",
-    "privacyIntro": "This policy explains what personal data Medalize collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.",
+    "privacyIntro": "This policy explains what personal data Medoro collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.",
     "sections": {
       "identity": {
         "title": "Identity data",
@@ -613,20 +613,20 @@
       },
       "children": {
         "title": "Age requirement",
-        "body": "Medalize accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature."
+        "body": "Medoro accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature."
       }
     },
     "termsTitle": "Terms of Service",
     "termsIntro": "By creating an account, you agree to the following.",
-    "termsBody": "Provide accurate information about yourself. Use Medalize only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medalize connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.",
-    "contact": "Questions about your data? Contact support@medalize.az",
+    "termsBody": "Provide accurate information about yourself. Use Medoro only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medoro connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.",
+    "contact": "Questions about your data? Contact support@auxiodev.com",
     "consentPrefix": "I have read and agree to the ",
     "consentPrivacyLink": "Privacy Policy",
     "consentMiddle": " and ",
     "consentTermsLink": "Terms of Service",
     "consentSuffix": ", and I explicitly consent to the processing of my health data as described.",
     "viewAsPdf": "View as PDF",
-    "pdfDocumentTitle": "Medalize — Privacy Policy & Terms of Service",
+    "pdfDocumentTitle": "Medoro — Privacy Policy & Terms of Service",
     "pdfLoadError": "Could not load the document. Please check your internet connection and try again."
   },
   "medications": {
@@ -802,7 +802,7 @@
     "currentPlan": "Current Plan",
     "mostPopular": "Most Popular",
     "perMonth": "per month",
-    "manageOnWeb": "Manage your subscription at medalize.az",
+    "manageOnWeb": "Manage your subscription at auxiodev.com",
     "featureUnlimitedWorkplaces": "Unlimited clinics",
     "featureWorkplaces": "Up to $count clinic(s)",
     "featureUnlimitedBookings": "Unlimited monthly bookings",
