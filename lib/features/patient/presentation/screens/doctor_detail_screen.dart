@@ -23,6 +23,7 @@ import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.d
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/messaging/data/repository/messaging_repository.dart';
 import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 final _doctorReviewsProvider = FutureProvider.autoDispose.family<List<ReviewModel>, String>(
@@ -44,7 +45,10 @@ class DoctorDetailScreen extends ConsumerWidget {
         loading: () => _LoadingSkeleton(doctorId: doctorId),
         error: (_, _) => Scaffold(
           appBar: AppBar(
-              title: Text(doctor?.fullName ?? context.t.doctorDetail.profileTitle)),
+              title: AppBarTitle(
+            doctor?.fullName ?? context.t.doctorDetail.profileTitle,
+            icon: Icons.person_outline_rounded,
+          )),
           body: EmptyState(
             icon: Icons.cloud_off_outlined,
             title: context.t.doctorDetail.couldNotLoadProfile,
@@ -124,7 +128,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.detail.fullName),
+        title: AppBarTitle(widget.detail.fullName, icon: Icons.person_outline_rounded),
         actions: [
           IconButton(
             tooltip: isFavorite
@@ -483,7 +487,12 @@ class _LoadingSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.doctorDetail.profileTitle)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.doctorDetail.profileTitle,
+          icon: Icons.person_outline_rounded,
+        ),
+      ),
       body: ResponsiveBody(
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.md),

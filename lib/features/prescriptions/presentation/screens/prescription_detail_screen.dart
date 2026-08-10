@@ -16,6 +16,7 @@ import 'package:medalize_mb/features/medications/providers/medication_provider.d
 import 'package:medalize_mb/features/prescriptions/data/models/prescription_model.dart';
 import 'package:medalize_mb/features/prescriptions/data/repository/prescription_repository.dart';
 import 'package:medalize_mb/features/prescriptions/providers/prescription_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class PrescriptionDetailScreen extends ConsumerStatefulWidget {
@@ -53,7 +54,12 @@ class _PrescriptionDetailScreenState extends ConsumerState<PrescriptionDetailScr
   Widget build(BuildContext context) {
     final async = ref.watch(prescriptionByIdProvider(widget.prescriptionId));
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.prescriptions.summaryTitle)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.prescriptions.summaryTitle,
+          icon: Icons.description_outlined,
+        ),
+      ),
       body: async.when(
         loading: () => const Padding(
           padding: EdgeInsets.all(AppSpacing.md),

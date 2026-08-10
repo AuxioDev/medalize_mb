@@ -20,6 +20,7 @@ import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class DoctorAppointmentsScreen extends ConsumerStatefulWidget {
@@ -68,7 +69,8 @@ class _DoctorAppointmentsScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.appointments.title),
+        title: AppBarTitle(context.t.appointments.title,
+            icon: Icons.calendar_month_outlined),
         bottom: TabBar(
           controller: _tab,
           onTap: _onTabTap,

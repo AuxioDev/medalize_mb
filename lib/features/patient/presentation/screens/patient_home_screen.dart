@@ -27,6 +27,7 @@ import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/medications/presentation/widgets/todays_doses_section.dart';
 import 'package:medalize_mb/features/messaging/providers/messaging_provider.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class PatientHomeScreen extends ConsumerWidget {
@@ -43,7 +44,10 @@ class PatientHomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.appName),
+        title: AppBarTitle(
+          context.t.appName,
+          icon: Icons.medical_services_rounded,
+        ),
         actions: [
           IconButton(
             tooltip: context.t.favorites.title,

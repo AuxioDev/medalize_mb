@@ -12,6 +12,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/hospital/data/models/doctor_hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/data/repository/hospital_repository.dart';
 import 'package:medalize_mb/features/hospital/providers/hospital_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 enum _LinksFilter { invitations, requests, confirmed }
@@ -51,7 +52,8 @@ class _DoctorHospitalLinksScreenState extends ConsumerState<DoctorHospitalLinksS
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.doctorHospitals.title),
+        title: AppBarTitle(context.t.doctorHospitals.title,
+            icon: Icons.local_hospital_outlined),
         bottom: TabBar(
           controller: _tab,
           isScrollable: true,

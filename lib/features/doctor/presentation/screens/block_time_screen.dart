@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class BlockTimeScreen extends ConsumerStatefulWidget {
@@ -77,7 +78,9 @@ class _BlockTimeScreenState extends ConsumerState<BlockTimeScreen> {
     final c = context.colors;
     final fmt = DateFormat('d MMM y');
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.blockTime.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.blockTime.title,
+              icon: Icons.block_outlined)),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),

@@ -17,6 +17,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class MyAppointmentsScreen extends ConsumerStatefulWidget {
@@ -64,7 +65,10 @@ class _MyAppointmentsScreenState extends ConsumerState<MyAppointmentsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.appointments.myTitle),
+        title: AppBarTitle(
+          context.t.appointments.myTitle,
+          icon: Icons.calendar_month_outlined,
+        ),
         bottom: TabBar(
           controller: _tab,
           onTap: _onTabTap,

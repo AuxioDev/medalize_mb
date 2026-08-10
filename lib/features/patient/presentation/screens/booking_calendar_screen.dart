@@ -14,6 +14,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class BookingCalendarScreen extends ConsumerStatefulWidget {
@@ -58,7 +59,10 @@ class _BookingCalendarScreenState extends ConsumerState<BookingCalendarScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.booking.bookWith(name: widget.doctor.fullName)),
+        title: AppBarTitle(
+          context.t.booking.bookWith(name: widget.doctor.fullName),
+          icon: Icons.calendar_month_outlined,
+        ),
       ),
       body: ResponsiveBody(
         // A CustomScrollView (rather than a fixed Column with an Expanded

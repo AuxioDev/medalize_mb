@@ -12,6 +12,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/data/repository/hospital_repository.dart';
 import 'package:medalize_mb/features/hospital/providers/hospital_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class HospitalInviteDoctorScreen extends ConsumerStatefulWidget {
@@ -87,7 +88,9 @@ class _HospitalInviteDoctorScreenState extends ConsumerState<HospitalInviteDocto
   Widget build(BuildContext context) {
     final c = context.colors;
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.hospitalInvite.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.hospitalInvite.title,
+              icon: Icons.person_add_alt_outlined)),
       body: ResponsiveBody(
         child: Column(
           children: [

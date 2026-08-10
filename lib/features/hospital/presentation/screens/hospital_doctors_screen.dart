@@ -12,6 +12,7 @@ import 'package:medalize_mb/features/hospital/data/repository/hospital_repositor
 import 'package:medalize_mb/features/hospital/presentation/widgets/hospital_doctor_tile.dart';
 import 'package:medalize_mb/features/hospital/presentation/widgets/link_request_card.dart';
 import 'package:medalize_mb/features/hospital/providers/hospital_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class HospitalDoctorsScreen extends ConsumerStatefulWidget {
@@ -41,7 +42,8 @@ class _HospitalDoctorsScreenState extends ConsumerState<HospitalDoctorsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.hospitalDoctors.title),
+        title: AppBarTitle(context.t.hospitalDoctors.title,
+            icon: Icons.groups_outlined),
         bottom: TabBar(
           controller: _tab,
           tabs: [

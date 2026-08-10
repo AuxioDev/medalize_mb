@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/features/shared/presentation/widgets/legal_pdf_popup.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,7 +43,9 @@ class LegalScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.title)),
+      appBar: AppBar(
+        title: AppBarTitle(t.title, icon: Icons.privacy_tip_outlined),
+      ),
       body: ResponsiveBody(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(

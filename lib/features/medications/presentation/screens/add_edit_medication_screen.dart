@@ -15,6 +15,7 @@ import 'package:medalize_mb/features/medications/data/models/medication_model.da
 import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
 import 'package:medalize_mb/features/medications/providers/medication_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Reminder-schedule editor for a medication the patient's doctor already
@@ -136,7 +137,9 @@ class _AddEditMedicationScreenState
     final c = context.colors;
     final existing = widget.existing;
     return Scaffold(
-      appBar: AppBar(title: Text(t.medications.editMedication)),
+      appBar: AppBar(
+          title: AppBarTitle(t.medications.editMedication,
+              icon: Icons.medication_outlined)),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),

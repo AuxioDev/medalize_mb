@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/biometric_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class SecurityScreen extends ConsumerStatefulWidget {
@@ -84,7 +85,9 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen> {
     final supported = supportedAsync.value ?? false;
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.security.title)),
+      appBar: AppBar(
+        title: AppBarTitle(t.security.title, icon: Icons.security_outlined),
+      ),
       body: ResponsiveBody(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(

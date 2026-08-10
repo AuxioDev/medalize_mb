@@ -18,6 +18,7 @@ import 'package:medalize_mb/features/records/data/models/medical_record_model.da
 import 'package:medalize_mb/features/records/data/repository/medical_record_repository.dart';
 import 'package:medalize_mb/features/records/presentation/screens/records_list_screen.dart';
 import 'package:medalize_mb/features/records/providers/medical_record_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 const _kRecordTypes = [
@@ -193,7 +194,9 @@ class _UploadRecordScreenState extends ConsumerState<UploadRecordScreen> {
   Widget build(BuildContext context) {
     final t = context.t;
     return Scaffold(
-      appBar: AppBar(title: Text(t.records.upload)),
+      appBar: AppBar(
+        title: AppBarTitle(t.records.upload, icon: Icons.upload_file_outlined),
+      ),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),

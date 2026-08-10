@@ -20,6 +20,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/records/data/models/medical_record_model.dart';
 import 'package:medalize_mb/features/records/data/repository/medical_record_repository.dart';
 import 'package:medalize_mb/features/records/providers/medical_record_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -51,7 +52,12 @@ class RecordsListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(medicalRecordsByTypeProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.records.title)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.records.title,
+          icon: Icons.folder_shared_outlined,
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           HapticFeedback.lightImpact();

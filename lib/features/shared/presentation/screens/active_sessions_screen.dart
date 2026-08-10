@@ -15,6 +15,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/auth/data/models/user_device_model.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 final _devicesProvider =
@@ -31,7 +32,9 @@ class ActiveSessionsScreen extends ConsumerWidget {
     final t = context.t;
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.security.activeSessions)),
+      appBar: AppBar(
+        title: AppBarTitle(t.security.activeSessions, icon: Icons.devices_outlined),
+      ),
       body: ResponsiveBody(
         child: async.when(
           loading: () => const Padding(

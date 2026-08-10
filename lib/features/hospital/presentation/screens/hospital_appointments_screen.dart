@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/hospital/providers/hospital_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class HospitalAppointmentsScreen extends ConsumerWidget {
@@ -19,7 +20,9 @@ class HospitalAppointmentsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(hospitalAppointmentsProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.hospitalAppointments.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.hospitalAppointments.title,
+              icon: Icons.calendar_month_outlined)),
       body: RefreshIndicator(
         onRefresh: () async => ref.invalidate(hospitalAppointmentsProvider),
         color: AppColors.primary,

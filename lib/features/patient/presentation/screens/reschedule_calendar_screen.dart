@@ -15,6 +15,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class RescheduleCalendarScreen extends ConsumerStatefulWidget {
@@ -53,7 +54,12 @@ class _RescheduleCalendarScreenState
         : null;
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.appointments.rescheduleTitle)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.appointments.rescheduleTitle,
+          icon: Icons.event_repeat_outlined,
+        ),
+      ),
       body: ResponsiveBody(
         // A CustomScrollView (rather than a fixed Column with an Expanded
         // slot grid) lets the whole screen scroll on short devices, since

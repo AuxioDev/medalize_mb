@@ -15,6 +15,7 @@ import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart
 import 'package:medalize_mb/features/assistant/presentation/widgets/flag_message_dialog.dart';
 import 'package:medalize_mb/features/assistant/presentation/widgets/suggested_doctor_card.dart';
 import 'package:medalize_mb/features/assistant/providers/assistant_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Chat with the AI symptom assistant. Loads the conversation by [conversationId]
@@ -180,7 +181,8 @@ class _AssistantChatScreenState extends ConsumerState<AssistantChatScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.assistant.title),
+        title: AppBarTitle(context.t.assistant.title,
+            icon: Icons.smart_toy_outlined),
         actions: [
           IconButton(
             tooltip: context.t.assistant.topicsTooltip,

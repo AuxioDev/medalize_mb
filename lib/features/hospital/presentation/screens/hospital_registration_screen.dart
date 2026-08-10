@@ -15,6 +15,7 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_model.dart';
 import 'package:medalize_mb/features/hospital/data/repository/hospital_repository.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Second step of hospital registration, reached from RegisterScreen with
@@ -135,7 +136,9 @@ class _HospitalRegistrationScreenState
     final isLoading = authState is AuthLoading;
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.hospitalRegistration.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.hospitalRegistration.title,
+              icon: Icons.apartment_outlined)),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),

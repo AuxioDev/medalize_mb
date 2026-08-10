@@ -14,6 +14,7 @@ import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/family/data/repository/family_repository.dart';
 import 'package:medalize_mb/features/family/presentation/screens/family_list_screen.dart';
 import 'package:medalize_mb/features/family/providers/family_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 const _kRelationships = [
@@ -192,8 +193,9 @@ class _AddEditDependentScreenState
     final t = context.t;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            _isEditing ? t.family.editFamilyMember : t.family.addFamilyMember),
+        title: AppBarTitle(
+            _isEditing ? t.family.editFamilyMember : t.family.addFamilyMember,
+            icon: Icons.family_restroom_outlined),
       ),
       body: ResponsiveBody(
         child: SingleChildScrollView(

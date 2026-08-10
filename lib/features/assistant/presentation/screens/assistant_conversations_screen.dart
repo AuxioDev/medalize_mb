@@ -18,6 +18,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/assistant/data/models/assistant_models.dart';
 import 'package:medalize_mb/features/assistant/data/repository/assistant_repository.dart';
 import 'package:medalize_mb/features/assistant/providers/assistant_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class AssistantConversationsScreen extends ConsumerStatefulWidget {
@@ -90,7 +91,9 @@ class _AssistantConversationsScreenState
     final async = ref.watch(assistantConversationsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.assistant.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.assistant.title,
+              icon: Icons.smart_toy_outlined)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _creating ? null : _newChat,
         icon: _creating

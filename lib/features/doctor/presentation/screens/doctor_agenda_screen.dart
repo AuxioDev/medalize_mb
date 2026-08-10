@@ -17,6 +17,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/core/widgets/status_chip.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
@@ -51,7 +52,9 @@ class _DoctorAgendaScreenState extends ConsumerState<DoctorAgendaScreen> {
     };
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.agenda.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.agenda.title,
+              icon: Icons.event_note_outlined)),
       body: ResponsiveBody(
         child: Column(
           children: [

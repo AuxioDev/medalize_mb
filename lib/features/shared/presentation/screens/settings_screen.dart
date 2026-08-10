@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_form_section.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -23,7 +24,9 @@ class SettingsScreen extends ConsumerWidget {
     final t = context.t;
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.settings.title)),
+      appBar: AppBar(
+        title: AppBarTitle(t.settings.title, icon: Icons.settings_outlined),
+      ),
       body: ResponsiveBody(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(

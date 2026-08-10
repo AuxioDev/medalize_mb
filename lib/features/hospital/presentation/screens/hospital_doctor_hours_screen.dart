@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/data/repository/hospital_repository.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Lets the hospital edit working hours for one of a confirmed doctor's
@@ -113,7 +114,9 @@ class _HospitalDoctorHoursScreenState extends ConsumerState<HospitalDoctorHoursS
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${context.t.hospitalDoctorHours.title} — ${widget.doctor.fullName}'),
+        title: AppBarTitle(
+            '${context.t.hospitalDoctorHours.title} — ${widget.doctor.fullName}',
+            icon: Icons.schedule_outlined),
       ),
       body: ResponsiveBody(child: _body(context)),
       bottomNavigationBar: _days == null

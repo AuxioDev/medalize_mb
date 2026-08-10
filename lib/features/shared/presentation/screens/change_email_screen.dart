@@ -10,6 +10,7 @@ import 'package:medalize_mb/core/widgets/otp_code_field.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Two-step email change flow: (1) new email + current password requests a
@@ -121,7 +122,9 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
   Widget build(BuildContext context) {
     final t = context.t;
     return Scaffold(
-      appBar: AppBar(title: Text(t.security.changeEmail)),
+      appBar: AppBar(
+        title: AppBarTitle(t.security.changeEmail, icon: Icons.email_outlined),
+      ),
       body: ResponsiveBody(
         child: ListView(
           padding: const EdgeInsets.all(AppSpacing.md),

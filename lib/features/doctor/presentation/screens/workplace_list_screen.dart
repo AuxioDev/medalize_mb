@@ -17,6 +17,7 @@ import 'package:medalize_mb/core/widgets/refreshable.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// The doctor's workplaces. Also consumed by [EditWorkplaceLoader] to recover
@@ -41,7 +42,9 @@ class WorkplaceListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(workplacesProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.workplaces.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.workplaces.title,
+              icon: Icons.business_outlined)),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final added = await context.push<bool>('/doctor/add-workplace');

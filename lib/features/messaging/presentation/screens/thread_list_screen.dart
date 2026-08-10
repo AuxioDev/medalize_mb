@@ -19,6 +19,7 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/messaging/data/models/messaging_models.dart';
 import 'package:medalize_mb/features/messaging/providers/messaging_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// List of conversations for the signed-in user (patient or doctor — the
@@ -34,7 +35,12 @@ class ThreadListScreen extends ConsumerWidget {
     final async = ref.watch(threadsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.messaging.title)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.messaging.title,
+          icon: Icons.chat_outlined,
+        ),
+      ),
       body: ResponsiveBody(
         child: async.when(
           loading: () => ListView(

@@ -26,6 +26,7 @@ import 'package:medalize_mb/features/messaging/data/repository/messaging_reposit
 import 'package:medalize_mb/features/payments/presentation/screens/payment_screen.dart';
 import 'package:medalize_mb/features/payments/providers/payment_provider.dart';
 import 'package:medalize_mb/features/prescriptions/providers/prescription_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class AppointmentDetailScreen extends ConsumerStatefulWidget {
@@ -449,7 +450,12 @@ class _AppointmentDetailScreenState
     final statusColor = StatusChip.colorFor(appt.status);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.appointments.detailTitle)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.appointments.detailTitle,
+          icon: Icons.event_outlined,
+        ),
+      ),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),

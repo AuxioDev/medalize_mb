@@ -19,6 +19,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/family/data/repository/family_repository.dart';
 import 'package:medalize_mb/features/family/providers/family_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Shared across the family screens and everywhere a dependent's
@@ -38,7 +39,9 @@ class FamilyListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(dependentsProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.family.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.family.title,
+              icon: Icons.family_restroom_outlined)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           HapticFeedback.lightImpact();

@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class WorkingHoursEditorScreen extends ConsumerStatefulWidget {
@@ -104,7 +105,8 @@ class _WorkingHoursEditorState extends ConsumerState<WorkingHoursEditorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.workingHours.title),
+        title: AppBarTitle(context.t.workingHours.title,
+            icon: Icons.schedule_outlined),
         actions: [
           TextButton(
             onPressed: _saving ? null : _save,

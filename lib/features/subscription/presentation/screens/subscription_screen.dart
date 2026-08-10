@@ -21,6 +21,7 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/subscription/data/models/subscription_model.dart';
 import 'package:medalize_mb/features/subscription/data/repository/subscription_repository.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/features/subscription/providers/subscription_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -135,7 +136,10 @@ class _SubscriptionScreenState extends ConsumerState<SubscriptionScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.subscription.title),
+        title: AppBarTitle(
+          context.t.subscription.title,
+          icon: Icons.workspace_premium_outlined,
+        ),
         automaticallyImplyLeading: !widget.fromGate,
         actions: widget.fromGate
             ? [

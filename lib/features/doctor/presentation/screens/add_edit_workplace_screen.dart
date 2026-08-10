@@ -14,6 +14,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/workplace_map_picker_screen.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
 import 'package:medalize_mb/features/locations/data/repository/location_repository.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class AddEditWorkplaceScreen extends ConsumerStatefulWidget {
@@ -153,9 +154,11 @@ class _AddEditWorkplaceScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(_isEdit
-              ? context.t.addWorkplace.editTitle
-              : context.t.addWorkplace.addTitle)),
+          title: AppBarTitle(
+              _isEdit
+                  ? context.t.addWorkplace.editTitle
+                  : context.t.addWorkplace.addTitle,
+              icon: Icons.business_outlined)),
       body: Form(
         key: _form,
         child: ResponsiveBody(

@@ -12,6 +12,7 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/messaging/data/models/messaging_models.dart';
 import 'package:medalize_mb/features/messaging/providers/messaging_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Chat with a doctor or patient inside a shared thread. Visually mirrors
@@ -78,7 +79,9 @@ class _ThreadChatScreenState extends ConsumerState<ThreadChatScreen> {
         : context.t.messaging.title;
 
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(
+        title: AppBarTitle(title, icon: Icons.chat_outlined),
+      ),
       body: ResponsiveBody(
         child: switch ((state.loading, state.loadFailed)) {
           (true, _) => const ChatLoadingSkeleton(),

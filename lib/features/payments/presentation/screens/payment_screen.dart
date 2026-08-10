@@ -15,6 +15,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/payments/data/models/payment_model.dart';
 import 'package:medalize_mb/features/payments/providers/payment_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -166,7 +167,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen>
     final payment = _payment ?? async.valueOrNull;
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.payments.title)),
+      appBar: AppBar(
+        title: AppBarTitle(context.t.payments.title, icon: Icons.payment_outlined),
+      ),
       body: ResponsiveBody(child: _body(context, async, payment)),
       bottomNavigationBar: BottomActionBar(
         child: Column(

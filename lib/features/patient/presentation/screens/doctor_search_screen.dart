@@ -21,6 +21,7 @@ import 'package:intl/intl.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 enum _DoctorSort { relevance, rating, priceLow, name, nearestSlot, distance }
@@ -187,7 +188,12 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
     final results = ref.watch(doctorSearchProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.doctorSearch.title)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.doctorSearch.title,
+          icon: Icons.search_rounded,
+        ),
+      ),
       body: ResponsiveBody(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

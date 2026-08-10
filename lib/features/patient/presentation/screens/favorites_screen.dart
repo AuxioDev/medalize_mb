@@ -16,6 +16,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class FavoritesScreen extends ConsumerWidget {
@@ -26,7 +27,12 @@ class FavoritesScreen extends ConsumerWidget {
     final async = ref.watch(favoriteDoctorsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.favorites.title)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.favorites.title,
+          icon: Icons.favorite_border_rounded,
+        ),
+      ),
       body: ResponsiveBody(
         child: async.when(
           loading: () => const Padding(

@@ -16,6 +16,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/notifications/data/models/notification_model.dart';
 import 'package:medalize_mb/features/notifications/data/repository/notification_repository.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class NotificationsScreen extends ConsumerWidget {
@@ -28,7 +29,10 @@ class NotificationsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.notifications.title),
+        title: AppBarTitle(
+          context.t.notifications.title,
+          icon: Icons.notifications_outlined,
+        ),
         actions: [
           if (hasUnread)
             TextButton(

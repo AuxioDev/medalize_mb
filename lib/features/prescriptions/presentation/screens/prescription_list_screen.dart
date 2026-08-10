@@ -15,6 +15,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/prescriptions/data/models/prescription_model.dart';
 import 'package:medalize_mb/features/prescriptions/providers/prescription_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class PrescriptionListScreen extends ConsumerWidget {
@@ -24,7 +25,12 @@ class PrescriptionListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(patientPrescriptionsProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.prescriptions.title)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.prescriptions.title,
+          icon: Icons.description_outlined,
+        ),
+      ),
       body: async.when(
         loading: () => const ResponsiveBody(
           child: Padding(

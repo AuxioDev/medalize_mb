@@ -14,6 +14,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/doctor/data/repository/doctor_profile_repository.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/slot_duration_selector.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 const _kTotalSteps = 3;
@@ -136,7 +137,8 @@ class _DoctorOnboardingScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.onboarding.title),
+        title: AppBarTitle(context.t.onboarding.title,
+            icon: Icons.checklist_outlined),
         actions: [
           TextButton(
             onPressed: () => ref.read(authProvider.notifier).logout(),

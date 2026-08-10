@@ -19,6 +19,7 @@ import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/payments/data/repository/payment_repository.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class BookingConfirmScreen extends ConsumerStatefulWidget {
@@ -138,7 +139,12 @@ class _BookingConfirmScreenState extends ConsumerState<BookingConfirmScreen> {
     final activeProfile = ref.watch(activeProfileProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.booking.confirmTitle)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          context.t.booking.confirmTitle,
+          icon: Icons.event_available_outlined,
+        ),
+      ),
       body: ResponsiveBody(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.md),

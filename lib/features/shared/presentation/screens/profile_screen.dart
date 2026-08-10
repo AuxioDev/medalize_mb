@@ -17,6 +17,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/slot_duration_selector.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -201,7 +202,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.profile.title),
+        title: AppBarTitle(
+          context.t.profile.title,
+          icon: Icons.person_outline_rounded,
+        ),
         actions: [
           if (!_editing)
             TextButton(

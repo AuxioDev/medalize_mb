@@ -14,6 +14,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/presentation/widgets/link_request_card.dart';
 import 'package:medalize_mb/features/hospital/providers/hospital_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class HospitalHomeScreen extends ConsumerWidget {
@@ -26,7 +27,8 @@ class HospitalHomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.appName),
+        title: AppBarTitle(context.t.appName,
+            icon: Icons.medical_services_rounded),
         actions: [
           IconButton(
             icon: const Icon(Icons.person_outline_rounded),

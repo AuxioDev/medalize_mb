@@ -13,6 +13,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/hospital/providers/hospital_provider.dart';
 import 'package:medalize_mb/features/subscription/providers/subscription_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class HospitalProfileScreen extends ConsumerWidget {
@@ -24,7 +25,9 @@ class HospitalProfileScreen extends ConsumerWidget {
     final subscriptionAsync = ref.watch(subscriptionProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.hospitalProfile.title)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.hospitalProfile.title,
+              icon: Icons.apartment_outlined)),
       body: RefreshIndicator(
         onRefresh: () async {
           ref.invalidate(hospitalProfileProvider);

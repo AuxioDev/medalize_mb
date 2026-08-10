@@ -7,6 +7,7 @@ import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/core/services/location_service.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Result of confirming a pin on [WorkplaceMapPickerScreen].
@@ -106,7 +107,9 @@ class _WorkplaceMapPickerScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.addWorkplace.mapPickerTitle)),
+      appBar: AppBar(
+          title: AppBarTitle(context.t.addWorkplace.mapPickerTitle,
+              icon: Icons.map_outlined)),
       body: Stack(
         children: [
           FlutterMap(

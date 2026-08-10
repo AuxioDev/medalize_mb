@@ -19,6 +19,7 @@ import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
 import 'package:medalize_mb/features/medications/providers/medication_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 IconData medicationFormIcon(String form) => switch (form) {
@@ -64,7 +65,8 @@ class _MedicationListScreenState extends ConsumerState<MedicationListScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.t.medications.title),
+        title: AppBarTitle(context.t.medications.title,
+            icon: Icons.medication_outlined),
         bottom: TabBar(
           controller: _tab,
           tabs: [

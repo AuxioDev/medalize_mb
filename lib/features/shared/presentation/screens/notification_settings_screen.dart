@@ -11,6 +11,7 @@ import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/notifications/data/repository/notification_repository.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class NotificationSettingsScreen extends ConsumerStatefulWidget {
@@ -91,7 +92,12 @@ class _NotificationSettingsScreenState
     final async = ref.watch(notificationPreferencesProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.notifications.settingsTitle)),
+      appBar: AppBar(
+        title: AppBarTitle(
+          t.notifications.settingsTitle,
+          icon: Icons.notifications_outlined,
+        ),
+      ),
       body: ResponsiveBody(
         child: async.when(
           loading: () => const Padding(
