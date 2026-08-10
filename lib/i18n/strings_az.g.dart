@@ -44,6 +44,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$az auth = _Translations$auth$az._(_root);
 	@override late final _Translations$forgotPassword$az forgotPassword = _Translations$forgotPassword$az._(_root);
 	@override late final _Translations$resetPassword$az resetPassword = _Translations$resetPassword$az._(_root);
+	@override late final _Translations$verifyEmail$az verifyEmail = _Translations$verifyEmail$az._(_root);
 	@override late final _Translations$validation$az validation = _Translations$validation$az._(_root);
 	@override late final _Translations$errors$az errors = _Translations$errors$az._(_root);
 	@override late final _Translations$settings$az settings = _Translations$settings$az._(_root);
@@ -178,6 +179,20 @@ class _Translations$resetPassword$az extends Translations$resetPassword$en {
 	@override String get success => 'Şifrə uğurla bərpa edildi. Zəhmət olmasa daxil olun.';
 }
 
+// Path: verifyEmail
+class _Translations$verifyEmail$az extends Translations$verifyEmail$en {
+	_Translations$verifyEmail$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Email ünvanınızı təsdiqləyin';
+	@override String subtitle({required Object email}) => '${email} ünvanına 6 rəqəmli kod göndərdik';
+	@override String get button => 'Təsdiqlə';
+	@override String get resend => 'Kodu yenidən göndər';
+	@override String get resendSent => 'Yeni kod göndərildi.';
+}
+
 // Path: validation
 class _Translations$validation$az extends Translations$validation$en {
 	_Translations$validation$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -224,6 +239,7 @@ class _Translations$errors$az extends Translations$errors$en {
 	@override String get onboardingIncomplete => 'Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.';
 	@override String get planLimitReached => 'Planınızın limitinə çatmısınız. Daha çoxu üçün planı yüksəldin.';
 	@override String get chatUnavailable => 'Bu həkim cari planında çat təklif etmir.';
+	@override String get emailNotVerified => 'Daxil olmadan əvvəl email ünvanınızı təsdiqləyin.';
 }
 
 // Path: settings
@@ -410,6 +426,12 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get markNoShow => 'Gəlmədi qeyd et';
 	@override String get markNoShowTitle => 'Gəlmədi kimi qeyd et';
 	@override String get markNoShowConfirm => 'Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir.';
+	@override String get disputeNoShow => 'Etiraz et';
+	@override String get disputeNoShowTitle => 'Gəlmədi qeydinə etiraz';
+	@override String get disputeNoShowHint => 'Niyə bunun səhv qeyd edildiyini düşündüyünüzü bizə bildirin — dəstək komandamız nəzərdən keçirəcək.';
+	@override String get disputeNoShowSubmit => 'Göndər';
+	@override String get disputeNoShowSubmitted => 'Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.';
+	@override String get disputeNoShowOpen => 'Etiraz göndərildi — nəzərdən keçirilir';
 }
 
 // Path: booking
@@ -539,6 +561,18 @@ class _Translations$notifications$az extends Translations$notifications$en {
 	@override String get pushEnabledSubtitle => 'Qeydiyyatlar və yeniliklər üçün bu cihazda bildirişlər';
 	@override String get emailEnabled => 'E-poçt bildirişləri';
 	@override String get emailEnabledSubtitle => 'Yeniliklər e-poçt ünvanınıza göndəriləcək';
+	@override String get categoriesTitle => 'Push kateqoriyaları';
+	@override String get careCategory => 'Görüşlər və qulluq';
+	@override String get careCategorySubtitle => 'Bronlar, xatırlatmalar, reseptlər';
+	@override String get messagesCategory => 'Mesajlar';
+	@override String get messagesCategorySubtitle => 'Yeni çat mesajları';
+	@override String get accountCategory => 'Hesab və ödənişlər';
+	@override String get accountCategorySubtitle => 'Təsdiqləmə, ödənişlər, abunəlik';
+	@override String get quietHoursTitle => 'Sakit saatlar';
+	@override String get quietHoursEnabled => 'Sakit saatları aktivləşdir';
+	@override String get quietHoursSubtitle => 'Bu vaxt aralığında push bildirişləri dayandırılır';
+	@override String get quietHoursStart => 'Başlanğıc';
+	@override String get quietHoursEnd => 'Son';
 }
 
 // Path: workplaces
@@ -1494,6 +1528,11 @@ extension on TranslationsAz {
 			'resetPassword.subtitle' => 'E-poçtunuza göndərilən kodu daxil edin və yeni şifrə seçin',
 			'resetPassword.button' => 'Şifrəni bərpa et',
 			'resetPassword.success' => 'Şifrə uğurla bərpa edildi. Zəhmət olmasa daxil olun.',
+			'verifyEmail.title' => 'Email ünvanınızı təsdiqləyin',
+			'verifyEmail.subtitle' => ({required Object email}) => '${email} ünvanına 6 rəqəmli kod göndərdik',
+			'verifyEmail.button' => 'Təsdiqlə',
+			'verifyEmail.resend' => 'Kodu yenidən göndər',
+			'verifyEmail.resendSent' => 'Yeni kod göndərildi.',
 			'validation.emailRequired' => 'E-poçt tələb olunur',
 			'validation.emailInvalid' => 'Düzgün e-poçt ünvanı daxil edin',
 			'validation.passwordRequired' => 'Şifrə tələb olunur',
@@ -1524,6 +1563,7 @@ extension on TranslationsAz {
 			'errors.onboardingIncomplete' => 'Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.',
 			'errors.planLimitReached' => 'Planınızın limitinə çatmısınız. Daha çoxu üçün planı yüksəldin.',
 			'errors.chatUnavailable' => 'Bu həkim cari planında çat təklif etmir.',
+			'errors.emailNotVerified' => 'Daxil olmadan əvvəl email ünvanınızı təsdiqləyin.',
 			'settings.title' => 'Parametrlər',
 			'settings.account' => 'Hesab',
 			'settings.profile' => 'Profil',
@@ -1665,6 +1705,12 @@ extension on TranslationsAz {
 			'appointments.markNoShow' => 'Gəlmədi qeyd et',
 			'appointments.markNoShowTitle' => 'Gəlmədi kimi qeyd et',
 			'appointments.markNoShowConfirm' => 'Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir.',
+			'appointments.disputeNoShow' => 'Etiraz et',
+			'appointments.disputeNoShowTitle' => 'Gəlmədi qeydinə etiraz',
+			'appointments.disputeNoShowHint' => 'Niyə bunun səhv qeyd edildiyini düşündüyünüzü bizə bildirin — dəstək komandamız nəzərdən keçirəcək.',
+			'appointments.disputeNoShowSubmit' => 'Göndər',
+			'appointments.disputeNoShowSubmitted' => 'Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.',
+			'appointments.disputeNoShowOpen' => 'Etiraz göndərildi — nəzərdən keçirilir',
 			'booking.bookWith' => ({required Object name}) => 'Təyin et — ${name}',
 			'booking.selectWorkplace' => 'İş yerini seçin',
 			'booking.pickDate' => 'Tarix seçin',
@@ -1759,6 +1805,18 @@ extension on TranslationsAz {
 			'notifications.pushEnabledSubtitle' => 'Qeydiyyatlar və yeniliklər üçün bu cihazda bildirişlər',
 			'notifications.emailEnabled' => 'E-poçt bildirişləri',
 			'notifications.emailEnabledSubtitle' => 'Yeniliklər e-poçt ünvanınıza göndəriləcək',
+			'notifications.categoriesTitle' => 'Push kateqoriyaları',
+			'notifications.careCategory' => 'Görüşlər və qulluq',
+			'notifications.careCategorySubtitle' => 'Bronlar, xatırlatmalar, reseptlər',
+			'notifications.messagesCategory' => 'Mesajlar',
+			'notifications.messagesCategorySubtitle' => 'Yeni çat mesajları',
+			'notifications.accountCategory' => 'Hesab və ödənişlər',
+			'notifications.accountCategorySubtitle' => 'Təsdiqləmə, ödənişlər, abunəlik',
+			'notifications.quietHoursTitle' => 'Sakit saatlar',
+			'notifications.quietHoursEnabled' => 'Sakit saatları aktivləşdir',
+			'notifications.quietHoursSubtitle' => 'Bu vaxt aralığında push bildirişləri dayandırılır',
+			'notifications.quietHoursStart' => 'Başlanğıc',
+			'notifications.quietHoursEnd' => 'Son',
 			'workplaces.title' => 'İş yerlərim',
 			'workplaces.noWorkplacesYet' => 'Hələ iş yeri yoxdur',
 			'workplaces.tapToAdd' => 'İlk iş yerinizi əlavə etmək üçün + düyməsinə toxunun',
@@ -1927,6 +1985,8 @@ extension on TranslationsAz {
 			'legal.sections.retention.body' => 'Hesabınız aktiv olduğu müddətcə. Hesabınızı sildikdə, qanunla saxlamağa borclu olduğumuz qeydlər (məsələn, vergi məqsədləri üçün ödəniş qeydləri) istisna olmaqla, şəxsi məlumatlarınızı ağlabatan müddət ərzində siliriz.',
 			'legal.sections.rights.title' => 'Hüquqlarınız',
 			'legal.sections.rights.body' => 'Haqqınızda saxladığımız məlumatlara giriş əldə edə, yanlış məlumatların düzəldilməsini tələb edə, hesabınızın və məlumatlarınızın silinməsini tələb edə və istənilən vaxt razılığınızı geri götürə bilərsiniz. Bunların əksəriyyəti birbaşa "Profil" → "Tənzimləmələr" bölməsində mövcuddur; digər hallarda aşağıdakı əlaqə vasitəsilə bizimlə əlaqə saxlayın.',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => 'Məlumatlarınızı necə qoruyuruq',
 			'legal.sections.security.body' => 'Həkiminizlə yazışmalarınız və süni intellekt köməkçisi ilə söhbətləriniz şifrələnir. Yüklənmiş sənədlər və şəkillər məxfi saxlanılır, yalnız təhlükəsiz imzalanmış keçidlərlə əlçatandır, heç vaxt ictimai fayl kimi deyil. Parollar heç vaxt oxuna bilən formada saxlanılmır.',
 			'legal.sections.permissions.title' => 'Tələb etdiyimiz icazələr',
@@ -1951,8 +2011,6 @@ extension on TranslationsAz {
 			'medications.dosage' => 'Dozaj',
 			'medications.notes' => 'Qeydlər',
 			'medications.form' => 'Forma',
-			_ => null,
-		} ?? switch (path) {
 			'medications.formPill' => 'Həb',
 			'medications.formCapsule' => 'Kapsul',
 			'medications.formLiquid' => 'Maye',

@@ -62,6 +62,13 @@
     "button": "Réinitialiser le mot de passe",
     "success": "Mot de passe réinitialisé. Veuillez vous connecter."
   },
+  "verifyEmail": {
+    "title": "Vérifiez votre e-mail",
+    "subtitle": "Nous avons envoyé un code à 6 chiffres à $email",
+    "button": "Vérifier",
+    "resend": "Renvoyer le code",
+    "resendSent": "Un nouveau code a été envoyé."
+  },
   "validation": {
     "emailRequired": "L'e-mail est requis",
     "emailInvalid": "Saisissez une adresse e-mail valide",
@@ -94,7 +101,8 @@
     "conflict": "Cette action ne peut pas être effectuée pour le moment.",
     "onboardingIncomplete": "Veuillez remplir tous les champs requis pour terminer l'inscription.",
     "planLimitReached": "Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.",
-    "chatUnavailable": "Ce médecin ne propose pas le chat avec son forfait actuel."
+    "chatUnavailable": "Ce médecin ne propose pas le chat avec son forfait actuel.",
+    "emailNotVerified": "Veuillez vérifier votre e-mail avant de vous connecter."
   },
   "settings": {
     "title": "Paramètres",
@@ -245,7 +253,13 @@
     "rescheduleNeededHint": "Le médecin vous a demandé de choisir un nouveau créneau.",
     "markNoShow": "Marquer absent",
     "markNoShowTitle": "Marquer comme absent",
-    "markNoShowConfirm": "Marquer ce rendez-vous comme absent ? Cela enregistre que le patient ne s’est pas présenté."
+    "markNoShowConfirm": "Marquer ce rendez-vous comme absent ? Cela enregistre que le patient ne s’est pas présenté.",
+    "disputeNoShow": "Contester",
+    "disputeNoShowTitle": "Contester l'absence",
+    "disputeNoShowHint": "Expliquez-nous pourquoi vous pensez que ceci a été marqué par erreur — notre équipe d'assistance l'examinera.",
+    "disputeNoShowSubmit": "Envoyer",
+    "disputeNoShowSubmitted": "Votre contestation a été envoyée. Nous l'examinerons et reviendrons vers vous.",
+    "disputeNoShowOpen": "Contestation envoyée — en cours d'examen"
   },
   "booking": {
     "bookWith": "Réserver — $name",
@@ -351,7 +365,19 @@
     "pushEnabled": "Notifications push",
     "pushEnabledSubtitle": "Alertes sur cet appareil pour les rendez-vous et mises à jour",
     "emailEnabled": "Notifications par e-mail",
-    "emailEnabledSubtitle": "Les mises à jour seront envoyées à votre adresse e-mail"
+    "emailEnabledSubtitle": "Les mises à jour seront envoyées à votre adresse e-mail",
+    "categoriesTitle": "Catégories de notifications push",
+    "careCategory": "Rendez-vous et soins",
+    "careCategorySubtitle": "Réservations, rappels, ordonnances",
+    "messagesCategory": "Messages",
+    "messagesCategorySubtitle": "Nouveaux messages de chat",
+    "accountCategory": "Compte et facturation",
+    "accountCategorySubtitle": "Vérification, paiements, abonnement",
+    "quietHoursTitle": "Heures calmes",
+    "quietHoursEnabled": "Activer les heures calmes",
+    "quietHoursSubtitle": "Les notifications push sont suspendues pendant cette période",
+    "quietHoursStart": "Début",
+    "quietHoursEnd": "Fin"
   },
   "workplaces": {
     "title": "Mes lieux de travail",

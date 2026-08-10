@@ -44,6 +44,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$zh auth = _Translations$auth$zh._(_root);
 	@override late final _Translations$forgotPassword$zh forgotPassword = _Translations$forgotPassword$zh._(_root);
 	@override late final _Translations$resetPassword$zh resetPassword = _Translations$resetPassword$zh._(_root);
+	@override late final _Translations$verifyEmail$zh verifyEmail = _Translations$verifyEmail$zh._(_root);
 	@override late final _Translations$validation$zh validation = _Translations$validation$zh._(_root);
 	@override late final _Translations$errors$zh errors = _Translations$errors$zh._(_root);
 	@override late final _Translations$settings$zh settings = _Translations$settings$zh._(_root);
@@ -178,6 +179,20 @@ class _Translations$resetPassword$zh extends Translations$resetPassword$en {
 	@override String get success => '密码重置成功，请登录。';
 }
 
+// Path: verifyEmail
+class _Translations$verifyEmail$zh extends Translations$verifyEmail$en {
+	_Translations$verifyEmail$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '验证您的邮箱';
+	@override String subtitle({required Object email}) => '我们已向 ${email} 发送了 6 位验证码';
+	@override String get button => '验证';
+	@override String get resend => '重新发送验证码';
+	@override String get resendSent => '已发送新的验证码。';
+}
+
 // Path: validation
 class _Translations$validation$zh extends Translations$validation$en {
 	_Translations$validation$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -224,6 +239,7 @@ class _Translations$errors$zh extends Translations$errors$en {
 	@override String get onboardingIncomplete => '请填写所有必填项以完成入驻。';
 	@override String get planLimitReached => '您已达到当前套餐的限制，请升级套餐以获得更多。';
 	@override String get chatUnavailable => '该医生当前套餐不提供聊天功能。';
+	@override String get emailNotVerified => '请在登录前验证您的邮箱。';
 }
 
 // Path: settings
@@ -410,6 +426,12 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get markNoShow => '标记未到诊';
 	@override String get markNoShowTitle => '标记为未到诊';
 	@override String get markNoShowConfirm => '将此预约标记为未到诊？这将记录患者未到。';
+	@override String get disputeNoShow => '申诉';
+	@override String get disputeNoShowTitle => '申诉未到诊记录';
+	@override String get disputeNoShowHint => '请告诉我们您认为此记录有误的原因——我们的支持团队会进行审核。';
+	@override String get disputeNoShowSubmit => '提交';
+	@override String get disputeNoShowSubmitted => '您的申诉已提交，我们会审核并与您联系。';
+	@override String get disputeNoShowOpen => '申诉已提交 — 审核中';
 }
 
 // Path: booking
@@ -539,6 +561,18 @@ class _Translations$notifications$zh extends Translations$notifications$en {
 	@override String get pushEnabledSubtitle => '在此设备上接收预约和更新提醒';
 	@override String get emailEnabled => '邮件通知';
 	@override String get emailEnabledSubtitle => '更新将发送到您的邮箱';
+	@override String get categoriesTitle => '推送分类';
+	@override String get careCategory => '预约与诊疗';
+	@override String get careCategorySubtitle => '预约、提醒、处方';
+	@override String get messagesCategory => '消息';
+	@override String get messagesCategorySubtitle => '新的聊天消息';
+	@override String get accountCategory => '账户与账单';
+	@override String get accountCategorySubtitle => '认证、付款、订阅';
+	@override String get quietHoursTitle => '免打扰时段';
+	@override String get quietHoursEnabled => '启用免打扰时段';
+	@override String get quietHoursSubtitle => '此时段内将暂停推送通知';
+	@override String get quietHoursStart => '开始';
+	@override String get quietHoursEnd => '结束';
 }
 
 // Path: workplaces
@@ -1494,6 +1528,11 @@ extension on TranslationsZh {
 			'resetPassword.subtitle' => '输入发送到您邮箱的验证码并设置新密码',
 			'resetPassword.button' => '重置密码',
 			'resetPassword.success' => '密码重置成功，请登录。',
+			'verifyEmail.title' => '验证您的邮箱',
+			'verifyEmail.subtitle' => ({required Object email}) => '我们已向 ${email} 发送了 6 位验证码',
+			'verifyEmail.button' => '验证',
+			'verifyEmail.resend' => '重新发送验证码',
+			'verifyEmail.resendSent' => '已发送新的验证码。',
 			'validation.emailRequired' => '请输入电子邮箱',
 			'validation.emailInvalid' => '请输入有效的电子邮箱地址',
 			'validation.passwordRequired' => '请输入密码',
@@ -1524,6 +1563,7 @@ extension on TranslationsZh {
 			'errors.onboardingIncomplete' => '请填写所有必填项以完成入驻。',
 			'errors.planLimitReached' => '您已达到当前套餐的限制，请升级套餐以获得更多。',
 			'errors.chatUnavailable' => '该医生当前套餐不提供聊天功能。',
+			'errors.emailNotVerified' => '请在登录前验证您的邮箱。',
 			'settings.title' => '设置',
 			'settings.account' => '账户',
 			'settings.profile' => '个人资料',
@@ -1665,6 +1705,12 @@ extension on TranslationsZh {
 			'appointments.markNoShow' => '标记未到诊',
 			'appointments.markNoShowTitle' => '标记为未到诊',
 			'appointments.markNoShowConfirm' => '将此预约标记为未到诊？这将记录患者未到。',
+			'appointments.disputeNoShow' => '申诉',
+			'appointments.disputeNoShowTitle' => '申诉未到诊记录',
+			'appointments.disputeNoShowHint' => '请告诉我们您认为此记录有误的原因——我们的支持团队会进行审核。',
+			'appointments.disputeNoShowSubmit' => '提交',
+			'appointments.disputeNoShowSubmitted' => '您的申诉已提交，我们会审核并与您联系。',
+			'appointments.disputeNoShowOpen' => '申诉已提交 — 审核中',
 			'booking.bookWith' => ({required Object name}) => '预约 — ${name}',
 			'booking.selectWorkplace' => '选择工作地点',
 			'booking.pickDate' => '选择日期',
@@ -1759,6 +1805,18 @@ extension on TranslationsZh {
 			'notifications.pushEnabledSubtitle' => '在此设备上接收预约和更新提醒',
 			'notifications.emailEnabled' => '邮件通知',
 			'notifications.emailEnabledSubtitle' => '更新将发送到您的邮箱',
+			'notifications.categoriesTitle' => '推送分类',
+			'notifications.careCategory' => '预约与诊疗',
+			'notifications.careCategorySubtitle' => '预约、提醒、处方',
+			'notifications.messagesCategory' => '消息',
+			'notifications.messagesCategorySubtitle' => '新的聊天消息',
+			'notifications.accountCategory' => '账户与账单',
+			'notifications.accountCategorySubtitle' => '认证、付款、订阅',
+			'notifications.quietHoursTitle' => '免打扰时段',
+			'notifications.quietHoursEnabled' => '启用免打扰时段',
+			'notifications.quietHoursSubtitle' => '此时段内将暂停推送通知',
+			'notifications.quietHoursStart' => '开始',
+			'notifications.quietHoursEnd' => '结束',
 			'workplaces.title' => '我的工作地点',
 			'workplaces.noWorkplacesYet' => '暂无工作地点',
 			'workplaces.tapToAdd' => '点击 + 添加您的第一个工作地点',
@@ -1927,6 +1985,8 @@ extension on TranslationsZh {
 			'legal.sections.retention.body' => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。',
 			'legal.sections.rights.title' => '您的权利',
 			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => '我们如何保护您的数据',
 			'legal.sections.security.body' => '您与医生之间的消息以及与 AI 助手的对话均经过加密。上传的文档和照片以私密方式存储，仅可通过安全的签名链接访问，绝不会作为公开文件存在。密码绝不会以可读形式存储。',
 			'legal.sections.permissions.title' => '我们请求的权限',
@@ -1951,8 +2011,6 @@ extension on TranslationsZh {
 			'medications.dosage' => '剂量',
 			'medications.notes' => '备注',
 			'medications.form' => '剂型',
-			_ => null,
-		} ?? switch (path) {
 			'medications.formPill' => '药片',
 			'medications.formCapsule' => '胶囊',
 			'medications.formLiquid' => '液体',

@@ -44,6 +44,7 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$fr auth = _Translations$auth$fr._(_root);
 	@override late final _Translations$forgotPassword$fr forgotPassword = _Translations$forgotPassword$fr._(_root);
 	@override late final _Translations$resetPassword$fr resetPassword = _Translations$resetPassword$fr._(_root);
+	@override late final _Translations$verifyEmail$fr verifyEmail = _Translations$verifyEmail$fr._(_root);
 	@override late final _Translations$validation$fr validation = _Translations$validation$fr._(_root);
 	@override late final _Translations$errors$fr errors = _Translations$errors$fr._(_root);
 	@override late final _Translations$settings$fr settings = _Translations$settings$fr._(_root);
@@ -178,6 +179,20 @@ class _Translations$resetPassword$fr extends Translations$resetPassword$en {
 	@override String get success => 'Mot de passe réinitialisé. Veuillez vous connecter.';
 }
 
+// Path: verifyEmail
+class _Translations$verifyEmail$fr extends Translations$verifyEmail$en {
+	_Translations$verifyEmail$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Vérifiez votre e-mail';
+	@override String subtitle({required Object email}) => 'Nous avons envoyé un code à 6 chiffres à ${email}';
+	@override String get button => 'Vérifier';
+	@override String get resend => 'Renvoyer le code';
+	@override String get resendSent => 'Un nouveau code a été envoyé.';
+}
+
 // Path: validation
 class _Translations$validation$fr extends Translations$validation$en {
 	_Translations$validation$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -224,6 +239,7 @@ class _Translations$errors$fr extends Translations$errors$en {
 	@override String get onboardingIncomplete => 'Veuillez remplir tous les champs requis pour terminer l\'inscription.';
 	@override String get planLimitReached => 'Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.';
 	@override String get chatUnavailable => 'Ce médecin ne propose pas le chat avec son forfait actuel.';
+	@override String get emailNotVerified => 'Veuillez vérifier votre e-mail avant de vous connecter.';
 }
 
 // Path: settings
@@ -410,6 +426,12 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get markNoShow => 'Marquer absent';
 	@override String get markNoShowTitle => 'Marquer comme absent';
 	@override String get markNoShowConfirm => 'Marquer ce rendez-vous comme absent ? Cela enregistre que le patient ne s’est pas présenté.';
+	@override String get disputeNoShow => 'Contester';
+	@override String get disputeNoShowTitle => 'Contester l\'absence';
+	@override String get disputeNoShowHint => 'Expliquez-nous pourquoi vous pensez que ceci a été marqué par erreur — notre équipe d\'assistance l\'examinera.';
+	@override String get disputeNoShowSubmit => 'Envoyer';
+	@override String get disputeNoShowSubmitted => 'Votre contestation a été envoyée. Nous l\'examinerons et reviendrons vers vous.';
+	@override String get disputeNoShowOpen => 'Contestation envoyée — en cours d\'examen';
 }
 
 // Path: booking
@@ -539,6 +561,18 @@ class _Translations$notifications$fr extends Translations$notifications$en {
 	@override String get pushEnabledSubtitle => 'Alertes sur cet appareil pour les rendez-vous et mises à jour';
 	@override String get emailEnabled => 'Notifications par e-mail';
 	@override String get emailEnabledSubtitle => 'Les mises à jour seront envoyées à votre adresse e-mail';
+	@override String get categoriesTitle => 'Catégories de notifications push';
+	@override String get careCategory => 'Rendez-vous et soins';
+	@override String get careCategorySubtitle => 'Réservations, rappels, ordonnances';
+	@override String get messagesCategory => 'Messages';
+	@override String get messagesCategorySubtitle => 'Nouveaux messages de chat';
+	@override String get accountCategory => 'Compte et facturation';
+	@override String get accountCategorySubtitle => 'Vérification, paiements, abonnement';
+	@override String get quietHoursTitle => 'Heures calmes';
+	@override String get quietHoursEnabled => 'Activer les heures calmes';
+	@override String get quietHoursSubtitle => 'Les notifications push sont suspendues pendant cette période';
+	@override String get quietHoursStart => 'Début';
+	@override String get quietHoursEnd => 'Fin';
 }
 
 // Path: workplaces
@@ -1494,6 +1528,11 @@ extension on TranslationsFr {
 			'resetPassword.subtitle' => 'Saisissez le code envoyé par e-mail et choisissez un nouveau mot de passe',
 			'resetPassword.button' => 'Réinitialiser le mot de passe',
 			'resetPassword.success' => 'Mot de passe réinitialisé. Veuillez vous connecter.',
+			'verifyEmail.title' => 'Vérifiez votre e-mail',
+			'verifyEmail.subtitle' => ({required Object email}) => 'Nous avons envoyé un code à 6 chiffres à ${email}',
+			'verifyEmail.button' => 'Vérifier',
+			'verifyEmail.resend' => 'Renvoyer le code',
+			'verifyEmail.resendSent' => 'Un nouveau code a été envoyé.',
 			'validation.emailRequired' => 'L\'e-mail est requis',
 			'validation.emailInvalid' => 'Saisissez une adresse e-mail valide',
 			'validation.passwordRequired' => 'Le mot de passe est requis',
@@ -1524,6 +1563,7 @@ extension on TranslationsFr {
 			'errors.onboardingIncomplete' => 'Veuillez remplir tous les champs requis pour terminer l\'inscription.',
 			'errors.planLimitReached' => 'Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.',
 			'errors.chatUnavailable' => 'Ce médecin ne propose pas le chat avec son forfait actuel.',
+			'errors.emailNotVerified' => 'Veuillez vérifier votre e-mail avant de vous connecter.',
 			'settings.title' => 'Paramètres',
 			'settings.account' => 'Compte',
 			'settings.profile' => 'Profil',
@@ -1665,6 +1705,12 @@ extension on TranslationsFr {
 			'appointments.markNoShow' => 'Marquer absent',
 			'appointments.markNoShowTitle' => 'Marquer comme absent',
 			'appointments.markNoShowConfirm' => 'Marquer ce rendez-vous comme absent ? Cela enregistre que le patient ne s’est pas présenté.',
+			'appointments.disputeNoShow' => 'Contester',
+			'appointments.disputeNoShowTitle' => 'Contester l\'absence',
+			'appointments.disputeNoShowHint' => 'Expliquez-nous pourquoi vous pensez que ceci a été marqué par erreur — notre équipe d\'assistance l\'examinera.',
+			'appointments.disputeNoShowSubmit' => 'Envoyer',
+			'appointments.disputeNoShowSubmitted' => 'Votre contestation a été envoyée. Nous l\'examinerons et reviendrons vers vous.',
+			'appointments.disputeNoShowOpen' => 'Contestation envoyée — en cours d\'examen',
 			'booking.bookWith' => ({required Object name}) => 'Réserver — ${name}',
 			'booking.selectWorkplace' => 'Sélectionner un lieu',
 			'booking.pickDate' => 'Choisir une date',
@@ -1759,6 +1805,18 @@ extension on TranslationsFr {
 			'notifications.pushEnabledSubtitle' => 'Alertes sur cet appareil pour les rendez-vous et mises à jour',
 			'notifications.emailEnabled' => 'Notifications par e-mail',
 			'notifications.emailEnabledSubtitle' => 'Les mises à jour seront envoyées à votre adresse e-mail',
+			'notifications.categoriesTitle' => 'Catégories de notifications push',
+			'notifications.careCategory' => 'Rendez-vous et soins',
+			'notifications.careCategorySubtitle' => 'Réservations, rappels, ordonnances',
+			'notifications.messagesCategory' => 'Messages',
+			'notifications.messagesCategorySubtitle' => 'Nouveaux messages de chat',
+			'notifications.accountCategory' => 'Compte et facturation',
+			'notifications.accountCategorySubtitle' => 'Vérification, paiements, abonnement',
+			'notifications.quietHoursTitle' => 'Heures calmes',
+			'notifications.quietHoursEnabled' => 'Activer les heures calmes',
+			'notifications.quietHoursSubtitle' => 'Les notifications push sont suspendues pendant cette période',
+			'notifications.quietHoursStart' => 'Début',
+			'notifications.quietHoursEnd' => 'Fin',
 			'workplaces.title' => 'Mes lieux de travail',
 			'workplaces.noWorkplacesYet' => 'Aucun lieu de travail',
 			'workplaces.tapToAdd' => 'Appuyez sur + pour ajouter votre premier lieu de travail',
@@ -1927,6 +1985,8 @@ extension on TranslationsFr {
 			'legal.sections.retention.body' => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).',
 			'legal.sections.rights.title' => 'Vos droits',
 			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => 'Comment nous protégeons vos données',
 			'legal.sections.security.body' => 'Les messages entre vous et votre médecin, ainsi que les conversations avec l\'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible.',
 			'legal.sections.permissions.title' => 'Autorisations que nous demandons',
@@ -1951,8 +2011,6 @@ extension on TranslationsFr {
 			'medications.dosage' => 'Dosage',
 			'medications.notes' => 'Notes',
 			'medications.form' => 'Forme',
-			_ => null,
-		} ?? switch (path) {
 			'medications.formPill' => 'Comprimé',
 			'medications.formCapsule' => 'Gélule',
 			'medications.formLiquid' => 'Liquide',

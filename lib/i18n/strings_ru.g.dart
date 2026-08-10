@@ -44,6 +44,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$ru auth = _Translations$auth$ru._(_root);
 	@override late final _Translations$forgotPassword$ru forgotPassword = _Translations$forgotPassword$ru._(_root);
 	@override late final _Translations$resetPassword$ru resetPassword = _Translations$resetPassword$ru._(_root);
+	@override late final _Translations$verifyEmail$ru verifyEmail = _Translations$verifyEmail$ru._(_root);
 	@override late final _Translations$validation$ru validation = _Translations$validation$ru._(_root);
 	@override late final _Translations$errors$ru errors = _Translations$errors$ru._(_root);
 	@override late final _Translations$settings$ru settings = _Translations$settings$ru._(_root);
@@ -178,6 +179,20 @@ class _Translations$resetPassword$ru extends Translations$resetPassword$en {
 	@override String get success => 'Пароль успешно сброшен. Войдите в аккаунт.';
 }
 
+// Path: verifyEmail
+class _Translations$verifyEmail$ru extends Translations$verifyEmail$en {
+	_Translations$verifyEmail$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Подтвердите email';
+	@override String subtitle({required Object email}) => 'Мы отправили 6-значный код на ${email}';
+	@override String get button => 'Подтвердить';
+	@override String get resend => 'Отправить код повторно';
+	@override String get resendSent => 'Новый код отправлен.';
+}
+
 // Path: validation
 class _Translations$validation$ru extends Translations$validation$en {
 	_Translations$validation$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -224,6 +239,7 @@ class _Translations$errors$ru extends Translations$errors$en {
 	@override String get onboardingIncomplete => 'Заполните все обязательные поля, чтобы завершить регистрацию.';
 	@override String get planLimitReached => 'Вы достигли лимита вашего тарифа. Перейдите на более высокий тариф.';
 	@override String get chatUnavailable => 'Этот врач не предлагает чат на своём текущем тарифе.';
+	@override String get emailNotVerified => 'Подтвердите email перед входом.';
 }
 
 // Path: settings
@@ -410,6 +426,12 @@ class _Translations$appointments$ru extends Translations$appointments$en {
 	@override String get markNoShow => 'Отметить неявку';
 	@override String get markNoShowTitle => 'Отметить как неявку';
 	@override String get markNoShowConfirm => 'Отметить этот приём как неявку? Будет зафиксировано, что пациент не пришёл.';
+	@override String get disputeNoShow => 'Оспорить';
+	@override String get disputeNoShowTitle => 'Оспорить неявку';
+	@override String get disputeNoShowHint => 'Расскажите, почему вы считаете, что это отмечено ошибочно — наша служба поддержки рассмотрит обращение.';
+	@override String get disputeNoShowSubmit => 'Отправить';
+	@override String get disputeNoShowSubmitted => 'Ваше обращение отправлено. Мы рассмотрим его и свяжемся с вами.';
+	@override String get disputeNoShowOpen => 'Обращение отправлено — на рассмотрении';
 }
 
 // Path: booking
@@ -539,6 +561,18 @@ class _Translations$notifications$ru extends Translations$notifications$en {
 	@override String get pushEnabledSubtitle => 'Оповещения на этом устройстве о записях и изменениях';
 	@override String get emailEnabled => 'Уведомления на email';
 	@override String get emailEnabledSubtitle => 'Изменения будут приходить на вашу почту';
+	@override String get categoriesTitle => 'Категории push-уведомлений';
+	@override String get careCategory => 'Приёмы и здоровье';
+	@override String get careCategorySubtitle => 'Брони, напоминания, рецепты';
+	@override String get messagesCategory => 'Сообщения';
+	@override String get messagesCategorySubtitle => 'Новые сообщения в чате';
+	@override String get accountCategory => 'Аккаунт и оплата';
+	@override String get accountCategorySubtitle => 'Верификация, платежи, подписка';
+	@override String get quietHoursTitle => 'Тихие часы';
+	@override String get quietHoursEnabled => 'Включить тихие часы';
+	@override String get quietHoursSubtitle => 'В это время push-уведомления не приходят';
+	@override String get quietHoursStart => 'Начало';
+	@override String get quietHoursEnd => 'Конец';
 }
 
 // Path: workplaces
@@ -1494,6 +1528,11 @@ extension on TranslationsRu {
 			'resetPassword.subtitle' => 'Введите код из письма и выберите новый пароль',
 			'resetPassword.button' => 'Сбросить пароль',
 			'resetPassword.success' => 'Пароль успешно сброшен. Войдите в аккаунт.',
+			'verifyEmail.title' => 'Подтвердите email',
+			'verifyEmail.subtitle' => ({required Object email}) => 'Мы отправили 6-значный код на ${email}',
+			'verifyEmail.button' => 'Подтвердить',
+			'verifyEmail.resend' => 'Отправить код повторно',
+			'verifyEmail.resendSent' => 'Новый код отправлен.',
 			'validation.emailRequired' => 'Введите эл. почту',
 			'validation.emailInvalid' => 'Введите действительный адрес эл. почты',
 			'validation.passwordRequired' => 'Введите пароль',
@@ -1524,6 +1563,7 @@ extension on TranslationsRu {
 			'errors.onboardingIncomplete' => 'Заполните все обязательные поля, чтобы завершить регистрацию.',
 			'errors.planLimitReached' => 'Вы достигли лимита вашего тарифа. Перейдите на более высокий тариф.',
 			'errors.chatUnavailable' => 'Этот врач не предлагает чат на своём текущем тарифе.',
+			'errors.emailNotVerified' => 'Подтвердите email перед входом.',
 			'settings.title' => 'Настройки',
 			'settings.account' => 'Аккаунт',
 			'settings.profile' => 'Профиль',
@@ -1665,6 +1705,12 @@ extension on TranslationsRu {
 			'appointments.markNoShow' => 'Отметить неявку',
 			'appointments.markNoShowTitle' => 'Отметить как неявку',
 			'appointments.markNoShowConfirm' => 'Отметить этот приём как неявку? Будет зафиксировано, что пациент не пришёл.',
+			'appointments.disputeNoShow' => 'Оспорить',
+			'appointments.disputeNoShowTitle' => 'Оспорить неявку',
+			'appointments.disputeNoShowHint' => 'Расскажите, почему вы считаете, что это отмечено ошибочно — наша служба поддержки рассмотрит обращение.',
+			'appointments.disputeNoShowSubmit' => 'Отправить',
+			'appointments.disputeNoShowSubmitted' => 'Ваше обращение отправлено. Мы рассмотрим его и свяжемся с вами.',
+			'appointments.disputeNoShowOpen' => 'Обращение отправлено — на рассмотрении',
 			'booking.bookWith' => ({required Object name}) => 'Запись — ${name}',
 			'booking.selectWorkplace' => 'Выберите место работы',
 			'booking.pickDate' => 'Выберите дату',
@@ -1759,6 +1805,18 @@ extension on TranslationsRu {
 			'notifications.pushEnabledSubtitle' => 'Оповещения на этом устройстве о записях и изменениях',
 			'notifications.emailEnabled' => 'Уведомления на email',
 			'notifications.emailEnabledSubtitle' => 'Изменения будут приходить на вашу почту',
+			'notifications.categoriesTitle' => 'Категории push-уведомлений',
+			'notifications.careCategory' => 'Приёмы и здоровье',
+			'notifications.careCategorySubtitle' => 'Брони, напоминания, рецепты',
+			'notifications.messagesCategory' => 'Сообщения',
+			'notifications.messagesCategorySubtitle' => 'Новые сообщения в чате',
+			'notifications.accountCategory' => 'Аккаунт и оплата',
+			'notifications.accountCategorySubtitle' => 'Верификация, платежи, подписка',
+			'notifications.quietHoursTitle' => 'Тихие часы',
+			'notifications.quietHoursEnabled' => 'Включить тихие часы',
+			'notifications.quietHoursSubtitle' => 'В это время push-уведомления не приходят',
+			'notifications.quietHoursStart' => 'Начало',
+			'notifications.quietHoursEnd' => 'Конец',
 			'workplaces.title' => 'Мои места работы',
 			'workplaces.noWorkplacesYet' => 'Пока нет мест работы',
 			'workplaces.tapToAdd' => 'Нажмите +, чтобы добавить первое место работы',
@@ -1927,6 +1985,8 @@ extension on TranslationsRu {
 			'legal.sections.retention.body' => 'Пока ваш аккаунт активен. При удалении аккаунта мы удаляем ваши персональные данные в разумный срок, за исключением записей, которые обязаны хранить по закону (например, платёжные записи для налогового учёта).',
 			'legal.sections.rights.title' => 'Ваши права',
 			'legal.sections.rights.body' => 'Вы можете запросить доступ к данным, которые мы о вас храним, потребовать исправления неточных данных, потребовать удаления аккаунта и данных, а также отозвать согласие в любой момент. Большая часть этого доступна прямо в разделе «Профиль» → «Настройки»; по остальным вопросам — свяжитесь с нами ниже.',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => 'Как мы защищаем ваши данные',
 			'legal.sections.security.body' => 'Переписка с врачом и разговоры с ИИ-ассистентом шифруются. Загруженные документы и фото хранятся приватно и доступны только по защищённым подписанным ссылкам, никогда как публичные файлы. Пароли никогда не хранятся в читаемом виде.',
 			'legal.sections.permissions.title' => 'Какие разрешения мы запрашиваем',
@@ -1951,8 +2011,6 @@ extension on TranslationsRu {
 			'medications.dosage' => 'Дозировка',
 			'medications.notes' => 'Заметки',
 			'medications.form' => 'Форма выпуска',
-			_ => null,
-		} ?? switch (path) {
 			'medications.formPill' => 'Таблетка',
 			'medications.formCapsule' => 'Капсула',
 			'medications.formLiquid' => 'Жидкость',

@@ -62,6 +62,13 @@
     "button": "Reset Password",
     "success": "Password reset successfully. Please sign in."
   },
+  "verifyEmail": {
+    "title": "Verify Your Email",
+    "subtitle": "We've sent a 6-digit code to $email",
+    "button": "Verify",
+    "resend": "Resend code",
+    "resendSent": "A new code has been sent."
+  },
   "validation": {
     "emailRequired": "Email is required",
     "emailInvalid": "Enter a valid email address",
@@ -94,7 +101,8 @@
     "conflict": "This action can't be completed right now.",
     "onboardingIncomplete": "Please complete all required fields before finishing onboarding.",
     "planLimitReached": "You've reached your plan's limit. Upgrade to add more.",
-    "chatUnavailable": "This doctor doesn't offer chat on their current plan."
+    "chatUnavailable": "This doctor doesn't offer chat on their current plan.",
+    "emailNotVerified": "Please verify your email before signing in."
   },
   "settings": {
     "title": "Settings",
@@ -245,7 +253,13 @@
     "rescheduleNeededHint": "The doctor asked you to choose a new time.",
     "markNoShow": "Mark No-show",
     "markNoShowTitle": "Mark as No-show",
-    "markNoShowConfirm": "Mark this appointment as a no-show? This records that the patient did not attend."
+    "markNoShowConfirm": "Mark this appointment as a no-show? This records that the patient did not attend.",
+    "disputeNoShow": "Dispute this",
+    "disputeNoShowTitle": "Dispute No-show",
+    "disputeNoShowHint": "Tell us why you think this was marked incorrectly — our support team will review it.",
+    "disputeNoShowSubmit": "Submit",
+    "disputeNoShowSubmitted": "Your dispute has been submitted. We'll review it and get back to you.",
+    "disputeNoShowOpen": "Dispute submitted — under review"
   },
   "booking": {
     "bookWith": "Book — $name",
@@ -351,7 +365,19 @@
     "pushEnabled": "Push notifications",
     "pushEnabledSubtitle": "Alerts on this device for bookings and updates",
     "emailEnabled": "Email notifications",
-    "emailEnabledSubtitle": "Updates sent to your email address"
+    "emailEnabledSubtitle": "Updates sent to your email address",
+    "categoriesTitle": "Push categories",
+    "careCategory": "Appointments & care",
+    "careCategorySubtitle": "Bookings, reminders, prescriptions",
+    "messagesCategory": "Messages",
+    "messagesCategorySubtitle": "New chat messages",
+    "accountCategory": "Account & billing",
+    "accountCategorySubtitle": "Verification, payments, subscription",
+    "quietHoursTitle": "Quiet hours",
+    "quietHoursEnabled": "Enable quiet hours",
+    "quietHoursSubtitle": "Pause push notifications during this window",
+    "quietHoursStart": "Start",
+    "quietHoursEnd": "End"
   },
   "workplaces": {
     "title": "My Workplaces",

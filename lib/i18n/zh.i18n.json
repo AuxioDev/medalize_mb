@@ -62,6 +62,13 @@
     "button": "重置密码",
     "success": "密码重置成功，请登录。"
   },
+  "verifyEmail": {
+    "title": "验证您的邮箱",
+    "subtitle": "我们已向 $email 发送了 6 位验证码",
+    "button": "验证",
+    "resend": "重新发送验证码",
+    "resendSent": "已发送新的验证码。"
+  },
   "validation": {
     "emailRequired": "请输入电子邮箱",
     "emailInvalid": "请输入有效的电子邮箱地址",
@@ -94,7 +101,8 @@
     "conflict": "当前无法完成此操作。",
     "onboardingIncomplete": "请填写所有必填项以完成入驻。",
     "planLimitReached": "您已达到当前套餐的限制，请升级套餐以获得更多。",
-    "chatUnavailable": "该医生当前套餐不提供聊天功能。"
+    "chatUnavailable": "该医生当前套餐不提供聊天功能。",
+    "emailNotVerified": "请在登录前验证您的邮箱。"
   },
   "settings": {
     "title": "设置",
@@ -245,7 +253,13 @@
     "rescheduleNeededHint": "医生请您选择新的时间。",
     "markNoShow": "标记未到诊",
     "markNoShowTitle": "标记为未到诊",
-    "markNoShowConfirm": "将此预约标记为未到诊？这将记录患者未到。"
+    "markNoShowConfirm": "将此预约标记为未到诊？这将记录患者未到。",
+    "disputeNoShow": "申诉",
+    "disputeNoShowTitle": "申诉未到诊记录",
+    "disputeNoShowHint": "请告诉我们您认为此记录有误的原因——我们的支持团队会进行审核。",
+    "disputeNoShowSubmit": "提交",
+    "disputeNoShowSubmitted": "您的申诉已提交，我们会审核并与您联系。",
+    "disputeNoShowOpen": "申诉已提交 — 审核中"
   },
   "booking": {
     "bookWith": "预约 — $name",
@@ -351,7 +365,19 @@
     "pushEnabled": "推送通知",
     "pushEnabledSubtitle": "在此设备上接收预约和更新提醒",
     "emailEnabled": "邮件通知",
-    "emailEnabledSubtitle": "更新将发送到您的邮箱"
+    "emailEnabledSubtitle": "更新将发送到您的邮箱",
+    "categoriesTitle": "推送分类",
+    "careCategory": "预约与诊疗",
+    "careCategorySubtitle": "预约、提醒、处方",
+    "messagesCategory": "消息",
+    "messagesCategorySubtitle": "新的聊天消息",
+    "accountCategory": "账户与账单",
+    "accountCategorySubtitle": "认证、付款、订阅",
+    "quietHoursTitle": "免打扰时段",
+    "quietHoursEnabled": "启用免打扰时段",
+    "quietHoursSubtitle": "此时段内将暂停推送通知",
+    "quietHoursStart": "开始",
+    "quietHoursEnd": "结束"
   },
   "workplaces": {
     "title": "我的工作地点",

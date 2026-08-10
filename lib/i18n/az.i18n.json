@@ -62,6 +62,13 @@
     "button": "Şifrəni bərpa et",
     "success": "Şifrə uğurla bərpa edildi. Zəhmət olmasa daxil olun."
   },
+  "verifyEmail": {
+    "title": "Email ünvanınızı təsdiqləyin",
+    "subtitle": "$email ünvanına 6 rəqəmli kod göndərdik",
+    "button": "Təsdiqlə",
+    "resend": "Kodu yenidən göndər",
+    "resendSent": "Yeni kod göndərildi."
+  },
   "validation": {
     "emailRequired": "E-poçt tələb olunur",
     "emailInvalid": "Düzgün e-poçt ünvanı daxil edin",
@@ -94,7 +101,8 @@
     "conflict": "Bu əməliyyat hazırda tamamlana bilmir.",
     "onboardingIncomplete": "Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.",
     "planLimitReached": "Planınızın limitinə çatmısınız. Daha çoxu üçün planı yüksəldin.",
-    "chatUnavailable": "Bu həkim cari planında çat təklif etmir."
+    "chatUnavailable": "Bu həkim cari planında çat təklif etmir.",
+    "emailNotVerified": "Daxil olmadan əvvəl email ünvanınızı təsdiqləyin."
   },
   "settings": {
     "title": "Parametrlər",
@@ -245,7 +253,13 @@
     "rescheduleNeededHint": "Həkim sizdən yeni vaxt seçməyinizi xahiş etdi.",
     "markNoShow": "Gəlmədi qeyd et",
     "markNoShowTitle": "Gəlmədi kimi qeyd et",
-    "markNoShowConfirm": "Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir."
+    "markNoShowConfirm": "Bu görüşü “gəlmədi” kimi qeyd edək? Bu, pasiyentin gəlmədiyini qeyd edir.",
+    "disputeNoShow": "Etiraz et",
+    "disputeNoShowTitle": "Gəlmədi qeydinə etiraz",
+    "disputeNoShowHint": "Niyə bunun səhv qeyd edildiyini düşündüyünüzü bizə bildirin — dəstək komandamız nəzərdən keçirəcək.",
+    "disputeNoShowSubmit": "Göndər",
+    "disputeNoShowSubmitted": "Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.",
+    "disputeNoShowOpen": "Etiraz göndərildi — nəzərdən keçirilir"
   },
   "booking": {
     "bookWith": "Təyin et — $name",
@@ -351,7 +365,19 @@
     "pushEnabled": "Push bildirişlər",
     "pushEnabledSubtitle": "Qeydiyyatlar və yeniliklər üçün bu cihazda bildirişlər",
     "emailEnabled": "E-poçt bildirişləri",
-    "emailEnabledSubtitle": "Yeniliklər e-poçt ünvanınıza göndəriləcək"
+    "emailEnabledSubtitle": "Yeniliklər e-poçt ünvanınıza göndəriləcək",
+    "categoriesTitle": "Push kateqoriyaları",
+    "careCategory": "Görüşlər və qulluq",
+    "careCategorySubtitle": "Bronlar, xatırlatmalar, reseptlər",
+    "messagesCategory": "Mesajlar",
+    "messagesCategorySubtitle": "Yeni çat mesajları",
+    "accountCategory": "Hesab və ödənişlər",
+    "accountCategorySubtitle": "Təsdiqləmə, ödənişlər, abunəlik",
+    "quietHoursTitle": "Sakit saatlar",
+    "quietHoursEnabled": "Sakit saatları aktivləşdir",
+    "quietHoursSubtitle": "Bu vaxt aralığında push bildirişləri dayandırılır",
+    "quietHoursStart": "Başlanğıc",
+    "quietHoursEnd": "Son"
   },
   "workplaces": {
     "title": "İş yerlərim",

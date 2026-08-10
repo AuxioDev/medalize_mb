@@ -62,6 +62,13 @@
     "button": "Сбросить пароль",
     "success": "Пароль успешно сброшен. Войдите в аккаунт."
   },
+  "verifyEmail": {
+    "title": "Подтвердите email",
+    "subtitle": "Мы отправили 6-значный код на $email",
+    "button": "Подтвердить",
+    "resend": "Отправить код повторно",
+    "resendSent": "Новый код отправлен."
+  },
   "validation": {
     "emailRequired": "Введите эл. почту",
     "emailInvalid": "Введите действительный адрес эл. почты",
@@ -94,7 +101,8 @@
     "conflict": "Это действие сейчас невозможно выполнить.",
     "onboardingIncomplete": "Заполните все обязательные поля, чтобы завершить регистрацию.",
     "planLimitReached": "Вы достигли лимита вашего тарифа. Перейдите на более высокий тариф.",
-    "chatUnavailable": "Этот врач не предлагает чат на своём текущем тарифе."
+    "chatUnavailable": "Этот врач не предлагает чат на своём текущем тарифе.",
+    "emailNotVerified": "Подтвердите email перед входом."
   },
   "settings": {
     "title": "Настройки",
@@ -245,7 +253,13 @@
     "rescheduleNeededHint": "Врач попросил вас выбрать новое время.",
     "markNoShow": "Отметить неявку",
     "markNoShowTitle": "Отметить как неявку",
-    "markNoShowConfirm": "Отметить этот приём как неявку? Будет зафиксировано, что пациент не пришёл."
+    "markNoShowConfirm": "Отметить этот приём как неявку? Будет зафиксировано, что пациент не пришёл.",
+    "disputeNoShow": "Оспорить",
+    "disputeNoShowTitle": "Оспорить неявку",
+    "disputeNoShowHint": "Расскажите, почему вы считаете, что это отмечено ошибочно — наша служба поддержки рассмотрит обращение.",
+    "disputeNoShowSubmit": "Отправить",
+    "disputeNoShowSubmitted": "Ваше обращение отправлено. Мы рассмотрим его и свяжемся с вами.",
+    "disputeNoShowOpen": "Обращение отправлено — на рассмотрении"
   },
   "booking": {
     "bookWith": "Запись — $name",
@@ -351,7 +365,19 @@
     "pushEnabled": "Push-уведомления",
     "pushEnabledSubtitle": "Оповещения на этом устройстве о записях и изменениях",
     "emailEnabled": "Уведомления на email",
-    "emailEnabledSubtitle": "Изменения будут приходить на вашу почту"
+    "emailEnabledSubtitle": "Изменения будут приходить на вашу почту",
+    "categoriesTitle": "Категории push-уведомлений",
+    "careCategory": "Приёмы и здоровье",
+    "careCategorySubtitle": "Брони, напоминания, рецепты",
+    "messagesCategory": "Сообщения",
+    "messagesCategorySubtitle": "Новые сообщения в чате",
+    "accountCategory": "Аккаунт и оплата",
+    "accountCategorySubtitle": "Верификация, платежи, подписка",
+    "quietHoursTitle": "Тихие часы",
+    "quietHoursEnabled": "Включить тихие часы",
+    "quietHoursSubtitle": "В это время push-уведомления не приходят",
+    "quietHoursStart": "Начало",
+    "quietHoursEnd": "Конец"
   },
   "workplaces": {
     "title": "Мои места работы",

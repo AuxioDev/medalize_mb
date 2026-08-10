@@ -48,6 +48,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$auth$en auth = Translations$auth$en.internal(_root);
 	late final Translations$forgotPassword$en forgotPassword = Translations$forgotPassword$en.internal(_root);
 	late final Translations$resetPassword$en resetPassword = Translations$resetPassword$en.internal(_root);
+	late final Translations$verifyEmail$en verifyEmail = Translations$verifyEmail$en.internal(_root);
 	late final Translations$validation$en validation = Translations$validation$en.internal(_root);
 	late final Translations$errors$en errors = Translations$errors$en.internal(_root);
 	late final Translations$settings$en settings = Translations$settings$en.internal(_root);
@@ -290,6 +291,30 @@ class Translations$resetPassword$en {
 	String get success => 'Password reset successfully. Please sign in.';
 }
 
+// Path: verifyEmail
+class Translations$verifyEmail$en {
+	Translations$verifyEmail$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Verify Your Email'
+	String get title => 'Verify Your Email';
+
+	/// en: 'We've sent a 6-digit code to $email'
+	String subtitle({required Object email}) => 'We\'ve sent a 6-digit code to ${email}';
+
+	/// en: 'Verify'
+	String get button => 'Verify';
+
+	/// en: 'Resend code'
+	String get resend => 'Resend code';
+
+	/// en: 'A new code has been sent.'
+	String get resendSent => 'A new code has been sent.';
+}
+
 // Path: validation
 class Translations$validation$en {
 	Translations$validation$en.internal(this._root);
@@ -396,6 +421,9 @@ class Translations$errors$en {
 
 	/// en: 'This doctor doesn't offer chat on their current plan.'
 	String get chatUnavailable => 'This doctor doesn\'t offer chat on their current plan.';
+
+	/// en: 'Please verify your email before signing in.'
+	String get emailNotVerified => 'Please verify your email before signing in.';
 }
 
 // Path: settings
@@ -864,6 +892,24 @@ class Translations$appointments$en {
 
 	/// en: 'Mark this appointment as a no-show? This records that the patient did not attend.'
 	String get markNoShowConfirm => 'Mark this appointment as a no-show? This records that the patient did not attend.';
+
+	/// en: 'Dispute this'
+	String get disputeNoShow => 'Dispute this';
+
+	/// en: 'Dispute No-show'
+	String get disputeNoShowTitle => 'Dispute No-show';
+
+	/// en: 'Tell us why you think this was marked incorrectly — our support team will review it.'
+	String get disputeNoShowHint => 'Tell us why you think this was marked incorrectly — our support team will review it.';
+
+	/// en: 'Submit'
+	String get disputeNoShowSubmit => 'Submit';
+
+	/// en: 'Your dispute has been submitted. We'll review it and get back to you.'
+	String get disputeNoShowSubmitted => 'Your dispute has been submitted. We\'ll review it and get back to you.';
+
+	/// en: 'Dispute submitted — under review'
+	String get disputeNoShowOpen => 'Dispute submitted — under review';
 }
 
 // Path: booking
@@ -1160,6 +1206,42 @@ class Translations$notifications$en {
 
 	/// en: 'Updates sent to your email address'
 	String get emailEnabledSubtitle => 'Updates sent to your email address';
+
+	/// en: 'Push categories'
+	String get categoriesTitle => 'Push categories';
+
+	/// en: 'Appointments & care'
+	String get careCategory => 'Appointments & care';
+
+	/// en: 'Bookings, reminders, prescriptions'
+	String get careCategorySubtitle => 'Bookings, reminders, prescriptions';
+
+	/// en: 'Messages'
+	String get messagesCategory => 'Messages';
+
+	/// en: 'New chat messages'
+	String get messagesCategorySubtitle => 'New chat messages';
+
+	/// en: 'Account & billing'
+	String get accountCategory => 'Account & billing';
+
+	/// en: 'Verification, payments, subscription'
+	String get accountCategorySubtitle => 'Verification, payments, subscription';
+
+	/// en: 'Quiet hours'
+	String get quietHoursTitle => 'Quiet hours';
+
+	/// en: 'Enable quiet hours'
+	String get quietHoursEnabled => 'Enable quiet hours';
+
+	/// en: 'Pause push notifications during this window'
+	String get quietHoursSubtitle => 'Pause push notifications during this window';
+
+	/// en: 'Start'
+	String get quietHoursStart => 'Start';
+
+	/// en: 'End'
+	String get quietHoursEnd => 'End';
 }
 
 // Path: workplaces
@@ -2999,6 +3081,11 @@ extension on Translations {
 			'resetPassword.subtitle' => 'Enter the code sent to your email and choose a new password',
 			'resetPassword.button' => 'Reset Password',
 			'resetPassword.success' => 'Password reset successfully. Please sign in.',
+			'verifyEmail.title' => 'Verify Your Email',
+			'verifyEmail.subtitle' => ({required Object email}) => 'We\'ve sent a 6-digit code to ${email}',
+			'verifyEmail.button' => 'Verify',
+			'verifyEmail.resend' => 'Resend code',
+			'verifyEmail.resendSent' => 'A new code has been sent.',
 			'validation.emailRequired' => 'Email is required',
 			'validation.emailInvalid' => 'Enter a valid email address',
 			'validation.passwordRequired' => 'Password is required',
@@ -3029,6 +3116,7 @@ extension on Translations {
 			'errors.onboardingIncomplete' => 'Please complete all required fields before finishing onboarding.',
 			'errors.planLimitReached' => 'You\'ve reached your plan\'s limit. Upgrade to add more.',
 			'errors.chatUnavailable' => 'This doctor doesn\'t offer chat on their current plan.',
+			'errors.emailNotVerified' => 'Please verify your email before signing in.',
 			'settings.title' => 'Settings',
 			'settings.account' => 'Account',
 			'settings.profile' => 'Profile',
@@ -3170,6 +3258,12 @@ extension on Translations {
 			'appointments.markNoShow' => 'Mark No-show',
 			'appointments.markNoShowTitle' => 'Mark as No-show',
 			'appointments.markNoShowConfirm' => 'Mark this appointment as a no-show? This records that the patient did not attend.',
+			'appointments.disputeNoShow' => 'Dispute this',
+			'appointments.disputeNoShowTitle' => 'Dispute No-show',
+			'appointments.disputeNoShowHint' => 'Tell us why you think this was marked incorrectly — our support team will review it.',
+			'appointments.disputeNoShowSubmit' => 'Submit',
+			'appointments.disputeNoShowSubmitted' => 'Your dispute has been submitted. We\'ll review it and get back to you.',
+			'appointments.disputeNoShowOpen' => 'Dispute submitted — under review',
 			'booking.bookWith' => ({required Object name}) => 'Book — ${name}',
 			'booking.selectWorkplace' => 'Select Workplace',
 			'booking.pickDate' => 'Pick a date',
@@ -3264,6 +3358,18 @@ extension on Translations {
 			'notifications.pushEnabledSubtitle' => 'Alerts on this device for bookings and updates',
 			'notifications.emailEnabled' => 'Email notifications',
 			'notifications.emailEnabledSubtitle' => 'Updates sent to your email address',
+			'notifications.categoriesTitle' => 'Push categories',
+			'notifications.careCategory' => 'Appointments & care',
+			'notifications.careCategorySubtitle' => 'Bookings, reminders, prescriptions',
+			'notifications.messagesCategory' => 'Messages',
+			'notifications.messagesCategorySubtitle' => 'New chat messages',
+			'notifications.accountCategory' => 'Account & billing',
+			'notifications.accountCategorySubtitle' => 'Verification, payments, subscription',
+			'notifications.quietHoursTitle' => 'Quiet hours',
+			'notifications.quietHoursEnabled' => 'Enable quiet hours',
+			'notifications.quietHoursSubtitle' => 'Pause push notifications during this window',
+			'notifications.quietHoursStart' => 'Start',
+			'notifications.quietHoursEnd' => 'End',
 			'workplaces.title' => 'My Workplaces',
 			'workplaces.noWorkplacesYet' => 'No workplaces yet',
 			'workplaces.tapToAdd' => 'Tap + to add your first workplace',
@@ -3432,6 +3538,8 @@ extension on Translations {
 			'legal.sections.retention.body' => 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).',
 			'legal.sections.rights.title' => 'Your rights',
 			'legal.sections.rights.body' => 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => 'How we protect your data',
 			'legal.sections.security.body' => 'Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form.',
 			'legal.sections.permissions.title' => 'Permissions we ask for',
@@ -3456,8 +3564,6 @@ extension on Translations {
 			'medications.dosage' => 'Dosage',
 			'medications.notes' => 'Notes',
 			'medications.form' => 'Form',
-			_ => null,
-		} ?? switch (path) {
 			'medications.formPill' => 'Pill',
 			'medications.formCapsule' => 'Capsule',
 			'medications.formLiquid' => 'Liquid',
