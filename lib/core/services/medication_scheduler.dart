@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +20,11 @@ final medicationSchedulerProvider =
 const _idRangeStart = 900000000;
 const _idRangeEnd = 999999999;
 const _idRangeSize = _idRangeEnd - _idRangeStart;
+
+/// Same {type, ...} shape FCM's data payload uses — FcmService's tap handler
+/// decodes this and routes to /patient/medications instead of the generic
+/// notification list (see FcmService._navigateFromData).
+final _medicationPayload = jsonEncode({'type': 'medication'});
 
 /// Schedules/cancels local "time to take your medication" reminders from the
 /// server-synced schedule. Reminder delivery is intentionally local-only —
@@ -104,6 +111,7 @@ class MedicationScheduler {
           : med.name,
       scheduledDate,
       _details(),
+      payload: _medicationPayload,
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
@@ -131,6 +139,7 @@ class MedicationScheduler {
           : med.name,
       scheduledDate,
       _details(),
+      payload: _medicationPayload,
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,

@@ -75,11 +75,23 @@ class NotificationRepository {
   Future<NotificationPreferences> updatePreferences({
     bool? pushEnabled,
     bool? emailEnabled,
+    bool? carePushEnabled,
+    bool? messagesPushEnabled,
+    bool? accountPushEnabled,
+    bool? quietHoursEnabled,
+    String? quietHoursStart,
+    String? quietHoursEnd,
   }) async {
     try {
       final res = await _dio.patch('/notifications/preferences/', data: {
         'push_enabled': ?pushEnabled,
         'email_enabled': ?emailEnabled,
+        'care_push_enabled': ?carePushEnabled,
+        'messages_push_enabled': ?messagesPushEnabled,
+        'account_push_enabled': ?accountPushEnabled,
+        'quiet_hours_enabled': ?quietHoursEnabled,
+        'quiet_hours_start': ?quietHoursStart,
+        'quiet_hours_end': ?quietHoursEnd,
       });
       return NotificationPreferences.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {

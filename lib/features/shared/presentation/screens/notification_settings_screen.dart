@@ -25,7 +25,16 @@ class _NotificationSettingsScreenState
     extends ConsumerState<NotificationSettingsScreen> {
   bool _updating = false;
 
-  Future<void> _update({bool? pushEnabled, bool? emailEnabled}) async {
+  Future<void> _update({
+    bool? pushEnabled,
+    bool? emailEnabled,
+    bool? carePushEnabled,
+    bool? messagesPushEnabled,
+    bool? accountPushEnabled,
+    bool? quietHoursEnabled,
+    String? quietHoursStart,
+    String? quietHoursEnd,
+  }) async {
     setState(() => _updating = true);
     try {
       await ref
@@ -33,6 +42,12 @@ class _NotificationSettingsScreenState
           .updatePreferences(
             pushEnabled: pushEnabled,
             emailEnabled: emailEnabled,
+            carePushEnabled: carePushEnabled,
+            messagesPushEnabled: messagesPushEnabled,
+            accountPushEnabled: accountPushEnabled,
+            quietHoursEnabled: quietHoursEnabled,
+            quietHoursStart: quietHoursStart,
+            quietHoursEnd: quietHoursEnd,
           );
       ref.invalidate(notificationPreferencesProvider);
     } on ApiException catch (_) {
@@ -45,6 +60,28 @@ class _NotificationSettingsScreenState
       }
     } finally {
       if (mounted) setState(() => _updating = false);
+    }
+  }
+
+  static TimeOfDay _parseTime(String hhmmss) {
+    final parts = hhmmss.split(':');
+    return TimeOfDay(hour: int.parse(parts[0]), minute: int.parse(parts[1]));
+  }
+
+  static String _formatForApi(TimeOfDay t) =>
+      '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}:00';
+
+  Future<void> _pickQuietHoursTime(String current, {required bool isStart}) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: _parseTime(current),
+    );
+    if (picked == null) return;
+    final formatted = _formatForApi(picked);
+    if (isStart) {
+      await _update(quietHoursStart: formatted);
+    } else {
+      await _update(quietHoursEnd: formatted);
     }
   }
 
@@ -109,6 +146,88 @@ class _NotificationSettingsScreenState
                         ? null
                         : (v) => _update(emailEnabled: v),
                     activeThumbColor: AppColors.primary,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              AppFormSection(
+                title: t.notifications.categoriesTitle,
+                children: [
+                  SwitchListTile(
+                    secondary: const Icon(Icons.event_available_outlined),
+                    title: Text(t.notifications.careCategory),
+                    subtitle: Text(t.notifications.careCategorySubtitle),
+                    value: prefs.carePushEnabled,
+                    onChanged: _updating || !prefs.pushEnabled
+                        ? null
+                        : (v) => _update(carePushEnabled: v),
+                    activeThumbColor: AppColors.primary,
+                  ),
+                  const AppFormSectionDivider(),
+                  SwitchListTile(
+                    secondary: const Icon(Icons.chat_bubble_outline_rounded),
+                    title: Text(t.notifications.messagesCategory),
+                    subtitle: Text(t.notifications.messagesCategorySubtitle),
+                    value: prefs.messagesPushEnabled,
+                    onChanged: _updating || !prefs.pushEnabled
+                        ? null
+                        : (v) => _update(messagesPushEnabled: v),
+                    activeThumbColor: AppColors.primary,
+                  ),
+                  const AppFormSectionDivider(),
+                  SwitchListTile(
+                    secondary: const Icon(Icons.account_balance_wallet_outlined),
+                    title: Text(t.notifications.accountCategory),
+                    subtitle: Text(t.notifications.accountCategorySubtitle),
+                    value: prefs.accountPushEnabled,
+                    onChanged: _updating || !prefs.pushEnabled
+                        ? null
+                        : (v) => _update(accountPushEnabled: v),
+                    activeThumbColor: AppColors.primary,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              AppFormSection(
+                title: t.notifications.quietHoursTitle,
+                children: [
+                  SwitchListTile(
+                    secondary: const Icon(Icons.bedtime_outlined),
+                    title: Text(t.notifications.quietHoursEnabled),
+                    subtitle: Text(t.notifications.quietHoursSubtitle),
+                    value: prefs.quietHoursEnabled,
+                    onChanged: _updating || !prefs.pushEnabled
+                        ? null
+                        : (v) => _update(quietHoursEnabled: v),
+                    activeThumbColor: AppColors.primary,
+                  ),
+                  const AppFormSectionDivider(),
+                  ListTile(
+                    leading: const Icon(Icons.schedule_outlined),
+                    title: Text(t.notifications.quietHoursStart),
+                    trailing: Text(
+                      _parseTime(prefs.quietHoursStart).format(context),
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    enabled: !_updating && prefs.quietHoursEnabled,
+                    onTap: () => _pickQuietHoursTime(
+                      prefs.quietHoursStart,
+                      isStart: true,
+                    ),
+                  ),
+                  const AppFormSectionDivider(),
+                  ListTile(
+                    leading: const Icon(Icons.schedule_outlined),
+                    title: Text(t.notifications.quietHoursEnd),
+                    trailing: Text(
+                      _parseTime(prefs.quietHoursEnd).format(context),
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    enabled: !_updating && prefs.quietHoursEnabled,
+                    onTap: () => _pickQuietHoursTime(
+                      prefs.quietHoursEnd,
+                      isStart: false,
+                    ),
                   ),
                 ],
               ),

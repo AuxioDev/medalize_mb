@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -40,7 +42,21 @@ class FcmService {
     await _localNotifications.initialize(
       const InitializationSettings(android: androidInit, iOS: iosInit),
       onDidReceiveNotificationResponse: (details) {
-        _navigateToNotifications();
+        // payload carries the same {type, ...id} shape FCM's data payload
+        // does (see _handleForeground/MedicationScheduler, which both set
+        // it) — reuse the one router instead of dead-ending every local/
+        // foreground-shown notification tap at the generic list.
+        final payload = details.payload;
+        if (payload == null || payload.isEmpty) {
+          _navigateToNotifications();
+          return;
+        }
+        try {
+          _navigateFromData(jsonDecode(payload) as Map<String, dynamic>);
+        } catch (e) {
+          debugPrint('Failed to decode notification payload: $e');
+          _navigateToNotifications();
+        }
       },
     );
     await _localNotifications
@@ -102,6 +118,7 @@ class FcmService {
         ),
         iOS: const DarwinNotificationDetails(),
       ),
+      payload: jsonEncode(message.data),
     );
   }
 
@@ -152,6 +169,12 @@ class FcmService {
       final path = role == 'hospital' ? '/hospital/doctors' : '/doctor/hospital-links';
       // ignore: use_build_context_synchronously
       GoRouter.of(context).push(path);
+    } else if (type == 'medication') {
+      // MedicationScheduler's local dose reminders — patient-only, no server
+      // push exists for these (see that class's docstring).
+      final context = navigatorKey.currentContext;
+      if (context == null) return;
+      GoRouter.of(context).push('/patient/medications');
     } else {
       _navigateToNotifications();
     }
