@@ -147,6 +147,37 @@ class AuthRepository {
     }
   }
 
+  /// Resends the registration verification code — see RegisterView, which
+  /// already sends one on signup; this covers "I didn't get it"/expired.
+  Future<void> resendEmailVerification(String email) async {
+    try {
+      await _dio.post('/auth/email/verify/', data: {'email': email});
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  /// Confirms the 6-digit registration code and, on success, signs the user
+  /// straight in — same login payload shape as [login].
+  Future<LoginResponse> confirmEmailVerification({
+    required String email,
+    required String code,
+  }) async {
+    try {
+      final res = await _dio.post('/auth/email/verify/confirm/', data: {
+        'email': email,
+        'code': code,
+      });
+      return LoginResponse.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
   Future<List<UserDeviceModel>> getDevices() async {
     try {
       final res = await _dio.get('/auth/devices/');

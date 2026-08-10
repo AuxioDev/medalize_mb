@@ -242,6 +242,22 @@ class AuthNotifier extends Notifier<AuthState> {
     }
   }
 
+  /// Confirms the registration verification code and, on success, signs the
+  /// user straight in — same shape as [login], since the backend returns an
+  /// identical token payload from this endpoint (see
+  /// AuthRepository.confirmEmailVerification).
+  Future<void> verifyEmail(String email, String code) async {
+    state = const AuthLoading();
+    try {
+      final response = await _repo.confirmEmailVerification(email: email, code: code);
+      await _applyAuthResponse(response);
+      ref.read(fcmServiceProvider).init();
+      unawaited(_syncMedicationReminders());
+    } on ApiException catch (e) {
+      state = AuthError(e);
+    }
+  }
+
   /// Exchanges a Google id_token for our JWT pair. `null` from the SDK means
   /// the user cancelled the flow — that's not an error, so the screen simply
   /// returns to the sign-in form rather than showing a message.

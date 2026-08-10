@@ -172,6 +172,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
           AppSnackBar.show(context, e.message!, type: SnackBarType.error);
         }
       }
+      // register() auto-logs in on success (see AuthNotifier.register) —
+      // that login attempt is the one that trips this, since the account is
+      // never verified yet at that point. Route to the code-entry screen
+      // instead of showing a dead-end error.
+      if (next is AuthError && next.exception is EmailNotVerifiedException) {
+        final email = (next.exception as EmailNotVerifiedException).email;
+        ref.read(authProvider.notifier).clearError();
+        context.push('/auth/verify-email', extra: email);
+      }
     });
 
     final authState = ref.watch(authProvider);

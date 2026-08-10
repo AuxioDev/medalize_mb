@@ -100,6 +100,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(authProvider, (_, next) {
+      if (next is AuthError && next.exception is EmailNotVerifiedException) {
+        final email = (next.exception as EmailNotVerifiedException).email;
+        ref.read(authProvider.notifier).clearError();
+        context.push('/auth/verify-email', extra: email);
+      }
+    });
+
     final authState = ref.watch(authProvider);
     final isLoading = authState is AuthLoading;
 

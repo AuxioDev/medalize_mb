@@ -7,6 +7,18 @@ sealed class ApiException implements Exception {
   String get userMessage;
 }
 
+/// Login was rejected because the account's email/password registration was
+/// never confirmed — see RegisterView/CustomTokenObtainPairSerializer on the
+/// backend. [email] lets the login/register screen route straight to the
+/// verification-code entry screen instead of showing a dead-end error.
+class EmailNotVerifiedException extends ApiException {
+  const EmailNotVerifiedException(this.email, [this.message]);
+  final String email;
+  final String? message;
+  @override
+  String get userMessage => message ?? t.errors.emailNotVerified;
+}
+
 class InvalidCredentialsException extends ApiException {
   /// [message] is the (already-localized) text from the backend when present;
   /// otherwise we fall back to the bundled translation.
@@ -164,6 +176,11 @@ ApiException mapDioError(Object err) {
   final code = data is Map ? data['code'] as String? : null;
 
   switch (code) {
+    case 'email_not_verified':
+      return EmailNotVerifiedException(
+        data['email'] as String? ?? '',
+        data['message'] as String?,
+      );
     case 'invalid_credentials':
       return InvalidCredentialsException(data['message'] as String?);
     case 'token_expired':

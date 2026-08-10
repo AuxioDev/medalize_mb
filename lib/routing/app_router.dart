@@ -12,6 +12,7 @@ import 'package:medalize_mb/features/auth/presentation/screens/login_screen.dart
 import 'package:medalize_mb/features/auth/presentation/screens/register_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/splash_screen.dart';
+import 'package:medalize_mb/features/auth/presentation/screens/verify_email_screen.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
@@ -119,6 +120,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, state) {
           final email = state.extra as String? ?? '';
           return _authPage(ResetPasswordScreen(email: email));
+        },
+      ),
+      GoRoute(
+        path: '/auth/verify-email',
+        pageBuilder: (_, state) {
+          final email = state.extra as String? ?? '';
+          return _authPage(VerifyEmailScreen(email: email));
         },
       ),
       GoRoute(
