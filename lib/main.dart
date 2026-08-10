@@ -90,7 +90,7 @@ class _MedalizeAppState extends ConsumerState<MedalizeApp>
     final router = ref.watch(routerProvider);
     final themeMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
-      title: 'Medalize',
+      title: 'Medoro',
       locale: TranslationProvider.of(context).flutterLocale,
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: const [

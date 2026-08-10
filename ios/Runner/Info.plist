@@ -16,7 +16,7 @@
 		<string>fr</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>Medalize</string>
+	<string>Medoro</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -29,11 +29,11 @@
 		</dict>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Medalize needs access to your photos so you can set your profile picture and upload documents.</string>
+	<string>Medoro needs access to your photos so you can set your profile picture and upload documents.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Medalize needs camera access so you can take a profile picture.</string>
+	<string>Medoro needs camera access so you can take a profile picture.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Medalize uses your location to sort doctors by distance from you.</string>
+	<string>Medoro uses your location to sort doctors by distance from you.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

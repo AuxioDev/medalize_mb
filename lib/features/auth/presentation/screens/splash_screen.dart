@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
                   .fadeIn(duration: 350.ms),
               const SizedBox(height: 22),
               const Text(
-                'Medalize',
+                'Medoro',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
