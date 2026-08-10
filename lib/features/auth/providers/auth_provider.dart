@@ -10,13 +10,21 @@ import 'package:medalize_mb/core/services/device_identity.dart';
 import 'package:medalize_mb/core/services/fcm_service.dart';
 import 'package:medalize_mb/core/services/medication_scheduler.dart';
 import 'package:medalize_mb/core/storage/secure_storage.dart';
+import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
 import 'package:medalize_mb/features/medications/data/repository/medication_repository.dart';
+import 'package:medalize_mb/features/medications/providers/medication_provider.dart';
 import 'package:medalize_mb/features/auth/data/models/login_request.dart';
 import 'package:medalize_mb/features/auth/data/models/login_response.dart';
 import 'package:medalize_mb/features/auth/data/models/register_request.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/data/social_auth_service.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
+import 'package:medalize_mb/features/family/providers/family_provider.dart';
+import 'package:medalize_mb/features/messaging/providers/messaging_provider.dart';
+import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
+import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
+import 'package:medalize_mb/features/prescriptions/providers/prescription_provider.dart';
+import 'package:medalize_mb/features/records/providers/medical_record_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 final authProvider = NotifierProvider<AuthNotifier, AuthState>(AuthNotifier.new);
@@ -156,6 +164,38 @@ class AuthNotifier extends Notifier<AuthState> {
       final medications = await ref.read(medicationRepositoryProvider).getMedications();
       await scheduler.rescheduleAll(medications);
     } catch (_) {}
+  }
+
+  /// Explicitly invalidates every per-account data provider on top of the
+  /// `.autoDispose` + full-navigation-stack-replacement mechanism each of
+  /// them already documents (see `medicationsProvider`'s doc comment for the
+  /// full rationale) — that mechanism relies on no screen anywhere in the
+  /// tree still watching a provider after the auth redirect fires, which is
+  /// true today (no `ShellRoute`/`IndexedStack` keeps screens alive across
+  /// tabs) but would silently stop protecting these providers if that ever
+  /// changed. Calling this directly at every session boundary (both
+  /// logout-shaped transitions and a fresh login) removes that dependency:
+  /// stale data from a previous account on a shared device can never survive
+  /// regardless of what the widget tree looks like. Safe to call even when a
+  /// provider has no listeners — invalidating is a no-op until it's next read.
+  void _invalidateUserScopedProviders() {
+    ref.invalidate(medicationsProvider);
+    ref.invalidate(todaysDoseLogsProvider);
+    ref.invalidate(dependentsProvider);
+    ref.invalidate(activeProfileProvider);
+    ref.invalidate(patientAppointmentsProvider);
+    ref.invalidate(doctorAppointmentsProvider);
+    ref.invalidate(appointmentByIdProvider);
+    ref.invalidate(medicalRecordsProvider);
+    ref.invalidate(patientPrescriptionsProvider);
+    ref.invalidate(appointmentPrescriptionProvider);
+    ref.invalidate(prescriptionByIdProvider);
+    ref.invalidate(threadsProvider);
+    ref.invalidate(unreadMessagesCountProvider);
+    ref.invalidate(threadChatProvider);
+    ref.invalidate(notificationsProvider);
+    ref.invalidate(notificationPreferencesProvider);
+    ref.invalidate(favoritesProvider);
   }
 
   /// Rebuilds an authenticated state from securely-stored identity + profile,
@@ -306,6 +346,9 @@ class AuthNotifier extends Notifier<AuthState> {
         .interceptors
         .whereType<AuthInterceptor>()
         .forEach((i) => i.resetForceLogoutState());
+    // New account signing in on this device — drop anything cached from
+    // whoever was signed in before (see _invalidateUserScopedProviders).
+    _invalidateUserScopedProviders();
     await _storage.saveTokens(
       accessToken: response.access,
       refreshToken: response.refresh,
@@ -395,6 +438,7 @@ class AuthNotifier extends Notifier<AuthState> {
       // Proceed with local logout even on API failure
     }
     await _storage.clearAll();
+    _invalidateUserScopedProviders();
     state = const AuthUnauthenticated();
   }
 
@@ -416,11 +460,13 @@ class AuthNotifier extends Notifier<AuthState> {
     await ref.read(fcmServiceProvider).deregisterToken();
     await ref.read(medicationSchedulerProvider).cancelAll();
     await _storage.clearAll();
+    _invalidateUserScopedProviders();
     state = const AuthUnauthenticated();
   }
 
   Future<void> forceLogout() async {
     await _storage.clearAll();
+    _invalidateUserScopedProviders();
     state = const AuthUnauthenticated();
   }
 
@@ -442,6 +488,7 @@ class AuthNotifier extends Notifier<AuthState> {
     await ref.read(fcmServiceProvider).deregisterToken();
     await ref.read(medicationSchedulerProvider).cancelAll();
     await _storage.clearAll();
+    _invalidateUserScopedProviders();
     state = const AuthUnauthenticated();
   }
 
