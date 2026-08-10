@@ -103,6 +103,12 @@ class AppointmentModel {
   /// Server-computed: whether the review is still inside the edit window.
   final bool canEditReview;
 
+  /// Whether the patient already has an open dispute filed against this
+  /// appointment's status (in practice, always a `no_show` dispute) — used
+  /// to swap the "Dispute" action for a submitted/pending state instead of
+  /// letting the patient file duplicates.
+  final bool hasOpenDispute;
+
   const AppointmentModel({
     required this.id,
     required this.doctor,
@@ -120,6 +126,7 @@ class AppointmentModel {
     this.review,
     this.canEditReview = false,
     this.dependent,
+    this.hasOpenDispute = false,
   });
 
   factory AppointmentModel.fromJson(Map<String, dynamic> j) => AppointmentModel(
@@ -143,6 +150,7 @@ class AppointmentModel {
         dependent: j['dependent'] != null
             ? DependentModel.fromJson(j['dependent'] as Map<String, dynamic>)
             : null,
+        hasOpenDispute: j['has_open_dispute'] as bool? ?? false,
       );
 
   bool get isUpcoming {

@@ -61,6 +61,8 @@ class _AppointmentDetailScreenState
   late bool _hasReview;
   late bool _canEditReview;
   ReviewModel? _review;
+  bool _disputing = false;
+  late bool _hasOpenDispute;
 
   @override
   void initState() {
@@ -68,6 +70,7 @@ class _AppointmentDetailScreenState
     _hasReview = widget.appointment.hasReview;
     _canEditReview = widget.appointment.canEditReview;
     _review = widget.appointment.review;
+    _hasOpenDispute = widget.appointment.hasOpenDispute;
   }
 
   void _invalidateAppointment() {
@@ -177,6 +180,62 @@ class _AppointmentDetailScreenState
       if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
     } finally {
       if (mounted) setState(() => _rescheduling = false);
+    }
+  }
+
+  /// Patient action: contest a `no_show` mark filed against this appointment.
+  Future<void> _disputeNoShow() async {
+    final reasonCtrl = TextEditingController();
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(context.t.appointments.disputeNoShowTitle),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(context.t.appointments.disputeNoShowHint,
+                style: Theme.of(ctx).textTheme.bodySmall),
+            const Gap(12),
+            TextField(
+              controller: reasonCtrl,
+              maxLines: 4,
+              autofocus: true,
+              decoration: const InputDecoration(border: OutlineInputBorder()),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(context.t.common.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(context.t.appointments.disputeNoShowSubmit),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    final reason = reasonCtrl.text.trim();
+    if (reason.isEmpty) return;
+
+    setState(() => _disputing = true);
+    try {
+      await ref
+          .read(appointmentRepositoryProvider)
+          .disputeNoShow(widget.appointment.id, reason);
+      _invalidateAppointment();
+      if (mounted) {
+        setState(() => _hasOpenDispute = true);
+        AppSnackBar.show(context, context.t.appointments.disputeNoShowSubmitted,
+            type: SnackBarType.success);
+      }
+    } on ApiException catch (e) {
+      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+    } finally {
+      if (mounted) setState(() => _disputing = false);
     }
   }
 
@@ -849,6 +908,47 @@ class _AppointmentDetailScreenState
               ),
             ),
           ],
+        ),
+      );
+    }
+
+    if (appt.status == 'no_show') {
+      if (_hasOpenDispute) {
+        return BottomActionBar(
+          child: OutlinedButton.icon(
+            onPressed: null,
+            icon: const Icon(Icons.hourglass_top_rounded, size: 18),
+            label: Text(context.t.appointments.disputeNoShowOpen,
+                style: const TextStyle(fontWeight: FontWeight.w600)),
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size.fromHeight(52),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppRadius.md)),
+            ),
+          ),
+        );
+      }
+      return BottomActionBar(
+        child: OutlinedButton(
+          onPressed: _disputing
+              ? null
+              : () {
+                  HapticFeedback.lightImpact();
+                  _disputeNoShow();
+                },
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size.fromHeight(52),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppRadius.md)),
+          ),
+          child: _disputing
+              ? const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
+              : Text(context.t.appointments.disputeNoShow,
+                  style: const TextStyle(fontWeight: FontWeight.w600)),
         ),
       );
     }

@@ -164,6 +164,20 @@ class AppointmentRepository {
     }
   }
 
+  /// Patient contesting a `no_show` mark on their own appointment. Returns
+  /// normally (200/201) whether this is the first dispute filed or one was
+  /// already open — see AppointmentDisputeView on the backend.
+  Future<void> disputeNoShow(String appointmentId, String reason) async {
+    try {
+      await _dio.post(
+        '/appointments/$appointmentId/dispute/',
+        data: {'reason': reason},
+      );
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    }
+  }
+
   Future<List<ReviewModel>> getDoctorReviews(String doctorId) async {
     try {
       return await _fetchAllPages('/doctors/$doctorId/reviews/', ReviewModel.fromJson);
