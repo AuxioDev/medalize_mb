@@ -4,6 +4,10 @@ Environment values passed to the app at build time via Flutter's
 `--dart-define-from-file`. The app reads `API_BASE_URL` in
 `lib/core/config/app_config.dart` (default is localhost for local dev).
 
+`SENTRY_DSN` is optional — leave it blank to disable crash reporting
+entirely (Sentry's SDK treats an empty dsn as a no-op, see `lib/main.dart`).
+Fill it in once a Sentry project exists.
+
 ## Usage
 
 1. Copy a template and set the real URL:

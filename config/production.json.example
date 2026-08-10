@@ -1,3 +1,4 @@
 {
-  "API_BASE_URL": "https://api.medalize.app/api"
+  "API_BASE_URL": "https://api.medalize.app/api",
+  "SENTRY_DSN": ""
 }

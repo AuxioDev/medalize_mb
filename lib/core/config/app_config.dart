@@ -49,6 +49,12 @@ abstract final class AppConfig {
   static bool isConfigured(String value) =>
       value.isNotEmpty && !value.startsWith('REPLACE_WITH');
 
+  // ── Crash reporting ──────────────────────────────────────────────────────
+  // Empty by default — Sentry's own SDK treats an empty dsn as "disabled",
+  // so main.dart doesn't need a separate on/off branch. Set at build time:
+  //   flutter run --dart-define=SENTRY_DSN=https://xxx@o0.ingest.sentry.io/0
+  static const sentryDsn = String.fromEnvironment('SENTRY_DSN');
+
   // ── Doctor subscription paywall ────────────────────────────────────────
   // Single kill switch for showing prices / the "Subscribe" button inside
   // the subscription screen. Checkout is a Payriff web checkout opened in an

@@ -1,7 +1,7 @@
 name: medalize_mb
 description: "Medalize mobile application."
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ^3.12.2
@@ -62,6 +62,10 @@ dependencies:
   printing: ^5.15.0
   flutter_map: ^8.3.1
   latlong2: ^0.10.1
+  # Crash reporting — disabled unless SENTRY_DSN is supplied via
+  # --dart-define at build time (see lib/main.dart); an empty DSN is a
+  # documented no-op in the SDK, so no separate on/off gate is needed here.
+  sentry_flutter: ^9.26.0
 
 dev_dependencies:
   flutter_test:
