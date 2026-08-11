@@ -8,21 +8,6 @@
   
   <rect width="1024" height="1024" rx="224" fill="url(#medalizeGrad)" />
   
-  <path fill="#FFFFFF" fill-rule="evenodd" d="
-    M 332 608 
-    A 270 270 0 1 1 692 608 
-    L 692 887 
-    L 512 767 
-    L 332 887 
-    Z 
-    M 467 227 
-    L 557 227 
-    Q 557 362 692 362 
-    L 692 452 
-    Q 557 452 557 587 
-    L 467 587 
-    Q 467 452 332 452 
-    L 332 362 
-    Q 467 362 467 227 
-    Z" />
+  <path fill="none" stroke="#FFFFFF" stroke-width="56" stroke-linecap="round" stroke-linejoin="round" d="
+    M150,512 L350,512 L400,437 L450,512 L505,512 L545,682 L598,150 L651,700 L704,512 L874,512" />
 </svg>

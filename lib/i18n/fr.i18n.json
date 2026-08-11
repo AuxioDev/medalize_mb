@@ -1,5 +1,5 @@
 {
-  "appName": "Medoro",
+  "appName": "DocLine",
   "common": {
     "cancel": "Annuler",
     "logout": "Se déconnecter",
@@ -42,7 +42,7 @@
     "welcomeBack": "Bon retour",
     "signInToContinue": "Connectez-vous à votre compte pour continuer",
     "createYourAccount": "Créez votre compte",
-    "joinMedalize": "Rejoignez Medoro dès aujourd'hui",
+    "joinMedalize": "Rejoignez DocLine dès aujourd'hui",
     "iAmA": "Je suis",
     "emailHint": "you@example.com",
     "passwordHint": "••••••••",
@@ -117,14 +117,14 @@
     "languageSystem": "Par défaut du système",
     "logoutTitle": "Déconnexion",
     "logoutConfirm": "Voulez-vous vraiment vous déconnecter ?",
-    "version": "Medoro v1.0.0",
+    "version": "DocLine v1.0.0",
     "legal": "Confidentialité et conditions"
   },
   "security": {
     "title": "Sécurité",
     "biometricLogin": "Connexion biométrique",
     "biometricLoginSubtitle": "Utilisez Face ID / Touch ID pour déverrouiller l'application",
-    "biometricPrompt": "Authentifiez-vous pour accéder à Medoro",
+    "biometricPrompt": "Authentifiez-vous pour accéder à DocLine",
     "biometricUnavailable": "L'authentification biométrique n'est pas disponible sur cet appareil",
     "biometricEnableFailed": "Impossible de vérifier votre biométrie. Réessayez.",
     "activeSessions": "Sessions actives",
@@ -551,9 +551,9 @@
   },
   "legal": {
     "title": "Confidentialité et Conditions",
-    "controllerNotice": "Medoro est créé et exploité par AuxioDev (auxiodev.com), Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.",
+    "controllerNotice": "DocLine est créé et exploité par AuxioDev (auxiodev.com), Azerbaïdjan (« nous »). Dernière mise à jour : juillet 2026.",
     "privacyTitle": "Politique de confidentialité",
-    "privacyIntro": "Cette politique explique quelles données personnelles Medoro collecte, pourquoi, et comment elles sont protégées. La prise et la gestion de rendez-vous médicaux impliquent nécessairement des informations de santé vous concernant, détaillées ci-dessous.",
+    "privacyIntro": "Cette politique explique quelles données personnelles DocLine collecte, pourquoi, et comment elles sont protégées. La prise et la gestion de rendez-vous médicaux impliquent nécessairement des informations de santé vous concernant, détaillées ci-dessous.",
     "sections": {
       "identity": {
         "title": "Données d'identité",
@@ -613,12 +613,12 @@
       },
       "children": {
         "title": "Condition d'âge",
-        "body": "Les comptes Medoro sont destinés aux adultes. Si vous avez moins de 18 ans, demandez à un parent ou tuteur de créer et de gérer un compte en votre nom via la fonctionnalité de profils familiaux."
+        "body": "Les comptes DocLine sont destinés aux adultes. Si vous avez moins de 18 ans, demandez à un parent ou tuteur de créer et de gérer un compte en votre nom via la fonctionnalité de profils familiaux."
       }
     },
     "termsTitle": "Conditions d'utilisation",
     "termsIntro": "En créant un compte, vous acceptez ce qui suit.",
-    "termsBody": "Fournir des informations exactes vous concernant. Utiliser Medoro uniquement pour trouver, réserver et gérer des rendez-vous médicaux. Garder vos identifiants de connexion confidentiels. Medoro vous met en relation avec des professionnels de santé indépendants et agréés — nous ne sommes pas nous-mêmes un prestataire de soins, et l'assistant IA de vérification des symptômes ne remplace pas un diagnostic ou un avis médical professionnel. En cas d'urgence médicale, contactez directement les services d'urgence, pas cette application. Nous pouvons suspendre ou résilier les comptes qui enfreignent ces conditions ou qui font un usage abusif de la plateforme.",
+    "termsBody": "Fournir des informations exactes vous concernant. Utiliser DocLine uniquement pour trouver, réserver et gérer des rendez-vous médicaux. Garder vos identifiants de connexion confidentiels. DocLine vous met en relation avec des professionnels de santé indépendants et agréés — nous ne sommes pas nous-mêmes un prestataire de soins, et l'assistant IA de vérification des symptômes ne remplace pas un diagnostic ou un avis médical professionnel. En cas d'urgence médicale, contactez directement les services d'urgence, pas cette application. Nous pouvons suspendre ou résilier les comptes qui enfreignent ces conditions ou qui font un usage abusif de la plateforme.",
     "contact": "Des questions sur vos données ? Contactez support@auxiodev.com",
     "consentPrefix": "J'ai lu et j'accepte la ",
     "consentPrivacyLink": "Politique de confidentialité",
@@ -626,7 +626,7 @@
     "consentTermsLink": "Conditions d'utilisation",
     "consentSuffix": ", et je consens explicitement au traitement de mes données de santé tel que décrit.",
     "viewAsPdf": "Voir en PDF",
-    "pdfDocumentTitle": "Medoro — Politique de confidentialité et conditions d'utilisation",
+    "pdfDocumentTitle": "DocLine — Politique de confidentialité et conditions d'utilisation",
     "pdfLoadError": "Impossible de charger le document. Vérifiez votre connexion internet et réessayez."
   },
   "medications": {

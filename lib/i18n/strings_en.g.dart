@@ -41,8 +41,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 
-	/// en: 'Medoro'
-	String get appName => 'Medoro';
+	/// en: 'DocLine'
+	String get appName => 'DocLine';
 
 	late final Translations$common$en common = Translations$common$en.internal(_root);
 	late final Translations$auth$en auth = Translations$auth$en.internal(_root);
@@ -227,8 +227,8 @@ class Translations$auth$en {
 	/// en: 'Create your account'
 	String get createYourAccount => 'Create your account';
 
-	/// en: 'Join Medoro today'
-	String get joinMedalize => 'Join Medoro today';
+	/// en: 'Join DocLine today'
+	String get joinMedalize => 'Join DocLine today';
 
 	/// en: 'I am a'
 	String get iAmA => 'I am a';
@@ -470,8 +470,8 @@ class Translations$settings$en {
 	/// en: 'Are you sure you want to logout?'
 	String get logoutConfirm => 'Are you sure you want to logout?';
 
-	/// en: 'Medoro v1.0.0'
-	String get version => 'Medoro v1.0.0';
+	/// en: 'DocLine v1.0.0'
+	String get version => 'DocLine v1.0.0';
 
 	/// en: 'Privacy & Terms'
 	String get legal => 'Privacy & Terms';
@@ -494,8 +494,8 @@ class Translations$security$en {
 	/// en: 'Use Face ID / Touch ID to unlock the app'
 	String get biometricLoginSubtitle => 'Use Face ID / Touch ID to unlock the app';
 
-	/// en: 'Authenticate to access Medoro'
-	String get biometricPrompt => 'Authenticate to access Medoro';
+	/// en: 'Authenticate to access DocLine'
+	String get biometricPrompt => 'Authenticate to access DocLine';
 
 	/// en: 'Biometric authentication isn't available on this device'
 	String get biometricUnavailable => 'Biometric authentication isn\'t available on this device';
@@ -1782,14 +1782,14 @@ class Translations$legal$en {
 	/// en: 'Privacy & Terms'
 	String get title => 'Privacy & Terms';
 
-	/// en: 'Medoro is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.'
-	String get controllerNotice => 'Medoro is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.';
+	/// en: 'DocLine is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.'
+	String get controllerNotice => 'DocLine is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.';
 
 	/// en: 'Privacy Policy'
 	String get privacyTitle => 'Privacy Policy';
 
-	/// en: 'This policy explains what personal data Medoro collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.'
-	String get privacyIntro => 'This policy explains what personal data Medoro collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.';
+	/// en: 'This policy explains what personal data DocLine collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.'
+	String get privacyIntro => 'This policy explains what personal data DocLine collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.';
 
 	late final Translations$legal$sections$en sections = Translations$legal$sections$en.internal(_root);
 
@@ -1799,8 +1799,8 @@ class Translations$legal$en {
 	/// en: 'By creating an account, you agree to the following.'
 	String get termsIntro => 'By creating an account, you agree to the following.';
 
-	/// en: 'Provide accurate information about yourself. Use Medoro only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medoro connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.'
-	String get termsBody => 'Provide accurate information about yourself. Use Medoro only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medoro connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.';
+	/// en: 'Provide accurate information about yourself. Use DocLine only for finding, booking, and managing medical appointments. Keep your login credentials confidential. DocLine connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.'
+	String get termsBody => 'Provide accurate information about yourself. Use DocLine only for finding, booking, and managing medical appointments. Keep your login credentials confidential. DocLine connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.';
 
 	/// en: 'Questions about your data? Contact support@auxiodev.com'
 	String get contact => 'Questions about your data? Contact support@auxiodev.com';
@@ -1823,8 +1823,8 @@ class Translations$legal$en {
 	/// en: 'View as PDF'
 	String get viewAsPdf => 'View as PDF';
 
-	/// en: 'Medoro — Privacy Policy & Terms of Service'
-	String get pdfDocumentTitle => 'Medoro — Privacy Policy & Terms of Service';
+	/// en: 'DocLine — Privacy Policy & Terms of Service'
+	String get pdfDocumentTitle => 'DocLine — Privacy Policy & Terms of Service';
 
 	/// en: 'Could not load the document. Please check your internet connection and try again.'
 	String get pdfLoadError => 'Could not load the document. Please check your internet connection and try again.';
@@ -3014,8 +3014,8 @@ class Translations$legal$sections$children$en {
 	/// en: 'Age requirement'
 	String get title => 'Age requirement';
 
-	/// en: 'Medoro accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.'
-	String get body => 'Medoro accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.';
+	/// en: 'DocLine accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.'
+	String get body => 'DocLine accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -3026,7 +3026,7 @@ class Translations$legal$sections$children$en {
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'appName' => 'Medoro',
+			'appName' => 'DocLine',
 			'common.cancel' => 'Cancel',
 			'common.logout' => 'Log Out',
 			'common.doctor' => 'Doctor',
@@ -3066,7 +3066,7 @@ extension on Translations {
 			'auth.welcomeBack' => 'Welcome back',
 			'auth.signInToContinue' => 'Sign in to your account to continue',
 			'auth.createYourAccount' => 'Create your account',
-			'auth.joinMedalize' => 'Join Medoro today',
+			'auth.joinMedalize' => 'Join DocLine today',
 			'auth.iAmA' => 'I am a',
 			'auth.emailHint' => 'you@example.com',
 			'auth.passwordHint' => '••••••••',
@@ -3129,12 +3129,12 @@ extension on Translations {
 			'settings.languageSystem' => 'System default',
 			'settings.logoutTitle' => 'Logout',
 			'settings.logoutConfirm' => 'Are you sure you want to logout?',
-			'settings.version' => 'Medoro v1.0.0',
+			'settings.version' => 'DocLine v1.0.0',
 			'settings.legal' => 'Privacy & Terms',
 			'security.title' => 'Security',
 			'security.biometricLogin' => 'Biometric Login',
 			'security.biometricLoginSubtitle' => 'Use Face ID / Touch ID to unlock the app',
-			'security.biometricPrompt' => 'Authenticate to access Medoro',
+			'security.biometricPrompt' => 'Authenticate to access DocLine',
 			'security.biometricUnavailable' => 'Biometric authentication isn\'t available on this device',
 			'security.biometricEnableFailed' => 'Couldn\'t verify your biometrics. Please try again.',
 			'security.activeSessions' => 'Active Sessions',
@@ -3511,9 +3511,9 @@ extension on Translations {
 			'messaging.noSharedHistory' => 'You can message a doctor once you have a shared appointment history.',
 			'messaging.newMessage' => 'You have a new message',
 			'legal.title' => 'Privacy & Terms',
-			'legal.controllerNotice' => 'Medoro is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.',
+			'legal.controllerNotice' => 'DocLine is created and operated by AuxioDev (auxiodev.com), Azerbaijan ("we", "us"). Last updated: July 2026.',
 			'legal.privacyTitle' => 'Privacy Policy',
-			'legal.privacyIntro' => 'This policy explains what personal data Medoro collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.',
+			'legal.privacyIntro' => 'This policy explains what personal data DocLine collects, why, and how it is protected. Booking and managing medical appointments necessarily involves health information about you, so we explain that in detail below.',
 			'legal.sections.identity.title' => 'Identity data',
 			'legal.sections.identity.body' => 'Full name, email address, phone number (optional), your password (stored as an irreversible hash, never in plain text), and your preferred app language.',
 			'legal.sections.health.title' => 'Health data',
@@ -3545,10 +3545,10 @@ extension on Translations {
 			'legal.sections.permissions.title' => 'Permissions we ask for',
 			'legal.sections.permissions.body' => 'Camera and photo library — to set a profile picture and upload medical documents. Location — to sort doctors by distance from you. Notifications — to deliver appointment reminders and messages. Biometrics (Face ID / fingerprint) — an optional, faster way to unlock the app; your biometric data never leaves your device, we only receive a yes/no confirmation from its operating system.',
 			'legal.sections.children.title' => 'Age requirement',
-			'legal.sections.children.body' => 'Medoro accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.',
+			'legal.sections.children.body' => 'DocLine accounts are intended for adults. If you are under 18, please have a parent or guardian create and manage an account on your behalf using the family/dependent profile feature.',
 			'legal.termsTitle' => 'Terms of Service',
 			'legal.termsIntro' => 'By creating an account, you agree to the following.',
-			'legal.termsBody' => 'Provide accurate information about yourself. Use Medoro only for finding, booking, and managing medical appointments. Keep your login credentials confidential. Medoro connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.',
+			'legal.termsBody' => 'Provide accurate information about yourself. Use DocLine only for finding, booking, and managing medical appointments. Keep your login credentials confidential. DocLine connects you with independent, licensed medical professionals — we are not a medical provider ourselves, and the AI symptom-checking assistant does not replace professional medical diagnosis or advice. In a medical emergency, contact emergency services directly, not this app. We may suspend or terminate accounts that violate these terms or misuse the platform.',
 			'legal.contact' => 'Questions about your data? Contact support@auxiodev.com',
 			'legal.consentPrefix' => 'I have read and agree to the ',
 			'legal.consentPrivacyLink' => 'Privacy Policy',
@@ -3556,7 +3556,7 @@ extension on Translations {
 			'legal.consentTermsLink' => 'Terms of Service',
 			'legal.consentSuffix' => ', and I explicitly consent to the processing of my health data as described.',
 			'legal.viewAsPdf' => 'View as PDF',
-			'legal.pdfDocumentTitle' => 'Medoro — Privacy Policy & Terms of Service',
+			'legal.pdfDocumentTitle' => 'DocLine — Privacy Policy & Terms of Service',
 			'legal.pdfLoadError' => 'Could not load the document. Please check your internet connection and try again.',
 			'medications.title' => 'Medications',
 			'medications.editMedication' => 'Edit Medication',

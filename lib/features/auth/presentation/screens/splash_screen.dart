@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/pulse_loader.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class SplashScreen extends StatelessWidget {
                   .fadeIn(duration: 350.ms),
               const SizedBox(height: 22),
               const Text(
-                'Medoro',
+                'DocLine',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -45,11 +46,9 @@ class SplashScreen extends StatelessWidget {
                   .animate()
                   .fadeIn(delay: 380.ms, duration: 400.ms),
               const SizedBox(height: 56),
-              const SizedBox(
-                width: 22,
-                height: 22,
-                child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white54),
-              ).animate().fadeIn(delay: 600.ms, duration: 400.ms),
+              const PulseLoader(width: 96, height: 28, color: Colors.white70)
+                  .animate()
+                  .fadeIn(delay: 600.ms, duration: 400.ms),
             ],
           ),
         ),

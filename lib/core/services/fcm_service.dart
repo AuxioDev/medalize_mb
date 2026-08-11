@@ -25,7 +25,7 @@ final _localNotifications = FlutterLocalNotificationsPlugin();
 /// instead of creating their own.
 const medalizeHighChannel = AndroidNotificationChannel(
   'medalize_high',
-  'Medoro Notifications',
+  'DocLine Notifications',
   description: 'Appointment and booking alerts',
   importance: Importance.high,
 );

@@ -1,5 +1,5 @@
 {
-  "appName": "Medoro",
+  "appName": "DocLine",
   "common": {
     "cancel": "İptal",
     "logout": "Çıkış Yap",
@@ -42,7 +42,7 @@
     "welcomeBack": "Tekrar hoş geldiniz",
     "signInToContinue": "Devam etmek için hesabınıza giriş yapın",
     "createYourAccount": "Hesabınızı oluşturun",
-    "joinMedalize": "Bugün Medoro'ya katılın",
+    "joinMedalize": "Bugün DocLine'ya katılın",
     "iAmA": "Ben bir",
     "emailHint": "you@example.com",
     "passwordHint": "••••••••",
@@ -117,14 +117,14 @@
     "languageSystem": "Sistem varsayılanı",
     "logoutTitle": "Çıkış",
     "logoutConfirm": "Çıkış yapmak istediğinizden emin misiniz?",
-    "version": "Medoro v1.0.0",
+    "version": "DocLine v1.0.0",
     "legal": "Gizlilik ve Koşullar"
   },
   "security": {
     "title": "Güvenlik",
     "biometricLogin": "Biyometrik Giriş",
     "biometricLoginSubtitle": "Uygulamanın kilidini açmak için Face ID / Touch ID kullanın",
-    "biometricPrompt": "Medoro'ya erişmek için doğrulayın",
+    "biometricPrompt": "DocLine'ya erişmek için doğrulayın",
     "biometricUnavailable": "Bu cihazda biyometrik kimlik doğrulama kullanılamıyor",
     "biometricEnableFailed": "Biyometrik bilgileriniz doğrulanamadı. Tekrar deneyin.",
     "activeSessions": "Aktif Oturumlar",
@@ -551,9 +551,9 @@
   },
   "legal": {
     "title": "Gizlilik ve Koşullar",
-    "controllerNotice": "Medoro, AuxioDev (auxiodev.com) tarafından Azerbaycan'da oluşturulmuş ve işletilmektedir (\"biz\"). Son güncelleme: Temmuz 2026.",
+    "controllerNotice": "DocLine, AuxioDev (auxiodev.com) tarafından Azerbaycan'da oluşturulmuş ve işletilmektedir (\"biz\"). Son güncelleme: Temmuz 2026.",
     "privacyTitle": "Gizlilik Politikası",
-    "privacyIntro": "Bu politika, Medoro'nun hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.",
+    "privacyIntro": "Bu politika, DocLine'nun hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.",
     "sections": {
       "identity": {
         "title": "Kimlik verileri",
@@ -613,12 +613,12 @@
       },
       "children": {
         "title": "Yaş şartı",
-        "body": "Medoro hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın."
+        "body": "DocLine hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın."
       }
     },
     "termsTitle": "Kullanım Koşulları",
     "termsIntro": "Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.",
-    "termsBody": "Kendiniz hakkında doğru bilgi verin. Medoro'yu yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. Medoro sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.",
+    "termsBody": "Kendiniz hakkında doğru bilgi verin. DocLine'yu yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. DocLine sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.",
     "contact": "Verileriniz hakkında sorularınız mı var? support@auxiodev.com adresine yazın",
     "consentPrefix": "",
     "consentPrivacyLink": "Gizlilik Politikası",
@@ -626,7 +626,7 @@
     "consentTermsLink": "Kullanım Koşulları",
     "consentSuffix": "'nı okudum, kabul ediyorum ve orada açıklandığı şekilde sağlık verilerimin işlenmesine açıkça rıza gösteriyorum.",
     "viewAsPdf": "PDF olarak görüntüle",
-    "pdfDocumentTitle": "Medoro — Gizlilik Politikası ve Kullanım Koşulları",
+    "pdfDocumentTitle": "DocLine — Gizlilik Politikası ve Kullanım Koşulları",
     "pdfLoadError": "Belge yüklenemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
   },
   "medications": {

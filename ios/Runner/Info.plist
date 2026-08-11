@@ -16,7 +16,7 @@
 		<string>fr</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>Medoro</string>
+	<string>DocLine</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -29,11 +29,11 @@
 		</dict>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Medoro needs access to your photos so you can set your profile picture and upload documents.</string>
+	<string>DocLine needs access to your photos so you can set your profile picture and upload documents.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Medoro needs camera access so you can take a profile picture.</string>
+	<string>DocLine needs camera access so you can take a profile picture.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Medoro uses your location to sort doctors by distance from you.</string>
+	<string>DocLine uses your location to sort doctors by distance from you.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
