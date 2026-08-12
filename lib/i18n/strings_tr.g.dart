@@ -44,7 +44,8 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$tr auth = _Translations$auth$tr._(_root);
 	@override late final _Translations$forgotPassword$tr forgotPassword = _Translations$forgotPassword$tr._(_root);
 	@override late final _Translations$resetPassword$tr resetPassword = _Translations$resetPassword$tr._(_root);
-	@override late final _Translations$verifyEmail$tr verifyEmail = _Translations$verifyEmail$tr._(_root);
+	@override late final _Translations$verifyPhone$tr verifyPhone = _Translations$verifyPhone$tr._(_root);
+	@override late final _Translations$socialComplete$tr socialComplete = _Translations$socialComplete$tr._(_root);
 	@override late final _Translations$validation$tr validation = _Translations$validation$tr._(_root);
 	@override late final _Translations$errors$tr errors = _Translations$errors$tr._(_root);
 	@override late final _Translations$settings$tr settings = _Translations$settings$tr._(_root);
@@ -131,7 +132,6 @@ class _Translations$auth$tr extends Translations$auth$en {
 	@override String get register => 'Hesap Oluştur';
 	@override String get signIn => 'Giriş Yap';
 	@override String get signUp => 'Kayıt Ol';
-	@override String get email => 'E-posta';
 	@override String get password => 'Şifre';
 	@override String get confirmPassword => 'Şifreyi Onayla';
 	@override String get firstName => 'Ad';
@@ -146,7 +146,6 @@ class _Translations$auth$tr extends Translations$auth$en {
 	@override String get createYourAccount => 'Hesabınızı oluşturun';
 	@override String get joinMedalize => 'Bugün DocLine\'ya katılın';
 	@override String get iAmA => 'Ben bir';
-	@override String get emailHint => 'you@example.com';
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Girişe dön';
 	@override String get verificationCode => 'Doğrulama kodu';
@@ -163,7 +162,7 @@ class _Translations$forgotPassword$tr extends Translations$forgotPassword$en {
 
 	// Translations
 	@override String get title => 'Şifrenizi mi unuttunuz?';
-	@override String get subtitle => 'E-postanızı girin, size 6 haneli bir sıfırlama kodu gönderelim';
+	@override String get subtitle => 'Telefon numaranızı girin, size 6 haneli bir sıfırlama kodu gönderelim';
 }
 
 // Path: resetPassword
@@ -174,23 +173,35 @@ class _Translations$resetPassword$tr extends Translations$resetPassword$en {
 
 	// Translations
 	@override String get title => 'Şifreyi Sıfırla';
-	@override String get subtitle => 'E-postanıza gönderilen kodu girin ve yeni bir şifre seçin';
+	@override String get subtitle => 'Telefonunuza gönderilen kodu girin ve yeni bir şifre seçin';
 	@override String get button => 'Şifreyi Sıfırla';
 	@override String get success => 'Şifre başarıyla sıfırlandı. Lütfen giriş yapın.';
 }
 
-// Path: verifyEmail
-class _Translations$verifyEmail$tr extends Translations$verifyEmail$en {
-	_Translations$verifyEmail$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+// Path: verifyPhone
+class _Translations$verifyPhone$tr extends Translations$verifyPhone$en {
+	_Translations$verifyPhone$tr._(TranslationsTr root) : this._root = root, super.internal(root);
 
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'E-postanızı Doğrulayın';
-	@override String subtitle({required Object email}) => '${email} adresine 6 haneli bir kod gönderdik';
+	@override String get title => 'Telefon Numaranızı Doğrulayın';
+	@override String subtitle({required Object phone}) => '${phone} numarasına 6 haneli bir kod gönderdik';
 	@override String get button => 'Doğrula';
 	@override String get resend => 'Kodu tekrar gönder';
 	@override String get resendSent => 'Yeni bir kod gönderildi.';
+}
+
+// Path: socialComplete
+class _Translations$socialComplete$tr extends Translations$socialComplete$en {
+	_Translations$socialComplete$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Neredeyse tamam';
+	@override String get subtitle => 'Hesabınızı oluşturmayı tamamlamak için bir telefon numarası girin ve doğrulayın.';
+	@override String get button => 'Devam et';
 }
 
 // Path: validation
@@ -227,19 +238,19 @@ class _Translations$errors$tr extends Translations$errors$en {
 	@override String get network => 'Ağ hatası. Bağlantınızı kontrol edin.';
 	@override String get rateLimit => 'Çok fazla deneme. Lütfen bekleyip tekrar deneyin.';
 	@override String rateLimitWithSeconds({required Object seconds}) => 'Çok fazla deneme. ${seconds} saniye sonra tekrar deneyin.';
-	@override String get invalidCredentials => 'Geçersiz e-posta veya şifre';
+	@override String get invalidCredentials => 'Geçersiz telefon numarası veya şifre';
 	@override String get sessionExpired => 'Oturum süresi doldu. Lütfen tekrar giriş yapın.';
 	@override String get authError => 'Kimlik doğrulama hatası. Lütfen tekrar giriş yapın.';
 	@override String get sessionRevoked => 'Oturum iptal edildi. Lütfen tekrar giriş yapın.';
 	@override String get permissionDenied => 'Bunu yapma izniniz yok.';
 	@override String get validationError => 'Doğrulama hatası';
 	@override String serverError({required Object code}) => 'Sunucu hatası (${code}). Lütfen tekrar deneyin.';
-	@override String get socialLoginFailed => 'Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.';
+	@override String get socialLoginFailed => 'Giriş başarısız oldu. Tekrar deneyin veya telefon numaranızı ve şifrenizi kullanın.';
 	@override String get conflict => 'Bu işlem şu anda tamamlanamıyor.';
 	@override String get onboardingIncomplete => 'Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun.';
 	@override String get planLimitReached => 'Plan limitinize ulaştınız. Daha fazlası için planınızı yükseltin.';
 	@override String get chatUnavailable => 'Bu hekim mevcut planında sohbet sunmuyor.';
-	@override String get emailNotVerified => 'Giriş yapmadan önce lütfen e-postanızı doğrulayın.';
+	@override String get phoneNotVerified => 'Giriş yapmadan önce lütfen telefon numaranızı doğrulayın.';
 }
 
 // Path: settings
@@ -293,13 +304,12 @@ class _Translations$security$tr extends Translations$security$en {
 	@override String get signOutAllFailed => 'Tüm cihazlardan çıkış yapılamadı. Tekrar deneyin.';
 	@override String get noDevices => 'Aktif oturum bulunamadı';
 	@override String get loadFailed => 'Aktif oturumlarınız yüklenemedi';
-	@override String get changeEmail => 'E-postayı Değiştir';
-	@override String get changeEmailSubtitle => 'Yeni e-posta adresinize bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni e-postanızla giriş yapacaksınız.';
-	@override String get newEmailLabel => 'Yeni e-posta';
+	@override String get changePhone => 'Telefon Numarasını Değiştir';
+	@override String get changePhoneSubtitle => 'Yeni telefon numaranıza bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni numarayla giriş yapacaksınız.';
 	@override String get sendCode => 'Kod Gönder';
-	@override String codeSentTo({required Object email}) => '${email} adresine gönderdiğimiz 6 haneli kodu girin';
-	@override String get confirmNewEmail => 'Yeni E-postayı Onayla';
-	@override String get changeEmailSuccess => 'E-postanız değiştirildi. Yeni e-postanızla tekrar giriş yapın.';
+	@override String codeSentTo({required Object phone}) => '${phone} numarasına gönderdiğimiz 6 haneli kodu girin';
+	@override String get confirmNewPhone => 'Yeni Numarayı Onayla';
+	@override String get changePhoneSuccess => 'Telefon numaranız değiştirildi. Yeni numaranızla tekrar giriş yapın.';
 	@override String get dangerZone => 'Tehlikeli Bölge';
 	@override String get deactivateAccount => 'Hesabı Devre Dışı Bırak';
 	@override String get deactivateAccountSubtitle => 'Verilerinizi silmeden hesabınızı devre dışı bırakın';
@@ -709,7 +719,6 @@ class _Translations$phoneField$tr extends Translations$phoneField$en {
 
 	// Translations
 	@override String get label => 'Telefon Numarası';
-	@override String get labelOptional => 'Telefon Numarası (İsteğe bağlı)';
 	@override String get selectCountry => 'Ülke Seçin';
 	@override String get searchCountry => 'Ülke veya kod ara…';
 	@override String get noCountriesFound => 'Ülke bulunamadı';
@@ -1500,7 +1509,6 @@ extension on TranslationsTr {
 			'auth.register' => 'Hesap Oluştur',
 			'auth.signIn' => 'Giriş Yap',
 			'auth.signUp' => 'Kayıt Ol',
-			'auth.email' => 'E-posta',
 			'auth.password' => 'Şifre',
 			'auth.confirmPassword' => 'Şifreyi Onayla',
 			'auth.firstName' => 'Ad',
@@ -1515,7 +1523,6 @@ extension on TranslationsTr {
 			'auth.createYourAccount' => 'Hesabınızı oluşturun',
 			'auth.joinMedalize' => 'Bugün DocLine\'ya katılın',
 			'auth.iAmA' => 'Ben bir',
-			'auth.emailHint' => 'you@example.com',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Girişe dön',
 			'auth.verificationCode' => 'Doğrulama kodu',
@@ -1523,16 +1530,19 @@ extension on TranslationsTr {
 			'auth.continueWithApple' => 'Apple ile devam et',
 			'auth.orDivider' => 'veya',
 			'forgotPassword.title' => 'Şifrenizi mi unuttunuz?',
-			'forgotPassword.subtitle' => 'E-postanızı girin, size 6 haneli bir sıfırlama kodu gönderelim',
+			'forgotPassword.subtitle' => 'Telefon numaranızı girin, size 6 haneli bir sıfırlama kodu gönderelim',
 			'resetPassword.title' => 'Şifreyi Sıfırla',
-			'resetPassword.subtitle' => 'E-postanıza gönderilen kodu girin ve yeni bir şifre seçin',
+			'resetPassword.subtitle' => 'Telefonunuza gönderilen kodu girin ve yeni bir şifre seçin',
 			'resetPassword.button' => 'Şifreyi Sıfırla',
 			'resetPassword.success' => 'Şifre başarıyla sıfırlandı. Lütfen giriş yapın.',
-			'verifyEmail.title' => 'E-postanızı Doğrulayın',
-			'verifyEmail.subtitle' => ({required Object email}) => '${email} adresine 6 haneli bir kod gönderdik',
-			'verifyEmail.button' => 'Doğrula',
-			'verifyEmail.resend' => 'Kodu tekrar gönder',
-			'verifyEmail.resendSent' => 'Yeni bir kod gönderildi.',
+			'verifyPhone.title' => 'Telefon Numaranızı Doğrulayın',
+			'verifyPhone.subtitle' => ({required Object phone}) => '${phone} numarasına 6 haneli bir kod gönderdik',
+			'verifyPhone.button' => 'Doğrula',
+			'verifyPhone.resend' => 'Kodu tekrar gönder',
+			'verifyPhone.resendSent' => 'Yeni bir kod gönderildi.',
+			'socialComplete.title' => 'Neredeyse tamam',
+			'socialComplete.subtitle' => 'Hesabınızı oluşturmayı tamamlamak için bir telefon numarası girin ve doğrulayın.',
+			'socialComplete.button' => 'Devam et',
 			'validation.emailRequired' => 'E-posta gerekli',
 			'validation.emailInvalid' => 'Geçerli bir e-posta adresi girin',
 			'validation.passwordRequired' => 'Şifre gerekli',
@@ -1551,19 +1561,19 @@ extension on TranslationsTr {
 			'errors.network' => 'Ağ hatası. Bağlantınızı kontrol edin.',
 			'errors.rateLimit' => 'Çok fazla deneme. Lütfen bekleyip tekrar deneyin.',
 			'errors.rateLimitWithSeconds' => ({required Object seconds}) => 'Çok fazla deneme. ${seconds} saniye sonra tekrar deneyin.',
-			'errors.invalidCredentials' => 'Geçersiz e-posta veya şifre',
+			'errors.invalidCredentials' => 'Geçersiz telefon numarası veya şifre',
 			'errors.sessionExpired' => 'Oturum süresi doldu. Lütfen tekrar giriş yapın.',
 			'errors.authError' => 'Kimlik doğrulama hatası. Lütfen tekrar giriş yapın.',
 			'errors.sessionRevoked' => 'Oturum iptal edildi. Lütfen tekrar giriş yapın.',
 			'errors.permissionDenied' => 'Bunu yapma izniniz yok.',
 			'errors.validationError' => 'Doğrulama hatası',
 			'errors.serverError' => ({required Object code}) => 'Sunucu hatası (${code}). Lütfen tekrar deneyin.',
-			'errors.socialLoginFailed' => 'Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.',
+			'errors.socialLoginFailed' => 'Giriş başarısız oldu. Tekrar deneyin veya telefon numaranızı ve şifrenizi kullanın.',
 			'errors.conflict' => 'Bu işlem şu anda tamamlanamıyor.',
 			'errors.onboardingIncomplete' => 'Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun.',
 			'errors.planLimitReached' => 'Plan limitinize ulaştınız. Daha fazlası için planınızı yükseltin.',
 			'errors.chatUnavailable' => 'Bu hekim mevcut planında sohbet sunmuyor.',
-			'errors.emailNotVerified' => 'Giriş yapmadan önce lütfen e-postanızı doğrulayın.',
+			'errors.phoneNotVerified' => 'Giriş yapmadan önce lütfen telefon numaranızı doğrulayın.',
 			'settings.title' => 'Ayarlar',
 			'settings.account' => 'Hesap',
 			'settings.profile' => 'Profil',
@@ -1599,13 +1609,12 @@ extension on TranslationsTr {
 			'security.signOutAllFailed' => 'Tüm cihazlardan çıkış yapılamadı. Tekrar deneyin.',
 			'security.noDevices' => 'Aktif oturum bulunamadı',
 			'security.loadFailed' => 'Aktif oturumlarınız yüklenemedi',
-			'security.changeEmail' => 'E-postayı Değiştir',
-			'security.changeEmailSubtitle' => 'Yeni e-posta adresinize bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni e-postanızla giriş yapacaksınız.',
-			'security.newEmailLabel' => 'Yeni e-posta',
+			'security.changePhone' => 'Telefon Numarasını Değiştir',
+			'security.changePhoneSubtitle' => 'Yeni telefon numaranıza bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni numarayla giriş yapacaksınız.',
 			'security.sendCode' => 'Kod Gönder',
-			'security.codeSentTo' => ({required Object email}) => '${email} adresine gönderdiğimiz 6 haneli kodu girin',
-			'security.confirmNewEmail' => 'Yeni E-postayı Onayla',
-			'security.changeEmailSuccess' => 'E-postanız değiştirildi. Yeni e-postanızla tekrar giriş yapın.',
+			'security.codeSentTo' => ({required Object phone}) => '${phone} numarasına gönderdiğimiz 6 haneli kodu girin',
+			'security.confirmNewPhone' => 'Yeni Numarayı Onayla',
+			'security.changePhoneSuccess' => 'Telefon numaranız değiştirildi. Yeni numaranızla tekrar giriş yapın.',
 			'security.dangerZone' => 'Tehlikeli Bölge',
 			'security.deactivateAccount' => 'Hesabı Devre Dışı Bırak',
 			'security.deactivateAccountSubtitle' => 'Verilerinizi silmeden hesabınızı devre dışı bırakın',
@@ -1896,7 +1905,6 @@ extension on TranslationsTr {
 			'pendingVerification.checkStatus' => 'Durumu kontrol et',
 			'pendingVerification.stillPending' => 'Hâlâ inceleniyor. Doğrulandığında sizi bilgilendireceğiz.',
 			'phoneField.label' => 'Telefon Numarası',
-			'phoneField.labelOptional' => 'Telefon Numarası (İsteğe bağlı)',
 			'phoneField.selectCountry' => 'Ülke Seçin',
 			'phoneField.searchCountry' => 'Ülke veya kod ara…',
 			'phoneField.noCountriesFound' => 'Ülke bulunamadı',
@@ -1985,9 +1993,9 @@ extension on TranslationsTr {
 			'legal.sections.retention.body' => 'Hesabınız aktif olduğu sürece. Hesabınızı silerseniz, yasal olarak saklamamız gereken kayıtlar (örneğin vergi amaçlı ödeme kayıtları) dışında, kişisel verilerinizi makul bir süre içinde kaldırırız.',
 			'legal.sections.rights.title' => 'Haklarınız',
 			'legal.sections.rights.body' => 'Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin.',
+			'legal.sections.security.title' => 'Verilerinizi nasıl koruyoruz',
 			_ => null,
 		} ?? switch (path) {
-			'legal.sections.security.title' => 'Verilerinizi nasıl koruyoruz',
 			'legal.sections.security.body' => 'Doktorunuzla mesajlaşmalarınız ve yapay zeka asistanı konuşmaları şifrelenir. Yüklenen belgeler ve fotoğraflar özel olarak saklanır, yalnızca güvenli imzalı bağlantılarla erişilebilir, asla herkese açık dosyalar olarak değil. Şifreler asla okunabilir biçimde saklanmaz.',
 			'legal.sections.permissions.title' => 'İstediğimiz izinler',
 			'legal.sections.permissions.body' => 'Kamera ve fotoğraf galerisi — profil fotoğrafı ayarlamak ve tıbbi belgeler yüklemek için. Konum — doktorları size olan uzaklığa göre sıralamak için. Bildirimler — randevu hatırlatmaları ve mesajlar iletmek için. Biyometri (Face ID / parmak izi) — uygulamanın kilidini açmanın isteğe bağlı, daha hızlı bir yolu; biyometrik verileriniz asla cihazınızdan çıkmaz, yalnızca işletim sisteminden bir evet/hayır onayı alırız.',

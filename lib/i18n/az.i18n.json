@@ -29,7 +29,6 @@
     "register": "Hesab yarat",
     "signIn": "Daxil ol",
     "signUp": "Qeydiyyatdan keç",
-    "email": "E-poçt",
     "password": "Şifrə",
     "confirmPassword": "Şifrəni təsdiqlə",
     "firstName": "Ad",
@@ -44,7 +43,6 @@
     "createYourAccount": "Hesabınızı yaradın",
     "joinMedalize": "Bu gün DocLine-ya qoşulun",
     "iAmA": "Mən",
-    "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "Girişə qayıt",
     "verificationCode": "Təsdiq kodu",
@@ -54,20 +52,25 @@
   },
   "forgotPassword": {
     "title": "Şifrəni unutmusunuz?",
-    "subtitle": "E-poçtunuzu daxil edin, sizə 6 rəqəmli bərpa kodu göndərək"
+    "subtitle": "Telefon nömrənizi daxil edin, sizə 6 rəqəmli bərpa kodu göndərək"
   },
   "resetPassword": {
     "title": "Şifrəni bərpa et",
-    "subtitle": "E-poçtunuza göndərilən kodu daxil edin və yeni şifrə seçin",
+    "subtitle": "Telefonunuza göndərilən kodu daxil edin və yeni şifrə seçin",
     "button": "Şifrəni bərpa et",
     "success": "Şifrə uğurla bərpa edildi. Zəhmət olmasa daxil olun."
   },
-  "verifyEmail": {
-    "title": "Email ünvanınızı təsdiqləyin",
-    "subtitle": "$email ünvanına 6 rəqəmli kod göndərdik",
+  "verifyPhone": {
+    "title": "Telefon nömrənizi təsdiqləyin",
+    "subtitle": "$phone nömrəsinə 6 rəqəmli kod göndərdik",
     "button": "Təsdiqlə",
     "resend": "Kodu yenidən göndər",
     "resendSent": "Yeni kod göndərildi."
+  },
+  "socialComplete": {
+    "title": "Bir addım qaldı",
+    "subtitle": "Hesabınızı yaratmağı tamamlamaq üçün telefon nömrənizi daxil edin və təsdiqləyin.",
+    "button": "Davam et"
   },
   "validation": {
     "emailRequired": "E-poçt tələb olunur",
@@ -90,19 +93,19 @@
     "network": "Şəbəkə xətası. Bağlantınızı yoxlayın.",
     "rateLimit": "Çox cəhd edildi. Zəhmət olmasa gözləyib yenidən cəhd edin.",
     "rateLimitWithSeconds": "Çox cəhd edildi. $seconds saniyə sonra yenidən cəhd edin.",
-    "invalidCredentials": "Yanlış e-poçt və ya şifrə",
+    "invalidCredentials": "Yanlış telefon nömrəsi və ya şifrə",
     "sessionExpired": "Sessiyanın vaxtı bitdi. Zəhmət olmasa yenidən daxil olun.",
     "authError": "Autentifikasiya xətası. Zəhmət olmasa yenidən daxil olun.",
     "sessionRevoked": "Sessiya ləğv edildi. Zəhmət olmasa yenidən daxil olun.",
     "permissionDenied": "Bunu etməyə icazəniz yoxdur.",
     "validationError": "Doğrulama xətası",
     "serverError": "Server xətası ($code). Zəhmət olmasa yenidən cəhd edin.",
-    "socialLoginFailed": "Giriş uğursuz oldu. Yenidən cəhd edin və ya e-poçt və şifrənizi istifadə edin.",
+    "socialLoginFailed": "Giriş uğursuz oldu. Yenidən cəhd edin və ya telefon nömrənizi və şifrənizi istifadə edin.",
     "conflict": "Bu əməliyyat hazırda tamamlana bilmir.",
     "onboardingIncomplete": "Qeydiyyatı tamamlamaq üçün bütün tələb olunan sahələri doldurun.",
     "planLimitReached": "Planınızın limitinə çatmısınız. Daha çoxu üçün planı yüksəldin.",
     "chatUnavailable": "Bu həkim cari planında çat təklif etmir.",
-    "emailNotVerified": "Daxil olmadan əvvəl email ünvanınızı təsdiqləyin."
+    "phoneNotVerified": "Daxil olmadan əvvəl telefon nömrənizi təsdiqləyin."
   },
   "settings": {
     "title": "Parametrlər",
@@ -142,13 +145,12 @@
     "signOutAllFailed": "Bütün cihazlardan çıxış uğursuz oldu. Yenidən cəhd edin.",
     "noDevices": "Aktiv sessiya tapılmadı",
     "loadFailed": "Aktiv sessiyalarınız yüklənə bilmədi",
-    "changeEmail": "Email-i dəyiş",
-    "changeEmailSubtitle": "Yeni email ünvanınıza təsdiq kodu göndərəcəyik. Təsdiqdən sonra yeni email ilə daxil olacaqsınız.",
-    "newEmailLabel": "Yeni email",
+    "changePhone": "Telefon nömrəsini dəyiş",
+    "changePhoneSubtitle": "Yeni telefon nömrənizə təsdiq kodu göndərəcəyik. Təsdiqdən sonra yeni nömrə ilə daxil olacaqsınız.",
     "sendCode": "Kod göndər",
-    "codeSentTo": "$email ünvanına göndərdiyimiz 6 rəqəmli kodu daxil edin",
-    "confirmNewEmail": "Yeni email-i təsdiqlə",
-    "changeEmailSuccess": "Email dəyişdirildi. Yeni email ilə yenidən daxil olun.",
+    "codeSentTo": "$phone nömrəsinə göndərdiyimiz 6 rəqəmli kodu daxil edin",
+    "confirmNewPhone": "Yeni nömrəni təsdiqlə",
+    "changePhoneSuccess": "Telefon nömrəsi dəyişdirildi. Yeni nömrə ilə yenidən daxil olun.",
     "dangerZone": "Təhlükəli zona",
     "deactivateAccount": "Hesabı deaktiv et",
     "deactivateAccountSubtitle": "Məlumatları silmədən hesabı deaktiv edin",
@@ -473,7 +475,6 @@
   },
   "phoneField": {
     "label": "Telefon nömrəsi",
-    "labelOptional": "Telefon nömrəsi (istəyə bağlı)",
     "selectCountry": "Ölkə seçin",
     "searchCountry": "Ölkə və ya kod axtar…",
     "noCountriesFound": "Ölkə tapılmadı"

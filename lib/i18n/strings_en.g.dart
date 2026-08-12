@@ -48,7 +48,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$auth$en auth = Translations$auth$en.internal(_root);
 	late final Translations$forgotPassword$en forgotPassword = Translations$forgotPassword$en.internal(_root);
 	late final Translations$resetPassword$en resetPassword = Translations$resetPassword$en.internal(_root);
-	late final Translations$verifyEmail$en verifyEmail = Translations$verifyEmail$en.internal(_root);
+	late final Translations$verifyPhone$en verifyPhone = Translations$verifyPhone$en.internal(_root);
+	late final Translations$socialComplete$en socialComplete = Translations$socialComplete$en.internal(_root);
 	late final Translations$validation$en validation = Translations$validation$en.internal(_root);
 	late final Translations$errors$en errors = Translations$errors$en.internal(_root);
 	late final Translations$settings$en settings = Translations$settings$en.internal(_root);
@@ -188,9 +189,6 @@ class Translations$auth$en {
 	/// en: 'Sign Up'
 	String get signUp => 'Sign Up';
 
-	/// en: 'Email'
-	String get email => 'Email';
-
 	/// en: 'Password'
 	String get password => 'Password';
 
@@ -233,9 +231,6 @@ class Translations$auth$en {
 	/// en: 'I am a'
 	String get iAmA => 'I am a';
 
-	/// en: 'you@example.com'
-	String get emailHint => 'you@example.com';
-
 	/// en: '••••••••'
 	String get passwordHint => '••••••••';
 
@@ -266,8 +261,8 @@ class Translations$forgotPassword$en {
 	/// en: 'Forgot Password?'
 	String get title => 'Forgot Password?';
 
-	/// en: 'Enter your email and we'll send you a 6-digit reset code'
-	String get subtitle => 'Enter your email and we\'ll send you a 6-digit reset code';
+	/// en: 'Enter your phone number and we'll send you a 6-digit reset code'
+	String get subtitle => 'Enter your phone number and we\'ll send you a 6-digit reset code';
 }
 
 // Path: resetPassword
@@ -281,8 +276,8 @@ class Translations$resetPassword$en {
 	/// en: 'Reset Password'
 	String get title => 'Reset Password';
 
-	/// en: 'Enter the code sent to your email and choose a new password'
-	String get subtitle => 'Enter the code sent to your email and choose a new password';
+	/// en: 'Enter the code sent to your phone and choose a new password'
+	String get subtitle => 'Enter the code sent to your phone and choose a new password';
 
 	/// en: 'Reset Password'
 	String get button => 'Reset Password';
@@ -291,19 +286,19 @@ class Translations$resetPassword$en {
 	String get success => 'Password reset successfully. Please sign in.';
 }
 
-// Path: verifyEmail
-class Translations$verifyEmail$en {
-	Translations$verifyEmail$en.internal(this._root);
+// Path: verifyPhone
+class Translations$verifyPhone$en {
+	Translations$verifyPhone$en.internal(this._root);
 
 	final Translations _root; // ignore: unused_field
 
 	// Translations
 
-	/// en: 'Verify Your Email'
-	String get title => 'Verify Your Email';
+	/// en: 'Verify Your Phone'
+	String get title => 'Verify Your Phone';
 
-	/// en: 'We've sent a 6-digit code to $email'
-	String subtitle({required Object email}) => 'We\'ve sent a 6-digit code to ${email}';
+	/// en: 'We've sent a 6-digit code to $phone'
+	String subtitle({required Object phone}) => 'We\'ve sent a 6-digit code to ${phone}';
 
 	/// en: 'Verify'
 	String get button => 'Verify';
@@ -313,6 +308,24 @@ class Translations$verifyEmail$en {
 
 	/// en: 'A new code has been sent.'
 	String get resendSent => 'A new code has been sent.';
+}
+
+// Path: socialComplete
+class Translations$socialComplete$en {
+	Translations$socialComplete$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Almost there'
+	String get title => 'Almost there';
+
+	/// en: 'Enter and verify a phone number to finish creating your account.'
+	String get subtitle => 'Enter and verify a phone number to finish creating your account.';
+
+	/// en: 'Continue'
+	String get button => 'Continue';
 }
 
 // Path: validation
@@ -386,8 +399,8 @@ class Translations$errors$en {
 	/// en: 'Too many attempts. Try again in $seconds s.'
 	String rateLimitWithSeconds({required Object seconds}) => 'Too many attempts. Try again in ${seconds} s.';
 
-	/// en: 'Invalid email or password'
-	String get invalidCredentials => 'Invalid email or password';
+	/// en: 'Invalid phone number or password'
+	String get invalidCredentials => 'Invalid phone number or password';
 
 	/// en: 'Session expired. Please sign in again.'
 	String get sessionExpired => 'Session expired. Please sign in again.';
@@ -407,8 +420,8 @@ class Translations$errors$en {
 	/// en: 'Server error ($code). Please try again.'
 	String serverError({required Object code}) => 'Server error (${code}). Please try again.';
 
-	/// en: 'Sign-in failed. Please try again or use your email and password.'
-	String get socialLoginFailed => 'Sign-in failed. Please try again or use your email and password.';
+	/// en: 'Sign-in failed. Please try again or use your phone number and password.'
+	String get socialLoginFailed => 'Sign-in failed. Please try again or use your phone number and password.';
 
 	/// en: 'This action can't be completed right now.'
 	String get conflict => 'This action can\'t be completed right now.';
@@ -422,8 +435,8 @@ class Translations$errors$en {
 	/// en: 'This doctor doesn't offer chat on their current plan.'
 	String get chatUnavailable => 'This doctor doesn\'t offer chat on their current plan.';
 
-	/// en: 'Please verify your email before signing in.'
-	String get emailNotVerified => 'Please verify your email before signing in.';
+	/// en: 'Please verify your phone number before signing in.'
+	String get phoneNotVerified => 'Please verify your phone number before signing in.';
 }
 
 // Path: settings
@@ -548,26 +561,23 @@ class Translations$security$en {
 	/// en: 'Couldn't load your active sessions'
 	String get loadFailed => 'Couldn\'t load your active sessions';
 
-	/// en: 'Change Email'
-	String get changeEmail => 'Change Email';
+	/// en: 'Change Phone Number'
+	String get changePhone => 'Change Phone Number';
 
-	/// en: 'We'll send a verification code to your new email address. After confirming, you'll sign in with the new email.'
-	String get changeEmailSubtitle => 'We\'ll send a verification code to your new email address. After confirming, you\'ll sign in with the new email.';
-
-	/// en: 'New email'
-	String get newEmailLabel => 'New email';
+	/// en: 'We'll send a verification code to your new phone number. After confirming, you'll sign in with the new number.'
+	String get changePhoneSubtitle => 'We\'ll send a verification code to your new phone number. After confirming, you\'ll sign in with the new number.';
 
 	/// en: 'Send Code'
 	String get sendCode => 'Send Code';
 
-	/// en: 'Enter the 6-digit code we sent to $email'
-	String codeSentTo({required Object email}) => 'Enter the 6-digit code we sent to ${email}';
+	/// en: 'Enter the 6-digit code we sent to $phone'
+	String codeSentTo({required Object phone}) => 'Enter the 6-digit code we sent to ${phone}';
 
-	/// en: 'Confirm New Email'
-	String get confirmNewEmail => 'Confirm New Email';
+	/// en: 'Confirm New Phone Number'
+	String get confirmNewPhone => 'Confirm New Phone Number';
 
-	/// en: 'Your email has been changed. Please sign in again with your new email.'
-	String get changeEmailSuccess => 'Your email has been changed. Please sign in again with your new email.';
+	/// en: 'Your phone number has been changed. Please sign in again with your new number.'
+	String get changePhoneSuccess => 'Your phone number has been changed. Please sign in again with your new number.';
 
 	/// en: 'Danger Zone'
 	String get dangerZone => 'Danger Zone';
@@ -1523,9 +1533,6 @@ class Translations$phoneField$en {
 
 	/// en: 'Phone Number'
 	String get label => 'Phone Number';
-
-	/// en: 'Phone Number (Optional)'
-	String get labelOptional => 'Phone Number (Optional)';
 
 	/// en: 'Select Country'
 	String get selectCountry => 'Select Country';
@@ -3053,7 +3060,6 @@ extension on Translations {
 			'auth.register' => 'Create Account',
 			'auth.signIn' => 'Sign In',
 			'auth.signUp' => 'Sign Up',
-			'auth.email' => 'Email',
 			'auth.password' => 'Password',
 			'auth.confirmPassword' => 'Confirm Password',
 			'auth.firstName' => 'First Name',
@@ -3068,7 +3074,6 @@ extension on Translations {
 			'auth.createYourAccount' => 'Create your account',
 			'auth.joinMedalize' => 'Join DocLine today',
 			'auth.iAmA' => 'I am a',
-			'auth.emailHint' => 'you@example.com',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Back to Sign In',
 			'auth.verificationCode' => 'Verification code',
@@ -3076,16 +3081,19 @@ extension on Translations {
 			'auth.continueWithApple' => 'Continue with Apple',
 			'auth.orDivider' => 'or',
 			'forgotPassword.title' => 'Forgot Password?',
-			'forgotPassword.subtitle' => 'Enter your email and we\'ll send you a 6-digit reset code',
+			'forgotPassword.subtitle' => 'Enter your phone number and we\'ll send you a 6-digit reset code',
 			'resetPassword.title' => 'Reset Password',
-			'resetPassword.subtitle' => 'Enter the code sent to your email and choose a new password',
+			'resetPassword.subtitle' => 'Enter the code sent to your phone and choose a new password',
 			'resetPassword.button' => 'Reset Password',
 			'resetPassword.success' => 'Password reset successfully. Please sign in.',
-			'verifyEmail.title' => 'Verify Your Email',
-			'verifyEmail.subtitle' => ({required Object email}) => 'We\'ve sent a 6-digit code to ${email}',
-			'verifyEmail.button' => 'Verify',
-			'verifyEmail.resend' => 'Resend code',
-			'verifyEmail.resendSent' => 'A new code has been sent.',
+			'verifyPhone.title' => 'Verify Your Phone',
+			'verifyPhone.subtitle' => ({required Object phone}) => 'We\'ve sent a 6-digit code to ${phone}',
+			'verifyPhone.button' => 'Verify',
+			'verifyPhone.resend' => 'Resend code',
+			'verifyPhone.resendSent' => 'A new code has been sent.',
+			'socialComplete.title' => 'Almost there',
+			'socialComplete.subtitle' => 'Enter and verify a phone number to finish creating your account.',
+			'socialComplete.button' => 'Continue',
 			'validation.emailRequired' => 'Email is required',
 			'validation.emailInvalid' => 'Enter a valid email address',
 			'validation.passwordRequired' => 'Password is required',
@@ -3104,19 +3112,19 @@ extension on Translations {
 			'errors.network' => 'Network error. Check your connection.',
 			'errors.rateLimit' => 'Too many attempts. Please wait and try again.',
 			'errors.rateLimitWithSeconds' => ({required Object seconds}) => 'Too many attempts. Try again in ${seconds} s.',
-			'errors.invalidCredentials' => 'Invalid email or password',
+			'errors.invalidCredentials' => 'Invalid phone number or password',
 			'errors.sessionExpired' => 'Session expired. Please sign in again.',
 			'errors.authError' => 'Authentication error. Please sign in again.',
 			'errors.sessionRevoked' => 'Session was revoked. Please sign in again.',
 			'errors.permissionDenied' => 'You do not have permission to do this.',
 			'errors.validationError' => 'Validation error',
 			'errors.serverError' => ({required Object code}) => 'Server error (${code}). Please try again.',
-			'errors.socialLoginFailed' => 'Sign-in failed. Please try again or use your email and password.',
+			'errors.socialLoginFailed' => 'Sign-in failed. Please try again or use your phone number and password.',
 			'errors.conflict' => 'This action can\'t be completed right now.',
 			'errors.onboardingIncomplete' => 'Please complete all required fields before finishing onboarding.',
 			'errors.planLimitReached' => 'You\'ve reached your plan\'s limit. Upgrade to add more.',
 			'errors.chatUnavailable' => 'This doctor doesn\'t offer chat on their current plan.',
-			'errors.emailNotVerified' => 'Please verify your email before signing in.',
+			'errors.phoneNotVerified' => 'Please verify your phone number before signing in.',
 			'settings.title' => 'Settings',
 			'settings.account' => 'Account',
 			'settings.profile' => 'Profile',
@@ -3152,13 +3160,12 @@ extension on Translations {
 			'security.signOutAllFailed' => 'Couldn\'t sign out of all devices. Please try again.',
 			'security.noDevices' => 'No active sessions found',
 			'security.loadFailed' => 'Couldn\'t load your active sessions',
-			'security.changeEmail' => 'Change Email',
-			'security.changeEmailSubtitle' => 'We\'ll send a verification code to your new email address. After confirming, you\'ll sign in with the new email.',
-			'security.newEmailLabel' => 'New email',
+			'security.changePhone' => 'Change Phone Number',
+			'security.changePhoneSubtitle' => 'We\'ll send a verification code to your new phone number. After confirming, you\'ll sign in with the new number.',
 			'security.sendCode' => 'Send Code',
-			'security.codeSentTo' => ({required Object email}) => 'Enter the 6-digit code we sent to ${email}',
-			'security.confirmNewEmail' => 'Confirm New Email',
-			'security.changeEmailSuccess' => 'Your email has been changed. Please sign in again with your new email.',
+			'security.codeSentTo' => ({required Object phone}) => 'Enter the 6-digit code we sent to ${phone}',
+			'security.confirmNewPhone' => 'Confirm New Phone Number',
+			'security.changePhoneSuccess' => 'Your phone number has been changed. Please sign in again with your new number.',
 			'security.dangerZone' => 'Danger Zone',
 			'security.deactivateAccount' => 'Deactivate Account',
 			'security.deactivateAccountSubtitle' => 'Disable your account without deleting your data',
@@ -3449,7 +3456,6 @@ extension on Translations {
 			'pendingVerification.checkStatus' => 'Check Status',
 			'pendingVerification.stillPending' => 'Still under review. We\'ll notify you once it\'s verified.',
 			'phoneField.label' => 'Phone Number',
-			'phoneField.labelOptional' => 'Phone Number (Optional)',
 			'phoneField.selectCountry' => 'Select Country',
 			'phoneField.searchCountry' => 'Search country or code…',
 			'phoneField.noCountriesFound' => 'No countries found',
@@ -3538,9 +3544,9 @@ extension on Translations {
 			'legal.sections.retention.body' => 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).',
 			'legal.sections.rights.title' => 'Your rights',
 			'legal.sections.rights.body' => 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.',
+			'legal.sections.security.title' => 'How we protect your data',
 			_ => null,
 		} ?? switch (path) {
-			'legal.sections.security.title' => 'How we protect your data',
 			'legal.sections.security.body' => 'Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form.',
 			'legal.sections.permissions.title' => 'Permissions we ask for',
 			'legal.sections.permissions.body' => 'Camera and photo library — to set a profile picture and upload medical documents. Location — to sort doctors by distance from you. Notifications — to deliver appointment reminders and messages. Biometrics (Face ID / fingerprint) — an optional, faster way to unlock the app; your biometric data never leaves your device, we only receive a yes/no confirmation from its operating system.',

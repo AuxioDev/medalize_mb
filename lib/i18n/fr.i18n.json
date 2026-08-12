@@ -29,7 +29,6 @@
     "register": "Créer un compte",
     "signIn": "Se connecter",
     "signUp": "S'inscrire",
-    "email": "E-mail",
     "password": "Mot de passe",
     "confirmPassword": "Confirmer le mot de passe",
     "firstName": "Prénom",
@@ -44,7 +43,6 @@
     "createYourAccount": "Créez votre compte",
     "joinMedalize": "Rejoignez DocLine dès aujourd'hui",
     "iAmA": "Je suis",
-    "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "Retour à la connexion",
     "verificationCode": "Code de vérification",
@@ -54,20 +52,25 @@
   },
   "forgotPassword": {
     "title": "Mot de passe oublié ?",
-    "subtitle": "Saisissez votre e-mail et nous vous enverrons un code de réinitialisation à 6 chiffres"
+    "subtitle": "Saisissez votre numéro de téléphone et nous vous enverrons un code de réinitialisation à 6 chiffres"
   },
   "resetPassword": {
     "title": "Réinitialiser le mot de passe",
-    "subtitle": "Saisissez le code envoyé par e-mail et choisissez un nouveau mot de passe",
+    "subtitle": "Saisissez le code envoyé à votre téléphone et choisissez un nouveau mot de passe",
     "button": "Réinitialiser le mot de passe",
     "success": "Mot de passe réinitialisé. Veuillez vous connecter."
   },
-  "verifyEmail": {
-    "title": "Vérifiez votre e-mail",
-    "subtitle": "Nous avons envoyé un code à 6 chiffres à $email",
+  "verifyPhone": {
+    "title": "Vérifiez votre numéro de téléphone",
+    "subtitle": "Nous avons envoyé un code à 6 chiffres au $phone",
     "button": "Vérifier",
     "resend": "Renvoyer le code",
     "resendSent": "Un nouveau code a été envoyé."
+  },
+  "socialComplete": {
+    "title": "Presque terminé",
+    "subtitle": "Saisissez et vérifiez un numéro de téléphone pour terminer la création de votre compte.",
+    "button": "Continuer"
   },
   "validation": {
     "emailRequired": "L'e-mail est requis",
@@ -90,19 +93,19 @@
     "network": "Erreur réseau. Vérifiez votre connexion.",
     "rateLimit": "Trop de tentatives. Veuillez patienter et réessayer.",
     "rateLimitWithSeconds": "Trop de tentatives. Réessayez dans $seconds s.",
-    "invalidCredentials": "E-mail ou mot de passe invalide",
+    "invalidCredentials": "Numéro de téléphone ou mot de passe invalide",
     "sessionExpired": "Session expirée. Veuillez vous reconnecter.",
     "authError": "Erreur d'authentification. Veuillez vous reconnecter.",
     "sessionRevoked": "Session révoquée. Veuillez vous reconnecter.",
     "permissionDenied": "Vous n'avez pas la permission de faire cela.",
     "validationError": "Erreur de validation",
     "serverError": "Erreur serveur ($code). Veuillez réessayer.",
-    "socialLoginFailed": "Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.",
+    "socialLoginFailed": "Échec de la connexion. Réessayez ou utilisez votre numéro de téléphone et mot de passe.",
     "conflict": "Cette action ne peut pas être effectuée pour le moment.",
     "onboardingIncomplete": "Veuillez remplir tous les champs requis pour terminer l'inscription.",
     "planLimitReached": "Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.",
     "chatUnavailable": "Ce médecin ne propose pas le chat avec son forfait actuel.",
-    "emailNotVerified": "Veuillez vérifier votre e-mail avant de vous connecter."
+    "phoneNotVerified": "Veuillez vérifier votre numéro de téléphone avant de vous connecter."
   },
   "settings": {
     "title": "Paramètres",
@@ -142,13 +145,12 @@
     "signOutAllFailed": "Impossible de se déconnecter de tous les appareils. Réessayez.",
     "noDevices": "Aucune session active trouvée",
     "loadFailed": "Impossible de charger vos sessions actives",
-    "changeEmail": "Changer l'email",
-    "changeEmailSubtitle": "Nous enverrons un code de vérification à votre nouvelle adresse email. Après confirmation, vous vous connecterez avec le nouvel email.",
-    "newEmailLabel": "Nouvel email",
+    "changePhone": "Changer le numéro de téléphone",
+    "changePhoneSubtitle": "Nous enverrons un code de vérification à votre nouveau numéro. Après confirmation, vous vous connecterez avec le nouveau numéro.",
     "sendCode": "Envoyer le code",
-    "codeSentTo": "Saisissez le code à 6 chiffres envoyé à $email",
-    "confirmNewEmail": "Confirmer le nouvel email",
-    "changeEmailSuccess": "Votre email a été modifié. Reconnectez-vous avec votre nouvel email.",
+    "codeSentTo": "Saisissez le code à 6 chiffres envoyé au $phone",
+    "confirmNewPhone": "Confirmer le nouveau numéro",
+    "changePhoneSuccess": "Votre numéro de téléphone a été modifié. Reconnectez-vous avec votre nouveau numéro.",
     "dangerZone": "Zone dangereuse",
     "deactivateAccount": "Désactiver le compte",
     "deactivateAccountSubtitle": "Désactiver votre compte sans supprimer vos données",
@@ -473,7 +475,6 @@
   },
   "phoneField": {
     "label": "Numéro de téléphone",
-    "labelOptional": "Numéro de téléphone (facultatif)",
     "selectCountry": "Sélectionner un pays",
     "searchCountry": "Rechercher un pays ou un code…",
     "noCountriesFound": "Aucun pays trouvé"

@@ -44,7 +44,8 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$ru auth = _Translations$auth$ru._(_root);
 	@override late final _Translations$forgotPassword$ru forgotPassword = _Translations$forgotPassword$ru._(_root);
 	@override late final _Translations$resetPassword$ru resetPassword = _Translations$resetPassword$ru._(_root);
-	@override late final _Translations$verifyEmail$ru verifyEmail = _Translations$verifyEmail$ru._(_root);
+	@override late final _Translations$verifyPhone$ru verifyPhone = _Translations$verifyPhone$ru._(_root);
+	@override late final _Translations$socialComplete$ru socialComplete = _Translations$socialComplete$ru._(_root);
 	@override late final _Translations$validation$ru validation = _Translations$validation$ru._(_root);
 	@override late final _Translations$errors$ru errors = _Translations$errors$ru._(_root);
 	@override late final _Translations$settings$ru settings = _Translations$settings$ru._(_root);
@@ -131,7 +132,6 @@ class _Translations$auth$ru extends Translations$auth$en {
 	@override String get register => 'Создать аккаунт';
 	@override String get signIn => 'Войти';
 	@override String get signUp => 'Зарегистрироваться';
-	@override String get email => 'Эл. почта';
 	@override String get password => 'Пароль';
 	@override String get confirmPassword => 'Подтвердите пароль';
 	@override String get firstName => 'Имя';
@@ -146,7 +146,6 @@ class _Translations$auth$ru extends Translations$auth$en {
 	@override String get createYourAccount => 'Создайте аккаунт';
 	@override String get joinMedalize => 'Присоединяйтесь к DocLine';
 	@override String get iAmA => 'Я —';
-	@override String get emailHint => 'you@example.com';
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Назад ко входу';
 	@override String get verificationCode => 'Код подтверждения';
@@ -163,7 +162,7 @@ class _Translations$forgotPassword$ru extends Translations$forgotPassword$en {
 
 	// Translations
 	@override String get title => 'Забыли пароль?';
-	@override String get subtitle => 'Введите эл. почту, и мы отправим 6-значный код для сброса';
+	@override String get subtitle => 'Введите номер телефона, и мы отправим 6-значный код для сброса';
 }
 
 // Path: resetPassword
@@ -174,23 +173,35 @@ class _Translations$resetPassword$ru extends Translations$resetPassword$en {
 
 	// Translations
 	@override String get title => 'Сброс пароля';
-	@override String get subtitle => 'Введите код из письма и выберите новый пароль';
+	@override String get subtitle => 'Введите код, отправленный на ваш телефон, и выберите новый пароль';
 	@override String get button => 'Сбросить пароль';
 	@override String get success => 'Пароль успешно сброшен. Войдите в аккаунт.';
 }
 
-// Path: verifyEmail
-class _Translations$verifyEmail$ru extends Translations$verifyEmail$en {
-	_Translations$verifyEmail$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+// Path: verifyPhone
+class _Translations$verifyPhone$ru extends Translations$verifyPhone$en {
+	_Translations$verifyPhone$ru._(TranslationsRu root) : this._root = root, super.internal(root);
 
 	final TranslationsRu _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Подтвердите email';
-	@override String subtitle({required Object email}) => 'Мы отправили 6-значный код на ${email}';
+	@override String get title => 'Подтвердите номер телефона';
+	@override String subtitle({required Object phone}) => 'Мы отправили 6-значный код на ${phone}';
 	@override String get button => 'Подтвердить';
 	@override String get resend => 'Отправить код повторно';
 	@override String get resendSent => 'Новый код отправлен.';
+}
+
+// Path: socialComplete
+class _Translations$socialComplete$ru extends Translations$socialComplete$en {
+	_Translations$socialComplete$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ещё один шаг';
+	@override String get subtitle => 'Укажите и подтвердите номер телефона, чтобы завершить создание аккаунта.';
+	@override String get button => 'Продолжить';
 }
 
 // Path: validation
@@ -227,19 +238,19 @@ class _Translations$errors$ru extends Translations$errors$en {
 	@override String get network => 'Ошибка сети. Проверьте подключение.';
 	@override String get rateLimit => 'Слишком много попыток. Подождите и повторите.';
 	@override String rateLimitWithSeconds({required Object seconds}) => 'Слишком много попыток. Повторите через ${seconds} с.';
-	@override String get invalidCredentials => 'Неверная эл. почта или пароль';
+	@override String get invalidCredentials => 'Неверный номер телефона или пароль';
 	@override String get sessionExpired => 'Сессия истекла. Пожалуйста, войдите снова.';
 	@override String get authError => 'Ошибка аутентификации. Пожалуйста, войдите снова.';
 	@override String get sessionRevoked => 'Сессия отозвана. Пожалуйста, войдите снова.';
 	@override String get permissionDenied => 'У вас нет прав для этого действия.';
 	@override String get validationError => 'Ошибка проверки';
 	@override String serverError({required Object code}) => 'Ошибка сервера (${code}). Повторите попытку.';
-	@override String get socialLoginFailed => 'Не удалось войти. Попробуйте снова или используйте эл. почту и пароль.';
+	@override String get socialLoginFailed => 'Не удалось войти. Попробуйте снова или используйте номер телефона и пароль.';
 	@override String get conflict => 'Это действие сейчас невозможно выполнить.';
 	@override String get onboardingIncomplete => 'Заполните все обязательные поля, чтобы завершить регистрацию.';
 	@override String get planLimitReached => 'Вы достигли лимита вашего тарифа. Перейдите на более высокий тариф.';
 	@override String get chatUnavailable => 'Этот врач не предлагает чат на своём текущем тарифе.';
-	@override String get emailNotVerified => 'Подтвердите email перед входом.';
+	@override String get phoneNotVerified => 'Подтвердите номер телефона перед входом.';
 }
 
 // Path: settings
@@ -293,13 +304,12 @@ class _Translations$security$ru extends Translations$security$en {
 	@override String get signOutAllFailed => 'Не удалось выйти со всех устройств. Попробуйте снова.';
 	@override String get noDevices => 'Активные сессии не найдены';
 	@override String get loadFailed => 'Не удалось загрузить активные сессии';
-	@override String get changeEmail => 'Изменить email';
-	@override String get changeEmailSubtitle => 'Мы отправим код подтверждения на новый адрес. После подтверждения вы будете входить с новым email.';
-	@override String get newEmailLabel => 'Новый email';
+	@override String get changePhone => 'Изменить номер телефона';
+	@override String get changePhoneSubtitle => 'Мы отправим код подтверждения на новый номер. После подтверждения вы будете входить с новым номером.';
 	@override String get sendCode => 'Отправить код';
-	@override String codeSentTo({required Object email}) => 'Введите 6-значный код, отправленный на ${email}';
-	@override String get confirmNewEmail => 'Подтвердить новый email';
-	@override String get changeEmailSuccess => 'Email изменён. Войдите заново с новым email.';
+	@override String codeSentTo({required Object phone}) => 'Введите 6-значный код, отправленный на ${phone}';
+	@override String get confirmNewPhone => 'Подтвердить новый номер';
+	@override String get changePhoneSuccess => 'Номер телефона изменён. Войдите заново с новым номером.';
 	@override String get dangerZone => 'Опасная зона';
 	@override String get deactivateAccount => 'Деактивировать аккаунт';
 	@override String get deactivateAccountSubtitle => 'Отключить аккаунт без удаления данных';
@@ -709,7 +719,6 @@ class _Translations$phoneField$ru extends Translations$phoneField$en {
 
 	// Translations
 	@override String get label => 'Номер телефона';
-	@override String get labelOptional => 'Номер телефона (необязательно)';
 	@override String get selectCountry => 'Выберите страну';
 	@override String get searchCountry => 'Поиск страны или кода…';
 	@override String get noCountriesFound => 'Страны не найдены';
@@ -1500,7 +1509,6 @@ extension on TranslationsRu {
 			'auth.register' => 'Создать аккаунт',
 			'auth.signIn' => 'Войти',
 			'auth.signUp' => 'Зарегистрироваться',
-			'auth.email' => 'Эл. почта',
 			'auth.password' => 'Пароль',
 			'auth.confirmPassword' => 'Подтвердите пароль',
 			'auth.firstName' => 'Имя',
@@ -1515,7 +1523,6 @@ extension on TranslationsRu {
 			'auth.createYourAccount' => 'Создайте аккаунт',
 			'auth.joinMedalize' => 'Присоединяйтесь к DocLine',
 			'auth.iAmA' => 'Я —',
-			'auth.emailHint' => 'you@example.com',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Назад ко входу',
 			'auth.verificationCode' => 'Код подтверждения',
@@ -1523,16 +1530,19 @@ extension on TranslationsRu {
 			'auth.continueWithApple' => 'Продолжить с Apple',
 			'auth.orDivider' => 'или',
 			'forgotPassword.title' => 'Забыли пароль?',
-			'forgotPassword.subtitle' => 'Введите эл. почту, и мы отправим 6-значный код для сброса',
+			'forgotPassword.subtitle' => 'Введите номер телефона, и мы отправим 6-значный код для сброса',
 			'resetPassword.title' => 'Сброс пароля',
-			'resetPassword.subtitle' => 'Введите код из письма и выберите новый пароль',
+			'resetPassword.subtitle' => 'Введите код, отправленный на ваш телефон, и выберите новый пароль',
 			'resetPassword.button' => 'Сбросить пароль',
 			'resetPassword.success' => 'Пароль успешно сброшен. Войдите в аккаунт.',
-			'verifyEmail.title' => 'Подтвердите email',
-			'verifyEmail.subtitle' => ({required Object email}) => 'Мы отправили 6-значный код на ${email}',
-			'verifyEmail.button' => 'Подтвердить',
-			'verifyEmail.resend' => 'Отправить код повторно',
-			'verifyEmail.resendSent' => 'Новый код отправлен.',
+			'verifyPhone.title' => 'Подтвердите номер телефона',
+			'verifyPhone.subtitle' => ({required Object phone}) => 'Мы отправили 6-значный код на ${phone}',
+			'verifyPhone.button' => 'Подтвердить',
+			'verifyPhone.resend' => 'Отправить код повторно',
+			'verifyPhone.resendSent' => 'Новый код отправлен.',
+			'socialComplete.title' => 'Ещё один шаг',
+			'socialComplete.subtitle' => 'Укажите и подтвердите номер телефона, чтобы завершить создание аккаунта.',
+			'socialComplete.button' => 'Продолжить',
 			'validation.emailRequired' => 'Введите эл. почту',
 			'validation.emailInvalid' => 'Введите действительный адрес эл. почты',
 			'validation.passwordRequired' => 'Введите пароль',
@@ -1551,19 +1561,19 @@ extension on TranslationsRu {
 			'errors.network' => 'Ошибка сети. Проверьте подключение.',
 			'errors.rateLimit' => 'Слишком много попыток. Подождите и повторите.',
 			'errors.rateLimitWithSeconds' => ({required Object seconds}) => 'Слишком много попыток. Повторите через ${seconds} с.',
-			'errors.invalidCredentials' => 'Неверная эл. почта или пароль',
+			'errors.invalidCredentials' => 'Неверный номер телефона или пароль',
 			'errors.sessionExpired' => 'Сессия истекла. Пожалуйста, войдите снова.',
 			'errors.authError' => 'Ошибка аутентификации. Пожалуйста, войдите снова.',
 			'errors.sessionRevoked' => 'Сессия отозвана. Пожалуйста, войдите снова.',
 			'errors.permissionDenied' => 'У вас нет прав для этого действия.',
 			'errors.validationError' => 'Ошибка проверки',
 			'errors.serverError' => ({required Object code}) => 'Ошибка сервера (${code}). Повторите попытку.',
-			'errors.socialLoginFailed' => 'Не удалось войти. Попробуйте снова или используйте эл. почту и пароль.',
+			'errors.socialLoginFailed' => 'Не удалось войти. Попробуйте снова или используйте номер телефона и пароль.',
 			'errors.conflict' => 'Это действие сейчас невозможно выполнить.',
 			'errors.onboardingIncomplete' => 'Заполните все обязательные поля, чтобы завершить регистрацию.',
 			'errors.planLimitReached' => 'Вы достигли лимита вашего тарифа. Перейдите на более высокий тариф.',
 			'errors.chatUnavailable' => 'Этот врач не предлагает чат на своём текущем тарифе.',
-			'errors.emailNotVerified' => 'Подтвердите email перед входом.',
+			'errors.phoneNotVerified' => 'Подтвердите номер телефона перед входом.',
 			'settings.title' => 'Настройки',
 			'settings.account' => 'Аккаунт',
 			'settings.profile' => 'Профиль',
@@ -1599,13 +1609,12 @@ extension on TranslationsRu {
 			'security.signOutAllFailed' => 'Не удалось выйти со всех устройств. Попробуйте снова.',
 			'security.noDevices' => 'Активные сессии не найдены',
 			'security.loadFailed' => 'Не удалось загрузить активные сессии',
-			'security.changeEmail' => 'Изменить email',
-			'security.changeEmailSubtitle' => 'Мы отправим код подтверждения на новый адрес. После подтверждения вы будете входить с новым email.',
-			'security.newEmailLabel' => 'Новый email',
+			'security.changePhone' => 'Изменить номер телефона',
+			'security.changePhoneSubtitle' => 'Мы отправим код подтверждения на новый номер. После подтверждения вы будете входить с новым номером.',
 			'security.sendCode' => 'Отправить код',
-			'security.codeSentTo' => ({required Object email}) => 'Введите 6-значный код, отправленный на ${email}',
-			'security.confirmNewEmail' => 'Подтвердить новый email',
-			'security.changeEmailSuccess' => 'Email изменён. Войдите заново с новым email.',
+			'security.codeSentTo' => ({required Object phone}) => 'Введите 6-значный код, отправленный на ${phone}',
+			'security.confirmNewPhone' => 'Подтвердить новый номер',
+			'security.changePhoneSuccess' => 'Номер телефона изменён. Войдите заново с новым номером.',
 			'security.dangerZone' => 'Опасная зона',
 			'security.deactivateAccount' => 'Деактивировать аккаунт',
 			'security.deactivateAccountSubtitle' => 'Отключить аккаунт без удаления данных',
@@ -1896,7 +1905,6 @@ extension on TranslationsRu {
 			'pendingVerification.checkStatus' => 'Проверить статус',
 			'pendingVerification.stillPending' => 'Всё ещё на рассмотрении. Мы уведомим вас, как только аккаунт будет подтверждён.',
 			'phoneField.label' => 'Номер телефона',
-			'phoneField.labelOptional' => 'Номер телефона (необязательно)',
 			'phoneField.selectCountry' => 'Выберите страну',
 			'phoneField.searchCountry' => 'Поиск страны или кода…',
 			'phoneField.noCountriesFound' => 'Страны не найдены',
@@ -1985,9 +1993,9 @@ extension on TranslationsRu {
 			'legal.sections.retention.body' => 'Пока ваш аккаунт активен. При удалении аккаунта мы удаляем ваши персональные данные в разумный срок, за исключением записей, которые обязаны хранить по закону (например, платёжные записи для налогового учёта).',
 			'legal.sections.rights.title' => 'Ваши права',
 			'legal.sections.rights.body' => 'Вы можете запросить доступ к данным, которые мы о вас храним, потребовать исправления неточных данных, потребовать удаления аккаунта и данных, а также отозвать согласие в любой момент. Большая часть этого доступна прямо в разделе «Профиль» → «Настройки»; по остальным вопросам — свяжитесь с нами ниже.',
+			'legal.sections.security.title' => 'Как мы защищаем ваши данные',
 			_ => null,
 		} ?? switch (path) {
-			'legal.sections.security.title' => 'Как мы защищаем ваши данные',
 			'legal.sections.security.body' => 'Переписка с врачом и разговоры с ИИ-ассистентом шифруются. Загруженные документы и фото хранятся приватно и доступны только по защищённым подписанным ссылкам, никогда как публичные файлы. Пароли никогда не хранятся в читаемом виде.',
 			'legal.sections.permissions.title' => 'Какие разрешения мы запрашиваем',
 			'legal.sections.permissions.body' => 'Камера и фотогалерея — чтобы установить фото профиля и загрузить медицинские документы. Геолокация — чтобы сортировать врачей по расстоянию до вас. Уведомления — чтобы доставлять напоминания о приёмах и сообщения. Биометрия (Face ID / отпечаток пальца) — необязательный, более быстрый способ разблокировки приложения; ваши биометрические данные никогда не покидают устройство, мы получаем только подтверждение «да/нет» от его операционной системы.',

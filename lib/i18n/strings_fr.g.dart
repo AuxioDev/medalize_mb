@@ -44,7 +44,8 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$fr auth = _Translations$auth$fr._(_root);
 	@override late final _Translations$forgotPassword$fr forgotPassword = _Translations$forgotPassword$fr._(_root);
 	@override late final _Translations$resetPassword$fr resetPassword = _Translations$resetPassword$fr._(_root);
-	@override late final _Translations$verifyEmail$fr verifyEmail = _Translations$verifyEmail$fr._(_root);
+	@override late final _Translations$verifyPhone$fr verifyPhone = _Translations$verifyPhone$fr._(_root);
+	@override late final _Translations$socialComplete$fr socialComplete = _Translations$socialComplete$fr._(_root);
 	@override late final _Translations$validation$fr validation = _Translations$validation$fr._(_root);
 	@override late final _Translations$errors$fr errors = _Translations$errors$fr._(_root);
 	@override late final _Translations$settings$fr settings = _Translations$settings$fr._(_root);
@@ -131,7 +132,6 @@ class _Translations$auth$fr extends Translations$auth$en {
 	@override String get register => 'Créer un compte';
 	@override String get signIn => 'Se connecter';
 	@override String get signUp => 'S\'inscrire';
-	@override String get email => 'E-mail';
 	@override String get password => 'Mot de passe';
 	@override String get confirmPassword => 'Confirmer le mot de passe';
 	@override String get firstName => 'Prénom';
@@ -146,7 +146,6 @@ class _Translations$auth$fr extends Translations$auth$en {
 	@override String get createYourAccount => 'Créez votre compte';
 	@override String get joinMedalize => 'Rejoignez DocLine dès aujourd\'hui';
 	@override String get iAmA => 'Je suis';
-	@override String get emailHint => 'you@example.com';
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Retour à la connexion';
 	@override String get verificationCode => 'Code de vérification';
@@ -163,7 +162,7 @@ class _Translations$forgotPassword$fr extends Translations$forgotPassword$en {
 
 	// Translations
 	@override String get title => 'Mot de passe oublié ?';
-	@override String get subtitle => 'Saisissez votre e-mail et nous vous enverrons un code de réinitialisation à 6 chiffres';
+	@override String get subtitle => 'Saisissez votre numéro de téléphone et nous vous enverrons un code de réinitialisation à 6 chiffres';
 }
 
 // Path: resetPassword
@@ -174,23 +173,35 @@ class _Translations$resetPassword$fr extends Translations$resetPassword$en {
 
 	// Translations
 	@override String get title => 'Réinitialiser le mot de passe';
-	@override String get subtitle => 'Saisissez le code envoyé par e-mail et choisissez un nouveau mot de passe';
+	@override String get subtitle => 'Saisissez le code envoyé à votre téléphone et choisissez un nouveau mot de passe';
 	@override String get button => 'Réinitialiser le mot de passe';
 	@override String get success => 'Mot de passe réinitialisé. Veuillez vous connecter.';
 }
 
-// Path: verifyEmail
-class _Translations$verifyEmail$fr extends Translations$verifyEmail$en {
-	_Translations$verifyEmail$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+// Path: verifyPhone
+class _Translations$verifyPhone$fr extends Translations$verifyPhone$en {
+	_Translations$verifyPhone$fr._(TranslationsFr root) : this._root = root, super.internal(root);
 
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Vérifiez votre e-mail';
-	@override String subtitle({required Object email}) => 'Nous avons envoyé un code à 6 chiffres à ${email}';
+	@override String get title => 'Vérifiez votre numéro de téléphone';
+	@override String subtitle({required Object phone}) => 'Nous avons envoyé un code à 6 chiffres au ${phone}';
 	@override String get button => 'Vérifier';
 	@override String get resend => 'Renvoyer le code';
 	@override String get resendSent => 'Un nouveau code a été envoyé.';
+}
+
+// Path: socialComplete
+class _Translations$socialComplete$fr extends Translations$socialComplete$en {
+	_Translations$socialComplete$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Presque terminé';
+	@override String get subtitle => 'Saisissez et vérifiez un numéro de téléphone pour terminer la création de votre compte.';
+	@override String get button => 'Continuer';
 }
 
 // Path: validation
@@ -227,19 +238,19 @@ class _Translations$errors$fr extends Translations$errors$en {
 	@override String get network => 'Erreur réseau. Vérifiez votre connexion.';
 	@override String get rateLimit => 'Trop de tentatives. Veuillez patienter et réessayer.';
 	@override String rateLimitWithSeconds({required Object seconds}) => 'Trop de tentatives. Réessayez dans ${seconds} s.';
-	@override String get invalidCredentials => 'E-mail ou mot de passe invalide';
+	@override String get invalidCredentials => 'Numéro de téléphone ou mot de passe invalide';
 	@override String get sessionExpired => 'Session expirée. Veuillez vous reconnecter.';
 	@override String get authError => 'Erreur d\'authentification. Veuillez vous reconnecter.';
 	@override String get sessionRevoked => 'Session révoquée. Veuillez vous reconnecter.';
 	@override String get permissionDenied => 'Vous n\'avez pas la permission de faire cela.';
 	@override String get validationError => 'Erreur de validation';
 	@override String serverError({required Object code}) => 'Erreur serveur (${code}). Veuillez réessayer.';
-	@override String get socialLoginFailed => 'Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.';
+	@override String get socialLoginFailed => 'Échec de la connexion. Réessayez ou utilisez votre numéro de téléphone et mot de passe.';
 	@override String get conflict => 'Cette action ne peut pas être effectuée pour le moment.';
 	@override String get onboardingIncomplete => 'Veuillez remplir tous les champs requis pour terminer l\'inscription.';
 	@override String get planLimitReached => 'Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.';
 	@override String get chatUnavailable => 'Ce médecin ne propose pas le chat avec son forfait actuel.';
-	@override String get emailNotVerified => 'Veuillez vérifier votre e-mail avant de vous connecter.';
+	@override String get phoneNotVerified => 'Veuillez vérifier votre numéro de téléphone avant de vous connecter.';
 }
 
 // Path: settings
@@ -293,13 +304,12 @@ class _Translations$security$fr extends Translations$security$en {
 	@override String get signOutAllFailed => 'Impossible de se déconnecter de tous les appareils. Réessayez.';
 	@override String get noDevices => 'Aucune session active trouvée';
 	@override String get loadFailed => 'Impossible de charger vos sessions actives';
-	@override String get changeEmail => 'Changer l\'email';
-	@override String get changeEmailSubtitle => 'Nous enverrons un code de vérification à votre nouvelle adresse email. Après confirmation, vous vous connecterez avec le nouvel email.';
-	@override String get newEmailLabel => 'Nouvel email';
+	@override String get changePhone => 'Changer le numéro de téléphone';
+	@override String get changePhoneSubtitle => 'Nous enverrons un code de vérification à votre nouveau numéro. Après confirmation, vous vous connecterez avec le nouveau numéro.';
 	@override String get sendCode => 'Envoyer le code';
-	@override String codeSentTo({required Object email}) => 'Saisissez le code à 6 chiffres envoyé à ${email}';
-	@override String get confirmNewEmail => 'Confirmer le nouvel email';
-	@override String get changeEmailSuccess => 'Votre email a été modifié. Reconnectez-vous avec votre nouvel email.';
+	@override String codeSentTo({required Object phone}) => 'Saisissez le code à 6 chiffres envoyé au ${phone}';
+	@override String get confirmNewPhone => 'Confirmer le nouveau numéro';
+	@override String get changePhoneSuccess => 'Votre numéro de téléphone a été modifié. Reconnectez-vous avec votre nouveau numéro.';
 	@override String get dangerZone => 'Zone dangereuse';
 	@override String get deactivateAccount => 'Désactiver le compte';
 	@override String get deactivateAccountSubtitle => 'Désactiver votre compte sans supprimer vos données';
@@ -709,7 +719,6 @@ class _Translations$phoneField$fr extends Translations$phoneField$en {
 
 	// Translations
 	@override String get label => 'Numéro de téléphone';
-	@override String get labelOptional => 'Numéro de téléphone (facultatif)';
 	@override String get selectCountry => 'Sélectionner un pays';
 	@override String get searchCountry => 'Rechercher un pays ou un code…';
 	@override String get noCountriesFound => 'Aucun pays trouvé';
@@ -1500,7 +1509,6 @@ extension on TranslationsFr {
 			'auth.register' => 'Créer un compte',
 			'auth.signIn' => 'Se connecter',
 			'auth.signUp' => 'S\'inscrire',
-			'auth.email' => 'E-mail',
 			'auth.password' => 'Mot de passe',
 			'auth.confirmPassword' => 'Confirmer le mot de passe',
 			'auth.firstName' => 'Prénom',
@@ -1515,7 +1523,6 @@ extension on TranslationsFr {
 			'auth.createYourAccount' => 'Créez votre compte',
 			'auth.joinMedalize' => 'Rejoignez DocLine dès aujourd\'hui',
 			'auth.iAmA' => 'Je suis',
-			'auth.emailHint' => 'you@example.com',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Retour à la connexion',
 			'auth.verificationCode' => 'Code de vérification',
@@ -1523,16 +1530,19 @@ extension on TranslationsFr {
 			'auth.continueWithApple' => 'Continuer avec Apple',
 			'auth.orDivider' => 'ou',
 			'forgotPassword.title' => 'Mot de passe oublié ?',
-			'forgotPassword.subtitle' => 'Saisissez votre e-mail et nous vous enverrons un code de réinitialisation à 6 chiffres',
+			'forgotPassword.subtitle' => 'Saisissez votre numéro de téléphone et nous vous enverrons un code de réinitialisation à 6 chiffres',
 			'resetPassword.title' => 'Réinitialiser le mot de passe',
-			'resetPassword.subtitle' => 'Saisissez le code envoyé par e-mail et choisissez un nouveau mot de passe',
+			'resetPassword.subtitle' => 'Saisissez le code envoyé à votre téléphone et choisissez un nouveau mot de passe',
 			'resetPassword.button' => 'Réinitialiser le mot de passe',
 			'resetPassword.success' => 'Mot de passe réinitialisé. Veuillez vous connecter.',
-			'verifyEmail.title' => 'Vérifiez votre e-mail',
-			'verifyEmail.subtitle' => ({required Object email}) => 'Nous avons envoyé un code à 6 chiffres à ${email}',
-			'verifyEmail.button' => 'Vérifier',
-			'verifyEmail.resend' => 'Renvoyer le code',
-			'verifyEmail.resendSent' => 'Un nouveau code a été envoyé.',
+			'verifyPhone.title' => 'Vérifiez votre numéro de téléphone',
+			'verifyPhone.subtitle' => ({required Object phone}) => 'Nous avons envoyé un code à 6 chiffres au ${phone}',
+			'verifyPhone.button' => 'Vérifier',
+			'verifyPhone.resend' => 'Renvoyer le code',
+			'verifyPhone.resendSent' => 'Un nouveau code a été envoyé.',
+			'socialComplete.title' => 'Presque terminé',
+			'socialComplete.subtitle' => 'Saisissez et vérifiez un numéro de téléphone pour terminer la création de votre compte.',
+			'socialComplete.button' => 'Continuer',
 			'validation.emailRequired' => 'L\'e-mail est requis',
 			'validation.emailInvalid' => 'Saisissez une adresse e-mail valide',
 			'validation.passwordRequired' => 'Le mot de passe est requis',
@@ -1551,19 +1561,19 @@ extension on TranslationsFr {
 			'errors.network' => 'Erreur réseau. Vérifiez votre connexion.',
 			'errors.rateLimit' => 'Trop de tentatives. Veuillez patienter et réessayer.',
 			'errors.rateLimitWithSeconds' => ({required Object seconds}) => 'Trop de tentatives. Réessayez dans ${seconds} s.',
-			'errors.invalidCredentials' => 'E-mail ou mot de passe invalide',
+			'errors.invalidCredentials' => 'Numéro de téléphone ou mot de passe invalide',
 			'errors.sessionExpired' => 'Session expirée. Veuillez vous reconnecter.',
 			'errors.authError' => 'Erreur d\'authentification. Veuillez vous reconnecter.',
 			'errors.sessionRevoked' => 'Session révoquée. Veuillez vous reconnecter.',
 			'errors.permissionDenied' => 'Vous n\'avez pas la permission de faire cela.',
 			'errors.validationError' => 'Erreur de validation',
 			'errors.serverError' => ({required Object code}) => 'Erreur serveur (${code}). Veuillez réessayer.',
-			'errors.socialLoginFailed' => 'Échec de la connexion. Réessayez ou utilisez votre e-mail et mot de passe.',
+			'errors.socialLoginFailed' => 'Échec de la connexion. Réessayez ou utilisez votre numéro de téléphone et mot de passe.',
 			'errors.conflict' => 'Cette action ne peut pas être effectuée pour le moment.',
 			'errors.onboardingIncomplete' => 'Veuillez remplir tous les champs requis pour terminer l\'inscription.',
 			'errors.planLimitReached' => 'Vous avez atteint la limite de votre forfait. Passez à un forfait supérieur pour en ajouter davantage.',
 			'errors.chatUnavailable' => 'Ce médecin ne propose pas le chat avec son forfait actuel.',
-			'errors.emailNotVerified' => 'Veuillez vérifier votre e-mail avant de vous connecter.',
+			'errors.phoneNotVerified' => 'Veuillez vérifier votre numéro de téléphone avant de vous connecter.',
 			'settings.title' => 'Paramètres',
 			'settings.account' => 'Compte',
 			'settings.profile' => 'Profil',
@@ -1599,13 +1609,12 @@ extension on TranslationsFr {
 			'security.signOutAllFailed' => 'Impossible de se déconnecter de tous les appareils. Réessayez.',
 			'security.noDevices' => 'Aucune session active trouvée',
 			'security.loadFailed' => 'Impossible de charger vos sessions actives',
-			'security.changeEmail' => 'Changer l\'email',
-			'security.changeEmailSubtitle' => 'Nous enverrons un code de vérification à votre nouvelle adresse email. Après confirmation, vous vous connecterez avec le nouvel email.',
-			'security.newEmailLabel' => 'Nouvel email',
+			'security.changePhone' => 'Changer le numéro de téléphone',
+			'security.changePhoneSubtitle' => 'Nous enverrons un code de vérification à votre nouveau numéro. Après confirmation, vous vous connecterez avec le nouveau numéro.',
 			'security.sendCode' => 'Envoyer le code',
-			'security.codeSentTo' => ({required Object email}) => 'Saisissez le code à 6 chiffres envoyé à ${email}',
-			'security.confirmNewEmail' => 'Confirmer le nouvel email',
-			'security.changeEmailSuccess' => 'Votre email a été modifié. Reconnectez-vous avec votre nouvel email.',
+			'security.codeSentTo' => ({required Object phone}) => 'Saisissez le code à 6 chiffres envoyé au ${phone}',
+			'security.confirmNewPhone' => 'Confirmer le nouveau numéro',
+			'security.changePhoneSuccess' => 'Votre numéro de téléphone a été modifié. Reconnectez-vous avec votre nouveau numéro.',
 			'security.dangerZone' => 'Zone dangereuse',
 			'security.deactivateAccount' => 'Désactiver le compte',
 			'security.deactivateAccountSubtitle' => 'Désactiver votre compte sans supprimer vos données',
@@ -1896,7 +1905,6 @@ extension on TranslationsFr {
 			'pendingVerification.checkStatus' => 'Vérifier le statut',
 			'pendingVerification.stillPending' => 'Toujours en cours d\'examen. Nous vous informerons une fois vérifié.',
 			'phoneField.label' => 'Numéro de téléphone',
-			'phoneField.labelOptional' => 'Numéro de téléphone (facultatif)',
 			'phoneField.selectCountry' => 'Sélectionner un pays',
 			'phoneField.searchCountry' => 'Rechercher un pays ou un code…',
 			'phoneField.noCountriesFound' => 'Aucun pays trouvé',
@@ -1985,9 +1993,9 @@ extension on TranslationsFr {
 			'legal.sections.retention.body' => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).',
 			'legal.sections.rights.title' => 'Vos droits',
 			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
+			'legal.sections.security.title' => 'Comment nous protégeons vos données',
 			_ => null,
 		} ?? switch (path) {
-			'legal.sections.security.title' => 'Comment nous protégeons vos données',
 			'legal.sections.security.body' => 'Les messages entre vous et votre médecin, ainsi que les conversations avec l\'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible.',
 			'legal.sections.permissions.title' => 'Autorisations que nous demandons',
 			'legal.sections.permissions.body' => 'Appareil photo et photothèque — pour définir une photo de profil et téléverser des documents médicaux. Localisation — pour trier les médecins par distance. Notifications — pour transmettre rappels de rendez-vous et messages. Biométrie (Face ID / empreinte digitale) — un moyen optionnel et plus rapide de déverrouiller l\'application ; vos données biométriques ne quittent jamais votre appareil, nous recevons uniquement une confirmation oui/non de son système d\'exploitation.',

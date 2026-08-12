@@ -29,7 +29,6 @@
     "register": "创建账户",
     "signIn": "登录",
     "signUp": "注册",
-    "email": "电子邮箱",
     "password": "密码",
     "confirmPassword": "确认密码",
     "firstName": "名字",
@@ -44,7 +43,6 @@
     "createYourAccount": "创建您的账户",
     "joinMedalize": "立即加入 DocLine",
     "iAmA": "我是",
-    "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "返回登录",
     "verificationCode": "验证码",
@@ -54,20 +52,25 @@
   },
   "forgotPassword": {
     "title": "忘记密码？",
-    "subtitle": "输入您的电子邮箱，我们将发送 6 位重置码"
+    "subtitle": "输入您的手机号，我们将发送 6 位重置码"
   },
   "resetPassword": {
     "title": "重置密码",
-    "subtitle": "输入发送到您邮箱的验证码并设置新密码",
+    "subtitle": "输入发送到您手机的验证码并设置新密码",
     "button": "重置密码",
     "success": "密码重置成功，请登录。"
   },
-  "verifyEmail": {
-    "title": "验证您的邮箱",
-    "subtitle": "我们已向 $email 发送了 6 位验证码",
+  "verifyPhone": {
+    "title": "验证您的手机号",
+    "subtitle": "我们已向 $phone 发送了 6 位验证码",
     "button": "验证",
     "resend": "重新发送验证码",
     "resendSent": "已发送新的验证码。"
+  },
+  "socialComplete": {
+    "title": "还差一步",
+    "subtitle": "请输入并验证手机号以完成账户创建。",
+    "button": "继续"
   },
   "validation": {
     "emailRequired": "请输入电子邮箱",
@@ -90,19 +93,19 @@
     "network": "网络错误，请检查您的连接。",
     "rateLimit": "尝试次数过多，请稍后再试。",
     "rateLimitWithSeconds": "尝试次数过多，请 $seconds 秒后再试。",
-    "invalidCredentials": "邮箱或密码错误",
+    "invalidCredentials": "手机号或密码错误",
     "sessionExpired": "会话已过期，请重新登录。",
     "authError": "身份验证错误，请重新登录。",
     "sessionRevoked": "会话已被撤销，请重新登录。",
     "permissionDenied": "您没有执行此操作的权限。",
     "validationError": "验证错误",
     "serverError": "服务器错误（$code），请重试。",
-    "socialLoginFailed": "登录失败，请重试或使用邮箱和密码登录。",
+    "socialLoginFailed": "登录失败，请重试或使用手机号和密码登录。",
     "conflict": "当前无法完成此操作。",
     "onboardingIncomplete": "请填写所有必填项以完成入驻。",
     "planLimitReached": "您已达到当前套餐的限制，请升级套餐以获得更多。",
     "chatUnavailable": "该医生当前套餐不提供聊天功能。",
-    "emailNotVerified": "请在登录前验证您的邮箱。"
+    "phoneNotVerified": "请在登录前验证您的手机号。"
   },
   "settings": {
     "title": "设置",
@@ -142,13 +145,12 @@
     "signOutAllFailed": "无法退出所有设备，请重试。",
     "noDevices": "未找到活跃会话",
     "loadFailed": "无法加载您的活跃会话",
-    "changeEmail": "更改邮箱",
-    "changeEmailSubtitle": "我们将向您的新邮箱发送验证码。确认后您将使用新邮箱登录。",
-    "newEmailLabel": "新邮箱",
+    "changePhone": "更改手机号",
+    "changePhoneSubtitle": "我们将向您的新手机号发送验证码。确认后您将使用新手机号登录。",
     "sendCode": "发送验证码",
-    "codeSentTo": "请输入我们发送到 $email 的6位验证码",
-    "confirmNewEmail": "确认新邮箱",
-    "changeEmailSuccess": "邮箱已更改，请使用新邮箱重新登录。",
+    "codeSentTo": "请输入我们发送到 $phone 的6位验证码",
+    "confirmNewPhone": "确认新手机号",
+    "changePhoneSuccess": "手机号已更改，请使用新手机号重新登录。",
     "dangerZone": "危险区域",
     "deactivateAccount": "停用账户",
     "deactivateAccountSubtitle": "停用账户但不删除数据",
@@ -473,7 +475,6 @@
   },
   "phoneField": {
     "label": "电话号码",
-    "labelOptional": "电话号码（可选）",
     "selectCountry": "选择国家",
     "searchCountry": "搜索国家或区号…",
     "noCountriesFound": "未找到国家"

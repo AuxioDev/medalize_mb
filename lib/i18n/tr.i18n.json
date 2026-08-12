@@ -29,7 +29,6 @@
     "register": "Hesap Oluştur",
     "signIn": "Giriş Yap",
     "signUp": "Kayıt Ol",
-    "email": "E-posta",
     "password": "Şifre",
     "confirmPassword": "Şifreyi Onayla",
     "firstName": "Ad",
@@ -44,7 +43,6 @@
     "createYourAccount": "Hesabınızı oluşturun",
     "joinMedalize": "Bugün DocLine'ya katılın",
     "iAmA": "Ben bir",
-    "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "Girişe dön",
     "verificationCode": "Doğrulama kodu",
@@ -54,20 +52,25 @@
   },
   "forgotPassword": {
     "title": "Şifrenizi mi unuttunuz?",
-    "subtitle": "E-postanızı girin, size 6 haneli bir sıfırlama kodu gönderelim"
+    "subtitle": "Telefon numaranızı girin, size 6 haneli bir sıfırlama kodu gönderelim"
   },
   "resetPassword": {
     "title": "Şifreyi Sıfırla",
-    "subtitle": "E-postanıza gönderilen kodu girin ve yeni bir şifre seçin",
+    "subtitle": "Telefonunuza gönderilen kodu girin ve yeni bir şifre seçin",
     "button": "Şifreyi Sıfırla",
     "success": "Şifre başarıyla sıfırlandı. Lütfen giriş yapın."
   },
-  "verifyEmail": {
-    "title": "E-postanızı Doğrulayın",
-    "subtitle": "$email adresine 6 haneli bir kod gönderdik",
+  "verifyPhone": {
+    "title": "Telefon Numaranızı Doğrulayın",
+    "subtitle": "$phone numarasına 6 haneli bir kod gönderdik",
     "button": "Doğrula",
     "resend": "Kodu tekrar gönder",
     "resendSent": "Yeni bir kod gönderildi."
+  },
+  "socialComplete": {
+    "title": "Neredeyse tamam",
+    "subtitle": "Hesabınızı oluşturmayı tamamlamak için bir telefon numarası girin ve doğrulayın.",
+    "button": "Devam et"
   },
   "validation": {
     "emailRequired": "E-posta gerekli",
@@ -90,19 +93,19 @@
     "network": "Ağ hatası. Bağlantınızı kontrol edin.",
     "rateLimit": "Çok fazla deneme. Lütfen bekleyip tekrar deneyin.",
     "rateLimitWithSeconds": "Çok fazla deneme. $seconds saniye sonra tekrar deneyin.",
-    "invalidCredentials": "Geçersiz e-posta veya şifre",
+    "invalidCredentials": "Geçersiz telefon numarası veya şifre",
     "sessionExpired": "Oturum süresi doldu. Lütfen tekrar giriş yapın.",
     "authError": "Kimlik doğrulama hatası. Lütfen tekrar giriş yapın.",
     "sessionRevoked": "Oturum iptal edildi. Lütfen tekrar giriş yapın.",
     "permissionDenied": "Bunu yapma izniniz yok.",
     "validationError": "Doğrulama hatası",
     "serverError": "Sunucu hatası ($code). Lütfen tekrar deneyin.",
-    "socialLoginFailed": "Giriş başarısız oldu. Tekrar deneyin veya e-posta ve şifrenizi kullanın.",
+    "socialLoginFailed": "Giriş başarısız oldu. Tekrar deneyin veya telefon numaranızı ve şifrenizi kullanın.",
     "conflict": "Bu işlem şu anda tamamlanamıyor.",
     "onboardingIncomplete": "Kaydı tamamlamak için lütfen tüm zorunlu alanları doldurun.",
     "planLimitReached": "Plan limitinize ulaştınız. Daha fazlası için planınızı yükseltin.",
     "chatUnavailable": "Bu hekim mevcut planında sohbet sunmuyor.",
-    "emailNotVerified": "Giriş yapmadan önce lütfen e-postanızı doğrulayın."
+    "phoneNotVerified": "Giriş yapmadan önce lütfen telefon numaranızı doğrulayın."
   },
   "settings": {
     "title": "Ayarlar",
@@ -142,13 +145,12 @@
     "signOutAllFailed": "Tüm cihazlardan çıkış yapılamadı. Tekrar deneyin.",
     "noDevices": "Aktif oturum bulunamadı",
     "loadFailed": "Aktif oturumlarınız yüklenemedi",
-    "changeEmail": "E-postayı Değiştir",
-    "changeEmailSubtitle": "Yeni e-posta adresinize bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni e-postanızla giriş yapacaksınız.",
-    "newEmailLabel": "Yeni e-posta",
+    "changePhone": "Telefon Numarasını Değiştir",
+    "changePhoneSubtitle": "Yeni telefon numaranıza bir doğrulama kodu göndereceğiz. Onayladıktan sonra yeni numarayla giriş yapacaksınız.",
     "sendCode": "Kod Gönder",
-    "codeSentTo": "$email adresine gönderdiğimiz 6 haneli kodu girin",
-    "confirmNewEmail": "Yeni E-postayı Onayla",
-    "changeEmailSuccess": "E-postanız değiştirildi. Yeni e-postanızla tekrar giriş yapın.",
+    "codeSentTo": "$phone numarasına gönderdiğimiz 6 haneli kodu girin",
+    "confirmNewPhone": "Yeni Numarayı Onayla",
+    "changePhoneSuccess": "Telefon numaranız değiştirildi. Yeni numaranızla tekrar giriş yapın.",
     "dangerZone": "Tehlikeli Bölge",
     "deactivateAccount": "Hesabı Devre Dışı Bırak",
     "deactivateAccountSubtitle": "Verilerinizi silmeden hesabınızı devre dışı bırakın",
@@ -473,7 +475,6 @@
   },
   "phoneField": {
     "label": "Telefon Numarası",
-    "labelOptional": "Telefon Numarası (İsteğe bağlı)",
     "selectCountry": "Ülke Seçin",
     "searchCountry": "Ülke veya kod ara…",
     "noCountriesFound": "Ülke bulunamadı"

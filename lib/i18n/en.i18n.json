@@ -29,7 +29,6 @@
     "register": "Create Account",
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
     "firstName": "First Name",
@@ -44,7 +43,6 @@
     "createYourAccount": "Create your account",
     "joinMedalize": "Join DocLine today",
     "iAmA": "I am a",
-    "emailHint": "you@example.com",
     "passwordHint": "••••••••",
     "backToSignIn": "Back to Sign In",
     "verificationCode": "Verification code",
@@ -54,20 +52,25 @@
   },
   "forgotPassword": {
     "title": "Forgot Password?",
-    "subtitle": "Enter your email and we'll send you a 6-digit reset code"
+    "subtitle": "Enter your phone number and we'll send you a 6-digit reset code"
   },
   "resetPassword": {
     "title": "Reset Password",
-    "subtitle": "Enter the code sent to your email and choose a new password",
+    "subtitle": "Enter the code sent to your phone and choose a new password",
     "button": "Reset Password",
     "success": "Password reset successfully. Please sign in."
   },
-  "verifyEmail": {
-    "title": "Verify Your Email",
-    "subtitle": "We've sent a 6-digit code to $email",
+  "verifyPhone": {
+    "title": "Verify Your Phone",
+    "subtitle": "We've sent a 6-digit code to $phone",
     "button": "Verify",
     "resend": "Resend code",
     "resendSent": "A new code has been sent."
+  },
+  "socialComplete": {
+    "title": "Almost there",
+    "subtitle": "Enter and verify a phone number to finish creating your account.",
+    "button": "Continue"
   },
   "validation": {
     "emailRequired": "Email is required",
@@ -90,19 +93,19 @@
     "network": "Network error. Check your connection.",
     "rateLimit": "Too many attempts. Please wait and try again.",
     "rateLimitWithSeconds": "Too many attempts. Try again in $seconds s.",
-    "invalidCredentials": "Invalid email or password",
+    "invalidCredentials": "Invalid phone number or password",
     "sessionExpired": "Session expired. Please sign in again.",
     "authError": "Authentication error. Please sign in again.",
     "sessionRevoked": "Session was revoked. Please sign in again.",
     "permissionDenied": "You do not have permission to do this.",
     "validationError": "Validation error",
     "serverError": "Server error ($code). Please try again.",
-    "socialLoginFailed": "Sign-in failed. Please try again or use your email and password.",
+    "socialLoginFailed": "Sign-in failed. Please try again or use your phone number and password.",
     "conflict": "This action can't be completed right now.",
     "onboardingIncomplete": "Please complete all required fields before finishing onboarding.",
     "planLimitReached": "You've reached your plan's limit. Upgrade to add more.",
     "chatUnavailable": "This doctor doesn't offer chat on their current plan.",
-    "emailNotVerified": "Please verify your email before signing in."
+    "phoneNotVerified": "Please verify your phone number before signing in."
   },
   "settings": {
     "title": "Settings",
@@ -142,13 +145,12 @@
     "signOutAllFailed": "Couldn't sign out of all devices. Please try again.",
     "noDevices": "No active sessions found",
     "loadFailed": "Couldn't load your active sessions",
-    "changeEmail": "Change Email",
-    "changeEmailSubtitle": "We'll send a verification code to your new email address. After confirming, you'll sign in with the new email.",
-    "newEmailLabel": "New email",
+    "changePhone": "Change Phone Number",
+    "changePhoneSubtitle": "We'll send a verification code to your new phone number. After confirming, you'll sign in with the new number.",
     "sendCode": "Send Code",
-    "codeSentTo": "Enter the 6-digit code we sent to $email",
-    "confirmNewEmail": "Confirm New Email",
-    "changeEmailSuccess": "Your email has been changed. Please sign in again with your new email.",
+    "codeSentTo": "Enter the 6-digit code we sent to $phone",
+    "confirmNewPhone": "Confirm New Phone Number",
+    "changePhoneSuccess": "Your phone number has been changed. Please sign in again with your new number.",
     "dangerZone": "Danger Zone",
     "deactivateAccount": "Deactivate Account",
     "deactivateAccountSubtitle": "Disable your account without deleting your data",
@@ -473,7 +475,6 @@
   },
   "phoneField": {
     "label": "Phone Number",
-    "labelOptional": "Phone Number (Optional)",
     "selectCountry": "Select Country",
     "searchCountry": "Search country or code…",
     "noCountriesFound": "No countries found"

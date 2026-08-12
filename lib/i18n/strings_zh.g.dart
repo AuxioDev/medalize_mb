@@ -44,7 +44,8 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$zh auth = _Translations$auth$zh._(_root);
 	@override late final _Translations$forgotPassword$zh forgotPassword = _Translations$forgotPassword$zh._(_root);
 	@override late final _Translations$resetPassword$zh resetPassword = _Translations$resetPassword$zh._(_root);
-	@override late final _Translations$verifyEmail$zh verifyEmail = _Translations$verifyEmail$zh._(_root);
+	@override late final _Translations$verifyPhone$zh verifyPhone = _Translations$verifyPhone$zh._(_root);
+	@override late final _Translations$socialComplete$zh socialComplete = _Translations$socialComplete$zh._(_root);
 	@override late final _Translations$validation$zh validation = _Translations$validation$zh._(_root);
 	@override late final _Translations$errors$zh errors = _Translations$errors$zh._(_root);
 	@override late final _Translations$settings$zh settings = _Translations$settings$zh._(_root);
@@ -131,7 +132,6 @@ class _Translations$auth$zh extends Translations$auth$en {
 	@override String get register => '创建账户';
 	@override String get signIn => '登录';
 	@override String get signUp => '注册';
-	@override String get email => '电子邮箱';
 	@override String get password => '密码';
 	@override String get confirmPassword => '确认密码';
 	@override String get firstName => '名字';
@@ -146,7 +146,6 @@ class _Translations$auth$zh extends Translations$auth$en {
 	@override String get createYourAccount => '创建您的账户';
 	@override String get joinMedalize => '立即加入 DocLine';
 	@override String get iAmA => '我是';
-	@override String get emailHint => 'you@example.com';
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => '返回登录';
 	@override String get verificationCode => '验证码';
@@ -163,7 +162,7 @@ class _Translations$forgotPassword$zh extends Translations$forgotPassword$en {
 
 	// Translations
 	@override String get title => '忘记密码？';
-	@override String get subtitle => '输入您的电子邮箱，我们将发送 6 位重置码';
+	@override String get subtitle => '输入您的手机号，我们将发送 6 位重置码';
 }
 
 // Path: resetPassword
@@ -174,23 +173,35 @@ class _Translations$resetPassword$zh extends Translations$resetPassword$en {
 
 	// Translations
 	@override String get title => '重置密码';
-	@override String get subtitle => '输入发送到您邮箱的验证码并设置新密码';
+	@override String get subtitle => '输入发送到您手机的验证码并设置新密码';
 	@override String get button => '重置密码';
 	@override String get success => '密码重置成功，请登录。';
 }
 
-// Path: verifyEmail
-class _Translations$verifyEmail$zh extends Translations$verifyEmail$en {
-	_Translations$verifyEmail$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+// Path: verifyPhone
+class _Translations$verifyPhone$zh extends Translations$verifyPhone$en {
+	_Translations$verifyPhone$zh._(TranslationsZh root) : this._root = root, super.internal(root);
 
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '验证您的邮箱';
-	@override String subtitle({required Object email}) => '我们已向 ${email} 发送了 6 位验证码';
+	@override String get title => '验证您的手机号';
+	@override String subtitle({required Object phone}) => '我们已向 ${phone} 发送了 6 位验证码';
 	@override String get button => '验证';
 	@override String get resend => '重新发送验证码';
 	@override String get resendSent => '已发送新的验证码。';
+}
+
+// Path: socialComplete
+class _Translations$socialComplete$zh extends Translations$socialComplete$en {
+	_Translations$socialComplete$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '还差一步';
+	@override String get subtitle => '请输入并验证手机号以完成账户创建。';
+	@override String get button => '继续';
 }
 
 // Path: validation
@@ -227,19 +238,19 @@ class _Translations$errors$zh extends Translations$errors$en {
 	@override String get network => '网络错误，请检查您的连接。';
 	@override String get rateLimit => '尝试次数过多，请稍后再试。';
 	@override String rateLimitWithSeconds({required Object seconds}) => '尝试次数过多，请 ${seconds} 秒后再试。';
-	@override String get invalidCredentials => '邮箱或密码错误';
+	@override String get invalidCredentials => '手机号或密码错误';
 	@override String get sessionExpired => '会话已过期，请重新登录。';
 	@override String get authError => '身份验证错误，请重新登录。';
 	@override String get sessionRevoked => '会话已被撤销，请重新登录。';
 	@override String get permissionDenied => '您没有执行此操作的权限。';
 	@override String get validationError => '验证错误';
 	@override String serverError({required Object code}) => '服务器错误（${code}），请重试。';
-	@override String get socialLoginFailed => '登录失败，请重试或使用邮箱和密码登录。';
+	@override String get socialLoginFailed => '登录失败，请重试或使用手机号和密码登录。';
 	@override String get conflict => '当前无法完成此操作。';
 	@override String get onboardingIncomplete => '请填写所有必填项以完成入驻。';
 	@override String get planLimitReached => '您已达到当前套餐的限制，请升级套餐以获得更多。';
 	@override String get chatUnavailable => '该医生当前套餐不提供聊天功能。';
-	@override String get emailNotVerified => '请在登录前验证您的邮箱。';
+	@override String get phoneNotVerified => '请在登录前验证您的手机号。';
 }
 
 // Path: settings
@@ -293,13 +304,12 @@ class _Translations$security$zh extends Translations$security$en {
 	@override String get signOutAllFailed => '无法退出所有设备，请重试。';
 	@override String get noDevices => '未找到活跃会话';
 	@override String get loadFailed => '无法加载您的活跃会话';
-	@override String get changeEmail => '更改邮箱';
-	@override String get changeEmailSubtitle => '我们将向您的新邮箱发送验证码。确认后您将使用新邮箱登录。';
-	@override String get newEmailLabel => '新邮箱';
+	@override String get changePhone => '更改手机号';
+	@override String get changePhoneSubtitle => '我们将向您的新手机号发送验证码。确认后您将使用新手机号登录。';
 	@override String get sendCode => '发送验证码';
-	@override String codeSentTo({required Object email}) => '请输入我们发送到 ${email} 的6位验证码';
-	@override String get confirmNewEmail => '确认新邮箱';
-	@override String get changeEmailSuccess => '邮箱已更改，请使用新邮箱重新登录。';
+	@override String codeSentTo({required Object phone}) => '请输入我们发送到 ${phone} 的6位验证码';
+	@override String get confirmNewPhone => '确认新手机号';
+	@override String get changePhoneSuccess => '手机号已更改，请使用新手机号重新登录。';
 	@override String get dangerZone => '危险区域';
 	@override String get deactivateAccount => '停用账户';
 	@override String get deactivateAccountSubtitle => '停用账户但不删除数据';
@@ -709,7 +719,6 @@ class _Translations$phoneField$zh extends Translations$phoneField$en {
 
 	// Translations
 	@override String get label => '电话号码';
-	@override String get labelOptional => '电话号码（可选）';
 	@override String get selectCountry => '选择国家';
 	@override String get searchCountry => '搜索国家或区号…';
 	@override String get noCountriesFound => '未找到国家';
@@ -1500,7 +1509,6 @@ extension on TranslationsZh {
 			'auth.register' => '创建账户',
 			'auth.signIn' => '登录',
 			'auth.signUp' => '注册',
-			'auth.email' => '电子邮箱',
 			'auth.password' => '密码',
 			'auth.confirmPassword' => '确认密码',
 			'auth.firstName' => '名字',
@@ -1515,7 +1523,6 @@ extension on TranslationsZh {
 			'auth.createYourAccount' => '创建您的账户',
 			'auth.joinMedalize' => '立即加入 DocLine',
 			'auth.iAmA' => '我是',
-			'auth.emailHint' => 'you@example.com',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => '返回登录',
 			'auth.verificationCode' => '验证码',
@@ -1523,16 +1530,19 @@ extension on TranslationsZh {
 			'auth.continueWithApple' => '使用 Apple 继续',
 			'auth.orDivider' => '或',
 			'forgotPassword.title' => '忘记密码？',
-			'forgotPassword.subtitle' => '输入您的电子邮箱，我们将发送 6 位重置码',
+			'forgotPassword.subtitle' => '输入您的手机号，我们将发送 6 位重置码',
 			'resetPassword.title' => '重置密码',
-			'resetPassword.subtitle' => '输入发送到您邮箱的验证码并设置新密码',
+			'resetPassword.subtitle' => '输入发送到您手机的验证码并设置新密码',
 			'resetPassword.button' => '重置密码',
 			'resetPassword.success' => '密码重置成功，请登录。',
-			'verifyEmail.title' => '验证您的邮箱',
-			'verifyEmail.subtitle' => ({required Object email}) => '我们已向 ${email} 发送了 6 位验证码',
-			'verifyEmail.button' => '验证',
-			'verifyEmail.resend' => '重新发送验证码',
-			'verifyEmail.resendSent' => '已发送新的验证码。',
+			'verifyPhone.title' => '验证您的手机号',
+			'verifyPhone.subtitle' => ({required Object phone}) => '我们已向 ${phone} 发送了 6 位验证码',
+			'verifyPhone.button' => '验证',
+			'verifyPhone.resend' => '重新发送验证码',
+			'verifyPhone.resendSent' => '已发送新的验证码。',
+			'socialComplete.title' => '还差一步',
+			'socialComplete.subtitle' => '请输入并验证手机号以完成账户创建。',
+			'socialComplete.button' => '继续',
 			'validation.emailRequired' => '请输入电子邮箱',
 			'validation.emailInvalid' => '请输入有效的电子邮箱地址',
 			'validation.passwordRequired' => '请输入密码',
@@ -1551,19 +1561,19 @@ extension on TranslationsZh {
 			'errors.network' => '网络错误，请检查您的连接。',
 			'errors.rateLimit' => '尝试次数过多，请稍后再试。',
 			'errors.rateLimitWithSeconds' => ({required Object seconds}) => '尝试次数过多，请 ${seconds} 秒后再试。',
-			'errors.invalidCredentials' => '邮箱或密码错误',
+			'errors.invalidCredentials' => '手机号或密码错误',
 			'errors.sessionExpired' => '会话已过期，请重新登录。',
 			'errors.authError' => '身份验证错误，请重新登录。',
 			'errors.sessionRevoked' => '会话已被撤销，请重新登录。',
 			'errors.permissionDenied' => '您没有执行此操作的权限。',
 			'errors.validationError' => '验证错误',
 			'errors.serverError' => ({required Object code}) => '服务器错误（${code}），请重试。',
-			'errors.socialLoginFailed' => '登录失败，请重试或使用邮箱和密码登录。',
+			'errors.socialLoginFailed' => '登录失败，请重试或使用手机号和密码登录。',
 			'errors.conflict' => '当前无法完成此操作。',
 			'errors.onboardingIncomplete' => '请填写所有必填项以完成入驻。',
 			'errors.planLimitReached' => '您已达到当前套餐的限制，请升级套餐以获得更多。',
 			'errors.chatUnavailable' => '该医生当前套餐不提供聊天功能。',
-			'errors.emailNotVerified' => '请在登录前验证您的邮箱。',
+			'errors.phoneNotVerified' => '请在登录前验证您的手机号。',
 			'settings.title' => '设置',
 			'settings.account' => '账户',
 			'settings.profile' => '个人资料',
@@ -1599,13 +1609,12 @@ extension on TranslationsZh {
 			'security.signOutAllFailed' => '无法退出所有设备，请重试。',
 			'security.noDevices' => '未找到活跃会话',
 			'security.loadFailed' => '无法加载您的活跃会话',
-			'security.changeEmail' => '更改邮箱',
-			'security.changeEmailSubtitle' => '我们将向您的新邮箱发送验证码。确认后您将使用新邮箱登录。',
-			'security.newEmailLabel' => '新邮箱',
+			'security.changePhone' => '更改手机号',
+			'security.changePhoneSubtitle' => '我们将向您的新手机号发送验证码。确认后您将使用新手机号登录。',
 			'security.sendCode' => '发送验证码',
-			'security.codeSentTo' => ({required Object email}) => '请输入我们发送到 ${email} 的6位验证码',
-			'security.confirmNewEmail' => '确认新邮箱',
-			'security.changeEmailSuccess' => '邮箱已更改，请使用新邮箱重新登录。',
+			'security.codeSentTo' => ({required Object phone}) => '请输入我们发送到 ${phone} 的6位验证码',
+			'security.confirmNewPhone' => '确认新手机号',
+			'security.changePhoneSuccess' => '手机号已更改，请使用新手机号重新登录。',
 			'security.dangerZone' => '危险区域',
 			'security.deactivateAccount' => '停用账户',
 			'security.deactivateAccountSubtitle' => '停用账户但不删除数据',
@@ -1896,7 +1905,6 @@ extension on TranslationsZh {
 			'pendingVerification.checkStatus' => '检查状态',
 			'pendingVerification.stillPending' => '仍在审核中。验证通过后我们会通知您。',
 			'phoneField.label' => '电话号码',
-			'phoneField.labelOptional' => '电话号码（可选）',
 			'phoneField.selectCountry' => '选择国家',
 			'phoneField.searchCountry' => '搜索国家或区号…',
 			'phoneField.noCountriesFound' => '未找到国家',
@@ -1985,9 +1993,9 @@ extension on TranslationsZh {
 			'legal.sections.retention.body' => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。',
 			'legal.sections.rights.title' => '您的权利',
 			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
+			'legal.sections.security.title' => '我们如何保护您的数据',
 			_ => null,
 		} ?? switch (path) {
-			'legal.sections.security.title' => '我们如何保护您的数据',
 			'legal.sections.security.body' => '您与医生之间的消息以及与 AI 助手的对话均经过加密。上传的文档和照片以私密方式存储，仅可通过安全的签名链接访问，绝不会作为公开文件存在。密码绝不会以可读形式存储。',
 			'legal.sections.permissions.title' => '我们请求的权限',
 			'legal.sections.permissions.body' => '相机和照片图库——用于设置头像和上传医疗文件。位置——用于按距离为您排序医生。通知——用于推送预约提醒和消息。生物识别（面容 ID / 指纹）——一种可选的、更快捷的应用解锁方式；您的生物识别数据绝不会离开您的设备，我们仅会收到设备操作系统返回的"是/否"确认。',
