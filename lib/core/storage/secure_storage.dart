@@ -7,7 +7,7 @@ abstract final class _Keys {
   static const refreshToken = 'refresh_token';
   static const userRole = 'user_role';
   static const userId = 'user_id';
-  static const userEmail = 'user_email';
+  static const userPhone = 'user_phone';
   static const onboardingComplete = 'onboarding_complete';
   static const isVerified = 'is_verified';
   static const subscriptionStatus = 'subscription_status';
@@ -38,14 +38,14 @@ class SecureStorage {
     required String refreshToken,
     required String role,
     required String userId,
-    required String email,
+    required String phone,
   }) async {
     await Future.wait([
       _storage.write(key: _Keys.accessToken, value: accessToken),
       _storage.write(key: _Keys.refreshToken, value: refreshToken),
       _storage.write(key: _Keys.userRole, value: role),
       _storage.write(key: _Keys.userId, value: userId),
-      _storage.write(key: _Keys.userEmail, value: email),
+      _storage.write(key: _Keys.userPhone, value: phone),
     ]);
   }
 
@@ -57,7 +57,7 @@ class SecureStorage {
 
   Future<String?> getUserRole() => _storage.read(key: _Keys.userRole);
   Future<String?> getUserId() => _storage.read(key: _Keys.userId);
-  Future<String?> getUserEmail() => _storage.read(key: _Keys.userEmail);
+  Future<String?> getUserPhone() => _storage.read(key: _Keys.userPhone);
 
   /// Persists profile flags so an offline cold-start can restore an accurate
   /// authenticated state (correct doctor onboarding/verification/paywall

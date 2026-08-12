@@ -7,16 +7,16 @@ sealed class ApiException implements Exception {
   String get userMessage;
 }
 
-/// Login was rejected because the account's email/password registration was
-/// never confirmed — see RegisterView/CustomTokenObtainPairSerializer on the
-/// backend. [email] lets the login/register screen route straight to the
+/// Login was rejected because the account's phone number was never
+/// confirmed — see RegisterView/CustomTokenObtainPairSerializer on the
+/// backend. [phone] lets the login/register screen route straight to the
 /// verification-code entry screen instead of showing a dead-end error.
-class EmailNotVerifiedException extends ApiException {
-  const EmailNotVerifiedException(this.email, [this.message]);
-  final String email;
+class PhoneNotVerifiedException extends ApiException {
+  const PhoneNotVerifiedException(this.phone, [this.message]);
+  final String phone;
   final String? message;
   @override
-  String get userMessage => message ?? t.errors.emailNotVerified;
+  String get userMessage => message ?? t.errors.phoneNotVerified;
 }
 
 class InvalidCredentialsException extends ApiException {
@@ -124,12 +124,25 @@ class OnboardingIncompleteException extends ApiException {
   String get userMessage => message ?? t.errors.onboardingIncomplete;
 }
 
-/// Backend-side social sign-in rejection (invalid provider token, no email
-/// shared by the provider, or an unverified-email account collision) —
+/// Backend-side social sign-in rejection (invalid provider token) —
 /// distinct from [SocialAuthFailedException], which is for native-SDK
 /// failures that never reach the backend at all.
 class SocialLoginException extends ApiException {
   const SocialLoginException([this.message]);
+  final String? message;
+  @override
+  String get userMessage => message ?? t.errors.socialLoginFailed;
+}
+
+/// The OAuth token proved the user's identity, but no account exists yet to
+/// link it to and phone is the unique login identifier — so a brand-new
+/// social sign-up can't finish in one round trip (see SocialLoginView on the
+/// backend). [pendingSocialToken] must be sent to
+/// AuthRepository.completeSocialSignup along with a phone number to finish
+/// creating the account.
+class SocialPhoneRequiredException extends ApiException {
+  const SocialPhoneRequiredException(this.pendingSocialToken, [this.message]);
+  final String pendingSocialToken;
   final String? message;
   @override
   String get userMessage => message ?? t.errors.socialLoginFailed;
@@ -176,9 +189,9 @@ ApiException mapDioError(Object err) {
   final code = data is Map ? data['code'] as String? : null;
 
   switch (code) {
-    case 'email_not_verified':
-      return EmailNotVerifiedException(
-        data['email'] as String? ?? '',
+    case 'phone_not_verified':
+      return PhoneNotVerifiedException(
+        data['phone'] as String? ?? '',
         data['message'] as String?,
       );
     case 'invalid_credentials':
@@ -208,8 +221,6 @@ ApiException mapDioError(Object err) {
             const [],
       );
     case 'social_token_invalid':
-    case 'social_email_missing':
-    case 'social_email_unverified':
       return SocialLoginException(data['message'] as String?);
     case 'plan_limit_reached':
       return PlanLimitException(

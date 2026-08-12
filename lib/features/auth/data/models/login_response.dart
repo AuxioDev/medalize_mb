@@ -4,7 +4,7 @@ class LoginResponse {
     required this.refresh,
     required this.role,
     required this.userId,
-    required this.email,
+    required this.phone,
     required this.onboardingComplete,
     this.isVerified,
     this.firstName = '',
@@ -16,7 +16,7 @@ class LoginResponse {
   final String refresh;
   final String role;
   final String userId;
-  final String email;
+  final String phone;
   final bool onboardingComplete;
   final bool? isVerified;
   final String firstName;
@@ -28,9 +28,9 @@ class LoginResponse {
     final refresh = json['refresh'] as String?;
     final role = json['role'] as String?;
     final userId = json['user_id'] as String?;
-    final email = json['email'] as String?;
+    final phone = json['phone'] as String?;
 
-    if (access == null || refresh == null || role == null || userId == null || email == null) {
+    if (access == null || refresh == null || role == null || userId == null || phone == null) {
       throw FormatException('Incomplete login response: $json');
     }
 
@@ -41,7 +41,7 @@ class LoginResponse {
       refresh: refresh,
       role: role,
       userId: userId,
-      email: email,
+      phone: phone,
       onboardingComplete: json['onboarding_complete'] as bool? ?? false,
       isVerified: json['is_verified'] as bool?,
       firstName: json['first_name'] as String? ?? '',

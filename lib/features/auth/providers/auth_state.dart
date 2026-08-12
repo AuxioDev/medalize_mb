@@ -18,7 +18,7 @@ class AuthAuthenticated extends AuthState {
     required this.refreshToken,
     required this.role,
     required this.userId,
-    required this.email,
+    required this.phone,
     required this.onboardingComplete,
     this.isVerified,
     this.firstName = '',
@@ -30,7 +30,7 @@ class AuthAuthenticated extends AuthState {
   final String refreshToken;
   final String role;
   final String userId;
-  final String email;
+  final String phone;
   final bool onboardingComplete;
   final bool? isVerified;
   final String firstName;
@@ -43,7 +43,7 @@ class AuthAuthenticated extends AuthState {
 
   String get displayName {
     final name = '$firstName $lastName'.trim();
-    return name.isNotEmpty ? name : email.split('@')[0];
+    return name.isNotEmpty ? name : phone;
   }
 
   // Redact tokens so they never end up in a crash report, error log, or a
@@ -53,7 +53,7 @@ class AuthAuthenticated extends AuthState {
   // caller to remember not to print it.
   @override
   String toString() =>
-      'AuthAuthenticated(userId: $userId, role: $role, email: $email, '
+      'AuthAuthenticated(userId: $userId, role: $role, phone: $phone, '
       'accessToken: ***, refreshToken: ***)';
 }
 

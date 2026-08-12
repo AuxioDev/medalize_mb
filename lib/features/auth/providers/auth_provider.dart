@@ -113,7 +113,7 @@ class AuthNotifier extends Notifier<AuthState> {
         refreshToken: refresh,
         role: user.role,
         userId: user.userId,
-        email: user.email,
+        phone: user.phone,
         onboardingComplete: onboardingComplete,
         isVerified: user.isVerified,
         firstName: user.firstName,
@@ -211,7 +211,7 @@ class AuthNotifier extends Notifier<AuthState> {
       refreshToken: await _storage.getRefreshToken() ?? '',
       role: role,
       userId: await _storage.getUserId() ?? '',
-      email: await _storage.getUserEmail() ?? '',
+      phone: await _storage.getUserPhone() ?? '',
       onboardingComplete:
           await _storage.getOnboardingComplete() ?? (role == 'patient'),
       isVerified: await _storage.getIsVerified(),
@@ -244,7 +244,7 @@ class AuthNotifier extends Notifier<AuthState> {
         refreshToken: refresh,
         role: user.role,
         userId: user.userId,
-        email: user.email,
+        phone: user.phone,
         onboardingComplete: onboardingComplete,
         isVerified: user.isVerified,
         firstName: user.firstName,
@@ -257,7 +257,7 @@ class AuthNotifier extends Notifier<AuthState> {
   }
 
   Future<void> login(
-    String email,
+    String phone,
     String password, {
     bool rememberMe = false,
   }) async {
@@ -266,7 +266,7 @@ class AuthNotifier extends Notifier<AuthState> {
       final device = await ref.read(deviceIdentityProvider).describe();
       final response = await _repo.login(
         LoginRequest(
-          email: email,
+          phone: phone,
           password: password,
           rememberMe: rememberMe,
           deviceId: device['device_id'],
@@ -285,11 +285,11 @@ class AuthNotifier extends Notifier<AuthState> {
   /// Confirms the registration verification code and, on success, signs the
   /// user straight in — same shape as [login], since the backend returns an
   /// identical token payload from this endpoint (see
-  /// AuthRepository.confirmEmailVerification).
-  Future<void> verifyEmail(String email, String code) async {
+  /// AuthRepository.confirmPhoneVerification).
+  Future<void> verifyPhone(String phone, String code) async {
     state = const AuthLoading();
     try {
-      final response = await _repo.confirmEmailVerification(email: email, code: code);
+      final response = await _repo.confirmPhoneVerification(phone: phone, code: code);
       await _applyAuthResponse(response);
       ref.read(fcmServiceProvider).init();
       unawaited(_syncMedicationReminders());
@@ -354,7 +354,7 @@ class AuthNotifier extends Notifier<AuthState> {
       refreshToken: response.refresh,
       role: response.role,
       userId: response.userId,
-      email: response.email,
+      phone: response.phone,
     );
     await _storage.saveProfile(
       onboardingComplete: response.onboardingComplete,
@@ -368,7 +368,7 @@ class AuthNotifier extends Notifier<AuthState> {
       refreshToken: response.refresh,
       role: response.role,
       userId: response.userId,
-      email: response.email,
+      phone: response.phone,
       onboardingComplete: response.onboardingComplete,
       isVerified: response.isVerified,
       firstName: response.firstName,
@@ -377,20 +377,19 @@ class AuthNotifier extends Notifier<AuthState> {
     );
     // Fire-and-forget: push the locally selected UI language to the backend
     // so a language chosen before signing in (stored only on-device until
-    // now) is reflected in server-sent emails/notifications. Best-effort —
+    // now) is reflected in server-sent SMS/notifications. Best-effort —
     // errors are logged inside and never affect the login flow.
     unawaited(syncStoredLanguageToBackend(ref));
   }
 
   Future<void> register({
-    required String email,
+    required String phone,
     required String password,
     required String passwordConfirm,
     required String role,
     required String firstName,
     required String lastName,
     required bool privacyConsent,
-    String phone = '',
     String? hospitalId,
     String hospitalName = '',
     String hospitalCity = '',
@@ -400,21 +399,20 @@ class AuthNotifier extends Notifier<AuthState> {
     state = const AuthLoading();
     try {
       await _repo.register(RegisterRequest(
-        email: email,
+        phone: phone,
         password: password,
         passwordConfirm: passwordConfirm,
         role: role,
         firstName: firstName,
         lastName: lastName,
         privacyConsent: privacyConsent,
-        phone: phone,
         hospitalId: hospitalId,
         hospitalName: hospitalName,
         hospitalCity: hospitalCity,
         hospitalAddress: hospitalAddress,
       ));
       // API does not return tokens — auto-login after registration
-      await login(email, password);
+      await login(phone, password);
     } on ApiException catch (e) {
       state = AuthError(e);
     }

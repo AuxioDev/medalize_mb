@@ -43,11 +43,10 @@ class DoctorProfile {
 class UserModel {
   const UserModel({
     required this.userId,
-    required this.email,
+    required this.phone,
     required this.role,
     required this.firstName,
     required this.lastName,
-    this.phone = '',
     this.isVerified,
     this.onboardingStep,
     this.onboardingComplete,
@@ -57,11 +56,10 @@ class UserModel {
   });
 
   final String userId;
-  final String email;
+  final String phone;
   final String role;
   final String firstName;
   final String lastName;
-  final String phone;
   final bool? isVerified;
   final int? onboardingStep;
   final bool? onboardingComplete;
@@ -77,11 +75,10 @@ class UserModel {
     final subscription = json['subscription'] as Map<String, dynamic>?;
     return UserModel(
       userId: json['user_id'] as String,
-      email: json['email'] as String,
+      phone: json['phone'] as String,
       role: role,
       firstName: json['first_name'] as String? ?? '',
       lastName: json['last_name'] as String? ?? '',
-      phone: json['phone'] as String? ?? '',
       isVerified: json['is_verified'] as bool?,
       onboardingStep: json['onboarding_step'] as int?,
       onboardingComplete: json['onboarding_complete'] as bool?,

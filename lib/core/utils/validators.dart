@@ -51,14 +51,14 @@ abstract final class Validators {
     return null;
   }
 
+  // Azerbaijan-only local numbers: always exactly 9 digits after the fixed
+  // +994 prefix (see PhoneField/apps.users.phone.normalize_az_phone on the
+  // backend, which is the authoritative check — this is UX-only).
   static String? phone(String? v) {
     if (v == null || v.trim().isEmpty) return t.validation.phoneRequired;
     final d = _digitCount(v);
-    if (d < 7) return t.validation.phoneTooShort;
-    // Local subscriber numbers vary widely across the supported countries (e.g.
-    // China is 11 digits). Cap at 15 (E.164 max) rather than 9 so valid numbers
-    // aren't rejected. The dial code is stored separately.
-    if (d > 15) return t.validation.phoneTooLong;
+    if (d < 9) return t.validation.phoneTooShort;
+    if (d > 9) return t.validation.phoneTooLong;
     return null;
   }
 
@@ -72,8 +72,5 @@ abstract final class Validators {
     return s.length >= 2 && _nameRe.hasMatch(s);
   }
 
-  static bool phoneOk(String v) {
-    final d = _digitCount(v);
-    return d == 0 || (d >= 7 && d <= 15);
-  }
+  static bool phoneOk(String v) => _digitCount(v) == 9;
 }

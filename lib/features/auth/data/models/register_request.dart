@@ -1,20 +1,21 @@
 class RegisterRequest {
   const RegisterRequest({
-    required this.email,
+    required this.phone,
     required this.password,
     required this.passwordConfirm,
     required this.role,
     required this.firstName,
     required this.lastName,
     required this.privacyConsent,
-    this.phone = '',
     this.hospitalId,
     this.hospitalName = '',
     this.hospitalCity = '',
     this.hospitalAddress = '',
   });
 
-  final String email;
+  // E.164 (e.g. '+994501234567') — the login identifier. See
+  // apps.users.phone.normalize_az_phone on the backend.
+  final String phone;
   final String password;
   final String passwordConfirm;
   final String role;
@@ -25,7 +26,6 @@ class RegisterRequest {
   // Required (not defaulted to true) so no call site can forget to wire it
   // up to an actual user action.
   final bool privacyConsent;
-  final String phone;
 
   /// role == 'hospital' only — see apps.hospitals.services.
   /// claim_or_create_hospital: either [hospitalId] (claiming a registry
@@ -38,7 +38,7 @@ class RegisterRequest {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{
-      'email': email,
+      'phone': phone,
       'password': password,
       'password_confirm': passwordConfirm,
       'role': role,
@@ -46,7 +46,6 @@ class RegisterRequest {
       'last_name': lastName,
       'privacy_consent': privacyConsent,
     };
-    if (phone.isNotEmpty) map['phone'] = phone;
     if (hospitalId != null) map['hospital_id'] = hospitalId;
     if (hospitalName.isNotEmpty) map['hospital_name'] = hospitalName;
     if (hospitalCity.isNotEmpty) map['hospital_city'] = hospitalCity;

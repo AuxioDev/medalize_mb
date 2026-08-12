@@ -25,7 +25,8 @@ class AuthInterceptor extends Interceptor {
   static const _noAuthPaths = {
     '/auth/login/', '/auth/register/', '/auth/token/refresh/',
     '/auth/password/reset/', '/auth/password/reset/confirm/',
-    '/auth/social/google/', '/auth/social/apple/',
+    '/auth/social/google/', '/auth/social/apple/', '/auth/social/complete/',
+    '/auth/phone/verify/', '/auth/phone/verify/confirm/',
   };
 
   bool _skipAuth(String path) {
@@ -135,7 +136,7 @@ class AuthInterceptor extends Interceptor {
         refreshToken: newRefreshToken,
         role: responseData['role'] as String? ?? await storage.getUserRole() ?? '',
         userId: responseData['user_id'] as String? ?? await storage.getUserId() ?? '',
-        email: await storage.getUserEmail() ?? '',
+        phone: await storage.getUserPhone() ?? '',
       );
 
       // The session is valid again the moment the refresh above succeeds —

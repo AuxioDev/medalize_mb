@@ -28,7 +28,12 @@ class AuthRepository {
     }
   }
 
-  /// Exchanges a provider-issued id_token for our JWT pair.
+  /// Exchanges a provider-issued id_token for our JWT pair — or, for a
+  /// brand-new social sign-up with no matching account yet, a
+  /// `SocialLoginException` carrying `pendingSocialToken` (see
+  /// mapDioError's `phone_required` case): phone is the unique login
+  /// identifier now, so a first-time social sign-up can't create an
+  /// account in one round trip and must continue via [completeSocialSignup].
   /// [provider] is `google` or `apple`; [device] is the map produced by
   /// `DeviceIdentity.describe()`.
   Future<LoginResponse> socialLogin(
@@ -41,7 +46,41 @@ class AuthRepository {
         '/auth/social/$provider/',
         data: {'id_token': idToken, ...device},
       );
-      return LoginResponse.fromJson(res.data as Map<String, dynamic>);
+      final data = res.data as Map<String, dynamic>;
+      // Unlike every other error case here, this one comes back as a 200 —
+      // it's not a failure, just an "unfinished" sign-up — so it can't be
+      // mapped by mapDioError (which only inspects non-2xx responses) and
+      // must be detected from the body before parsing it as a LoginResponse.
+      if (data['code'] == 'phone_required') {
+        throw SocialPhoneRequiredException(
+          data['pending_social_token'] as String,
+          data['message'] as String?,
+        );
+      }
+      return LoginResponse.fromJson(data);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } on SocialPhoneRequiredException {
+      rethrow;
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  /// Second step of a first-time social sign-up (see [socialLogin]'s doc):
+  /// creates the account with [phone] and sends a verification OTP to it,
+  /// same response shape as [register] — the caller then drives the same
+  /// verify-phone screen/flow as a password sign-up.
+  Future<Map<String, dynamic>> completeSocialSignup({
+    required String pendingSocialToken,
+    required String phone,
+  }) async {
+    try {
+      final res = await _dio.post('/auth/social/complete/', data: {
+        'pending_social_token': pendingSocialToken,
+        'phone': phone,
+      });
+      return res.data as Map<String, dynamic>;
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {
@@ -106,8 +145,8 @@ class AuthRepository {
     }
   }
 
-  /// Persists the UI language on the server so emails and notifications are
-  /// sent in the user's language. [code] must be a concrete language code
+  /// Persists the UI language on the server so SMS/notifications are sent
+  /// in the user's language. [code] must be a concrete language code
   /// (`en`/`ru`/`az`/`tr`/`fr`/`zh`), never the local `'system'` sentinel.
   Future<void> updateLanguage(String code) async {
     try {
@@ -119,9 +158,9 @@ class AuthRepository {
     }
   }
 
-  Future<void> requestPasswordReset(String email) async {
+  Future<void> requestPasswordReset(String phone) async {
     try {
-      await _dio.post('/auth/password/reset/', data: {'email': email});
+      await _dio.post('/auth/password/reset/', data: {'phone': phone});
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {
@@ -130,13 +169,13 @@ class AuthRepository {
   }
 
   Future<void> confirmPasswordReset({
-    required String email,
+    required String phone,
     required String code,
     required String newPassword,
   }) async {
     try {
       await _dio.post('/auth/password/reset/confirm/', data: {
-        'email': email,
+        'phone': phone,
         'code': code,
         'new_password': newPassword,
       });
@@ -149,9 +188,9 @@ class AuthRepository {
 
   /// Resends the registration verification code — see RegisterView, which
   /// already sends one on signup; this covers "I didn't get it"/expired.
-  Future<void> resendEmailVerification(String email) async {
+  Future<void> resendPhoneVerification(String phone) async {
     try {
-      await _dio.post('/auth/email/verify/', data: {'email': email});
+      await _dio.post('/auth/phone/verify/', data: {'phone': phone});
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {
@@ -161,13 +200,13 @@ class AuthRepository {
 
   /// Confirms the 6-digit registration code and, on success, signs the user
   /// straight in — same login payload shape as [login].
-  Future<LoginResponse> confirmEmailVerification({
-    required String email,
+  Future<LoginResponse> confirmPhoneVerification({
+    required String phone,
     required String code,
   }) async {
     try {
-      final res = await _dio.post('/auth/email/verify/confirm/', data: {
-        'email': email,
+      final res = await _dio.post('/auth/phone/verify/confirm/', data: {
+        'phone': phone,
         'code': code,
       });
       return LoginResponse.fromJson(res.data as Map<String, dynamic>);
@@ -264,14 +303,14 @@ class AuthRepository {
     }
   }
 
-  /// Step 1 of the email change flow: sends a 6-digit code to [newEmail].
-  Future<void> requestEmailChange({
-    required String newEmail,
+  /// Step 1 of the phone change flow: sends a 6-digit code to [newPhone].
+  Future<void> requestPhoneChange({
+    required String newPhone,
     required String password,
   }) async {
     try {
-      await _dio.post('/auth/email/change/', data: {
-        'new_email': newEmail,
+      await _dio.post('/auth/phone/change/', data: {
+        'new_phone': newPhone,
         'password': password,
       });
     } on DioException catch (e) {
@@ -281,11 +320,11 @@ class AuthRepository {
     }
   }
 
-  /// Step 2 of the email change flow. On success the backend revokes every
+  /// Step 2 of the phone change flow. On success the backend revokes every
   /// session, so callers must force a local logout.
-  Future<void> confirmEmailChange({required String code}) async {
+  Future<void> confirmPhoneChange({required String code}) async {
     try {
-      await _dio.post('/auth/email/change/confirm/', data: {'code': code});
+      await _dio.post('/auth/phone/change/confirm/', data: {'code': code});
     } on DioException catch (e) {
       throw mapDioError(e);
     } catch (_) {

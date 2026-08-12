@@ -1,6 +1,6 @@
 class LoginRequest {
   const LoginRequest({
-    required this.email,
+    required this.phone,
     required this.password,
     this.rememberMe = false,
     this.deviceId,
@@ -8,7 +8,7 @@ class LoginRequest {
     this.platform,
   });
 
-  final String email;
+  final String phone;
   final String password;
   final bool rememberMe;
 
@@ -20,7 +20,7 @@ class LoginRequest {
   final String? platform;
 
   Map<String, dynamic> toJson() => {
-        'email': email,
+        'phone': phone,
         'password': password,
         'remember_me': rememberMe,
         'device_id': ?deviceId,
