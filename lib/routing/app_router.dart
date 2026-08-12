@@ -11,8 +11,9 @@ import 'package:medalize_mb/features/auth/presentation/screens/forgot_password_s
 import 'package:medalize_mb/features/auth/presentation/screens/login_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/register_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:medalize_mb/features/auth/presentation/screens/social_complete_screen.dart';
 import 'package:medalize_mb/features/auth/presentation/screens/splash_screen.dart';
-import 'package:medalize_mb/features/auth/presentation/screens/verify_email_screen.dart';
+import 'package:medalize_mb/features/auth/presentation/screens/verify_phone_screen.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 import 'package:medalize_mb/features/doctor/presentation/screens/add_edit_workplace_screen.dart';
@@ -62,7 +63,7 @@ import 'package:medalize_mb/features/patient/presentation/screens/my_appointment
 import 'package:medalize_mb/features/patient/presentation/screens/patient_home_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/reschedule_calendar_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/active_sessions_screen.dart';
-import 'package:medalize_mb/features/shared/presentation/screens/change_email_screen.dart';
+import 'package:medalize_mb/features/shared/presentation/screens/change_phone_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/legal_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/notification_settings_screen.dart';
 import 'package:medalize_mb/features/shared/presentation/screens/notifications_screen.dart';
@@ -118,15 +119,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/auth/reset-password',
         pageBuilder: (_, state) {
-          final email = state.extra as String? ?? '';
-          return _authPage(ResetPasswordScreen(email: email));
+          final phone = state.extra as String? ?? '';
+          return _authPage(ResetPasswordScreen(phone: phone));
         },
       ),
       GoRoute(
-        path: '/auth/verify-email',
+        path: '/auth/verify-phone',
         pageBuilder: (_, state) {
-          final email = state.extra as String? ?? '';
-          return _authPage(VerifyEmailScreen(email: email));
+          final phone = state.extra as String? ?? '';
+          return _authPage(VerifyPhoneScreen(phone: phone));
+        },
+      ),
+      GoRoute(
+        path: '/auth/social-complete',
+        pageBuilder: (_, state) {
+          final token = state.extra as String? ?? '';
+          return _authPage(SocialCompleteScreen(pendingSocialToken: token));
         },
       ),
       GoRoute(
@@ -493,8 +501,8 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, _) => _pushPage(const ActiveSessionsScreen()),
       ),
       GoRoute(
-        path: '/shared/change-email',
-        pageBuilder: (_, _) => _pushPage(const ChangeEmailScreen()),
+        path: '/shared/change-phone',
+        pageBuilder: (_, _) => _pushPage(const ChangePhoneScreen()),
       ),
       GoRoute(
         path: '/shared/notifications',

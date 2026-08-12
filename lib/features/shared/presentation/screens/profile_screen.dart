@@ -35,7 +35,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   String? _avatarUrl;
   late TextEditingController _firstName;
   late TextEditingController _lastName;
-  late TextEditingController _phone;
   late TextEditingController _allergies;
   late TextEditingController _chronicConditions;
   late TextEditingController _medications;
@@ -51,7 +50,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final auth = ref.read(authProvider);
     _firstName = TextEditingController();
     _lastName = TextEditingController();
-    _phone = TextEditingController();
     _allergies = TextEditingController();
     _chronicConditions = TextEditingController();
     _medications = TextEditingController();
@@ -69,7 +67,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       final d = res.data as Map<String, dynamic>;
       _firstName.text = d['first_name'] as String? ?? '';
       _lastName.text = d['last_name'] as String? ?? '';
-      _phone.text = d['phone'] as String? ?? '';
       _avatarUrl = d['avatar_url'] as String?;
       if (_role == 'patient') {
         final profile = d['profile'] as Map<String, dynamic>? ?? {};
@@ -102,7 +99,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   void dispose() {
     _firstName.dispose();
     _lastName.dispose();
-    _phone.dispose();
     _allergies.dispose();
     _chronicConditions.dispose();
     _medications.dispose();
@@ -147,7 +143,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       await ref.read(dioClientProvider).patch('/auth/me/', data: {
         'first_name': _firstName.text.trim(),
         'last_name': _lastName.text.trim(),
-        'phone': _phone.text.trim(),
       });
       if (_role == 'patient') {
         await ref.read(dioClientProvider).patch('/auth/profile/patient/', data: {
@@ -196,9 +191,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final auth = ref.watch(authProvider);
-    final email = auth is AuthAuthenticated ? auth.email : '';
+    final phone = auth is AuthAuthenticated ? auth.phone : '';
     final initialsSource =
-        _firstName.text.isNotEmpty ? _firstName.text : (email.isNotEmpty ? email : 'U');
+        _firstName.text.isNotEmpty ? _firstName.text : (phone.isNotEmpty ? phone : 'U');
 
     return Scaffold(
       appBar: AppBar(
@@ -274,7 +269,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
               ),
               const Gap(AppSpacing.sm),
-              Text(email, style: Theme.of(context).textTheme.bodyMedium),
+              Text(phone, style: Theme.of(context).textTheme.bodyMedium),
               const Gap(AppSpacing.lg),
               TextField(
                 controller: _firstName,
@@ -288,14 +283,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 enabled: _editing,
                 decoration:
                     InputDecoration(labelText: context.t.profile.lastName),
-              ),
-              const Gap(12),
-              TextField(
-                controller: _phone,
-                enabled: _editing,
-                keyboardType: TextInputType.phone,
-                decoration:
-                    InputDecoration(labelText: context.t.profile.phone),
               ),
               if (_role == 'doctor') ...[
                 const Gap(AppSpacing.lg),

@@ -13,9 +13,9 @@ import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
 
 class ResetPasswordScreen extends ConsumerStatefulWidget {
-  const ResetPasswordScreen({super.key, required this.email});
+  const ResetPasswordScreen({super.key, required this.phone});
 
-  final String email;
+  final String phone;
 
   @override
   ConsumerState<ResetPasswordScreen> createState() =>
@@ -82,7 +82,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen>
     setState(() => _isLoading = true);
     try {
       await ref.read(authRepositoryProvider).confirmPasswordReset(
-            email: widget.email,
+            phone: widget.phone,
             code: _otpCode,
             newPassword: _passwordController.text,
           );

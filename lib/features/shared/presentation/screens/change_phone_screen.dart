@@ -4,29 +4,30 @@ import 'package:gap/gap.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
-import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/otp_code_field.dart';
+import 'package:medalize_mb/core/widgets/phone_field.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
-/// Two-step email change flow: (1) new email + current password requests a
-/// verification code sent to the new address, (2) the 6-digit code confirms
-/// it. The backend revokes every session on success, so the screen forces a
-/// local logout and the router lands the user back on the login screen.
-class ChangeEmailScreen extends ConsumerStatefulWidget {
-  const ChangeEmailScreen({super.key});
+/// Two-step phone change flow: (1) new phone number + current password
+/// requests a verification code sent to the new number, (2) the 6-digit
+/// code confirms it. The backend revokes every session on success, so the
+/// screen forces a local logout and the router lands the user back on the
+/// login screen.
+class ChangePhoneScreen extends ConsumerStatefulWidget {
+  const ChangePhoneScreen({super.key});
 
   @override
-  ConsumerState<ChangeEmailScreen> createState() => _ChangeEmailScreenState();
+  ConsumerState<ChangePhoneScreen> createState() => _ChangePhoneScreenState();
 }
 
-class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
+class _ChangePhoneScreenState extends ConsumerState<ChangePhoneScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailCtrl = TextEditingController();
+  final _phoneCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
   bool _codeSent = false;
   bool _loading = false;
@@ -36,10 +37,12 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
 
   @override
   void dispose() {
-    _emailCtrl.dispose();
+    _phoneCtrl.dispose();
     _passwordCtrl.dispose();
     super.dispose();
   }
+
+  String get _fullPhone => '+994${_phoneCtrl.text.trim()}';
 
   Future<void> _sendCode() async {
     if (!_formKey.currentState!.validate()) return;
@@ -48,8 +51,8 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
       _error = null;
     });
     try {
-      await ref.read(authRepositoryProvider).requestEmailChange(
-            newEmail: _emailCtrl.text.trim(),
+      await ref.read(authRepositoryProvider).requestPhoneChange(
+            newPhone: _fullPhone,
             password: _passwordCtrl.text,
           );
       if (mounted) {
@@ -61,7 +64,7 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
       }
     } on ApiException catch (e) {
       final msg = e is ValidationException
-          ? (e.firstErrorFor('new_email') ??
+          ? (e.firstErrorFor('new_phone') ??
               e.firstErrorFor('password') ??
               e.userMessage)
           : e.userMessage;
@@ -80,13 +83,13 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
       _codeError = false;
     });
     try {
-      await ref.read(authRepositoryProvider).confirmEmailChange(code: _code);
+      await ref.read(authRepositoryProvider).confirmPhoneChange(code: _code);
       if (!mounted) return;
       // Shown via the root messenger so it survives the redirect to the login
       // screen that forceLogout() triggers.
       AppSnackBar.show(
         context,
-        context.t.security.changeEmailSuccess,
+        context.t.security.changePhoneSuccess,
         type: SnackBarType.success,
       );
       await ref.read(authProvider.notifier).forceLogout();
@@ -107,9 +110,9 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
     }
   }
 
-  /// Back to step 1 keeping the typed email/password so the user can fix a
+  /// Back to step 1 keeping the typed phone/password so the user can fix a
   /// typo and request a fresh code.
-  void _editEmail() {
+  void _editPhone() {
     setState(() {
       _codeSent = false;
       _code = '';
@@ -123,7 +126,7 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
     final t = context.t;
     return Scaffold(
       appBar: AppBar(
-        title: AppBarTitle(t.security.changeEmail, icon: Icons.email_outlined),
+        title: AppBarTitle(t.security.changePhone, icon: Icons.phone_outlined),
       ),
       body: ResponsiveBody(
         child: ListView(
@@ -143,20 +146,12 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            t.security.changeEmailSubtitle,
+            t.security.changePhoneSubtitle,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const Gap(AppSpacing.md),
-          TextFormField(
-            controller: _emailCtrl,
-            keyboardType: TextInputType.emailAddress,
-            autocorrect: false,
-            enabled: !_loading,
-            decoration: InputDecoration(
-              labelText: t.security.newEmailLabel,
-              hintText: t.auth.emailHint,
-            ),
-            validator: Validators.email,
+          PhoneField(
+            controller: _phoneCtrl,
           ),
           const Gap(12),
           TextFormField(
@@ -194,7 +189,7 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          t.security.codeSentTo(email: _emailCtrl.text.trim()),
+          t.security.codeSentTo(phone: _fullPhone),
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const Gap(AppSpacing.md),
@@ -220,11 +215,11 @@ class _ChangeEmailScreenState extends ConsumerState<ChangeEmailScreen> {
                   child: CircularProgressIndicator(
                       strokeWidth: 2, color: Colors.white),
                 )
-              : Text(t.security.confirmNewEmail),
+              : Text(t.security.confirmNewPhone),
         ),
         const Gap(4),
         TextButton(
-          onPressed: _loading ? null : _editEmail,
+          onPressed: _loading ? null : _editPhone,
           child: Text(t.common.back),
         ),
       ],

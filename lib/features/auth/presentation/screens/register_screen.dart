@@ -34,12 +34,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   final _formKey = GlobalKey<FormState>();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
-  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmController = TextEditingController();
 
   String? _selectedRole;
-  String _dialCode = '+994';
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
   bool _consentAccepted = false;
@@ -57,7 +55,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     final password = _passwordController.text;
     return Validators.nameOk(_firstNameController.text) &&
         Validators.nameOk(_lastNameController.text) &&
-        Validators.emailOk(_emailController.text) &&
         _selectedRole != null &&
         Validators.passwordOk(password) &&
         _confirmController.text == password &&
@@ -92,7 +89,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     _ctrl.forward();
     _firstNameController.addListener(_onFieldChanged);
     _lastNameController.addListener(_onFieldChanged);
-    _emailController.addListener(_onFieldChanged);
     _passwordController.addListener(_onFieldChanged);
     _confirmController.addListener(_onFieldChanged);
     _phoneController.addListener(_onFieldChanged);
@@ -112,7 +108,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     _ctrl.dispose();
     _firstNameController.dispose();
     _lastNameController.dispose();
-    _emailController.dispose();
     _passwordController.dispose();
     _confirmController.dispose();
     _phoneController.dispose();
@@ -129,15 +124,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     }
     if (!_formKey.currentState!.validate()) return;
 
-    final rawPhone = _phoneController.text.trim();
-    final phone = rawPhone.isEmpty ? '' : '$_dialCode$rawPhone';
+    final phone = '+994${_phoneController.text.trim()}';
 
     // A hospital account needs one more step (claim an existing registry
     // entry, or add a new one) before the actual /auth/register/ call — see
     // HospitalRegistrationScreen. Patients and doctors register directly.
     if (_selectedRole == UserRole.hospital) {
       context.push('/hospital/registration', extra: {
-        'email': _emailController.text.trim(),
         'password': _passwordController.text,
         'passwordConfirm': _confirmController.text,
         'firstName': _firstNameController.text.trim(),
@@ -149,14 +142,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
     }
 
     await ref.read(authProvider.notifier).register(
-          email: _emailController.text.trim(),
+          phone: phone,
           password: _passwordController.text,
           passwordConfirm: _confirmController.text,
           role: _selectedRole!,
           firstName: _firstNameController.text.trim(),
           lastName: _lastNameController.text.trim(),
           privacyConsent: _consentAccepted,
-          phone: phone,
         );
   }
 
@@ -176,10 +168,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
       // that login attempt is the one that trips this, since the account is
       // never verified yet at that point. Route to the code-entry screen
       // instead of showing a dead-end error.
-      if (next is AuthError && next.exception is EmailNotVerifiedException) {
-        final email = (next.exception as EmailNotVerifiedException).email;
+      if (next is AuthError && next.exception is PhoneNotVerifiedException) {
+        final phone = (next.exception as PhoneNotVerifiedException).phone;
         ref.read(authProvider.notifier).clearError();
-        context.push('/auth/verify-email', extra: email);
+        context.push('/auth/verify-phone', extra: phone);
       }
     });
 
@@ -244,27 +236,12 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
                     ),
                     const SizedBox(height: 10),
 
-                    // Email
-                    AuthCardField(
-                      controller: _emailController,
-                      label: context.t.auth.email,
-                      hint: context.t.auth.emailHint,
-                      keyboardType: TextInputType.emailAddress,
-                      autofillHints: const [AutofillHints.newUsername],
-                      textInputAction: TextInputAction.next,
-                      errorText: _fieldErrors['email']?.firstOrNull,
-                      validator: Validators.email,
-                    ),
-                    const SizedBox(height: 10),
-
-                    // Phone
+                    // Phone — the login identifier (see RegisterRequest).
                     PhoneField(
                       controller: _phoneController,
                       textInputAction: TextInputAction.next,
-                      label: context.t.phoneField.labelOptional,
-                      hint: '501234567',
-                      optional: true,
-                      onCountryChanged: (c) => setState(() => _dialCode = c.dialCode),
+                      autofillHints: const [AutofillHints.newUsername],
+                      errorText: _fieldErrors['phone']?.firstOrNull,
                     ),
                     const SizedBox(height: 14),
 

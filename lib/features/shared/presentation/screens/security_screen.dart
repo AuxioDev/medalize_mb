@@ -124,10 +124,10 @@ class _SecurityScreenState extends ConsumerState<SecurityScreen> {
                 ),
                 const AppFormSectionDivider(),
                 ListTile(
-                  leading: const Icon(Icons.alternate_email),
-                  title: Text(t.security.changeEmail),
+                  leading: const Icon(Icons.phone_outlined),
+                  title: Text(t.security.changePhone),
                   trailing: const Icon(Icons.chevron_right),
-                  onTap: () => context.push('/shared/change-email'),
+                  onTap: () => context.push('/shared/change-phone'),
                 ),
               ],
             ),

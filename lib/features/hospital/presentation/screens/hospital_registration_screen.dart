@@ -19,7 +19,7 @@ import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.d
 import 'package:medalize_mb/i18n/strings.g.dart';
 
 /// Second step of hospital registration, reached from RegisterScreen with
-/// the base account fields (email/password/name/consent) passed via
+/// the base account fields (phone/password/name/consent) passed via
 /// `extra`. Collects the one thing a hospital registrant needs that a
 /// doctor/patient doesn't: which hospital they are — either found in the
 /// registry (claimed) or typed fresh (created), see
@@ -111,14 +111,13 @@ class _HospitalRegistrationScreenState
     if (!_canSubmit) return;
     final fields = widget.accountFields;
     await ref.read(authProvider.notifier).register(
-          email: fields['email'] as String,
+          phone: fields['phone'] as String,
           password: fields['password'] as String,
           passwordConfirm: fields['passwordConfirm'] as String,
           role: UserRole.hospital,
           firstName: fields['firstName'] as String,
           lastName: fields['lastName'] as String,
           privacyConsent: fields['privacyConsent'] as bool,
-          phone: fields['phone'] as String? ?? '',
           hospitalId: _addingNew ? null : _selectedHospital?.id,
           hospitalName: _addingNew ? _newNameController.text.trim() : '',
           hospitalCity: _cityKey!,

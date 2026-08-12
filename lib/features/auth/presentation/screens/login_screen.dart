@@ -7,6 +7,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/fade_slide_transition.dart';
+import 'package:medalize_mb/core/widgets/phone_field.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/tinted_notice_banner.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
@@ -25,13 +26,13 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen>
     with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _rememberMe = false;
   bool _obscurePassword = true;
 
   bool get _isFormValid =>
-      Validators.emailOk(_emailController.text) &&
+      Validators.phoneOk(_phoneController.text) &&
       _passwordController.text.isNotEmpty;
 
   late final AnimationController _ctrl;
@@ -59,7 +60,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
       curve: Interval(0.45, 1.0, curve: AppCurve.enter),
     );
     _ctrl.forward();
-    _emailController.addListener(_onFieldChanged);
+    _phoneController.addListener(_onFieldChanged);
     _passwordController.addListener(_onFieldChanged);
   }
 
@@ -71,7 +72,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   @override
   void dispose() {
     _ctrl.dispose();
-    _emailController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -81,7 +82,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
     await ref
         .read(authProvider.notifier)
         .login(
-          _emailController.text.trim(),
+          '+994${_phoneController.text.trim()}',
           _passwordController.text,
           rememberMe: _rememberMe,
         );
@@ -101,10 +102,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   @override
   Widget build(BuildContext context) {
     ref.listen(authProvider, (_, next) {
-      if (next is AuthError && next.exception is EmailNotVerifiedException) {
-        final email = (next.exception as EmailNotVerifiedException).email;
+      if (next is AuthError && next.exception is PhoneNotVerifiedException) {
+        final phone = (next.exception as PhoneNotVerifiedException).phone;
         ref.read(authProvider.notifier).clearError();
-        context.push('/auth/verify-email', extra: email);
+        context.push('/auth/verify-phone', extra: phone);
+      }
+      if (next is AuthError && next.exception is SocialPhoneRequiredException) {
+        final token =
+            (next.exception as SocialPhoneRequiredException).pendingSocialToken;
+        ref.read(authProvider.notifier).clearError();
+        context.push('/auth/social-complete', extra: token);
       }
     });
 
@@ -134,14 +141,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                 animation: _formAnim,
                 child: Column(
                   children: [
-                    AuthCardField(
-                      controller: _emailController,
-                      label: context.t.auth.email,
-                      hint: context.t.auth.emailHint,
-                      keyboardType: TextInputType.emailAddress,
+                    PhoneField(
+                      controller: _phoneController,
                       textInputAction: TextInputAction.next,
-                      autofillHints: const [AutofillHints.email],
-                      validator: Validators.email,
+                      autofillHints: const [AutofillHints.telephoneNumber],
                     ),
                     const SizedBox(height: 12),
                     AuthCardField(
@@ -222,7 +225,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
               const SizedBox(height: 20),
 
               // ── Inline error ──────────────────────────────────────
-              if (authState is AuthError) ...[
+              if (authState is AuthError &&
+                  authState.exception is! PhoneNotVerifiedException &&
+                  authState.exception is! SocialPhoneRequiredException) ...[
                 TintedNoticeBanner(
                   color: AppColors.error,
                   icon: Icons.error_outline_rounded,
@@ -283,5 +288,3 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
     );
   }
 }
-
-

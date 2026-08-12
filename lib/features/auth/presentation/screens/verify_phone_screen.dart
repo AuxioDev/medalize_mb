@@ -13,20 +13,20 @@ import 'package:medalize_mb/features/auth/providers/auth_provider.dart';
 import 'package:medalize_mb/features/auth/providers/auth_state.dart';
 
 /// Shown right after registration (RegisterScreen's auto-login fails with
-/// [EmailNotVerifiedException]) and whenever a not-yet-verified account
+/// [PhoneNotVerifiedException]) and whenever a not-yet-verified account
 /// tries to log in later — see CustomTokenObtainPairSerializer on the
 /// backend. Confirming here signs the user straight in, same as
 /// ResetPasswordScreen does for the password-reset OTP.
-class VerifyEmailScreen extends ConsumerStatefulWidget {
-  const VerifyEmailScreen({super.key, required this.email});
+class VerifyPhoneScreen extends ConsumerStatefulWidget {
+  const VerifyPhoneScreen({super.key, required this.phone});
 
-  final String email;
+  final String phone;
 
   @override
-  ConsumerState<VerifyEmailScreen> createState() => _VerifyEmailScreenState();
+  ConsumerState<VerifyPhoneScreen> createState() => _VerifyPhoneScreenState();
 }
 
-class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen>
+class _VerifyPhoneScreenState extends ConsumerState<VerifyPhoneScreen>
     with SingleTickerProviderStateMixin {
   String _otpCode = '';
   bool _otpError = false;
@@ -67,15 +67,15 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen>
 
   Future<void> _submit() async {
     if (_otpCode.length != 6) return;
-    await ref.read(authProvider.notifier).verifyEmail(widget.email, _otpCode);
+    await ref.read(authProvider.notifier).verifyPhone(widget.phone, _otpCode);
   }
 
   Future<void> _resend() async {
     setState(() => _resending = true);
     try {
-      await ref.read(authRepositoryProvider).resendEmailVerification(widget.email);
+      await ref.read(authRepositoryProvider).resendPhoneVerification(widget.phone);
       if (!mounted) return;
-      AppSnackBar.show(context, t.verifyEmail.resendSent, type: SnackBarType.success);
+      AppSnackBar.show(context, t.verifyPhone.resendSent, type: SnackBarType.success);
     } on ApiException catch (e) {
       if (!mounted) return;
       AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
@@ -106,9 +106,9 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen>
           FadeSlideTransition(
             animation: _headerAnim,
             child: AuthCardHeader(
-              icon: Icons.mark_email_read_outlined,
-              title: context.t.verifyEmail.title,
-              subtitle: context.t.verifyEmail.subtitle(email: widget.email),
+              icon: Icons.sms_outlined,
+              title: context.t.verifyPhone.title,
+              subtitle: context.t.verifyPhone.subtitle(phone: widget.phone),
             ),
           ),
           const SizedBox(height: 28),
@@ -144,7 +144,7 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen>
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 LoadingFilledButton(
-                  label: context.t.verifyEmail.button,
+                  label: context.t.verifyPhone.button,
                   loading: isLoading,
                   onPressed: isLoading || _otpCode.length != 6 ? null : _submit,
                 ),
@@ -152,7 +152,7 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen>
                 Center(
                   child: TextButton(
                     onPressed: _resending || isLoading ? null : _resend,
-                    child: Text(context.t.verifyEmail.resend),
+                    child: Text(context.t.verifyPhone.resend),
                   ),
                 ),
               ],

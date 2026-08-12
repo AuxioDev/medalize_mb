@@ -1,30 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medalize_mb/i18n/strings.g.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_motion.dart';
-import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
+import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/fade_slide_transition.dart';
 import 'package:medalize_mb/core/widgets/phone_field.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/features/auth/data/repository/auth_repository.dart';
 import 'package:medalize_mb/features/auth/presentation/widgets/auth_scaffold.dart';
+import 'package:medalize_mb/i18n/strings.g.dart';
 
-class ForgotPasswordScreen extends ConsumerStatefulWidget {
-  const ForgotPasswordScreen({super.key});
+/// Second step of a first-time Google/Apple sign-up (see SocialLoginView's
+/// `phone_required` response and AuthRepository.completeSocialSignup):
+/// the provider already proved the user's identity, but phone is the
+/// unique login identifier, so a brand-new social account needs one more
+/// step to collect and verify it before it can be created. On success,
+/// routes to the same verify-phone screen a password sign-up uses.
+class SocialCompleteScreen extends ConsumerStatefulWidget {
+  const SocialCompleteScreen({super.key, required this.pendingSocialToken});
+
+  final String pendingSocialToken;
 
   @override
-  ConsumerState<ForgotPasswordScreen> createState() =>
-      _ForgotPasswordScreenState();
+  ConsumerState<SocialCompleteScreen> createState() =>
+      _SocialCompleteScreenState();
 }
 
-class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
+class _SocialCompleteScreenState extends ConsumerState<SocialCompleteScreen>
     with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
   final _phoneController = TextEditingController();
   bool _isLoading = false;
+  Map<String, List<String>> _fieldErrors = {};
 
   bool get _isFormValid => Validators.phoneOk(_phoneController.text);
 
@@ -53,10 +62,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
       curve: Interval(0.45, 1.0, curve: AppCurve.enter),
     );
     _ctrl.forward();
-    _phoneController.addListener(_onFieldChanged);
+    _phoneController.addListener(() => setState(() {}));
   }
-
-  void _onFieldChanged() => setState(() {});
 
   @override
   void dispose() {
@@ -67,16 +74,23 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
 
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
-    setState(() => _isLoading = true);
+    setState(() {
+      _isLoading = true;
+      _fieldErrors = {};
+    });
     final phone = '+994${_phoneController.text.trim()}';
     try {
-      await ref.read(authRepositoryProvider).requestPasswordReset(phone);
+      await ref.read(authRepositoryProvider).completeSocialSignup(
+            pendingSocialToken: widget.pendingSocialToken,
+            phone: phone,
+          );
       if (!mounted) return;
-      // Navigate to OTP entry screen regardless of whether the phone exists
-      // (backend always returns 200 to prevent phone-number enumeration)
-      context.push('/auth/reset-password', extra: phone);
+      context.pushReplacement('/auth/verify-phone', extra: phone);
     } on ApiException catch (e) {
       if (!mounted) return;
+      if (e is ValidationException) {
+        setState(() => _fieldErrors = e.fieldErrors);
+      }
       AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
     } finally {
       if (mounted) setState(() => _isLoading = false);
@@ -94,9 +108,9 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
             FadeSlideTransition(
               animation: _headerAnim,
               child: AuthCardHeader(
-                icon: Icons.lock_reset_rounded,
-                title: context.t.forgotPassword.title,
-                subtitle: context.t.forgotPassword.subtitle,
+                icon: Icons.phone_android_rounded,
+                title: context.t.socialComplete.title,
+                subtitle: context.t.socialComplete.subtitle,
               ),
             ),
             const SizedBox(height: 28),
@@ -109,6 +123,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
                   textInputAction: TextInputAction.done,
                   autofillHints: const [AutofillHints.telephoneNumber],
                   onFieldSubmitted: (_) => _submit(),
+                  errorText: _fieldErrors['phone']?.firstOrNull,
                 ),
               ),
             ),
@@ -116,25 +131,10 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen>
 
             FadeSlideTransition(
               animation: _footerAnim,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  LoadingFilledButton(
-                    label: context.t.auth.sendResetLink,
-                    loading: _isLoading,
-                    onPressed: _isLoading || !_isFormValid ? null : _submit,
-                  ),
-                  const SizedBox(height: 4),
-                  Center(
-                    child: Builder(
-                      builder: (context) => TextButton.icon(
-                        onPressed: () => context.pop(),
-                        icon: const Icon(Icons.arrow_back_rounded, size: 16),
-                        label: Text(context.t.auth.backToSignIn),
-                      ),
-                    ),
-                  ),
-                ],
+              child: LoadingFilledButton(
+                label: context.t.socialComplete.button,
+                loading: _isLoading,
+                onPressed: _isLoading || !_isFormValid ? null : _submit,
               ),
             ),
           ],
