@@ -279,7 +279,9 @@
     "addressLabel": "Adresse",
     "startLabel": "Début",
     "endLabel": "Fin",
-    "tryDifferentDate": "Essayez une autre date"
+    "tryDifferentDate": "Essayez une autre date",
+    "earliestPreselected": "Le créneau le plus proche est présélectionné",
+    "continueAt": "Continuer — $time"
   },
   "doctorSearch": {
     "title": "Trouver un médecin",

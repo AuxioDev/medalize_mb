@@ -7,10 +7,21 @@ import 'package:medalize_mb/core/theme/theme_colors.dart';
 /// [BookingCalendarScreen] and [RescheduleCalendarScreen] — previously two
 /// byte-identical private `_SlotChip` classes.
 class SlotChip extends StatefulWidget {
-  const SlotChip({super.key, required this.time, required this.onTap});
+  const SlotChip({
+    super.key,
+    required this.time,
+    required this.onTap,
+    this.selected = false,
+  });
 
   final String time;
   final VoidCallback onTap;
+
+  /// Whether this chip is the currently selected slot (e.g. the
+  /// auto-preselected earliest slot, or one the patient explicitly tapped).
+  /// Renders with the same filled treatment as the transient press state,
+  /// but persists after release.
+  final bool selected;
 
   @override
   State<SlotChip> createState() => _SlotChipState();
@@ -22,6 +33,7 @@ class _SlotChipState extends State<SlotChip> {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final filled = _pressed || widget.selected;
     final scale = _pressed ? 0.95 : 1.0;
     return GestureDetector(
       onTapDown: (_) => setState(() => _pressed = true),
@@ -35,18 +47,18 @@ class _SlotChipState extends State<SlotChip> {
         transformAlignment: Alignment.center,
         transform: Matrix4.diagonal3Values(scale, scale, 1),
         decoration: BoxDecoration(
-          color: _pressed ? AppColors.primary : c.primarySurface,
+          color: filled ? AppColors.primary : c.primarySurface,
           borderRadius: BorderRadius.circular(AppRadius.sm + 2),
           border: Border.all(
             color: AppColors.primary,
-            width: _pressed ? 1.5 : 1,
+            width: filled ? 1.5 : 1,
           ),
         ),
         child: Center(
           child: Text(
             widget.time,
             style: TextStyle(
-              color: _pressed ? Colors.white : c.primaryText,
+              color: filled ? Colors.white : c.primaryText,
               fontSize: 13,
               fontWeight: FontWeight.w600,
             ),

@@ -469,6 +469,8 @@ class _Translations$booking$fr extends Translations$booking$en {
 	@override String get startLabel => 'Début';
 	@override String get endLabel => 'Fin';
 	@override String get tryDifferentDate => 'Essayez une autre date';
+	@override String get earliestPreselected => 'Le créneau le plus proche est présélectionné';
+	@override String continueAt({required Object time}) => 'Continuer — ${time}';
 }
 
 // Path: doctorSearch
@@ -1764,6 +1766,8 @@ extension on TranslationsFr {
 			'booking.startLabel' => 'Début',
 			'booking.endLabel' => 'Fin',
 			'booking.tryDifferentDate' => 'Essayez une autre date',
+			'booking.earliestPreselected' => 'Le créneau le plus proche est présélectionné',
+			'booking.continueAt' => ({required Object time}) => 'Continuer — ${time}',
 			'doctorSearch.title' => 'Trouver un médecin',
 			'doctorSearch.searchByName' => 'Rechercher par nom...',
 			'doctorSearch.city' => 'Ville',
@@ -2020,10 +2024,10 @@ extension on TranslationsFr {
 			'legal.sections.retention.title' => 'Durée de conservation de vos données',
 			'legal.sections.retention.body' => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).',
 			'legal.sections.rights.title' => 'Vos droits',
-			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
-			'legal.sections.security.title' => 'Comment nous protégeons vos données',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
+			'legal.sections.security.title' => 'Comment nous protégeons vos données',
 			'legal.sections.security.body' => 'Les messages entre vous et votre médecin, ainsi que les conversations avec l\'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible.',
 			'legal.sections.permissions.title' => 'Autorisations que nous demandons',
 			'legal.sections.permissions.body' => 'Appareil photo et photothèque — pour définir une photo de profil et téléverser des documents médicaux. Localisation — pour trier les médecins par distance. Notifications — pour transmettre rappels de rendez-vous et messages. Biométrie (Face ID / empreinte digitale) — un moyen optionnel et plus rapide de déverrouiller l\'application ; vos données biométriques ne quittent jamais votre appareil, nous recevons uniquement une confirmation oui/non de son système d\'exploitation.',

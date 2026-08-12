@@ -10,10 +10,12 @@ import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/calendar/slot_chip.dart';
 import 'package:medalize_mb/core/widgets/calendar/styled_slot_calendar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/providers/appointment_provider.dart';
+import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
@@ -32,6 +34,12 @@ class _RescheduleCalendarScreenState
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   late String _selectedWorkplaceId;
+
+  // The patient's explicit slot choice, if any. Null means "no explicit
+  // choice yet" — the earliest slot in the day's list is used as the
+  // default (see `selectedSlot` below), rather than requiring a tap before
+  // rescheduling can proceed.
+  DateTime? _pickedStartsAt;
 
   @override
   void initState() {
@@ -52,6 +60,15 @@ class _RescheduleCalendarScreenState
             ),
           )
         : null;
+
+    // Same default-earliest-slot logic as BookingCalendarScreen.
+    final slots = slotsAsync?.valueOrNull ?? const <SlotModel>[];
+    final selectedSlot = slots.isEmpty
+        ? null
+        : slots.firstWhere(
+            (s) => s.startsAt == _pickedStartsAt,
+            orElse: () => slots.first,
+          );
 
     return Scaffold(
       appBar: AppBar(
@@ -82,6 +99,7 @@ class _RescheduleCalendarScreenState
                       setState(() {
                         _selectedDay = selected;
                         _focusedDay = focused;
+                        _pickedStartsAt = null;
                       });
                     },
                   ),
@@ -103,15 +121,36 @@ class _RescheduleCalendarScreenState
                             color: context.colors.primaryText,
                           ),
                           const Gap(6),
-                          Text(
-                            DateFormat('EEEE, d MMMM y').format(_selectedDay!),
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(color: context.colors.primaryText),
+                          Expanded(
+                            child: Text(
+                              DateFormat('EEEE, d MMMM y')
+                                  .format(_selectedDay!),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.titleSmall
+                                  ?.copyWith(color: context.colors.primaryText),
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
+                  if (selectedSlot != null && _pickedStartsAt == null)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.md,
+                          0,
+                          AppSpacing.md,
+                          8,
+                        ),
+                        child: Text(
+                          context.t.booking.earliestPreselected,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: context.colors.textSecondary),
+                        ),
+                      ),
+                    ),
                   slotsAsync!.when(
                     loading: () => SliverPadding(
                       padding: const EdgeInsets.symmetric(
@@ -177,9 +216,10 @@ class _RescheduleCalendarScreenState
                               slideY: 0,
                               child: SlotChip(
                                 time: DateFormat('HH:mm').format(slot.startsAt),
+                                selected: slot.startsAt == selectedSlot?.startsAt,
                                 onTap: () {
                                   HapticFeedback.lightImpact();
-                                  context.pop(slot.startsAt);
+                                  setState(() => _pickedStartsAt = slot.startsAt);
                                 },
                               ),
                             );
@@ -202,6 +242,19 @@ class _RescheduleCalendarScreenState
           },
         ),
       ),
+      bottomNavigationBar: selectedSlot == null
+          ? null
+          : BottomActionBar(
+              child: LoadingFilledButton(
+                label: context.t.booking.continueAt(
+                  time: DateFormat('HH:mm').format(selectedSlot.startsAt),
+                ),
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  context.pop(selectedSlot.startsAt);
+                },
+              ),
+            ),
     );
   }
 }

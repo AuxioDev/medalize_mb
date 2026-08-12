@@ -469,6 +469,8 @@ class _Translations$booking$tr extends Translations$booking$en {
 	@override String get startLabel => 'Başlangıç';
 	@override String get endLabel => 'Bitiş';
 	@override String get tryDifferentDate => 'Farklı bir tarih deneyin';
+	@override String get earliestPreselected => 'En yakın uygun zaman önceden seçildi';
+	@override String continueAt({required Object time}) => 'Devam et — ${time}';
 }
 
 // Path: doctorSearch
@@ -1764,6 +1766,8 @@ extension on TranslationsTr {
 			'booking.startLabel' => 'Başlangıç',
 			'booking.endLabel' => 'Bitiş',
 			'booking.tryDifferentDate' => 'Farklı bir tarih deneyin',
+			'booking.earliestPreselected' => 'En yakın uygun zaman önceden seçildi',
+			'booking.continueAt' => ({required Object time}) => 'Devam et — ${time}',
 			'doctorSearch.title' => 'Doktor Bul',
 			'doctorSearch.searchByName' => 'İsme göre ara...',
 			'doctorSearch.city' => 'Şehir',
@@ -2020,10 +2024,10 @@ extension on TranslationsTr {
 			'legal.sections.retention.title' => 'Verilerinizi ne kadar süre saklıyoruz',
 			'legal.sections.retention.body' => 'Hesabınız aktif olduğu sürece. Hesabınızı silerseniz, yasal olarak saklamamız gereken kayıtlar (örneğin vergi amaçlı ödeme kayıtları) dışında, kişisel verilerinizi makul bir süre içinde kaldırırız.',
 			'legal.sections.rights.title' => 'Haklarınız',
-			'legal.sections.rights.body' => 'Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin.',
-			'legal.sections.security.title' => 'Verilerinizi nasıl koruyoruz',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => 'Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin.',
+			'legal.sections.security.title' => 'Verilerinizi nasıl koruyoruz',
 			'legal.sections.security.body' => 'Doktorunuzla mesajlaşmalarınız ve yapay zeka asistanı konuşmaları şifrelenir. Yüklenen belgeler ve fotoğraflar özel olarak saklanır, yalnızca güvenli imzalı bağlantılarla erişilebilir, asla herkese açık dosyalar olarak değil. Şifreler asla okunabilir biçimde saklanmaz.',
 			'legal.sections.permissions.title' => 'İstediğimiz izinler',
 			'legal.sections.permissions.body' => 'Kamera ve fotoğraf galerisi — profil fotoğrafı ayarlamak ve tıbbi belgeler yüklemek için. Konum — doktorları size olan uzaklığa göre sıralamak için. Bildirimler — randevu hatırlatmaları ve mesajlar iletmek için. Biyometri (Face ID / parmak izi) — uygulamanın kilidini açmanın isteğe bağlı, daha hızlı bir yolu; biyometrik verileriniz asla cihazınızdan çıkmaz, yalnızca işletim sisteminden bir evet/hayır onayı alırız.',

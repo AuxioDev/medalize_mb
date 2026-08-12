@@ -279,7 +279,9 @@
     "addressLabel": "地址",
     "startLabel": "开始",
     "endLabel": "结束",
-    "tryDifferentDate": "请换个日期试试"
+    "tryDifferentDate": "请换个日期试试",
+    "earliestPreselected": "已预选最早的空闲时间段",
+    "continueAt": "继续 — $time"
   },
   "doctorSearch": {
     "title": "查找医生",

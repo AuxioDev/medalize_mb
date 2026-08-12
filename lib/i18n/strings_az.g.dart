@@ -469,6 +469,8 @@ class _Translations$booking$az extends Translations$booking$en {
 	@override String get startLabel => 'Başlanğıc';
 	@override String get endLabel => 'Son';
 	@override String get tryDifferentDate => 'Başqa tarix seçin';
+	@override String get earliestPreselected => 'Ən yaxın boş vaxt əvvəlcədən seçilib';
+	@override String continueAt({required Object time}) => 'Davam et — ${time}';
 }
 
 // Path: doctorSearch
@@ -1764,6 +1766,8 @@ extension on TranslationsAz {
 			'booking.startLabel' => 'Başlanğıc',
 			'booking.endLabel' => 'Son',
 			'booking.tryDifferentDate' => 'Başqa tarix seçin',
+			'booking.earliestPreselected' => 'Ən yaxın boş vaxt əvvəlcədən seçilib',
+			'booking.continueAt' => ({required Object time}) => 'Davam et — ${time}',
 			'doctorSearch.title' => 'Həkim tap',
 			'doctorSearch.searchByName' => 'Ada görə axtar...',
 			'doctorSearch.city' => 'Şəhər',
@@ -2020,10 +2024,10 @@ extension on TranslationsAz {
 			'legal.sections.retention.title' => 'Məlumatları nə qədər saxlayırıq',
 			'legal.sections.retention.body' => 'Hesabınız aktiv olduğu müddətcə. Hesabınızı sildikdə, qanunla saxlamağa borclu olduğumuz qeydlər (məsələn, vergi məqsədləri üçün ödəniş qeydləri) istisna olmaqla, şəxsi məlumatlarınızı ağlabatan müddət ərzində siliriz.',
 			'legal.sections.rights.title' => 'Hüquqlarınız',
-			'legal.sections.rights.body' => 'Haqqınızda saxladığımız məlumatlara giriş əldə edə, yanlış məlumatların düzəldilməsini tələb edə, hesabınızın və məlumatlarınızın silinməsini tələb edə və istənilən vaxt razılığınızı geri götürə bilərsiniz. Bunların əksəriyyəti birbaşa "Profil" → "Tənzimləmələr" bölməsində mövcuddur; digər hallarda aşağıdakı əlaqə vasitəsilə bizimlə əlaqə saxlayın.',
-			'legal.sections.security.title' => 'Məlumatlarınızı necə qoruyuruq',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => 'Haqqınızda saxladığımız məlumatlara giriş əldə edə, yanlış məlumatların düzəldilməsini tələb edə, hesabınızın və məlumatlarınızın silinməsini tələb edə və istənilən vaxt razılığınızı geri götürə bilərsiniz. Bunların əksəriyyəti birbaşa "Profil" → "Tənzimləmələr" bölməsində mövcuddur; digər hallarda aşağıdakı əlaqə vasitəsilə bizimlə əlaqə saxlayın.',
+			'legal.sections.security.title' => 'Məlumatlarınızı necə qoruyuruq',
 			'legal.sections.security.body' => 'Həkiminizlə yazışmalarınız və süni intellekt köməkçisi ilə söhbətləriniz şifrələnir. Yüklənmiş sənədlər və şəkillər məxfi saxlanılır, yalnız təhlükəsiz imzalanmış keçidlərlə əlçatandır, heç vaxt ictimai fayl kimi deyil. Parollar heç vaxt oxuna bilən formada saxlanılmır.',
 			'legal.sections.permissions.title' => 'Tələb etdiyimiz icazələr',
 			'legal.sections.permissions.body' => 'Kamera və foto qalereya — profil şəkli qoymaq və tibbi sənədlər yükləmək üçün. Məkan — həkimləri sizə olan məsafəyə görə sıralamaq üçün. Bildirişlər — təyinat xatırlatmaları və mesajlar çatdırmaq üçün. Biometrik (Face ID / barmaq izi) — tətbiqi kilidlədən açmağın istəyə bağlı, daha sürətli üsulu; biometrik məlumatlarınız heç vaxt cihazınızdan kənara çıxmır, biz yalnız cihazın əməliyyat sistemindən "bəli/xeyr" təsdiqi alırıq.',

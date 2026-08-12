@@ -279,7 +279,9 @@
     "addressLabel": "Ünvan",
     "startLabel": "Başlanğıc",
     "endLabel": "Son",
-    "tryDifferentDate": "Başqa tarix seçin"
+    "tryDifferentDate": "Başqa tarix seçin",
+    "earliestPreselected": "Ən yaxın boş vaxt əvvəlcədən seçilib",
+    "continueAt": "Davam et — $time"
   },
   "doctorSearch": {
     "title": "Həkim tap",

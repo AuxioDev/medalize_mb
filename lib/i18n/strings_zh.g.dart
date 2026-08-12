@@ -469,6 +469,8 @@ class _Translations$booking$zh extends Translations$booking$en {
 	@override String get startLabel => '开始';
 	@override String get endLabel => '结束';
 	@override String get tryDifferentDate => '请换个日期试试';
+	@override String get earliestPreselected => '已预选最早的空闲时间段';
+	@override String continueAt({required Object time}) => '继续 — ${time}';
 }
 
 // Path: doctorSearch
@@ -1764,6 +1766,8 @@ extension on TranslationsZh {
 			'booking.startLabel' => '开始',
 			'booking.endLabel' => '结束',
 			'booking.tryDifferentDate' => '请换个日期试试',
+			'booking.earliestPreselected' => '已预选最早的空闲时间段',
+			'booking.continueAt' => ({required Object time}) => '继续 — ${time}',
 			'doctorSearch.title' => '查找医生',
 			'doctorSearch.searchByName' => '按姓名搜索...',
 			'doctorSearch.city' => '城市',
@@ -2020,10 +2024,10 @@ extension on TranslationsZh {
 			'legal.sections.retention.title' => '我们保留数据多长时间',
 			'legal.sections.retention.body' => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。',
 			'legal.sections.rights.title' => '您的权利',
-			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
-			'legal.sections.security.title' => '我们如何保护您的数据',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
+			'legal.sections.security.title' => '我们如何保护您的数据',
 			'legal.sections.security.body' => '您与医生之间的消息以及与 AI 助手的对话均经过加密。上传的文档和照片以私密方式存储，仅可通过安全的签名链接访问，绝不会作为公开文件存在。密码绝不会以可读形式存储。',
 			'legal.sections.permissions.title' => '我们请求的权限',
 			'legal.sections.permissions.body' => '相机和照片图库——用于设置头像和上传医疗文件。位置——用于按距离为您排序医生。通知——用于推送预约提醒和消息。生物识别（面容 ID / 指纹）——一种可选的、更快捷的应用解锁方式；您的生物识别数据绝不会离开您的设备，我们仅会收到设备操作系统返回的"是/否"确认。',

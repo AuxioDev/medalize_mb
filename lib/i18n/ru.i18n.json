@@ -279,7 +279,9 @@
     "addressLabel": "Адрес",
     "startLabel": "Начало",
     "endLabel": "Конец",
-    "tryDifferentDate": "Попробуйте другую дату"
+    "tryDifferentDate": "Попробуйте другую дату",
+    "earliestPreselected": "Выбран ближайший свободный слот",
+    "continueAt": "Продолжить — $time"
   },
   "doctorSearch": {
     "title": "Найти врача",
