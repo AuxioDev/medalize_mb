@@ -26,7 +26,7 @@ const _patientAuth = AuthAuthenticated(
   refreshToken: 'r',
   role: 'patient',
   userId: 'patient-1',
-  email: 'p@example.com',
+  phone: '+994501234567',
   onboardingComplete: true,
 );
 

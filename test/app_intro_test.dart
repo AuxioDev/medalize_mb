@@ -30,7 +30,7 @@ const _authenticated = AuthAuthenticated(
   refreshToken: 'r',
   role: 'patient',
   userId: 'u1',
-  email: 'p@example.com',
+  phone: '+994501234567',
   onboardingComplete: true,
 );
 

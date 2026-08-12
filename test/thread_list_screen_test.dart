@@ -23,7 +23,7 @@ const _patientAuth = AuthAuthenticated(
   refreshToken: 'r',
   role: 'patient',
   userId: 'patient-1',
-  email: 'p@example.com',
+  phone: '+994501234567',
   onboardingComplete: true,
 );
 
@@ -32,7 +32,7 @@ const _doctorAuth = AuthAuthenticated(
   refreshToken: 'r',
   role: 'doctor',
   userId: 'doctor-1',
-  email: 'd@example.com',
+  phone: '+994551234567',
   onboardingComplete: true,
 );
 

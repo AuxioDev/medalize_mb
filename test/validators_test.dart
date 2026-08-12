@@ -81,15 +81,17 @@ void main() {
   });
 
   group('Validators.phone', () {
-    test('accepts 7–15 digit numbers, ignoring formatting', () {
+    // Azerbaijan-only: always exactly 9 local digits after the fixed +994
+    // prefix PhoneField shows (see apps.users.phone.normalize_az_phone on
+    // the backend, the authoritative check — this is UX-only).
+    test('accepts exactly 9 digits, ignoring formatting', () {
       expect(Validators.phone('50 123 45 67'), isNull); // 9 digits, formatted
-      expect(Validators.phone('1234567'), isNull); // 7 digits (lower bound)
-      expect(Validators.phone('13800138000'), isNull); // 11 digits (e.g. CN mobile)
+      expect(Validators.phone('501234567'), isNull);
     });
 
     test('rejects too short or too long', () {
-      expect(Validators.phone('+123'), isNotNull); // 3 digits, too short
-      expect(Validators.phone('1234567890123456'), isNotNull); // 16 digits, too long
+      expect(Validators.phone('1234567'), isNotNull); // 7 digits, too short
+      expect(Validators.phone('1234567890'), isNotNull); // 10 digits, too long
     });
 
     test('rejects empty/null', () {
@@ -109,10 +111,10 @@ void main() {
       expect(Validators.passwordOk('short'), isFalse);
     });
 
-    test('phoneOk treats empty as ok (optional field)', () {
-      expect(Validators.phoneOk(''), isTrue);
-      expect(Validators.phoneOk('1234567'), isTrue);
-      expect(Validators.phoneOk('+123'), isFalse);
+    test('phoneOk requires exactly 9 digits (phone is never optional)', () {
+      expect(Validators.phoneOk(''), isFalse);
+      expect(Validators.phoneOk('501234567'), isTrue);
+      expect(Validators.phoneOk('1234567'), isFalse);
     });
   });
 }

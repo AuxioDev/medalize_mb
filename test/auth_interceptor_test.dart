@@ -84,14 +84,14 @@ class _FakeStorage extends SecureStorage {
   @override
   Future<String?> getUserId() async => 'u1';
   @override
-  Future<String?> getUserEmail() async => 'a@b.co';
+  Future<String?> getUserPhone() async => '+994501234567';
   @override
   Future<void> saveTokens({
     required String accessToken,
     required String refreshToken,
     required String role,
     required String userId,
-    required String email,
+    required String phone,
   }) async {
     savedAccessToken = accessToken;
   }
@@ -280,14 +280,14 @@ void main() {
   test('login 401 is passed through without forcing logout', () async {
     // Regression guard: a wrong-credentials 401 from /auth/login/ used to hit
     // the token-refresh path, whose forceLogout() async storage wipe overwrote
-    // the AuthError state — so the "Invalid email or password" message never
-    // showed. The interceptor must now pass auth-endpoint errors straight
-    // through, untouched.
+    // the AuthError state — so the "Invalid phone number or password" message
+    // never showed. The interceptor must now pass auth-endpoint errors
+    // straight through, untouched.
     var forcedOut = false;
     final dio = Dio(BaseOptions(baseUrl: 'http://localhost/api'));
     dio.httpClientAdapter = _FakeAdapter(
       401,
-      {'code': 'invalid_credentials', 'message': 'Invalid email or password.'},
+      {'code': 'invalid_credentials', 'message': 'Invalid phone number or password.'},
     );
     dio.interceptors.add(AuthInterceptor(
       storage: SecureStorage(),
@@ -299,7 +299,7 @@ void main() {
 
     DioException? caught;
     try {
-      await dio.post('/auth/login/', data: {'email': 'a@b.co', 'password': 'x'});
+      await dio.post('/auth/login/', data: {'phone': '+994501234567', 'password': 'x'});
     } on DioException catch (e) {
       caught = e;
     }

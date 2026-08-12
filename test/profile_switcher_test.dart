@@ -35,7 +35,7 @@ const _auth = AuthAuthenticated(
   refreshToken: 'r',
   role: 'patient',
   userId: 'u1',
-  email: 'jane@example.com',
+  phone: '+994501234567',
   onboardingComplete: true,
   firstName: 'Jane',
   lastName: 'Doe',

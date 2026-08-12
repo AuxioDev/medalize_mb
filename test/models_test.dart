@@ -10,7 +10,6 @@ void main() {
     test('parses a patient with nested profile', () {
       final user = UserModel.fromJson({
         'user_id': 'u1',
-        'email': 'patient@test.com',
         'role': 'patient',
         'first_name': 'Jane',
         'last_name': 'Doe',
@@ -27,7 +26,7 @@ void main() {
     test('parses a doctor with nested profile', () {
       final user = UserModel.fromJson({
         'user_id': 'd1',
-        'email': 'doctor@test.com',
+        'phone': '+994551234567',
         'role': 'doctor',
         'first_name': 'John',
         'last_name': 'Smith',
@@ -49,11 +48,10 @@ void main() {
     test('applies defaults for missing optional fields', () {
       final user = UserModel.fromJson({
         'user_id': 'u2',
-        'email': 'x@test.com',
+        'phone': '+994501112233',
         'role': 'patient',
       });
       expect(user.firstName, '');
-      expect(user.phone, '');
       expect(user.patientProfile, isNull);
     });
   });
@@ -61,20 +59,20 @@ void main() {
   group('Request models toJson', () {
     test('LoginRequest serializes with snake_case keys', () {
       final json = const LoginRequest(
-        email: 'a@b.com',
+        phone: '+994501234567',
         password: 'Pass1234',
         rememberMe: true,
       ).toJson();
       expect(json, {
-        'email': 'a@b.com',
+        'phone': '+994501234567',
         'password': 'Pass1234',
         'remember_me': true,
       });
     });
 
-    test('RegisterRequest omits phone when empty', () {
+    test('RegisterRequest always includes phone', () {
       final json = const RegisterRequest(
-        email: 'a@b.com',
+        phone: '+994501234567',
         password: 'Pass1234',
         passwordConfirm: 'Pass1234',
         role: 'patient',
@@ -82,23 +80,23 @@ void main() {
         lastName: 'Doe',
         privacyConsent: true,
       ).toJson();
-      expect(json.containsKey('phone'), isFalse);
+      expect(json['phone'], '+994501234567');
       expect(json['password_confirm'], 'Pass1234');
       expect(json['privacy_consent'], isTrue);
     });
 
-    test('RegisterRequest includes phone when present', () {
+    test('RegisterRequest omits hospital fields when not a hospital signup', () {
       final json = const RegisterRequest(
-        email: 'a@b.com',
+        phone: '+994501234567',
         password: 'Pass1234',
         passwordConfirm: 'Pass1234',
         role: 'patient',
         firstName: 'Jane',
         lastName: 'Doe',
         privacyConsent: true,
-        phone: '+994501234567',
       ).toJson();
-      expect(json['phone'], '+994501234567');
+      expect(json.containsKey('hospital_id'), isFalse);
+      expect(json.containsKey('hospital_name'), isFalse);
     });
   });
 

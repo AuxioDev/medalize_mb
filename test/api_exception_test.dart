@@ -125,23 +125,9 @@ void main() {
       expect(e.missing, ['specialization', 'diploma']);
     });
 
-    test('social_email_unverified surfaces the backend guidance', () {
-      final e = mapDioError(_dio(status: 403, data: {
-        'code': 'social_email_unverified',
-        'message':
-            'An account with this email already exists. Please sign in with your password.',
-      }));
-      expect(e, isA<SocialLoginException>());
-      expect(e.userMessage, contains('sign in with your password'));
-    });
-
-    test('social_token_invalid and social_email_missing also map to SocialLoginException', () {
+    test('social_token_invalid maps to SocialLoginException', () {
       expect(
         mapDioError(_dio(status: 401, data: {'code': 'social_token_invalid'})),
-        isA<SocialLoginException>(),
-      );
-      expect(
-        mapDioError(_dio(status: 400, data: {'code': 'social_email_missing'})),
         isA<SocialLoginException>(),
       );
     });

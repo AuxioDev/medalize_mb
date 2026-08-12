@@ -12,7 +12,7 @@ AuthAuthenticated _hospital({bool? isVerified, String? subscriptionStatus}) => A
       refreshToken: 'r',
       role: 'hospital',
       userId: 'h1',
-      email: 'h@example.com',
+      phone: '+994991234567',
       onboardingComplete: true,
       isVerified: isVerified,
       subscriptionStatus: subscriptionStatus,

@@ -41,7 +41,7 @@ const _authed = AuthAuthenticated(
   refreshToken: 'refresh',
   role: 'patient',
   userId: 'u-1',
-  email: 'user@example.com',
+  phone: '+994501234567',
   onboardingComplete: true,
 );
 

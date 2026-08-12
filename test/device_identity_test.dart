@@ -73,7 +73,7 @@ void main() {
         refreshToken: 'refresh',
         role: 'patient',
         userId: 'u1',
-        email: 'x@test.com',
+        phone: '+994501112233',
       );
       await storage.clearAll();
 

@@ -67,7 +67,7 @@ void main() {
     // widget consolidated the two styles.
     expect(find.text('DANGER ZONE'), findsOneWidget);
     expect(find.text('Deactivate Account'), findsOneWidget);
-    expect(find.text('Change Email'), findsOneWidget);
+    expect(find.text('Change Phone Number'), findsOneWidget);
     // The separate, heavier, irreversible delete action sits alongside
     // deactivate in the same danger zone (Apple 5.1.1(v) account-deletion
     // requirement).
