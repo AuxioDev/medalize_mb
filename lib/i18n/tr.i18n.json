@@ -903,5 +903,17 @@
     "cancelRequest": "Talebi iptal et",
     "invitedYouToJoin": "Sizi katılmaya davet etti",
     "awaitingApproval": "Hastane onayı bekleniyor"
+  },
+  "share": {
+    "title": "Profili paylaş",
+    "shareLink": "Bağlantıyı paylaş",
+    "copyLink": "Bağlantıyı kopyala",
+    "linkCopied": "Bağlantı kopyalandı"
+  },
+  "hospitalDetail": {
+    "title": "Hastane",
+    "couldNotLoad": "Profil yüklenemedi",
+    "location": "Adres",
+    "doctorsHeading": "Buradaki doktorlar"
   }
 }

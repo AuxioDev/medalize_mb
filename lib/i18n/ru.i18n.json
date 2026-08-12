@@ -903,5 +903,17 @@
     "cancelRequest": "Отменить заявку",
     "invitedYouToJoin": "Пригласила вас присоединиться",
     "awaitingApproval": "Ожидает подтверждения больницы"
+  },
+  "share": {
+    "title": "Поделиться профилем",
+    "shareLink": "Поделиться ссылкой",
+    "copyLink": "Скопировать ссылку",
+    "linkCopied": "Ссылка скопирована"
+  },
+  "hospitalDetail": {
+    "title": "Больница",
+    "couldNotLoad": "Не удалось загрузить профиль",
+    "location": "Адрес",
+    "doctorsHeading": "Врачи в клинике"
   }
 }

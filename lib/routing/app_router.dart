@@ -40,6 +40,7 @@ import 'package:medalize_mb/features/hospital/presentation/screens/hospital_invi
 import 'package:medalize_mb/features/hospital/presentation/screens/hospital_pending_approval_screen.dart';
 import 'package:medalize_mb/features/hospital/presentation/screens/hospital_profile_screen.dart';
 import 'package:medalize_mb/features/hospital/presentation/screens/hospital_registration_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/hospital_detail_screen.dart';
 import 'package:medalize_mb/features/medications/data/models/medication_model.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/add_edit_medication_screen.dart';
 import 'package:medalize_mb/features/medications/presentation/screens/medication_list_screen.dart';
@@ -83,6 +84,12 @@ class _AuthChangeNotifier extends ChangeNotifier {
   }
 }
 
+/// Set by DeepLinkService when a Universal/App Link (QR_SHARE_PROFILE_PLAN.md
+/// Phase 3) arrives while signed out — the target route to jump to right
+/// after the login/onboarding gate would otherwise land on the normal home
+/// screen, instead of dropping the link on the floor.
+final pendingDeepLinkProvider = StateProvider<String?>((ref) => null);
+
 final routerProvider = Provider<GoRouter>((ref) {
   final notifier = ref.watch(_authListenableProvider);
 
@@ -90,11 +97,21 @@ final routerProvider = Provider<GoRouter>((ref) {
     navigatorKey: navigatorKey,
     initialLocation: '/splash',
     refreshListenable: notifier,
-    redirect: (context, state) => _redirect(
-      ref.read(authProvider),
-      state.matchedLocation,
-      ref.read(appIntroSeenProvider),
-    ),
+    redirect: (context, state) {
+      final pendingLink = ref.read(pendingDeepLinkProvider);
+      final target = _redirect(
+        ref.read(authProvider),
+        state.matchedLocation,
+        ref.read(appIntroSeenProvider),
+        pendingLink,
+      );
+      // Consumed — cleared only once actually redirected to, so it doesn't
+      // linger and hijack an unrelated later redirect (e.g. after logout).
+      if (pendingLink != null && target == pendingLink) {
+        ref.read(pendingDeepLinkProvider.notifier).state = null;
+      }
+      return target;
+    },
     routes: [
       GoRoute(
         path: '/splash',
@@ -205,10 +222,9 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, state) {
           final appt = state.extra as AppointmentModel?;
           final id = state.pathParameters['id']!;
-          return _pushPage(AppointmentDetailLoader(
-            appointmentId: id,
-            appointment: appt,
-          ));
+          return _pushPage(
+            AppointmentDetailLoader(appointmentId: id, appointment: appt),
+          );
         },
       ),
       GoRoute(
@@ -223,20 +239,30 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/patient/doctor-detail/:id',
         pageBuilder: (_, state) {
           final extra = state.extra as DoctorModel?;
-          return _pushPage(DoctorDetailScreen(
-            doctorId: state.pathParameters['id']!,
-            doctor: extra,
-          ));
+          return _pushPage(
+            DoctorDetailScreen(
+              doctorId: state.pathParameters['id']!,
+              doctor: extra,
+            ),
+          );
         },
+      ),
+      GoRoute(
+        path: '/patient/hospital-detail/:id',
+        pageBuilder: (_, state) => _pushPage(
+          HospitalDetailScreen(hospitalId: state.pathParameters['id']!),
+        ),
       ),
       GoRoute(
         path: '/patient/booking-calendar/:id',
         pageBuilder: (_, state) {
           final doctor = state.extra as DoctorDetailModel?;
-          return _modalPage(BookingCalendarLoader(
-            doctorId: state.pathParameters['id']!,
-            doctor: doctor,
-          ));
+          return _modalPage(
+            BookingCalendarLoader(
+              doctorId: state.pathParameters['id']!,
+              doctor: doctor,
+            ),
+          );
         },
       ),
       GoRoute(
@@ -248,11 +274,13 @@ final routerProvider = Provider<GoRouter>((ref) {
           if (extra == null) {
             return _fadePage(const PatientHomeScreen());
           }
-          return _modalPage(BookingConfirmScreen(
-            doctor: extra['doctor'] as DoctorDetailModel,
-            slot: extra['slot'] as SlotModel,
-            workplaceId: extra['workplaceId'] as String,
-          ));
+          return _modalPage(
+            BookingConfirmScreen(
+              doctor: extra['doctor'] as DoctorDetailModel,
+              slot: extra['slot'] as SlotModel,
+              workplaceId: extra['workplaceId'] as String,
+            ),
+          );
         },
       ),
 
@@ -264,20 +292,24 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/patient/assistant/:id',
         pageBuilder: (_, state) {
           final convo = state.extra as ConversationModel?;
-          return _pushPage(AssistantChatScreen(
-            conversationId: state.pathParameters['id']!,
-            conversation: convo,
-          ));
+          return _pushPage(
+            AssistantChatScreen(
+              conversationId: state.pathParameters['id']!,
+              conversation: convo,
+            ),
+          );
         },
       ),
       GoRoute(
         path: '/patient/reschedule/:id',
         pageBuilder: (_, state) {
           final appt = state.extra as AppointmentModel?;
-          return _modalPage(RescheduleCalendarLoader(
-            appointmentId: state.pathParameters['id']!,
-            appointment: appt,
-          ));
+          return _modalPage(
+            RescheduleCalendarLoader(
+              appointmentId: state.pathParameters['id']!,
+              appointment: appt,
+            ),
+          );
         },
       ),
 
@@ -352,10 +384,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/patient/messages/:id',
         pageBuilder: (_, state) {
           final thread = state.extra as ThreadModel?;
-          return _pushPage(ThreadChatScreen(
-            threadId: state.pathParameters['id']!,
-            thread: thread,
-          ));
+          return _pushPage(
+            ThreadChatScreen(
+              threadId: state.pathParameters['id']!,
+              thread: thread,
+            ),
+          );
         },
       ),
 
@@ -378,7 +412,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/doctor/pending-verification',
-        pageBuilder: (_, _) => _fadePage(const DoctorPendingVerificationScreen()),
+        pageBuilder: (_, _) =>
+            _fadePage(const DoctorPendingVerificationScreen()),
       ),
       GoRoute(
         path: '/doctor/subscription',
@@ -405,11 +440,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (_, state) {
           final appt = state.extra as AppointmentModel?;
           final id = state.pathParameters['id']!;
-          return _pushPage(AppointmentDetailLoader(
-            appointmentId: id,
-            appointment: appt,
-            asDoctor: true,
-          ));
+          return _pushPage(
+            AppointmentDetailLoader(
+              appointmentId: id,
+              appointment: appt,
+              asDoctor: true,
+            ),
+          );
         },
       ),
       GoRoute(
@@ -428,27 +465,32 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/doctor/edit-workplace/:id',
         pageBuilder: (_, state) {
           final existing = state.extra as Map<String, dynamic>?;
-          return _modalPage(EditWorkplaceLoader(
-            workplaceId: state.pathParameters['id']!,
-            existing: existing,
-          ));
+          return _modalPage(
+            EditWorkplaceLoader(
+              workplaceId: state.pathParameters['id']!,
+              existing: existing,
+            ),
+          );
         },
       ),
       GoRoute(
         path: '/doctor/pick-workplace-location',
         pageBuilder: (_, state) {
           final extra = state.extra as Map<String, dynamic>?;
-          return _modalPage(WorkplaceMapPickerScreen(
-            initialLat: extra?['lat'] as double?,
-            initialLng: extra?['lng'] as double?,
-          ));
+          return _modalPage(
+            WorkplaceMapPickerScreen(
+              initialLat: extra?['lat'] as double?,
+              initialLng: extra?['lng'] as double?,
+            ),
+          );
         },
       ),
       GoRoute(
         path: '/doctor/working-hours/:workplaceId',
         pageBuilder: (_, state) => _pushPage(
           WorkingHoursEditorScreen(
-              workplaceId: state.pathParameters['workplaceId']!),
+            workplaceId: state.pathParameters['workplaceId']!,
+          ),
         ),
       ),
       GoRoute(
@@ -464,10 +506,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           if (appt == null) {
             return _fadePage(const DoctorHomeScreen());
           }
-          return _modalPage(WritePrescriptionScreen(
-            appointmentId: state.pathParameters['id']!,
-            patientName: appt.patient.fullName,
-          ));
+          return _modalPage(
+            WritePrescriptionScreen(
+              appointmentId: state.pathParameters['id']!,
+              patientName: appt.patient.fullName,
+            ),
+          );
         },
       ),
 
@@ -480,10 +524,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/doctor/messages/:id',
         pageBuilder: (_, state) {
           final thread = state.extra as ThreadModel?;
-          return _pushPage(ThreadChatScreen(
-            threadId: state.pathParameters['id']!,
-            thread: thread,
-          ));
+          return _pushPage(
+            ThreadChatScreen(
+              threadId: state.pathParameters['id']!,
+              thread: thread,
+            ),
+          );
         },
       ),
 
@@ -531,8 +577,10 @@ CustomTransitionPage<void> _fadePage(Widget child) {
     transitionDuration: const Duration(milliseconds: 320),
     reverseTransitionDuration: const Duration(milliseconds: 220),
     transitionsBuilder: (_, animation, _, child) {
-      final curved =
-          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+      final curved = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+      );
       return FadeTransition(
         opacity: curved,
         child: ScaleTransition(
@@ -551,8 +599,10 @@ CustomTransitionPage<void> _authPage(Widget child) {
     transitionDuration: const Duration(milliseconds: 380),
     reverseTransitionDuration: const Duration(milliseconds: 280),
     transitionsBuilder: (_, animation, _, child) {
-      final curved =
-          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+      final curved = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+      );
       return FadeTransition(
         opacity: curved,
         child: SlideTransition(
@@ -574,12 +624,13 @@ CustomTransitionPage<void> _pushPage(Widget child) {
     transitionDuration: const Duration(milliseconds: 300),
     reverseTransitionDuration: const Duration(milliseconds: 220),
     transitionsBuilder: (_, animation, _, child) {
-      final curved =
-          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+      final curved = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+      );
       return FadeTransition(
         opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
-          CurvedAnimation(
-              parent: animation, curve: const Interval(0.0, 0.5)),
+          CurvedAnimation(parent: animation, curve: const Interval(0.0, 0.5)),
         ),
         child: SlideTransition(
           position: Tween<Offset>(
@@ -600,12 +651,13 @@ CustomTransitionPage<void> _modalPage(Widget child) {
     transitionDuration: const Duration(milliseconds: 380),
     reverseTransitionDuration: const Duration(milliseconds: 260),
     transitionsBuilder: (_, animation, _, child) {
-      final curved =
-          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+      final curved = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+      );
       return FadeTransition(
         opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
-          CurvedAnimation(
-              parent: animation, curve: const Interval(0.0, 0.5)),
+          CurvedAnimation(parent: animation, curve: const Interval(0.0, 0.5)),
         ),
         child: SlideTransition(
           position: Tween<Offset>(
@@ -663,7 +715,12 @@ String _homeFor(
 bool _isPreAuthScreen(String location) =>
     location.startsWith('/auth') || location == '/hospital/registration';
 
-String? _redirect(AuthState auth, String location, bool introSeen) {
+String? _redirect(
+  AuthState auth,
+  String location,
+  bool introSeen,
+  String? pendingLink,
+) {
   return switch (auth) {
     // Cold-start only: hold on splash until _init resolves.
     AuthInitial() => location == '/splash' ? null : '/splash',
@@ -673,24 +730,37 @@ String? _redirect(AuthState auth, String location, bool introSeen) {
     AuthLoading() => _isPreAuthScreen(location) ? null : '/splash',
     // First install only: detour to the welcome carousel before login. Signed
     // in users never see it — the intro check lives in this branch alone.
-    AuthUnauthenticated() || AuthError() => !introSeen && location != '/intro'
-        ? '/intro'
-        : (_isPreAuthScreen(location) || location == '/intro'
-            ? null
-            : '/auth/login'),
+    AuthUnauthenticated() || AuthError() =>
+      !introSeen && location != '/intro'
+          ? '/intro'
+          : (_isPreAuthScreen(location) || location == '/intro'
+                ? null
+                : '/auth/login'),
     AuthAuthenticated(
       :final role,
       :final onboardingComplete,
       :final isVerified,
       :final subscriptionStatus,
     ) =>
-      (location == '/splash' || _isPreAuthScreen(location) || location == '/intro')
-          ? _homeFor(role, onboardingComplete, isVerified, subscriptionStatus)
+      (location == '/splash' ||
+              _isPreAuthScreen(location) ||
+              location == '/intro')
+          ? (pendingLink ??
+                _homeFor(
+                  role,
+                  onboardingComplete,
+                  isVerified,
+                  subscriptionStatus,
+                ))
           : null,
   };
 }
 
 /// Test-only window onto the private [_redirect] decision table.
 @visibleForTesting
-String? debugRedirect(AuthState auth, String location, bool introSeen) =>
-    _redirect(auth, location, introSeen);
+String? debugRedirect(
+  AuthState auth,
+  String location,
+  bool introSeen, [
+  String? pendingLink,
+]) => _redirect(auth, location, introSeen, pendingLink);

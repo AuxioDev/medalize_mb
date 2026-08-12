@@ -88,6 +88,8 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalProfile$az hospitalProfile = _Translations$hospitalProfile$az._(_root);
 	@override late final _Translations$hospitalDoctorHours$az hospitalDoctorHours = _Translations$hospitalDoctorHours$az._(_root);
 	@override late final _Translations$doctorHospitals$az doctorHospitals = _Translations$doctorHospitals$az._(_root);
+	@override late final _Translations$share$az share = _Translations$share$az._(_root);
+	@override late final _Translations$hospitalDetail$az hospitalDetail = _Translations$hospitalDetail$az._(_root);
 }
 
 // Path: common
@@ -1249,6 +1251,32 @@ class _Translations$doctorHospitals$az extends Translations$doctorHospitals$en {
 	@override String get awaitingApproval => 'Xəstəxananın təsdiqini gözləyir';
 }
 
+// Path: share
+class _Translations$share$az extends Translations$share$en {
+	_Translations$share$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profili paylaş';
+	@override String get shareLink => 'Linki paylaş';
+	@override String get copyLink => 'Linki kopyala';
+	@override String get linkCopied => 'Link kopyalandı';
+}
+
+// Path: hospitalDetail
+class _Translations$hospitalDetail$az extends Translations$hospitalDetail$en {
+	_Translations$hospitalDetail$az._(TranslationsAz root) : this._root = root, super.internal(root);
+
+	final TranslationsAz _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Xəstəxana';
+	@override String get couldNotLoad => 'Profil yüklənə bilmədi';
+	@override String get location => 'Ünvan';
+	@override String get doctorsHeading => 'Buradakı həkimlər';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$az extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -2257,6 +2285,14 @@ extension on TranslationsAz {
 			'doctorHospitals.cancelRequest' => 'Müraciəti ləğv et',
 			'doctorHospitals.invitedYouToJoin' => 'Sizi qoşulmağa dəvət etdi',
 			'doctorHospitals.awaitingApproval' => 'Xəstəxananın təsdiqini gözləyir',
+			'share.title' => 'Profili paylaş',
+			'share.shareLink' => 'Linki paylaş',
+			'share.copyLink' => 'Linki kopyala',
+			'share.linkCopied' => 'Link kopyalandı',
+			'hospitalDetail.title' => 'Xəstəxana',
+			'hospitalDetail.couldNotLoad' => 'Profil yüklənə bilmədi',
+			'hospitalDetail.location' => 'Ünvan',
+			'hospitalDetail.doctorsHeading' => 'Buradakı həkimlər',
 			_ => null,
 		};
 	}

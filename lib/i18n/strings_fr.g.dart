@@ -88,6 +88,8 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalProfile$fr hospitalProfile = _Translations$hospitalProfile$fr._(_root);
 	@override late final _Translations$hospitalDoctorHours$fr hospitalDoctorHours = _Translations$hospitalDoctorHours$fr._(_root);
 	@override late final _Translations$doctorHospitals$fr doctorHospitals = _Translations$doctorHospitals$fr._(_root);
+	@override late final _Translations$share$fr share = _Translations$share$fr._(_root);
+	@override late final _Translations$hospitalDetail$fr hospitalDetail = _Translations$hospitalDetail$fr._(_root);
 }
 
 // Path: common
@@ -1249,6 +1251,32 @@ class _Translations$doctorHospitals$fr extends Translations$doctorHospitals$en {
 	@override String get awaitingApproval => 'En attente de l\'approbation de l\'hôpital';
 }
 
+// Path: share
+class _Translations$share$fr extends Translations$share$en {
+	_Translations$share$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Partager le profil';
+	@override String get shareLink => 'Partager le lien';
+	@override String get copyLink => 'Copier le lien';
+	@override String get linkCopied => 'Lien copié';
+}
+
+// Path: hospitalDetail
+class _Translations$hospitalDetail$fr extends Translations$hospitalDetail$en {
+	_Translations$hospitalDetail$fr._(TranslationsFr root) : this._root = root, super.internal(root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hôpital';
+	@override String get couldNotLoad => 'Impossible de charger le profil';
+	@override String get location => 'Adresse';
+	@override String get doctorsHeading => 'Médecins de cet établissement';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$fr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -2257,6 +2285,14 @@ extension on TranslationsFr {
 			'doctorHospitals.cancelRequest' => 'Annuler la demande',
 			'doctorHospitals.invitedYouToJoin' => 'Vous a invité à le rejoindre',
 			'doctorHospitals.awaitingApproval' => 'En attente de l\'approbation de l\'hôpital',
+			'share.title' => 'Partager le profil',
+			'share.shareLink' => 'Partager le lien',
+			'share.copyLink' => 'Copier le lien',
+			'share.linkCopied' => 'Lien copié',
+			'hospitalDetail.title' => 'Hôpital',
+			'hospitalDetail.couldNotLoad' => 'Impossible de charger le profil',
+			'hospitalDetail.location' => 'Adresse',
+			'hospitalDetail.doctorsHeading' => 'Médecins de cet établissement',
 			_ => null,
 		};
 	}

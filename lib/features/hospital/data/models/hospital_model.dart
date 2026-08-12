@@ -13,6 +13,7 @@ class HospitalModel {
     this.latitude,
     this.longitude,
     this.status = statusConfirmed,
+    this.logoUrl,
   });
 
   static const statusPendingReview = 'pending_review';
@@ -28,19 +29,21 @@ class HospitalModel {
   final double? latitude;
   final double? longitude;
   final String status;
+  final String? logoUrl;
 
   bool get isPendingReview => status == statusPendingReview;
 
   factory HospitalModel.fromJson(Map<String, dynamic> j) => HospitalModel(
-        id: j['id'] as String,
-        name: j['name'] as String,
-        address: j['address'] as String? ?? '',
-        city: j['city'] as String? ?? '',
-        cityDisplay: j['city_display'] as String? ?? '',
-        region: j['region'] as String? ?? '',
-        regionDisplay: j['region_display'] as String? ?? '',
-        latitude: (j['latitude'] as num?)?.toDouble(),
-        longitude: (j['longitude'] as num?)?.toDouble(),
-        status: j['status'] as String? ?? statusConfirmed,
-      );
+    id: j['id'] as String,
+    name: j['name'] as String,
+    address: j['address'] as String? ?? '',
+    city: j['city'] as String? ?? '',
+    cityDisplay: j['city_display'] as String? ?? '',
+    region: j['region'] as String? ?? '',
+    regionDisplay: j['region_display'] as String? ?? '',
+    latitude: (j['latitude'] as num?)?.toDouble(),
+    longitude: (j['longitude'] as num?)?.toDouble(),
+    status: j['status'] as String? ?? statusConfirmed,
+    logoUrl: j['logo'] as String?,
+  );
 }

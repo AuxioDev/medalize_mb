@@ -903,5 +903,17 @@
     "cancelRequest": "Müraciəti ləğv et",
     "invitedYouToJoin": "Sizi qoşulmağa dəvət etdi",
     "awaitingApproval": "Xəstəxananın təsdiqini gözləyir"
+  },
+  "share": {
+    "title": "Profili paylaş",
+    "shareLink": "Linki paylaş",
+    "copyLink": "Linki kopyala",
+    "linkCopied": "Link kopyalandı"
+  },
+  "hospitalDetail": {
+    "title": "Xəstəxana",
+    "couldNotLoad": "Profil yüklənə bilmədi",
+    "location": "Ünvan",
+    "doctorsHeading": "Buradakı həkimlər"
   }
 }

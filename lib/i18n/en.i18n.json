@@ -903,5 +903,17 @@
     "cancelRequest": "Cancel request",
     "invitedYouToJoin": "Invited you to join",
     "awaitingApproval": "Awaiting hospital approval"
+  },
+  "share": {
+    "title": "Share profile",
+    "shareLink": "Share link",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied"
+  },
+  "hospitalDetail": {
+    "title": "Hospital",
+    "couldNotLoad": "Could not load profile",
+    "location": "Location",
+    "doctorsHeading": "Doctors here"
   }
 }

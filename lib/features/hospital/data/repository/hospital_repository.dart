@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/network/dio_client.dart';
 import 'package:medalize_mb/features/doctor/presentation/widgets/working_hours_fields.dart';
+import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/doctor_hospital_link_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_appointment_model.dart';
 import 'package:medalize_mb/features/hospital/data/models/hospital_link_model.dart';
@@ -22,14 +23,48 @@ class HospitalRepository {
   /// through, so only this page's results are returned.
   Future<List<HospitalModel>> search({String q = '', String? city}) async {
     try {
-      final res = await _dio.get('/hospitals/', queryParameters: {
-        if (q.isNotEmpty) 'q': q,
-        if (city != null && city.isNotEmpty) 'city': city,
-      });
+      final res = await _dio.get(
+        '/hospitals/',
+        queryParameters: {
+          if (q.isNotEmpty) 'q': q,
+          if (city != null && city.isNotEmpty) 'city': city,
+        },
+      );
       final data = res.data as Map<String, dynamic>;
       final results = data['results'] as List<dynamic>? ?? [];
       return results
           .map((e) => HospitalModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  /// GET /api/hospitals/`<id>`/ — a single registry entry's public profile
+  /// (AllowAny on the backend). Used by the patient-facing hospital detail
+  /// screen, reached from a doctor's workplace card or a shared link/QR.
+  Future<HospitalModel> getById(String id) async {
+    try {
+      final res = await _dio.get('/hospitals/$id/');
+      return HospitalModel.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
+  /// GET /api/hospitals/`<id>`/doctors/ — this hospital's public doctor
+  /// roster (QR_SHARE_PROFILE_PLAN.md Phase 4), for the public hospital
+  /// detail screen. Reuses DoctorModel — the roster response is a subset of
+  /// its fields, and the rest already default sensibly when absent.
+  Future<List<DoctorModel>> getDoctors(String hospitalId) async {
+    try {
+      final res = await _dio.get('/hospitals/$hospitalId/doctors/');
+      return (res.data as List)
+          .map((e) => DoctorModel.fromJson(e as Map<String, dynamic>))
           .toList();
     } on DioException catch (e) {
       throw mapDioError(e);
@@ -49,11 +84,14 @@ class HospitalRepository {
     String address = '',
   }) async {
     try {
-      final res = await _dio.post('/hospitals/', data: {
-        'name': name,
-        'city': city,
-        if (address.isNotEmpty) 'address': address,
-      });
+      final res = await _dio.post(
+        '/hospitals/',
+        data: {
+          'name': name,
+          'city': city,
+          if (address.isNotEmpty) 'address': address,
+        },
+      );
       return HospitalModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw mapDioError(e);
@@ -92,13 +130,16 @@ class HospitalRepository {
   /// every link regardless of status.
   Future<List<HospitalDoctorLinkModel>> getLinks({String? status}) async {
     try {
-      final res = await _dio.get('/hospital/doctors/links/', queryParameters: {
-        'status': ?status,
-      });
+      final res = await _dio.get(
+        '/hospital/doctors/links/',
+        queryParameters: {'status': ?status},
+      );
       final data = res.data as Map<String, dynamic>;
       final results = data['results'] as List<dynamic>? ?? [];
       return results
-          .map((e) => HospitalDoctorLinkModel.fromJson(e as Map<String, dynamic>))
+          .map(
+            (e) => HospitalDoctorLinkModel.fromJson(e as Map<String, dynamic>),
+          )
           .toList();
     } on DioException catch (e) {
       throw mapDioError(e);
@@ -143,9 +184,10 @@ class HospitalRepository {
   /// specialization only, no contact details (see DoctorBriefModel).
   Future<List<DoctorBriefModel>> searchDoctors({String q = ''}) async {
     try {
-      final res = await _dio.get('/hospital/doctors/search/', queryParameters: {
-        if (q.isNotEmpty) 'q': q,
-      });
+      final res = await _dio.get(
+        '/hospital/doctors/search/',
+        queryParameters: {if (q.isNotEmpty) 'q': q},
+      );
       final data = res.data as Map<String, dynamic>;
       final results = data['results'] as List<dynamic>? ?? [];
       return results
@@ -160,9 +202,10 @@ class HospitalRepository {
 
   Future<HospitalDoctorLinkModel> inviteDoctor(String doctorId) async {
     try {
-      final res = await _dio.post('/hospital/doctors/invite/', data: {
-        'doctor_id': doctorId,
-      });
+      final res = await _dio.post(
+        '/hospital/doctors/invite/',
+        data: {'doctor_id': doctorId},
+      );
       return HospitalDoctorLinkModel.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw mapDioError(e);
@@ -173,7 +216,9 @@ class HospitalRepository {
 
   // ─── Dashboard: a confirmed doctor's workplace hours ────────────────
 
-  Future<List<Map<String, dynamic>>> getDoctorWorkplaces(String doctorId) async {
+  Future<List<Map<String, dynamic>>> getDoctorWorkplaces(
+    String doctorId,
+  ) async {
     try {
       final res = await _dio.get('/hospital/doctors/$doctorId/workplaces/');
       return (res.data as List).cast<Map<String, dynamic>>();
@@ -195,7 +240,10 @@ class HospitalRepository {
     }
   }
 
-  Future<void> putWorkplaceHours(String workplaceId, List<WorkingHoursDay> days) async {
+  Future<void> putWorkplaceHours(
+    String workplaceId,
+    List<WorkingHoursDay> days,
+  ) async {
     try {
       await _dio.put(
         '/hospital/workplaces/$workplaceId/hours/',
@@ -215,14 +263,16 @@ class HospitalRepository {
     String? status,
   }) async {
     try {
-      final res = await _dio.get('/hospital/appointments/', queryParameters: {
-        'doctor': ?doctorId,
-        'status': ?status,
-      });
+      final res = await _dio.get(
+        '/hospital/appointments/',
+        queryParameters: {'doctor': ?doctorId, 'status': ?status},
+      );
       final data = res.data as Map<String, dynamic>;
       final results = data['results'] as List<dynamic>? ?? [];
       return results
-          .map((e) => HospitalAppointmentModel.fromJson(e as Map<String, dynamic>))
+          .map(
+            (e) => HospitalAppointmentModel.fromJson(e as Map<String, dynamic>),
+          )
           .toList();
     } on DioException catch (e) {
       throw mapDioError(e);
@@ -241,7 +291,9 @@ class HospitalRepository {
     try {
       final res = await _dio.get('/doctor/hospital-links/');
       return (res.data as List)
-          .map((e) => DoctorHospitalLinkModel.fromJson(e as Map<String, dynamic>))
+          .map(
+            (e) => DoctorHospitalLinkModel.fromJson(e as Map<String, dynamic>),
+          )
           .toList();
     } on DioException catch (e) {
       throw mapDioError(e);

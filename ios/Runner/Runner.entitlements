@@ -8,5 +8,15 @@
 	</array>
 	<key>aps-environment</key>
 	<string>development</string>
+	<!-- Universal Links (QR_SHARE_PROFILE_PLAN.md Phase 3) — requires
+	     medoroapp.com to serve a correct /.well-known/apple-app-site-association
+	     (see medalize_web) with this app's real Apple Team ID, or iOS treats
+	     the domain as unverified and links just open Safari instead. Also
+	     needs the "Associated Domains" capability enabled for this app ID in
+	     the Apple Developer portal. -->
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:medoroapp.com</string>
+	</array>
 </dict>
 </plist>

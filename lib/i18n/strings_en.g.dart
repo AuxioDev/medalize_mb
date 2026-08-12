@@ -92,6 +92,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$hospitalProfile$en hospitalProfile = Translations$hospitalProfile$en.internal(_root);
 	late final Translations$hospitalDoctorHours$en hospitalDoctorHours = Translations$hospitalDoctorHours$en.internal(_root);
 	late final Translations$doctorHospitals$en doctorHospitals = Translations$doctorHospitals$en.internal(_root);
+	late final Translations$share$en share = Translations$share$en.internal(_root);
+	late final Translations$hospitalDetail$en hospitalDetail = Translations$hospitalDetail$en.internal(_root);
 }
 
 // Path: common
@@ -2704,6 +2706,48 @@ class Translations$doctorHospitals$en {
 	String get awaitingApproval => 'Awaiting hospital approval';
 }
 
+// Path: share
+class Translations$share$en {
+	Translations$share$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Share profile'
+	String get title => 'Share profile';
+
+	/// en: 'Share link'
+	String get shareLink => 'Share link';
+
+	/// en: 'Copy link'
+	String get copyLink => 'Copy link';
+
+	/// en: 'Link copied'
+	String get linkCopied => 'Link copied';
+}
+
+// Path: hospitalDetail
+class Translations$hospitalDetail$en {
+	Translations$hospitalDetail$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Hospital'
+	String get title => 'Hospital';
+
+	/// en: 'Could not load profile'
+	String get couldNotLoad => 'Could not load profile';
+
+	/// en: 'Location'
+	String get location => 'Location';
+
+	/// en: 'Doctors here'
+	String get doctorsHeading => 'Doctors here';
+}
+
 // Path: doctorSearch.spec
 class Translations$doctorSearch$spec$en {
 	Translations$doctorSearch$spec$en.internal(this._root);
@@ -3808,6 +3852,14 @@ extension on Translations {
 			'doctorHospitals.cancelRequest' => 'Cancel request',
 			'doctorHospitals.invitedYouToJoin' => 'Invited you to join',
 			'doctorHospitals.awaitingApproval' => 'Awaiting hospital approval',
+			'share.title' => 'Share profile',
+			'share.shareLink' => 'Share link',
+			'share.copyLink' => 'Copy link',
+			'share.linkCopied' => 'Link copied',
+			'hospitalDetail.title' => 'Hospital',
+			'hospitalDetail.couldNotLoad' => 'Could not load profile',
+			'hospitalDetail.location' => 'Location',
+			'hospitalDetail.doctorsHeading' => 'Doctors here',
 			_ => null,
 		};
 	}

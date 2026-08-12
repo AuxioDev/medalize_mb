@@ -23,12 +23,16 @@ import 'package:medalize_mb/features/doctors/data/repository/doctor_repository.d
 import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/messaging/data/repository/messaging_repository.dart';
 import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
+import 'package:medalize_mb/core/utils/share_urls.dart';
 import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
+import 'package:medalize_mb/features/shared/presentation/widgets/share_profile_sheet.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
-final _doctorReviewsProvider = FutureProvider.autoDispose.family<List<ReviewModel>, String>(
-  (ref, doctorId) => ref.read(appointmentRepositoryProvider).getDoctorReviews(doctorId),
-);
+final _doctorReviewsProvider = FutureProvider.autoDispose
+    .family<List<ReviewModel>, String>(
+      (ref, doctorId) =>
+          ref.read(appointmentRepositoryProvider).getDoctorReviews(doctorId),
+    );
 
 class DoctorDetailScreen extends ConsumerWidget {
   const DoctorDetailScreen({super.key, required this.doctorId, this.doctor});
@@ -45,10 +49,11 @@ class DoctorDetailScreen extends ConsumerWidget {
         loading: () => _LoadingSkeleton(doctorId: doctorId),
         error: (_, _) => Scaffold(
           appBar: AppBar(
-              title: AppBarTitle(
-            doctor?.fullName ?? context.t.doctorDetail.profileTitle,
-            icon: Icons.person_outline_rounded,
-          )),
+            title: AppBarTitle(
+              doctor?.fullName ?? context.t.doctorDetail.profileTitle,
+              icon: Icons.person_outline_rounded,
+            ),
+          ),
           body: EmptyState(
             icon: Icons.cloud_off_outlined,
             title: context.t.doctorDetail.couldNotLoadProfile,
@@ -90,7 +95,8 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
       if (!mounted) return;
       context.push('/patient/messages/${thread.id}', extra: thread);
     } on ApiException catch (e) {
-      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+      if (mounted)
+        AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
     } finally {
       if (mounted) setState(() => _openingChat = false);
     }
@@ -103,13 +109,16 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
     setState(() => _joiningWaitlist = true);
     try {
       if (existing.isNotEmpty) {
-        await ref.read(doctorRepositoryProvider).leaveWaitlist(existing.first.id);
+        await ref
+            .read(doctorRepositoryProvider)
+            .leaveWaitlist(existing.first.id);
       } else {
         await ref.read(doctorRepositoryProvider).joinWaitlist(widget.detail.id);
       }
       ref.invalidate(myWaitlistProvider);
     } on ApiException catch (e) {
-      if (mounted) AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
+      if (mounted)
+        AppSnackBar.show(context, e.userMessage, type: SnackBarType.error);
     } finally {
       if (mounted) setState(() => _joiningWaitlist = false);
     }
@@ -118,18 +127,32 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final initials =
-        widget.detail.firstName.isNotEmpty ? widget.detail.firstName[0].toUpperCase() : 'D';
+    final initials = widget.detail.firstName.isNotEmpty
+        ? widget.detail.firstName[0].toUpperCase()
+        : 'D';
     final waitlistAsync = ref.watch(myWaitlistProvider);
     final myWaitlist = waitlistAsync.asData?.value ?? [];
     final isOnWaitlist = myWaitlist.any((e) => e.doctorId == widget.detail.id);
-    final isFavorite =
-        ref.watch(favoritesProvider.select((s) => s.contains(widget.detail.id)));
+    final isFavorite = ref.watch(
+      favoritesProvider.select((s) => s.contains(widget.detail.id)),
+    );
 
     return Scaffold(
       appBar: AppBar(
-        title: AppBarTitle(widget.detail.fullName, icon: Icons.person_outline_rounded),
+        title: AppBarTitle(
+          widget.detail.fullName,
+          icon: Icons.person_outline_rounded,
+        ),
         actions: [
+          IconButton(
+            tooltip: context.t.share.title,
+            onPressed: () => showShareProfileSheet(
+              context,
+              url: ShareUrls.doctor(widget.detail.id),
+              subject: widget.detail.fullName,
+            ),
+            icon: const Icon(Icons.ios_share_rounded),
+          ),
           IconButton(
             tooltip: isFavorite
                 ? context.t.favorites.remove
@@ -150,7 +173,11 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _ProfileHeader(doctorId: widget.doctorId, initials: initials, detail: widget.detail),
+              _ProfileHeader(
+                doctorId: widget.doctorId,
+                initials: initials,
+                detail: widget.detail,
+              ),
               Padding(
                 padding: const EdgeInsets.all(AppSpacing.md),
                 child: Column(
@@ -161,14 +188,21 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                         index: 0,
                         child: Container(
                           width: double.infinity,
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 12,
+                          ),
                           decoration: BoxDecoration(
                             color: c.primarySurface,
                             borderRadius: BorderRadius.circular(AppRadius.md),
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.payments_outlined, color: c.primaryText, size: 20),
+                              Icon(
+                                Icons.payments_outlined,
+                                color: c.primaryText,
+                                size: 20,
+                              ),
                               const Gap(10),
                               Expanded(
                                 child: Text(
@@ -194,21 +228,23 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(context.t.doctorDetail.about,
-                                style: Theme.of(context).textTheme.titleSmall),
+                            Text(
+                              context.t.doctorDetail.about,
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
                             const Gap(10),
                             Container(
                               width: double.infinity,
                               padding: const EdgeInsets.all(14),
                               decoration: BoxDecoration(
                                 color: c.primarySurface,
-                                borderRadius: BorderRadius.circular(AppRadius.md),
+                                borderRadius: BorderRadius.circular(
+                                  AppRadius.md,
+                                ),
                               ),
                               child: Text(
                                 widget.detail.bio,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
+                                style: Theme.of(context).textTheme.bodyMedium
                                     ?.copyWith(
                                       color: c.textPrimary,
                                       height: 1.5,
@@ -223,8 +259,10 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                     if (widget.detail.workplaces.isNotEmpty) ...[
                       AnimatedEntrance(
                         index: 2,
-                        child: Text(context.t.doctorDetail.workplaces,
-                            style: Theme.of(context).textTheme.titleSmall),
+                        child: Text(
+                          context.t.doctorDetail.workplaces,
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
                       ),
                       const Gap(10),
                       for (int i = 0; i < widget.detail.workplaces.length; i++)
@@ -237,7 +275,10 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                       const Gap(20),
                       AnimatedEntrance(
                         index: 4,
-                        child: Text(context.t.doctorDetail.reviews, style: Theme.of(context).textTheme.titleSmall),
+                        child: Text(
+                          context.t.doctorDetail.reviews,
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
                       ),
                       const Gap(10),
                       _ReviewsList(doctorId: widget.doctorId),
@@ -258,7 +299,10 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                 label: context.t.doctorDetail.bookAppointment,
                 onPressed: () {
                   HapticFeedback.lightImpact();
-                  context.push('/patient/booking-calendar/${widget.detail.id}', extra: widget.detail);
+                  context.push(
+                    '/patient/booking-calendar/${widget.detail.id}',
+                    extra: widget.detail,
+                  );
                 },
               ),
             ),
@@ -267,14 +311,22 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
               width: 48,
               height: 48,
               child: _joiningWaitlist
-                  ? const Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)))
+                  ? const Center(
+                      child: SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                    )
                   : IconButton.outlined(
                       tooltip: isOnWaitlist
                           ? context.t.doctorDetail.leaveWaitlist
                           : context.t.doctorDetail.joinWaitlist,
                       onPressed: () => _toggleWaitlist(myWaitlist),
                       icon: Icon(
-                        isOnWaitlist ? Icons.notifications_active : Icons.notifications_none_outlined,
+                        isOnWaitlist
+                            ? Icons.notifications_active
+                            : Icons.notifications_none_outlined,
                         color: isOnWaitlist ? AppColors.primary : null,
                       ),
                     ),
@@ -284,7 +336,13 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
               width: 48,
               height: 48,
               child: _openingChat
-                  ? const Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)))
+                  ? const Center(
+                      child: SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                    )
                   : IconButton.outlined(
                       tooltip: context.t.messaging.sendMessage,
                       onPressed: () {
@@ -334,8 +392,10 @@ class _ProfileHeader extends StatelessWidget {
                       radius: 35,
                       backgroundImage: imageProvider,
                     ),
-                    placeholder: (ctx, _) => _GradientCircle(initials: initials),
-                    errorWidget: (ctx, url, _) => _GradientCircle(initials: initials),
+                    placeholder: (ctx, _) =>
+                        _GradientCircle(initials: initials),
+                    errorWidget: (ctx, url, _) =>
+                        _GradientCircle(initials: initials),
                   )
                 : _GradientCircle(initials: initials),
           ),
@@ -344,10 +404,16 @@ class _ProfileHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(detail.fullName, style: Theme.of(context).textTheme.titleLarge),
+                Text(
+                  detail.fullName,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 const Gap(4),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: c.primarySurface,
                     borderRadius: BorderRadius.circular(AppRadius.xl),
@@ -364,13 +430,17 @@ class _ProfileHeader extends StatelessWidget {
                 const Gap(6),
                 Row(
                   children: [
-                    Icon(Icons.schedule_outlined,
-                        size: 13, color: c.textSecondary),
+                    Icon(
+                      Icons.schedule_outlined,
+                      size: 13,
+                      color: c.textSecondary,
+                    ),
                     const Gap(4),
                     Flexible(
                       child: Text(
-                        context.t.doctorDetail
-                            .minPerSlot(min: detail.slotDurationMin),
+                        context.t.doctorDetail.minPerSlot(
+                          min: detail.slotDurationMin,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodySmall,
@@ -385,7 +455,9 @@ class _ProfileHeader extends StatelessWidget {
                       ...List.generate(5, (i) {
                         final filled = i < detail.averageRating!.round();
                         return Icon(
-                          filled ? Icons.star_rounded : Icons.star_outline_rounded,
+                          filled
+                              ? Icons.star_rounded
+                              : Icons.star_outline_rounded,
                           size: 16,
                           color: Colors.amber.shade600,
                         );
@@ -396,8 +468,10 @@ class _ProfileHeader extends StatelessWidget {
                           '${detail.averageRating!.toStringAsFixed(1)} · ${context.t.doctorDetail.reviewsCount(count: detail.reviewCount)}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style:
-                              TextStyle(fontSize: 12, color: c.textSecondary),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: c.textSecondary,
+                          ),
                         ),
                       ),
                     ],
@@ -423,58 +497,72 @@ class _WorkplaceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final hospitalId = wp.hospitalId;
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: c.surfaceAlt,
         borderRadius: BorderRadius.circular(AppRadius.md + 2),
         border: Border.all(color: c.border, width: 1),
       ),
-      child: Row(
-        children: [
-          Container(
-            width: 38,
-            height: 38,
-            decoration: BoxDecoration(
-              color: c.primarySurface,
-              borderRadius: BorderRadius.circular(AppRadius.sm + 2),
-            ),
-            child: Icon(Icons.location_on_outlined,
-                color: c.primaryText, size: 20),
-          ),
-          const Gap(12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        // Only linked-registry workplaces have somewhere to go — a
+        // private-practice workplace (no `hospital`) stays inert.
+        onTap: hospitalId == null
+            ? null
+            : () => context.push('/patient/hospital-detail/$hospitalId'),
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            children: [
+              Container(
+                width: 38,
+                height: 38,
+                decoration: BoxDecoration(
+                  color: c.primarySurface,
+                  borderRadius: BorderRadius.circular(AppRadius.sm + 2),
+                ),
+                child: Icon(
+                  Icons.location_on_outlined,
+                  color: c.primaryText,
+                  size: 20,
+                ),
+              ),
+              const Gap(12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Text(
-                        wp.name,
-                        style: Theme.of(context).textTheme.labelMedium,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            wp.name,
+                            style: Theme.of(context).textTheme.labelMedium,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        if (wp.isPrimary) ...[
+                          const Gap(8),
+                          AppBadge(label: context.t.common.primary),
+                        ],
+                      ],
                     ),
-                    if (wp.isPrimary) ...[
-                      const Gap(8),
-                      AppBadge(label: context.t.common.primary),
-                    ],
+                    const Gap(2),
+                    Text(
+                      '${wp.address}, ${wp.city}',
+                      style: Theme.of(context).textTheme.bodySmall,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
-                const Gap(2),
-                Text(
-                  '${wp.address}, ${wp.city}',
-                  style: Theme.of(context).textTheme.bodySmall,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -502,18 +590,26 @@ class _LoadingSkeleton extends StatelessWidget {
               const Row(
                 children: [
                   ShimmerSkeleton(
-                      height: 70, width: 70, radius: 35, margin: EdgeInsets.zero),
+                    height: 70,
+                    width: 70,
+                    radius: 35,
+                    margin: EdgeInsets.zero,
+                  ),
                   Gap(16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ShimmerSkeleton(
-                            height: 20,
-                            width: 160,
-                            margin: EdgeInsets.only(bottom: 8)),
+                          height: 20,
+                          width: 160,
+                          margin: EdgeInsets.only(bottom: 8),
+                        ),
                         ShimmerSkeleton(
-                            height: 14, width: 120, margin: EdgeInsets.zero),
+                          height: 14,
+                          width: 120,
+                          margin: EdgeInsets.zero,
+                        ),
                       ],
                     ),
                   ),
@@ -542,9 +638,7 @@ class _ReviewsList extends ConsumerWidget {
       loading: () => const ShimmerSkeleton(height: 72),
       error: (_, _) => const SizedBox.shrink(),
       data: (reviews) => Column(
-        children: [
-          for (final r in reviews.take(5)) _ReviewTile(review: r),
-        ],
+        children: [for (final r in reviews.take(5)) _ReviewTile(review: r)],
       ),
     );
   }
@@ -573,15 +667,23 @@ class _ReviewTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   review.patientName,
-                  style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13,
+                  ),
                 ),
               ),
               Row(
-                children: List.generate(5, (i) => Icon(
-                  i < review.rating ? Icons.star_rounded : Icons.star_outline_rounded,
-                  size: 14,
-                  color: Colors.amber.shade600,
-                )),
+                children: List.generate(
+                  5,
+                  (i) => Icon(
+                    i < review.rating
+                        ? Icons.star_rounded
+                        : Icons.star_outline_rounded,
+                    size: 14,
+                    color: Colors.amber.shade600,
+                  ),
+                ),
               ),
               const Gap(6),
               Text(
@@ -594,7 +696,11 @@ class _ReviewTile extends StatelessWidget {
             const Gap(6),
             Text(
               review.comment,
-              style: TextStyle(fontSize: 13, color: c.textSecondary, height: 1.4),
+              style: TextStyle(
+                fontSize: 13,
+                color: c.textSecondary,
+                height: 1.4,
+              ),
             ),
           ],
         ],
@@ -609,21 +715,21 @@ class _GradientCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        width: 70,
-        height: 70,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: AppColors.primaryGradient,
+    width: 70,
+    height: 70,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      gradient: AppColors.primaryGradient,
+    ),
+    child: Center(
+      child: Text(
+        initials,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
         ),
-        child: Center(
-          child: Text(
-            initials,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      );
+      ),
+    ),
+  );
 }

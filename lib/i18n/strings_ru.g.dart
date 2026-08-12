@@ -88,6 +88,8 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalProfile$ru hospitalProfile = _Translations$hospitalProfile$ru._(_root);
 	@override late final _Translations$hospitalDoctorHours$ru hospitalDoctorHours = _Translations$hospitalDoctorHours$ru._(_root);
 	@override late final _Translations$doctorHospitals$ru doctorHospitals = _Translations$doctorHospitals$ru._(_root);
+	@override late final _Translations$share$ru share = _Translations$share$ru._(_root);
+	@override late final _Translations$hospitalDetail$ru hospitalDetail = _Translations$hospitalDetail$ru._(_root);
 }
 
 // Path: common
@@ -1249,6 +1251,32 @@ class _Translations$doctorHospitals$ru extends Translations$doctorHospitals$en {
 	@override String get awaitingApproval => 'Ожидает подтверждения больницы';
 }
 
+// Path: share
+class _Translations$share$ru extends Translations$share$en {
+	_Translations$share$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Поделиться профилем';
+	@override String get shareLink => 'Поделиться ссылкой';
+	@override String get copyLink => 'Скопировать ссылку';
+	@override String get linkCopied => 'Ссылка скопирована';
+}
+
+// Path: hospitalDetail
+class _Translations$hospitalDetail$ru extends Translations$hospitalDetail$en {
+	_Translations$hospitalDetail$ru._(TranslationsRu root) : this._root = root, super.internal(root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Больница';
+	@override String get couldNotLoad => 'Не удалось загрузить профиль';
+	@override String get location => 'Адрес';
+	@override String get doctorsHeading => 'Врачи в клинике';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$ru extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -2257,6 +2285,14 @@ extension on TranslationsRu {
 			'doctorHospitals.cancelRequest' => 'Отменить заявку',
 			'doctorHospitals.invitedYouToJoin' => 'Пригласила вас присоединиться',
 			'doctorHospitals.awaitingApproval' => 'Ожидает подтверждения больницы',
+			'share.title' => 'Поделиться профилем',
+			'share.shareLink' => 'Поделиться ссылкой',
+			'share.copyLink' => 'Скопировать ссылку',
+			'share.linkCopied' => 'Ссылка скопирована',
+			'hospitalDetail.title' => 'Больница',
+			'hospitalDetail.couldNotLoad' => 'Не удалось загрузить профиль',
+			'hospitalDetail.location' => 'Адрес',
+			'hospitalDetail.doctorsHeading' => 'Врачи в клинике',
 			_ => null,
 		};
 	}

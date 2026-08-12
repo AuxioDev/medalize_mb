@@ -50,8 +50,8 @@ dependencies:
   # Opens an uploaded medical record's signed Cloudinary URL in an external
   # viewer/browser (records feature — no in-app PDF viewer in this phase).
   url_launcher: ^6.3.2
-  # Native "Share" sheet for exporting the AI assistant's conversation summary
-  # as plain text (Phase 2, Section 2) — no other share mechanism existed yet.
+  # Native "Share" sheet — doctor/hospital profile share links
+  # (QR_SHARE_PROFILE_PLAN.md Phase 2).
   # Pinned to the 12.x line (not the newest 13.x): 13.x bumps its Windows
   # dependency (win32 ^6.0.1) past what device_info_plus ^12.4.0 allows
   # (win32 ^5.11.0), which `flutter pub get` refuses to resolve.
@@ -62,6 +62,14 @@ dependencies:
   printing: ^5.15.0
   flutter_map: ^8.3.1
   latlong2: ^0.10.1
+  # Renders the QR code shown in the doctor/hospital "share profile" sheet
+  # (encodes the same medalize_web share link as the native share sheet).
+  qr_flutter: ^4.1.0
+  # Universal Links (iOS) / App Links (Android) — opens a doctor/hospital
+  # share link straight into the app instead of the medalize_web preview
+  # page, once installed (QR_SHARE_PROFILE_PLAN.md Phase 3). Separate from
+  # the existing medalize:// custom scheme, which stays payment-only.
+  app_links: ^7.2.1
   # Crash reporting — disabled unless SENTRY_DSN is supplied via
   # --dart-define at build time (see lib/main.dart); an empty DSN is a
   # documented no-op in the SDK, so no separate on/off gate is needed here.

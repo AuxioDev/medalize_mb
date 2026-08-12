@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medalize_mb/core/config/app_config.dart';
 import 'package:medalize_mb/core/locale/locale_provider.dart';
 import 'package:medalize_mb/core/onboarding/app_intro_provider.dart';
+import 'package:medalize_mb/core/services/deep_link_service.dart';
 import 'package:medalize_mb/core/storage/secure_storage.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_mode_provider.dart';
@@ -28,24 +29,23 @@ Future<void> main() async {
   // sees the correct value on the very first frame — no async race.
   final appIntroSeen = await SecureStorage().getAppIntroSeen();
 
-  void appRunner() => runApp(TranslationProvider(
-        child: ProviderScope(
-          overrides: [appIntroSeenProvider.overrideWith((ref) => appIntroSeen)],
-          child: const MedalizeApp(),
-        ),
-      ));
+  void appRunner() => runApp(
+    TranslationProvider(
+      child: ProviderScope(
+        overrides: [appIntroSeenProvider.overrideWith((ref) => appIntroSeen)],
+        child: const MedalizeApp(),
+      ),
+    ),
+  );
 
   // An empty dsn is a documented Sentry no-op (nothing captured/sent) — see
   // AppConfig.sentryDsn — so this always runs the same way whether or not a
   // real project has been configured, same shape as the Firebase try/catch
   // above.
-  await SentryFlutter.init(
-    (options) {
-      options.dsn = AppConfig.sentryDsn;
-      options.tracesSampleRate = AppConfig.sentryDsn.isEmpty ? 0.0 : 0.2;
-    },
-    appRunner: appRunner,
-  );
+  await SentryFlutter.init((options) {
+    options.dsn = AppConfig.sentryDsn;
+    options.tracesSampleRate = AppConfig.sentryDsn.isEmpty ? 0.0 : 0.2;
+  }, appRunner: appRunner);
 }
 
 class MedalizeApp extends ConsumerStatefulWidget {
@@ -57,15 +57,22 @@ class MedalizeApp extends ConsumerStatefulWidget {
 
 class _MedalizeAppState extends ConsumerState<MedalizeApp>
     with WidgetsBindingObserver {
+  late final DeepLinkService _deepLinkService;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    // ref.read(routerProvider) inside the service returns this same
+    // singleton GoRouter instance that build() below watches — the
+    // provider isn't re-created in between.
+    _deepLinkService = DeepLinkService(ref)..init();
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _deepLinkService.dispose();
     super.dispose();
   }
 
@@ -109,8 +116,9 @@ class _MedalizeAppState extends ConsumerState<MedalizeApp>
       // bounding the worst case app-wide.
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(context).copyWith(
-          textScaler: MediaQuery.textScalerOf(context)
-              .clamp(minScaleFactor: 1.0, maxScaleFactor: 1.3),
+          textScaler: MediaQuery.textScalerOf(
+            context,
+          ).clamp(minScaleFactor: 1.0, maxScaleFactor: 1.3),
         ),
         child: child!,
       ),

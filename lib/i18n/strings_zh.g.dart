@@ -88,6 +88,8 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalProfile$zh hospitalProfile = _Translations$hospitalProfile$zh._(_root);
 	@override late final _Translations$hospitalDoctorHours$zh hospitalDoctorHours = _Translations$hospitalDoctorHours$zh._(_root);
 	@override late final _Translations$doctorHospitals$zh doctorHospitals = _Translations$doctorHospitals$zh._(_root);
+	@override late final _Translations$share$zh share = _Translations$share$zh._(_root);
+	@override late final _Translations$hospitalDetail$zh hospitalDetail = _Translations$hospitalDetail$zh._(_root);
 }
 
 // Path: common
@@ -1249,6 +1251,32 @@ class _Translations$doctorHospitals$zh extends Translations$doctorHospitals$en {
 	@override String get awaitingApproval => '等待医院审核';
 }
 
+// Path: share
+class _Translations$share$zh extends Translations$share$en {
+	_Translations$share$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '分享资料';
+	@override String get shareLink => '分享链接';
+	@override String get copyLink => '复制链接';
+	@override String get linkCopied => '链接已复制';
+}
+
+// Path: hospitalDetail
+class _Translations$hospitalDetail$zh extends Translations$hospitalDetail$en {
+	_Translations$hospitalDetail$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '医院';
+	@override String get couldNotLoad => '无法加载资料';
+	@override String get location => '地址';
+	@override String get doctorsHeading => '在这里出诊的医生';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$zh extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -2257,6 +2285,14 @@ extension on TranslationsZh {
 			'doctorHospitals.cancelRequest' => '取消申请',
 			'doctorHospitals.invitedYouToJoin' => '邀请您加入',
 			'doctorHospitals.awaitingApproval' => '等待医院审核',
+			'share.title' => '分享资料',
+			'share.shareLink' => '分享链接',
+			'share.copyLink' => '复制链接',
+			'share.linkCopied' => '链接已复制',
+			'hospitalDetail.title' => '医院',
+			'hospitalDetail.couldNotLoad' => '无法加载资料',
+			'hospitalDetail.location' => '地址',
+			'hospitalDetail.doctorsHeading' => '在这里出诊的医生',
 			_ => null,
 		};
 	}

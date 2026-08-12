@@ -88,6 +88,8 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$hospitalProfile$tr hospitalProfile = _Translations$hospitalProfile$tr._(_root);
 	@override late final _Translations$hospitalDoctorHours$tr hospitalDoctorHours = _Translations$hospitalDoctorHours$tr._(_root);
 	@override late final _Translations$doctorHospitals$tr doctorHospitals = _Translations$doctorHospitals$tr._(_root);
+	@override late final _Translations$share$tr share = _Translations$share$tr._(_root);
+	@override late final _Translations$hospitalDetail$tr hospitalDetail = _Translations$hospitalDetail$tr._(_root);
 }
 
 // Path: common
@@ -1249,6 +1251,32 @@ class _Translations$doctorHospitals$tr extends Translations$doctorHospitals$en {
 	@override String get awaitingApproval => 'Hastane onayı bekleniyor';
 }
 
+// Path: share
+class _Translations$share$tr extends Translations$share$en {
+	_Translations$share$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profili paylaş';
+	@override String get shareLink => 'Bağlantıyı paylaş';
+	@override String get copyLink => 'Bağlantıyı kopyala';
+	@override String get linkCopied => 'Bağlantı kopyalandı';
+}
+
+// Path: hospitalDetail
+class _Translations$hospitalDetail$tr extends Translations$hospitalDetail$en {
+	_Translations$hospitalDetail$tr._(TranslationsTr root) : this._root = root, super.internal(root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hastane';
+	@override String get couldNotLoad => 'Profil yüklenemedi';
+	@override String get location => 'Adres';
+	@override String get doctorsHeading => 'Buradaki doktorlar';
+}
+
 // Path: doctorSearch.spec
 class _Translations$doctorSearch$spec$tr extends Translations$doctorSearch$spec$en {
 	_Translations$doctorSearch$spec$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -2257,6 +2285,14 @@ extension on TranslationsTr {
 			'doctorHospitals.cancelRequest' => 'Talebi iptal et',
 			'doctorHospitals.invitedYouToJoin' => 'Sizi katılmaya davet etti',
 			'doctorHospitals.awaitingApproval' => 'Hastane onayı bekleniyor',
+			'share.title' => 'Profili paylaş',
+			'share.shareLink' => 'Bağlantıyı paylaş',
+			'share.copyLink' => 'Bağlantıyı kopyala',
+			'share.linkCopied' => 'Bağlantı kopyalandı',
+			'hospitalDetail.title' => 'Hastane',
+			'hospitalDetail.couldNotLoad' => 'Profil yüklenemedi',
+			'hospitalDetail.location' => 'Adres',
+			'hospitalDetail.doctorsHeading' => 'Buradaki doktorlar',
 			_ => null,
 		};
 	}

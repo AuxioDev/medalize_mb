@@ -903,5 +903,17 @@
     "cancelRequest": "Annuler la demande",
     "invitedYouToJoin": "Vous a invité à le rejoindre",
     "awaitingApproval": "En attente de l'approbation de l'hôpital"
+  },
+  "share": {
+    "title": "Partager le profil",
+    "shareLink": "Partager le lien",
+    "copyLink": "Copier le lien",
+    "linkCopied": "Lien copié"
+  },
+  "hospitalDetail": {
+    "title": "Hôpital",
+    "couldNotLoad": "Impossible de charger le profil",
+    "location": "Adresse",
+    "doctorsHeading": "Médecins de cet établissement"
   }
 }

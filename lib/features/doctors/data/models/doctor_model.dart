@@ -5,6 +5,10 @@ class DoctorWorkplace {
   final String address;
   final String type;
   final bool isPrimary;
+  // The hospital registry entry this workplace is linked to, if any — a
+  // private-practice workplace has none. Lets the UI make a workplace card
+  // tappable through to that hospital's public profile.
+  final String? hospitalId;
 
   const DoctorWorkplace({
     required this.id,
@@ -13,18 +17,20 @@ class DoctorWorkplace {
     required this.address,
     required this.type,
     required this.isPrimary,
+    this.hospitalId,
   });
 
   factory DoctorWorkplace.fromJson(Map<String, dynamic> j) => DoctorWorkplace(
-        id: j['id'] as String,
-        name: j['name'] as String? ?? '',
-        // Localized display name, not the raw registry key — see
-        // apps.core.i18n.city_label on the backend.
-        city: j['city_display'] as String? ?? j['city'] as String? ?? '',
-        address: j['address'] as String? ?? '',
-        type: j['type'] as String? ?? '',
-        isPrimary: j['is_primary'] as bool? ?? false,
-      );
+    id: j['id'] as String,
+    name: j['name'] as String? ?? '',
+    // Localized display name, not the raw registry key — see
+    // apps.core.i18n.city_label on the backend.
+    city: j['city_display'] as String? ?? j['city'] as String? ?? '',
+    address: j['address'] as String? ?? '',
+    type: j['type'] as String? ?? '',
+    isPrimary: j['is_primary'] as bool? ?? false,
+    hospitalId: j['hospital'] as String?,
+  );
 }
 
 class DoctorModel {
@@ -77,7 +83,8 @@ class DoctorModel {
       averageRating: (j['average_rating'] as num?)?.toDouble(),
       reviewCount: j['review_count'] as int? ?? 0,
       primaryWorkplaceName: wp?['name'] as String?,
-      primaryWorkplaceCity: wp?['city_display'] as String? ?? wp?['city'] as String?,
+      primaryWorkplaceCity:
+          wp?['city_display'] as String? ?? wp?['city'] as String?,
       primaryWorkplaceId: wp?['id'] as String?,
       avatarUrl: j['avatar_url'] as String?,
       nextSlotAt: j['next_slot_at'] != null
@@ -141,7 +148,7 @@ class SlotModel {
   const SlotModel({required this.startsAt, required this.endsAt});
 
   factory SlotModel.fromJson(Map<String, dynamic> j) => SlotModel(
-        startsAt: DateTime.parse(j['starts_at'] as String),
-        endsAt: DateTime.parse(j['ends_at'] as String),
-      );
+    startsAt: DateTime.parse(j['starts_at'] as String),
+    endsAt: DateTime.parse(j['ends_at'] as String),
+  );
 }
