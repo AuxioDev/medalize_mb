@@ -262,7 +262,8 @@
     "disputeNoShowSubmit": "Gönder",
     "disputeNoShowSubmitted": "İtirazınız gönderildi. İnceleyip sizinle iletişime geçeceğiz.",
     "disputeNoShowOpen": "İtiraz gönderildi — inceleniyor",
-    "bookedSnack": "Randevu gönderildi"
+    "bookedSnack": "Randevu gönderildi",
+    "bookAgain": "Tekrar Randevu Al"
   },
   "booking": {
     "bookWith": "Randevu — $name",

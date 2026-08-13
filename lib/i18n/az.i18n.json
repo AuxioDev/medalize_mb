@@ -262,7 +262,8 @@
     "disputeNoShowSubmit": "Göndər",
     "disputeNoShowSubmitted": "Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.",
     "disputeNoShowOpen": "Etiraz göndərildi — nəzərdən keçirilir",
-    "bookedSnack": "Görüş göndərildi"
+    "bookedSnack": "Görüş göndərildi",
+    "bookAgain": "Yenidən qeyd ol"
   },
   "booking": {
     "bookWith": "Təyin et — $name",

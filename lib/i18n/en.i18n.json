@@ -262,7 +262,8 @@
     "disputeNoShowSubmit": "Submit",
     "disputeNoShowSubmitted": "Your dispute has been submitted. We'll review it and get back to you.",
     "disputeNoShowOpen": "Dispute submitted — under review",
-    "bookedSnack": "Appointment booked"
+    "bookedSnack": "Appointment booked",
+    "bookAgain": "Book Again"
   },
   "booking": {
     "bookWith": "Book — $name",

@@ -925,6 +925,9 @@ class Translations$appointments$en {
 
 	/// en: 'Appointment booked'
 	String get bookedSnack => 'Appointment booked';
+
+	/// en: 'Book Again'
+	String get bookAgain => 'Book Again';
 }
 
 // Path: booking
@@ -3319,6 +3322,7 @@ extension on Translations {
 			'appointments.disputeNoShowSubmitted' => 'Your dispute has been submitted. We\'ll review it and get back to you.',
 			'appointments.disputeNoShowOpen' => 'Dispute submitted — under review',
 			'appointments.bookedSnack' => 'Appointment booked',
+			'appointments.bookAgain' => 'Book Again',
 			'booking.bookWith' => ({required Object name}) => 'Book — ${name}',
 			'booking.selectWorkplace' => 'Select Workplace',
 			'booking.pickDate' => 'Pick a date',
@@ -3591,9 +3595,9 @@ extension on Translations {
 			'legal.sections.retention.title' => 'How long we keep your data',
 			'legal.sections.retention.body' => 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).',
 			'legal.sections.rights.title' => 'Your rights',
-			'legal.sections.rights.body' => 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.',
 			'legal.sections.security.title' => 'How we protect your data',
 			'legal.sections.security.body' => 'Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form.',
 			'legal.sections.permissions.title' => 'Permissions we ask for',

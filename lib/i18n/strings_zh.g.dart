@@ -445,6 +445,7 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get disputeNoShowSubmitted => '您的申诉已提交，我们会审核并与您联系。';
 	@override String get disputeNoShowOpen => '申诉已提交 — 审核中';
 	@override String get bookedSnack => '预约已发送';
+	@override String get bookAgain => '再次预约';
 }
 
 // Path: booking
@@ -1750,6 +1751,7 @@ extension on TranslationsZh {
 			'appointments.disputeNoShowSubmitted' => '您的申诉已提交，我们会审核并与您联系。',
 			'appointments.disputeNoShowOpen' => '申诉已提交 — 审核中',
 			'appointments.bookedSnack' => '预约已发送',
+			'appointments.bookAgain' => '再次预约',
 			'booking.bookWith' => ({required Object name}) => '预约 — ${name}',
 			'booking.selectWorkplace' => '选择工作地点',
 			'booking.pickDate' => '选择日期',
@@ -2022,9 +2024,9 @@ extension on TranslationsZh {
 			'legal.sections.retention.title' => '我们保留数据多长时间',
 			'legal.sections.retention.body' => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。',
 			'legal.sections.rights.title' => '您的权利',
-			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
 			'legal.sections.security.title' => '我们如何保护您的数据',
 			'legal.sections.security.body' => '您与医生之间的消息以及与 AI 助手的对话均经过加密。上传的文档和照片以私密方式存储，仅可通过安全的签名链接访问，绝不会作为公开文件存在。密码绝不会以可读形式存储。',
 			'legal.sections.permissions.title' => '我们请求的权限',

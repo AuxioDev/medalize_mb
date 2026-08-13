@@ -445,6 +445,7 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get disputeNoShowSubmitted => 'Votre contestation a été envoyée. Nous l\'examinerons et reviendrons vers vous.';
 	@override String get disputeNoShowOpen => 'Contestation envoyée — en cours d\'examen';
 	@override String get bookedSnack => 'Rendez-vous envoyé';
+	@override String get bookAgain => 'Réserver à nouveau';
 }
 
 // Path: booking
@@ -1750,6 +1751,7 @@ extension on TranslationsFr {
 			'appointments.disputeNoShowSubmitted' => 'Votre contestation a été envoyée. Nous l\'examinerons et reviendrons vers vous.',
 			'appointments.disputeNoShowOpen' => 'Contestation envoyée — en cours d\'examen',
 			'appointments.bookedSnack' => 'Rendez-vous envoyé',
+			'appointments.bookAgain' => 'Réserver à nouveau',
 			'booking.bookWith' => ({required Object name}) => 'Réserver — ${name}',
 			'booking.selectWorkplace' => 'Sélectionner un lieu',
 			'booking.pickDate' => 'Choisir une date',
@@ -2022,9 +2024,9 @@ extension on TranslationsFr {
 			'legal.sections.retention.title' => 'Durée de conservation de vos données',
 			'legal.sections.retention.body' => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).',
 			'legal.sections.rights.title' => 'Vos droits',
-			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
 			'legal.sections.security.title' => 'Comment nous protégeons vos données',
 			'legal.sections.security.body' => 'Les messages entre vous et votre médecin, ainsi que les conversations avec l\'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible.',
 			'legal.sections.permissions.title' => 'Autorisations que nous demandons',

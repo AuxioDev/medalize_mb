@@ -262,7 +262,8 @@
     "disputeNoShowSubmit": "Отправить",
     "disputeNoShowSubmitted": "Ваше обращение отправлено. Мы рассмотрим его и свяжемся с вами.",
     "disputeNoShowOpen": "Обращение отправлено — на рассмотрении",
-    "bookedSnack": "Запись отправлена"
+    "bookedSnack": "Запись отправлена",
+    "bookAgain": "Записаться снова"
   },
   "booking": {
     "bookWith": "Запись — $name",

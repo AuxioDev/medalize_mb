@@ -445,6 +445,7 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get disputeNoShowSubmitted => 'Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.';
 	@override String get disputeNoShowOpen => 'Etiraz göndərildi — nəzərdən keçirilir';
 	@override String get bookedSnack => 'Görüş göndərildi';
+	@override String get bookAgain => 'Yenidən qeyd ol';
 }
 
 // Path: booking
@@ -1750,6 +1751,7 @@ extension on TranslationsAz {
 			'appointments.disputeNoShowSubmitted' => 'Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.',
 			'appointments.disputeNoShowOpen' => 'Etiraz göndərildi — nəzərdən keçirilir',
 			'appointments.bookedSnack' => 'Görüş göndərildi',
+			'appointments.bookAgain' => 'Yenidən qeyd ol',
 			'booking.bookWith' => ({required Object name}) => 'Təyin et — ${name}',
 			'booking.selectWorkplace' => 'İş yerini seçin',
 			'booking.pickDate' => 'Tarix seçin',
@@ -2022,9 +2024,9 @@ extension on TranslationsAz {
 			'legal.sections.retention.title' => 'Məlumatları nə qədər saxlayırıq',
 			'legal.sections.retention.body' => 'Hesabınız aktiv olduğu müddətcə. Hesabınızı sildikdə, qanunla saxlamağa borclu olduğumuz qeydlər (məsələn, vergi məqsədləri üçün ödəniş qeydləri) istisna olmaqla, şəxsi məlumatlarınızı ağlabatan müddət ərzində siliriz.',
 			'legal.sections.rights.title' => 'Hüquqlarınız',
-			'legal.sections.rights.body' => 'Haqqınızda saxladığımız məlumatlara giriş əldə edə, yanlış məlumatların düzəldilməsini tələb edə, hesabınızın və məlumatlarınızın silinməsini tələb edə və istənilən vaxt razılığınızı geri götürə bilərsiniz. Bunların əksəriyyəti birbaşa "Profil" → "Tənzimləmələr" bölməsində mövcuddur; digər hallarda aşağıdakı əlaqə vasitəsilə bizimlə əlaqə saxlayın.',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => 'Haqqınızda saxladığımız məlumatlara giriş əldə edə, yanlış məlumatların düzəldilməsini tələb edə, hesabınızın və məlumatlarınızın silinməsini tələb edə və istənilən vaxt razılığınızı geri götürə bilərsiniz. Bunların əksəriyyəti birbaşa "Profil" → "Tənzimləmələr" bölməsində mövcuddur; digər hallarda aşağıdakı əlaqə vasitəsilə bizimlə əlaqə saxlayın.',
 			'legal.sections.security.title' => 'Məlumatlarınızı necə qoruyuruq',
 			'legal.sections.security.body' => 'Həkiminizlə yazışmalarınız və süni intellekt köməkçisi ilə söhbətləriniz şifrələnir. Yüklənmiş sənədlər və şəkillər məxfi saxlanılır, yalnız təhlükəsiz imzalanmış keçidlərlə əlçatandır, heç vaxt ictimai fayl kimi deyil. Parollar heç vaxt oxuna bilən formada saxlanılmır.',
 			'legal.sections.permissions.title' => 'Tələb etdiyimiz icazələr',

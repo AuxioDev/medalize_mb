@@ -262,7 +262,8 @@
     "disputeNoShowSubmit": "提交",
     "disputeNoShowSubmitted": "您的申诉已提交，我们会审核并与您联系。",
     "disputeNoShowOpen": "申诉已提交 — 审核中",
-    "bookedSnack": "预约已发送"
+    "bookedSnack": "预约已发送",
+    "bookAgain": "再次预约"
   },
   "booking": {
     "bookWith": "预约 — $name",

@@ -445,6 +445,7 @@ class _Translations$appointments$tr extends Translations$appointments$en {
 	@override String get disputeNoShowSubmitted => 'İtirazınız gönderildi. İnceleyip sizinle iletişime geçeceğiz.';
 	@override String get disputeNoShowOpen => 'İtiraz gönderildi — inceleniyor';
 	@override String get bookedSnack => 'Randevu gönderildi';
+	@override String get bookAgain => 'Tekrar Randevu Al';
 }
 
 // Path: booking
@@ -1750,6 +1751,7 @@ extension on TranslationsTr {
 			'appointments.disputeNoShowSubmitted' => 'İtirazınız gönderildi. İnceleyip sizinle iletişime geçeceğiz.',
 			'appointments.disputeNoShowOpen' => 'İtiraz gönderildi — inceleniyor',
 			'appointments.bookedSnack' => 'Randevu gönderildi',
+			'appointments.bookAgain' => 'Tekrar Randevu Al',
 			'booking.bookWith' => ({required Object name}) => 'Randevu — ${name}',
 			'booking.selectWorkplace' => 'İş Yeri Seçin',
 			'booking.pickDate' => 'Tarih seçin',
@@ -2022,9 +2024,9 @@ extension on TranslationsTr {
 			'legal.sections.retention.title' => 'Verilerinizi ne kadar süre saklıyoruz',
 			'legal.sections.retention.body' => 'Hesabınız aktif olduğu sürece. Hesabınızı silerseniz, yasal olarak saklamamız gereken kayıtlar (örneğin vergi amaçlı ödeme kayıtları) dışında, kişisel verilerinizi makul bir süre içinde kaldırırız.',
 			'legal.sections.rights.title' => 'Haklarınız',
-			'legal.sections.rights.body' => 'Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin.',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.body' => 'Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin.',
 			'legal.sections.security.title' => 'Verilerinizi nasıl koruyoruz',
 			'legal.sections.security.body' => 'Doktorunuzla mesajlaşmalarınız ve yapay zeka asistanı konuşmaları şifrelenir. Yüklenen belgeler ve fotoğraflar özel olarak saklanır, yalnızca güvenli imzalı bağlantılarla erişilebilir, asla herkese açık dosyalar olarak değil. Şifreler asla okunabilir biçimde saklanmaz.',
 			'legal.sections.permissions.title' => 'İstediğimiz izinler',

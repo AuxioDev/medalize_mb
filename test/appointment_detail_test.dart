@@ -7,7 +7,11 @@ import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
-AppointmentModel _sample({String status = 'confirmed', DependentModel? dependent}) =>
+AppointmentModel _sample({
+  String status = 'confirmed',
+  DependentModel? dependent,
+  bool hasReview = false,
+}) =>
     AppointmentModel(
       id: '1',
       doctor: const AppointmentDoctor(
@@ -35,6 +39,7 @@ AppointmentModel _sample({String status = 'confirmed', DependentModel? dependent
       notes: 'Bring previous results',
       createdAt: DateTime(2029, 12, 1),
       dependent: dependent,
+      hasReview: hasReview,
     );
 
 void main() {
@@ -118,5 +123,63 @@ void main() {
     // not the primary name shown for "Patient".
     expect(find.text('Booked by John Smith'), findsOneWidget);
     expect(find.text('John Smith'), findsNothing);
+  });
+
+  group('"Book Again" (patient view)', () {
+    Future<void> pumpWith(
+      WidgetTester tester,
+      String status, {
+      bool hasReview = false,
+    }) async {
+      await tester.pumpWidget(
+        TranslationProvider(
+          child: ProviderScope(
+            child: MaterialApp(
+              theme: AppTheme.light,
+              home: AppointmentDetailScreen(
+                appointment: _sample(status: status, hasReview: hasReview),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets(
+        'shown for completed once already reviewed — the review prompt takes '
+        'that slot first', (tester) async {
+      await pumpWith(tester, 'completed', hasReview: true);
+      expect(tester.takeException(), isNull);
+      expect(find.text('Book Again'), findsOneWidget);
+      expect(find.text('Leave a Review'), findsNothing);
+    });
+
+    testWidgets(
+        'not shown for completed-but-unreviewed — "Leave a Review" takes '
+        'that slot instead', (tester) async {
+      await pumpWith(tester, 'completed', hasReview: false);
+      expect(tester.takeException(), isNull);
+      expect(find.text('Book Again'), findsNothing);
+      expect(find.text('Leave a Review'), findsOneWidget);
+    });
+
+    for (final status in ['declined', 'cancelled']) {
+      testWidgets('shown for a closed appointment ($status)', (tester) async {
+        await pumpWith(tester, status);
+        expect(tester.takeException(), isNull);
+        expect(find.text('Book Again'), findsOneWidget);
+      });
+    }
+
+    for (final status in ['confirmed', 'pending']) {
+      testWidgets(
+          'not shown for an upcoming appointment ($status) — one is already '
+          'booked', (tester) async {
+        await pumpWith(tester, status);
+        expect(tester.takeException(), isNull);
+        expect(find.text('Book Again'), findsNothing);
+      });
+    }
   });
 }

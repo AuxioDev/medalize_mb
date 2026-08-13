@@ -262,7 +262,8 @@
     "disputeNoShowSubmit": "Envoyer",
     "disputeNoShowSubmitted": "Votre contestation a été envoyée. Nous l'examinerons et reviendrons vers vous.",
     "disputeNoShowOpen": "Contestation envoyée — en cours d'examen",
-    "bookedSnack": "Rendez-vous envoyé"
+    "bookedSnack": "Rendez-vous envoyé",
+    "bookAgain": "Réserver à nouveau"
   },
   "booking": {
     "bookWith": "Réserver — $name",

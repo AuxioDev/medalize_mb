@@ -8,6 +8,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/utils/booking_route.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_snack_bar.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
@@ -1014,6 +1015,35 @@ class _AppointmentDetailScreenState
       );
     }
 
+    // Closed appointments (reviewed-completed, declined, cancelled) get a
+    // one-tap way back into booking with the same doctor/workplace, rather
+    // than sending the patient all the way back through search. Deliberately
+    // not a blanket fallback: an upcoming confirmed/pending appointment
+    // outside the cancel window also reaches this point with neither
+    // canCancel nor canReschedule, and "book again" would be confusing there
+    // — they already have one coming up.
+    if (!widget.asDoctor &&
+        {'completed', 'declined', 'cancelled'}.contains(appt.status)) {
+      return BottomActionBar(
+        child: OutlinedButton.icon(
+          onPressed: () {
+            HapticFeedback.lightImpact();
+            context.push(
+              bookingCalendarPath(appt.doctor.id, workplaceId: appt.workplace.id),
+            );
+          },
+          icon: const Icon(Icons.calendar_month_outlined, size: 18),
+          label: Text(context.t.appointments.bookAgain,
+              style: const TextStyle(fontWeight: FontWeight.w600)),
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size.fromHeight(52),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppRadius.md)),
+          ),
+        ),
+      );
+    }
+
     return null;
   }
 
@@ -1180,7 +1210,7 @@ class _PaymentSection extends ConsumerWidget {
         // No payment created for this appointment (yet, or ever — payment is
         // optional) — nothing to show for either role. Unlike prescriptions
         // there's no "create payment" CTA here: that only happens right
-        // after booking, from booking_confirm_screen.dart.
+        // after booking, from booking_calendar_screen.dart.
         if (payment == null) return const SizedBox.shrink();
         return LabeledInfoCard(
           label: context.t.payments.title,
