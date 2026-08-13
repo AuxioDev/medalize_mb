@@ -427,7 +427,7 @@ void main() {
         const DoctorDetailScreen(doctorId: 'doc-1'),
         overrides: [
           doctorDetailProvider.overrideWith((ref, id) async => _doctorDetail),
-          myWaitlistProvider.overrideWith((ref) async => []),
+          doctorWaitlistProvider.overrideWith((ref, doctorId) async => []),
           favoritesRepositoryProvider
               .overrideWithValue(_OfflineFavoritesRepository()),
         ],

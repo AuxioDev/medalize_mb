@@ -133,6 +133,25 @@ class DoctorRepository {
     }
   }
 
+  /// Scoped form of [getMyWaitlist] — the doctor-profile screen only needs
+  /// to know whether *this one* doctor is on the patient's waitlist, not
+  /// fetch the whole list just to check a single id.
+  Future<List<WaitlistModel>> getWaitlistFor(String doctorId) async {
+    try {
+      final res = await _dio.get(
+        '/waitlist/',
+        queryParameters: {'doctor_id': doctorId},
+      );
+      return (res.data as List<dynamic>)
+          .map((e) => WaitlistModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
   Future<WaitlistModel> joinWaitlist(String doctorId) async {
     try {
       final res = await _dio.post('/waitlist/', data: {'doctor_id': doctorId});

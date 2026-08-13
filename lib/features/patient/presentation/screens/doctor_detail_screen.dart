@@ -115,6 +115,9 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
       } else {
         await ref.read(doctorRepositoryProvider).joinWaitlist(widget.detail.id);
       }
+      // Both this screen's scoped lookup and the home screen's full list
+      // need to reflect the change — they're separate provider instances.
+      ref.invalidate(doctorWaitlistProvider(widget.detail.id));
       ref.invalidate(myWaitlistProvider);
     } on ApiException catch (e) {
       if (mounted)
@@ -130,7 +133,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
     final initials = widget.detail.firstName.isNotEmpty
         ? widget.detail.firstName[0].toUpperCase()
         : 'D';
-    final waitlistAsync = ref.watch(myWaitlistProvider);
+    final waitlistAsync = ref.watch(doctorWaitlistProvider(widget.detail.id));
     final myWaitlist = waitlistAsync.asData?.value ?? [];
     final isOnWaitlist = myWaitlist.any((e) => e.doctorId == widget.detail.id);
     final isFavorite = ref.watch(

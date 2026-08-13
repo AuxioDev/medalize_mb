@@ -235,6 +235,15 @@ final myWaitlistProvider = FutureProvider.autoDispose<List<WaitlistModel>>((ref)
   return ref.watch(doctorRepositoryProvider).getMyWaitlist();
 });
 
+/// Scoped to a single doctor — used by the doctor-profile screen, which
+/// only needs to know if *this* doctor is on the waitlist rather than
+/// fetching every entry via [myWaitlistProvider]. `autoDispose` — same
+/// per-user-data rationale as [doctorStatsProvider].
+final doctorWaitlistProvider =
+    FutureProvider.autoDispose.family<List<WaitlistModel>, String>((ref, doctorId) {
+  return ref.watch(doctorRepositoryProvider).getWaitlistFor(doctorId);
+});
+
 final selectedDoctorProvider = StateProvider<DoctorModel?>((ref) => null);
 final selectedSlotProvider = StateProvider<SlotModel?>((ref) => null);
 final selectedWorkplaceIdProvider = StateProvider<String?>((ref) => null);

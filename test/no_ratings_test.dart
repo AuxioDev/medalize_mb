@@ -111,7 +111,7 @@ void main() {
         child: ProviderScope(
           overrides: [
             doctorDetailProvider.overrideWith((ref, id) async => detail),
-            myWaitlistProvider.overrideWith((ref) async => []),
+            doctorWaitlistProvider.overrideWith((ref, doctorId) async => []),
             favoritesRepositoryProvider
                 .overrideWithValue(_OfflineFavoritesRepository()),
           ],
