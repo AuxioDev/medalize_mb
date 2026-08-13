@@ -200,7 +200,8 @@
     "statsPatients": "Пациенты",
     "statsAcceptRate": "% принятых",
     "statsPending": "Ожидают",
-    "schedule": "Расписание"
+    "schedule": "Расписание",
+    "quickBookWith": "Записаться к $name"
   },
   "appointments": {
     "title": "Приёмы",

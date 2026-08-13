@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,9 +8,12 @@ import 'package:intl/intl.dart';
 import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
+import 'package:medalize_mb/core/utils/booking_route.dart';
+import 'package:medalize_mb/core/utils/next_slot_format.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
+import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
 import 'package:medalize_mb/core/widgets/greeting_banner.dart';
 import 'package:medalize_mb/core/widgets/message_bell.dart';
 import 'package:medalize_mb/core/widgets/notification_bell.dart';
@@ -27,6 +31,7 @@ import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/medications/presentation/widgets/todays_doses_section.dart';
 import 'package:medalize_mb/features/messaging/providers/messaging_provider.dart';
 import 'package:medalize_mb/features/notifications/providers/notification_provider.dart';
+import 'package:medalize_mb/features/patient/providers/favorites_provider.dart';
 import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
 
@@ -94,6 +99,7 @@ class PatientHomeScreen extends ConsumerWidget {
               ),
               const Gap(AppSpacing.lg - 4),
               const AnimatedEntrance(index: 1, slideY: 0.08, child: _QuickActionsRow()),
+              const _QuickBookCard(),
               const Gap(AppSpacing.lg),
               AnimatedEntrance(
                 index: 2,
@@ -150,6 +156,122 @@ class _QuickActionsRow extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// One-tap rebooking shortcut: an exactly-one favorite doctor wins, else the
+/// doctor from the patient's most recent completed appointment, else nothing
+/// is shown. Both source lists are already fetched elsewhere on this screen
+/// (favorites screen / `_UpcomingAppointments`) or cheaply cached by
+/// Riverpod, so this doesn't add its own appointments round-trip — only
+/// `favoriteDoctorsProvider` is a "new" watch here.
+class _QuickBookCard extends ConsumerWidget {
+  const _QuickBookCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favorites = ref.watch(favoriteDoctorsProvider).valueOrNull ?? const [];
+    final appointments =
+        ref.watch(patientAppointmentsProvider(null)).valueOrNull ?? const [];
+
+    String? doctorId;
+    String? workplaceId;
+    String? doctorName;
+    String? avatarUrl;
+
+    if (favorites.length == 1) {
+      final favorite = favorites.single;
+      doctorId = favorite.id;
+      workplaceId = favorite.primaryWorkplaceId;
+      doctorName = favorite.fullName;
+      avatarUrl = favorite.avatarUrl;
+    } else {
+      final completed = appointments.where((a) => a.status == 'completed').toList()
+        ..sort((a, b) => b.startsAt.compareTo(a.startsAt));
+      if (completed.isNotEmpty) {
+        final last = completed.first;
+        doctorId = last.doctor.id;
+        workplaceId = last.workplace.id;
+        doctorName = last.doctor.fullName;
+      }
+    }
+
+    if (doctorId == null || doctorName == null) return const SizedBox.shrink();
+    final id = doctorId;
+    final nextSlot = ref.watch(nextAvailableDateProvider(id));
+    final c = context.colors;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: AnimatedEntrance(
+        index: 1,
+        slideY: 0.08,
+        child: AppCard(
+          onTap: () {
+            HapticFeedback.lightImpact();
+            context.push(bookingCalendarPath(id, workplaceId: workplaceId));
+          },
+          child: Row(
+            children: [
+              avatarUrl != null
+                  ? CachedNetworkImage(
+                      imageUrl: avatarUrl,
+                      imageBuilder: (ctx, imageProvider) => CircleAvatar(
+                        radius: 24,
+                        backgroundImage: imageProvider,
+                      ),
+                      placeholder: (ctx, _) =>
+                          GradientAvatar(initials: doctorName!, size: 48),
+                      errorWidget: (ctx, url, _) =>
+                          GradientAvatar(initials: doctorName!, size: 48),
+                    )
+                  : GradientAvatar(initials: doctorName, size: 48),
+              const Gap(12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.t.home.quickBookWith(name: doctorName),
+                      style: Theme.of(context).textTheme.labelLarge,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const Gap(3),
+                    nextSlot.when(
+                      loading: () => const SizedBox(
+                        height: 12,
+                        width: 80,
+                        child: LinearProgressIndicator(minHeight: 2),
+                      ),
+                      error: (_, _) => const SizedBox.shrink(),
+                      data: (date) => date == null
+                          ? const SizedBox.shrink()
+                          : Row(
+                              children: [
+                                Icon(Icons.event_available_outlined,
+                                    size: 13, color: c.primaryText),
+                                const Gap(4),
+                                Text(
+                                  formatNextSlotDate(context, date),
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: c.primaryText,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.chevron_right_rounded, color: c.textSecondary),
+            ],
+          ),
+        ),
       ),
     );
   }

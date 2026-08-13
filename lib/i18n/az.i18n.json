@@ -200,7 +200,8 @@
     "statsPatients": "Pasiyentlər",
     "statsAcceptRate": "Qəbul faizi",
     "statsPending": "Gözlənilir",
-    "schedule": "Cədvəl"
+    "schedule": "Cədvəl",
+    "quickBookWith": "$name ilə qeyd ol"
   },
   "appointments": {
     "title": "Görüşlər",

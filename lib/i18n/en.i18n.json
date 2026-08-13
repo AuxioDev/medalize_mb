@@ -200,7 +200,8 @@
     "statsPatients": "Patients",
     "statsAcceptRate": "Accept rate",
     "statsPending": "Pending",
-    "schedule": "Schedule"
+    "schedule": "Schedule",
+    "quickBookWith": "Book with $name"
   },
   "appointments": {
     "title": "Appointments",

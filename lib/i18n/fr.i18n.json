@@ -200,7 +200,8 @@
     "statsPatients": "Patients",
     "statsAcceptRate": "Taux accept.",
     "statsPending": "En attente",
-    "schedule": "Planning"
+    "schedule": "Planning",
+    "quickBookWith": "Réserver avec $name"
   },
   "appointments": {
     "title": "Rendez-vous",

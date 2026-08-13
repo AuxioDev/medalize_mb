@@ -200,7 +200,8 @@
     "statsPatients": "患者",
     "statsAcceptRate": "接受率",
     "statsPending": "待处理",
-    "schedule": "日程"
+    "schedule": "日程",
+    "quickBookWith": "预约 $name"
   },
   "appointments": {
     "title": "预约",

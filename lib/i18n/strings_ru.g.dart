@@ -376,6 +376,7 @@ class _Translations$home$ru extends Translations$home$en {
 	@override String get statsAcceptRate => '% принятых';
 	@override String get statsPending => 'Ожидают';
 	@override String get schedule => 'Расписание';
+	@override String quickBookWith({required Object name}) => 'Записаться к ${name}';
 }
 
 // Path: appointments
@@ -1691,6 +1692,7 @@ extension on TranslationsRu {
 			'home.statsAcceptRate' => '% принятых',
 			'home.statsPending' => 'Ожидают',
 			'home.schedule' => 'Расписание',
+			'home.quickBookWith' => ({required Object name}) => 'Записаться к ${name}',
 			'appointments.title' => 'Приёмы',
 			'appointments.myTitle' => 'Мои приёмы',
 			'appointments.tabPending' => 'Ожидают',
@@ -2023,9 +2025,9 @@ extension on TranslationsRu {
 			'legal.sections.thirdParties.body' => 'Доверенные поставщики услуг, действующие только по нашему поручению и исключительно для описанных здесь целей: Cloudinary (безопасное хранение файлов — документы и фото никогда не доступны публично, только по подписанным ссылкам с ограниченным сроком действия); Firebase/Google (push-уведомления и вход через Google, если вы его выберете); Apple (вход через Apple, если вы его выберете); Payriff (платежи в приложении). Мы не продаём ваши персональные данные.',
 			'legal.sections.retention.title' => 'Сколько мы храним данные',
 			'legal.sections.retention.body' => 'Пока ваш аккаунт активен. При удалении аккаунта мы удаляем ваши персональные данные в разумный срок, за исключением записей, которые обязаны хранить по закону (например, платёжные записи для налогового учёта).',
-			'legal.sections.rights.title' => 'Ваши права',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.title' => 'Ваши права',
 			'legal.sections.rights.body' => 'Вы можете запросить доступ к данным, которые мы о вас храним, потребовать исправления неточных данных, потребовать удаления аккаунта и данных, а также отозвать согласие в любой момент. Большая часть этого доступна прямо в разделе «Профиль» → «Настройки»; по остальным вопросам — свяжитесь с нами ниже.',
 			'legal.sections.security.title' => 'Как мы защищаем ваши данные',
 			'legal.sections.security.body' => 'Переписка с врачом и разговоры с ИИ-ассистентом шифруются. Загруженные документы и фото хранятся приватно и доступны только по защищённым подписанным ссылкам, никогда как публичные файлы. Пароли никогда не хранятся в читаемом виде.',

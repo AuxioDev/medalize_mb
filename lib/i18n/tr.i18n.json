@@ -200,7 +200,8 @@
     "statsPatients": "Hastalar",
     "statsAcceptRate": "Kabul oranı",
     "statsPending": "Bekleyenler",
-    "schedule": "Takvim"
+    "schedule": "Takvim",
+    "quickBookWith": "$name ile randevu al"
   },
   "appointments": {
     "title": "Randevular",
