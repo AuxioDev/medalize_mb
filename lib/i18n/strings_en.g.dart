@@ -1062,6 +1062,9 @@ class Translations$doctorSearch$en {
 
 	/// en: '$km km'
 	String distanceKm({required Object km}) => '${km} km';
+
+	/// en: 'Book'
+	String get book => 'Book';
 }
 
 // Path: doctorDetail
@@ -3372,6 +3375,7 @@ extension on Translations {
 			'doctorSearch.locationDenied' => 'Location permission is needed to sort by distance. Allow it in Settings, or filter by city instead.',
 			'doctorSearch.locationUnavailable' => 'Couldn\'t get your location. Check that location services are on, or filter by city instead.',
 			'doctorSearch.distanceKm' => ({required Object km}) => '${km} km',
+			'doctorSearch.book' => 'Book',
 			'doctorDetail.profileTitle' => 'Doctor Profile',
 			'doctorDetail.couldNotLoadProfile' => 'Could not load profile',
 			'doctorDetail.about' => 'About',
@@ -3594,9 +3598,9 @@ extension on Translations {
 			'legal.sections.thirdParties.body' => 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Payriff (in-app payments). We do not sell your personal data.',
 			'legal.sections.retention.title' => 'How long we keep your data',
 			'legal.sections.retention.body' => 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).',
-			'legal.sections.rights.title' => 'Your rights',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.title' => 'Your rights',
 			'legal.sections.rights.body' => 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.',
 			'legal.sections.security.title' => 'How we protect your data',
 			'legal.sections.security.body' => 'Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form.',

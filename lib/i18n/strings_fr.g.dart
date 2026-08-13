@@ -503,6 +503,7 @@ class _Translations$doctorSearch$fr extends Translations$doctorSearch$en {
 	@override String get locationDenied => 'L\'autorisation de localisation est nécessaire pour trier par distance. Autorisez-la dans les réglages ou filtrez par ville.';
 	@override String get locationUnavailable => 'Impossible d\'obtenir votre position. Vérifiez que la localisation est activée ou filtrez par ville.';
 	@override String distanceKm({required Object km}) => '${km} km';
+	@override String get book => 'Réserver';
 }
 
 // Path: doctorDetail
@@ -1801,6 +1802,7 @@ extension on TranslationsFr {
 			'doctorSearch.locationDenied' => 'L\'autorisation de localisation est nécessaire pour trier par distance. Autorisez-la dans les réglages ou filtrez par ville.',
 			'doctorSearch.locationUnavailable' => 'Impossible d\'obtenir votre position. Vérifiez que la localisation est activée ou filtrez par ville.',
 			'doctorSearch.distanceKm' => ({required Object km}) => '${km} km',
+			'doctorSearch.book' => 'Réserver',
 			'doctorDetail.profileTitle' => 'Profil du médecin',
 			'doctorDetail.couldNotLoadProfile' => 'Impossible de charger le profil',
 			'doctorDetail.about' => 'À propos',
@@ -2023,9 +2025,9 @@ extension on TranslationsFr {
 			'legal.sections.thirdParties.body' => 'Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Payriff (paiements dans l\'application). Nous ne vendons pas vos données personnelles.',
 			'legal.sections.retention.title' => 'Durée de conservation de vos données',
 			'legal.sections.retention.body' => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).',
-			'legal.sections.rights.title' => 'Vos droits',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.title' => 'Vos droits',
 			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
 			'legal.sections.security.title' => 'Comment nous protégeons vos données',
 			'legal.sections.security.body' => 'Les messages entre vous et votre médecin, ainsi que les conversations avec l\'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible.',

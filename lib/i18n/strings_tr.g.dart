@@ -503,6 +503,7 @@ class _Translations$doctorSearch$tr extends Translations$doctorSearch$en {
 	@override String get locationDenied => 'Mesafeye göre sıralamak için konum izni gerekiyor. Ayarlardan izin verin veya şehir filtresini kullanın.';
 	@override String get locationUnavailable => 'Konumunuz alınamadı. Konum hizmetlerinin açık olduğundan emin olun veya şehir filtresini kullanın.';
 	@override String distanceKm({required Object km}) => '${km} km';
+	@override String get book => 'Randevu Al';
 }
 
 // Path: doctorDetail
@@ -1801,6 +1802,7 @@ extension on TranslationsTr {
 			'doctorSearch.locationDenied' => 'Mesafeye göre sıralamak için konum izni gerekiyor. Ayarlardan izin verin veya şehir filtresini kullanın.',
 			'doctorSearch.locationUnavailable' => 'Konumunuz alınamadı. Konum hizmetlerinin açık olduğundan emin olun veya şehir filtresini kullanın.',
 			'doctorSearch.distanceKm' => ({required Object km}) => '${km} km',
+			'doctorSearch.book' => 'Randevu Al',
 			'doctorDetail.profileTitle' => 'Doktor Profili',
 			'doctorDetail.couldNotLoadProfile' => 'Profil yüklenemedi',
 			'doctorDetail.about' => 'Hakkında',
@@ -2023,9 +2025,9 @@ extension on TranslationsTr {
 			'legal.sections.thirdParties.body' => 'Yalnızca bizim talimatımızla ve burada açıklanan amaçlar için hareket eden güvenilir hizmet sağlayıcılar: Cloudinary (güvenli dosya depolama — belgeler ve fotoğraflar asla herkese açık değildir, yalnızca imzalı, süreli bağlantılarla erişilebilir); Firebase/Google (push bildirimleri ve tercih ederseniz Google ile giriş); Apple (tercih ederseniz Apple ile Oturum Açma); Payriff (uygulama içi ödemeler). Kişisel verilerinizi satmayız.',
 			'legal.sections.retention.title' => 'Verilerinizi ne kadar süre saklıyoruz',
 			'legal.sections.retention.body' => 'Hesabınız aktif olduğu sürece. Hesabınızı silerseniz, yasal olarak saklamamız gereken kayıtlar (örneğin vergi amaçlı ödeme kayıtları) dışında, kişisel verilerinizi makul bir süre içinde kaldırırız.',
-			'legal.sections.rights.title' => 'Haklarınız',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.title' => 'Haklarınız',
 			'legal.sections.rights.body' => 'Hakkınızda tuttuğumuz verilere erişebilir, hatalı verilerin düzeltilmesini, hesabınızın ve verilerinizin silinmesini talep edebilir ve rızanızı istediğiniz zaman geri çekebilirsiniz. Bunların çoğu doğrudan Profil > Ayarlar altında mevcuttur; diğer her şey için aşağıdan bizimle iletişime geçin.',
 			'legal.sections.security.title' => 'Verilerinizi nasıl koruyoruz',
 			'legal.sections.security.body' => 'Doktorunuzla mesajlaşmalarınız ve yapay zeka asistanı konuşmaları şifrelenir. Yüklenen belgeler ve fotoğraflar özel olarak saklanır, yalnızca güvenli imzalı bağlantılarla erişilebilir, asla herkese açık dosyalar olarak değil. Şifreler asla okunabilir biçimde saklanmaz.',

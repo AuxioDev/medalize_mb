@@ -130,4 +130,38 @@ void main() {
     expect(adapter.requests.single.queryParameters['page'], 3);
     expect(page.hasMore, isFalse);
   });
+
+  test('getNextAvailableDates joins ids into a single comma-separated request',
+      () async {
+    final adapter = _CapturingAdapter({'doc-1': '2026-07-05', 'doc-2': null});
+
+    await _repo(adapter).getNextAvailableDates(['doc-1', 'doc-2']);
+
+    final req = adapter.requests.single;
+    expect(req.path, '/doctors/next-slots/');
+    expect(req.queryParameters['ids'], 'doc-1,doc-2');
+  });
+
+  test('getNextAvailableDates parses each date, keeping nulls for doctors '
+      'the server omitted or reported as unavailable', () async {
+    final adapter = _CapturingAdapter({'doc-1': '2026-07-05', 'doc-2': null});
+
+    final dates = await _repo(adapter).getNextAvailableDates(['doc-1', 'doc-2']);
+
+    expect(dates['doc-1'], DateTime(2026, 7, 5));
+    expect(dates['doc-2'], isNull);
+    // A third id the server dropped entirely (unknown/unverified) is simply
+    // absent rather than present-with-null.
+    expect(dates.containsKey('doc-3'), isFalse);
+  });
+
+  test('getNextAvailableDates makes no request for an empty id list',
+      () async {
+    final adapter = _CapturingAdapter({});
+
+    final dates = await _repo(adapter).getNextAvailableDates([]);
+
+    expect(dates, isEmpty);
+    expect(adapter.requests, isEmpty);
+  });
 }

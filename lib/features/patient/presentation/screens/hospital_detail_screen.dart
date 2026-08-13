@@ -7,6 +7,7 @@ import 'package:medalize_mb/core/constants/app_spacing.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/utils/share_urls.dart';
+import 'package:medalize_mb/core/widgets/book_now_button.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/shimmer_skeleton.dart';
@@ -211,72 +212,79 @@ class _DoctorRow extends StatelessWidget {
             context.push('/patient/doctor-detail/${doctor.id}', extra: doctor),
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              doctor.avatarUrl != null
-                  ? CachedNetworkImage(
-                      imageUrl: doctor.avatarUrl!,
-                      imageBuilder: (ctx, imageProvider) => CircleAvatar(
-                        radius: 20,
-                        backgroundImage: imageProvider,
-                      ),
-                      placeholder: (ctx, _) => CircleAvatar(
-                        radius: 20,
-                        backgroundColor: c.primarySurface,
-                        child: Text(
-                          initials,
-                          style: TextStyle(color: c.primaryText),
+              Row(
+                children: [
+                  doctor.avatarUrl != null
+                      ? CachedNetworkImage(
+                          imageUrl: doctor.avatarUrl!,
+                          imageBuilder: (ctx, imageProvider) => CircleAvatar(
+                            radius: 20,
+                            backgroundImage: imageProvider,
+                          ),
+                          placeholder: (ctx, _) => CircleAvatar(
+                            radius: 20,
+                            backgroundColor: c.primarySurface,
+                            child: Text(
+                              initials,
+                              style: TextStyle(color: c.primaryText),
+                            ),
+                          ),
+                          errorWidget: (ctx, url, _) => CircleAvatar(
+                            radius: 20,
+                            backgroundColor: c.primarySurface,
+                            child: Text(
+                              initials,
+                              style: TextStyle(color: c.primaryText),
+                            ),
+                          ),
+                        )
+                      : CircleAvatar(
+                          radius: 20,
+                          backgroundColor: c.primarySurface,
+                          child: Text(
+                            initials,
+                            style: TextStyle(color: c.primaryText),
+                          ),
                         ),
-                      ),
-                      errorWidget: (ctx, url, _) => CircleAvatar(
-                        radius: 20,
-                        backgroundColor: c.primarySurface,
-                        child: Text(
-                          initials,
-                          style: TextStyle(color: c.primaryText),
+                  const Gap(12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          doctor.fullName,
+                          style: Theme.of(context).textTheme.labelMedium,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                    )
-                  : CircleAvatar(
-                      radius: 20,
-                      backgroundColor: c.primarySurface,
-                      child: Text(
-                        initials,
-                        style: TextStyle(color: c.primaryText),
-                      ),
+                        Text(
+                          doctor.specializationDisplay,
+                          style: Theme.of(context).textTheme.bodySmall,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-              const Gap(12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      doctor.fullName,
-                      style: Theme.of(context).textTheme.labelMedium,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                  ),
+                  if (doctor.averageRating != null) ...[
+                    Icon(
+                      Icons.star_rounded,
+                      size: 16,
+                      color: Colors.amber.shade600,
                     ),
+                    const Gap(2),
                     Text(
-                      doctor.specializationDisplay,
-                      style: Theme.of(context).textTheme.bodySmall,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                      doctor.averageRating!.toStringAsFixed(1),
+                      style: TextStyle(fontSize: 12, color: c.textSecondary),
                     ),
                   ],
-                ),
+                ],
               ),
-              if (doctor.averageRating != null) ...[
-                Icon(
-                  Icons.star_rounded,
-                  size: 16,
-                  color: Colors.amber.shade600,
-                ),
-                const Gap(2),
-                Text(
-                  doctor.averageRating!.toStringAsFixed(1),
-                  style: TextStyle(fontSize: 12, color: c.textSecondary),
-                ),
-              ],
+              const Gap(10),
+              BookNowButton(doctorId: doctor.id),
             ],
           ),
         ),

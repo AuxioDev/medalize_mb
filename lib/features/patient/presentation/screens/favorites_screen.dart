@@ -9,6 +9,7 @@ import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/theme/theme_colors.dart';
 import 'package:medalize_mb/core/widgets/animated_entrance.dart';
 import 'package:medalize_mb/core/widgets/app_card.dart';
+import 'package:medalize_mb/core/widgets/book_now_button.dart';
 import 'package:medalize_mb/core/widgets/empty_state.dart';
 import 'package:medalize_mb/core/widgets/gradient_avatar.dart';
 import 'package:medalize_mb/core/widgets/refreshable.dart';
@@ -105,60 +106,67 @@ class _FavoriteCard extends ConsumerWidget {
         HapticFeedback.lightImpact();
         context.push('/patient/doctor-detail/${doctor.id}', extra: doctor);
       },
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          doctor.avatarUrl != null
-              ? CachedNetworkImage(
-                  imageUrl: doctor.avatarUrl!,
-                  imageBuilder: (ctx, imageProvider) => CircleAvatar(
-                    radius: 26,
-                    backgroundImage: imageProvider,
-                  ),
-                  placeholder: (ctx, _) =>
-                      GradientAvatar(initials: initials, size: 52),
-                  errorWidget: (ctx, url, _) =>
-                      GradientAvatar(initials: initials, size: 52),
-                )
-              : GradientAvatar(initials: initials, size: 52),
-          const Gap(12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  doctor.fullName,
-                  style: Theme.of(context).textTheme.labelLarge,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+          Row(
+            children: [
+              doctor.avatarUrl != null
+                  ? CachedNetworkImage(
+                      imageUrl: doctor.avatarUrl!,
+                      imageBuilder: (ctx, imageProvider) => CircleAvatar(
+                        radius: 26,
+                        backgroundImage: imageProvider,
+                      ),
+                      placeholder: (ctx, _) =>
+                          GradientAvatar(initials: initials, size: 52),
+                      errorWidget: (ctx, url, _) =>
+                          GradientAvatar(initials: initials, size: 52),
+                    )
+                  : GradientAvatar(initials: initials, size: 52),
+              const Gap(12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      doctor.fullName,
+                      style: Theme.of(context).textTheme.labelLarge,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const Gap(3),
+                    Text(
+                      doctor.specializationDisplay,
+                      style: TextStyle(
+                          fontSize: 13,
+                          color: c.primaryText,
+                          fontWeight: FontWeight.w500),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    if (doctor.primaryWorkplaceCity != null) ...[
+                      const Gap(2),
+                      Text(
+                        doctor.primaryWorkplaceCity!,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ],
                 ),
-                const Gap(3),
-                Text(
-                  doctor.specializationDisplay,
-                  style: TextStyle(
-                      fontSize: 13,
-                      color: c.primaryText,
-                      fontWeight: FontWeight.w500),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                if (doctor.primaryWorkplaceCity != null) ...[
-                  const Gap(2),
-                  Text(
-                    doctor.primaryWorkplaceCity!,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
-              ],
-            ),
+              ),
+              IconButton(
+                tooltip: context.t.favorites.remove,
+                onPressed: () {
+                  HapticFeedback.selectionClick();
+                  ref.read(favoritesProvider.notifier).toggle(doctor.id);
+                },
+                icon: const Icon(Icons.favorite, color: AppColors.error),
+              ),
+            ],
           ),
-          IconButton(
-            tooltip: context.t.favorites.remove,
-            onPressed: () {
-              HapticFeedback.selectionClick();
-              ref.read(favoritesProvider.notifier).toggle(doctor.id);
-            },
-            icon: const Icon(Icons.favorite, color: AppColors.error),
-          ),
+          const Gap(8),
+          BookNowButton(doctorId: doctor.id),
         ],
       ),
     );

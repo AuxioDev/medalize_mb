@@ -503,6 +503,7 @@ class _Translations$doctorSearch$zh extends Translations$doctorSearch$en {
 	@override String get locationDenied => '按距离排序需要位置权限。请在设置中允许，或改用城市筛选。';
 	@override String get locationUnavailable => '无法获取您的位置。请检查定位服务是否开启，或改用城市筛选。';
 	@override String distanceKm({required Object km}) => '${km} 公里';
+	@override String get book => '预约';
 }
 
 // Path: doctorDetail
@@ -1801,6 +1802,7 @@ extension on TranslationsZh {
 			'doctorSearch.locationDenied' => '按距离排序需要位置权限。请在设置中允许，或改用城市筛选。',
 			'doctorSearch.locationUnavailable' => '无法获取您的位置。请检查定位服务是否开启，或改用城市筛选。',
 			'doctorSearch.distanceKm' => ({required Object km}) => '${km} 公里',
+			'doctorSearch.book' => '预约',
 			'doctorDetail.profileTitle' => '医生资料',
 			'doctorDetail.couldNotLoadProfile' => '无法加载资料',
 			'doctorDetail.about' => '简介',
@@ -2023,9 +2025,9 @@ extension on TranslationsZh {
 			'legal.sections.thirdParties.body' => '仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Payriff（应用内支付）。我们不会出售您的个人数据。',
 			'legal.sections.retention.title' => '我们保留数据多长时间',
 			'legal.sections.retention.body' => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。',
-			'legal.sections.rights.title' => '您的权利',
 			_ => null,
 		} ?? switch (path) {
+			'legal.sections.rights.title' => '您的权利',
 			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
 			'legal.sections.security.title' => '我们如何保护您的数据',
 			'legal.sections.security.body' => '您与医生之间的消息以及与 AI 助手的对话均经过加密。上传的文档和照片以私密方式存储，仅可通过安全的签名链接访问，绝不会作为公开文件存在。密码绝不会以可读形式存储。',

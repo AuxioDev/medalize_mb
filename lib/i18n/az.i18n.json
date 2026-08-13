@@ -318,7 +318,8 @@
     "sortDistance": "Mənə ən yaxın",
     "locationDenied": "Məsafəyə görə sıralamaq üçün məkan icazəsi lazımdır. Parametrlərdə icazə verin və ya şəhər filtrindən istifadə edin.",
     "locationUnavailable": "Məkanınızı təyin etmək mümkün olmadı. Məkan xidmətlərinin aktiv olduğunu yoxlayın və ya şəhər filtrindən istifadə edin.",
-    "distanceKm": "$km km"
+    "distanceKm": "$km km",
+    "book": "Görüş al"
   },
   "doctorDetail": {
     "profileTitle": "Həkim profili",

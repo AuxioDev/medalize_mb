@@ -88,6 +88,27 @@ class DoctorRepository {
     }
   }
 
+  /// Batched form of [getNextAvailableDate] — one round-trip for a whole
+  /// doctor-search page instead of one per card. Doctor ids absent from the
+  /// response (unknown/unverified) are simply missing from the returned map
+  /// rather than mapped to null, same as a doctor with no slot in range.
+  Future<Map<String, DateTime?>> getNextAvailableDates(List<String> doctorIds) async {
+    if (doctorIds.isEmpty) return {};
+    try {
+      final res = await _dio.get(
+        '/doctors/next-slots/',
+        queryParameters: {'ids': doctorIds.join(',')},
+      );
+      final data = res.data as Map<String, dynamic>;
+      return data.map((id, dateStr) =>
+          MapEntry(id, dateStr != null ? DateTime.parse(dateStr as String) : null));
+    } on DioException catch (e) {
+      throw mapDioError(e);
+    } catch (_) {
+      throw const ServerException(0);
+    }
+  }
+
   Future<DoctorStatsModel> getStats() async {
     try {
       final res = await _dio.get('/doctor/stats/');

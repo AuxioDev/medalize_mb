@@ -187,6 +187,39 @@ final nextAvailableDateProvider =
   return ref.watch(doctorRepositoryProvider).getNextAvailableDate(doctorId);
 });
 
+/// Family key for [nextSlotBatchProvider]. Ids are deduped and sorted in the
+/// constructor so two calls for the same underlying set — even built as
+/// separate `List` instances, e.g. re-derived on every build of a search
+/// results screen — resolve to the same cached provider instance instead of
+/// each triggering its own network request.
+class NextSlotBatchParams {
+  NextSlotBatchParams(List<String> doctorIds)
+      : doctorIds = (doctorIds.toSet().toList()..sort());
+
+  final List<String> doctorIds;
+
+  @override
+  bool operator ==(Object other) {
+    if (other is! NextSlotBatchParams) return false;
+    if (other.doctorIds.length != doctorIds.length) return false;
+    for (var i = 0; i < doctorIds.length; i++) {
+      if (other.doctorIds[i] != doctorIds[i]) return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode => Object.hashAll(doctorIds);
+}
+
+/// Batched next-available-date lookup for a whole doctor list screen — see
+/// [NextSlotBatchParams] for why the family key isn't just `List<String>`.
+final nextSlotBatchProvider =
+    FutureProvider.family<Map<String, DateTime?>, NextSlotBatchParams>(
+        (ref, params) {
+  return ref.watch(doctorRepositoryProvider).getNextAvailableDates(params.doctorIds);
+});
+
 /// `autoDispose`: this doctor's own stats — must not survive a logout/login
 /// as another doctor/patient on a shared device. Disposed once nothing is
 /// watching it, which the auth redirect guarantees happens on both logout

@@ -318,7 +318,8 @@
     "sortDistance": "Le plus proche de moi",
     "locationDenied": "L'autorisation de localisation est nécessaire pour trier par distance. Autorisez-la dans les réglages ou filtrez par ville.",
     "locationUnavailable": "Impossible d'obtenir votre position. Vérifiez que la localisation est activée ou filtrez par ville.",
-    "distanceKm": "$km km"
+    "distanceKm": "$km km",
+    "book": "Réserver"
   },
   "doctorDetail": {
     "profileTitle": "Profil du médecin",
