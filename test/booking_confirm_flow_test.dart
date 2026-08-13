@@ -3,18 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medalize_mb/core/services/navigator_key.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
+import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/features/appointments/data/models/appointment_model.dart';
 import 'package:medalize_mb/features/appointments/data/models/booking_request.dart';
 import 'package:medalize_mb/features/appointments/data/repository/appointment_repository.dart';
 import 'package:medalize_mb/features/doctors/data/models/doctor_model.dart';
-import 'package:medalize_mb/core/widgets/primary_button.dart';
+import 'package:medalize_mb/features/doctors/providers/doctor_provider.dart';
 import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/family/providers/family_provider.dart';
-import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/booking_calendar_screen.dart';
 import 'package:medalize_mb/features/payments/data/models/payment_model.dart';
 import 'package:medalize_mb/features/payments/data/repository/payment_repository.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class _FakeAppointmentRepository extends AppointmentRepository {
   _FakeAppointmentRepository() : super(Dio());
@@ -102,10 +105,24 @@ const _doctor = DoctorDetailModel(
   ],
 );
 
-final _slot = SlotModel(
-  startsAt: DateTime(2030, 1, 1, 10, 0),
-  endsAt: DateTime(2030, 1, 1, 10, 30),
-);
+final _today = DateTime.now();
+final _slots = [
+  SlotModel(
+    startsAt: DateTime(_today.year, _today.month, _today.day, 10),
+    endsAt: DateTime(_today.year, _today.month, _today.day, 10, 30),
+  ),
+];
+
+/// The calendar day grid is rendered by the third-party [TableCalendar]; see
+/// booking_default_slot_test.dart for why this drives `onDaySelected`
+/// directly rather than tapping a day cell by text.
+Future<void> _selectToday(WidgetTester tester) async {
+  final calendar = tester.widget(find.byWidgetPredicate((w) => w is TableCalendar))
+      as TableCalendar;
+  calendar.onDaySelected!(_today, _today);
+  await tester.pump();
+  await tester.pump();
+}
 
 Future<void> _pump(
   WidgetTester tester, {
@@ -113,20 +130,22 @@ Future<void> _pump(
   _FakeAppointmentRepository? appointmentRepo,
   DependentModel? activeProfile,
 }) async {
-  tester.view.physicalSize = const Size(480, 1000);
+  tester.view.physicalSize = const Size(480, 1200);
   tester.view.devicePixelRatio = 1.0;
   addTearDown(tester.view.reset);
 
   final router = GoRouter(
-    initialLocation: '/confirm',
+    // The success snackbar's "Pay now" action navigates via the app-wide
+    // `navigatorKey` (its own screen context is gone by the time the
+    // snackbar is tapped — see booking_calendar_screen.dart), so the test
+    // router has to be wired to that same key, exactly like the real one
+    // in app_router.dart.
+    navigatorKey: navigatorKey,
+    initialLocation: '/booking',
     routes: [
       GoRoute(
-        path: '/confirm',
-        builder: (_, _) => BookingConfirmScreen(
-          doctor: _doctor,
-          slot: _slot,
-          workplaceId: 'w1',
-        ),
+        path: '/booking',
+        builder: (_, _) => const BookingCalendarScreen(doctor: _doctor),
       ),
       GoRoute(
         path: '/patient/home',
@@ -147,6 +166,8 @@ Future<void> _pump(
           appointmentRepositoryProvider
               .overrideWithValue(appointmentRepo ?? _FakeAppointmentRepository()),
           paymentRepositoryProvider.overrideWithValue(paymentRepo),
+          slotsProvider.overrideWith((ref, params) async => _slots),
+          nextAvailableDateProvider.overrideWith((ref, id) async => null),
           if (activeProfile != null)
             activeProfileProvider.overrideWith((ref) => activeProfile),
         ],
@@ -154,49 +175,62 @@ Future<void> _pump(
       ),
     ),
   );
+  await tester.pump();
+  await _selectToday(tester);
   await tester.pumpAndSettle();
 }
 
 void main() {
+  setUp(() {
+    // The merged calendar+confirm screen is taller than the old confirm
+    // screen alone; the default 800x600 test surface overflows it.
+    final binding = TestWidgetsFlutterBinding.ensureInitialized();
+    binding.platformDispatcher.views.first
+      ..physicalSize = const Size(1170, 2532)
+      ..devicePixelRatio = 3.0;
+  });
+
+  tearDown(() {
+    final binding = TestWidgetsFlutterBinding.ensureInitialized();
+    binding.platformDispatcher.views.first
+      ..resetPhysicalSize()
+      ..resetDevicePixelRatio();
+  });
+
   testWidgets(
-      'when Payriff is unconfigured (503) the success dialog renders exactly '
-      'as before — no payment UI appears at all', (tester) async {
+      'when Payriff is unconfigured (503), confirming goes straight home with '
+      'a success snackbar and no payment action', (tester) async {
     await _pump(tester, paymentRepo: _PaymentsDisabledRepository());
 
     await tester.tap(find.byType(LoadingFilledButton));
     await tester.pumpAndSettle();
 
     expect(tester.takeException(), isNull);
-    expect(find.text('Booked!'), findsOneWidget);
-    expect(find.text('Your appointment request has been sent.'), findsOneWidget);
-    expect(find.text('OK'), findsOneWidget);
+    // No blocking dialog / "OK" tap required to get home.
+    expect(find.text('patient-home'), findsOneWidget);
+    expect(find.text('Appointment booked'), findsOneWidget);
     // The one and only behavioral difference this phase introduces — and it
     // must not appear when payments are unavailable.
     expect(find.text('Pay Now'), findsNothing);
-
-    await tester.tap(find.text('OK'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('patient-home'), findsOneWidget);
   });
 
   testWidgets(
-      'when payment creation succeeds, the success dialog gains an optional '
-      'Pay Now button alongside the unchanged success UI', (tester) async {
+      'when payment creation succeeds, the success snackbar gains an optional '
+      'Pay Now action alongside the unchanged success message', (tester) async {
     final paymentRepo = _PaymentsEnabledRepository();
     await _pump(tester, paymentRepo: paymentRepo);
 
     await tester.tap(find.byType(LoadingFilledButton));
     await tester.pumpAndSettle();
 
-    expect(find.text('Booked!'), findsOneWidget);
-    expect(find.text('Your appointment request has been sent.'), findsOneWidget);
-    expect(find.text('OK'), findsOneWidget);
+    expect(find.text('patient-home'), findsOneWidget);
+    expect(find.text('Appointment booked'), findsOneWidget);
     expect(find.text('Pay Now'), findsOneWidget);
     expect(paymentRepo.requestedAppointmentId, 'appt-1');
   });
 
-  testWidgets('tapping Pay Now closes the dialog and navigates to the payment screen',
+  testWidgets(
+      'tapping the snackbar\'s Pay Now action navigates to the payment screen',
       (tester) async {
     await _pump(tester, paymentRepo: _PaymentsEnabledRepository());
 
@@ -210,14 +244,12 @@ void main() {
   });
 
   testWidgets(
-      'tapping OK with payment available still goes straight home, without '
-      'forcing the patient into the payment screen', (tester) async {
+      'when payment is available but its snackbar action is never tapped, '
+      'the patient simply stays home instead of being forced into payment',
+      (tester) async {
     await _pump(tester, paymentRepo: _PaymentsEnabledRepository());
 
     await tester.tap(find.byType(LoadingFilledButton));
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('OK'));
     await tester.pumpAndSettle();
 
     expect(find.text('patient-home'), findsOneWidget);

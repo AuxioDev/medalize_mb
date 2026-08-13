@@ -444,6 +444,7 @@ class _Translations$appointments$az extends Translations$appointments$en {
 	@override String get disputeNoShowSubmit => 'Göndər';
 	@override String get disputeNoShowSubmitted => 'Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.';
 	@override String get disputeNoShowOpen => 'Etiraz göndərildi — nəzərdən keçirilir';
+	@override String get bookedSnack => 'Görüş göndərildi';
 }
 
 // Path: booking
@@ -460,17 +461,14 @@ class _Translations$booking$az extends Translations$booking$en {
 	@override String get couldNotLoadSlots => 'Vaxt aralıqları yüklənə bilmədi';
 	@override String get noAvailableSlots => 'Mövcud vaxt yoxdur';
 	@override String get noOpenSlots => 'Bu tarix üçün boş vaxt yoxdur. Başqa gün seçin.';
-	@override String get confirmTitle => 'Təyinatı təsdiqlə';
 	@override String get reasonForVisit => 'Ziyarət səbəbi (istəyə bağlı)';
-	@override String get confirmButton => 'Təyinatı təsdiqlə';
-	@override String get doctorLabel => 'Həkim';
-	@override String get workplaceLabel => 'İş yeri';
-	@override String get addressLabel => 'Ünvan';
-	@override String get startLabel => 'Başlanğıc';
-	@override String get endLabel => 'Son';
 	@override String get tryDifferentDate => 'Başqa tarix seçin';
 	@override String get earliestPreselected => 'Ən yaxın boş vaxt əvvəlcədən seçilib';
 	@override String continueAt({required Object time}) => 'Davam et — ${time}';
+	@override String confirmAt({required Object time}) => 'Təsdiqlə — ${time}';
+	@override String get reasonPresetCheckup => 'Planlı baxış';
+	@override String get reasonPresetFollowUp => 'Təkrar baxış';
+	@override String get reasonPresetNewComplaint => 'Yeni şikayət';
 }
 
 // Path: doctorSearch
@@ -1751,6 +1749,7 @@ extension on TranslationsAz {
 			'appointments.disputeNoShowSubmit' => 'Göndər',
 			'appointments.disputeNoShowSubmitted' => 'Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.',
 			'appointments.disputeNoShowOpen' => 'Etiraz göndərildi — nəzərdən keçirilir',
+			'appointments.bookedSnack' => 'Görüş göndərildi',
 			'booking.bookWith' => ({required Object name}) => 'Təyin et — ${name}',
 			'booking.selectWorkplace' => 'İş yerini seçin',
 			'booking.pickDate' => 'Tarix seçin',
@@ -1758,17 +1757,14 @@ extension on TranslationsAz {
 			'booking.couldNotLoadSlots' => 'Vaxt aralıqları yüklənə bilmədi',
 			'booking.noAvailableSlots' => 'Mövcud vaxt yoxdur',
 			'booking.noOpenSlots' => 'Bu tarix üçün boş vaxt yoxdur. Başqa gün seçin.',
-			'booking.confirmTitle' => 'Təyinatı təsdiqlə',
 			'booking.reasonForVisit' => 'Ziyarət səbəbi (istəyə bağlı)',
-			'booking.confirmButton' => 'Təyinatı təsdiqlə',
-			'booking.doctorLabel' => 'Həkim',
-			'booking.workplaceLabel' => 'İş yeri',
-			'booking.addressLabel' => 'Ünvan',
-			'booking.startLabel' => 'Başlanğıc',
-			'booking.endLabel' => 'Son',
 			'booking.tryDifferentDate' => 'Başqa tarix seçin',
 			'booking.earliestPreselected' => 'Ən yaxın boş vaxt əvvəlcədən seçilib',
 			'booking.continueAt' => ({required Object time}) => 'Davam et — ${time}',
+			'booking.confirmAt' => ({required Object time}) => 'Təsdiqlə — ${time}',
+			'booking.reasonPresetCheckup' => 'Planlı baxış',
+			'booking.reasonPresetFollowUp' => 'Təkrar baxış',
+			'booking.reasonPresetNewComplaint' => 'Yeni şikayət',
 			'doctorSearch.title' => 'Həkim tap',
 			'doctorSearch.searchByName' => 'Ada görə axtar...',
 			'doctorSearch.city' => 'Şəhər',
@@ -2025,10 +2021,10 @@ extension on TranslationsAz {
 			'legal.sections.thirdParties.body' => 'Yalnız bizim tapşırığımızla və burada təsvir olunan məqsədlər üçün fəaliyyət göstərən etibarlı xidmət təchizatçıları: Cloudinary (sənəd və şəkillərin təhlükəsiz saxlanması — heç vaxt ictimai əlçatan deyil, yalnız imzalanmış, məhdud müddətli keçidlərlə); Firebase/Google (push-bildirişlər və seçdiyiniz halda Google ilə giriş); Apple (seçdiyiniz halda Apple ilə giriş); Payriff (tətbiq daxili ödənişlər). Şəxsi məlumatlarınızı heç kimə satmırıq.',
 			'legal.sections.retention.title' => 'Məlumatları nə qədər saxlayırıq',
 			'legal.sections.retention.body' => 'Hesabınız aktiv olduğu müddətcə. Hesabınızı sildikdə, qanunla saxlamağa borclu olduğumuz qeydlər (məsələn, vergi məqsədləri üçün ödəniş qeydləri) istisna olmaqla, şəxsi məlumatlarınızı ağlabatan müddət ərzində siliriz.',
-			_ => null,
-		} ?? switch (path) {
 			'legal.sections.rights.title' => 'Hüquqlarınız',
 			'legal.sections.rights.body' => 'Haqqınızda saxladığımız məlumatlara giriş əldə edə, yanlış məlumatların düzəldilməsini tələb edə, hesabınızın və məlumatlarınızın silinməsini tələb edə və istənilən vaxt razılığınızı geri götürə bilərsiniz. Bunların əksəriyyəti birbaşa "Profil" → "Tənzimləmələr" bölməsində mövcuddur; digər hallarda aşağıdakı əlaqə vasitəsilə bizimlə əlaqə saxlayın.',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => 'Məlumatlarınızı necə qoruyuruq',
 			'legal.sections.security.body' => 'Həkiminizlə yazışmalarınız və süni intellekt köməkçisi ilə söhbətləriniz şifrələnir. Yüklənmiş sənədlər və şəkillər məxfi saxlanılır, yalnız təhlükəsiz imzalanmış keçidlərlə əlçatandır, heç vaxt ictimai fayl kimi deyil. Parollar heç vaxt oxuna bilən formada saxlanılmır.',
 			'legal.sections.permissions.title' => 'Tələb etdiyimiz icazələr',

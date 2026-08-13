@@ -261,7 +261,8 @@
     "disputeNoShowHint": "Расскажите, почему вы считаете, что это отмечено ошибочно — наша служба поддержки рассмотрит обращение.",
     "disputeNoShowSubmit": "Отправить",
     "disputeNoShowSubmitted": "Ваше обращение отправлено. Мы рассмотрим его и свяжемся с вами.",
-    "disputeNoShowOpen": "Обращение отправлено — на рассмотрении"
+    "disputeNoShowOpen": "Обращение отправлено — на рассмотрении",
+    "bookedSnack": "Запись отправлена"
   },
   "booking": {
     "bookWith": "Запись — $name",
@@ -271,17 +272,14 @@
     "couldNotLoadSlots": "Не удалось загрузить слоты",
     "noAvailableSlots": "Нет доступных слотов",
     "noOpenSlots": "На эту дату нет свободных слотов. Попробуйте другой день.",
-    "confirmTitle": "Подтвердить запись",
     "reasonForVisit": "Причина визита (необязательно)",
-    "confirmButton": "Подтвердить запись",
-    "doctorLabel": "Врач",
-    "workplaceLabel": "Место работы",
-    "addressLabel": "Адрес",
-    "startLabel": "Начало",
-    "endLabel": "Конец",
     "tryDifferentDate": "Попробуйте другую дату",
     "earliestPreselected": "Выбран ближайший свободный слот",
-    "continueAt": "Продолжить — $time"
+    "continueAt": "Продолжить — $time",
+    "confirmAt": "Подтвердить — $time",
+    "reasonPresetCheckup": "Плановый осмотр",
+    "reasonPresetFollowUp": "Повторный визит",
+    "reasonPresetNewComplaint": "Новая жалоба"
   },
   "doctorSearch": {
     "title": "Найти врача",

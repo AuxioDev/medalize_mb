@@ -125,7 +125,7 @@ void main() {
 
     expect(tester.takeException(), isNull);
     // Back on the screen underneath — this screen never creates a payment
-    // itself (booking_confirm_screen.dart does that), Pay Later just closes.
+    // itself (booking_calendar_screen.dart does that), Pay Later just closes.
     expect(find.text('open-payment'), findsOneWidget);
   });
 

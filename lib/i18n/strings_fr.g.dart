@@ -444,6 +444,7 @@ class _Translations$appointments$fr extends Translations$appointments$en {
 	@override String get disputeNoShowSubmit => 'Envoyer';
 	@override String get disputeNoShowSubmitted => 'Votre contestation a été envoyée. Nous l\'examinerons et reviendrons vers vous.';
 	@override String get disputeNoShowOpen => 'Contestation envoyée — en cours d\'examen';
+	@override String get bookedSnack => 'Rendez-vous envoyé';
 }
 
 // Path: booking
@@ -460,17 +461,14 @@ class _Translations$booking$fr extends Translations$booking$en {
 	@override String get couldNotLoadSlots => 'Impossible de charger les créneaux';
 	@override String get noAvailableSlots => 'Aucun créneau disponible';
 	@override String get noOpenSlots => 'Aucun créneau libre pour cette date. Essayez un autre jour.';
-	@override String get confirmTitle => 'Confirmer la réservation';
 	@override String get reasonForVisit => 'Motif de la visite (facultatif)';
-	@override String get confirmButton => 'Confirmer la réservation';
-	@override String get doctorLabel => 'Médecin';
-	@override String get workplaceLabel => 'Lieu de travail';
-	@override String get addressLabel => 'Adresse';
-	@override String get startLabel => 'Début';
-	@override String get endLabel => 'Fin';
 	@override String get tryDifferentDate => 'Essayez une autre date';
 	@override String get earliestPreselected => 'Le créneau le plus proche est présélectionné';
 	@override String continueAt({required Object time}) => 'Continuer — ${time}';
+	@override String confirmAt({required Object time}) => 'Confirmer — ${time}';
+	@override String get reasonPresetCheckup => 'Contrôle de routine';
+	@override String get reasonPresetFollowUp => 'Visite de suivi';
+	@override String get reasonPresetNewComplaint => 'Nouvelle plainte';
 }
 
 // Path: doctorSearch
@@ -1751,6 +1749,7 @@ extension on TranslationsFr {
 			'appointments.disputeNoShowSubmit' => 'Envoyer',
 			'appointments.disputeNoShowSubmitted' => 'Votre contestation a été envoyée. Nous l\'examinerons et reviendrons vers vous.',
 			'appointments.disputeNoShowOpen' => 'Contestation envoyée — en cours d\'examen',
+			'appointments.bookedSnack' => 'Rendez-vous envoyé',
 			'booking.bookWith' => ({required Object name}) => 'Réserver — ${name}',
 			'booking.selectWorkplace' => 'Sélectionner un lieu',
 			'booking.pickDate' => 'Choisir une date',
@@ -1758,17 +1757,14 @@ extension on TranslationsFr {
 			'booking.couldNotLoadSlots' => 'Impossible de charger les créneaux',
 			'booking.noAvailableSlots' => 'Aucun créneau disponible',
 			'booking.noOpenSlots' => 'Aucun créneau libre pour cette date. Essayez un autre jour.',
-			'booking.confirmTitle' => 'Confirmer la réservation',
 			'booking.reasonForVisit' => 'Motif de la visite (facultatif)',
-			'booking.confirmButton' => 'Confirmer la réservation',
-			'booking.doctorLabel' => 'Médecin',
-			'booking.workplaceLabel' => 'Lieu de travail',
-			'booking.addressLabel' => 'Adresse',
-			'booking.startLabel' => 'Début',
-			'booking.endLabel' => 'Fin',
 			'booking.tryDifferentDate' => 'Essayez une autre date',
 			'booking.earliestPreselected' => 'Le créneau le plus proche est présélectionné',
 			'booking.continueAt' => ({required Object time}) => 'Continuer — ${time}',
+			'booking.confirmAt' => ({required Object time}) => 'Confirmer — ${time}',
+			'booking.reasonPresetCheckup' => 'Contrôle de routine',
+			'booking.reasonPresetFollowUp' => 'Visite de suivi',
+			'booking.reasonPresetNewComplaint' => 'Nouvelle plainte',
 			'doctorSearch.title' => 'Trouver un médecin',
 			'doctorSearch.searchByName' => 'Rechercher par nom...',
 			'doctorSearch.city' => 'Ville',
@@ -2025,10 +2021,10 @@ extension on TranslationsFr {
 			'legal.sections.thirdParties.body' => 'Des prestataires de confiance agissant uniquement selon nos instructions, pour les finalités décrites ici : Cloudinary (stockage sécurisé des fichiers — documents et photos jamais accessibles publiquement, uniquement via des liens signés et à durée limitée) ; Firebase/Google (notifications push, et connexion Google si vous le choisissez) ; Apple (connexion avec Apple, si vous le choisissez) ; Payriff (paiements dans l\'application). Nous ne vendons pas vos données personnelles.',
 			'legal.sections.retention.title' => 'Durée de conservation de vos données',
 			'legal.sections.retention.body' => 'Aussi longtemps que votre compte est actif. Si vous supprimez votre compte, nous supprimons vos données personnelles dans un délai raisonnable, à l\'exception des registres que nous devons légalement conserver (par exemple, les registres de paiement à des fins fiscales).',
-			_ => null,
-		} ?? switch (path) {
 			'legal.sections.rights.title' => 'Vos droits',
 			'legal.sections.rights.body' => 'Vous pouvez accéder aux données que nous détenons sur vous, demander la correction de données inexactes, demander la suppression de votre compte et de vos données, et retirer votre consentement à tout moment. La plupart de ces actions sont disponibles directement dans Profil > Paramètres ; pour le reste, contactez-nous ci-dessous.',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => 'Comment nous protégeons vos données',
 			'legal.sections.security.body' => 'Les messages entre vous et votre médecin, ainsi que les conversations avec l\'assistant IA, sont chiffrés. Les documents et photos téléversés sont stockés de manière privée, accessibles uniquement via des liens sécurisés et signés, jamais comme fichiers publics. Les mots de passe ne sont jamais stockés sous une forme lisible.',
 			'legal.sections.permissions.title' => 'Autorisations que nous demandons',

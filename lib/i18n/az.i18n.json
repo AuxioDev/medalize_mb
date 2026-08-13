@@ -261,7 +261,8 @@
     "disputeNoShowHint": "Niyə bunun səhv qeyd edildiyini düşündüyünüzü bizə bildirin — dəstək komandamız nəzərdən keçirəcək.",
     "disputeNoShowSubmit": "Göndər",
     "disputeNoShowSubmitted": "Etirazınız göndərildi. Onu nəzərdən keçirib sizinlə əlaqə saxlayacağıq.",
-    "disputeNoShowOpen": "Etiraz göndərildi — nəzərdən keçirilir"
+    "disputeNoShowOpen": "Etiraz göndərildi — nəzərdən keçirilir",
+    "bookedSnack": "Görüş göndərildi"
   },
   "booking": {
     "bookWith": "Təyin et — $name",
@@ -271,17 +272,14 @@
     "couldNotLoadSlots": "Vaxt aralıqları yüklənə bilmədi",
     "noAvailableSlots": "Mövcud vaxt yoxdur",
     "noOpenSlots": "Bu tarix üçün boş vaxt yoxdur. Başqa gün seçin.",
-    "confirmTitle": "Təyinatı təsdiqlə",
     "reasonForVisit": "Ziyarət səbəbi (istəyə bağlı)",
-    "confirmButton": "Təyinatı təsdiqlə",
-    "doctorLabel": "Həkim",
-    "workplaceLabel": "İş yeri",
-    "addressLabel": "Ünvan",
-    "startLabel": "Başlanğıc",
-    "endLabel": "Son",
     "tryDifferentDate": "Başqa tarix seçin",
     "earliestPreselected": "Ən yaxın boş vaxt əvvəlcədən seçilib",
-    "continueAt": "Davam et — $time"
+    "continueAt": "Davam et — $time",
+    "confirmAt": "Təsdiqlə — $time",
+    "reasonPresetCheckup": "Planlı baxış",
+    "reasonPresetFollowUp": "Təkrar baxış",
+    "reasonPresetNewComplaint": "Yeni şikayət"
   },
   "doctorSearch": {
     "title": "Həkim tap",

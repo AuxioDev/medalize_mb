@@ -444,6 +444,7 @@ class _Translations$appointments$ru extends Translations$appointments$en {
 	@override String get disputeNoShowSubmit => 'Отправить';
 	@override String get disputeNoShowSubmitted => 'Ваше обращение отправлено. Мы рассмотрим его и свяжемся с вами.';
 	@override String get disputeNoShowOpen => 'Обращение отправлено — на рассмотрении';
+	@override String get bookedSnack => 'Запись отправлена';
 }
 
 // Path: booking
@@ -460,17 +461,14 @@ class _Translations$booking$ru extends Translations$booking$en {
 	@override String get couldNotLoadSlots => 'Не удалось загрузить слоты';
 	@override String get noAvailableSlots => 'Нет доступных слотов';
 	@override String get noOpenSlots => 'На эту дату нет свободных слотов. Попробуйте другой день.';
-	@override String get confirmTitle => 'Подтвердить запись';
 	@override String get reasonForVisit => 'Причина визита (необязательно)';
-	@override String get confirmButton => 'Подтвердить запись';
-	@override String get doctorLabel => 'Врач';
-	@override String get workplaceLabel => 'Место работы';
-	@override String get addressLabel => 'Адрес';
-	@override String get startLabel => 'Начало';
-	@override String get endLabel => 'Конец';
 	@override String get tryDifferentDate => 'Попробуйте другую дату';
 	@override String get earliestPreselected => 'Выбран ближайший свободный слот';
 	@override String continueAt({required Object time}) => 'Продолжить — ${time}';
+	@override String confirmAt({required Object time}) => 'Подтвердить — ${time}';
+	@override String get reasonPresetCheckup => 'Плановый осмотр';
+	@override String get reasonPresetFollowUp => 'Повторный визит';
+	@override String get reasonPresetNewComplaint => 'Новая жалоба';
 }
 
 // Path: doctorSearch
@@ -1751,6 +1749,7 @@ extension on TranslationsRu {
 			'appointments.disputeNoShowSubmit' => 'Отправить',
 			'appointments.disputeNoShowSubmitted' => 'Ваше обращение отправлено. Мы рассмотрим его и свяжемся с вами.',
 			'appointments.disputeNoShowOpen' => 'Обращение отправлено — на рассмотрении',
+			'appointments.bookedSnack' => 'Запись отправлена',
 			'booking.bookWith' => ({required Object name}) => 'Запись — ${name}',
 			'booking.selectWorkplace' => 'Выберите место работы',
 			'booking.pickDate' => 'Выберите дату',
@@ -1758,17 +1757,14 @@ extension on TranslationsRu {
 			'booking.couldNotLoadSlots' => 'Не удалось загрузить слоты',
 			'booking.noAvailableSlots' => 'Нет доступных слотов',
 			'booking.noOpenSlots' => 'На эту дату нет свободных слотов. Попробуйте другой день.',
-			'booking.confirmTitle' => 'Подтвердить запись',
 			'booking.reasonForVisit' => 'Причина визита (необязательно)',
-			'booking.confirmButton' => 'Подтвердить запись',
-			'booking.doctorLabel' => 'Врач',
-			'booking.workplaceLabel' => 'Место работы',
-			'booking.addressLabel' => 'Адрес',
-			'booking.startLabel' => 'Начало',
-			'booking.endLabel' => 'Конец',
 			'booking.tryDifferentDate' => 'Попробуйте другую дату',
 			'booking.earliestPreselected' => 'Выбран ближайший свободный слот',
 			'booking.continueAt' => ({required Object time}) => 'Продолжить — ${time}',
+			'booking.confirmAt' => ({required Object time}) => 'Подтвердить — ${time}',
+			'booking.reasonPresetCheckup' => 'Плановый осмотр',
+			'booking.reasonPresetFollowUp' => 'Повторный визит',
+			'booking.reasonPresetNewComplaint' => 'Новая жалоба',
 			'doctorSearch.title' => 'Найти врача',
 			'doctorSearch.searchByName' => 'Поиск по имени...',
 			'doctorSearch.city' => 'Город',
@@ -2025,10 +2021,10 @@ extension on TranslationsRu {
 			'legal.sections.thirdParties.body' => 'Доверенные поставщики услуг, действующие только по нашему поручению и исключительно для описанных здесь целей: Cloudinary (безопасное хранение файлов — документы и фото никогда не доступны публично, только по подписанным ссылкам с ограниченным сроком действия); Firebase/Google (push-уведомления и вход через Google, если вы его выберете); Apple (вход через Apple, если вы его выберете); Payriff (платежи в приложении). Мы не продаём ваши персональные данные.',
 			'legal.sections.retention.title' => 'Сколько мы храним данные',
 			'legal.sections.retention.body' => 'Пока ваш аккаунт активен. При удалении аккаунта мы удаляем ваши персональные данные в разумный срок, за исключением записей, которые обязаны хранить по закону (например, платёжные записи для налогового учёта).',
-			_ => null,
-		} ?? switch (path) {
 			'legal.sections.rights.title' => 'Ваши права',
 			'legal.sections.rights.body' => 'Вы можете запросить доступ к данным, которые мы о вас храним, потребовать исправления неточных данных, потребовать удаления аккаунта и данных, а также отозвать согласие в любой момент. Большая часть этого доступна прямо в разделе «Профиль» → «Настройки»; по остальным вопросам — свяжитесь с нами ниже.',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => 'Как мы защищаем ваши данные',
 			'legal.sections.security.body' => 'Переписка с врачом и разговоры с ИИ-ассистентом шифруются. Загруженные документы и фото хранятся приватно и доступны только по защищённым подписанным ссылкам, никогда как публичные файлы. Пароли никогда не хранятся в читаемом виде.',
 			'legal.sections.permissions.title' => 'Какие разрешения мы запрашиваем',

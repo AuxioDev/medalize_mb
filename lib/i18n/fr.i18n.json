@@ -261,7 +261,8 @@
     "disputeNoShowHint": "Expliquez-nous pourquoi vous pensez que ceci a été marqué par erreur — notre équipe d'assistance l'examinera.",
     "disputeNoShowSubmit": "Envoyer",
     "disputeNoShowSubmitted": "Votre contestation a été envoyée. Nous l'examinerons et reviendrons vers vous.",
-    "disputeNoShowOpen": "Contestation envoyée — en cours d'examen"
+    "disputeNoShowOpen": "Contestation envoyée — en cours d'examen",
+    "bookedSnack": "Rendez-vous envoyé"
   },
   "booking": {
     "bookWith": "Réserver — $name",
@@ -271,17 +272,14 @@
     "couldNotLoadSlots": "Impossible de charger les créneaux",
     "noAvailableSlots": "Aucun créneau disponible",
     "noOpenSlots": "Aucun créneau libre pour cette date. Essayez un autre jour.",
-    "confirmTitle": "Confirmer la réservation",
     "reasonForVisit": "Motif de la visite (facultatif)",
-    "confirmButton": "Confirmer la réservation",
-    "doctorLabel": "Médecin",
-    "workplaceLabel": "Lieu de travail",
-    "addressLabel": "Adresse",
-    "startLabel": "Début",
-    "endLabel": "Fin",
     "tryDifferentDate": "Essayez une autre date",
     "earliestPreselected": "Le créneau le plus proche est présélectionné",
-    "continueAt": "Continuer — $time"
+    "continueAt": "Continuer — $time",
+    "confirmAt": "Confirmer — $time",
+    "reasonPresetCheckup": "Contrôle de routine",
+    "reasonPresetFollowUp": "Visite de suivi",
+    "reasonPresetNewComplaint": "Nouvelle plainte"
   },
   "doctorSearch": {
     "title": "Trouver un médecin",

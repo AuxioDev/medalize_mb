@@ -261,7 +261,8 @@
     "disputeNoShowHint": "请告诉我们您认为此记录有误的原因——我们的支持团队会进行审核。",
     "disputeNoShowSubmit": "提交",
     "disputeNoShowSubmitted": "您的申诉已提交，我们会审核并与您联系。",
-    "disputeNoShowOpen": "申诉已提交 — 审核中"
+    "disputeNoShowOpen": "申诉已提交 — 审核中",
+    "bookedSnack": "预约已发送"
   },
   "booking": {
     "bookWith": "预约 — $name",
@@ -271,17 +272,14 @@
     "couldNotLoadSlots": "无法加载时间段",
     "noAvailableSlots": "没有可用时间段",
     "noOpenSlots": "该日期没有空闲时间段，请尝试其他日期。",
-    "confirmTitle": "确认预约",
     "reasonForVisit": "就诊原因（可选）",
-    "confirmButton": "确认预约",
-    "doctorLabel": "医生",
-    "workplaceLabel": "工作地点",
-    "addressLabel": "地址",
-    "startLabel": "开始",
-    "endLabel": "结束",
     "tryDifferentDate": "请换个日期试试",
     "earliestPreselected": "已预选最早的空闲时间段",
-    "continueAt": "继续 — $time"
+    "continueAt": "继续 — $time",
+    "confirmAt": "确认 — $time",
+    "reasonPresetCheckup": "常规检查",
+    "reasonPresetFollowUp": "复诊",
+    "reasonPresetNewComplaint": "新症状"
   },
   "doctorSearch": {
     "title": "查找医生",

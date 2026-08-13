@@ -28,6 +28,36 @@ const _doctor = DoctorDetailModel(
   ],
 );
 
+// A second, non-primary workplace — only used by the initialWorkplaceId
+// tests below, which need something other than the primary to preselect.
+const _doctorTwoWorkplaces = DoctorDetailModel(
+  id: 'd1',
+  firstName: 'Jane',
+  lastName: 'Doe',
+  specialization: 'cardiologist',
+  specializationDisplay: 'Cardiology',
+  slotDurationMin: 30,
+  bio: 'Experienced cardiologist',
+  workplaces: [
+    DoctorWorkplace(
+      id: 'w1',
+      name: 'City Clinic',
+      city: 'Baku',
+      address: '12 Main St',
+      type: 'clinic',
+      isPrimary: true,
+    ),
+    DoctorWorkplace(
+      id: 'w2',
+      name: 'Suburb Clinic',
+      city: 'Baku',
+      address: '5 Side St',
+      type: 'clinic',
+      isPrimary: false,
+    ),
+  ],
+);
+
 Widget _wrap(Widget child, {List<Override> overrides = const []}) {
   return TranslationProvider(
     child: ProviderScope(
@@ -64,6 +94,10 @@ void main() {
           fetched = true;
           return _doctor;
         }),
+        // Resolved immediately so the calendar's own next-available-date
+        // fetch (unrelated to this test's doctor-fetch assertion below)
+        // doesn't leave the slot grid's loading shimmer on screen.
+        nextAvailableDateProvider.overrideWith((ref, id) async => null),
       ],
     ));
     await tester.pump();
@@ -123,5 +157,52 @@ void main() {
     // Let flutter_animate stagger-delay timers fire; the error state's
     // EmptyState repeats forever, so pumpAndSettle would never settle.
     await tester.pump(const Duration(seconds: 1));
+  });
+
+  group('initialWorkplaceId (rebook / quick-book prefill)', () {
+    testWidgets('preselects the requested workplace over the primary one',
+        (tester) async {
+      await tester.pumpWidget(_wrap(
+        const BookingCalendarLoader(
+          doctorId: 'd1',
+          doctor: _doctorTwoWorkplaces,
+          initialWorkplaceId: 'w2',
+        ),
+        overrides: [
+          nextAvailableDateProvider.overrideWith((ref, id) async => null),
+        ],
+      ));
+      await tester.pump();
+
+      final dropdown = tester.widget<DropdownButtonFormField<String>>(
+        find.byType(DropdownButtonFormField<String>),
+      );
+      expect(dropdown.initialValue, 'w2');
+
+      await tester.pump(const Duration(seconds: 1));
+    });
+
+    testWidgets(
+        'falls back to the primary workplace when the requested id doesn\'t '
+        'belong to this doctor', (tester) async {
+      await tester.pumpWidget(_wrap(
+        const BookingCalendarLoader(
+          doctorId: 'd1',
+          doctor: _doctorTwoWorkplaces,
+          initialWorkplaceId: 'not-a-real-workplace',
+        ),
+        overrides: [
+          nextAvailableDateProvider.overrideWith((ref, id) async => null),
+        ],
+      ));
+      await tester.pump();
+
+      final dropdown = tester.widget<DropdownButtonFormField<String>>(
+        find.byType(DropdownButtonFormField<String>),
+      );
+      expect(dropdown.initialValue, 'w1');
+
+      await tester.pump(const Duration(seconds: 1));
+    });
   });
 }

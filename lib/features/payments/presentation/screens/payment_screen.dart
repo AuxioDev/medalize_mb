@@ -282,10 +282,11 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen>
   }
 }
 
-/// Scale + fade reveal for the "payment confirmed" checkmark — the second of
-/// the two high-relief success moments in the patient journey (the other is
-/// the booking-confirmed dialog, booking_confirm_screen.dart). Mirrors the
-/// splash screen's literal `elasticOut` icon "pop" followed by a delayed text
+/// Scale + fade reveal for the "payment confirmed" checkmark — booking
+/// success itself is now a plain snackbar (booking_calendar_screen.dart), so
+/// this is the one high-relief celebratory moment left in the patient
+/// journey. Mirrors the splash screen's literal `elasticOut` icon "pop"
+/// followed by a delayed text
 /// fade-in (see splash_screen.dart's `_Logo`/tagline) rather than the routine
 /// `AppCurve` tokens, which read too subtle for a one-off celebratory reveal.
 /// Honors reduced-motion like the assistant chat's typing indicator and

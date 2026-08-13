@@ -261,7 +261,8 @@
     "disputeNoShowHint": "Bunun neden hatalı işaretlendiğini düşündüğünüzü bize bildirin — destek ekibimiz inceleyecek.",
     "disputeNoShowSubmit": "Gönder",
     "disputeNoShowSubmitted": "İtirazınız gönderildi. İnceleyip sizinle iletişime geçeceğiz.",
-    "disputeNoShowOpen": "İtiraz gönderildi — inceleniyor"
+    "disputeNoShowOpen": "İtiraz gönderildi — inceleniyor",
+    "bookedSnack": "Randevu gönderildi"
   },
   "booking": {
     "bookWith": "Randevu — $name",
@@ -271,17 +272,14 @@
     "couldNotLoadSlots": "Zaman aralıkları yüklenemedi",
     "noAvailableSlots": "Uygun zaman aralığı yok",
     "noOpenSlots": "Bu tarih için boş zaman yok. Başka bir gün deneyin.",
-    "confirmTitle": "Randevuyu Onayla",
     "reasonForVisit": "Ziyaret sebebi (isteğe bağlı)",
-    "confirmButton": "Randevuyu Onayla",
-    "doctorLabel": "Doktor",
-    "workplaceLabel": "İş Yeri",
-    "addressLabel": "Adres",
-    "startLabel": "Başlangıç",
-    "endLabel": "Bitiş",
     "tryDifferentDate": "Farklı bir tarih deneyin",
     "earliestPreselected": "En yakın uygun zaman önceden seçildi",
-    "continueAt": "Devam et — $time"
+    "continueAt": "Devam et — $time",
+    "confirmAt": "Onayla — $time",
+    "reasonPresetCheckup": "Rutin kontrol",
+    "reasonPresetFollowUp": "Kontrol randevusu",
+    "reasonPresetNewComplaint": "Yeni şikayet"
   },
   "doctorSearch": {
     "title": "Doktor Bul",

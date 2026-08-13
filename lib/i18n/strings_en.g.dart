@@ -922,6 +922,9 @@ class Translations$appointments$en {
 
 	/// en: 'Dispute submitted — under review'
 	String get disputeNoShowOpen => 'Dispute submitted — under review';
+
+	/// en: 'Appointment booked'
+	String get bookedSnack => 'Appointment booked';
 }
 
 // Path: booking
@@ -953,29 +956,8 @@ class Translations$booking$en {
 	/// en: 'No open slots for this date. Try another day.'
 	String get noOpenSlots => 'No open slots for this date. Try another day.';
 
-	/// en: 'Confirm Booking'
-	String get confirmTitle => 'Confirm Booking';
-
 	/// en: 'Reason for visit (optional)'
 	String get reasonForVisit => 'Reason for visit (optional)';
-
-	/// en: 'Confirm Booking'
-	String get confirmButton => 'Confirm Booking';
-
-	/// en: 'Doctor'
-	String get doctorLabel => 'Doctor';
-
-	/// en: 'Workplace'
-	String get workplaceLabel => 'Workplace';
-
-	/// en: 'Address'
-	String get addressLabel => 'Address';
-
-	/// en: 'Start'
-	String get startLabel => 'Start';
-
-	/// en: 'End'
-	String get endLabel => 'End';
 
 	/// en: 'Try a different date'
 	String get tryDifferentDate => 'Try a different date';
@@ -985,6 +967,18 @@ class Translations$booking$en {
 
 	/// en: 'Continue — $time'
 	String continueAt({required Object time}) => 'Continue — ${time}';
+
+	/// en: 'Confirm — $time'
+	String confirmAt({required Object time}) => 'Confirm — ${time}';
+
+	/// en: 'Routine checkup'
+	String get reasonPresetCheckup => 'Routine checkup';
+
+	/// en: 'Follow-up visit'
+	String get reasonPresetFollowUp => 'Follow-up visit';
+
+	/// en: 'New complaint'
+	String get reasonPresetNewComplaint => 'New complaint';
 }
 
 // Path: doctorSearch
@@ -3324,6 +3318,7 @@ extension on Translations {
 			'appointments.disputeNoShowSubmit' => 'Submit',
 			'appointments.disputeNoShowSubmitted' => 'Your dispute has been submitted. We\'ll review it and get back to you.',
 			'appointments.disputeNoShowOpen' => 'Dispute submitted — under review',
+			'appointments.bookedSnack' => 'Appointment booked',
 			'booking.bookWith' => ({required Object name}) => 'Book — ${name}',
 			'booking.selectWorkplace' => 'Select Workplace',
 			'booking.pickDate' => 'Pick a date',
@@ -3331,17 +3326,14 @@ extension on Translations {
 			'booking.couldNotLoadSlots' => 'Could not load slots',
 			'booking.noAvailableSlots' => 'No available slots',
 			'booking.noOpenSlots' => 'No open slots for this date. Try another day.',
-			'booking.confirmTitle' => 'Confirm Booking',
 			'booking.reasonForVisit' => 'Reason for visit (optional)',
-			'booking.confirmButton' => 'Confirm Booking',
-			'booking.doctorLabel' => 'Doctor',
-			'booking.workplaceLabel' => 'Workplace',
-			'booking.addressLabel' => 'Address',
-			'booking.startLabel' => 'Start',
-			'booking.endLabel' => 'End',
 			'booking.tryDifferentDate' => 'Try a different date',
 			'booking.earliestPreselected' => 'Earliest free slot is preselected',
 			'booking.continueAt' => ({required Object time}) => 'Continue — ${time}',
+			'booking.confirmAt' => ({required Object time}) => 'Confirm — ${time}',
+			'booking.reasonPresetCheckup' => 'Routine checkup',
+			'booking.reasonPresetFollowUp' => 'Follow-up visit',
+			'booking.reasonPresetNewComplaint' => 'New complaint',
 			'doctorSearch.title' => 'Find a Doctor',
 			'doctorSearch.searchByName' => 'Search by name...',
 			'doctorSearch.city' => 'City',
@@ -3598,10 +3590,10 @@ extension on Translations {
 			'legal.sections.thirdParties.body' => 'Trusted service providers acting only on our instructions, for the purposes described here: Cloudinary (secure file storage — documents and photos are never publicly accessible, only through signed, time-limited links); Firebase/Google (push notifications, and Google sign-in if you choose it); Apple (Sign in with Apple, if you choose it); Payriff (in-app payments). We do not sell your personal data.',
 			'legal.sections.retention.title' => 'How long we keep your data',
 			'legal.sections.retention.body' => 'For as long as your account is active. If you delete your account, we remove your personal data within a reasonable period, except records we are legally required to keep (for example, payment records for tax purposes).',
-			_ => null,
-		} ?? switch (path) {
 			'legal.sections.rights.title' => 'Your rights',
 			'legal.sections.rights.body' => 'You may access the data we hold about you, request correction of inaccurate data, request deletion of your account and data, and withdraw consent at any time. Most of this is available directly under Profile > Settings; for anything else, contact us below.',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => 'How we protect your data',
 			'legal.sections.security.body' => 'Messages between you and your doctor, and AI assistant conversations, are encrypted. Uploaded documents and photos are stored privately, accessible only through secure signed links, never as public files. Passwords are never stored in readable form.',
 			'legal.sections.permissions.title' => 'Permissions we ask for',

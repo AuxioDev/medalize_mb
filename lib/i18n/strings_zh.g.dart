@@ -444,6 +444,7 @@ class _Translations$appointments$zh extends Translations$appointments$en {
 	@override String get disputeNoShowSubmit => '提交';
 	@override String get disputeNoShowSubmitted => '您的申诉已提交，我们会审核并与您联系。';
 	@override String get disputeNoShowOpen => '申诉已提交 — 审核中';
+	@override String get bookedSnack => '预约已发送';
 }
 
 // Path: booking
@@ -460,17 +461,14 @@ class _Translations$booking$zh extends Translations$booking$en {
 	@override String get couldNotLoadSlots => '无法加载时间段';
 	@override String get noAvailableSlots => '没有可用时间段';
 	@override String get noOpenSlots => '该日期没有空闲时间段，请尝试其他日期。';
-	@override String get confirmTitle => '确认预约';
 	@override String get reasonForVisit => '就诊原因（可选）';
-	@override String get confirmButton => '确认预约';
-	@override String get doctorLabel => '医生';
-	@override String get workplaceLabel => '工作地点';
-	@override String get addressLabel => '地址';
-	@override String get startLabel => '开始';
-	@override String get endLabel => '结束';
 	@override String get tryDifferentDate => '请换个日期试试';
 	@override String get earliestPreselected => '已预选最早的空闲时间段';
 	@override String continueAt({required Object time}) => '继续 — ${time}';
+	@override String confirmAt({required Object time}) => '确认 — ${time}';
+	@override String get reasonPresetCheckup => '常规检查';
+	@override String get reasonPresetFollowUp => '复诊';
+	@override String get reasonPresetNewComplaint => '新症状';
 }
 
 // Path: doctorSearch
@@ -1751,6 +1749,7 @@ extension on TranslationsZh {
 			'appointments.disputeNoShowSubmit' => '提交',
 			'appointments.disputeNoShowSubmitted' => '您的申诉已提交，我们会审核并与您联系。',
 			'appointments.disputeNoShowOpen' => '申诉已提交 — 审核中',
+			'appointments.bookedSnack' => '预约已发送',
 			'booking.bookWith' => ({required Object name}) => '预约 — ${name}',
 			'booking.selectWorkplace' => '选择工作地点',
 			'booking.pickDate' => '选择日期',
@@ -1758,17 +1757,14 @@ extension on TranslationsZh {
 			'booking.couldNotLoadSlots' => '无法加载时间段',
 			'booking.noAvailableSlots' => '没有可用时间段',
 			'booking.noOpenSlots' => '该日期没有空闲时间段，请尝试其他日期。',
-			'booking.confirmTitle' => '确认预约',
 			'booking.reasonForVisit' => '就诊原因（可选）',
-			'booking.confirmButton' => '确认预约',
-			'booking.doctorLabel' => '医生',
-			'booking.workplaceLabel' => '工作地点',
-			'booking.addressLabel' => '地址',
-			'booking.startLabel' => '开始',
-			'booking.endLabel' => '结束',
 			'booking.tryDifferentDate' => '请换个日期试试',
 			'booking.earliestPreselected' => '已预选最早的空闲时间段',
 			'booking.continueAt' => ({required Object time}) => '继续 — ${time}',
+			'booking.confirmAt' => ({required Object time}) => '确认 — ${time}',
+			'booking.reasonPresetCheckup' => '常规检查',
+			'booking.reasonPresetFollowUp' => '复诊',
+			'booking.reasonPresetNewComplaint' => '新症状',
 			'doctorSearch.title' => '查找医生',
 			'doctorSearch.searchByName' => '按姓名搜索...',
 			'doctorSearch.city' => '城市',
@@ -2025,10 +2021,10 @@ extension on TranslationsZh {
 			'legal.sections.thirdParties.body' => '仅按照我们的指示、为此处所述目的行事的可信服务提供商：Cloudinary（安全文件存储——文档和照片绝不公开可访问，仅通过有时效的签名链接访问）；Firebase/Google（推送通知，以及您选择使用的 Google 登录）；Apple（您选择使用的 Apple 登录）；Payriff（应用内支付）。我们不会出售您的个人数据。',
 			'legal.sections.retention.title' => '我们保留数据多长时间',
 			'legal.sections.retention.body' => '只要您的账号处于活跃状态。如果您删除账号，我们会在合理期限内删除您的个人数据，但法律要求保留的记录除外（例如出于税务目的的付款记录）。',
-			_ => null,
-		} ?? switch (path) {
 			'legal.sections.rights.title' => '您的权利',
 			'legal.sections.rights.body' => '您可以访问我们持有的关于您的数据，要求更正不准确的数据，要求删除您的账号和数据，并可随时撤回同意。其中大部分可直接在"个人资料">"设置"中完成；其他事项请通过下方联系方式与我们联系。',
+			_ => null,
+		} ?? switch (path) {
 			'legal.sections.security.title' => '我们如何保护您的数据',
 			'legal.sections.security.body' => '您与医生之间的消息以及与 AI 助手的对话均经过加密。上传的文档和照片以私密方式存储，仅可通过安全的签名链接访问，绝不会作为公开文件存在。密码绝不会以可读形式存储。',
 			'legal.sections.permissions.title' => '我们请求的权限',

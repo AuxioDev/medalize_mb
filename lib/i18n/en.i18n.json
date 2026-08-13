@@ -261,7 +261,8 @@
     "disputeNoShowHint": "Tell us why you think this was marked incorrectly — our support team will review it.",
     "disputeNoShowSubmit": "Submit",
     "disputeNoShowSubmitted": "Your dispute has been submitted. We'll review it and get back to you.",
-    "disputeNoShowOpen": "Dispute submitted — under review"
+    "disputeNoShowOpen": "Dispute submitted — under review",
+    "bookedSnack": "Appointment booked"
   },
   "booking": {
     "bookWith": "Book — $name",
@@ -271,17 +272,14 @@
     "couldNotLoadSlots": "Could not load slots",
     "noAvailableSlots": "No available slots",
     "noOpenSlots": "No open slots for this date. Try another day.",
-    "confirmTitle": "Confirm Booking",
     "reasonForVisit": "Reason for visit (optional)",
-    "confirmButton": "Confirm Booking",
-    "doctorLabel": "Doctor",
-    "workplaceLabel": "Workplace",
-    "addressLabel": "Address",
-    "startLabel": "Start",
-    "endLabel": "End",
     "tryDifferentDate": "Try a different date",
     "earliestPreselected": "Earliest free slot is preselected",
-    "continueAt": "Continue — $time"
+    "continueAt": "Continue — $time",
+    "confirmAt": "Confirm — $time",
+    "reasonPresetCheckup": "Routine checkup",
+    "reasonPresetFollowUp": "Follow-up visit",
+    "reasonPresetNewComplaint": "New complaint"
   },
   "doctorSearch": {
     "title": "Find a Doctor",

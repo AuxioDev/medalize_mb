@@ -30,7 +30,7 @@ import 'package:medalize_mb/features/notifications/providers/notification_provid
 import 'package:medalize_mb/features/patient/data/models/waitlist_model.dart';
 import 'package:medalize_mb/features/patient/data/repository/favorites_repository.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/appointment_detail_screen.dart';
-import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
+import 'package:medalize_mb/features/patient/presentation/screens/booking_calendar_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_detail_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_search_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/my_appointments_screen.dart';
@@ -41,6 +41,7 @@ import 'package:medalize_mb/features/shared/presentation/screens/security_screen
 import 'package:medalize_mb/features/subscription/data/models/subscription_model.dart';
 import 'package:medalize_mb/features/subscription/providers/subscription_provider.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import 'support/locale_overflow_harness.dart';
 
@@ -319,21 +320,51 @@ void main() {
     );
   });
 
-  testWidgets('BookingConfirmScreen fits all six locales', (tester) async {
+  testWidgets(
+      'BookingCalendarScreen fits all six locales '
+      '(includes the confirm section — profile switcher, reason field — that '
+      'only appears once a slot is selected)', (tester) async {
     _usePhoneViewport(tester);
-    final start = DateTime(2026, 7, 20, 10, 30);
+    final today = DateTime.now();
+    final slots = [
+      SlotModel(
+        startsAt: DateTime(today.year, today.month, today.day, 10, 30),
+        endsAt: DateTime(today.year, today.month, today.day, 11),
+      ),
+    ];
     await expectNoOverflowAcrossLocales(
       tester,
       () => _wrap(
-        BookingConfirmScreen(
-          doctor: _doctorDetail,
-          slot: SlotModel(
-            startsAt: start,
-            endsAt: start.add(const Duration(minutes: 30)),
-          ),
-          workplaceId: 'w1',
-        ),
+        const BookingCalendarScreen(doctor: _doctorDetail),
+        overrides: [
+          slotsProvider.overrideWith((ref, params) async => slots),
+          nextAvailableDateProvider.overrideWith((ref, id) async => null),
+        ],
       ),
+      // Selects "today" via the third-party TableCalendar's callback
+      // directly — see booking_default_slot_test.dart's `_selectToday` for
+      // why. This is what reveals the confirm section under each locale.
+      afterPump: (tester) async {
+        final calendar =
+            tester.widget(find.byWidgetPredicate((w) => w is TableCalendar))
+                as TableCalendar;
+        calendar.onDaySelected!(today, today);
+        await tester.pump();
+        await tester.pump();
+        // The reason chips + field sit below the calendar grid, past the
+        // viewport's default cache extent — CustomScrollView doesn't build
+        // slivers that far ahead until scrolled into range, so the overflow
+        // check below would silently skip that section otherwise. Drags
+        // from an explicit point below the calendar grid rather than a
+        // Finder's center — see booking_default_slot_test.dart's
+        // `_scrollUntilVisible` for why (three competing scrollables here).
+        for (var i = 0;
+            i < 15 && find.byType(TextField).evaluate().isEmpty;
+            i++) {
+          await tester.dragFrom(const Offset(200, 700), const Offset(0, -300));
+          await tester.pump();
+        }
+      },
     );
   });
 

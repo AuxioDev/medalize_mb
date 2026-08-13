@@ -56,7 +56,6 @@ import 'package:medalize_mb/features/patient/presentation/screens/appointment_de
 import 'package:medalize_mb/features/records/presentation/screens/records_list_screen.dart';
 import 'package:medalize_mb/features/records/presentation/screens/upload_record_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/booking_calendar_screen.dart';
-import 'package:medalize_mb/features/patient/presentation/screens/booking_confirm_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_detail_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/doctor_search_screen.dart';
 import 'package:medalize_mb/features/patient/presentation/screens/favorites_screen.dart';
@@ -261,29 +260,15 @@ final routerProvider = Provider<GoRouter>((ref) {
             BookingCalendarLoader(
               doctorId: state.pathParameters['id']!,
               doctor: doctor,
+              // Set by bookingCalendarPath() for the "book again" / quick-book
+              // shortcuts, which know a specific workplace but not the full
+              // doctor — carried as a query param rather than `extra` since
+              // it has to survive alongside (or without) that doctor extra.
+              initialWorkplaceId: state.uri.queryParameters['workplace'],
             ),
           );
         },
       ),
-      GoRoute(
-        path: '/patient/booking-confirm',
-        pageBuilder: (_, state) {
-          final extra = state.extra as Map<String, dynamic>?;
-          // extra is unavailable after app restoration — can't reconstruct
-          // the booking slot, so redirect home instead of crashing.
-          if (extra == null) {
-            return _fadePage(const PatientHomeScreen());
-          }
-          return _modalPage(
-            BookingConfirmScreen(
-              doctor: extra['doctor'] as DoctorDetailModel,
-              slot: extra['slot'] as SlotModel,
-              workplaceId: extra['workplaceId'] as String,
-            ),
-          );
-        },
-      ),
-
       GoRoute(
         path: '/patient/assistant',
         pageBuilder: (_, _) => _pushPage(const AssistantConversationsScreen()),
