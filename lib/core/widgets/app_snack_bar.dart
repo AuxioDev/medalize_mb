@@ -8,6 +8,28 @@ abstract final class AppSnackBar {
     BuildContext context,
     String message, {
     SnackBarType type = SnackBarType.info,
+    String? actionLabel,
+    VoidCallback? onAction,
+  }) {
+    showOn(
+      ScaffoldMessenger.of(context),
+      message,
+      type: type,
+      actionLabel: actionLabel,
+      onAction: onAction,
+    );
+  }
+
+  /// Same as [show], but takes the [ScaffoldMessengerState] directly —
+  /// for call sites that navigate away (and so lose their [BuildContext])
+  /// in the same breath as showing the snack bar, e.g. a success message
+  /// right before returning to a previous screen.
+  static void showOn(
+    ScaffoldMessengerState messenger,
+    String message, {
+    SnackBarType type = SnackBarType.info,
+    String? actionLabel,
+    VoidCallback? onAction,
   }) {
     final (icon, color) = switch (type) {
       SnackBarType.success => (Icons.check_circle_outline_rounded, AppColors.success),
@@ -15,7 +37,7 @@ abstract final class AppSnackBar {
       SnackBarType.info => (Icons.info_outline_rounded, AppColors.primary),
     };
 
-    ScaffoldMessenger.of(context)
+    messenger
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
@@ -29,6 +51,13 @@ abstract final class AppSnackBar {
             ],
           ),
           backgroundColor: color,
+          action: actionLabel != null && onAction != null
+              ? SnackBarAction(
+                  label: actionLabel,
+                  textColor: Colors.white,
+                  onPressed: onAction,
+                )
+              : null,
         ),
       );
   }
