@@ -2315,20 +2315,20 @@ class Translations$family$en {
 	/// en: 'Booked by $name'
 	String bookedByLabel({required Object name}) => 'Booked by ${name}';
 
-	/// en: 'Contact Email'
-	String get contactEmail => 'Contact Email';
+	/// en: 'Contact Phone'
+	String get contactPhone => 'Contact Phone';
 
-	/// en: 'We'll let them know they were added, with an easy way to opt out.'
-	String get contactEmailHelp => 'We\'ll let them know they were added, with an easy way to opt out.';
+	/// en: 'We'll text them to let them know they were added, with an easy way to opt out.'
+	String get contactPhoneHelp => 'We\'ll text them to let them know they were added, with an easy way to opt out.';
 
-	/// en: 'Contact Phone (optional)'
-	String get contactPhoneOptional => 'Contact Phone (optional)';
+	/// en: 'Contact Email (optional)'
+	String get contactEmailOptional => 'Contact Email (optional)';
 
-	/// en: 'An email address is required so we can notify this family member'
-	String get contactEmailRequiredForAdult => 'An email address is required so we can notify this family member';
+	/// en: 'A phone number is required so we can notify this family member'
+	String get contactPhoneRequiredForAdult => 'A phone number is required so we can notify this family member';
 
-	/// en: 'Since they're 18 or older, we'll email them to let them know you added them — they don't need the app, and they can disconnect this connection at any time.'
-	String get adultConsentNotice => 'Since they\'re 18 or older, we\'ll email them to let them know you added them — they don\'t need the app, and they can disconnect this connection at any time.';
+	/// en: 'Since they're 18 or older, we'll text them to let them know you added them — they don't need the app, and they can disconnect this connection at any time.'
+	String get adultConsentNotice => 'Since they\'re 18 or older, we\'ll text them to let them know you added them — they don\'t need the app, and they can disconnect this connection at any time.';
 
 	/// en: 'We've let them know they were added. They can disconnect this connection at any time.'
 	String get noticeAlreadySent => 'We\'ve let them know they were added. They can disconnect this connection at any time.';
@@ -3761,11 +3761,11 @@ extension on Translations {
 			'family.forLabel' => ({required Object name}) => 'for ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} years old',
 			'family.bookedByLabel' => ({required Object name}) => 'Booked by ${name}',
-			'family.contactEmail' => 'Contact Email',
-			'family.contactEmailHelp' => 'We\'ll let them know they were added, with an easy way to opt out.',
-			'family.contactPhoneOptional' => 'Contact Phone (optional)',
-			'family.contactEmailRequiredForAdult' => 'An email address is required so we can notify this family member',
-			'family.adultConsentNotice' => 'Since they\'re 18 or older, we\'ll email them to let them know you added them — they don\'t need the app, and they can disconnect this connection at any time.',
+			'family.contactPhone' => 'Contact Phone',
+			'family.contactPhoneHelp' => 'We\'ll text them to let them know they were added, with an easy way to opt out.',
+			'family.contactEmailOptional' => 'Contact Email (optional)',
+			'family.contactPhoneRequiredForAdult' => 'A phone number is required so we can notify this family member',
+			'family.adultConsentNotice' => 'Since they\'re 18 or older, we\'ll text them to let them know you added them — they don\'t need the app, and they can disconnect this connection at any time.',
 			'family.noticeAlreadySent' => 'We\'ve let them know they were added. They can disconnect this connection at any time.',
 			'family.noticePendingBadge' => 'Notice sent',
 			'subscription.title' => 'Subscription',

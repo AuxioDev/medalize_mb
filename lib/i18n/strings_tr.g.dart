@@ -1059,11 +1059,11 @@ class _Translations$family$tr extends Translations$family$en {
 	@override String forLabel({required Object name}) => '${name} için';
 	@override String ageYears({required Object age}) => '${age} yaşında';
 	@override String bookedByLabel({required Object name}) => 'Randevuyu alan: ${name}';
-	@override String get contactEmail => 'İletişim E-postası';
-	@override String get contactEmailHelp => 'Eklendiklerini onlara bildireceğiz ve reddetmeleri için kolay bir yol sunacağız.';
-	@override String get contactPhoneOptional => 'İletişim Telefonu (isteğe bağlı)';
-	@override String get contactEmailRequiredForAdult => 'Bu aile üyesini bilgilendirebilmemiz için bir e-posta adresi gereklidir';
-	@override String get adultConsentNotice => '18 yaşından büyük oldukları için onlara sizin tarafınızdan eklendiklerini bildiren bir e-posta göndereceğiz — uygulamaya ihtiyaçları yok ve bu bağlantıyı istedikleri zaman kaldırabilirler.';
+	@override String get contactPhone => 'İletişim Telefonu';
+	@override String get contactPhoneHelp => 'Eklendiklerini onlara SMS ile bildireceğiz ve reddetmeleri için kolay bir yol sunacağız.';
+	@override String get contactEmailOptional => 'İletişim E-postası (isteğe bağlı)';
+	@override String get contactPhoneRequiredForAdult => 'Bu aile üyesini bilgilendirebilmemiz için bir telefon numarası gereklidir';
+	@override String get adultConsentNotice => '18 yaşından büyük oldukları için onlara sizin tarafınızdan eklendiklerini bildiren bir SMS göndereceğiz — uygulamaya ihtiyaçları yok ve bu bağlantıyı istedikleri zaman kaldırabilirler.';
 	@override String get noticeAlreadySent => 'Eklendikleri konusunda onları bilgilendirdik. Bu bağlantıyı istedikleri zaman kaldırabilirler.';
 	@override String get noticePendingBadge => 'Bildirim gönderildi';
 }
@@ -2188,11 +2188,11 @@ extension on TranslationsTr {
 			'family.forLabel' => ({required Object name}) => '${name} için',
 			'family.ageYears' => ({required Object age}) => '${age} yaşında',
 			'family.bookedByLabel' => ({required Object name}) => 'Randevuyu alan: ${name}',
-			'family.contactEmail' => 'İletişim E-postası',
-			'family.contactEmailHelp' => 'Eklendiklerini onlara bildireceğiz ve reddetmeleri için kolay bir yol sunacağız.',
-			'family.contactPhoneOptional' => 'İletişim Telefonu (isteğe bağlı)',
-			'family.contactEmailRequiredForAdult' => 'Bu aile üyesini bilgilendirebilmemiz için bir e-posta adresi gereklidir',
-			'family.adultConsentNotice' => '18 yaşından büyük oldukları için onlara sizin tarafınızdan eklendiklerini bildiren bir e-posta göndereceğiz — uygulamaya ihtiyaçları yok ve bu bağlantıyı istedikleri zaman kaldırabilirler.',
+			'family.contactPhone' => 'İletişim Telefonu',
+			'family.contactPhoneHelp' => 'Eklendiklerini onlara SMS ile bildireceğiz ve reddetmeleri için kolay bir yol sunacağız.',
+			'family.contactEmailOptional' => 'İletişim E-postası (isteğe bağlı)',
+			'family.contactPhoneRequiredForAdult' => 'Bu aile üyesini bilgilendirebilmemiz için bir telefon numarası gereklidir',
+			'family.adultConsentNotice' => '18 yaşından büyük oldukları için onlara sizin tarafınızdan eklendiklerini bildiren bir SMS göndereceğiz — uygulamaya ihtiyaçları yok ve bu bağlantıyı istedikleri zaman kaldırabilirler.',
 			'family.noticeAlreadySent' => 'Eklendikleri konusunda onları bilgilendirdik. Bu bağlantıyı istedikleri zaman kaldırabilirler.',
 			'family.noticePendingBadge' => 'Bildirim gönderildi',
 			'subscription.title' => 'Abonelik',

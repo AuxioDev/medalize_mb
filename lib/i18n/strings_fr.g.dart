@@ -1059,11 +1059,11 @@ class _Translations$family$fr extends Translations$family$en {
 	@override String forLabel({required Object name}) => 'pour ${name}';
 	@override String ageYears({required Object age}) => '${age} ans';
 	@override String bookedByLabel({required Object name}) => 'Pris par ${name}';
-	@override String get contactEmail => 'E-mail de contact';
-	@override String get contactEmailHelp => 'Nous les informerons qu\'ils ont été ajoutés, avec un moyen simple de refuser.';
-	@override String get contactPhoneOptional => 'Téléphone de contact (facultatif)';
-	@override String get contactEmailRequiredForAdult => 'Une adresse e-mail est requise pour que nous puissions informer ce membre de la famille';
-	@override String get adultConsentNotice => 'Comme cette personne a 18 ans ou plus, nous lui enverrons un e-mail pour l\'informer que vous l\'avez ajoutée — elle n\'a pas besoin de l\'application et peut supprimer cette connexion à tout moment.';
+	@override String get contactPhone => 'Téléphone de contact';
+	@override String get contactPhoneHelp => 'Nous les informerons par SMS qu\'ils ont été ajoutés, avec un moyen simple de refuser.';
+	@override String get contactEmailOptional => 'E-mail de contact (facultatif)';
+	@override String get contactPhoneRequiredForAdult => 'Un numéro de téléphone est requis pour que nous puissions informer ce membre de la famille';
+	@override String get adultConsentNotice => 'Comme cette personne a 18 ans ou plus, nous lui enverrons un SMS pour l\'informer que vous l\'avez ajoutée — elle n\'a pas besoin de l\'application et peut supprimer cette connexion à tout moment.';
 	@override String get noticeAlreadySent => 'Nous l\'avons informée qu\'elle a été ajoutée. Elle peut supprimer cette connexion à tout moment.';
 	@override String get noticePendingBadge => 'Notification envoyée';
 }
@@ -2188,11 +2188,11 @@ extension on TranslationsFr {
 			'family.forLabel' => ({required Object name}) => 'pour ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} ans',
 			'family.bookedByLabel' => ({required Object name}) => 'Pris par ${name}',
-			'family.contactEmail' => 'E-mail de contact',
-			'family.contactEmailHelp' => 'Nous les informerons qu\'ils ont été ajoutés, avec un moyen simple de refuser.',
-			'family.contactPhoneOptional' => 'Téléphone de contact (facultatif)',
-			'family.contactEmailRequiredForAdult' => 'Une adresse e-mail est requise pour que nous puissions informer ce membre de la famille',
-			'family.adultConsentNotice' => 'Comme cette personne a 18 ans ou plus, nous lui enverrons un e-mail pour l\'informer que vous l\'avez ajoutée — elle n\'a pas besoin de l\'application et peut supprimer cette connexion à tout moment.',
+			'family.contactPhone' => 'Téléphone de contact',
+			'family.contactPhoneHelp' => 'Nous les informerons par SMS qu\'ils ont été ajoutés, avec un moyen simple de refuser.',
+			'family.contactEmailOptional' => 'E-mail de contact (facultatif)',
+			'family.contactPhoneRequiredForAdult' => 'Un numéro de téléphone est requis pour que nous puissions informer ce membre de la famille',
+			'family.adultConsentNotice' => 'Comme cette personne a 18 ans ou plus, nous lui enverrons un SMS pour l\'informer que vous l\'avez ajoutée — elle n\'a pas besoin de l\'application et peut supprimer cette connexion à tout moment.',
 			'family.noticeAlreadySent' => 'Nous l\'avons informée qu\'elle a été ajoutée. Elle peut supprimer cette connexion à tout moment.',
 			'family.noticePendingBadge' => 'Notification envoyée',
 			'subscription.title' => 'Abonnement',

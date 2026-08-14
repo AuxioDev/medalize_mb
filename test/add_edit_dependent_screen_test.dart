@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/widgets/app_date_field.dart';
+import 'package:medalize_mb/core/widgets/phone_field.dart';
 import 'package:medalize_mb/features/family/data/models/dependent_model.dart';
 import 'package:medalize_mb/features/family/data/repository/family_repository.dart';
 import 'package:medalize_mb/features/family/presentation/screens/add_edit_dependent_screen.dart';
@@ -16,9 +17,9 @@ class _FakeFamilyRepository extends FamilyRepository {
   String? createdFirstName;
   String? createdRelationship;
   DateTime? createdDateOfBirth;
-  String? createdContactEmail;
+  String? createdContactPhone;
   String? updatedId;
-  String? updatedContactEmail;
+  String? updatedContactPhone;
 
   @override
   Future<List<DependentModel>> getDependents() async => const [];
@@ -39,14 +40,14 @@ class _FakeFamilyRepository extends FamilyRepository {
     createdFirstName = firstName;
     createdRelationship = relationship;
     createdDateOfBirth = dateOfBirth;
-    createdContactEmail = contactEmail;
+    createdContactPhone = contactPhone;
     return DependentModel(
       id: 'new-id',
       firstName: firstName,
       lastName: lastName,
       relationship: relationship,
       dateOfBirth: dateOfBirth,
-      contactEmail: contactEmail,
+      contactPhone: contactPhone,
     );
   }
 
@@ -65,13 +66,13 @@ class _FakeFamilyRepository extends FamilyRepository {
     String? contactPhone,
   }) async {
     updatedId = id;
-    updatedContactEmail = contactEmail;
+    updatedContactPhone = contactPhone;
     return DependentModel(
       id: id,
       firstName: firstName ?? '',
       relationship: relationship ?? DependentModel.relationshipChild,
       dateOfBirth: dateOfBirth,
-      contactEmail: contactEmail ?? '',
+      contactPhone: contactPhone ?? '',
     );
   }
 }
@@ -114,7 +115,7 @@ Future<void> _pump(
 /// selection — `AppDateField`'s `_pickDateOfBirth` opens `showDatePicker`
 /// with `initialDate: DateTime.now()`, so accepting immediately picks
 /// "today" (age 0 — a minor, so this alone never trips the adult
-/// contact-email requirement below).
+/// contact-phone requirement below).
 Future<void> _pickTodayAsDateOfBirth(WidgetTester tester) async {
   await tester.tap(find.byType(AppDateField));
   await tester.pumpAndSettle();
@@ -122,9 +123,19 @@ Future<void> _pickTodayAsDateOfBirth(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
+/// Enters 9 local digits into the PhoneField (mirrors how a real user types
+/// into it — FilteringTextInputFormatter.digitsOnly + a 9-digit cap live
+/// inside PhoneField itself).
+Future<void> _enterPhoneDigits(WidgetTester tester, String digits) async {
+  await tester.enterText(
+    find.descendant(of: find.byType(PhoneField), matching: find.byType(TextField)),
+    digits,
+  );
+}
+
 DependentModel _adultDependent({
   String id = 'd-adult',
-  String contactEmail = '',
+  String contactPhone = '',
   DateTime? consentNoticeSentAt,
 }) =>
     DependentModel(
@@ -133,7 +144,7 @@ DependentModel _adultDependent({
       relationship: DependentModel.relationshipSpouse,
       // Comfortably 18+ regardless of what day this runs.
       dateOfBirth: DateTime(DateTime.now().year - 30, 1, 1),
-      contactEmail: contactEmail,
+      contactPhone: contactPhone,
       consentNoticeSentAt: consentNoticeSentAt,
     );
 
@@ -208,8 +219,8 @@ void main() {
     expect(repo.updatedId, 'd1');
   });
 
-  group('adult dependent contact email (18+ consent notice)', () {
-    testWidgets('does not show a contact email field for a minor dependent',
+  group('adult dependent contact phone (18+ consent notice)', () {
+    testWidgets('does not show a contact phone field for a minor dependent',
         (tester) async {
       final repo = _FakeFamilyRepository();
       final existing = DependentModel(
@@ -220,19 +231,20 @@ void main() {
       );
       await _pump(tester, repo, existing: existing);
 
-      expect(find.widgetWithText(TextField, 'Contact Email'), findsNothing);
+      expect(find.byType(PhoneField), findsNothing);
     });
 
-    testWidgets('shows a contact email field for an 18+ dependent',
+    testWidgets('shows a contact phone field for an 18+ dependent',
         (tester) async {
       final repo = _FakeFamilyRepository();
       await _pump(tester, repo, existing: _adultDependent());
 
-      expect(find.widgetWithText(TextField, 'Contact Email'), findsOneWidget);
+      expect(find.byType(PhoneField), findsOneWidget);
+      expect(find.text('Contact Phone'), findsOneWidget);
     });
 
     testWidgets(
-        'blocks saving an adult dependent with no contact email and shows why',
+        'blocks saving an adult dependent with no contact phone and shows why',
         (tester) async {
       final repo = _FakeFamilyRepository();
       await _pump(tester, repo, existing: _adultDependent());
@@ -241,26 +253,24 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        find.text('An email address is required so we can notify this family member'),
+        find.text('A phone number is required so we can notify this family member'),
         findsOneWidget,
       );
       expect(repo.updatedId, isNull);
     });
 
-    testWidgets('saves and sends the contact email once one is filled in',
+    testWidgets('saves and sends the contact phone once one is filled in',
         (tester) async {
       final repo = _FakeFamilyRepository();
       await _pump(tester, repo, existing: _adultDependent());
 
-      await tester.enterText(
-        find.widgetWithText(TextField, 'Contact Email'), 'spouse@test.com',
-      );
+      await _enterPhoneDigits(tester, '501112233');
       await tester.tap(find.text('Save'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 500));
 
       expect(repo.updatedId, 'd-adult');
-      expect(repo.updatedContactEmail, 'spouse@test.com');
+      expect(repo.updatedContactPhone, '+994501112233');
     });
 
     testWidgets(
@@ -270,7 +280,7 @@ void main() {
       await _pump(tester, repo, existing: _adultDependent());
       expect(
         find.text(
-          "Since they're 18 or older, we'll email them to let them know you "
+          "Since they're 18 or older, we'll text them to let them know you "
           "added them — they don't need the app, and they can disconnect "
           'this connection at any time.',
         ),
@@ -281,7 +291,7 @@ void main() {
       await _pump(
         tester, repo2,
         existing: _adultDependent(
-          id: 'd-adult-2', contactEmail: 'spouse@test.com', consentNoticeSentAt: DateTime.now(),
+          id: 'd-adult-2', contactPhone: '+994501112233', consentNoticeSentAt: DateTime.now(),
         ),
       );
       expect(

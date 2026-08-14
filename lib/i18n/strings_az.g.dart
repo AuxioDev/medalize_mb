@@ -1059,11 +1059,11 @@ class _Translations$family$az extends Translations$family$en {
 	@override String forLabel({required Object name}) => '${name} üçün';
 	@override String ageYears({required Object age}) => '${age} yaşında';
 	@override String bookedByLabel({required Object name}) => 'Qeyd edən: ${name}';
-	@override String get contactEmail => 'Əlaqə e-poçtu';
-	@override String get contactEmailHelp => 'Əlavə edildiklərini onlara bildirəcəyik və rədd etmək üçün asan bir yol təqdim edəcəyik.';
-	@override String get contactPhoneOptional => 'Əlaqə telefonu (istəyə bağlı)';
-	@override String get contactEmailRequiredForAdult => 'Bu ailə üzvünə bildiriş göndərə bilmək üçün e-poçt ünvanı tələb olunur';
-	@override String get adultConsentNotice => '18 yaşdan böyük olduqları üçün onlara sizin tərəfinizdən əlavə edildiklərini bildirən e-poçt göndərəcəyik — tətbiqə ehtiyacları yoxdur və istənilən vaxt bu əlaqəni kəsə bilərlər.';
+	@override String get contactPhone => 'Əlaqə telefonu';
+	@override String get contactPhoneHelp => 'Əlavə edildiklərini onlara SMS ilə bildirəcəyik və rədd etmək üçün asan bir yol təqdim edəcəyik.';
+	@override String get contactEmailOptional => 'Əlaqə e-poçtu (istəyə bağlı)';
+	@override String get contactPhoneRequiredForAdult => 'Bu ailə üzvünə bildiriş göndərə bilmək üçün telefon nömrəsi tələb olunur';
+	@override String get adultConsentNotice => '18 yaşdan böyük olduqları üçün onlara sizin tərəfinizdən əlavə edildiklərini bildirən SMS göndərəcəyik — tətbiqə ehtiyacları yoxdur və istənilən vaxt bu əlaqəni kəsə bilərlər.';
 	@override String get noticeAlreadySent => 'Əlavə edildikləri barədə onlara bildiriş göndərdik. İstənilən vaxt bu əlaqəni kəsə bilərlər.';
 	@override String get noticePendingBadge => 'Bildiriş göndərildi';
 }
@@ -2188,11 +2188,11 @@ extension on TranslationsAz {
 			'family.forLabel' => ({required Object name}) => '${name} üçün',
 			'family.ageYears' => ({required Object age}) => '${age} yaşında',
 			'family.bookedByLabel' => ({required Object name}) => 'Qeyd edən: ${name}',
-			'family.contactEmail' => 'Əlaqə e-poçtu',
-			'family.contactEmailHelp' => 'Əlavə edildiklərini onlara bildirəcəyik və rədd etmək üçün asan bir yol təqdim edəcəyik.',
-			'family.contactPhoneOptional' => 'Əlaqə telefonu (istəyə bağlı)',
-			'family.contactEmailRequiredForAdult' => 'Bu ailə üzvünə bildiriş göndərə bilmək üçün e-poçt ünvanı tələb olunur',
-			'family.adultConsentNotice' => '18 yaşdan böyük olduqları üçün onlara sizin tərəfinizdən əlavə edildiklərini bildirən e-poçt göndərəcəyik — tətbiqə ehtiyacları yoxdur və istənilən vaxt bu əlaqəni kəsə bilərlər.',
+			'family.contactPhone' => 'Əlaqə telefonu',
+			'family.contactPhoneHelp' => 'Əlavə edildiklərini onlara SMS ilə bildirəcəyik və rədd etmək üçün asan bir yol təqdim edəcəyik.',
+			'family.contactEmailOptional' => 'Əlaqə e-poçtu (istəyə bağlı)',
+			'family.contactPhoneRequiredForAdult' => 'Bu ailə üzvünə bildiriş göndərə bilmək üçün telefon nömrəsi tələb olunur',
+			'family.adultConsentNotice' => '18 yaşdan böyük olduqları üçün onlara sizin tərəfinizdən əlavə edildiklərini bildirən SMS göndərəcəyik — tətbiqə ehtiyacları yoxdur və istənilən vaxt bu əlaqəni kəsə bilərlər.',
 			'family.noticeAlreadySent' => 'Əlavə edildikləri barədə onlara bildiriş göndərdik. İstənilən vaxt bu əlaqəni kəsə bilərlər.',
 			'family.noticePendingBadge' => 'Bildiriş göndərildi',
 			'subscription.title' => 'Abunəlik',

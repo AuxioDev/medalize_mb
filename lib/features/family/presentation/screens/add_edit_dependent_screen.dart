@@ -7,6 +7,7 @@ import 'package:medalize_mb/core/errors/api_exception.dart';
 import 'package:medalize_mb/core/theme/app_theme.dart';
 import 'package:medalize_mb/core/utils/validators.dart';
 import 'package:medalize_mb/core/widgets/app_date_field.dart';
+import 'package:medalize_mb/core/widgets/phone_field.dart';
 import 'package:medalize_mb/core/widgets/primary_button.dart';
 import 'package:medalize_mb/core/widgets/responsive_body.dart';
 import 'package:medalize_mb/core/widgets/tinted_notice_banner.dart';
@@ -16,6 +17,17 @@ import 'package:medalize_mb/features/family/presentation/screens/family_list_scr
 import 'package:medalize_mb/features/family/providers/family_provider.dart';
 import 'package:medalize_mb/features/shared/presentation/widgets/app_bar_title.dart';
 import 'package:medalize_mb/i18n/strings.g.dart';
+
+/// Reduces any stored phone value (E.164 `+994501112233`, or a legacy
+/// unnormalized value) down to the 9 local digits `PhoneField` expects in
+/// its controller — the inverse of the `'+994$digits'` reconstruction done
+/// when saving below.
+String _localPhoneDigits(String phone) {
+  final digitsOnly = phone.replaceAll(RegExp(r'\D'), '');
+  return digitsOnly.length > 9
+      ? digitsOnly.substring(digitsOnly.length - 9)
+      : digitsOnly;
+}
 
 const _kRelationships = [
   DependentModel.relationshipChild,
@@ -60,7 +72,7 @@ class _AddEditDependentScreenState
   bool get _isEditing => widget.existing != null;
 
   /// Whether the currently-picked date of birth computes to 18+ — gates the
-  /// contact-email requirement and the consent-notice copy below. Uses the
+  /// contact-phone requirement and the consent-notice copy below. Uses the
   /// same DependentModel.ageFromDob the backend's apps.family.services.
   /// dependent_age mirrors, so client-side and server-side "is this an
   /// adult" agree.
@@ -78,7 +90,8 @@ class _AddEditDependentScreenState
         TextEditingController(text: existing?.chronicConditions ?? '');
     _medications = TextEditingController(text: existing?.medications ?? '');
     _contactEmail = TextEditingController(text: existing?.contactEmail ?? '');
-    _contactPhone = TextEditingController(text: existing?.contactPhone ?? '');
+    _contactPhone = TextEditingController(
+        text: _localPhoneDigits(existing?.contactPhone ?? ''));
     _relationship = existing?.relationship ?? DependentModel.relationshipChild;
     _dateOfBirth = existing?.dateOfBirth;
   }
@@ -127,20 +140,33 @@ class _AddEditDependentScreenState
       return;
     }
     final contactEmail = _contactEmail.text.trim();
+    if (contactEmail.isNotEmpty) {
+      // Optional, but if the account holder does enter one, it should
+      // actually be a valid address rather than silently stored garbage
+      // (the backend's EmailField would reject it too).
+      final emailError = Validators.email(contactEmail);
+      if (emailError != null) {
+        setState(() => _error = emailError);
+        return;
+      }
+    }
+    final contactPhoneDigits = _contactPhone.text.trim();
+    final contactPhone =
+        contactPhoneDigits.isEmpty ? '' : '+994$contactPhoneDigits';
     if (_isAdult) {
       // A dependent 18 or older must be positively notified that they were
       // added, with a way to object — see the backend's
       // DependentCreateSerializer.validate/apps.family.services.
-      // issue_consent_notice. Email is the only channel that can actually
-      // deliver that notice (no SMS infra), so it's required here even
-      // though the phone field below stays optional.
-      if (contactEmail.isEmpty) {
-        setState(() => _error = context.t.family.contactEmailRequiredForAdult);
+      // issue_consent_notice. Phone (SMS) is the only channel that can
+      // actually deliver that notice, so it's required here even though
+      // the email field above stays optional.
+      if (contactPhoneDigits.isEmpty) {
+        setState(() => _error = context.t.family.contactPhoneRequiredForAdult);
         return;
       }
-      final emailError = Validators.email(contactEmail);
-      if (emailError != null) {
-        setState(() => _error = emailError);
+      final phoneError = Validators.phone(contactPhoneDigits);
+      if (phoneError != null) {
+        setState(() => _error = phoneError);
         return;
       }
     }
@@ -163,7 +189,7 @@ class _AddEditDependentScreenState
           chronicConditions: _chronicConditions.text.trim(),
           medications: _medications.text.trim(),
           contactEmail: contactEmail,
-          contactPhone: _contactPhone.text.trim(),
+          contactPhone: contactPhone,
         );
       } else {
         await repo.createDependent(
@@ -176,7 +202,7 @@ class _AddEditDependentScreenState
           chronicConditions: _chronicConditions.text.trim(),
           medications: _medications.text.trim(),
           contactEmail: contactEmail,
-          contactPhone: _contactPhone.text.trim(),
+          contactPhone: contactPhone,
         );
       }
       ref.invalidate(dependentsProvider);
@@ -241,7 +267,7 @@ class _AddEditDependentScreenState
                 TintedNoticeBanner(
                   color: AppColors.warning,
                   icon: widget.existing?.consentNoticeSentAt != null
-                      ? Icons.mark_email_read_outlined
+                      ? Icons.sms_outlined
                       : Icons.info_outline,
                   child: Text(
                     widget.existing?.consentNoticeSentAt != null
@@ -251,19 +277,22 @@ class _AddEditDependentScreenState
                   ),
                 ),
                 const Gap(12),
-                TextField(
-                  controller: _contactEmail,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: t.family.contactEmail,
-                    helperText: t.family.contactEmailHelp,
+                PhoneField(
+                  controller: _contactPhone,
+                  label: t.family.contactPhone,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 4, left: 4),
+                  child: Text(
+                    t.family.contactPhoneHelp,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
                 const Gap(12),
                 TextField(
-                  controller: _contactPhone,
-                  keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(labelText: t.family.contactPhoneOptional),
+                  controller: _contactEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(labelText: t.family.contactEmailOptional),
                 ),
               ],
               const Gap(12),

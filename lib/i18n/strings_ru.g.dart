@@ -1059,11 +1059,11 @@ class _Translations$family$ru extends Translations$family$en {
 	@override String forLabel({required Object name}) => 'для ${name}';
 	@override String ageYears({required Object age}) => '${age} лет';
 	@override String bookedByLabel({required Object name}) => 'Записал(а) ${name}';
-	@override String get contactEmail => 'Контактный email';
-	@override String get contactEmailHelp => 'Мы сообщим им, что их добавили, и дадим простой способ отказаться.';
-	@override String get contactPhoneOptional => 'Контактный телефон (необязательно)';
-	@override String get contactEmailRequiredForAdult => 'Email обязателен, чтобы мы могли уведомить этого члена семьи';
-	@override String get adultConsentNotice => 'Поскольку им исполнилось 18 лет, мы отправим им письмо о том, что вы их добавили — приложение им не понадобится, и они смогут отключить эту связь в любой момент.';
+	@override String get contactPhone => 'Контактный телефон';
+	@override String get contactPhoneHelp => 'Мы отправим им SMS о том, что их добавили, и дадим простой способ отказаться.';
+	@override String get contactEmailOptional => 'Контактный email (необязательно)';
+	@override String get contactPhoneRequiredForAdult => 'Телефон обязателен, чтобы мы могли уведомить этого члена семьи';
+	@override String get adultConsentNotice => 'Поскольку им исполнилось 18 лет, мы отправим им SMS о том, что вы их добавили — приложение им не понадобится, и они смогут отключить эту связь в любой момент.';
 	@override String get noticeAlreadySent => 'Мы сообщили им, что их добавили. Они могут отключить эту связь в любой момент.';
 	@override String get noticePendingBadge => 'Уведомление отправлено';
 }
@@ -2188,11 +2188,11 @@ extension on TranslationsRu {
 			'family.forLabel' => ({required Object name}) => 'для ${name}',
 			'family.ageYears' => ({required Object age}) => '${age} лет',
 			'family.bookedByLabel' => ({required Object name}) => 'Записал(а) ${name}',
-			'family.contactEmail' => 'Контактный email',
-			'family.contactEmailHelp' => 'Мы сообщим им, что их добавили, и дадим простой способ отказаться.',
-			'family.contactPhoneOptional' => 'Контактный телефон (необязательно)',
-			'family.contactEmailRequiredForAdult' => 'Email обязателен, чтобы мы могли уведомить этого члена семьи',
-			'family.adultConsentNotice' => 'Поскольку им исполнилось 18 лет, мы отправим им письмо о том, что вы их добавили — приложение им не понадобится, и они смогут отключить эту связь в любой момент.',
+			'family.contactPhone' => 'Контактный телефон',
+			'family.contactPhoneHelp' => 'Мы отправим им SMS о том, что их добавили, и дадим простой способ отказаться.',
+			'family.contactEmailOptional' => 'Контактный email (необязательно)',
+			'family.contactPhoneRequiredForAdult' => 'Телефон обязателен, чтобы мы могли уведомить этого члена семьи',
+			'family.adultConsentNotice' => 'Поскольку им исполнилось 18 лет, мы отправим им SMS о том, что вы их добавили — приложение им не понадобится, и они смогут отключить эту связь в любой момент.',
 			'family.noticeAlreadySent' => 'Мы сообщили им, что их добавили. Они могут отключить эту связь в любой момент.',
 			'family.noticePendingBadge' => 'Уведомление отправлено',
 			'subscription.title' => 'Подписка',

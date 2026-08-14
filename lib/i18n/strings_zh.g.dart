@@ -1059,11 +1059,11 @@ class _Translations$family$zh extends Translations$family$en {
 	@override String forLabel({required Object name}) => '${name} 的';
 	@override String ageYears({required Object age}) => '${age} 岁';
 	@override String bookedByLabel({required Object name}) => '预约人：${name}';
-	@override String get contactEmail => '联系邮箱';
-	@override String get contactEmailHelp => '我们会通知对方已被添加，并提供简单的拒绝方式。';
-	@override String get contactPhoneOptional => '联系电话（可选）';
-	@override String get contactEmailRequiredForAdult => '需要提供邮箱地址，以便我们通知该家庭成员';
-	@override String get adultConsentNotice => '由于对方已年满 18 岁，我们会通过邮件通知对方您已将其添加为家庭成员——对方无需安装应用，并且可以随时解除此关联。';
+	@override String get contactPhone => '联系电话';
+	@override String get contactPhoneHelp => '我们会通过短信通知对方已被添加，并提供简单的拒绝方式。';
+	@override String get contactEmailOptional => '联系邮箱（可选）';
+	@override String get contactPhoneRequiredForAdult => '需要提供电话号码，以便我们通知该家庭成员';
+	@override String get adultConsentNotice => '由于对方已年满 18 岁，我们会通过短信通知对方您已将其添加为家庭成员——对方无需安装应用，并且可以随时解除此关联。';
 	@override String get noticeAlreadySent => '我们已通知对方其被添加为家庭成员。对方可以随时解除此关联。';
 	@override String get noticePendingBadge => '通知已发送';
 }
@@ -2188,11 +2188,11 @@ extension on TranslationsZh {
 			'family.forLabel' => ({required Object name}) => '${name} 的',
 			'family.ageYears' => ({required Object age}) => '${age} 岁',
 			'family.bookedByLabel' => ({required Object name}) => '预约人：${name}',
-			'family.contactEmail' => '联系邮箱',
-			'family.contactEmailHelp' => '我们会通知对方已被添加，并提供简单的拒绝方式。',
-			'family.contactPhoneOptional' => '联系电话（可选）',
-			'family.contactEmailRequiredForAdult' => '需要提供邮箱地址，以便我们通知该家庭成员',
-			'family.adultConsentNotice' => '由于对方已年满 18 岁，我们会通过邮件通知对方您已将其添加为家庭成员——对方无需安装应用，并且可以随时解除此关联。',
+			'family.contactPhone' => '联系电话',
+			'family.contactPhoneHelp' => '我们会通过短信通知对方已被添加，并提供简单的拒绝方式。',
+			'family.contactEmailOptional' => '联系邮箱（可选）',
+			'family.contactPhoneRequiredForAdult' => '需要提供电话号码，以便我们通知该家庭成员',
+			'family.adultConsentNotice' => '由于对方已年满 18 岁，我们会通过短信通知对方您已将其添加为家庭成员——对方无需安装应用，并且可以随时解除此关联。',
 			'family.noticeAlreadySent' => '我们已通知对方其被添加为家庭成员。对方可以随时解除此关联。',
 			'family.noticePendingBadge' => '通知已发送',
 			'subscription.title' => '订阅',
