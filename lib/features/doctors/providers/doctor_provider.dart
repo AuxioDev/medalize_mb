@@ -243,7 +243,3 @@ final doctorWaitlistProvider =
     FutureProvider.autoDispose.family<List<WaitlistModel>, String>((ref, doctorId) {
   return ref.watch(doctorRepositoryProvider).getWaitlistFor(doctorId);
 });
-
-final selectedDoctorProvider = StateProvider<DoctorModel?>((ref) => null);
-final selectedSlotProvider = StateProvider<SlotModel?>((ref) => null);
-final selectedWorkplaceIdProvider = StateProvider<String?>((ref) => null);
