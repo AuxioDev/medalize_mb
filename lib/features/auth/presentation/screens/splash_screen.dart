@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
                   .fadeIn(duration: 350.ms),
               const SizedBox(height: 22),
               const Text(
-                'DocLine',
+                'DocGet',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,

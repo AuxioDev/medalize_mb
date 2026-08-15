@@ -1,4 +1,4 @@
-# Release Checklist — Medalize
+# Release Checklist — DocGet
 
 Практический чек-лист готовности к запуску. Две фазы: **A) Тестинг/Бета** (раздать
 тестерам) и **B) Публичный релиз** (App Store / Google Play).
@@ -40,7 +40,7 @@
 ### A4. Права и нативные настройки
 - [x] iOS: `NSPhotoLibraryUsageDescription` + `NSCameraUsageDescription` (иначе краш при выборе фото)
 - [x] Android: `POST_NOTIFICATIONS` (уведомления на Android 13+)
-- [x] Имя приложения на домашнем экране = «Medalize»
+- [x] Имя приложения на домашнем экране = «DocGet»
 - [x] Иконка-плейсхолдер (синий градиент + мед-крест) через `flutter_launcher_icons` — больше не лого Flutter. Финальный бренд → см. B5
 - [x] iOS: `UIBackgroundModes: remote-notification` (для фоновых push)
 

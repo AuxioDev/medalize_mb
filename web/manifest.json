@@ -1,6 +1,6 @@
 {
-    "name": "medalize_mb",
-    "short_name": "medalize_mb",
+    "name": "DocGet",
+    "short_name": "DocGet",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

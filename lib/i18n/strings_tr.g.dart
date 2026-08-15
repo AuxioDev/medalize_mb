@@ -39,7 +39,7 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	TranslationsTr $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsTr(meta: meta ?? this.$meta);
 
 	// Translations
-	@override String get appName => 'DocLine';
+	@override String get appName => 'DocGet';
 	@override late final _Translations$common$tr common = _Translations$common$tr._(_root);
 	@override late final _Translations$auth$tr auth = _Translations$auth$tr._(_root);
 	@override late final _Translations$forgotPassword$tr forgotPassword = _Translations$forgotPassword$tr._(_root);
@@ -146,7 +146,7 @@ class _Translations$auth$tr extends Translations$auth$en {
 	@override String get welcomeBack => 'Tekrar hoş geldiniz';
 	@override String get signInToContinue => 'Devam etmek için hesabınıza giriş yapın';
 	@override String get createYourAccount => 'Hesabınızı oluşturun';
-	@override String get joinMedalize => 'Bugün DocLine\'ya katılın';
+	@override String get joinMedalize => 'Bugün DocGet\'ya katılın';
 	@override String get iAmA => 'Ben bir';
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Girişe dön';
@@ -274,7 +274,7 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get languageSystem => 'Sistem varsayılanı';
 	@override String get logoutTitle => 'Çıkış';
 	@override String get logoutConfirm => 'Çıkış yapmak istediğinizden emin misiniz?';
-	@override String get version => 'DocLine v1.0.0';
+	@override String get version => 'DocGet v1.0.0';
 	@override String get legal => 'Gizlilik ve Koşullar';
 }
 
@@ -288,7 +288,7 @@ class _Translations$security$tr extends Translations$security$en {
 	@override String get title => 'Güvenlik';
 	@override String get biometricLogin => 'Biyometrik Giriş';
 	@override String get biometricLoginSubtitle => 'Uygulamanın kilidini açmak için Face ID / Touch ID kullanın';
-	@override String get biometricPrompt => 'DocLine\'ya erişmek için doğrulayın';
+	@override String get biometricPrompt => 'DocGet\'ya erişmek için doğrulayın';
 	@override String get biometricUnavailable => 'Bu cihazda biyometrik kimlik doğrulama kullanılamıyor';
 	@override String get biometricEnableFailed => 'Biyometrik bilgileriniz doğrulanamadı. Tekrar deneyin.';
 	@override String get activeSessions => 'Aktif Oturumlar';
@@ -857,13 +857,13 @@ class _Translations$legal$tr extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Gizlilik ve Koşullar';
-	@override String get controllerNotice => 'DocLine, AuxioDev (auxiodev.com) tarafından Azerbaycan\'da oluşturulmuş ve işletilmektedir ("biz"). Son güncelleme: Temmuz 2026.';
+	@override String get controllerNotice => 'DocGet, AuxioDev (auxiodev.com) tarafından Azerbaycan\'da oluşturulmuş ve işletilmektedir ("biz"). Son güncelleme: Temmuz 2026.';
 	@override String get privacyTitle => 'Gizlilik Politikası';
-	@override String get privacyIntro => 'Bu politika, DocLine\'nun hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.';
+	@override String get privacyIntro => 'Bu politika, DocGet\'nun hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.';
 	@override late final _Translations$legal$sections$tr sections = _Translations$legal$sections$tr._(_root);
 	@override String get termsTitle => 'Kullanım Koşulları';
 	@override String get termsIntro => 'Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.';
-	@override String get termsBody => 'Kendiniz hakkında doğru bilgi verin. DocLine\'yu yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. DocLine sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.';
+	@override String get termsBody => 'Kendiniz hakkında doğru bilgi verin. DocGet\'yu yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. DocGet sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.';
 	@override String get contact => 'Verileriniz hakkında sorularınız mı var? support@auxiodev.com adresine yazın';
 	@override String get consentPrefix => '';
 	@override String get consentPrivacyLink => 'Gizlilik Politikası';
@@ -871,7 +871,7 @@ class _Translations$legal$tr extends Translations$legal$en {
 	@override String get consentTermsLink => 'Kullanım Koşulları';
 	@override String get consentSuffix => '\'nı okudum, kabul ediyorum ve orada açıklandığı şekilde sağlık verilerimin işlenmesine açıkça rıza gösteriyorum.';
 	@override String get viewAsPdf => 'PDF olarak görüntüle';
-	@override String get pdfDocumentTitle => 'DocLine — Gizlilik Politikası ve Kullanım Koşulları';
+	@override String get pdfDocumentTitle => 'DocGet — Gizlilik Politikası ve Kullanım Koşulları';
 	@override String get pdfLoadError => 'Belge yüklenemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.';
 }
 
@@ -1502,7 +1502,7 @@ class _Translations$legal$sections$children$tr extends Translations$legal$sectio
 
 	// Translations
 	@override String get title => 'Yaş şartı';
-	@override String get body => 'DocLine hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın.';
+	@override String get body => 'DocGet hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın.';
 }
 
 /// The flat map containing all translations for locale <tr>.
@@ -1513,7 +1513,7 @@ class _Translations$legal$sections$children$tr extends Translations$legal$sectio
 extension on TranslationsTr {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'appName' => 'DocLine',
+			'appName' => 'DocGet',
 			'common.cancel' => 'İptal',
 			'common.logout' => 'Çıkış Yap',
 			'common.doctor' => 'Doktor',
@@ -1552,7 +1552,7 @@ extension on TranslationsTr {
 			'auth.welcomeBack' => 'Tekrar hoş geldiniz',
 			'auth.signInToContinue' => 'Devam etmek için hesabınıza giriş yapın',
 			'auth.createYourAccount' => 'Hesabınızı oluşturun',
-			'auth.joinMedalize' => 'Bugün DocLine\'ya katılın',
+			'auth.joinMedalize' => 'Bugün DocGet\'ya katılın',
 			'auth.iAmA' => 'Ben bir',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Girişe dön',
@@ -1617,12 +1617,12 @@ extension on TranslationsTr {
 			'settings.languageSystem' => 'Sistem varsayılanı',
 			'settings.logoutTitle' => 'Çıkış',
 			'settings.logoutConfirm' => 'Çıkış yapmak istediğinizden emin misiniz?',
-			'settings.version' => 'DocLine v1.0.0',
+			'settings.version' => 'DocGet v1.0.0',
 			'settings.legal' => 'Gizlilik ve Koşullar',
 			'security.title' => 'Güvenlik',
 			'security.biometricLogin' => 'Biyometrik Giriş',
 			'security.biometricLoginSubtitle' => 'Uygulamanın kilidini açmak için Face ID / Touch ID kullanın',
-			'security.biometricPrompt' => 'DocLine\'ya erişmek için doğrulayın',
+			'security.biometricPrompt' => 'DocGet\'ya erişmek için doğrulayın',
 			'security.biometricUnavailable' => 'Bu cihazda biyometrik kimlik doğrulama kullanılamıyor',
 			'security.biometricEnableFailed' => 'Biyometrik bilgileriniz doğrulanamadı. Tekrar deneyin.',
 			'security.activeSessions' => 'Aktif Oturumlar',
@@ -2000,9 +2000,9 @@ extension on TranslationsTr {
 			'messaging.noSharedHistory' => 'Bir doktora yalnızca onunla ortak bir randevu geçmişiniz olduğunda mesaj gönderebilirsiniz.',
 			'messaging.newMessage' => 'Yeni bir mesajınız var',
 			'legal.title' => 'Gizlilik ve Koşullar',
-			'legal.controllerNotice' => 'DocLine, AuxioDev (auxiodev.com) tarafından Azerbaycan\'da oluşturulmuş ve işletilmektedir ("biz"). Son güncelleme: Temmuz 2026.',
+			'legal.controllerNotice' => 'DocGet, AuxioDev (auxiodev.com) tarafından Azerbaycan\'da oluşturulmuş ve işletilmektedir ("biz"). Son güncelleme: Temmuz 2026.',
 			'legal.privacyTitle' => 'Gizlilik Politikası',
-			'legal.privacyIntro' => 'Bu politika, DocLine\'nun hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.',
+			'legal.privacyIntro' => 'Bu politika, DocGet\'nun hangi kişisel verileri, neden topladığını ve nasıl koruduğunu açıklar. Tıbbi randevu alma ve yönetme, sağlık bilgilerinizi doğal olarak içerir — bu aşağıda ayrıntılı olarak açıklanmıştır.',
 			'legal.sections.identity.title' => 'Kimlik verileri',
 			'legal.sections.identity.body' => 'Ad ve soyad, e-posta adresi, telefon numarası (isteğe bağlı), şifreniz (geri döndürülemez bir hash olarak saklanır, asla düz metin olarak değil) ve tercih ettiğiniz uygulama dili.',
 			'legal.sections.health.title' => 'Sağlık verileri',
@@ -2034,10 +2034,10 @@ extension on TranslationsTr {
 			'legal.sections.permissions.title' => 'İstediğimiz izinler',
 			'legal.sections.permissions.body' => 'Kamera ve fotoğraf galerisi — profil fotoğrafı ayarlamak ve tıbbi belgeler yüklemek için. Konum — doktorları size olan uzaklığa göre sıralamak için. Bildirimler — randevu hatırlatmaları ve mesajlar iletmek için. Biyometri (Face ID / parmak izi) — uygulamanın kilidini açmanın isteğe bağlı, daha hızlı bir yolu; biyometrik verileriniz asla cihazınızdan çıkmaz, yalnızca işletim sisteminden bir evet/hayır onayı alırız.',
 			'legal.sections.children.title' => 'Yaş şartı',
-			'legal.sections.children.body' => 'DocLine hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın.',
+			'legal.sections.children.body' => 'DocGet hesapları yetişkinler içindir. 18 yaşından küçükseniz, lütfen bir ebeveyn veya vasinin aile/bakmakla yükümlü olunan profil özelliğini kullanarak sizin adınıza bir hesap oluşturmasını ve yönetmesini sağlayın.',
 			'legal.termsTitle' => 'Kullanım Koşulları',
 			'legal.termsIntro' => 'Bir hesap oluşturarak aşağıdakileri kabul etmiş olursunuz.',
-			'legal.termsBody' => 'Kendiniz hakkında doğru bilgi verin. DocLine\'yu yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. DocLine sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.',
+			'legal.termsBody' => 'Kendiniz hakkında doğru bilgi verin. DocGet\'yu yalnızca tıbbi randevu bulma, alma ve yönetme amacıyla kullanın. Giriş bilgilerinizi gizli tutun. DocGet sizi bağımsız, lisanslı tıp uzmanlarıyla buluşturur — kendimiz bir sağlık kuruluşu değiliz ve semptom kontrol yapay zeka asistanı profesyonel tıbbi teşhis veya tavsiyenin yerini tutmaz. Tıbbi bir acil durumda, bu uygulamayı değil doğrudan acil servisleri arayın. Bu koşulları ihlal eden veya platformu kötüye kullanan hesapları askıya alabilir veya sonlandırabiliriz.',
 			'legal.contact' => 'Verileriniz hakkında sorularınız mı var? support@auxiodev.com adresine yazın',
 			'legal.consentPrefix' => '',
 			'legal.consentPrivacyLink' => 'Gizlilik Politikası',
@@ -2045,7 +2045,7 @@ extension on TranslationsTr {
 			'legal.consentTermsLink' => 'Kullanım Koşulları',
 			'legal.consentSuffix' => '\'nı okudum, kabul ediyorum ve orada açıklandığı şekilde sağlık verilerimin işlenmesine açıkça rıza gösteriyorum.',
 			'legal.viewAsPdf' => 'PDF olarak görüntüle',
-			'legal.pdfDocumentTitle' => 'DocLine — Gizlilik Politikası ve Kullanım Koşulları',
+			'legal.pdfDocumentTitle' => 'DocGet — Gizlilik Politikası ve Kullanım Koşulları',
 			'legal.pdfLoadError' => 'Belge yüklenemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.',
 			'medications.title' => 'İlaçlar',
 			'medications.editMedication' => 'İlacı Düzenle',

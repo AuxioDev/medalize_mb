@@ -39,7 +39,7 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	TranslationsRu $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsRu(meta: meta ?? this.$meta);
 
 	// Translations
-	@override String get appName => 'DocLine';
+	@override String get appName => 'DocGet';
 	@override late final _Translations$common$ru common = _Translations$common$ru._(_root);
 	@override late final _Translations$auth$ru auth = _Translations$auth$ru._(_root);
 	@override late final _Translations$forgotPassword$ru forgotPassword = _Translations$forgotPassword$ru._(_root);
@@ -146,7 +146,7 @@ class _Translations$auth$ru extends Translations$auth$en {
 	@override String get welcomeBack => 'С возвращением';
 	@override String get signInToContinue => 'Войдите в аккаунт, чтобы продолжить';
 	@override String get createYourAccount => 'Создайте аккаунт';
-	@override String get joinMedalize => 'Присоединяйтесь к DocLine';
+	@override String get joinMedalize => 'Присоединяйтесь к DocGet';
 	@override String get iAmA => 'Я —';
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Назад ко входу';
@@ -274,7 +274,7 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get languageSystem => 'Как в системе';
 	@override String get logoutTitle => 'Выход';
 	@override String get logoutConfirm => 'Вы уверены, что хотите выйти?';
-	@override String get version => 'DocLine v1.0.0';
+	@override String get version => 'DocGet v1.0.0';
 	@override String get legal => 'Конфиденциальность и условия';
 }
 
@@ -288,7 +288,7 @@ class _Translations$security$ru extends Translations$security$en {
 	@override String get title => 'Безопасность';
 	@override String get biometricLogin => 'Вход по биометрии';
 	@override String get biometricLoginSubtitle => 'Используйте Face ID / Touch ID для разблокировки приложения';
-	@override String get biometricPrompt => 'Подтвердите личность для доступа к DocLine';
+	@override String get biometricPrompt => 'Подтвердите личность для доступа к DocGet';
 	@override String get biometricUnavailable => 'Биометрическая аутентификация недоступна на этом устройстве';
 	@override String get biometricEnableFailed => 'Не удалось подтвердить биометрию. Попробуйте снова.';
 	@override String get activeSessions => 'Активные сессии';
@@ -857,13 +857,13 @@ class _Translations$legal$ru extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Конфиденциальность и условия';
-	@override String get controllerNotice => 'DocLine создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.';
+	@override String get controllerNotice => 'DocGet создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.';
 	@override String get privacyTitle => 'Политика конфиденциальности';
-	@override String get privacyIntro => 'Здесь объясняется, какие персональные данные собирает DocLine, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.';
+	@override String get privacyIntro => 'Здесь объясняется, какие персональные данные собирает DocGet, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.';
 	@override late final _Translations$legal$sections$ru sections = _Translations$legal$sections$ru._(_root);
 	@override String get termsTitle => 'Условия использования';
 	@override String get termsIntro => 'Создавая аккаунт, вы соглашаетесь со следующим.';
-	@override String get termsBody => 'Указывать о себе достоверную информацию. Использовать DocLine только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. DocLine соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.';
+	@override String get termsBody => 'Указывать о себе достоверную информацию. Использовать DocGet только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. DocGet соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.';
 	@override String get contact => 'Вопросы о ваших данных? Напишите на support@auxiodev.com';
 	@override String get consentPrefix => 'Я прочитал(а) и согласен(на) с ';
 	@override String get consentPrivacyLink => 'Политикой конфиденциальности';
@@ -871,7 +871,7 @@ class _Translations$legal$ru extends Translations$legal$en {
 	@override String get consentTermsLink => 'Условиями использования';
 	@override String get consentSuffix => ', а также прямо даю согласие на обработку данных о моём здоровье, как описано в них.';
 	@override String get viewAsPdf => 'Открыть как PDF';
-	@override String get pdfDocumentTitle => 'DocLine — Политика конфиденциальности и условия использования';
+	@override String get pdfDocumentTitle => 'DocGet — Политика конфиденциальности и условия использования';
 	@override String get pdfLoadError => 'Не удалось загрузить документ. Проверьте подключение к интернету и попробуйте снова.';
 }
 
@@ -1502,7 +1502,7 @@ class _Translations$legal$sections$children$ru extends Translations$legal$sectio
 
 	// Translations
 	@override String get title => 'Возрастное ограничение';
-	@override String get body => 'Аккаунты DocLine предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.';
+	@override String get body => 'Аккаунты DocGet предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.';
 }
 
 /// The flat map containing all translations for locale <ru>.
@@ -1513,7 +1513,7 @@ class _Translations$legal$sections$children$ru extends Translations$legal$sectio
 extension on TranslationsRu {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'appName' => 'DocLine',
+			'appName' => 'DocGet',
 			'common.cancel' => 'Отмена',
 			'common.logout' => 'Выйти',
 			'common.doctor' => 'Врач',
@@ -1552,7 +1552,7 @@ extension on TranslationsRu {
 			'auth.welcomeBack' => 'С возвращением',
 			'auth.signInToContinue' => 'Войдите в аккаунт, чтобы продолжить',
 			'auth.createYourAccount' => 'Создайте аккаунт',
-			'auth.joinMedalize' => 'Присоединяйтесь к DocLine',
+			'auth.joinMedalize' => 'Присоединяйтесь к DocGet',
 			'auth.iAmA' => 'Я —',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Назад ко входу',
@@ -1617,12 +1617,12 @@ extension on TranslationsRu {
 			'settings.languageSystem' => 'Как в системе',
 			'settings.logoutTitle' => 'Выход',
 			'settings.logoutConfirm' => 'Вы уверены, что хотите выйти?',
-			'settings.version' => 'DocLine v1.0.0',
+			'settings.version' => 'DocGet v1.0.0',
 			'settings.legal' => 'Конфиденциальность и условия',
 			'security.title' => 'Безопасность',
 			'security.biometricLogin' => 'Вход по биометрии',
 			'security.biometricLoginSubtitle' => 'Используйте Face ID / Touch ID для разблокировки приложения',
-			'security.biometricPrompt' => 'Подтвердите личность для доступа к DocLine',
+			'security.biometricPrompt' => 'Подтвердите личность для доступа к DocGet',
 			'security.biometricUnavailable' => 'Биометрическая аутентификация недоступна на этом устройстве',
 			'security.biometricEnableFailed' => 'Не удалось подтвердить биометрию. Попробуйте снова.',
 			'security.activeSessions' => 'Активные сессии',
@@ -2000,9 +2000,9 @@ extension on TranslationsRu {
 			'messaging.noSharedHistory' => 'Написать врачу можно после того, как у вас появится общая история записей на приём.',
 			'messaging.newMessage' => 'У вас новое сообщение',
 			'legal.title' => 'Конфиденциальность и условия',
-			'legal.controllerNotice' => 'DocLine создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.',
+			'legal.controllerNotice' => 'DocGet создан и управляется компанией AuxioDev (auxiodev.com), Азербайджан («мы»). Последнее обновление: июль 2026.',
 			'legal.privacyTitle' => 'Политика конфиденциальности',
-			'legal.privacyIntro' => 'Здесь объясняется, какие персональные данные собирает DocLine, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.',
+			'legal.privacyIntro' => 'Здесь объясняется, какие персональные данные собирает DocGet, зачем и как они защищены. Запись и ведение медицинских приёмов неизбежно связаны с данными о здоровье — ниже это подробно раскрыто.',
 			'legal.sections.identity.title' => 'Данные для идентификации',
 			'legal.sections.identity.body' => 'Имя и фамилия, email, номер телефона (необязательно), пароль (хранится в виде необратимого хэша, никогда в открытом виде), предпочитаемый язык приложения.',
 			'legal.sections.health.title' => 'Данные о здоровье',
@@ -2034,10 +2034,10 @@ extension on TranslationsRu {
 			'legal.sections.permissions.title' => 'Какие разрешения мы запрашиваем',
 			'legal.sections.permissions.body' => 'Камера и фотогалерея — чтобы установить фото профиля и загрузить медицинские документы. Геолокация — чтобы сортировать врачей по расстоянию до вас. Уведомления — чтобы доставлять напоминания о приёмах и сообщения. Биометрия (Face ID / отпечаток пальца) — необязательный, более быстрый способ разблокировки приложения; ваши биометрические данные никогда не покидают устройство, мы получаем только подтверждение «да/нет» от его операционной системы.',
 			'legal.sections.children.title' => 'Возрастное ограничение',
-			'legal.sections.children.body' => 'Аккаунты DocLine предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.',
+			'legal.sections.children.body' => 'Аккаунты DocGet предназначены для совершеннолетних. Если вам меньше 18 лет, попросите родителя или опекуна создать и вести аккаунт от вашего имени через функцию профилей членов семьи.',
 			'legal.termsTitle' => 'Условия использования',
 			'legal.termsIntro' => 'Создавая аккаунт, вы соглашаетесь со следующим.',
-			'legal.termsBody' => 'Указывать о себе достоверную информацию. Использовать DocLine только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. DocLine соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.',
+			'legal.termsBody' => 'Указывать о себе достоверную информацию. Использовать DocGet только для поиска, бронирования и ведения медицинских приёмов. Не разглашать данные для входа в аккаунт. DocGet соединяет вас с независимыми лицензированными медицинскими специалистами — мы сами не являемся медицинской организацией, а ИИ-ассистент для проверки симптомов не заменяет профессиональную медицинскую диагностику или консультацию. При неотложном состоянии обращайтесь напрямую в службу экстренной помощи, а не в это приложение. Мы можем приостановить или удалить аккаунт при нарушении этих условий или злоупотреблении сервисом.',
 			'legal.contact' => 'Вопросы о ваших данных? Напишите на support@auxiodev.com',
 			'legal.consentPrefix' => 'Я прочитал(а) и согласен(на) с ',
 			'legal.consentPrivacyLink' => 'Политикой конфиденциальности',
@@ -2045,7 +2045,7 @@ extension on TranslationsRu {
 			'legal.consentTermsLink' => 'Условиями использования',
 			'legal.consentSuffix' => ', а также прямо даю согласие на обработку данных о моём здоровье, как описано в них.',
 			'legal.viewAsPdf' => 'Открыть как PDF',
-			'legal.pdfDocumentTitle' => 'DocLine — Политика конфиденциальности и условия использования',
+			'legal.pdfDocumentTitle' => 'DocGet — Политика конфиденциальности и условия использования',
 			'legal.pdfLoadError' => 'Не удалось загрузить документ. Проверьте подключение к интернету и попробуйте снова.',
 			'medications.title' => 'Лекарства',
 			'medications.editMedication' => 'Изменить лекарство',

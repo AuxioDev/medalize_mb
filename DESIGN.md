@@ -1,4 +1,4 @@
-# Medalize Mobile — Design System
+# DocGet Mobile — Design System
 
 Source of truth for visual/UI decisions in `medalize_mb`. Read this before starting any UI task. If code and this doc disagree, treat the code in `lib/core/theme/` and `lib/core/constants/app_spacing.dart` as authoritative and fix this doc.
 

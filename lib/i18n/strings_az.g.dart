@@ -39,7 +39,7 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	TranslationsAz $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsAz(meta: meta ?? this.$meta);
 
 	// Translations
-	@override String get appName => 'DocLine';
+	@override String get appName => 'DocGet';
 	@override late final _Translations$common$az common = _Translations$common$az._(_root);
 	@override late final _Translations$auth$az auth = _Translations$auth$az._(_root);
 	@override late final _Translations$forgotPassword$az forgotPassword = _Translations$forgotPassword$az._(_root);
@@ -146,7 +146,7 @@ class _Translations$auth$az extends Translations$auth$en {
 	@override String get welcomeBack => 'Yenidən xoş gəldiniz';
 	@override String get signInToContinue => 'Davam etmək üçün hesabınıza daxil olun';
 	@override String get createYourAccount => 'Hesabınızı yaradın';
-	@override String get joinMedalize => 'Bu gün DocLine-ya qoşulun';
+	@override String get joinMedalize => 'Bu gün DocGet-ya qoşulun';
 	@override String get iAmA => 'Mən';
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => 'Girişə qayıt';
@@ -274,7 +274,7 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get languageSystem => 'Sistem default';
 	@override String get logoutTitle => 'Çıxış';
 	@override String get logoutConfirm => 'Çıxmaq istədiyinizə əminsiniz?';
-	@override String get version => 'DocLine v1.0.0';
+	@override String get version => 'DocGet v1.0.0';
 	@override String get legal => 'Məxfilik və Şərtlər';
 }
 
@@ -288,7 +288,7 @@ class _Translations$security$az extends Translations$security$en {
 	@override String get title => 'Təhlükəsizlik';
 	@override String get biometricLogin => 'Biometrik Giriş';
 	@override String get biometricLoginSubtitle => 'Tətbiqin kilidini açmaq üçün Face ID / Touch ID istifadə edin';
-	@override String get biometricPrompt => 'DocLine-ya daxil olmaq üçün doğrulayın';
+	@override String get biometricPrompt => 'DocGet-ya daxil olmaq üçün doğrulayın';
 	@override String get biometricUnavailable => 'Bu cihazda biometrik autentifikasiya mövcud deyil';
 	@override String get biometricEnableFailed => 'Biometrik məlumatlarınız təsdiqlənə bilmədi. Yenidən cəhd edin.';
 	@override String get activeSessions => 'Aktiv Sessiyalar';
@@ -857,13 +857,13 @@ class _Translations$legal$az extends Translations$legal$en {
 
 	// Translations
 	@override String get title => 'Məxfilik və Şərtlər';
-	@override String get controllerNotice => 'DocLine AuxioDev (auxiodev.com) tərəfindən Azərbaycanda yaradılıb və idarə olunur («biz»). Son yenilənmə: iyul 2026.';
+	@override String get controllerNotice => 'DocGet AuxioDev (auxiodev.com) tərəfindən Azərbaycanda yaradılıb və idarə olunur («biz»). Son yenilənmə: iyul 2026.';
 	@override String get privacyTitle => 'Məxfilik Siyasəti';
-	@override String get privacyIntro => 'Bu sənəd DocLine-nun hansı şəxsi məlumatları, nə üçün topladığını və necə qoruduğunu izah edir. Həkim təyinatlarının bronlanması və idarə olunması qaçılmaz olaraq sağlamlıq məlumatlarınızı əhatə edir — bu, aşağıda ətraflı izah olunur.';
+	@override String get privacyIntro => 'Bu sənəd DocGet-nun hansı şəxsi məlumatları, nə üçün topladığını və necə qoruduğunu izah edir. Həkim təyinatlarının bronlanması və idarə olunması qaçılmaz olaraq sağlamlıq məlumatlarınızı əhatə edir — bu, aşağıda ətraflı izah olunur.';
 	@override late final _Translations$legal$sections$az sections = _Translations$legal$sections$az._(_root);
 	@override String get termsTitle => 'İstifadə Şərtləri';
 	@override String get termsIntro => 'Hesab yaratmaqla aşağıdakılarla razılaşırsınız.';
-	@override String get termsBody => 'Özünüz haqqında dəqiq məlumat verin. DocLine-dan yalnız həkim tapmaq, təyinat bron etmək və idarə etmək üçün istifadə edin. Giriş məlumatlarınızı məxfi saxlayın. DocLine sizi müstəqil, lisenziyalı tibb mütəxəssisləri ilə əlaqələndirir — biz özümüz tibb müəssisəsi deyilik, simptom yoxlama süni intellekt köməkçisi peşəkar tibbi diaqnoz və ya məsləhəti əvəz etmir. Təcili tibbi vəziyyətdə birbaşa təcili yardım xidmətinə müraciət edin, bu tətbiqə deyil. Bu şərtləri pozan və ya platformadan sui-istifadə edən hesabları dayandıra və ya silə bilərik.';
+	@override String get termsBody => 'Özünüz haqqında dəqiq məlumat verin. DocGet-dan yalnız həkim tapmaq, təyinat bron etmək və idarə etmək üçün istifadə edin. Giriş məlumatlarınızı məxfi saxlayın. DocGet sizi müstəqil, lisenziyalı tibb mütəxəssisləri ilə əlaqələndirir — biz özümüz tibb müəssisəsi deyilik, simptom yoxlama süni intellekt köməkçisi peşəkar tibbi diaqnoz və ya məsləhəti əvəz etmir. Təcili tibbi vəziyyətdə birbaşa təcili yardım xidmətinə müraciət edin, bu tətbiqə deyil. Bu şərtləri pozan və ya platformadan sui-istifadə edən hesabları dayandıra və ya silə bilərik.';
 	@override String get contact => 'Məlumatlarınızla bağlı sualınız var? support@auxiodev.com ünvanına yazın';
 	@override String get consentPrefix => 'Mən ';
 	@override String get consentPrivacyLink => 'Məxfilik Siyasəti';
@@ -871,7 +871,7 @@ class _Translations$legal$az extends Translations$legal$en {
 	@override String get consentTermsLink => 'İstifadə Şərtləri';
 	@override String get consentSuffix => ' ilə tanış oldum, onlarla razıyam və orada təsvir olunduğu kimi sağlamlıq məlumatlarımın işlənməsinə açıq razılıq verirəm.';
 	@override String get viewAsPdf => 'PDF kimi bax';
-	@override String get pdfDocumentTitle => 'DocLine — Məxfilik Siyasəti və İstifadə Şərtləri';
+	@override String get pdfDocumentTitle => 'DocGet — Məxfilik Siyasəti və İstifadə Şərtləri';
 	@override String get pdfLoadError => 'Sənəd yüklənmədi. İnternet bağlantınızı yoxlayıb yenidən cəhd edin.';
 }
 
@@ -1502,7 +1502,7 @@ class _Translations$legal$sections$children$az extends Translations$legal$sectio
 
 	// Translations
 	@override String get title => 'Yaş tələbi';
-	@override String get body => 'DocLine hesabları böyüklər üçün nəzərdə tutulub. 18 yaşınız tamam olmayıbsa, ailə üzvü profili funksiyasından istifadə edərək valideyniniz və ya qəyyumunuzdan sizin adınızdan hesab yaratmasını və idarə etməsini xahiş edin.';
+	@override String get body => 'DocGet hesabları böyüklər üçün nəzərdə tutulub. 18 yaşınız tamam olmayıbsa, ailə üzvü profili funksiyasından istifadə edərək valideyniniz və ya qəyyumunuzdan sizin adınızdan hesab yaratmasını və idarə etməsini xahiş edin.';
 }
 
 /// The flat map containing all translations for locale <az>.
@@ -1513,7 +1513,7 @@ class _Translations$legal$sections$children$az extends Translations$legal$sectio
 extension on TranslationsAz {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'appName' => 'DocLine',
+			'appName' => 'DocGet',
 			'common.cancel' => 'Ləğv et',
 			'common.logout' => 'Çıxış',
 			'common.doctor' => 'Həkim',
@@ -1552,7 +1552,7 @@ extension on TranslationsAz {
 			'auth.welcomeBack' => 'Yenidən xoş gəldiniz',
 			'auth.signInToContinue' => 'Davam etmək üçün hesabınıza daxil olun',
 			'auth.createYourAccount' => 'Hesabınızı yaradın',
-			'auth.joinMedalize' => 'Bu gün DocLine-ya qoşulun',
+			'auth.joinMedalize' => 'Bu gün DocGet-ya qoşulun',
 			'auth.iAmA' => 'Mən',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => 'Girişə qayıt',
@@ -1617,12 +1617,12 @@ extension on TranslationsAz {
 			'settings.languageSystem' => 'Sistem default',
 			'settings.logoutTitle' => 'Çıxış',
 			'settings.logoutConfirm' => 'Çıxmaq istədiyinizə əminsiniz?',
-			'settings.version' => 'DocLine v1.0.0',
+			'settings.version' => 'DocGet v1.0.0',
 			'settings.legal' => 'Məxfilik və Şərtlər',
 			'security.title' => 'Təhlükəsizlik',
 			'security.biometricLogin' => 'Biometrik Giriş',
 			'security.biometricLoginSubtitle' => 'Tətbiqin kilidini açmaq üçün Face ID / Touch ID istifadə edin',
-			'security.biometricPrompt' => 'DocLine-ya daxil olmaq üçün doğrulayın',
+			'security.biometricPrompt' => 'DocGet-ya daxil olmaq üçün doğrulayın',
 			'security.biometricUnavailable' => 'Bu cihazda biometrik autentifikasiya mövcud deyil',
 			'security.biometricEnableFailed' => 'Biometrik məlumatlarınız təsdiqlənə bilmədi. Yenidən cəhd edin.',
 			'security.activeSessions' => 'Aktiv Sessiyalar',
@@ -2000,9 +2000,9 @@ extension on TranslationsAz {
 			'messaging.noSharedHistory' => 'Həkimə yalnız onunla ortaq qəbul tarixçəniz olduqdan sonra yaza bilərsiniz.',
 			'messaging.newMessage' => 'Yeni mesajınız var',
 			'legal.title' => 'Məxfilik və Şərtlər',
-			'legal.controllerNotice' => 'DocLine AuxioDev (auxiodev.com) tərəfindən Azərbaycanda yaradılıb və idarə olunur («biz»). Son yenilənmə: iyul 2026.',
+			'legal.controllerNotice' => 'DocGet AuxioDev (auxiodev.com) tərəfindən Azərbaycanda yaradılıb və idarə olunur («biz»). Son yenilənmə: iyul 2026.',
 			'legal.privacyTitle' => 'Məxfilik Siyasəti',
-			'legal.privacyIntro' => 'Bu sənəd DocLine-nun hansı şəxsi məlumatları, nə üçün topladığını və necə qoruduğunu izah edir. Həkim təyinatlarının bronlanması və idarə olunması qaçılmaz olaraq sağlamlıq məlumatlarınızı əhatə edir — bu, aşağıda ətraflı izah olunur.',
+			'legal.privacyIntro' => 'Bu sənəd DocGet-nun hansı şəxsi məlumatları, nə üçün topladığını və necə qoruduğunu izah edir. Həkim təyinatlarının bronlanması və idarə olunması qaçılmaz olaraq sağlamlıq məlumatlarınızı əhatə edir — bu, aşağıda ətraflı izah olunur.',
 			'legal.sections.identity.title' => 'Şəxsiyyət məlumatları',
 			'legal.sections.identity.body' => 'Ad və soyad, e-poçt ünvanı, telefon nömrəsi (istəyə bağlı), parolunuz (geri qaytarılmaz hash şəklində saxlanılır, heç vaxt açıq mətn kimi deyil) və seçdiyiniz tətbiq dili.',
 			'legal.sections.health.title' => 'Sağlamlıq məlumatları',
@@ -2034,10 +2034,10 @@ extension on TranslationsAz {
 			'legal.sections.permissions.title' => 'Tələb etdiyimiz icazələr',
 			'legal.sections.permissions.body' => 'Kamera və foto qalereya — profil şəkli qoymaq və tibbi sənədlər yükləmək üçün. Məkan — həkimləri sizə olan məsafəyə görə sıralamaq üçün. Bildirişlər — təyinat xatırlatmaları və mesajlar çatdırmaq üçün. Biometrik (Face ID / barmaq izi) — tətbiqi kilidlədən açmağın istəyə bağlı, daha sürətli üsulu; biometrik məlumatlarınız heç vaxt cihazınızdan kənara çıxmır, biz yalnız cihazın əməliyyat sistemindən "bəli/xeyr" təsdiqi alırıq.',
 			'legal.sections.children.title' => 'Yaş tələbi',
-			'legal.sections.children.body' => 'DocLine hesabları böyüklər üçün nəzərdə tutulub. 18 yaşınız tamam olmayıbsa, ailə üzvü profili funksiyasından istifadə edərək valideyniniz və ya qəyyumunuzdan sizin adınızdan hesab yaratmasını və idarə etməsini xahiş edin.',
+			'legal.sections.children.body' => 'DocGet hesabları böyüklər üçün nəzərdə tutulub. 18 yaşınız tamam olmayıbsa, ailə üzvü profili funksiyasından istifadə edərək valideyniniz və ya qəyyumunuzdan sizin adınızdan hesab yaratmasını və idarə etməsini xahiş edin.',
 			'legal.termsTitle' => 'İstifadə Şərtləri',
 			'legal.termsIntro' => 'Hesab yaratmaqla aşağıdakılarla razılaşırsınız.',
-			'legal.termsBody' => 'Özünüz haqqında dəqiq məlumat verin. DocLine-dan yalnız həkim tapmaq, təyinat bron etmək və idarə etmək üçün istifadə edin. Giriş məlumatlarınızı məxfi saxlayın. DocLine sizi müstəqil, lisenziyalı tibb mütəxəssisləri ilə əlaqələndirir — biz özümüz tibb müəssisəsi deyilik, simptom yoxlama süni intellekt köməkçisi peşəkar tibbi diaqnoz və ya məsləhəti əvəz etmir. Təcili tibbi vəziyyətdə birbaşa təcili yardım xidmətinə müraciət edin, bu tətbiqə deyil. Bu şərtləri pozan və ya platformadan sui-istifadə edən hesabları dayandıra və ya silə bilərik.',
+			'legal.termsBody' => 'Özünüz haqqında dəqiq məlumat verin. DocGet-dan yalnız həkim tapmaq, təyinat bron etmək və idarə etmək üçün istifadə edin. Giriş məlumatlarınızı məxfi saxlayın. DocGet sizi müstəqil, lisenziyalı tibb mütəxəssisləri ilə əlaqələndirir — biz özümüz tibb müəssisəsi deyilik, simptom yoxlama süni intellekt köməkçisi peşəkar tibbi diaqnoz və ya məsləhəti əvəz etmir. Təcili tibbi vəziyyətdə birbaşa təcili yardım xidmətinə müraciət edin, bu tətbiqə deyil. Bu şərtləri pozan və ya platformadan sui-istifadə edən hesabları dayandıra və ya silə bilərik.',
 			'legal.contact' => 'Məlumatlarınızla bağlı sualınız var? support@auxiodev.com ünvanına yazın',
 			'legal.consentPrefix' => 'Mən ',
 			'legal.consentPrivacyLink' => 'Məxfilik Siyasəti',
@@ -2045,7 +2045,7 @@ extension on TranslationsAz {
 			'legal.consentTermsLink' => 'İstifadə Şərtləri',
 			'legal.consentSuffix' => ' ilə tanış oldum, onlarla razıyam və orada təsvir olunduğu kimi sağlamlıq məlumatlarımın işlənməsinə açıq razılıq verirəm.',
 			'legal.viewAsPdf' => 'PDF kimi bax',
-			'legal.pdfDocumentTitle' => 'DocLine — Məxfilik Siyasəti və İstifadə Şərtləri',
+			'legal.pdfDocumentTitle' => 'DocGet — Məxfilik Siyasəti və İstifadə Şərtləri',
 			'legal.pdfLoadError' => 'Sənəd yüklənmədi. İnternet bağlantınızı yoxlayıb yenidən cəhd edin.',
 			'medications.title' => 'Dərmanlar',
 			'medications.editMedication' => 'Dərmanı redaktə et',

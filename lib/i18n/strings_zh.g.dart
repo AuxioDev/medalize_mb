@@ -39,7 +39,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	TranslationsZh $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsZh(meta: meta ?? this.$meta);
 
 	// Translations
-	@override String get appName => 'DocLine';
+	@override String get appName => 'DocGet';
 	@override late final _Translations$common$zh common = _Translations$common$zh._(_root);
 	@override late final _Translations$auth$zh auth = _Translations$auth$zh._(_root);
 	@override late final _Translations$forgotPassword$zh forgotPassword = _Translations$forgotPassword$zh._(_root);
@@ -146,7 +146,7 @@ class _Translations$auth$zh extends Translations$auth$en {
 	@override String get welcomeBack => '欢迎回来';
 	@override String get signInToContinue => '登录您的账户以继续';
 	@override String get createYourAccount => '创建您的账户';
-	@override String get joinMedalize => '立即加入 DocLine';
+	@override String get joinMedalize => '立即加入 DocGet';
 	@override String get iAmA => '我是';
 	@override String get passwordHint => '••••••••';
 	@override String get backToSignIn => '返回登录';
@@ -274,7 +274,7 @@ class _Translations$settings$zh extends Translations$settings$en {
 	@override String get languageSystem => '系统默认';
 	@override String get logoutTitle => '退出登录';
 	@override String get logoutConfirm => '您确定要退出登录吗？';
-	@override String get version => 'DocLine v1.0.0';
+	@override String get version => 'DocGet v1.0.0';
 	@override String get legal => '隐私与条款';
 }
 
@@ -288,7 +288,7 @@ class _Translations$security$zh extends Translations$security$en {
 	@override String get title => '安全';
 	@override String get biometricLogin => '生物识别登录';
 	@override String get biometricLoginSubtitle => '使用面容 ID / 触控 ID 解锁应用';
-	@override String get biometricPrompt => '请验证身份以访问 DocLine';
+	@override String get biometricPrompt => '请验证身份以访问 DocGet';
 	@override String get biometricUnavailable => '此设备不支持生物识别认证';
 	@override String get biometricEnableFailed => '无法验证您的生物识别信息，请重试。';
 	@override String get activeSessions => '活跃会话';
@@ -857,13 +857,13 @@ class _Translations$legal$zh extends Translations$legal$en {
 
 	// Translations
 	@override String get title => '隐私与条款';
-	@override String get controllerNotice => 'DocLine 由 AuxioDev（auxiodev.com）在阿塞拜疆创建并运营（"我们"）。最后更新：2026年7月。';
+	@override String get controllerNotice => 'DocGet 由 AuxioDev（auxiodev.com）在阿塞拜疆创建并运营（"我们"）。最后更新：2026年7月。';
 	@override String get privacyTitle => '隐私政策';
-	@override String get privacyIntro => '本政策说明 DocLine 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。';
+	@override String get privacyIntro => '本政策说明 DocGet 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。';
 	@override late final _Translations$legal$sections$zh sections = _Translations$legal$sections$zh._(_root);
 	@override String get termsTitle => '服务条款';
 	@override String get termsIntro => '创建账号即表示您同意以下内容。';
-	@override String get termsBody => '提供关于您自己的准确信息。仅将 DocLine 用于查找、预约和管理医疗就诊。对您的登录凭证保密。DocLine 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。';
+	@override String get termsBody => '提供关于您自己的准确信息。仅将 DocGet 用于查找、预约和管理医疗就诊。对您的登录凭证保密。DocGet 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。';
 	@override String get contact => '对您的数据有疑问？请联系 support@auxiodev.com';
 	@override String get consentPrefix => '我已阅读并同意';
 	@override String get consentPrivacyLink => '隐私政策';
@@ -871,7 +871,7 @@ class _Translations$legal$zh extends Translations$legal$en {
 	@override String get consentTermsLink => '服务条款';
 	@override String get consentSuffix => '，并明确同意按其中所述处理我的健康数据。';
 	@override String get viewAsPdf => '查看 PDF';
-	@override String get pdfDocumentTitle => 'DocLine — 隐私政策与服务条款';
+	@override String get pdfDocumentTitle => 'DocGet — 隐私政策与服务条款';
 	@override String get pdfLoadError => '无法加载文档。请检查您的网络连接后重试。';
 }
 
@@ -1502,7 +1502,7 @@ class _Translations$legal$sections$children$zh extends Translations$legal$sectio
 
 	// Translations
 	@override String get title => '年龄要求';
-	@override String get body => 'DocLine 账号面向成年人。如果您未满18岁，请让父母或监护人使用家庭成员档案功能代您创建和管理账号。';
+	@override String get body => 'DocGet 账号面向成年人。如果您未满18岁，请让父母或监护人使用家庭成员档案功能代您创建和管理账号。';
 }
 
 /// The flat map containing all translations for locale <zh>.
@@ -1513,7 +1513,7 @@ class _Translations$legal$sections$children$zh extends Translations$legal$sectio
 extension on TranslationsZh {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'appName' => 'DocLine',
+			'appName' => 'DocGet',
 			'common.cancel' => '取消',
 			'common.logout' => '退出登录',
 			'common.doctor' => '医生',
@@ -1552,7 +1552,7 @@ extension on TranslationsZh {
 			'auth.welcomeBack' => '欢迎回来',
 			'auth.signInToContinue' => '登录您的账户以继续',
 			'auth.createYourAccount' => '创建您的账户',
-			'auth.joinMedalize' => '立即加入 DocLine',
+			'auth.joinMedalize' => '立即加入 DocGet',
 			'auth.iAmA' => '我是',
 			'auth.passwordHint' => '••••••••',
 			'auth.backToSignIn' => '返回登录',
@@ -1617,12 +1617,12 @@ extension on TranslationsZh {
 			'settings.languageSystem' => '系统默认',
 			'settings.logoutTitle' => '退出登录',
 			'settings.logoutConfirm' => '您确定要退出登录吗？',
-			'settings.version' => 'DocLine v1.0.0',
+			'settings.version' => 'DocGet v1.0.0',
 			'settings.legal' => '隐私与条款',
 			'security.title' => '安全',
 			'security.biometricLogin' => '生物识别登录',
 			'security.biometricLoginSubtitle' => '使用面容 ID / 触控 ID 解锁应用',
-			'security.biometricPrompt' => '请验证身份以访问 DocLine',
+			'security.biometricPrompt' => '请验证身份以访问 DocGet',
 			'security.biometricUnavailable' => '此设备不支持生物识别认证',
 			'security.biometricEnableFailed' => '无法验证您的生物识别信息，请重试。',
 			'security.activeSessions' => '活跃会话',
@@ -2000,9 +2000,9 @@ extension on TranslationsZh {
 			'messaging.noSharedHistory' => '只有与该医生有共同的预约记录后，才能给对方发消息。',
 			'messaging.newMessage' => '您有一条新消息',
 			'legal.title' => '隐私与条款',
-			'legal.controllerNotice' => 'DocLine 由 AuxioDev（auxiodev.com）在阿塞拜疆创建并运营（"我们"）。最后更新：2026年7月。',
+			'legal.controllerNotice' => 'DocGet 由 AuxioDev（auxiodev.com）在阿塞拜疆创建并运营（"我们"）。最后更新：2026年7月。',
 			'legal.privacyTitle' => '隐私政策',
-			'legal.privacyIntro' => '本政策说明 DocLine 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。',
+			'legal.privacyIntro' => '本政策说明 DocGet 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。',
 			'legal.sections.identity.title' => '身份数据',
 			'legal.sections.identity.body' => '姓名、电子邮箱、电话号码（可选）、您的密码（以不可逆的哈希形式存储，绝不以明文存储）以及您偏好的应用语言。',
 			'legal.sections.health.title' => '健康数据',
@@ -2034,10 +2034,10 @@ extension on TranslationsZh {
 			'legal.sections.permissions.title' => '我们请求的权限',
 			'legal.sections.permissions.body' => '相机和照片图库——用于设置头像和上传医疗文件。位置——用于按距离为您排序医生。通知——用于推送预约提醒和消息。生物识别（面容 ID / 指纹）——一种可选的、更快捷的应用解锁方式；您的生物识别数据绝不会离开您的设备，我们仅会收到设备操作系统返回的"是/否"确认。',
 			'legal.sections.children.title' => '年龄要求',
-			'legal.sections.children.body' => 'DocLine 账号面向成年人。如果您未满18岁，请让父母或监护人使用家庭成员档案功能代您创建和管理账号。',
+			'legal.sections.children.body' => 'DocGet 账号面向成年人。如果您未满18岁，请让父母或监护人使用家庭成员档案功能代您创建和管理账号。',
 			'legal.termsTitle' => '服务条款',
 			'legal.termsIntro' => '创建账号即表示您同意以下内容。',
-			'legal.termsBody' => '提供关于您自己的准确信息。仅将 DocLine 用于查找、预约和管理医疗就诊。对您的登录凭证保密。DocLine 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。',
+			'legal.termsBody' => '提供关于您自己的准确信息。仅将 DocGet 用于查找、预约和管理医疗就诊。对您的登录凭证保密。DocGet 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。',
 			'legal.contact' => '对您的数据有疑问？请联系 support@auxiodev.com',
 			'legal.consentPrefix' => '我已阅读并同意',
 			'legal.consentPrivacyLink' => '隐私政策',
@@ -2045,7 +2045,7 @@ extension on TranslationsZh {
 			'legal.consentTermsLink' => '服务条款',
 			'legal.consentSuffix' => '，并明确同意按其中所述处理我的健康数据。',
 			'legal.viewAsPdf' => '查看 PDF',
-			'legal.pdfDocumentTitle' => 'DocLine — 隐私政策与服务条款',
+			'legal.pdfDocumentTitle' => 'DocGet — 隐私政策与服务条款',
 			'legal.pdfLoadError' => '无法加载文档。请检查您的网络连接后重试。',
 			'medications.title' => '用药',
 			'medications.editMedication' => '编辑药物',

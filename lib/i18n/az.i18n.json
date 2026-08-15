@@ -1,5 +1,5 @@
 {
-  "appName": "DocLine",
+  "appName": "DocGet",
   "common": {
     "cancel": "Ləğv et",
     "logout": "Çıxış",
@@ -41,7 +41,7 @@
     "welcomeBack": "Yenidən xoş gəldiniz",
     "signInToContinue": "Davam etmək üçün hesabınıza daxil olun",
     "createYourAccount": "Hesabınızı yaradın",
-    "joinMedalize": "Bu gün DocLine-ya qoşulun",
+    "joinMedalize": "Bu gün DocGet-ya qoşulun",
     "iAmA": "Mən",
     "passwordHint": "••••••••",
     "backToSignIn": "Girişə qayıt",
@@ -120,14 +120,14 @@
     "languageSystem": "Sistem default",
     "logoutTitle": "Çıxış",
     "logoutConfirm": "Çıxmaq istədiyinizə əminsiniz?",
-    "version": "DocLine v1.0.0",
+    "version": "DocGet v1.0.0",
     "legal": "Məxfilik və Şərtlər"
   },
   "security": {
     "title": "Təhlükəsizlik",
     "biometricLogin": "Biometrik Giriş",
     "biometricLoginSubtitle": "Tətbiqin kilidini açmaq üçün Face ID / Touch ID istifadə edin",
-    "biometricPrompt": "DocLine-ya daxil olmaq üçün doğrulayın",
+    "biometricPrompt": "DocGet-ya daxil olmaq üçün doğrulayın",
     "biometricUnavailable": "Bu cihazda biometrik autentifikasiya mövcud deyil",
     "biometricEnableFailed": "Biometrik məlumatlarınız təsdiqlənə bilmədi. Yenidən cəhd edin.",
     "activeSessions": "Aktiv Sessiyalar",
@@ -555,9 +555,9 @@
   },
   "legal": {
     "title": "Məxfilik və Şərtlər",
-    "controllerNotice": "DocLine AuxioDev (auxiodev.com) tərəfindən Azərbaycanda yaradılıb və idarə olunur («biz»). Son yenilənmə: iyul 2026.",
+    "controllerNotice": "DocGet AuxioDev (auxiodev.com) tərəfindən Azərbaycanda yaradılıb və idarə olunur («biz»). Son yenilənmə: iyul 2026.",
     "privacyTitle": "Məxfilik Siyasəti",
-    "privacyIntro": "Bu sənəd DocLine-nun hansı şəxsi məlumatları, nə üçün topladığını və necə qoruduğunu izah edir. Həkim təyinatlarının bronlanması və idarə olunması qaçılmaz olaraq sağlamlıq məlumatlarınızı əhatə edir — bu, aşağıda ətraflı izah olunur.",
+    "privacyIntro": "Bu sənəd DocGet-nun hansı şəxsi məlumatları, nə üçün topladığını və necə qoruduğunu izah edir. Həkim təyinatlarının bronlanması və idarə olunması qaçılmaz olaraq sağlamlıq məlumatlarınızı əhatə edir — bu, aşağıda ətraflı izah olunur.",
     "sections": {
       "identity": {
         "title": "Şəxsiyyət məlumatları",
@@ -617,12 +617,12 @@
       },
       "children": {
         "title": "Yaş tələbi",
-        "body": "DocLine hesabları böyüklər üçün nəzərdə tutulub. 18 yaşınız tamam olmayıbsa, ailə üzvü profili funksiyasından istifadə edərək valideyniniz və ya qəyyumunuzdan sizin adınızdan hesab yaratmasını və idarə etməsini xahiş edin."
+        "body": "DocGet hesabları böyüklər üçün nəzərdə tutulub. 18 yaşınız tamam olmayıbsa, ailə üzvü profili funksiyasından istifadə edərək valideyniniz və ya qəyyumunuzdan sizin adınızdan hesab yaratmasını və idarə etməsini xahiş edin."
       }
     },
     "termsTitle": "İstifadə Şərtləri",
     "termsIntro": "Hesab yaratmaqla aşağıdakılarla razılaşırsınız.",
-    "termsBody": "Özünüz haqqında dəqiq məlumat verin. DocLine-dan yalnız həkim tapmaq, təyinat bron etmək və idarə etmək üçün istifadə edin. Giriş məlumatlarınızı məxfi saxlayın. DocLine sizi müstəqil, lisenziyalı tibb mütəxəssisləri ilə əlaqələndirir — biz özümüz tibb müəssisəsi deyilik, simptom yoxlama süni intellekt köməkçisi peşəkar tibbi diaqnoz və ya məsləhəti əvəz etmir. Təcili tibbi vəziyyətdə birbaşa təcili yardım xidmətinə müraciət edin, bu tətbiqə deyil. Bu şərtləri pozan və ya platformadan sui-istifadə edən hesabları dayandıra və ya silə bilərik.",
+    "termsBody": "Özünüz haqqında dəqiq məlumat verin. DocGet-dan yalnız həkim tapmaq, təyinat bron etmək və idarə etmək üçün istifadə edin. Giriş məlumatlarınızı məxfi saxlayın. DocGet sizi müstəqil, lisenziyalı tibb mütəxəssisləri ilə əlaqələndirir — biz özümüz tibb müəssisəsi deyilik, simptom yoxlama süni intellekt köməkçisi peşəkar tibbi diaqnoz və ya məsləhəti əvəz etmir. Təcili tibbi vəziyyətdə birbaşa təcili yardım xidmətinə müraciət edin, bu tətbiqə deyil. Bu şərtləri pozan və ya platformadan sui-istifadə edən hesabları dayandıra və ya silə bilərik.",
     "contact": "Məlumatlarınızla bağlı sualınız var? support@auxiodev.com ünvanına yazın",
     "consentPrefix": "Mən ",
     "consentPrivacyLink": "Məxfilik Siyasəti",
@@ -630,7 +630,7 @@
     "consentTermsLink": "İstifadə Şərtləri",
     "consentSuffix": " ilə tanış oldum, onlarla razıyam və orada təsvir olunduğu kimi sağlamlıq məlumatlarımın işlənməsinə açıq razılıq verirəm.",
     "viewAsPdf": "PDF kimi bax",
-    "pdfDocumentTitle": "DocLine — Məxfilik Siyasəti və İstifadə Şərtləri",
+    "pdfDocumentTitle": "DocGet — Məxfilik Siyasəti və İstifadə Şərtləri",
     "pdfLoadError": "Sənəd yüklənmədi. İnternet bağlantınızı yoxlayıb yenidən cəhd edin."
   },
   "medications": {

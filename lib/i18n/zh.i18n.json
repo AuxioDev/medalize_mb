@@ -1,5 +1,5 @@
 {
-  "appName": "DocLine",
+  "appName": "DocGet",
   "common": {
     "cancel": "取消",
     "logout": "退出登录",
@@ -41,7 +41,7 @@
     "welcomeBack": "欢迎回来",
     "signInToContinue": "登录您的账户以继续",
     "createYourAccount": "创建您的账户",
-    "joinMedalize": "立即加入 DocLine",
+    "joinMedalize": "立即加入 DocGet",
     "iAmA": "我是",
     "passwordHint": "••••••••",
     "backToSignIn": "返回登录",
@@ -120,14 +120,14 @@
     "languageSystem": "系统默认",
     "logoutTitle": "退出登录",
     "logoutConfirm": "您确定要退出登录吗？",
-    "version": "DocLine v1.0.0",
+    "version": "DocGet v1.0.0",
     "legal": "隐私与条款"
   },
   "security": {
     "title": "安全",
     "biometricLogin": "生物识别登录",
     "biometricLoginSubtitle": "使用面容 ID / 触控 ID 解锁应用",
-    "biometricPrompt": "请验证身份以访问 DocLine",
+    "biometricPrompt": "请验证身份以访问 DocGet",
     "biometricUnavailable": "此设备不支持生物识别认证",
     "biometricEnableFailed": "无法验证您的生物识别信息，请重试。",
     "activeSessions": "活跃会话",
@@ -555,9 +555,9 @@
   },
   "legal": {
     "title": "隐私与条款",
-    "controllerNotice": "DocLine 由 AuxioDev（auxiodev.com）在阿塞拜疆创建并运营（\"我们\"）。最后更新：2026年7月。",
+    "controllerNotice": "DocGet 由 AuxioDev（auxiodev.com）在阿塞拜疆创建并运营（\"我们\"）。最后更新：2026年7月。",
     "privacyTitle": "隐私政策",
-    "privacyIntro": "本政策说明 DocLine 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。",
+    "privacyIntro": "本政策说明 DocGet 收集哪些个人数据、原因以及如何保护这些数据。预约和管理医疗就诊必然涉及您的健康信息，下面将详细说明。",
     "sections": {
       "identity": {
         "title": "身份数据",
@@ -617,12 +617,12 @@
       },
       "children": {
         "title": "年龄要求",
-        "body": "DocLine 账号面向成年人。如果您未满18岁，请让父母或监护人使用家庭成员档案功能代您创建和管理账号。"
+        "body": "DocGet 账号面向成年人。如果您未满18岁，请让父母或监护人使用家庭成员档案功能代您创建和管理账号。"
       }
     },
     "termsTitle": "服务条款",
     "termsIntro": "创建账号即表示您同意以下内容。",
-    "termsBody": "提供关于您自己的准确信息。仅将 DocLine 用于查找、预约和管理医疗就诊。对您的登录凭证保密。DocLine 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。",
+    "termsBody": "提供关于您自己的准确信息。仅将 DocGet 用于查找、预约和管理医疗就诊。对您的登录凭证保密。DocGet 将您与独立的、持证的医疗专业人员联系起来——我们自身并非医疗机构，AI 症状检查助手也不能替代专业医疗诊断或建议。如遇医疗紧急情况，请直接联系急救服务，而非使用本应用。对于违反本条款或滥用平台的账号，我们可能会暂停或终止其使用。",
     "contact": "对您的数据有疑问？请联系 support@auxiodev.com",
     "consentPrefix": "我已阅读并同意",
     "consentPrivacyLink": "隐私政策",
@@ -630,7 +630,7 @@
     "consentTermsLink": "服务条款",
     "consentSuffix": "，并明确同意按其中所述处理我的健康数据。",
     "viewAsPdf": "查看 PDF",
-    "pdfDocumentTitle": "DocLine — 隐私政策与服务条款",
+    "pdfDocumentTitle": "DocGet — 隐私政策与服务条款",
     "pdfLoadError": "无法加载文档。请检查您的网络连接后重试。"
   },
   "medications": {

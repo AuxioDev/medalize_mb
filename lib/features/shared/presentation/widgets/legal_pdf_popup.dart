@@ -33,7 +33,7 @@ Future<void> showLegalPdfPopup(BuildContext context) {
           canChangePageFormat: false,
           canChangeOrientation: false,
           canDebug: false,
-          pdfFileName: 'docline_privacy_policy.pdf',
+          pdfFileName: 'docget_privacy_policy.pdf',
           loadingWidget: const Center(child: CircularProgressIndicator()),
           onError: (context, error) => Center(
             child: Padding(

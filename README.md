@@ -1,2 +1,2 @@
-# medalize-mb
-medalize mobile
+# docget-mb
+docget mobile
