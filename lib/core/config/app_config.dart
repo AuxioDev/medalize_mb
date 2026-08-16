@@ -26,10 +26,10 @@ abstract final class AppConfig {
   // ── Share links ──────────────────────────────────────────────────────────
   // The medalize_web domain a doctor/hospital "share profile" link and QR
   // code resolve to (see QR_SHARE_PROFILE_PLAN.md Phase 1/2). Override at
-  // build time: flutter run --dart-define=WEB_BASE_URL=https://medoroapp.com
+  // build time: flutter run --dart-define=WEB_BASE_URL=https://docget.az
   static const webBaseUrl = String.fromEnvironment(
     'WEB_BASE_URL',
-    defaultValue: 'https://medoroapp.com',
+    defaultValue: 'https://docget.az',
   );
 
   static const Duration connectTimeout = Duration(seconds: 10);

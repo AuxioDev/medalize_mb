@@ -57,8 +57,8 @@
             <!-- App Links (QR_SHARE_PROFILE_PLAN.md Phase 3) — opens a shared
                  doctor/hospital profile link straight into the app. Scoped to
                  those two path shapes only, not the whole domain, so a plain
-                 link to the medoroapp.com marketing site doesn't also try to
-                 launch the app. autoVerify requires medoroapp.com to serve a
+                 link to the docget.az marketing site doesn't also try to
+                 launch the app. autoVerify requires docget.az to serve a
                  correct /.well-known/assetlinks.json (see medalize_web) with
                  this app's real release-signing SHA-256 fingerprint, or
                  Android silently falls back to opening the browser instead. -->
@@ -68,11 +68,11 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data
                     android:scheme="https"
-                    android:host="medoroapp.com"
+                    android:host="docget.az"
                     android:pathPattern="/.*/doctor/.*"/>
                 <data
                     android:scheme="https"
-                    android:host="medoroapp.com"
+                    android:host="docget.az"
                     android:pathPattern="/.*/hospital/.*"/>
             </intent-filter>
         </activity>
