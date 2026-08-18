@@ -125,7 +125,7 @@ class _WorkplaceMapPickerScreenState
                 urlTemplate:
                     'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
                 subdomains: const ['a', 'b', 'c', 'd'],
-                userAgentPackageName: 'az.medalize.app',
+                userAgentPackageName: 'com.auxiodev.docget',
               ),
               const RichAttributionWidget(attributions: [
                 TextSourceAttribution('OpenStreetMap contributors'),

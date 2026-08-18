@@ -1,4 +1,4 @@
-package az.medalize.app
+package com.auxiodev.docget
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

@@ -38,7 +38,7 @@ abstract final class AppConfig {
 
   // ── Social sign-in ────────────────────────────────────────────────────────
   // PLACEHOLDERS: real values come from Google Cloud Console after the app
-  // (az.medalize.app) is registered there. Override at build time:
+  // (com.auxiodev.docget) is registered there. Override at build time:
   //   flutter run --dart-define=GOOGLE_SERVER_CLIENT_ID=xxx.apps.googleusercontent.com
   //
   // The *server* (web-type) client ID is what the backend verifies as the
