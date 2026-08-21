@@ -47,7 +47,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   late final TapGestureRecognizer _termsLinkRecognizer;
 
   static final _nameFormatters = <TextInputFormatter>[
-    FilteringTextInputFormatter.allow(RegExp(r"[a-zA-ZÀ-ÖØ-öø-ÿ' -]")),
+    FilteringTextInputFormatter.allow(RegExp(r"[a-zA-ZÀ-ÖØ-öø-ÿƏəĞğİıŞş' -]")),
     LengthLimitingTextInputFormatter(50),
   ];
 

@@ -12,8 +12,9 @@ abstract final class Validators {
   // Matches backend rule: 8+ chars, ≥1 letter, ≥1 digit
   static final _passwordMinRe = RegExp(r'^(?=.*[A-Za-z])(?=.*\d).{8,}$');
 
-  // Unicode letters (basic + extended Latin), spaces, hyphens, apostrophes — 2–50 chars
-  static final _nameRe = RegExp(r"^[a-zA-ZÀ-ÖØ-öø-ÿ' -]{2,50}$");
+  // Unicode letters (basic + extended Latin, incl. Azerbaijani ə/ğ/ı/İ/ş),
+  // spaces, hyphens, apostrophes — 2–50 chars
+  static final _nameRe = RegExp(r"^[a-zA-ZÀ-ÖØ-öø-ÿƏəĞğİıŞş' -]{2,50}$");
 
   // ── Helpers ────────────────────────────────────────────────────────────────
 
